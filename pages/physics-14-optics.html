@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 14 · Geometric and Wave Optics — PostMed Notebook</title>
+<meta name="description" content="Physics note 14: reflection, refraction, total internal reflection, mirrors and thin lenses with sign conventions, dioptres, the eye and its corrections, interference, diffraction, resolution and polarisation — with a 10-question self-test.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 14</p>
+  <h1>Geometric and Wave Optics</h1>
+  <p class="lede">There is only one physical object on this page — a wavefront — and only one question:
+    how big is the thing the wavefront has to get past, compared with its own wavelength? When apertures,
+    mirrors and pupils are enormously larger than λ, the wavefront's normals behave like straight lines and
+    you may draw rays; every mirror and lens formula follows. When the obstacle shrinks towards λ, the ray
+    picture collapses and interference and diffraction take over. Learn where that boundary sits and the
+    rest of optics stops being a list of equations.</p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Ray diagrams, sign conventions &amp; wavefronts</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~55 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Light as an electromagnetic wave — and when it is a ray</a></li>
+      <li><a href="#s2">Reflection and the plane mirror</a></li>
+      <li><a href="#s3">Spherical mirrors and the sign convention</a></li>
+      <li><a href="#s4">Refraction, refractive index and Snell's law</a></li>
+      <li><a href="#s5">Total internal reflection, fibres and dispersion</a></li>
+      <li><a href="#s6">Thin lenses and principal-ray diagrams</a></li>
+      <li><a href="#s7">The lensmaker's equation and power in dioptres</a></li>
+      <li><a href="#s8">The eye — and the instruments built on it</a></li>
+      <li><a href="#s9">Interference: Huygens, coherence, two slits, thin films</a></li>
+      <li><a href="#s10">Diffraction, the grating and the resolution limit</a></li>
+      <li><a href="#s11">Polarisation, Brewster's angle and Malus's law</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Wave relation</b><code>c = f λ ; c = 3.00×10⁸ m·s⁻¹</code></div>
+      <div class="fsheet__item"><b>Photon energy</b><code>E = h f = h c / λ</code></div>
+      <div class="fsheet__item"><b>Refractive index</b><code>n = c / v ≥ 1</code></div>
+      <div class="fsheet__item"><b>Wavelength in medium</b><code>λ<sub>n</sub> = λ<sub>vac</sub> / n ; f unchanged</code></div>
+      <div class="fsheet__item"><b>Law of reflection</b><code>θ<sub>i</sub> = θ<sub>r</sub></code></div>
+      <div class="fsheet__item"><b>Snell's law</b><code>n₁ sin θ₁ = n₂ sin θ₂</code></div>
+      <div class="fsheet__item"><b>Critical angle</b><code>sin θ<sub>c</sub> = n₂ / n₁ (n₁ &gt; n₂)</code></div>
+      <div class="fsheet__item"><b>Mirror focal length</b><code>f = R / 2</code></div>
+      <div class="fsheet__item"><b>Mirror / thin-lens equation</b><code>1/d<sub>o</sub> + 1/d<sub>i</sub> = 1/f</code></div>
+      <div class="fsheet__item"><b>Magnification</b><code>m = −d<sub>i</sub>/d<sub>o</sub> = h<sub>i</sub>/h<sub>o</sub></code></div>
+      <div class="fsheet__item"><b>Lensmaker's equation</b><code>1/f = (n−1)(1/R₁ − 1/R₂)</code></div>
+      <div class="fsheet__item"><b>Lens power</b><code>P = 1/f (m) → dioptre, D</code></div>
+      <div class="fsheet__item"><b>Lenses in contact</b><code>P = P₁ + P₂ + …</code></div>
+      <div class="fsheet__item"><b>Myopia correction</b><code>P = −1 / (far point in m)</code></div>
+      <div class="fsheet__item"><b>Hyperopia correction</b><code>P = 1/0.25 − 1/(near point in m)</code></div>
+      <div class="fsheet__item"><b>Simple magnifier</b><code>M = 25 cm / f (image at ∞)</code></div>
+      <div class="fsheet__item"><b>Compound microscope</b><code>M ≈ −(L/f<sub>o</sub>)(25 cm/f<sub>e</sub>)</code></div>
+      <div class="fsheet__item"><b>Refracting telescope</b><code>M = −f<sub>o</sub> / f<sub>e</sub></code></div>
+      <div class="fsheet__item"><b>Double slit, bright</b><code>d sin θ = m λ</code></div>
+      <div class="fsheet__item"><b>Fringe spacing</b><code>Δy = λ L / d (small θ)</code></div>
+      <div class="fsheet__item"><b>Thin film, no net shift</b><code>2 n<sub>f</sub> t = m λ constructive</code></div>
+      <div class="fsheet__item"><b>Thin film, one π shift</b><code>2 n<sub>f</sub> t = (m+½) λ constructive</code></div>
+      <div class="fsheet__item"><b>AR coating, thinnest</b><code>t = λ / (4 n<sub>f</sub>)</code></div>
+      <div class="fsheet__item"><b>Single slit, dark</b><code>a sin θ = m λ (m = 1, 2, 3…)</code></div>
+      <div class="fsheet__item"><b>Grating</b><code>d sin θ = m λ , d = 1/N</code></div>
+      <div class="fsheet__item"><b>Grating resolving power</b><code>λ/Δλ = m N<sub>illum</sub></code></div>
+      <div class="fsheet__item"><b>Rayleigh criterion</b><code>θ<sub>min</sub> = 1.22 λ / D</code></div>
+      <div class="fsheet__item"><b>Malus's law</b><code>I = I₀ cos²θ ; unpolarised → I₀/2</code></div>
+      <div class="fsheet__item"><b>Brewster's angle</b><code>tan θ<sub>B</sub> = n₂ / n₁</code></div>
+    </div>
+  </section>
+</div>
+
+<div class="callout callout--warn" style="margin-top:1.25rem">
+    <p class="callout__title">Notation trap · f is not f, m is not m, n is not n</p>
+    <p style="margin:0"><b>f</b> is frequency in <span class="fi">c = fλ</span> (Hz) but
+      <em>focal length</em> in <span class="fi">1/d<sub>o</sub> + 1/d<sub>i</sub> = 1/f</span> (m).
+      <b>m</b> is lateral magnification in <span class="fi">m = −d<sub>i</sub>/d<sub>o</sub></span>
+      (dimensionless) but the integer <em>fringe order</em> in
+      <span class="fi">d sin θ = mλ</span>. <b>n</b> is refractive index in Snell's law but a
+      counting integer in the thin-film conditions. Read the units and the context, not the letter.</p>
+  </div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Light as an electromagnetic wave — and when it is a ray</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Electromagnetic wave</dt>
+      <dd>A self-sustaining, transverse oscillation of coupled electric and magnetic fields, with <b>E</b> ⟂ <b>B</b>
+        ⟂ direction of travel, requiring no medium and moving through vacuum at exactly <i>c</i>.</dd>
+      <dt>Ray</dt>
+      <dd>The line drawn normal to a wavefront, in the direction the wavefront advances — a bookkeeping device,
+        not a physical object.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">c = f λ = 3.00×10⁸ m·s⁻¹</span>
+      <span class="fx__tag">in vacuum; in a medium replace c by v</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">E = h f = h c / λ</span><span class="fx__tag">energy of one photon; h = 6.63×10⁻³⁴ J·s</span></div>
+      <div class="fx"><span class="fx__eq">ray model valid when  a ≫ λ</span><span class="fx__tag">a = aperture or obstacle size; otherwise use the wave model</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>c</b><span>speed of light in vacuum (m·s⁻¹)</span></div>
+      <div><b>f</b><span>frequency (Hz = s⁻¹)</span></div>
+      <div><b>λ</b><span>wavelength (m)</span></div>
+      <div><b>E</b><span>photon energy (J; 1 eV = 1.60×10⁻¹⁹ J)</span></div>
+      <div><b>h</b><span>Planck constant (J·s)</span></div>
+      <div><b>a</b><span>aperture / obstacle width (m)</span></div>
+    </div>
+  </div>
+
+  <p>An accelerating charge radiates. The radiated <b>E</b> and <b>B</b> fields regenerate each other through
+    Faraday's and Maxwell–Ampère's laws, so the disturbance propagates without anything to propagate
+    <em>in</em> — and Maxwell's equations fix its speed at
+    <span class="fi">c = 1/√(ε₀μ₀)</span>. Substituting ε₀ = 8.85×10⁻¹² F·m⁻¹ and μ₀ = 4π×10⁻⁷ T·m·A⁻¹ gives
+    3.00×10⁸ m·s⁻¹, which is the single strongest piece of evidence that light <em>is</em> an electromagnetic
+    wave.</p>
+
+  <p>Everything on the spectrum below is the same phenomenon. Only <strong>frequency</strong> distinguishes a
+    radio wave from a γ-ray, and frequency is set by the source. Visible light is the narrow octave your
+    retinal pigments happen to absorb — roughly <strong>400 nm (violet) to 700 nm (red)</strong>.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The electromagnetic spectrum by wavelength, frequency and photon energy</caption>
+      <thead>
+        <tr><th>Band</th><th>Wavelength (vacuum)</th><th>Frequency</th><th>Photon energy</th><th>Why it matters clinically</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Radio</td><td class="num">&gt; 1 m</td><td class="num">&lt; 3×10⁸ Hz</td><td class="num">≲ 1 µeV</td><td>MRI radiofrequency pulses</td></tr>
+        <tr><td>Microwave</td><td class="num">1 mm – 1 m</td><td class="num">3×10⁸ – 3×10¹¹ Hz</td><td class="num">µeV – meV</td><td>Diathermy; dielectric heating of water</td></tr>
+        <tr><td>Infrared</td><td class="num">700 nm – 1 mm</td><td class="num">3×10¹¹ – 4.3×10¹⁴ Hz</td><td class="num">meV – 1.8 eV</td><td>Thermography; pulse oximetry (940 nm)</td></tr>
+        <tr><td><b>Visible</b></td><td class="num">400 – 700 nm</td><td class="num">4.3×10¹⁴ – 7.5×10¹⁴ Hz</td><td class="num">1.8 – 3.1 eV</td><td>Everything on this page</td></tr>
+        <tr><td>Ultraviolet</td><td class="num">10 – 400 nm</td><td class="num">7.5×10¹⁴ – 3×10¹⁶ Hz</td><td class="num">3.1 – 124 eV</td><td>UV-B → pyrimidine dimers, vitamin D</td></tr>
+        <tr><td>X-ray</td><td class="num">0.01 – 10 nm</td><td class="num">3×10¹⁶ – 3×10¹⁹ Hz</td><td class="num">124 eV – 124 keV</td><td>Radiography, CT; ionising</td></tr>
+        <tr><td>γ-ray</td><td class="num">&lt; 0.01 nm</td><td class="num">&gt; 3×10¹⁹ Hz</td><td class="num">&gt; 124 keV</td><td>Nuclear medicine, PET (511 keV)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo">
+    <h4>Ordering hook — "Radio Microwaves Inflame Very Unhappy X-ray Gamers"</h4>
+    <p>Radio → Micro → Infrared → Visible → UV → X-ray → γ. Wavelength falls left to right; frequency and
+      photon energy rise. Inside the visible band, ROYGBIV runs long-λ red to short-λ violet.</p>
+  </div>
+
+  <h3>When you may draw rays</h3>
+  <p>A wavefront bends around an obstacle by an angle of order <span class="fi">λ/a</span>. For a 1 mm pupil and
+    550 nm light that is 5.5×10⁻⁴ rad — negligible, so light appears to travel in straight lines and casts sharp
+    shadows. Shrink the aperture to 5 µm and the spreading is 0.1 rad, which is not negligible at all. The whole
+    of §§2–8 is the <strong>a ≫ λ</strong> limit; §§9–11 are what happens when that fails.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">Geometric optics is not a different theory from wave optics — it is the
+      <strong>short-wavelength limit</strong> of it, exactly as Newtonian mechanics is the low-speed limit of
+      relativity. Both regimes obey <strong>Fermat's principle</strong>: light takes the path whose travel time is
+      stationary. The law of reflection and Snell's law are both single-line consequences of it.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Reflection and the plane mirror</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Reflection</dt>
+      <dd>The return of a wave into the medium it came from when it meets a boundary, with the frequency,
+        wavelength and speed all unchanged.</dd>
+      <dt>Virtual image</dt>
+      <dd>An image located where the <em>backward extensions</em> of diverging rays intersect; no light energy is
+        actually there, so it cannot be caught on a screen.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">θ<sub>i</sub> = θ<sub>r</sub></span>
+      <span class="fx__tag">angles measured from the <b>normal</b>, both rays and the normal coplanar</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">d<sub>i</sub> = −d<sub>o</sub> ,  m = +1</span><span class="fx__tag">plane mirror: f = ∞, image as far behind as the object is in front</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>θ<sub>i</sub></b><span>angle of incidence, from the normal (°or rad)</span></div>
+      <div><b>θ<sub>r</sub></b><span>angle of reflection, from the normal (° or rad)</span></div>
+      <div><b>d<sub>o</sub></b><span>object distance (m)</span></div>
+      <div><b>d<sub>i</sub></b><span>image distance, negative = behind mirror (m)</span></div>
+      <div><b>m</b><span>lateral magnification (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>The law of reflection is a statement about a <strong>single ray at a single point</strong>. What
+    distinguishes a mirror from a wall is not the law — both obey it — but the <strong>surface</strong>:</p>
+
+  <div class="grid grid--2">
+    <div class="card">
+      <h4>Specular reflection</h4>
+      <p style="font-size:.92rem;margin:0">Surface irregularities ≪ λ. Parallel incoming rays stay parallel on the
+        way out, so the angular information in the beam survives and an <strong>image</strong> forms. Polished
+        metal, still water, glass.</p>
+    </div>
+    <div class="card">
+      <h4>Diffuse reflection</h4>
+      <p style="font-size:.92rem;margin:0">Surface irregularities ≫ λ. Each patch of surface has its own normal, so
+        parallel rays leave in all directions. No image — but this is why you can see <em>this page</em> from any
+        angle, and why an unpolished wall looks equally bright from everywhere.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:1rem">A plane mirror obeys <span class="fi">1/d<sub>o</sub> + 1/d<sub>i</sub> = 1/f</span>
+    with <span class="fi">f = ∞</span>, which forces <span class="fi">d<sub>i</sub> = −d<sub>o</sub></span> and
+    therefore <span class="fi">m = −d<sub>i</sub>/d<sub>o</sub> = +1</span>. So the image is: <strong>virtual,
+    upright, the same size, and as far behind the mirror as the object is in front.</strong> All four facts come
+    from one equation — do not memorise them separately.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "the mirror reverses left and right"</p>
+    <p style="margin:0">It does not. A plane mirror reverses the axis <strong>perpendicular to its surface</strong>
+      (front–back). Your mirror image's left hand appears on your right only because you imagine rotating yourself
+      about a vertical axis to face it — a rotation the mirror never performed. Consequence worth remembering: to
+      see your whole body you need a mirror only <strong>half your height</strong>, mounted with its top edge
+      halfway between your eyes and the top of your head, and this is independent of how far away you stand.</p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Spherical mirrors and the sign convention</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Focal point of a mirror</dt>
+      <dd>The point on the axis through which paraxial rays arriving parallel to the axis pass after reflection
+        (concave), or from which they appear to diverge (convex).</dd>
+      <dt>Lateral magnification</dt>
+      <dd>The signed ratio of image height to object height; its sign carries the orientation and its magnitude
+        the size.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">1/d<sub>o</sub> + 1/d<sub>i</sub> = 1/f ,   f = R/2</span>
+      <span class="fx__tag">paraxial rays only (small angles to the axis)</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">m = − d<sub>i</sub> / d<sub>o</sub> = h<sub>i</sub> / h<sub>o</sub></span><span class="fx__tag">m &lt; 0 → inverted; |m| &gt; 1 → enlarged</span></div>
+      <div class="fx"><span class="fx__eq">concave: f &gt; 0  ·  convex: f &lt; 0</span><span class="fx__tag">concave converges, convex diverges</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>d<sub>o</sub></b><span>object distance from mirror (m)</span></div>
+      <div><b>d<sub>i</sub></b><span>image distance from mirror (m)</span></div>
+      <div><b>f</b><span>focal length (m)</span></div>
+      <div><b>R</b><span>radius of curvature (m)</span></div>
+      <div><b>h<sub>o</sub>, h<sub>i</sub></b><span>object / image height (m)</span></div>
+      <div><b>m</b><span>lateral magnification (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>Why <span class="fi">f = R/2</span>: take a paraxial ray parallel to the axis striking a concave mirror of
+    radius <i>R</i> at height <i>y</i>. The normal at that point is the radius, so the ray makes an angle
+    <span class="fi">α ≈ y/R</span> with it, and reflects through <span class="fi">2α</span>. It therefore crosses
+    the axis at a distance <span class="fi">y/(2α) = R/2</span> from the mirror — <strong>independent of
+    <i>y</i></strong>, which is exactly why a focus exists. That independence only holds while <i>y</i> ≪ <i>R</i>:
+    outside the paraxial region, outer rays cross closer to the mirror, which is
+    <strong>spherical aberration</strong>. A parabolic mirror removes it exactly, which is why telescope and
+    headlight reflectors are parabolic.</p>
+
+  <h3>The sign convention — write this out before every problem</h3>
+  <p>One convention covers mirrors <em>and</em> lenses. The organising rule is: <strong>positive means
+    real</strong> — real objects, real images, converging elements.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Sign convention for mirrors and thin lenses</caption>
+      <thead>
+        <tr><th>Quantity</th><th>Positive (+) when…</th><th>Negative (−) when…</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>d<sub>o</sub></b> object distance</td><td>Object is in front of the element — the normal case (real object)</td><td>Light is already converging towards the element (virtual object; only in multi-element systems)</td></tr>
+        <tr><td><b>d<sub>i</sub></b> <em>mirror</em></td><td>Image in <b>front</b> of the mirror, same side as the object → <b>real</b></td><td>Image <b>behind</b> the mirror → <b>virtual</b></td></tr>
+        <tr><td><b>d<sub>i</sub></b> <em>lens</em></td><td>Image on the <b>far</b> side from the object → <b>real</b></td><td>Image on the <b>same</b> side as the object → <b>virtual</b></td></tr>
+        <tr><td><b>f, R</b> mirror</td><td><b>Concave</b> (centre of curvature in front)</td><td><b>Convex</b> (centre of curvature behind)</td></tr>
+        <tr><td><b>f</b> lens</td><td><b>Converging</b> (thicker in the middle, in air)</td><td><b>Diverging</b> (thinner in the middle, in air)</td></tr>
+        <tr><td><b>R₁, R₂</b> lens surfaces</td><td>Centre of curvature on the <b>outgoing</b> side</td><td>Centre of curvature on the <b>incoming</b> side</td></tr>
+        <tr><td><b>m, h<sub>i</sub></b></td><td>Image <b>upright</b></td><td>Image <b>inverted</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the two meanings of "positive d<sub>i</sub>"</p>
+    <p style="margin:0">For a <b>mirror</b>, a real image is on the <em>same</em> side as the object; for a
+      <b>lens</b>, a real image is on the <em>opposite</em> side. Students who memorise "real = in front"
+      and apply it to lenses get every sign wrong. The convention that unifies them: light must actually
+      <em>go</em> to a real image, so a real image is always on the side the light leaves from.</p>
+  </div>
+
+  <h3>Image behaviour by object position</h3>
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Images formed by concave and convex mirrors as a function of object position</caption>
+      <thead>
+        <tr><th>Mirror</th><th>Object position</th><th>Image position</th><th>Type</th><th>Orientation / size</th></tr>
+      </thead>
+      <tbody>
+        <tr><td rowspan="5"><b>Concave</b><br>f = +R/2</td><td>At ∞</td><td>At F</td><td>Real (a point)</td><td>—</td></tr>
+        <tr><td>Beyond C (d<sub>o</sub> &gt; 2f)</td><td>Between F and C</td><td>Real</td><td>Inverted, reduced</td></tr>
+        <tr><td>At C (d<sub>o</sub> = 2f)</td><td>At C</td><td>Real</td><td>Inverted, same size</td></tr>
+        <tr><td>Between F and C</td><td>Beyond C</td><td>Real</td><td>Inverted, enlarged</td></tr>
+        <tr><td>Inside F (d<sub>o</sub> &lt; f)</td><td>Behind the mirror</td><td><b>Virtual</b></td><td>Upright, enlarged — the shaving / make-up mirror</td></tr>
+        <tr><td><b>Convex</b><br>f = −|R|/2</td><td><b>Any</b> real object</td><td>Between F and the mirror, behind it</td><td><b>Always virtual</b></td><td>Always upright, always reduced — wide field of view, hence car wing mirrors and shop security mirrors</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 1 · the same object, two mirrors</h4>
+    <p style="margin:0 0 .3rem">A 4.0 cm tall object stands 30 cm in front of (a) a concave mirror of radius
+      40 cm, then (b) a convex mirror of the same radius. Locate and describe both images.</p>
+    <ol>
+      <li><b>(a) Concave.</b> f = R/2 = +20 cm.
+        1/d<sub>i</sub> = 1/f − 1/d<sub>o</sub> = 1/20 − 1/30 = (3 − 2)/60 = 1/60 → d<sub>i</sub> = <b>+60 cm</b>.</li>
+      <li>Positive → in front of the mirror → <b>real</b>. m = −d<sub>i</sub>/d<sub>o</sub> = −60/30 = <b>−2.0</b>:
+        inverted, twice as large, so h<sub>i</sub> = −8.0 cm.</li>
+      <li><b>(b) Convex.</b> Now R is negative: f = −20 cm.
+        1/d<sub>i</sub> = −1/20 − 1/30 = −(3 + 2)/60 = −5/60 → d<sub>i</sub> = <b>−12 cm</b>.</li>
+      <li>Negative → behind the mirror → <b>virtual</b>. m = −(−12)/30 = <b>+0.40</b>: upright and reduced,
+        h<sub>i</sub> = +1.6 cm.</li>
+      <li>Sanity check: the object sits beyond C = 40 cm? No — 30 cm is between F (20) and C (40), and the table
+        says the concave image should be real, inverted and enlarged beyond C. d<sub>i</sub> = 60 cm &gt; 40 cm ✓.</li>
+    </ol>
+    <span class="wex__ans">Concave: real, inverted, 8.0 cm tall, 60 cm in front · Convex: virtual, upright, 1.6 cm tall, 12 cm behind</span>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Refraction, refractive index and Snell's law</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Refraction</dt>
+      <dd>The change of direction of a wave crossing a boundary, caused by the change in its propagation
+        <em>speed</em>.</dd>
+      <dt>Index of refraction</dt>
+      <dd>The factor by which a medium slows light: the ratio of the vacuum speed to the phase speed in the
+        medium. It is dimensionless and never less than 1 for ordinary matter.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">n₁ sin θ₁ = n₂ sin θ₂</span>
+      <span class="fx__tag">angles from the normal; both rays and the normal coplanar</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">n = c / v ≥ 1</span><span class="fx__tag">definition; v is the phase speed in the medium</span></div>
+      <div class="fx"><span class="fx__eq">λ<sub>n</sub> = λ<sub>vac</sub> / n ,  f unchanged</span><span class="fx__tag">always true at a boundary</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>n</b><span>refractive index (dimensionless)</span></div>
+      <div><b>v</b><span>speed of light in the medium (m·s⁻¹)</span></div>
+      <div><b>θ₁, θ₂</b><span>angles of incidence / refraction, from the normal (° or rad)</span></div>
+      <div><b>λ<sub>n</sub></b><span>wavelength inside the medium (m)</span></div>
+      <div><b>f</b><span>frequency, set by the source (Hz)</span></div>
+    </div>
+  </div>
+
+  <p>Here is the whole of refraction in one sentence: <strong>the frequency cannot change, so if the speed
+    changes the wavelength must change, and a wavefront whose two ends are travelling at different speeds must
+    swing round.</strong> The frequency is fixed because the fields on the two sides of the boundary have to
+    oscillate in step at every instant — if they did not, the wave would have to tear at the interface, which
+    Maxwell's boundary conditions forbid.</p>
+
+  <p>Follow the wavefront rather than the ray. Its leading edge enters the slower medium first and is held back
+    while the trailing edge is still moving fast; the front therefore pivots <strong>towards the normal</strong>.
+    That is why light entering a denser (higher-<i>n</i>) medium bends towards the normal — and, reversibly, bends
+    away from the normal on leaving it. Snell's law is just this statement with the geometry done.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 660 280" role="img" aria-label="Left panel: a ray in air striking a water surface at 45 degrees, splitting into a weak reflected ray at 45 degrees and a refracted ray bent towards the normal at 32 degrees. Right panel: rays inside water striking the surface from below — at 30 degrees the ray refracts out into air, at the critical angle 48.8 degrees it grazes along the surface, and at 60 degrees it is totally internally reflected.">
+      <defs>
+        <marker id="f1-ray" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto">
+          <path d="M0,0 L9,4.5 L0,9 Z" fill="var(--v-accel)"/>
+        </marker>
+        <marker id="f1-tir" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto">
+          <path d="M0,0 L9,4.5 L0,9 Z" fill="var(--v-force)"/>
+        </marker>
+      </defs>
+
+      <!-- Panel A -->
+      <line x1="30" y1="140" x2="310" y2="140" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="170" y1="35" x2="170" y2="245" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="5 5" opacity=".7"/>
+      <line x1="100" y1="70" x2="170" y2="140" stroke="var(--v-accel)" stroke-width="2.4" marker-end="url(#f1-ray)"/>
+      <line x1="170" y1="140" x2="228" y2="233" stroke="var(--v-accel)" stroke-width="2.4" marker-end="url(#f1-ray)"/>
+      <line x1="170" y1="140" x2="240" y2="70" stroke="var(--v-accel)" stroke-width="1.4" stroke-dasharray="4 4" opacity=".65" marker-end="url(#f1-ray)"/>
+      <path d="M 170 100 A 40 40 0 0 0 141.7 111.7" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>
+      <path d="M 170 180 A 40 40 0 0 0 191.3 173.9" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>
+      <text x="132" y="98" font-size="13" fill="var(--ink)">θ₁ = 45°</text>
+      <text x="186" y="196" font-size="13" fill="var(--ink)">θ₂ = 32.1°</text>
+      <text x="36" y="128" font-size="12" fill="var(--ink-soft)">n₁ = 1.00 (air)</text>
+      <text x="36" y="160" font-size="12" fill="var(--ink-soft)">n₂ = 1.33 (water)</text>
+      <text x="222" y="62" font-size="11" fill="var(--ink-soft)">weak partial reflection</text>
+      <text x="30" y="268" font-size="12" fill="var(--ink)" font-weight="700">A · into a denser medium → bends towards the normal</text>
+
+      <!-- Panel B -->
+      <line x1="360" y1="140" x2="640" y2="140" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="470" y1="35" x2="470" y2="245" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="5 5" opacity=".7"/>
+      <!-- sub-critical -->
+      <line x1="420" y1="227" x2="470" y2="140" stroke="var(--v-accel)" stroke-width="2.2" marker-end="url(#f1-ray)"/>
+      <line x1="470" y1="140" x2="530" y2="73" stroke="var(--v-accel)" stroke-width="2.2" marker-end="url(#f1-ray)"/>
+      <!-- critical -->
+      <line x1="398" y1="203" x2="470" y2="140" stroke="var(--v-accel)" stroke-width="1.6" stroke-dasharray="5 4" opacity=".8"/>
+      <line x1="470" y1="136" x2="596" y2="136" stroke="var(--v-accel)" stroke-width="1.6" stroke-dasharray="5 4" opacity=".8" marker-end="url(#f1-ray)"/>
+      <!-- supercritical -->
+      <line x1="392" y1="185" x2="470" y2="140" stroke="var(--v-force)" stroke-width="2.6" marker-end="url(#f1-tir)"/>
+      <line x1="470" y1="140" x2="548" y2="185" stroke="var(--v-force)" stroke-width="2.6" marker-end="url(#f1-tir)"/>
+      <text x="366" y="128" font-size="12" fill="var(--ink-soft)">n₂ = 1.00 (air)</text>
+      <text x="366" y="160" font-size="12" fill="var(--ink-soft)">n₁ = 1.33 (water)</text>
+      <text x="524" y="60" font-size="11" fill="var(--ink-soft)">θ = 30° &lt; θ_c → escapes</text>
+      <text x="500" y="124" font-size="11" fill="var(--ink-soft)">θ = θ_c = 48.8° → grazes at 90°</text>
+      <text x="500" y="210" font-size="11" fill="var(--v-force)">θ = 60° &gt; θ_c → 100 % reflected</text>
+      <text x="360" y="268" font-size="12" fill="var(--ink)" font-weight="700">B · out of a denser medium → total internal reflection above θ_c</text>
+    </svg>
+    <figcaption>Refraction at a water surface. <b>A</b>: entering the denser medium, the ray bends towards the
+      normal and a few per cent of the energy is reflected. <b>B</b>: leaving the denser medium the ray bends away
+      from the normal, so there is an angle at which it would have to leave at 90° — beyond it no refracted ray
+      exists and <em>all</em> the energy is reflected.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Refractive indices of common and ocular media at 589 nm</caption>
+      <thead>
+        <tr><th>Medium</th><th class="num">n (at 589 nm)</th><th class="num">v = c/n</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Vacuum</td><td class="num">1.0000</td><td class="num">3.00×10⁸ m·s⁻¹</td><td>Definition of <i>c</i></td></tr>
+        <tr><td>Air (STP)</td><td class="num">1.0003</td><td class="num">≈ 3.00×10⁸ m·s⁻¹</td><td>Taken as 1.00 in every exam question</td></tr>
+        <tr><td>Water</td><td class="num">1.333</td><td class="num">2.25×10⁸ m·s⁻¹</td><td>θ<sub>c</sub> to air = 48.6° (48.8° if n is rounded to 1.33)</td></tr>
+        <tr><td>Aqueous / vitreous humour</td><td class="num">1.336</td><td class="num">2.25×10⁸ m·s⁻¹</td><td>Essentially water</td></tr>
+        <tr><td>Cornea</td><td class="num">1.376</td><td class="num">2.18×10⁸ m·s⁻¹</td><td>The eye's main refracting surface</td></tr>
+        <tr><td>Crystalline lens</td><td class="num">1.386 – 1.406</td><td class="num">≈ 2.15×10⁸ m·s⁻¹</td><td>Gradient index: denser in the nucleus</td></tr>
+        <tr><td>Crown glass</td><td class="num">1.52</td><td class="num">1.97×10⁸ m·s⁻¹</td><td>θ<sub>c</sub> to air ≈ 41.1°</td></tr>
+        <tr><td>Diamond</td><td class="num">2.42</td><td class="num">1.24×10⁸ m·s⁻¹</td><td>θ<sub>c</sub> = 24.4° → the "fire"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 2 · what actually changes when light enters water</h4>
+    <p style="margin:0 0 .3rem">Sodium light (λ = 589 nm in vacuum) strikes a still pond at 40° to the normal.
+      n<sub>water</sub> = 1.33. Find the refraction angle, the speed, the wavelength and the frequency in water.</p>
+    <ol>
+      <li><b>Angle.</b> n₁ sin θ₁ = n₂ sin θ₂ → sin θ₂ = (1.00)(sin 40°)/1.33 = 0.6428/1.33 = 0.4833.
+        θ₂ = arcsin 0.4833 = <b>28.9°</b> — bent towards the normal, as it must be.</li>
+      <li><b>Speed.</b> v = c/n = (3.00×10⁸)/1.33 = <b>2.26×10⁸ m·s⁻¹</b>.</li>
+      <li><b>Frequency.</b> Fixed by the source and unchanged at the boundary:
+        f = c/λ<sub>vac</sub> = (3.00×10⁸)/(589×10⁻⁹) = <b>5.09×10¹⁴ Hz</b>.</li>
+      <li><b>Wavelength in water.</b> λ<sub>n</sub> = λ<sub>vac</sub>/n = 589/1.33 = <b>443 nm</b>.</li>
+      <li>Cross-check: v/λ<sub>n</sub> = (2.26×10⁸)/(443×10⁻⁹) = 5.10×10¹⁴ Hz ✓ (the 0.2 % gap is rounding).</li>
+    </ol>
+    <span class="wex__ans">θ₂ = 28.9° · v = 2.26×10⁸ m·s⁻¹ · λ = 443 nm · f = 5.09×10¹⁴ Hz (unchanged)</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "the colour changes under water"</p>
+    <p style="margin:0">It does not. Your eye responds to <strong>frequency</strong>, and frequency is the one thing
+      refraction leaves alone. The 443 nm wavelength inside the water would be blue if you saw it in air — but you
+      never do, because the light re-expands to 589 nm on the way out. Any question that says "speed decreases,
+      therefore frequency decreases" is wrong; <span class="fi">v = fλ</span> is satisfied by λ falling instead.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Total internal reflection, fibres and dispersion</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Total internal reflection (TIR)</dt>
+      <dd>The complete return of light into the denser medium when it meets a boundary with a rarer medium at or
+        beyond the critical angle — the only reflection in optics with 100 % efficiency.</dd>
+      <dt>Dispersion</dt>
+      <dd>The dependence of refractive index on wavelength, so that a single refraction sorts white light by
+        colour.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">sin θ<sub>c</sub> = n₂ / n₁</span>
+      <span class="fx__tag">requires n₁ &gt; n₂ — dense to rare only</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">θ ≥ θ<sub>c</sub> → no refracted ray, R = 100 %</span><span class="fx__tag">energy conservation: transmission is zero</span></div>
+      <div class="fx"><span class="fx__eq">n(violet) &gt; n(red)</span><span class="fx__tag">normal dispersion: short λ is slowed more</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>θ<sub>c</sub></b><span>critical angle, from the normal (°)</span></div>
+      <div><b>n₁</b><span>index of the <i>denser</i> incident medium (dimensionless)</span></div>
+      <div><b>n₂</b><span>index of the rarer medium (dimensionless)</span></div>
+      <div><b>R</b><span>reflectance, fraction of incident power reflected (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>Set θ₂ = 90° in Snell's law — the refracted ray lying flat along the surface — and you get
+    <span class="fi">n₁ sin θ<sub>c</sub> = n₂ sin 90° = n₂</span>. Push the incidence past θ<sub>c</sub> and
+    Snell's law would demand sin θ₂ &gt; 1, which has no solution: <strong>there is no refracted ray to carry
+    energy away</strong>, so every joule goes into the reflected ray. This is the only mirror in physics with no
+    losses — silvered mirrors reflect 90–95 %, TIR reflects 100 %.</p>
+
+  <p>Two immediate consequences of the <span class="fi">n₁ &gt; n₂</span> condition: TIR is impossible going from
+    air into glass, and the higher the index contrast the smaller θ<sub>c</sub>. Diamond's θ<sub>c</sub> = 24.4°
+    means light entering the stone bounces internally many times before it finds a facet steep enough to escape —
+    that, plus strong dispersion, is the "fire".</p>
+
+  <h3>Optical fibres and endoscopy</h3>
+  <p>A step-index fibre is a glass <b>core</b> (n ≈ 1.62) inside a <b>cladding</b> of slightly lower index
+    (n ≈ 1.52). Light launched within a small acceptance cone strikes the core–cladding wall well beyond
+    θ<sub>c</sub> = arcsin(1.52/1.62) = 69.8° and is totally reflected thousands of times per metre, following
+    the fibre round bends with almost no loss. Because the cladding — not the outer surface — sets the condition,
+    the fibre keeps working when it is touched, bundled or immersed in body fluid.</p>
+
+  <p>An <strong>endoscope</strong> exploits this twice: an <em>incoherent</em> bundle (fibres in any order) carries
+    illumination down, and a <em>coherent</em> bundle (fibres held in the same relative position at both ends, so
+    each fibre is one pixel) carries the image back. The same principle carries laser energy to the tissue in
+    endoscopic surgery, and modern video endoscopes replace the imaging bundle with a chip at the tip while keeping
+    the fibre illumination.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">Three facts about TIR are examined over and over: it happens <strong>only from dense to
+      rare</strong>; the critical angle is measured <strong>from the normal</strong>; and the reflection is
+      <strong>total</strong>, i.e. 100 %, not merely strong. A question giving n₁ &lt; n₂ and asking for
+      θ<sub>c</sub> is testing whether you notice that no critical angle exists.</p>
+  </div>
+
+  <h3>Dispersion and the rainbow</h3>
+  <p>An electron bound in a molecule has resonant frequencies in the ultraviolet. Visible light drives that
+    oscillator below resonance, and the closer the driving frequency comes to resonance the larger the response
+    — so <strong>blue and violet are slowed more than red</strong>. For water, n runs from ≈1.331 at 700 nm to
+    ≈1.343 at 400 nm. A prism therefore refracts violet through the larger angle at both surfaces, and white
+    light fans out.</p>
+
+  <p>In a raindrop the light refracts on entry, reflects once off the back, and refracts again on exit. The total
+    deviation has a minimum, which piles up rays at one angle and makes the bow bright there:
+    <strong>≈42° from the antisolar point for red, ≈40° for violet</strong> — so the <b>primary bow has red on the
+    outside</b>. Drops that reflect <em>twice</em> internally give the fainter <b>secondary bow at ≈51°, with the
+    colours reversed</b> (red inside), and the sky between the two bows is genuinely darker (Alexander's dark
+    band) because no drop deviates light into that annulus.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · dispersion versus diffraction</p>
+    <p style="margin:0">Both split white light, by opposite orderings. A <b>prism</b> (dispersion) deviates
+      <strong>violet most</strong>, because n is largest there. A <b>grating</b> (diffraction) deviates
+      <strong>red most</strong>, because <span class="fi">sin θ = mλ/d</span> grows with λ. If a question shows a
+      spectrum with red at the far edge, it is a grating, not a prism.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Thin lenses and principal-ray diagrams</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Thin lens</dt>
+      <dd>A refracting element whose thickness is negligible compared with d<sub>o</sub>, d<sub>i</sub> and R, so
+        that both refracting surfaces can be treated as acting at one plane.</dd>
+      <dt>Focal point</dt>
+      <dd>The axial point to which paraxial rays parallel to the axis converge (converging lens) or from which
+        they appear to diverge (diverging lens). A thin lens has one on each side, equidistant, even when the two
+        faces differ.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">1/d<sub>o</sub> + 1/d<sub>i</sub> = 1/f</span>
+      <span class="fx__tag">thin lens, paraxial rays, monochromatic light, lens in air</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">m = − d<sub>i</sub> / d<sub>o</sub> = h<sub>i</sub> / h<sub>o</sub></span><span class="fx__tag">same expression as for mirrors</span></div>
+      <div class="fx"><span class="fx__eq">m<sub>total</sub> = m₁ × m₂ × …</span><span class="fx__tag">multi-element: the image of one lens is the object of the next</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>d<sub>o</sub></b><span>object distance (m)</span></div>
+      <div><b>d<sub>i</sub></b><span>image distance; + = far side = real (m)</span></div>
+      <div><b>f</b><span>focal length; + converging, − diverging (m)</span></div>
+      <div><b>h<sub>o</sub>, h<sub>i</sub></b><span>object / image height (m)</span></div>
+      <div><b>m</b><span>lateral magnification (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>The thin-lens equation is <em>identical</em> in form to the mirror equation, which is not a coincidence: both
+    come from the paraxial approximation applied to a surface that turns a diverging spherical wave into a
+    converging one. Learn one equation, then learn the single sign table in §3 — its mirror rows and its lens rows.</p>
+
+  <h3>The three principal rays</h3>
+  <p>Any two of these locate the image; draw the third as a check. All three must meet at one point — if they do
+    not, your focal marks are wrong.</p>
+  <ol>
+    <li><b>Parallel ray.</b> Leaves the object tip parallel to the axis, and after the lens passes through the
+      far focal point F′ (converging) or appears to come from the near focal point (diverging).</li>
+    <li><b>Central ray.</b> Passes through the centre of the lens undeviated — the two faces are parallel there,
+      so it behaves like a thin sheet of glass.</li>
+    <li><b>Focal ray.</b> Passes through the near focal point F on the way in, and emerges parallel to the
+      axis.</li>
+  </ol>
+
+  <figure class="figure">
+    <svg viewBox="0 0 660 300" role="img" aria-label="Principal ray diagram for a converging lens with the object at twice the focal length. Three rays — one parallel to the axis then through the far focus, one through the lens centre undeviated, one through the near focus then parallel — meet at a point below the axis on the far side, forming a real inverted image of the same size at twice the focal length.">
+      <defs>
+        <marker id="f2-ray" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto">
+          <path d="M0,0 L9,4.5 L0,9 Z" fill="var(--v-accel)"/>
+        </marker>
+        <marker id="f2-obj" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto">
+          <path d="M0,0 L9,4.5 L0,9 Z" fill="var(--v-energy)"/>
+        </marker>
+      </defs>
+
+      <line x1="25" y1="170" x2="635" y2="170" stroke="var(--ink-soft)" stroke-width="1"/>
+      <path d="M 320 62 Q 352 170 320 278 Q 288 170 320 62 Z" fill="var(--v-vel)" fill-opacity=".16" stroke="var(--v-vel)" stroke-width="2"/>
+
+      <!-- focal marks -->
+      <line x1="220" y1="163" x2="220" y2="177" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="420" y1="163" x2="420" y2="177" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="120" y1="163" x2="120" y2="177" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="520" y1="163" x2="520" y2="177" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <text x="110" y="192" font-size="12" fill="var(--ink-soft)">2F</text>
+      <text x="198" y="192" font-size="12" fill="var(--ink-soft)">F</text>
+      <text x="424" y="158" font-size="12" fill="var(--ink-soft)">F′</text>
+      <text x="524" y="158" font-size="12" fill="var(--ink-soft)">2F′</text>
+
+      <!-- rays -->
+      <line x1="120" y1="100" x2="320" y2="100" stroke="var(--v-accel)" stroke-width="2"/>
+      <line x1="320" y1="100" x2="560" y2="268" stroke="var(--v-accel)" stroke-width="2" marker-end="url(#f2-ray)"/>
+      <line x1="120" y1="100" x2="320" y2="170" stroke="var(--v-accel)" stroke-width="2"/>
+      <line x1="320" y1="170" x2="560" y2="254" stroke="var(--v-accel)" stroke-width="2" marker-end="url(#f2-ray)"/>
+      <line x1="120" y1="100" x2="320" y2="240" stroke="var(--v-accel)" stroke-width="2"/>
+      <line x1="320" y1="240" x2="560" y2="240" stroke="var(--v-accel)" stroke-width="2" marker-end="url(#f2-ray)"/>
+
+      <!-- object and image -->
+      <line x1="120" y1="170" x2="120" y2="100" stroke="var(--v-energy)" stroke-width="3" marker-end="url(#f2-obj)"/>
+      <line x1="520" y1="170" x2="520" y2="240" stroke="var(--v-energy)" stroke-width="3" marker-end="url(#f2-obj)"/>
+      <text x="66" y="94" font-size="12" fill="var(--v-energy)" font-weight="700">object</text>
+      <text x="470" y="262" font-size="12" fill="var(--v-energy)" font-weight="700">image</text>
+      <text x="470" y="278" font-size="11" fill="var(--ink-soft)">real · inverted · same size</text>
+      <text x="330" y="52" font-size="12" fill="var(--v-vel)" font-weight="700">converging lens</text>
+      <text x="30" y="292" font-size="11" fill="var(--ink-soft)">Object at 2F → image at 2F′, m = −1</text>
+    </svg>
+    <figcaption>The special case d<sub>o</sub> = 2f. Ray 1 (parallel in, through F′ out), ray 2 (straight through
+      the centre) and ray 3 (through F in, parallel out) all cross at the image tip. Slide the object left and the
+      image walks towards F′ and shrinks; slide it inside F and the outgoing rays diverge, so the image jumps to
+      the object's own side and becomes virtual.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Image type formed by a thin lens as a function of object position</caption>
+      <thead>
+        <tr><th>Lens</th><th>Object position</th><th>Image position</th><th>Real / virtual</th><th>Upright / inverted</th><th>Size</th></tr>
+      </thead>
+      <tbody>
+        <tr><td rowspan="6"><b>Converging</b><br>f &gt; 0</td><td>At ∞</td><td>At F′</td><td>Real</td><td>—</td><td>Point</td></tr>
+        <tr><td>d<sub>o</sub> &gt; 2f</td><td>Between F′ and 2F′</td><td>Real</td><td>Inverted</td><td>Reduced (|m| &lt; 1)</td></tr>
+        <tr><td>d<sub>o</sub> = 2f</td><td>At 2F′</td><td>Real</td><td>Inverted</td><td>Same size (m = −1)</td></tr>
+        <tr><td>f &lt; d<sub>o</sub> &lt; 2f</td><td>Beyond 2F′</td><td>Real</td><td>Inverted</td><td>Enlarged (|m| &gt; 1)</td></tr>
+        <tr><td>d<sub>o</sub> = f</td><td>At ∞</td><td>No image</td><td>—</td><td>Emergent rays parallel</td></tr>
+        <tr><td>d<sub>o</sub> &lt; f</td><td>Same side as object, further away</td><td><b>Virtual</b></td><td>Upright</td><td>Enlarged — the simple magnifier</td></tr>
+        <tr><td><b>Diverging</b><br>f &lt; 0</td><td><b>Any</b> real object</td><td>Between F and the lens, on the object's side</td><td><b>Always virtual</b></td><td>Always upright</td><td>Always reduced</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 3 · one lens, two object positions</h4>
+    <p style="margin:0 0 .3rem">A converging lens has f = +15 cm. Place a 3.0 cm object (a) 20 cm away, then
+      (b) 10 cm away. Describe both images.</p>
+    <ol>
+      <li><b>(a) d<sub>o</sub> = 20 cm</b> — between f and 2f, so expect real, inverted, enlarged.
+        1/d<sub>i</sub> = 1/15 − 1/20 = (4 − 3)/60 = 1/60 → d<sub>i</sub> = <b>+60 cm</b>, on the far side.</li>
+      <li>m = −60/20 = <b>−3.0</b> → inverted, h<sub>i</sub> = −9.0 cm. Beyond 2f′ = 30 cm ✓ matches the table.</li>
+      <li><b>(b) d<sub>o</sub> = 10 cm</b> — inside f, so expect virtual, upright, enlarged.
+        1/d<sub>i</sub> = 1/15 − 1/10 = (2 − 3)/30 = −1/30 → d<sub>i</sub> = <b>−30 cm</b>.</li>
+      <li>Negative for a lens means the image is on the <em>same</em> side as the object → virtual.
+        m = −(−30)/10 = <b>+3.0</b> → upright, h<sub>i</sub> = +9.0 cm. You are now using the lens as a
+        magnifying glass.</li>
+      <li>Note the pattern worth carrying into the exam: <strong>same |m|, opposite character</strong>. Crossing
+        the focal point flips the image from real-inverted to virtual-upright and sends d<sub>i</sub> through ∞.</li>
+    </ol>
+    <span class="wex__ans">(a) real, inverted, 9.0 cm tall, 60 cm beyond the lens · (b) virtual, upright, 9.0 cm tall, 30 cm in front</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "a converging lens makes a real image"</p>
+    <p style="margin:0">Only when the object is <strong>outside</strong> the focal point. Inside it, a converging
+      lens gives a virtual, upright, magnified image — the entire basis of the magnifying glass. Conversely a
+      diverging lens with a real object <em>never</em> makes a real image, so "diverging lens, real image" is
+      always a wrong option unless the incoming light is already converging.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>The lensmaker's equation and power in dioptres</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Lensmaker's equation</dt>
+      <dd>The relation that produces the focal length of a thin lens from what a workshop can actually control:
+        the glass index and the two surface curvatures.</dd>
+      <dt>Power (of a lens)</dt>
+      <dd>The reciprocal of the focal length in metres — how strongly the lens bends light, measured in
+        dioptres (D = m⁻¹).</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">1/f = (n − 1) (1/R₁ − 1/R₂)</span>
+      <span class="fx__tag">thin lens in air; R signed by the §3 convention</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">P = 1 / f<sub>(metres)</sub>   [D = m⁻¹]</span><span class="fx__tag">converging → P &gt; 0, diverging → P &lt; 0</span></div>
+      <div class="fx"><span class="fx__eq">P<sub>total</sub> = P₁ + P₂ + P₃ + …</span><span class="fx__tag">thin lenses <b>in contact</b> only (separation ≪ f)</span></div>
+      <div class="fx"><span class="fx__eq">1/f = (n<sub>lens</sub>/n<sub>medium</sub> − 1)(1/R₁ − 1/R₂)</span><span class="fx__tag">lens immersed in a medium</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>n</b><span>refractive index of the lens material (dimensionless)</span></div>
+      <div><b>R₁</b><span>radius of the first surface light meets (m)</span></div>
+      <div><b>R₂</b><span>radius of the second surface (m)</span></div>
+      <div><b>f</b><span>focal length (m)</span></div>
+      <div><b>P</b><span>power (D = m⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>Two things determine a lens: <strong>how much slower light is inside it</strong> (the factor n − 1) and
+    <strong>how strongly the surfaces are curved</strong> (the bracket). Both appear as products, so doubling the
+    curvature or doubling n − 1 doubles the power. Note the immediate corollary of the third formula: a glass lens
+    (n = 1.52) immersed in water (n = 1.33) has its power cut by a factor of
+    (1.52/1.33 − 1)/(1.52 − 1) = 0.143/0.52 ≈ 0.27 — which is why you cannot see clearly underwater without a mask.
+    The air gap in front of the cornea is what your eye's optics depend on.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the sign of R₂</p>
+    <p style="margin:0">For a biconvex lens, the second surface bulges <em>towards</em> the incoming light, so its
+      centre of curvature is on the <strong>incoming</strong> side and <strong>R₂ is negative</strong>. The bracket
+      then becomes 1/R₁ + 1/|R₂|, a sum, and the lens converges. Students who put both radii positive get a
+      near-zero or negative power and conclude the formula is broken. Sanity check every time: a fatter middle must
+      give a bigger positive P.</p>
+  </div>
+
+  <p>Dioptres are the clinician's unit for exactly one reason: <strong>they add.</strong> Two thin lenses in
+    contact place the image of the first at the object position of the second with negligible separation, and the
+    reciprocal-focal-length algebra collapses to a plain sum. A +2.00 D reading add on top of a −3.00 D distance
+    correction gives −1.00 D through the lower segment of the bifocal. Focal lengths, by contrast, never add.</p>
+
+  <div class="wex">
+    <h4>Worked example 4 · from glass shape to prescription</h4>
+    <p style="margin:0 0 .3rem">A biconvex lens is ground from crown glass (n = 1.50) with a front radius of 20 cm
+      and a back radius of 30 cm. (a) Find f and P. (b) It is then cemented to a diverging lens of power −1.50 D.
+      Find the combined focal length.</p>
+    <ol>
+      <li><b>Signs first.</b> Light meets the front surface, whose centre of curvature is on the outgoing side:
+        R₁ = +0.20 m. The back surface bulges towards the source, centre of curvature on the incoming side:
+        R₂ = <b>−0.30 m</b>.</li>
+      <li><b>(a)</b> 1/f = (1.50 − 1)(1/0.20 − 1/(−0.30)) = 0.50 × (5.000 + 3.333) = 0.50 × 8.333 = 4.17 m⁻¹.</li>
+      <li>So <b>P = +4.17 D</b> and f = 1/4.17 = <b>0.240 m = 24.0 cm</b>. Positive, as a biconvex lens must be.</li>
+      <li><b>(b)</b> In contact, powers add: P = 4.17 + (−1.50) = <b>+2.67 D</b>.</li>
+      <li>f = 1/2.67 = <b>0.375 m = 37.5 cm</b>. The pair still converges, but more weakly — the focal length grew
+        from 24 to 37.5 cm.</li>
+    </ol>
+    <span class="wex__ans">(a) P = +4.17 D, f = 24.0 cm · (b) P = +2.67 D, f = 37.5 cm</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">Convert to <strong>metres before</strong> taking the reciprocal. "f = 25 cm" is
+      <strong>+4.00 D</strong>, not +0.04 D. And powers add only for lenses <strong>in contact</strong>: for
+      separated lenses you must trace the image through, or use
+      <span class="fi">P = P₁ + P₂ − d P₁P₂</span> with d the separation in metres.</p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>The eye — and the instruments built on it</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Accommodation</dt>
+      <dd>The eye's ability to increase its own refractive power by contracting the ciliary muscle, releasing the
+        zonular tension and letting the elastic crystalline lens become more spherical.</dd>
+      <dt>Near point / far point</dt>
+      <dd>The closest and furthest object distances that can be brought to a sharp focus on the retina — standard
+        young values 25 cm and ∞.</dd>
+      <dt>Angular magnification</dt>
+      <dd>The ratio of the angle an object subtends through an instrument to the angle it subtends with the naked
+        eye at the near point. It is what "×10" on an eyepiece means.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">P = 1/d<sub>o</sub> + 1/d<sub>i</sub></span>
+      <span class="fx__tag">corrective lens: d<sub>o</sub> = where the object <i>is</i>, d<sub>i</sub> = − (where the eye can see)</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">myopia:  P = − 1 / (far point in m)</span><span class="fx__tag">object at ∞ → virtual image at the far point</span></div>
+      <div class="fx"><span class="fx__eq">hyperopia:  P = 1/0.25 − 1/(near point in m)</span><span class="fx__tag">object at 25 cm → virtual image at the near point</span></div>
+      <div class="fx"><span class="fx__eq">M<sub>magnifier</sub> = 25 cm / f   (image at ∞)</span><span class="fx__tag">= 1 + 25/f if the image is placed at the near point</span></div>
+      <div class="fx"><span class="fx__eq">M<sub>micro</sub> ≈ − (L/f<sub>o</sub>)(25 cm/f<sub>e</sub>)</span><span class="fx__tag">L = tube length; objective × eyepiece</span></div>
+      <div class="fx"><span class="fx__eq">M<sub>tele</sub> = − f<sub>o</sub> / f<sub>e</sub></span><span class="fx__tag">refracting telescope, object at ∞</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>P</b><span>lens power (D = m⁻¹)</span></div>
+      <div><b>d<sub>o</sub>, d<sub>i</sub></b><span>object / image distance for the spectacle lens (m)</span></div>
+      <div><b>f<sub>o</sub>, f<sub>e</sub></b><span>objective / eyepiece focal length (m or cm)</span></div>
+      <div><b>L</b><span>microscope tube length, objective to eyepiece image (m or cm)</span></div>
+      <div><b>M</b><span>angular magnification (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <h3>Where the refraction actually happens</h3>
+  <p>The relaxed adult eye has a total power of about <strong>+60 D</strong>. Because the image forms in vitreous
+    of n ≈ 1.34, the image-side focal length is n/P ≈ 1.34/60 ≈ 22 mm, measured from the eye's principal plane —
+    which itself sits about 2 mm behind the cornea, putting the retina ≈24 mm behind the front of the eye. That is
+    the axial length of a normal eye. Differentiate the same relation and 1 mm of extra eyeball is worth about
+    3 D, which is why so small a mismatch makes you myopic.
+    Of that +60 D, the <strong>cornea supplies about +43 D — roughly two-thirds</strong> — almost all of it at the
+    air–cornea interface (its front surface alone is ≈+48 D, its back surface ≈−6 D), and the
+    crystalline lens only about +17 to +20 D. The reason is the index step, not the shape: air (1.00) to cornea
+    (1.376) is a jump of 0.38, whereas the lens (≈1.41) is bathed in aqueous and vitreous at 1.34, a jump of only
+    ≈0.07. Refraction scales with Δn, so the biggest jump does the most work.</p>
+
+  <p>Two clinical consequences follow immediately. First, refractive surgery reshapes the <strong>cornea</strong>
+    (LASIK, PRK) because that is where the power is. Second, submerging the eye in water abolishes the air–cornea
+    step and destroys ≈2/3 of the eye's power, leaving you severely hyperopic — a goggle restores the air gap and
+    with it your vision.</p>
+
+  <p>The lens matters for a different reason: it is the only part that can <strong>change</strong>. Ciliary muscle
+    <em>contraction</em> slackens the zonules and lets the lens round up, adding up to ≈+14 D in a child. That is
+    the amplitude of accommodation, and it decays with age as the lens hardens.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 660 300" role="img" aria-label="Two eye diagrams. Left: a myopic eye in which parallel rays are brought to a focus in the vitreous, in front of the retina, producing a blur circle on the retina; corrected with a diverging lens. Right: a hyperopic eye in which the rays are still converging when they reach the retina and would focus behind it; corrected with a converging lens.">
+      <defs>
+        <marker id="f3-ray" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="var(--v-accel)"/>
+        </marker>
+      </defs>
+
+      <!-- Panel A : myopia -->
+      <ellipse cx="200" cy="150" rx="85" ry="62" fill="none" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <path d="M 124 110 Q 100 150 124 190" fill="none" stroke="var(--v-vel)" stroke-width="3.5"/>
+      <path d="M 262 100 Q 292 150 262 200" fill="none" stroke="var(--v-force)" stroke-width="3.5"/>
+      <line x1="25" y1="126" x2="112" y2="126" stroke="var(--v-accel)" stroke-width="2" marker-end="url(#f3-ray)"/>
+      <line x1="25" y1="174" x2="112" y2="174" stroke="var(--v-accel)" stroke-width="2" marker-end="url(#f3-ray)"/>
+      <line x1="112" y1="126" x2="215" y2="150" stroke="var(--v-accel)" stroke-width="2"/>
+      <line x1="112" y1="174" x2="215" y2="150" stroke="var(--v-accel)" stroke-width="2"/>
+      <line x1="215" y1="150" x2="272" y2="163" stroke="var(--v-accel)" stroke-width="2"/>
+      <line x1="215" y1="150" x2="272" y2="137" stroke="var(--v-accel)" stroke-width="2"/>
+      <circle cx="215" cy="150" r="3.5" fill="var(--v-accel)"/>
+      <line x1="278" y1="135" x2="278" y2="165" stroke="var(--v-force)" stroke-width="2.5"/>
+      <text x="284" y="154" font-size="11" fill="var(--v-force)">blur</text>
+      <text x="150" y="128" font-size="11" fill="var(--ink-soft)">focus too early</text>
+      <text x="96" y="98" font-size="11" fill="var(--v-vel)">cornea</text>
+      <text x="248" y="88" font-size="11" fill="var(--v-force)">retina</text>
+      <text x="25" y="238" font-size="12.5" fill="var(--ink)" font-weight="700">MYOPIA · eye too long / too powerful</text>
+      <text x="25" y="256" font-size="11.5" fill="var(--ink-soft)">Far point is finite. Correct with a DIVERGING (−) lens</text>
+      <text x="25" y="272" font-size="11.5" fill="var(--ink-soft)">that throws the far point out to infinity.</text>
+
+      <!-- Panel B : hyperopia -->
+      <ellipse cx="520" cy="150" rx="85" ry="62" fill="none" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <path d="M 444 110 Q 420 150 444 190" fill="none" stroke="var(--v-vel)" stroke-width="3.5"/>
+      <path d="M 582 100 Q 612 150 582 200" fill="none" stroke="var(--v-force)" stroke-width="3.5"/>
+      <line x1="345" y1="126" x2="432" y2="126" stroke="var(--v-accel)" stroke-width="2" marker-end="url(#f3-ray)"/>
+      <line x1="345" y1="174" x2="432" y2="174" stroke="var(--v-accel)" stroke-width="2" marker-end="url(#f3-ray)"/>
+      <line x1="432" y1="126" x2="592" y2="144.5" stroke="var(--v-accel)" stroke-width="2"/>
+      <line x1="432" y1="174" x2="592" y2="155.5" stroke="var(--v-accel)" stroke-width="2"/>
+      <line x1="592" y1="144.5" x2="645" y2="150" stroke="var(--v-accel)" stroke-width="1.4" stroke-dasharray="4 4"/>
+      <line x1="592" y1="155.5" x2="645" y2="150" stroke="var(--v-accel)" stroke-width="1.4" stroke-dasharray="4 4"/>
+      <circle cx="645" cy="150" r="3.5" fill="none" stroke="var(--v-accel)" stroke-width="1.4"/>
+      <text x="600" y="180" font-size="11" fill="var(--ink-soft)">focus would be here</text>
+      <text x="470" y="120" font-size="11" fill="var(--ink-soft)">still converging</text>
+      <text x="345" y="238" font-size="12.5" fill="var(--ink)" font-weight="700">HYPEROPIA · eye too short / too weak</text>
+      <text x="345" y="256" font-size="11.5" fill="var(--ink-soft)">Near point is far away. Correct with a CONVERGING (+)</text>
+      <text x="345" y="272" font-size="11.5" fill="var(--ink-soft)">lens that brings the near point in to 25 cm.</text>
+    </svg>
+    <figcaption>Both defects are mismatches between the eye's power and its axial length, not diseases of the
+      retina. In myopia the image plane sits in front of the retina, so the correcting lens must <em>weaken</em>
+      the system; in hyperopia it sits behind, so the lens must <em>strengthen</em> it. Near objects still focus in
+      myopia (the eye is over-powered, which suits close work) and distant objects can often still be focused in
+      young hyperopes by accommodating — which is why hyperopia presents as eye strain long before it presents as
+      blur.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Refractive errors of the eye and their corrections</caption>
+      <thead>
+        <tr><th>Condition</th><th>Optical fault</th><th>Symptom</th><th>Correction</th><th>Lens power</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Myopia</b> (short sight)</td><td>Eye too long or too powerful; image forms in front of the retina</td><td>Distant objects blurred; finite far point</td><td>Diverging (concave) lens</td><td class="num">Negative, P = −1/(far point in m)</td></tr>
+        <tr><td><b>Hyperopia</b> (long sight)</td><td>Eye too short or too weak; image would form behind the retina</td><td>Near work blurred and tiring; distant vision held by accommodating</td><td>Converging (convex) lens</td><td class="num">Positive, P = 4.00 − 1/(near point in m)</td></tr>
+        <tr><td><b>Presbyopia</b></td><td>Lens sclerosis: amplitude of accommodation falls from ≈14 D at age 10 to ≈1 D at 60</td><td>Near point recedes past arm's length from ≈45 years; universal</td><td>Reading add, or bifocal / varifocal</td><td class="num">Add typically +1.00 to +3.00 D</td></tr>
+        <tr><td><b>Astigmatism</b></td><td>Cornea (or lens) is toric — different curvature in different meridians, so no single focal point exists</td><td>Lines in one orientation blurred at every distance</td><td><b>Cylindrical</b> lens, power only along one axis</td><td class="num">e.g. −0.75 D × 180°</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 5 · two prescriptions</h4>
+    <p style="margin:0 0 .3rem">(a) A myope's far point is 50 cm. (b) A hyperope's near point is 100 cm and wants
+      to read at the standard 25 cm. Find both spectacle powers (ignore vertex distance).</p>
+    <ol>
+      <li><b>(a)</b> The lens must take an object at infinity and place its image where this eye <em>can</em>
+        focus — at the far point, 50 cm in front, on the same side as the object, so d<sub>i</sub> = −0.50 m.</li>
+      <li>P = 1/d<sub>o</sub> + 1/d<sub>i</sub> = 1/∞ + 1/(−0.50) = 0 − 2.00 = <b>−2.00 D</b>. Diverging, as
+        expected. Equivalently: P = −1/(far point in m).</li>
+      <li><b>(b)</b> Object at d<sub>o</sub> = +0.25 m; the image must land at the eye's near point, 1.00 m away
+        and virtual, so d<sub>i</sub> = <b>−1.00 m</b>.</li>
+      <li>P = 1/0.25 + 1/(−1.00) = 4.00 − 1.00 = <b>+3.00 D</b>. Converging, as expected.</li>
+      <li>Check the physics, not just the algebra: the myope's lens must <em>reduce</em> power (negative), the
+        hyperope's must <em>add</em> power (positive). If your sign disagrees with that, you dropped the minus on
+        d<sub>i</sub>.</li>
+    </ol>
+    <span class="wex__ans">(a) −2.00 D · (b) +3.00 D</span>
+  </div>
+
+  <h3>Instruments in brief</h3>
+  <p>All three below solve the same problem: the retina resolves an <em>angle</em>, so to see fine detail you must
+    make the object subtend a bigger angle. The benchmark is the largest angle the naked eye can manage, which is
+    the object held at the near point, 25 cm.</p>
+  <div class="grid grid--3">
+    <div class="card">
+      <h4>Simple magnifier</h4>
+      <p style="font-size:.9rem;margin:0">One converging lens, object just inside F. With the virtual image at
+        infinity (relaxed eye) <span class="fi">M = 25/f</span>; pulling the image in to the near point gives the
+        slightly larger <span class="fi">M = 1 + 25/f</span>. A 5 cm lens gives ×5.</p>
+    </div>
+    <div class="card">
+      <h4>Compound microscope</h4>
+      <p style="font-size:.9rem;margin:0">A short-focus <b>objective</b> forms a real, inverted, enlarged image
+        inside the tube; the <b>eyepiece</b> then works as a magnifier on it.
+        <span class="fi">M ≈ −(L/f<sub>o</sub>)(25/f<sub>e</sub>)</span>. Beyond ≈×1000 you gain no detail — see
+        §10.</p>
+    </div>
+    <div class="card">
+      <h4>Refracting telescope</h4>
+      <p style="font-size:.9rem;margin:0">Object at infinity, so the objective's image sits at its focal plane and
+        the two focal planes coincide: <span class="fi">M = −f<sub>o</sub>/f<sub>e</sub></span>. Want a long
+        objective and a short eyepiece. Light grasp goes as the aperture area, D².</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 6 · a laboratory microscope</h4>
+    <p style="margin:0 0 .3rem">Objective f<sub>o</sub> = 0.80 cm, eyepiece f<sub>e</sub> = 2.5 cm, tube length
+      L = 16 cm. What is the overall magnification, and what does the sign mean?</p>
+    <ol>
+      <li>Objective (a lens forming a real image at distance ≈ L): m<sub>o</sub> ≈ −L/f<sub>o</sub> = −16/0.80 =
+        <b>−20</b>.</li>
+      <li>Eyepiece as a relaxed magnifier: M<sub>e</sub> = 25/f<sub>e</sub> = 25/2.5 = <b>+10</b>.</li>
+      <li>M = m<sub>o</sub> × M<sub>e</sub> = (−20)(10) = <b>−200</b>, i.e. ×200 and <strong>inverted</strong>.</li>
+      <li>The minus sign is not a defect: it is why a slide moved to the right appears to move left down the
+        eyepiece, the single most common source of frustration at a first histology session.</li>
+    </ol>
+    <span class="wex__ans">M = −200 → ×200, image inverted</span>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Interference: Huygens, coherence, two slits, thin films</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Huygens' principle</dt>
+      <dd>Every point on a wavefront acts as a source of secondary spherical wavelets; the wavefront an instant
+        later is the envelope of those wavelets. It generates reflection, refraction and diffraction from one
+        idea.</dd>
+      <dt>Coherence</dt>
+      <dd>A fixed phase relationship between two waves, sustained long enough to observe. Without it the
+        interference pattern reshuffles faster than any detector can follow and averages to uniform
+        brightness.</dd>
+      <dt>Interference</dt>
+      <dd>The superposition of coherent waves, with the resulting amplitude set by the <em>path difference</em>
+        expressed in wavelengths.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">d sin θ = m λ   (bright, m = 0, ±1, ±2 …)</span>
+      <span class="fx__tag">two narrow slits; dark at d sin θ = (m+½)λ</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Δy = λ L / d</span><span class="fx__tag">fringe spacing; small-angle (sin θ ≈ tan θ ≈ θ)</span></div>
+      <div class="fx"><span class="fx__eq">2 n<sub>f</sub> t = m λ   (constructive)</span><span class="fx__tag">film seen <b>in reflection</b>, near-normal incidence; π shift at <b>both</b> surfaces or neither</span></div>
+      <div class="fx"><span class="fx__eq">2 n<sub>f</sub> t = (m+½) λ   (constructive)</span><span class="fx__tag">film <b>in reflection</b>, near-normal incidence; π shift at <b>one</b> surface only</span></div>
+      <div class="fx"><span class="fx__eq">t<sub>min</sub> = λ / (4 n<sub>f</sub>)</span><span class="fx__tag">thinnest anti-reflective coating, normal incidence</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>d</b><span>slit separation, centre to centre (m)</span></div>
+      <div><b>θ</b><span>angle from the central axis (° or rad)</span></div>
+      <div><b>m</b><span>order of the fringe (integer)</span></div>
+      <div><b>λ</b><span>wavelength <b>in vacuum</b> (m)</span></div>
+      <div><b>L</b><span>slit-to-screen distance (m)</span></div>
+      <div><b>Δy</b><span>spacing of adjacent bright fringes (m)</span></div>
+      <div><b>n<sub>f</sub></b><span>refractive index of the film (dimensionless)</span></div>
+      <div><b>t</b><span>film thickness (m)</span></div>
+    </div>
+  </div>
+
+  <p>Huygens' construction is the bridge between the two halves of this page. Draw a plane wavefront reaching a
+    boundary at an angle and let each point emit a wavelet that travels at the local speed; the envelope on the far
+    side is tilted by exactly the angle Snell's law predicts, because in the same time the wavelets have radii in
+    the ratio r₁/r₂ = v₁/v₂ = n₂/n₁. The same construction applied at the edge of an aperture shows wavelets leaking sideways — diffraction.
+    Nothing new is postulated; the ray model simply stops being an adequate summary.</p>
+
+  <h3>Coherence: why two lamps never interfere</h3>
+  <p>An ordinary source emits in bursts of ~10⁻⁸ s as individual atoms de-excite, each burst with an unrelated
+    phase. Two such sources have a phase difference that scrambles ~10⁸ times a second, so the fringes exist at
+    every instant but wash out on any real detector. The classical fix is to <strong>split one wavefront</strong>
+    — two slits illuminated by the same source (division of wavefront), or the two surfaces of a film (division of
+    amplitude). A laser sidesteps the problem: stimulated emission makes all the photons share a phase, and
+    coherence lengths run to metres.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · coherence in the clinic</p>
+    <p style="margin:0"><b>Optical coherence tomography</b> inverts the usual goal. It uses a source with a
+      deliberately <em>short</em> coherence length (a few µm), so interference only occurs when the sample and
+      reference path lengths match to within that distance. Scanning the reference mirror therefore reads out depth,
+      giving micrometre-resolution cross-sections of the retina — an interference experiment used as a
+      ruler.</p>
+  </div>
+
+  <h3>Young's double slit</h3>
+  <p>Two slits a distance d apart, illuminated coherently, send light to a point P at angle θ. The lower slit's
+    path is longer by <span class="fi">Δ = d sin θ</span> — this is the entire physics. When Δ is a whole number of
+    wavelengths the waves arrive in phase and add; when it is a half-integer they cancel. That the fringes are
+    <em>evenly</em> spaced near the axis follows only from the small-angle approximation
+    sin θ ≈ tan θ = y/L, giving <span class="fi">y<sub>m</sub> = mλL/d</span> and hence a constant
+    <span class="fi">Δy = λL/d</span>.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 660 300" role="img" aria-label="Left: a plane wave reaching a barrier with two slits; light from both slits travels to a point P on a distant screen, which shows evenly spaced bright fringes separated by delta y. Right: a magnified view of the two slits showing the two parallel outgoing rays at angle theta and the extra path length d sine theta travelled by the lower ray.">
+      <defs>
+        <marker id="f4-ray" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="var(--v-accel)"/>
+        </marker>
+        <marker id="f4-dim" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="var(--ink-soft)"/>
+        </marker>
+        <marker id="f4-dim-start" markerWidth="8" markerHeight="8" refX="1.5" refY="4" orient="auto">
+          <path d="M8,0 L0,4 L8,8 Z" fill="var(--ink-soft)"/>
+        </marker>
+      </defs>
+
+      <!-- incoming plane wave -->
+      <line x1="30" y1="70" x2="30" y2="230" stroke="var(--v-accel)" stroke-width="1.4" stroke-dasharray="6 5" opacity=".55"/>
+      <line x1="52" y1="70" x2="52" y2="230" stroke="var(--v-accel)" stroke-width="1.4" stroke-dasharray="6 5" opacity=".55"/>
+      <line x1="74" y1="70" x2="74" y2="230" stroke="var(--v-accel)" stroke-width="1.4" stroke-dasharray="6 5" opacity=".55"/>
+      <text x="24" y="60" font-size="11" fill="var(--ink-soft)">coherent plane wave</text>
+
+      <!-- barrier -->
+      <line x1="110" y1="50" x2="110" y2="138" stroke="var(--ink-soft)" stroke-width="6"/>
+      <line x1="110" y1="146" x2="110" y2="154" stroke="var(--ink-soft)" stroke-width="6"/>
+      <line x1="110" y1="162" x2="110" y2="250" stroke="var(--ink-soft)" stroke-width="6"/>
+      <line x1="96" y1="142" x2="96" y2="158" stroke="var(--ink-soft)" stroke-width="1.2" marker-end="url(#f4-dim)" marker-start="url(#f4-dim-start)"/>
+      <text x="78" y="180" font-size="12" fill="var(--ink)">d</text>
+
+      <!-- rays to P -->
+      <line x1="110" y1="142" x2="338" y2="110" stroke="var(--v-accel)" stroke-width="1.8" marker-end="url(#f4-ray)"/>
+      <line x1="110" y1="158" x2="338" y2="110" stroke="var(--v-accel)" stroke-width="1.8" marker-end="url(#f4-ray)"/>
+      <line x1="110" y1="150" x2="338" y2="150" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="5 5" opacity=".6"/>
+
+      <!-- screen + fringes -->
+      <line x1="340" y1="40" x2="340" y2="262" stroke="var(--ink-soft)" stroke-width="3"/>
+      <rect x="343" y="63" width="13" height="12" fill="var(--v-accel)" opacity=".35"/>
+      <rect x="343" y="103" width="13" height="14" fill="var(--v-accel)" opacity=".62"/>
+      <rect x="343" y="143" width="13" height="15" fill="var(--v-accel)" opacity=".92"/>
+      <rect x="343" y="183" width="13" height="14" fill="var(--v-accel)" opacity=".62"/>
+      <rect x="343" y="223" width="13" height="12" fill="var(--v-accel)" opacity=".35"/>
+      <line x1="366" y1="110" x2="366" y2="150" stroke="var(--ink-soft)" stroke-width="1.2" marker-end="url(#f4-dim)" marker-start="url(#f4-dim-start)"/>
+      <text x="369" y="134" font-size="11" fill="var(--ink)">Δy</text>
+      <text x="300" y="104" font-size="12" fill="var(--ink)">P</text>
+      <text x="150" y="284" font-size="12" fill="var(--ink-soft)">screen distance L</text>
+      <line x1="112" y1="272" x2="338" y2="272" stroke="var(--ink-soft)" stroke-width="1" marker-end="url(#f4-dim)" marker-start="url(#f4-dim-start)"/>
+
+      <!-- zoom panel -->
+      <line x1="386" y1="40" x2="386" y2="262" stroke="var(--line)" stroke-width="1"/>
+      <text x="400" y="58" font-size="12" fill="var(--ink)" font-weight="700">zoom on the slits</text>
+      <line x1="420" y1="110" x2="420" y2="190" stroke="var(--ink-soft)" stroke-width="2"/>
+      <circle cx="420" cy="110" r="4" fill="var(--v-accel)"/>
+      <circle cx="420" cy="190" r="4" fill="var(--v-accel)"/>
+      <text x="402" y="155" font-size="12" fill="var(--ink)">d</text>
+      <line x1="420" y1="110" x2="627" y2="35" stroke="var(--v-accel)" stroke-width="1.8" marker-end="url(#f4-ray)"/>
+      <line x1="420" y1="190" x2="627" y2="115" stroke="var(--v-accel)" stroke-width="1.8" marker-end="url(#f4-ray)"/>
+      <line x1="420" y1="110" x2="600" y2="110" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="5 5" opacity=".6"/>
+      <line x1="420" y1="110" x2="445.7" y2="180.6" stroke="var(--ink-soft)" stroke-width="1.2" stroke-dasharray="3 3"/>
+      <line x1="420" y1="190" x2="445.7" y2="180.6" stroke="var(--v-force)" stroke-width="3.2"/>
+      <text x="458" y="100" font-size="12" fill="var(--ink)">θ</text>
+      <text x="446" y="215" font-size="12" fill="var(--v-force)" font-weight="700">Δ = d sin θ</text>
+      <text x="400" y="248" font-size="11" fill="var(--ink-soft)">Bright when Δ = mλ</text>
+      <text x="400" y="264" font-size="11" fill="var(--ink-soft)">Dark when Δ = (m + ½)λ</text>
+      <text x="400" y="280" font-size="11" fill="var(--ink-soft)">Rays are parallel because L ≫ d</text>
+    </svg>
+    <figcaption>Young's experiment. The only quantity that matters is the extra distance the lower ray travels,
+      Δ = d sin θ. Because the screen is enormously further away than the slit separation, the two rays reaching
+      any one point are effectively parallel, which is what allows Δ to be written as a simple product.</figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 7 · fringe spacing</h4>
+    <p style="margin:0 0 .3rem">Two slits 0.25 mm apart are lit by 550 nm light; the screen is 2.0 m away.
+      (a) Find the fringe spacing. (b) At what angle does the third-order bright fringe appear?</p>
+    <ol>
+      <li><b>(a)</b> Δy = λL/d = (550×10⁻⁹ m × 2.0 m)/(0.25×10⁻³ m) = (1.100×10⁻⁶)/(2.5×10⁻⁴)
+        = 4.4×10⁻³ m = <b>4.4 mm</b>.</li>
+      <li>Check the small-angle assumption: y₁/L = 4.4×10⁻³/2.0 = 2.2×10⁻³ rad ≈ 0.13°. Comfortably small ✓.</li>
+      <li><b>(b)</b> sin θ = mλ/d = 3 × (550×10⁻⁹)/(0.25×10⁻³) = (1.65×10⁻⁶)/(2.5×10⁻⁴) = 6.6×10⁻³.</li>
+      <li>θ = arcsin(6.6×10⁻³) = 6.6×10⁻³ rad = <b>0.38°</b>, i.e. 13.2 mm from the centre — exactly 3 Δy, as the
+        even spacing requires.</li>
+      <li>Note what the formula says about design: to spread the fringes you want a <em>small</em> d and a
+        <em>large</em> L. Halving the slit separation doubles the spacing.</li>
+    </ol>
+    <span class="wex__ans">Δy = 4.4 mm · third order at θ = 0.38° (13.2 mm off axis)</span>
+  </div>
+
+  <h3>Thin films and the half-wavelength shift</h3>
+  <p>A wave reflecting off a medium of <strong>higher</strong> index flips phase by 180° — a λ/2 shift. Reflecting
+    off a <strong>lower</strong> index medium, it does not. (The mechanical analogue is a pulse on a light string
+    hitting a heavy one: it comes back inverted.) A film has two reflecting surfaces, so the first job in any
+    thin-film question is to count the flips and see whether they cancel.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Thin-film interference conditions according to the phase shifts on reflection</caption>
+      <thead>
+        <tr><th>Situation</th><th>Shift at top</th><th>Shift at bottom</th><th>Net extra phase</th><th>Constructive (bright)</th><th>Destructive (dark)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Soap film in air</b><br>1.00 → 1.33 → 1.00</td><td>π (to denser)</td><td>none (to rarer)</td><td>λ/2</td><td class="num">2n<sub>f</sub>t = (m + ½)λ</td><td class="num">2n<sub>f</sub>t = mλ</td></tr>
+        <tr><td><b>AR coating on glass</b><br>1.00 → 1.38 → 1.52</td><td>π (to denser)</td><td>π (to denser)</td><td>0 — they cancel</td><td class="num">2n<sub>f</sub>t = mλ</td><td class="num">2n<sub>f</sub>t = (m + ½)λ</td></tr>
+        <tr><td><b>Air wedge / Newton's rings</b><br>glass → air → glass</td><td>none (to rarer)</td><td>π (to denser)</td><td>λ/2</td><td class="num">2t = (m + ½)λ</td><td class="num">2t = mλ</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the black soap film</p>
+    <p style="margin:0">As a soap film drains it becomes vanishingly thin, and the top of the film turns
+      <strong>black in reflection</strong> — not brighter. With t → 0 the geometric path difference vanishes but the
+      lone π flip survives, so the two reflections cancel exactly. The same reasoning tells you that "thickness = 0"
+      is a destructive condition whenever there is one π shift, and a constructive one when there are zero or
+      two.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 8 · anti-reflective coating</h4>
+    <p style="margin:0 0 .3rem">Spectacle glass (n = 1.52) is coated with magnesium fluoride (n = 1.38). What is the
+      thinnest coating that suppresses reflection at 550 nm, at normal incidence?</p>
+    <ol>
+      <li><b>Count the flips.</b> Air (1.00) → MgF₂ (1.38): to denser → π. MgF₂ (1.38) → glass (1.52): also to
+        denser → π. Two flips, so they <b>cancel</b> and the net extra phase is zero.</li>
+      <li>With no net shift, cancellation of the two reflected beams requires the extra optical path to be a
+        half-integer number of wavelengths: 2 n<sub>f</sub> t = (m + ½) λ.</li>
+      <li>Thinnest means m = 0: 2 n<sub>f</sub> t = λ/2, so t = λ/(4 n<sub>f</sub>).</li>
+      <li>t = 550/(4 × 1.38) = 550/5.52 = <b>99.6 nm ≈ 100 nm</b> — a quarter of a wavelength <em>measured inside
+        the coating</em>.</li>
+      <li>Why MgF₂ and not something with n between? Complete cancellation also needs equal reflected amplitudes,
+        which requires n<sub>f</sub> = √(n<sub>air</sub>·n<sub>glass</sub>) = √1.52 = 1.23. MgF₂ at 1.38 is the
+        closest durable material — hence the residual purple sheen on coated lenses: the coating is optimised for
+        the middle of the spectrum and reflects the ends.</li>
+    </ol>
+    <span class="wex__ans">t = λ/(4n<sub>f</sub>) = 99.6 nm ≈ 100 nm</span>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Diffraction, the grating and the resolution limit</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Diffraction</dt>
+      <dd>The spreading of a wave after it passes an aperture or edge — the interference of a wavefront with
+        itself, once part of it has been removed.</dd>
+      <dt>Diffraction grating</dt>
+      <dd>A surface bearing thousands of identical, equally spaced slits or grooves; the maxima obey the same
+        condition as two slits but are far narrower, because so many amplitudes must agree.</dd>
+      <dt>Rayleigh's criterion</dt>
+      <dd>Two point sources are just resolved when the central maximum of one diffraction pattern falls on the
+        first minimum of the other.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">a sin θ = m λ   (<b>dark</b>, m = ±1, ±2 …)</span>
+      <span class="fx__tag">single slit of width a, far-field screen — note this gives the <b>minima</b></span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">half-width of central max: θ ≈ λ / a</span><span class="fx__tag">small angles; the central peak is twice as wide as the others</span></div>
+      <div class="fx"><span class="fx__eq">d sin θ = m λ ,  d = 1/N</span><span class="fx__tag">grating maxima; N = lines per unit length</span></div>
+      <div class="fx"><span class="fx__eq">λ / Δλ = m N<sub>illum</sub></span><span class="fx__tag">chromatic resolving power; N<sub>illum</sub> = lines actually illuminated</span></div>
+      <div class="fx"><span class="fx__eq">θ<sub>min</sub> = 1.22 λ / D</span><span class="fx__tag">circular aperture of diameter D; use λ/a for a slit</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>a</b><span>slit width (m)</span></div>
+      <div><b>d</b><span>grating spacing, line to line (m)</span></div>
+      <div><b>N</b><span>lines per metre (m⁻¹)</span></div>
+      <div><b>m</b><span>order (integer)</span></div>
+      <div><b>D</b><span>aperture diameter (m)</span></div>
+      <div><b>θ<sub>min</sub></b><span>minimum resolvable angular separation (rad)</span></div>
+      <div><b>Δλ</b><span>smallest resolvable wavelength difference (m)</span></div>
+    </div>
+  </div>
+
+  <p>Divide a slit of width a into two halves. Every ray in the top half has a partner in the bottom half a
+    distance a/2 away; when those pairs are exactly out of phase, the whole slit cancels. That happens when
+    (a/2) sin θ = λ/2, i.e. <span class="fi">a sin θ = λ</span>. Repeating with quarters, sixths and so on gives
+    the general condition <span class="fi">a sin θ = mλ</span> for <strong>darkness</strong>. This is the one
+    formula on the page whose integers label minima rather than maxima, and mixing it up with the double-slit
+    condition is a reliable way to lose a mark.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · a narrower slit spreads the light <em>more</em></p>
+    <p style="margin:0">The first minimum sits at sin θ = λ/a, so shrinking a pushes it to a <strong>larger</strong>
+      angle and the central band gets <strong>wider</strong>. Ray intuition says the opposite — squeeze the beam and
+      it should get narrower — and that intuition is right only while a ≫ λ, where the geometric shadow dominates.
+      When a → λ, θ → 90°: the light floods the entire forward hemisphere. This inverse relationship, obstacle size
+      down ⇒ spreading up, is the signature of every wave phenomenon on this page.</p>
+  </div>
+
+  <h3>From two slits to thousands</h3>
+  <p>A grating obeys <span class="fi">d sin θ = mλ</span> — formally identical to Young's condition — but the
+    maxima are dramatically sharper. With N slits, moving off a maximum by a phase of only 2π/N is enough for the
+    N amplitudes to cancel around a closed polygon, so the peak width scales as 1/N. Ten thousand lines give
+    needle-sharp orders, which is what turns a grating into a spectrometer: it separates wavelengths that a prism
+    would smear together, with resolving power <span class="fi">λ/Δλ = mN</span>.</p>
+
+  <div class="wex">
+    <h4>Worked example 9 · how many orders fit?</h4>
+    <p style="margin:0 0 .3rem">A grating is ruled with 600 lines per millimetre and illuminated normally with
+      550 nm light. Find the angles of the visible orders and the highest order that exists.</p>
+    <ol>
+      <li>d = 1/N = 1 mm / 600 = 1.667×10⁻⁶ m = 1667 nm.</li>
+      <li>m = 1: sin θ = λ/d = 550/1667 = 0.330 → θ₁ = <b>19.3°</b>.</li>
+      <li>m = 2: sin θ = 2 × 0.330 = 0.660 → θ₂ = <b>41.3°</b>.</li>
+      <li>m = 3: sin θ = 0.990 → θ₃ = <b>81.9°</b> — only just makes it, and grazing the surface.</li>
+      <li>m = 4: sin θ = 1.320 &gt; 1 → <b>no solution</b>. The highest order is therefore m = 3, and in general
+        m<sub>max</sub> = ⌊d/λ⌋.</li>
+      <li>Physical reading: a grating can only diffract into real angles. Push d down towards λ and you are left
+        with the zeroth order alone.</li>
+    </ol>
+    <span class="wex__ans">Orders at 19.3°, 41.3°, 81.9°; m<sub>max</sub> = 3</span>
+  </div>
+
+  <h3>Why resolution has a floor — and why electron microscopes exist</h3>
+  <p>Every real instrument looks at the world through a finite aperture, so every point source arrives as an Airy
+    disc of angular radius 1.22λ/D rather than a point. Two sources closer than that merge. This is not a
+    manufacturing limitation: <strong>you cannot resolve detail much finer than the wavelength you are using</strong>,
+    however perfect the glass.</p>
+
+  <div class="wex">
+    <h4>Worked example 10 · the eye, the microscope, and the reason for electrons</h4>
+    <p style="margin:0 0 .3rem">(a) With a 2.0 mm pupil and 550 nm light, what is the finest detail the eye can
+      resolve at reading distance (25 cm)? (b) What is the floor for a light microscope with numerical aperture
+      1.4? (c) How does a 100 kV electron compare?</p>
+    <ol>
+      <li><b>(a)</b> θ<sub>min</sub> = 1.22λ/D = 1.22 × (550×10⁻⁹)/(2.0×10⁻³) = (6.71×10⁻⁷)/(2.0×10⁻³) =
+        3.36×10⁻⁴ rad.</li>
+      <li>Linear separation s = θ<sub>min</sub> × L = 3.36×10⁻⁴ × 0.25 m = 8.4×10⁻⁵ m = <b>84 µm</b> — about one
+        arcminute, and about the size of a large cell. Hence: no unaided eye ever saw a bacterium.</li>
+      <li><b>(b)</b> For a microscope the usual form is d<sub>min</sub> ≈ λ/(2 NA) = 550/(2 × 1.4) =
+        <b>196 nm ≈ 0.2 µm</b>. Magnifying beyond ≈×1000 enlarges this blur without adding information — "empty
+        magnification".</li>
+      <li><b>(c)</b> An electron accelerated through 100 kV has a de Broglie wavelength of ≈4 pm, some
+        1.4×10⁵ times shorter than green light. Even with the poor electron lenses available, resolutions below
+        1 nm are routine — which is the entire reason electron microscopy exists, and why viruses, ribosomes and
+        membrane bilayers are electron-microscope objects.</li>
+    </ol>
+    <span class="wex__ans">(a) 84 µm · (b) ≈0.2 µm · (c) λ<sub>e</sub> ≈ 4 pm → sub-nanometre</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">Three formulas share the shape "something × sin θ = mλ", and questions exploit the
+      confusion. <b>Double slit</b>: d sin θ = mλ gives <strong>maxima</strong>. <b>Grating</b>: same equation,
+      same meaning, sharper peaks. <b>Single slit</b>: a sin θ = mλ gives <strong>minima</strong>, and m = 0 is
+      excluded because the centre is the brightest point of all. Read which one the stem is asking for before you
+      substitute.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Polarisation, Brewster's angle and Malus's law</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Polarisation</dt>
+      <dd>The orientation of the electric-field oscillation of a light wave. Only transverse waves can be
+        polarised, so the existence of polarised light is direct proof that light is transverse.</dd>
+      <dt>Unpolarised light</dt>
+      <dd>Light whose field direction changes randomly and rapidly — an equal mixture of every transverse
+        orientation, which is what ordinary thermal sources emit.</dd>
+      <dt>Brewster's angle</dt>
+      <dd>The angle of incidence at which the reflected beam is completely polarised parallel to the surface,
+        because the reflected and refracted rays are then perpendicular.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">I = I₀ cos²θ</span>
+      <span class="fx__tag">Malus's law — <b>polarised</b> light entering an analyser at angle θ</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">I = ½ I₀</span><span class="fx__tag">unpolarised light through <b>any</b> ideal polariser, whatever its orientation</span></div>
+      <div class="fx"><span class="fx__eq">tan θ<sub>B</sub> = n₂ / n₁</span><span class="fx__tag">Brewster's angle; then θ<sub>B</sub> + θ<sub>refr</sub> = 90°</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>I₀</b><span>incident intensity (W·m⁻²)</span></div>
+      <div><b>I</b><span>transmitted intensity (W·m⁻²)</span></div>
+      <div><b>θ</b><span>angle between the light's polarisation and the transmission axis (°)</span></div>
+      <div><b>θ<sub>B</sub></b><span>Brewster (polarising) angle, from the normal (°)</span></div>
+      <div><b>n₁, n₂</b><span>indices of incident / transmitting medium (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>Three routes to polarised light are worth knowing:</p>
+  <ol>
+    <li><b>Absorption.</b> A Polaroid sheet contains aligned long-chain molecules; the field component
+      <em>along</em> the chains drives conduction electrons and is absorbed, so the surviving field is
+      perpendicular to the chains. The transmission axis is at right angles to the molecules, which surprises
+      people.</li>
+    <li><b>Reflection.</b> Light reflected from any dielectric is partially polarised parallel to the surface, and
+      at Brewster's angle it is <em>completely</em> so. Glare from water, wet roads and car bonnets is therefore
+      largely horizontal — and polarising sunglasses have a <strong>vertical</strong> transmission axis to block
+      it.</li>
+    <li><b>Scattering.</b> Air molecules re-radiate like tiny dipole antennas, which do not radiate along their own
+      axis; light scattered at 90° from the sun is strongly polarised. Bees navigate by it.</li>
+  </ol>
+
+  <p>Brewster's condition has a one-line explanation. At θ<sub>B</sub> the reflected and refracted rays are exactly
+    90° apart. The refracted ray's oscillating dipoles point along its own field direction, and a dipole cannot
+    radiate along its own axis — so the component polarised in the plane of incidence has no way to appear in the
+    reflected beam, leaving only the perpendicular component. Putting θ₂ = 90° − θ<sub>B</sub> into Snell's law and
+    using sin(90° − θ) = cos θ gives tan θ<sub>B</sub> = n₂/n₁ directly. For crown glass, θ<sub>B</sub> =
+    arctan 1.52 = <b>56.7°</b>; for water, arctan 1.33 = <b>53.1°</b>.</p>
+
+  <div class="wex">
+    <h4>Worked example 11 · three polarisers, and why the middle one matters</h4>
+    <p style="margin:0 0 .3rem">Unpolarised light of intensity I₀ meets polariser P₁, then P₂ at 30° to P₁, then
+      P₃ at 90° to P₁. Find the emerging intensity. Then remove P₂ and repeat.</p>
+    <ol>
+      <li><b>After P₁.</b> Unpolarised light has every orientation equally, and ⟨cos²θ⟩ = ½ over all angles, so
+        I₁ = <b>0.500 I₀</b> — and this does not depend on how P₁ is turned.</li>
+      <li><b>After P₂.</b> Now the light <em>is</em> polarised, so Malus applies with θ = 30°:
+        I₂ = I₁ cos²30° = 0.500 I₀ × (0.866)² = 0.500 × 0.750 I₀ = <b>0.375 I₀</b>.</li>
+      <li><b>After P₃.</b> P₃ is 90° − 30° = 60° from P₂: I₃ = I₂ cos²60° = 0.375 I₀ × (0.500)² =
+        0.375 × 0.250 I₀ = <b>0.094 I₀</b>, i.e. about 9.4 % gets through.</li>
+      <li><b>Remove P₂.</b> P₁ and P₃ are crossed: I = 0.500 I₀ × cos²90° = <b>0</b>.</li>
+      <li>Inserting a polariser therefore <em>increases</em> the transmitted light from zero to 9.4 %. There is no
+        paradox: P₂ does not filter the wave, it <b>projects</b> it onto a new axis, and the projected wave has a
+        component along P₃ that the original had not.</li>
+    </ol>
+    <span class="wex__ans">With P₂: 0.094 I₀ (9.4 %) · Without P₂: exactly 0</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · cos²θ, and the first polariser</p>
+    <p style="margin:0">Two errors dominate. (1) Using cos θ instead of cos²θ — Malus's law is about
+      <strong>intensity</strong>, which goes as amplitude squared. At 60°, cos 60° = 0.5 but cos²60° = 0.25.
+      (2) Applying Malus's law at the <em>first</em> polariser. Unpolarised light has no defined θ, so the answer is
+      always I₀/2 there, and Malus's law only starts at the second element.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · polarised light in the clinic</p>
+    <p style="margin:0">Compensated polarised-light microscopy of joint aspirate distinguishes the two crystal
+      arthropathies, and it turns on birefringence — the splitting of light into two polarisations that travel at
+      different speeds. <b>Gout</b>: monosodium urate, needle-shaped, <b>negatively</b> birefringent (yellow when
+      the crystal's long axis is parallel to the compensator's slow axis). <b>Pseudogout</b>: calcium
+      pyrophosphate, rhomboid, <b>positively</b> birefringent (blue when parallel). Same instrument, opposite
+      colours, opposite diagnoses.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>One line to carry into the exam</h4>
+    <p>Unpolarised → halve it. Polarised → cos² it. Reflected at arctan(n₂/n₁) → it is already polarised, parallel
+      to the surface.</p>
+  </div>
+</section>
+
+<!-- =========================== Self-test =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>Each answer is explained as soon as you choose. Where you miss one, go back to the section it came from and
+    re-derive the result — the sign conventions in §3 and the two "sin θ = mλ" families in §§9–10 are where marks
+    are actually lost, and neither survives being memorised as a letter.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-13-magnetism.html"><small>Previous</small><b>← Magnetism and Electromagnetic Induction</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-15-modern.html"><small>Next</small><b>Modern Physics: Quanta, Atoms and Nuclei →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 14 · Geometric and Wave Optics</p>
+    <p>Representation used on this page: signed ray diagrams and wavefront geometry, with every image property
+      derived from one mirror/lens equation. Refractive indices, ocular powers and instrument constants are
+      standard textbook approximations, quoted to build a sense of magnitude rather than for precise
+      citation.</p>
+  </div>
+</footer>
+
+<!-- =========================== Question bank =========================== -->
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A beam of light travels from air into a block of glass. Which description of the beam <b>inside the glass</b> is correct?",
+    "options": [
+      "Frequency, speed and wavelength all decrease",
+      "Frequency decreases; speed and wavelength are unchanged",
+      "Frequency is unchanged; speed and wavelength both decrease",
+      "Frequency and wavelength are unchanged; only the speed decreases"
+    ],
+    "answer": 2,
+    "explain": "Frequency is set by the source and cannot change at a boundary — the fields on the two sides must oscillate in step, or the wave would tear at the interface. Since v = fλ and v = c/n falls, λ must fall by the same factor: λ<sub>n</sub> = λ<sub>vac</sub>/n. Option A is the standard trap (\"slower must mean lower frequency\"); option D is impossible because v = fλ could not then hold."
+  },
+  {
+    "stem": "Light of vacuum wavelength 600 nm enters glass of refractive index n = 1.50. Its speed and wavelength inside the glass are:",
+    "options": [
+      "2.00×10⁸ m·s⁻¹ and 600 nm",
+      "2.00×10⁸ m·s⁻¹ and 400 nm",
+      "4.50×10⁸ m·s⁻¹ and 900 nm",
+      "3.00×10⁸ m·s⁻¹ and 400 nm"
+    ],
+    "answer": 1,
+    "explain": "v = c/n = (3.00×10⁸)/1.50 = 2.00×10⁸ m·s⁻¹ and λ<sub>n</sub> = 600/1.50 = 400 nm — both are divided by n. Option A keeps the vacuum wavelength, which is only what you would quote if asked about the perceived colour (a frequency statement). Option C would need n &lt; 1, i.e. light faster than c in matter."
+  },
+  {
+    "stem": "Light travelling inside a glass block (n = 1.50) reaches the glass–air boundary. Total internal reflection first occurs at an angle of incidence of about:",
+    "options": ["33.7°", "38.7°", "41.8°", "48.8°"],
+    "answer": 2,
+    "explain": "sin θ<sub>c</sub> = n₂/n₁ = 1.00/1.50 = 0.667, so θ<sub>c</sub> = 41.8°, measured from the <b>normal</b>. 48.8° is the water–air critical angle (arcsin 1/1.33) and is the most tempting wrong pick. Remember the condition attached to the formula: TIR exists only going from the denser medium into the rarer one, never the other way."
+  },
+  {
+    "stem": "A concave mirror has focal length +10 cm. An object is placed 5.0 cm in front of it. The image is:",
+    "options": [
+      "10 cm in front of the mirror, real, inverted, magnification −2",
+      "3.3 cm in front of the mirror, real, inverted, magnification −0.67",
+      "10 cm behind the mirror, real, upright, magnification +2",
+      "10 cm behind the mirror, virtual, upright, magnification +2"
+    ],
+    "answer": 3,
+    "explain": "1/d<sub>i</sub> = 1/f − 1/d<sub>o</sub> = 1/10 − 1/5 = −1/10, so d<sub>i</sub> = −10 cm; for a mirror a negative d<sub>i</sub> means behind the surface, hence virtual, and m = −d<sub>i</sub>/d<sub>o</sub> = +2 (upright, twice size) — the shaving/make-up mirror with the object inside F. Option C is self-contradictory: no light actually reaches a point behind a mirror, so an image there can never be real. Option B comes from adding the reciprocals instead of subtracting."
+  },
+  {
+    "stem": "A converging lens of focal length 20 cm forms an image of a 2.0 cm tall object placed 30 cm in front of it. The image is:",
+    "options": [
+      "60 cm from the lens, real, inverted, 4.0 cm tall",
+      "60 cm from the lens, virtual, upright, 4.0 cm tall",
+      "12 cm from the lens, real, inverted, 0.8 cm tall",
+      "15 cm from the lens, real, inverted, 1.0 cm tall"
+    ],
+    "answer": 0,
+    "explain": "1/d<sub>i</sub> = 1/20 − 1/30 = 1/60, so d<sub>i</sub> = +60 cm: positive for a lens means the far side, so the image is real; m = −60/30 = −2, i.e. inverted and 4.0 cm tall. Option C (12 cm) is what you get by adding the reciprocals — the single commonest slip. Option B breaks a rule worth carrying: with a real object and one element, a real image is <em>always</em> inverted."
+  },
+  {
+    "stem": "Which statement about refraction in the human eye is correct?",
+    "options": [
+      "The crystalline lens supplies most of the eye's power; the cornea contributes little",
+      "The cornea — above all its air–tissue front surface — supplies roughly two-thirds of the eye's power; the lens supplies the adjustable remainder",
+      "Almost all of the eye's ≈60 D comes from the aqueous humour",
+      "Accommodation works by moving the lens forwards and backwards, as a camera moves its lens"
+    ],
+    "answer": 1,
+    "explain": "The relaxed eye is about +60 D, of which the cornea contributes ≈+43 D and the lens only ≈+17–20 D. The reason is the size of the index step: air (1.00) → cornea (1.376) is a jump of 0.38, while the lens (≈1.41) sits in fluid at 1.34, a jump of ≈0.07. That is why refractive surgery reshapes the cornea, and why vision is so poor underwater. Option D describes a camera or a fish eye; the human lens changes its <em>shape</em>, not its position."
+  },
+  {
+    "stem": "A hyperopic eye has a near point of 100 cm. What spectacle power lets it read at the standard 25 cm?",
+    "options": ["−4.00 D", "−3.00 D", "+1.00 D", "+3.00 D"],
+    "answer": 3,
+    "explain": "The lens must take an object at d<sub>o</sub> = +0.25 m and form a <em>virtual</em> image at the eye's own near point, so d<sub>i</sub> = −1.00 m. P = 1/d<sub>o</sub> + 1/d<sub>i</sub> = 4.00 − 1.00 = +3.00 D. Hyperopia and presbyopia always need a converging (positive) lens, so the negative options can be discarded on physics alone; +1.00 D is what you get by quoting 1/(near point) on its own and forgetting that the object has to be brought all the way in to 25 cm."
+  },
+  {
+    "stem": "Two slits 0.10 mm apart are illuminated with 600 nm light and the screen is 1.5 m away. The spacing between adjacent bright fringes is:",
+    "options": ["9.0 mm", "0.90 mm", "4.5 mm", "90 mm"],
+    "answer": 0,
+    "explain": "Δy = λL/d = (600×10⁻⁹ × 1.5)/(1.0×10⁻⁴) = 9.0×10⁻³ m = 9.0 mm. The usual error is a decimal slip: 0.10 mm is 1.0×10⁻⁴ m, not 10⁻³ m, which is exactly how you land on 0.90 mm. Note the design lesson in the formula — fringe spacing is inversely proportional to d, so narrower slit separation gives a wider pattern."
+  },
+  {
+    "stem": "Monochromatic light passes through a single slit of width a. The slit is then made <b>narrower</b>. The central bright band on the screen:",
+    "options": [
+      "Narrows, because the beam is squeezed",
+      "Is unchanged in width; only its brightness falls",
+      "Widens, because the first minimum moves to a larger angle",
+      "Splits into two separate maxima"
+    ],
+    "answer": 2,
+    "explain": "The first minimum obeys a sin θ = λ, so θ ≈ λ/a: reduce a and θ grows, spreading the pattern. Option A is the ray-model intuition and is exactly backwards — it holds only while a ≫ λ, where the geometric shadow dominates. As a approaches λ the light floods the whole forward hemisphere, which is the same inverse relationship that limits every imaging instrument."
+  },
+  {
+    "stem": "Unpolarised light of intensity I₀ passes through one polariser and then through a second whose transmission axis is 60° from the first. The emerging intensity is:",
+    "options": ["0.50 I₀", "0.25 I₀", "0.063 I₀", "0.125 I₀"],
+    "answer": 3,
+    "explain": "The first polariser transmits half of unpolarised light regardless of its orientation (I₀/2), and Malus's law then gives (I₀/2)cos²60° = (I₀/2)(0.25) = 0.125 I₀. Option A forgets the analyser altogether; option B applies cos²60° but forgets the initial halving. Watch the square: cos 60° = 0.500 but cos²60° = 0.250, and Malus's law is about intensity, which goes as amplitude squared."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

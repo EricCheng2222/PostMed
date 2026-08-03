@@ -124,8 +124,8 @@
           var pct = Math.round(correct / total * 100);
           var verdict = pct >= 90 ? 'Solid. This topic can move to the "one more pass before the exam" pile.'
                       : pct >= 70 ? 'Good base. Re-read the sections behind the ones you missed.'
-                      : pct >= 50 ? 'The concepts are there, but the details will cost you marks. Re-read §01 and §06.'
-                      : 'Read the page through once more before attempting questions again.';
+                      : pct >= 50 ? 'The concepts are there, but the details will cost you marks. Work back through the sections the missed questions came from.'
+                      : 'Read the page through once more before attempting the questions again.';
           result.innerHTML = '<p style="margin:0 0 .3rem">Score</p><strong>' + correct +
             ' / ' + total + '</strong><p style="margin:.4rem 0 0">' + pct + '% — ' + verdict + '</p>';
           result.hidden = false;
@@ -156,14 +156,25 @@
     });
   }
 
+  /* A page may carry more than one quiz. Each [data-quiz] element reads its
+     bank from data-quiz-src="#id", falling back to the shared #quiz-data. */
   document.addEventListener('DOMContentLoaded', function () {
-    var root = document.querySelector('[data-quiz]');
-    var data = document.getElementById('quiz-data');
-    if (!root || !data) return;
-    try {
-      buildQuiz(root, JSON.parse(data.textContent));
-    } catch (e) {
-      root.innerHTML = '<p class="callout callout--warn">Failed to load question bank: ' + e.message + '</p>';
-    }
+    var roots = document.querySelectorAll('[data-quiz]');
+    Array.prototype.forEach.call(roots, function (root) {
+      var sel = root.getAttribute('data-quiz-src');
+      var data = sel ? document.querySelector(sel) : document.getElementById('quiz-data');
+      if (!data) {
+        root.innerHTML = '<p class="callout callout--warn">Question bank not found' +
+          (sel ? ' for selector <code>' + sel + '</code>' : '') + '.</p>';
+        return;
+      }
+      try {
+        var items = JSON.parse(data.textContent);
+        if (!Array.isArray(items) || !items.length) throw new Error('bank is empty');
+        buildQuiz(root, items);
+      } catch (e) {
+        root.innerHTML = '<p class="callout callout--warn">Failed to load question bank: ' + e.message + '</p>';
+      }
+    });
   });
 })();

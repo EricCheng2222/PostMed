@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 12 · Direct-Current Circuits — PostMed Notebook</title>
+<meta name="description" content="Physics note 12: current and drift velocity, resistivity, Ohm's law, power, emf and internal resistance, series and parallel, Kirchhoff's rules, meters, RC circuits and electrical safety — with 10 self-test questions.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 12</p>
+  <h1>Direct-Current Circuits</h1>
+  <p class="lede">
+    A circuit is a bookkeeping problem with two ledgers, and every equation on this page is one
+    of them. <strong>Charge is conserved</strong>, so it cannot pile up at a junction — that gives
+    you the junction rule, series current, and parallel current addition.
+    <strong>Energy is conserved</strong>, and the electric field is conservative, so the potential
+    you gain going round a loop must equal the potential you lose — that gives you the loop rule,
+    the series voltage sum, terminal voltage, and every power formula. Learn the two ledgers and
+    the twenty formulas stop being twenty things.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Circuit schematics &amp; exponential curves</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~45 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Current: charge in motion, and why the lamp lights instantly</a></li>
+      <li><a href="#s2">Resistance, resistivity and temperature</a></li>
+      <li><a href="#s3">Ohm's law is a property, not a law</a></li>
+      <li><a href="#s4">Electrical power and the kilowatt-hour</a></li>
+      <li><a href="#s5">Emf, internal resistance and terminal voltage</a></li>
+      <li><a href="#s6">Series and parallel — the reasoning, not the rule</a></li>
+      <li><a href="#s7">Kirchhoff's rules and a two-loop circuit solved end to end</a></li>
+      <li><a href="#s8">Ammeters, voltmeters and the cost of measuring</a></li>
+      <li><a href="#s9">RC circuits and the time constant</a></li>
+      <li><a href="#s10">Where the energy goes: battery, capacitor, resistor</a></li>
+      <li><a href="#s11">Electrical safety: macroshock, microshock and the clinic</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Current</b><code>I = ΔQ / Δt</code></div>
+      <div class="fsheet__item"><b>Microscopic current</b><code>I = n q v<sub>d</sub> A</code></div>
+      <div class="fsheet__item"><b>Current density</b><code>J = I / A = n q v<sub>d</sub></code></div>
+      <div class="fsheet__item"><b>Resistance</b><code>R = V / I</code></div>
+      <div class="fsheet__item"><b>Geometry</b><code>R = ρ L / A</code></div>
+      <div class="fsheet__item"><b>Conductivity</b><code>σ = 1 / ρ ; G = 1 / R</code></div>
+      <div class="fsheet__item"><b>Temperature</b><code>ρ = ρ₀[1 + α(T − T₀)]</code></div>
+      <div class="fsheet__item"><b>Ohm's law (micro)</b><code>J = σ E</code></div>
+      <div class="fsheet__item"><b>Power</b><code>P = IV = I²R = V²/R</code></div>
+      <div class="fsheet__item"><b>Energy · kWh</b><code>E = Pt ; 1 kW·h = 3.6×10⁶ J</code></div>
+      <div class="fsheet__item"><b>Terminal voltage</b><code>V = ε − I r</code></div>
+      <div class="fsheet__item"><b>Loop current</b><code>I = ε / (R + r)</code></div>
+      <div class="fsheet__item"><b>Max power transfer</b><code>R = r ; P<sub>max</sub> = ε² / 4r</code></div>
+      <div class="fsheet__item"><b>Series</b><code>R<sub>s</sub> = R₁ + R₂ + …</code></div>
+      <div class="fsheet__item"><b>Parallel</b><code>1/R<sub>p</sub> = 1/R₁ + 1/R₂ + …</code></div>
+      <div class="fsheet__item"><b>Two in parallel</b><code>R<sub>p</sub> = R₁R₂ / (R₁ + R₂)</code></div>
+      <div class="fsheet__item"><b>Voltage divider</b><code>V₁ = V · R₁/(R₁+R₂)</code></div>
+      <div class="fsheet__item"><b>Current divider</b><code>I₁ = I · R₂/(R₁+R₂)</code></div>
+      <div class="fsheet__item"><b>Junction rule</b><code>Σ I<sub>in</sub> = Σ I<sub>out</sub></code></div>
+      <div class="fsheet__item"><b>Loop rule</b><code>Σ ΔV = 0</code></div>
+      <div class="fsheet__item"><b>Ammeter shunt</b><code>R<sub>sh</sub> = I<sub>g</sub>R<sub>g</sub>/(I − I<sub>g</sub>)</code></div>
+      <div class="fsheet__item"><b>Voltmeter multiplier</b><code>R<sub>m</sub> = V/I<sub>g</sub> − R<sub>g</sub></code></div>
+      <div class="fsheet__item"><b>Time constant</b><code>τ = R C</code></div>
+      <div class="fsheet__item"><b>RC charging</b><code>q = Cε(1 − e<sup>−t/τ</sup>)</code></div>
+      <div class="fsheet__item"><b>Charging current</b><code>i = (ε/R) e<sup>−t/τ</sup></code></div>
+      <div class="fsheet__item"><b>RC discharging</b><code>q = Q₀ e<sup>−t/τ</sup></code></div>
+      <div class="fsheet__item"><b>Half-life</b><code>t<sub>½</sub> = τ ln2 = 0.693 RC</code></div>
+      <div class="fsheet__item"><b>Capacitor energy</b><code>U = ½CV² = ½QV = Q²/2C</code></div>
+      <div class="fsheet__item"><b>Charging audit</b><code>W<sub>batt</sub> = Cε² = 2U<sub>C</sub> = 2W<sub>R</sub></code></div>
+      <div class="fsheet__item"><b>Shock current</b><code>I<sub>body</sub> = V / R<sub>body</sub></code></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================ § 01 ============================ -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Current: charge in motion, and why the lamp lights instantly</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Electric current</dt>
+      <dd>The rate at which charge passes through a chosen cross-section of a conductor. It is a
+        scalar with a sign, not a vector — the arrow on a circuit diagram is a bookkeeping label,
+        not a direction in space.</dd>
+      <dt>Drift velocity</dt>
+      <dd>The small average velocity that the otherwise random thermal motion of the conduction
+        electrons acquires once an electric field is applied along the wire.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">I = ΔQ / Δt&nbsp;&nbsp;&nbsp;(instantaneous: I = dq/dt)</span>
+      <span class="fx__tag">definition; always true</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">I = n q v<sub>d</sub> A</span><span class="fx__tag">uniform conductor, one carrier type</span></div>
+      <div class="fx"><span class="fx__eq">J = I / A = n q v<sub>d</sub></span><span class="fx__tag">current density; a vector, along <b>E</b></span></div>
+    </div>
+    <div class="symtab">
+      <div><b>I</b><span>current (A = C·s⁻¹)</span></div>
+      <div><b>Q, q</b><span>charge (C)</span></div>
+      <div><b>t</b><span>time (s)</span></div>
+      <div><b>n</b><span>carrier number density (m⁻³)</span></div>
+      <div><b>v<sub>d</sub></b><span>drift speed (m·s⁻¹)</span></div>
+      <div><b>A</b><span>cross-sectional area (m²)</span></div>
+      <div><b>J</b><span>current density (A·m⁻²)</span></div>
+    </div>
+  </div>
+
+  <p>One ampere is one coulomb per second. In the 2019 SI the ampere is fixed by <em>defining</em>
+  the elementary charge as e = 1.602176634×10⁻¹⁹ C exactly, so the coulomb is now the derived
+  unit: 1 C = 1 A·s. For every calculation on this page use e = 1.60×10⁻¹⁹ C.</p>
+
+  <p><strong>Conventional current points the way positive charge would move</strong> — out of the
+  positive terminal of a battery, through the external circuit, back into the negative terminal.
+  In a metal the actual carriers are electrons, which drift the opposite way. This is a historical
+  accident (Franklin guessed), and it is harmless: a flow of −q to the left is electrically
+  identical to a flow of +q to the right. Keep every circuit calculation in conventional current
+  and only switch to electrons when the question explicitly asks about them. In electrolytes and
+  in tissue both signs move at once — Na⁺ one way, Cl⁻ the other — and both contribute to the same
+  conventional current.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 260" role="img" aria-label="A length of wire seen from the side. A thick amber arrow above the wire points right, labelled conventional current I. Inside the wire, six negatively charged electrons are drawn, with short teal arrows pointing left to show the drift direction. A violet arrow below the wire points right, marking the electric field that drives the drift. Annotations give the drift speed as about 0.2 millimetres per second and the signal front as about 2 times 10 to the 8 metres per second.">
+      <defs>
+        <marker id="f1-accel" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10" refX="12" refY="5" orient="auto"><path d="M0,0 L13,5 L0,10 z" fill="var(--v-accel)"/></marker>
+        <marker id="f1-vel" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="var(--v-vel)"/></marker>
+        <marker id="f1-field" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="9" refX="11" refY="4.5" orient="auto"><path d="M0,0 L12,4.5 L0,9 z" fill="var(--v-field)"/></marker>
+      </defs>
+      <text x="360" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="var(--v-accel)" font-family="sans-serif">conventional current  I</text>
+      <line x1="265" y1="56" x2="455" y2="56" stroke="var(--v-accel)" stroke-width="3.5" marker-end="url(#f1-accel)"/>
+      <rect x="60" y="95" width="600" height="70" rx="8" fill="none" stroke="var(--ink-soft)" stroke-width="2"/>
+      <g stroke="var(--v-vel)" fill="none" stroke-width="1.8">
+        <circle cx="110" cy="130" r="11"/><circle cx="210" cy="130" r="11"/><circle cx="310" cy="130" r="11"/>
+        <circle cx="410" cy="130" r="11"/><circle cx="510" cy="130" r="11"/><circle cx="610" cy="130" r="11"/>
+      </g>
+      <g fill="var(--v-vel)" font-size="14" font-family="sans-serif" text-anchor="middle">
+        <text x="110" y="135">−</text><text x="210" y="135">−</text><text x="310" y="135">−</text>
+        <text x="410" y="135">−</text><text x="510" y="135">−</text><text x="610" y="135">−</text>
+      </g>
+      <g stroke="var(--v-vel)" stroke-width="2" marker-end="url(#f1-vel)">
+        <line x1="196" y1="130" x2="180" y2="130"/><line x1="296" y1="130" x2="280" y2="130"/>
+        <line x1="396" y1="130" x2="380" y2="130"/><line x1="496" y1="130" x2="480" y2="130"/>
+        <line x1="596" y1="130" x2="580" y2="130"/>
+      </g>
+      <line x1="285" y1="198" x2="435" y2="198" stroke="var(--v-field)" stroke-width="2.5" marker-end="url(#f1-field)"/>
+      <text x="360" y="224" text-anchor="middle" font-size="13.5" fill="var(--v-field)" font-family="sans-serif"><tspan font-style="italic">E</tspan> inside the wire drives the drift</text>
+      <text x="60" y="252" text-anchor="start" font-size="13" fill="var(--v-vel)" font-family="sans-serif">electron drift ≈ 0.2 mm·s⁻¹</text>
+      <text x="660" y="252" text-anchor="end" font-size="13" fill="var(--ink-soft)" font-family="sans-serif">signal front ≈ 2×10⁸ m·s⁻¹</text>
+    </svg>
+    <figcaption>Three different speeds live in the same wire. The electrons crawl (left, teal). The
+    conventional current is defined the other way (amber). The thing that actually travels fast is
+    the field configuration that starts them all moving (violet) — and that is what makes the lamp
+    look instantaneous.</figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 1 · How slowly do electrons actually move?</h4>
+    <p>A copper wire of cross-sectional area A = 1.0 mm² carries I = 3.0 A. Copper contributes about
+    one free electron per atom, giving n = 8.5×10²⁸ m⁻³. Find the drift speed, and the time for one
+    electron to travel 1.0 m.</p>
+    <ol>
+      <li>Convert the area: A = 1.0 mm² = 1.0×10⁻⁶ m².</li>
+      <li>Rearrange I = n q v<sub>d</sub> A → v<sub>d</sub> = I / (n q A).</li>
+      <li>Denominator: (8.5×10²⁸)(1.60×10⁻¹⁹) = 1.36×10¹⁰; × (1.0×10⁻⁶) = 1.36×10⁴.</li>
+      <li>v<sub>d</sub> = 3.0 / 1.36×10⁴ = 2.2×10⁻⁴ m·s⁻¹ = 0.22 mm·s⁻¹.</li>
+      <li>Time for 1.0 m: t = 1.0 / 2.2×10⁻⁴ = 4.5×10³ s ≈ 76 minutes.</li>
+    </ol>
+    <p class="wex__ans">v<sub>d</sub> ≈ 0.22 mm·s⁻¹ — about 76 min to crawl one metre</p>
+  </div>
+
+  <p>Yet the lamp lights the instant you close the switch. Three facts resolve the paradox, and an
+  examiner will want all three:</p>
+  <ol>
+    <li><strong>The conduction electrons are already everywhere</strong>, including inside the
+    filament. Nothing has to travel from the battery to the lamp; the lamp's own electrons only
+    need to be told to start moving.</li>
+    <li><strong>The instruction travels as a field, not as matter.</strong> Closing the switch
+    redistributes surface charge along the conductors, and that redistribution propagates at a
+    large fraction of c — typically ≈ 2×10⁸ m·s⁻¹ in ordinary cable. For a 2 m lamp cord the delay
+    is 2 / (2×10⁸) ≈ 1×10⁻⁸ s = 10 ns.</li>
+    <li><strong>Brightness depends on I, not on v<sub>d</sub>.</strong> Power dissipated is I²R.
+    A slow drift of an enormous number of carriers (≈10²⁹ per cubic metre) is still a large
+    current.</li>
+  </ol>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p>The standard question is "estimate the drift speed and comment". The comment they want:
+    <em>the drift speed is tiny, but the electric field that sets the whole circuit in motion
+    propagates near the speed of light, and the carriers are already distributed throughout the
+    circuit.</em> A water-filled pipe is the safe analogy: open the tap and water leaves the far end
+    at once, even though any individual molecule moves slowly.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap</p>
+    <p>"Current is used up as it goes round the circuit." It is not. Charge is conserved, so in a
+    series loop the current is identical before and after the lamp. What is used up is
+    <strong>energy per unit charge</strong> — the potential drops. Say "the potential falls across
+    the lamp", never "the current falls across the lamp".</p>
+  </div>
+</section>
+
+<!-- ============================ § 02 ============================ -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Resistance, resistivity and temperature</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Resistance</dt>
+      <dd>The ratio of the potential difference across a conductor to the current through it. It is
+        a property of <em>this piece of material, at this temperature</em> — geometry included.</dd>
+      <dt>Resistivity</dt>
+      <dd>The material's intrinsic opposition to current, independent of the size and shape of the
+        sample. Copper is a good conductor whether it is a hair or a bus-bar.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">R = ρ L / A</span>
+      <span class="fx__tag">uniform cross-section, uniform temperature</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">R = V / I</span><span class="fx__tag">definition of R; true for every device</span></div>
+      <div class="fx"><span class="fx__eq">σ = 1 / ρ&nbsp;&nbsp;&nbsp;G = 1 / R</span><span class="fx__tag">conductivity and conductance</span></div>
+      <div class="fx"><span class="fx__eq">ρ = ρ₀ [ 1 + α (T − T₀) ]</span><span class="fx__tag">linear model; metals, modest ΔT</span></div>
+      <div class="fx"><span class="fx__eq">R = R₀ [ 1 + α (T − T₀) ]</span><span class="fx__tag">same law, if L and A barely change</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>R</b><span>resistance (Ω = V·A⁻¹)</span></div>
+      <div><b>ρ</b><span>resistivity (Ω·m)</span></div>
+      <div><b>L</b><span>length along the current (m)</span></div>
+      <div><b>A</b><span>cross-sectional area (m²)</span></div>
+      <div><b>σ</b><span>conductivity (S·m⁻¹)</span></div>
+      <div><b>G</b><span>conductance (S = Ω⁻¹)</span></div>
+      <div><b>α</b><span>temperature coefficient of resistivity (K⁻¹)</span></div>
+      <div><b>T, T₀</b><span>temperature and reference temperature (K; ΔT is identical in °C)</span></div>
+    </div>
+  </div>
+
+  <p>The shape of R = ρL/A is not something to memorise. Double the length and the charge must
+  fight through twice as much material in series, so R doubles: <b>R ∝ L</b>. Double the
+  cross-section and you have provided two parallel paths, so R halves: <b>R ∝ 1/A</b>. That is the
+  same reasoning as blood flow through a vessel — the only difference is that Poiseuille's law
+  gives 1/r⁴ rather than 1/r², because a fluid also has to shear against itself.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Resistivity and temperature coefficient of selected materials at 20 °C</caption>
+      <thead>
+        <tr><th>Material</th><th>ρ at 20 °C (Ω·m)</th><th>α (K⁻¹)</th><th>Why it appears in an exam</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Silver</td><td class="num">1.59×10⁻⁸</td><td class="num">+3.8×10⁻³</td><td>the best metallic conductor; the benchmark</td></tr>
+        <tr><td>Copper</td><td class="num">1.68×10⁻⁸</td><td class="num">+3.9×10⁻³</td><td>all wiring calculations</td></tr>
+        <tr><td>Aluminium</td><td class="num">2.65×10⁻⁸</td><td class="num">+3.9×10⁻³</td><td>overhead lines: worse ρ, but about half the resistance per kg of metal</td></tr>
+        <tr><td>Tungsten</td><td class="num">5.6×10⁻⁸</td><td class="num">+4.5×10⁻³</td><td>lamp filaments; huge R change from 300 K to 2800 K</td></tr>
+        <tr><td>Nichrome</td><td class="num">1.0×10⁻⁶</td><td class="num">+0.4×10⁻³</td><td>heating elements: high ρ, nearly flat with T</td></tr>
+        <tr><td>Carbon (graphite)</td><td class="num">3.5×10⁻⁵</td><td class="num">−0.5×10⁻³</td><td>the classic <em>negative</em> α in a non-metal</td></tr>
+        <tr><td>Blood</td><td class="num">≈1.5</td><td class="num">negative</td><td>the best-conducting soft tissue (only CSF is lower); impedance cardiography</td></tr>
+        <tr><td>Skeletal muscle</td><td class="num">≈2 (along fibres)</td><td class="num">negative</td><td>anisotropic — ρ across the fibres is several times larger</td></tr>
+        <tr><td>Fat</td><td class="num">≈20</td><td class="num">negative</td><td>why bioimpedance can estimate body composition</td></tr>
+        <tr><td>Dry skin (stratum corneum)</td><td class="num">≈10⁵–10⁶ Ω (contact resistance, not ρ)</td><td class="num">—</td><td>the body's only real electrical protection (§11)</td></tr>
+        <tr><td>Pure silicon</td><td class="num">≈2.3×10³</td><td class="num">strongly negative</td><td>the semiconductor contrast case</td></tr>
+        <tr><td>Glass</td><td class="num">10¹⁰–10¹⁴</td><td class="num">negative</td><td>insulator; spans 22 orders of magnitude from silver</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why metals and semiconductors go opposite ways</h3>
+  <p>Resistivity depends on two things: how many carriers there are (n) and how far each travels
+  before scattering (the mean free path).</p>
+  <ul>
+    <li><strong>Metals.</strong> n is fixed — roughly one free electron per atom, whatever the
+    temperature. Heating makes the lattice ions vibrate harder, the electrons scatter sooner, the
+    mean free path shortens. So ρ <em>rises</em>, and α is positive and of order +4×10⁻³ K⁻¹.</li>
+    <li><strong>Semiconductors.</strong> n is tiny at room temperature and rises roughly as
+    e<sup>−E<sub>g</sub>/2k<sub>B</sub>T</sup>. Heating silicon (E<sub>g</sub> = 1.1 eV) frees
+    carriers exponentially fast, and that swamps the extra scattering. So ρ <em>falls</em> steeply
+    and α is large and negative. This is exactly the NTC thermistor used in a clinical temperature
+    probe: a few kΩ at 25 °C, measurably less at 37 °C, and cheap enough to be disposable.</li>
+    <li><strong>Superconductors.</strong> Below a critical temperature ρ is not small — it is
+    exactly zero. Niobium–titanium at 4 K is what lets an MRI magnet hold 1.5–3 T indefinitely on
+    a persistent current with no power supply attached.</li>
+  </ul>
+
+  <div class="wex">
+    <h4>Worked example 2 · A copper lead, cold and hot</h4>
+    <p>A copper wire is 20 m long with a diameter of 1.0 mm. Take ρ₂₀ = 1.68×10⁻⁸ Ω·m and
+    α = 3.9×10⁻³ K⁻¹. Find R at 20 °C and at 80 °C.</p>
+    <ol>
+      <li>Area: A = πd²/4 = π(1.0×10⁻³)²/4 = 7.85×10⁻⁷ m². (Use the <em>radius</em> 0.5 mm — the
+      most common slip in this calculation is squaring the diameter.)</li>
+      <li>R₂₀ = ρL/A = (1.68×10⁻⁸)(20) / (7.85×10⁻⁷) = 3.36×10⁻⁷ / 7.85×10⁻⁷ = 0.428 Ω.</li>
+      <li>ΔT = 80 − 20 = 60 K, so the bracket is 1 + (3.9×10⁻³)(60) = 1.234.</li>
+      <li>R₈₀ = 0.428 × 1.234 = 0.528 Ω.</li>
+    </ol>
+    <p class="wex__ans">R₂₀ ≈ 0.43 Ω → R₈₀ ≈ 0.53 Ω, a 23% rise</p>
+  </div>
+
+  <p>Push that further and it stops being a footnote. A 100 W, 110 V incandescent lamp has a
+  <em>hot</em> resistance of R = V²/P = 110²/100 = 121 Ω. Its tungsten filament runs near 2800 K,
+  some 2500 K above room temperature; with α = 4.5×10⁻³ K⁻¹ the linear model predicts a factor of
+  1 + 11.25 ≈ 12. So the cold filament is only about 10 Ω, and the instant you flick the switch
+  the inrush current is roughly 110/10 ≈ 11 A against a steady-state 0.91 A. That is why
+  filament lamps almost always fail at switch-on.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · stretching a wire</p>
+    <p>"A wire is stretched to twice its length; what happens to R?" Students answer "doubles".
+    Stretching conserves <em>volume</em>, so if L doubles then A halves, and
+    R = ρL/A goes up by 2 × 2 = <strong>four times</strong>. ρ never changes — it is a property of
+    copper, not of this piece of copper. Keep that question distinct from a different one that
+    looks similar: <em>choosing</em> a wire of twice the diameter at the same length quadruples A
+    and divides R by four, with no compensating change in L.</p>
+  </div>
+</section>
+
+<!-- ============================ § 03 ============================ -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Ohm's law is a property, not a law</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Ohm's law</dt>
+      <dd>The empirical observation that <em>for certain materials</em> the current is proportional
+        to the applied potential difference, so that R does not depend on V or I. It describes a
+        class of materials; it is not a conservation principle and it has no universal validity.</dd>
+      <dt>Ohmic conductor</dt>
+      <dd>A conductor whose I–V graph is a straight line through the origin at fixed temperature.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">I ∝ V&nbsp;&nbsp;⟺&nbsp;&nbsp;R = V / I = constant</span>
+      <span class="fx__tag">ohmic materials, constant temperature</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">V = I R</span><span class="fx__tag">definition of R at this operating point — always true</span></div>
+      <div class="fx"><span class="fx__eq">J = σ E</span><span class="fx__tag">microscopic form; the statement about the material itself</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>V</b><span>potential difference (V = J·C⁻¹)</span></div>
+      <div><b>I</b><span>current (A)</span></div>
+      <div><b>R</b><span>resistance at that operating point (Ω)</span></div>
+      <div><b>J</b><span>current density (A·m⁻²)</span></div>
+      <div><b>σ</b><span>conductivity (S·m⁻¹)</span></div>
+      <div><b>E</b><span>electric field in the material (V·m⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>The distinction matters and it is examined. <b>V = IR is a definition</b>: given any device
+  at any operating point, you can always divide the voltage across it by the current through it
+  and call the answer its resistance. <b>Ohm's law is the extra claim that this ratio stays the
+  same as you change V.</b> A diode obeys V = IR at every instant — its "resistance" simply
+  changes by six orders of magnitude between 0.4 V and 0.8 V, so it is not ohmic.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 380" role="img" aria-label="Current versus voltage graphs for four devices on common axes. A teal straight line through the origin is an ohmic resistor. An amber curve bending towards the voltage axis is a filament lamp, whose resistance rises as it heats. A violet curve bending away from the voltage axis is an NTC thermistor, whose resistance falls as it heats. A red trace stays at zero current until about 0.6 volts and then rises almost vertically, and stays at zero for reverse voltage: a semiconductor diode.">
+      <line x1="50" y1="200" x2="700" y2="200" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="370" y1="35" x2="370" y2="365" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <text x="700" y="222" text-anchor="end" font-size="14" font-style="italic" fill="var(--ink-soft)" font-family="sans-serif">V</text>
+      <text x="384" y="46" text-anchor="start" font-size="14" font-style="italic" fill="var(--ink-soft)" font-family="sans-serif">I</text>
+      <line x1="60" y1="350" x2="680" y2="50" stroke="var(--v-vel)" stroke-width="2.6" fill="none"/>
+      <polyline points="60,350 122,334.2 184,316.2 246,294.9 308,267.1 339,247.4 370,200 401,152.6 432,132.9 494,105.1 556,83.8 618,65.8 680,50" fill="none" stroke="var(--v-accel)" stroke-width="2.6"/>
+      <polyline points="60,350 122,276.8 184,232.4 246,209.6 308,201.2 370,200 432,198.8 494,190.4 556,167.6 618,123.2 680,50" fill="none" stroke="var(--v-field)" stroke-width="2.6"/>
+      <polyline points="60,200 401,200 407,198.5 413,189.5 420,164 426,116 432,50" fill="none" stroke="var(--v-force)" stroke-width="2.6"/>
+      <g font-size="13" font-family="sans-serif" fill="var(--ink)">
+        <line x1="80" y1="66" x2="112" y2="66" stroke="var(--v-vel)" stroke-width="3"/><text x="122" y="71">ohmic resistor (R constant)</text>
+        <line x1="80" y1="94" x2="112" y2="94" stroke="var(--v-accel)" stroke-width="3"/><text x="122" y="99">filament lamp (R rises with T)</text>
+        <line x1="80" y1="122" x2="112" y2="122" stroke="var(--v-field)" stroke-width="3"/><text x="122" y="127">NTC thermistor (R falls with T)</text>
+        <line x1="80" y1="150" x2="112" y2="150" stroke="var(--v-force)" stroke-width="3"/><text x="122" y="155">diode (one-way, above ≈0.6 V)</text>
+      </g>
+      <text x="612" y="346" text-anchor="end" font-size="12.5" fill="var(--ink-soft)" font-family="sans-serif">R at any point = V/I = slope of the chord from the origin</text>
+    </svg>
+    <figcaption>Only the straight teal line is ohmic. For every other curve the resistance is the
+    slope of the <em>chord</em> from the origin to the operating point — which changes as you move
+    along the curve. Note that lamp and thermistor curves are symmetric about the origin (they do
+    not care which way the current flows) whereas the diode is not.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Ohmic versus non-ohmic devices</caption>
+      <thead>
+        <tr><th>Device</th><th>Ohmic?</th><th>Shape of the I–V graph</th><th>Physical reason</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Metal wire / carbon-film resistor at fixed T</td><td>Yes</td><td>straight line through the origin, both quadrants</td><td>n fixed, mean free path fixed while T is fixed</td></tr>
+        <tr><td>Electrolyte solution (dilute, small V)</td><td>Approximately</td><td>straight through the origin</td><td>ion mobility roughly constant</td></tr>
+        <tr><td>Filament lamp</td><td>No</td><td>bends towards the V axis (I grows slower than V)</td><td>I²R heating raises T, which raises R</td></tr>
+        <tr><td>NTC thermistor</td><td>No</td><td>bends away from the V axis (I grows faster than V)</td><td>heating frees carriers, so R falls — can run away</td></tr>
+        <tr><td>Semiconductor diode</td><td>No</td><td>≈0 in reverse and below ≈0.6 V, then near-vertical</td><td>the p–n junction barrier; I ∝ e<sup>eV/k<sub>B</sub>T</sup> − 1</td></tr>
+        <tr><td>Gas-discharge tube / spark</td><td>No</td><td>negative-resistance region: V falls as I rises</td><td>ionisation creates its own carriers</td></tr>
+        <tr><td>Superconductor below T<sub>c</sub></td><td>No (trivially)</td><td>vertical line: any I at V = 0</td><td>R = 0 exactly; not "very small"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p>Read the axes before you read the curve. Many papers plot <strong>V on the vertical axis</strong>
+    against I. On an I-against-V plot the gradient is 1/R (steep = low resistance). On a
+    V-against-I plot the gradient <em>is</em> R. A curve bending towards the horizontal axis means
+    opposite things on the two plots.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>One line to keep</h4>
+    <p>V = IR is a <em>definition</em> you may always use. Ohm's law is the claim that R is a
+    <em>constant</em> — and that claim is a property of the material, not a law of nature.</p>
+  </div>
+</section>
+
+<!-- ============================ § 04 ============================ -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Electrical power and the kilowatt-hour</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Electrical power</dt>
+      <dd>The rate at which a circuit element converts electrical energy into some other form —
+        heat in a resistor, light plus heat in a lamp, chemical energy in a charging cell,
+        mechanical work in a motor.</dd>
+      <dt>Kilowatt-hour</dt>
+      <dd>A unit of <em>energy</em>, not power: the energy used by a 1 kW device running for 1 hour.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">P = I V</span>
+      <span class="fx__tag">any element; V is the pd across it, I the current through it</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">P = I² R</span><span class="fx__tag">substituting V = IR; use when I is shared (series)</span></div>
+      <div class="fx"><span class="fx__eq">P = V² / R</span><span class="fx__tag">substituting I = V/R; use when V is shared (parallel)</span></div>
+      <div class="fx"><span class="fx__eq">E = P t</span><span class="fx__tag">constant power</span></div>
+      <div class="fx"><span class="fx__eq">1 kW·h = 1000 × 3600 = 3.6×10⁶ J</span><span class="fx__tag">unit conversion</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>P</b><span>power (W = J·s⁻¹)</span></div>
+      <div><b>I</b><span>current through the element (A)</span></div>
+      <div><b>V</b><span>potential difference across it (V)</span></div>
+      <div><b>R</b><span>resistance (Ω)</span></div>
+      <div><b>E</b><span>energy converted (J, or kW·h)</span></div>
+      <div><b>t</b><span>time (s, or h for kW·h)</span></div>
+    </div>
+  </div>
+
+  <p>P = IV needs no memorising: V is joules per coulomb and I is coulombs per second, so their
+  product is joules per second. The two derived forms are <em>only</em> valid where V = IR holds
+  numerically, i.e. for a resistor. <strong>Never apply P = V²/R to a battery or a motor</strong> —
+  for those, use P = IV and let the sign of I tell you whether energy is being delivered or
+  absorbed.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · pick the right form</p>
+    <p>The two forms answer opposite questions and the choice is usually the whole mark.
+    <b>Series</b>: the current is common, so P = I²R — the <em>largest</em> resistor dissipates the
+    most. <b>Parallel</b>: the voltage is common, so P = V²/R — the <em>smallest</em> resistor
+    dissipates the most. Students who reach for P = V²/R in a series chain get the ranking exactly
+    backwards.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 3 · An electric kettle on Taiwanese mains</h4>
+    <p>A kettle is rated 1500 W at 110 V. Find (a) the operating current, (b) the resistance of the
+    element, (c) the time to raise 1.0 kg of water from 25 °C to 100 °C assuming all the energy
+    reaches the water (c<sub>water</sub> = 4186 J·kg⁻¹·K⁻¹), and (d) the cost of that boil at
+    NT$3.5 per kW·h.</p>
+    <ol>
+      <li>(a) P = IV → I = P/V = 1500 / 110 = <b>13.6 A</b>. (A 15 A circuit; a 10 A extension lead
+      would be a fire.)</li>
+      <li>(b) R = V²/P = 110² / 1500 = 12100 / 1500 = <b>8.07 Ω</b>. Cross-check: V/I = 110/13.64 =
+      8.07 Ω ✓.</li>
+      <li>(c) Energy needed: Q = mcΔT = (1.0)(4186)(75) = 3.14×10⁵ J.
+      t = Q/P = 313 950 / 1500 = <b>209 s ≈ 3 min 29 s</b>.</li>
+      <li>(d) 3.14×10⁵ J ÷ 3.6×10⁶ J·(kW·h)⁻¹ = 0.0872 kW·h. Cost = 0.0872 × 3.5 = <b>NT$0.31</b>.</li>
+    </ol>
+    <p class="wex__ans">13.6 A · 8.07 Ω · 209 s · ≈ NT$0.31</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the rating is not a property of the device</p>
+    <p>"1500 W" is what the kettle draws <em>at its rated 110 V</em>. The element's resistance
+    (8.07 Ω) is the fixed quantity. Plug the same kettle into 220 V and
+    P = V²/R = 48 400 / 8.07 = 6000 W — four times the power, because P ∝ V² at fixed R. Voltage
+    doubles, current doubles, power quadruples. That is why a Taiwanese 110 V appliance destroys
+    itself on a 220 V outlet in seconds.</p>
+  </div>
+
+  <p>The kilowatt-hour survives because the joule is inconveniently small: a month of household
+  electricity is of order 10⁹ J. Keep two facts: <b>1 kW·h = 3.6×10⁶ J</b>, and a kW·h is an
+  energy, so "kilowatts per hour" is always a mistake.</p>
+</section>
+
+<!-- ============================ § 05 ============================ -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Emf, internal resistance and terminal voltage</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Electromotive force (emf), ε</dt>
+      <dd>The energy a source gives to each coulomb of charge it drives round the circuit. Despite
+        the name it is an energy per unit charge, measured in volts — <em>not</em> a force.</dd>
+      <dt>Internal resistance, r</dt>
+      <dd>The unavoidable resistance of the source's own electrolyte, electrodes and leads,
+        permanently in series with everything else in the loop.</dd>
+      <dt>Terminal voltage, V</dt>
+      <dd>The potential difference actually available between the source's terminals — what a
+        voltmeter across the battery reads.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">V = ε − I r</span>
+      <span class="fx__tag">source <em>delivering</em> current (discharging)</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">I = ε / (R + r)</span><span class="fx__tag">single loop, one source</span></div>
+      <div class="fx"><span class="fx__eq">V = ε + I r</span><span class="fx__tag">source being <em>charged</em>: current forced in at the + terminal</span></div>
+      <div class="fx"><span class="fx__eq">ε I = I²R + I²r</span><span class="fx__tag">energy audit: supplied = useful + wasted internally</span></div>
+      <div class="fx"><span class="fx__eq">P<sub>R</sub> = ε²R / (R + r)²&nbsp;&nbsp;→&nbsp;&nbsp;max at R = r</span><span class="fx__tag">maximum power transfer; P<sub>max</sub> = ε²/4r</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>ε</b><span>electromotive force (V)</span></div>
+      <div><b>r</b><span>internal resistance of the source (Ω)</span></div>
+      <div><b>R</b><span>external (load) resistance (Ω)</span></div>
+      <div><b>V</b><span>terminal voltage (V)</span></div>
+      <div><b>I</b><span>current in the loop (A)</span></div>
+      <div><b>P<sub>R</sub></b><span>power delivered to the load (W)</span></div>
+    </div>
+  </div>
+
+  <p>Every real source is an ideal emf in series with a resistor. The moment current flows, some of
+  the energy per coulomb is spent inside the source itself, so the terminal voltage sags below the
+  emf by exactly Ir. Two consequences you should be able to state without thinking:</p>
+  <ul>
+    <li><strong>Open circuit (I = 0): V = ε.</strong> This is the only way to measure an emf
+    directly — with a high-resistance voltmeter drawing negligible current.</li>
+    <li><strong>Short circuit (R = 0): I = ε/r.</strong> Nothing but r limits the current. A car
+    battery with ε = 12 V and r = 0.01 Ω can deliver 1200 A into a dropped spanner, which is why
+    the spanner welds itself in place.</li>
+  </ul>
+
+  <p>This also explains the most confusing everyday observation about batteries. A flat AA cell
+  still reads 1.5 V on a multimeter, because a digital voltmeter draws only microamperes and Ir is
+  negligible. Its internal resistance, however, has risen from ≈0.2 Ω when new to several ohms.
+  Ask it for 500 mA and the terminal voltage collapses. <strong>A battery ages by growing r, not by
+  losing ε.</strong></p>
+
+  <div class="wex">
+    <h4>Worked example 4 · A 12 V battery under load, and the price of maximum power</h4>
+    <p>A battery has ε = 12.0 V and r = 0.50 Ω. It supplies an external resistor R = 5.5 Ω.
+    Find I, the terminal voltage, the power delivered to R, and the efficiency. Then find the load
+    that would draw the greatest possible power, and the efficiency there.</p>
+    <ol>
+      <li>I = ε/(R + r) = 12.0 / (5.5 + 0.50) = 12.0/6.00 = <b>2.00 A</b>.</li>
+      <li>V = ε − Ir = 12.0 − (2.00)(0.50) = <b>11.0 V</b>. (Cross-check: V = IR = 2.00 × 5.5 = 11.0 V ✓)</li>
+      <li>P<sub>R</sub> = I²R = (2.00)²(5.5) = <b>22.0 W</b>; wasted internally
+      P<sub>r</sub> = I²r = 4.00 × 0.50 = 2.0 W. Total = 24.0 W = εI = 12.0 × 2.00 ✓.</li>
+      <li>Efficiency = 22.0/24.0 = <b>91.7%</b>.</li>
+      <li>Maximum power transfer requires R = r = <b>0.50 Ω</b>. Then I = 12.0/1.00 = 12.0 A and
+      P<sub>R</sub> = I²R = 144 × 0.50 = <b>72 W</b> (= ε²/4r = 144/2.00 ✓).</li>
+      <li>But now P<sub>r</sub> is also 72 W, so the efficiency has fallen to <b>50%</b> — half the
+      chemical energy is cooking the battery.</li>
+    </ol>
+    <p class="wex__ans">2.00 A · 11.0 V · 22.0 W · 91.7% → at R = r: 72 W but only 50% efficient</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "maximum power" ≠ "maximum efficiency"</p>
+    <p>R = r maximises the <em>power</em> reaching the load, and at that point the efficiency is
+    <strong>exactly 50%</strong> — never more. Efficiency η = R/(R + r) rises monotonically as R
+    grows, tending to 100% as the load draws less and less power. Power delivery and efficiency are
+    optimised at opposite ends. Impedance matching is what you want when the object really is to
+    pull <em>power</em> out of a weak source — an antenna into a receiver, a transducer into its
+    driver; it is the last thing you want in a power distribution grid, where r is deliberately
+    made negligible. It is equally the wrong goal whenever you are measuring a <em>voltage</em>:
+    an ECG front end deliberately refuses to match, using an input impedance vastly larger than
+    the electrode impedance precisely so that it draws almost no current and loads the source as
+    little as possible (§8).</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · measuring r from a graph</p>
+    <p>Rearranged, V = ε − Ir is the straight line <em>y = c + mx</em> with V on the vertical axis
+    and I on the horizontal. The <strong>vertical intercept is ε</strong> and the
+    <strong>gradient is −r</strong>. If a question gives you two (I, V) pairs, subtract them:
+    r = (V₁ − V₂)/(I₂ − I₁), which needs no intercept at all.</p>
+  </div>
+</section>
+
+<!-- ============================ § 06 ============================ -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Series and parallel — the reasoning, not the rule</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Series connection</dt>
+      <dd>Elements joined end to end with no junction between them, so every charge that passes
+        through one must pass through the next.</dd>
+      <dt>Parallel connection</dt>
+      <dd>Elements joined between the same two nodes, so each has the same pair of endpoints and
+        therefore the same potential difference across it.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">R<sub>s</sub> = R₁ + R₂ + R₃ + …</span>
+      <span class="fx__tag">series: same I, voltages add</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">1/R<sub>p</sub> = 1/R₁ + 1/R₂ + 1/R₃ + …</span><span class="fx__tag">parallel: same V, currents add</span></div>
+      <div class="fx"><span class="fx__eq">R<sub>p</sub> = R₁R₂ / (R₁ + R₂)</span><span class="fx__tag">shortcut, <em>two</em> branches only</span></div>
+      <div class="fx"><span class="fx__eq">R<sub>p</sub> = R / N</span><span class="fx__tag">N identical resistors in parallel</span></div>
+      <div class="fx"><span class="fx__eq">V₁ = V · R₁ / (R₁ + R₂)</span><span class="fx__tag">voltage divider (series pair)</span></div>
+      <div class="fx"><span class="fx__eq">I₁ = I · R₂ / (R₁ + R₂)</span><span class="fx__tag">current divider (parallel pair) — note the <em>other</em> R on top</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>R<sub>s</sub></b><span>series equivalent resistance (Ω)</span></div>
+      <div><b>R<sub>p</sub></b><span>parallel equivalent resistance (Ω)</span></div>
+      <div><b>R₁, R₂</b><span>individual resistances (Ω)</span></div>
+      <div><b>N</b><span>number of identical branches (dimensionless)</span></div>
+      <div><b>V</b><span>pd across the whole combination (V)</span></div>
+      <div><b>I</b><span>current into the whole combination (A)</span></div>
+    </div>
+  </div>
+
+  <p><strong>Why series resistances add.</strong> There is no junction, so charge conservation
+  forces the same I everywhere. Energy conservation then says the total energy lost per coulomb is
+  the sum of the losses: V = V₁ + V₂ = IR₁ + IR₂ = I(R₁ + R₂). Divide by I and you have the rule.
+  The current cancels — which is the reason the rule contains no I.</p>
+
+  <p><strong>Why parallel conductances add.</strong> Both branches connect the same two nodes, so
+  they share the same V. Charge conservation at the node says the currents add:
+  I = I₁ + I₂ = V/R₁ + V/R₂ = V(1/R₁ + 1/R₂). Divide by V and you get 1/R<sub>p</sub>. Written in
+  conductances the rule is prettier and easier to remember: <span class="fi">G<sub>p</sub> = G₁ + G₂ + …</span>
+  Adding a parallel path is adding another lane, so it can only make it easier for charge to get
+  through: <strong>a parallel combination is always smaller than its smallest branch.</strong> If
+  your answer is bigger, you have inverted something once too few or once too many times.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Series versus parallel connection compared</caption>
+      <thead>
+        <tr><th>Feature</th><th>Series</th><th>Parallel</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>What is shared</td><td>the current I (no junctions)</td><td>the voltage V (same two nodes)</td></tr>
+        <tr><td>What adds</td><td>voltages: V = ΣV<sub>i</sub></td><td>currents: I = ΣI<sub>i</sub></td></tr>
+        <tr><td>Equivalent resistance</td><td class="num">R<sub>s</sub> = ΣR<sub>i</sub></td><td class="num">1/R<sub>p</sub> = Σ1/R<sub>i</sub></td></tr>
+        <tr><td>Compared with the branches</td><td>larger than the largest</td><td>smaller than the smallest</td></tr>
+        <tr><td>Which resistor gets the most power</td><td>the largest (P = I²R)</td><td>the smallest (P = V²/R)</td></tr>
+        <tr><td>Effect of adding one more element</td><td>total R rises, current falls</td><td>total R falls, total current rises</td></tr>
+        <tr><td>If one element fails open</td><td>everything stops</td><td>only that branch stops</td></tr>
+        <tr><td>Where you meet it</td><td>internal resistance, an ammeter inserted in a branch, fairy lights, a current-limiting resistor before an LED, the pulmonary and systemic circulations one after the other</td><td>household wiring, a voltmeter across a component, an ammeter's shunt, capillary beds, the organ beds fed side by side from the aorta</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Household wiring is parallel for two reasons: every appliance then receives the full mains
+  voltage, and each can be switched independently. The price is that every appliance you switch on
+  <em>lowers</em> the total resistance and <em>raises</em> the total current drawn from the supply
+  — hence circuit breakers, and hence the fact that overloading a socket is a current problem,
+  never a voltage one.</p>
+
+  <div class="wex">
+    <h4>Worked example 5 · A series–parallel combination, audited</h4>
+    <p>An ideal 12.0 V supply drives R₁ = 6.0 Ω in series with the parallel pair R₂ = 4.0 Ω and
+    R₃ = 12.0 Ω. Find every current, every voltage, and check the power.</p>
+    <ol>
+      <li>Collapse the parallel pair first: R<sub>23</sub> = (4.0 × 12.0)/(4.0 + 12.0) = 48/16 =
+      <b>3.0 Ω</b> — smaller than 4.0 Ω, as it must be.</li>
+      <li>Total: R = 6.0 + 3.0 = 9.0 Ω, so I = 12.0/9.0 = <b>1.33 A</b> from the supply.</li>
+      <li>Across R₁: V₁ = IR₁ = 1.333 × 6.0 = <b>8.0 V</b>. Across the pair:
+      V₂₃ = 12.0 − 8.0 = <b>4.0 V</b> (= 1.333 × 3.0 ✓).</li>
+      <li>Branch currents: I₂ = 4.0/4.0 = <b>1.00 A</b>, I₃ = 4.0/12.0 = <b>0.33 A</b>.
+      Junction check: 1.00 + 0.33 = 1.33 A ✓. Current-divider check:
+      I₂ = I·R₃/(R₂+R₃) = 1.333 × 12/16 = 1.00 A ✓.</li>
+      <li>Power: P₁ = I²R₁ = (1.333)²(6.0) = 10.67 W; P₂ = V²/R₂ = 16/4 = 4.00 W;
+      P₃ = 16/12 = 1.33 W. Sum = 16.0 W = εI = 12.0 × 1.333 ✓.</li>
+    </ol>
+    <p class="wex__ans">I = 1.33 A · V₁ = 8.0 V · I₂ = 1.00 A · I₃ = 0.33 A · P<sub>total</sub> = 16.0 W</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the two dividers point opposite ways</p>
+    <p>In a <b>voltage</b> divider the resistor's <em>own</em> resistance is on top:
+    V₁ = V·R₁/(R₁+R₂) — the bigger resistor takes the bigger share of the voltage. In a
+    <b>current</b> divider the <em>other</em> resistor is on top: I₁ = I·R₂/(R₁+R₂) — the
+    <em>smaller</em> resistor takes the bigger share of the current. Reversing them is the single
+    most common algebra error in this chapter. Sanity-check by asking "which branch should get
+    more?" before you write the fraction.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · forgetting to invert</p>
+    <p>1/R<sub>p</sub> = 1/4 + 1/12 = 4/12 = 1/3. The answer is <strong>3 Ω, not 1/3 Ω</strong>.
+    Half of all lost marks in this section are people who stopped one step early.</p>
+  </div>
+</section>
+
+<!-- ============================ § 07 ============================ -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Kirchhoff's rules and a two-loop circuit solved end to end</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Junction (node) rule</dt>
+      <dd>At any junction the total current arriving equals the total current leaving. It is
+        conservation of charge: nothing accumulates at a point in the steady state.</dd>
+      <dt>Loop rule</dt>
+      <dd>Around any closed loop the algebraic sum of the potential changes is zero. It is
+        conservation of energy, together with the fact that electric potential is single-valued:
+        you must come back to the potential you started at.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Σ I<sub>in</sub> = Σ I<sub>out</sub>&nbsp;&nbsp;&nbsp;and&nbsp;&nbsp;&nbsp;Σ<sub>loop</sub> ΔV = 0</span>
+      <span class="fx__tag">any DC network, however tangled</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">resistor, traversed <em>with</em> the assumed current:&nbsp; ΔV = − I R</span><span class="fx__tag">you are walking downhill</span></div>
+      <div class="fx"><span class="fx__eq">resistor, traversed <em>against</em> it:&nbsp; ΔV = + I R</span><span class="fx__tag">walking uphill</span></div>
+      <div class="fx"><span class="fx__eq">source, entered at − and left at +:&nbsp; ΔV = + ε</span><span class="fx__tag">independent of the current direction</span></div>
+      <div class="fx"><span class="fx__eq">source, entered at + and left at −:&nbsp; ΔV = − ε</span><span class="fx__tag">also independent of the current</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>I</b><span>branch current, with its assumed direction (A)</span></div>
+      <div><b>R</b><span>branch resistance (Ω)</span></div>
+      <div><b>ε</b><span>source emf (V)</span></div>
+      <div><b>ΔV</b><span>potential change along the step you just walked (V)</span></div>
+    </div>
+  </div>
+
+  <h3>A sign procedure that never fails</h3>
+  <ol>
+    <li><strong>Label every branch with an assumed current direction and stick to it.</strong> Guess
+    freely; the algebra will correct you.</li>
+    <li><strong>Write the junction rule at (number of junctions − 1) junctions.</strong> The last
+    one is always a combination of the others and gives you nothing new.</li>
+    <li><strong>Choose enough independent loops</strong> so that the number of equations equals the
+    number of unknown currents. A loop is independent if it includes at least one branch no
+    previous loop used.</li>
+    <li><strong>Traverse every loop clockwise.</strong> Not because clockwise is special, but
+    because using one fixed convention removes an entire class of error.</li>
+    <li><strong>Apply the four sign rules above</strong>, in the order you meet the elements, and
+    set the sum to zero. Note that the sign for a battery depends only on which plate you enter
+    first — never on the current.</li>
+    <li><strong>Solve. A negative current means your guess was backwards</strong>; the magnitude is
+    still correct. Do <em>not</em> go back and redraw — just report "1.0 A in the direction opposite
+    to the arrow".</li>
+  </ol>
+
+  <div class="mnemo">
+    <h4>Two phrases carry the whole sign convention</h4>
+    <p>"Walk <em>with</em> the current and the potential <em>falls</em>: −IR." · "Walk into the
+    <em>plus</em> plate and the potential <em>rises</em>: +ε."</p>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 340" role="img" aria-label="A two-loop circuit. Three vertical branches connect a top node a to a bottom node b. The left branch contains a 12 volt battery with its positive plate uppermost and a 2 ohm resistor, carrying current I one upward. The middle branch contains a 3 ohm resistor carrying current I three downward. The right branch contains a 4 volt battery with its positive plate uppermost and a 2 ohm resistor, carrying an assumed current I two upward. Circular arrows mark loop one on the left and loop two on the right, both traversed clockwise.">
+      <defs>
+        <marker id="f3-cur" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L11,4.5 L0,9 z" fill="var(--v-vel)"/></marker>
+        <marker id="f3-loop" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L11,4.5 L0,9 z" fill="var(--v-energy)"/></marker>
+      </defs>
+      <g stroke="var(--ink)" stroke-width="2.2" fill="none" stroke-linecap="round">
+        <line x1="110" y1="70" x2="610" y2="70"/>
+        <line x1="110" y1="270" x2="610" y2="270"/>
+        <line x1="110" y1="70" x2="110" y2="124"/>
+        <line x1="110" y1="136" x2="110" y2="176"/>
+        <line x1="110" y1="224" x2="110" y2="270"/>
+        <line x1="360" y1="70" x2="360" y2="146"/>
+        <line x1="360" y1="194" x2="360" y2="270"/>
+        <line x1="610" y1="70" x2="610" y2="124"/>
+        <line x1="610" y1="136" x2="610" y2="176"/>
+        <line x1="610" y1="224" x2="610" y2="270"/>
+      </g>
+      <g stroke="var(--ink)" fill="none" stroke-linejoin="round">
+        <line x1="88" y1="124" x2="132" y2="124" stroke-width="2.2"/>
+        <line x1="98" y1="136" x2="122" y2="136" stroke-width="5"/>
+        <line x1="588" y1="124" x2="632" y2="124" stroke-width="2.2"/>
+        <line x1="598" y1="136" x2="622" y2="136" stroke-width="5"/>
+        <polyline points="110,176 121,181 99,188 121,195 99,202 121,209 99,216 110,224" stroke-width="2.2"/>
+        <polyline points="360,146 371,151 349,158 371,165 349,172 371,179 349,186 360,194" stroke-width="2.2"/>
+        <polyline points="610,176 621,181 599,188 621,195 599,202 621,209 599,216 610,224" stroke-width="2.2"/>
+      </g>
+      <circle cx="360" cy="70" r="5" fill="var(--ink)"/>
+      <circle cx="360" cy="270" r="5" fill="var(--ink)"/>
+      <g font-family="sans-serif" font-size="14" fill="var(--ink)">
+        <text x="92" y="122" text-anchor="end">ε₁ = 12 V</text>
+        <text x="92" y="206" text-anchor="end">R₁ = 2 Ω</text>
+        <text x="392" y="176" text-anchor="start">R₃ = 3 Ω</text>
+        <text x="646" y="122" text-anchor="start">ε₂ = 4 V</text>
+        <text x="646" y="206" text-anchor="start">R₂ = 2 Ω</text>
+      </g>
+      <g font-family="sans-serif" font-size="13" fill="var(--ink-soft)">
+        <text x="140" y="118">+</text><text x="140" y="150">−</text>
+        <text x="578" y="118" text-anchor="end">+</text><text x="578" y="150" text-anchor="end">−</text>
+        <text x="340" y="58" text-anchor="end" font-size="15" fill="var(--ink)">a</text>
+        <text x="340" y="292" text-anchor="end" font-size="15" fill="var(--ink)">b</text>
+      </g>
+      <g stroke="var(--v-vel)" stroke-width="2.4" marker-end="url(#f3-cur)">
+        <line x1="110" y1="108" x2="110" y2="86"/>
+        <line x1="610" y1="108" x2="610" y2="86"/>
+        <line x1="360" y1="92" x2="360" y2="118"/>
+      </g>
+      <g font-family="sans-serif" font-size="14" fill="var(--v-vel)" font-weight="600">
+        <text x="94" y="100" text-anchor="end">I₁</text>
+        <text x="626" y="100" text-anchor="start">I₂</text>
+        <text x="344" y="112" text-anchor="end">I₃</text>
+      </g>
+      <g stroke="var(--v-energy)" stroke-width="2.2" fill="none" marker-end="url(#f3-loop)">
+        <path d="M 235,138 A 34,34 0 1 1 201,172"/>
+        <path d="M 485,138 A 34,34 0 1 1 451,172"/>
+      </g>
+      <g font-family="sans-serif" font-size="13.5" fill="var(--v-energy)" font-weight="600" text-anchor="middle">
+        <text x="235" y="177">Loop 1</text>
+        <text x="485" y="177">Loop 2</text>
+      </g>
+      <text x="360" y="318" text-anchor="middle" font-family="sans-serif" font-size="13" fill="var(--ink-soft)">both loops traversed clockwise · arrows are assumptions, not facts</text>
+    </svg>
+    <figcaption>Two sources feeding one shared load. The direction drawn for I₂ is a guess, and it
+    turns out to be wrong — which is exactly what makes this a useful worked example.</figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 6 · The two-loop circuit above, solved completely</h4>
+    <p>ε₁ = 12 V with R₁ = 2 Ω; ε₂ = 4 V with R₂ = 2 Ω; the shared branch has R₃ = 3 Ω. Both
+    batteries have their positive plate at the top. Find all three currents and audit the power.</p>
+    <ol>
+      <li><strong>Junction rule at a.</strong> I₁ and I₂ arrive, I₃ leaves:
+      <span class="fi">I₁ + I₂ = I₃</span> &nbsp;…(3)</li>
+      <li><strong>Loop 1, clockwise from b</strong>: up the left branch, then down the middle.
+      Going up we meet R₁ travelling <em>with</em> I₁ (−I₁R₁), then enter the battery at − and leave
+      at + (+ε₁). Coming down the middle we travel <em>with</em> I₃ (−I₃R₃):
+      <br><span class="fi">12 − 2I₁ − 3I₃ = 0</span> &nbsp;…(1)</li>
+      <li><strong>Loop 2, clockwise from b</strong>: up the middle branch, then down the right.
+      Going up the middle we travel <em>against</em> I₃ (+I₃R₃). Coming down the right branch we
+      enter ε₂ at + and leave at − (−ε₂), and cross R₂ <em>against</em> I₂ (+I₂R₂):
+      <br><span class="fi">3I₃ − 4 + 2I₂ = 0</span> &nbsp;…(2)</li>
+      <li><strong>Solve.</strong> From (3), I₂ = I₃ − I₁. Put that in (2):
+      3I₃ + 2(I₃ − I₁) = 4 → 5I₃ − 2I₁ = 4.
+      From (1), 2I₁ = 12 − 3I₃, so I₁ = 6 − 1.5I₃. Substituting:
+      5I₃ − 2(6 − 1.5I₃) = 4 → 5I₃ − 12 + 3I₃ = 4 → 8I₃ = 16.</li>
+      <li><strong>I₃ = 2.0 A</strong>, hence <strong>I₁ = 6 − 3.0 = 3.0 A</strong> and
+      <strong>I₂ = 2.0 − 3.0 = −1.0 A</strong>.</li>
+      <li><strong>Read the negative sign.</strong> The 4 V cell carries 1.0 A <em>downward</em>,
+      opposite the arrow: the 12 V battery is driving current backwards through it. The weaker cell
+      is being charged.</li>
+      <li><strong>Independent check — compute V<sub>a</sub> − V<sub>b</sub> three ways.</strong>
+      Via R₃: I₃R₃ = 2.0 × 3 = 6.0 V. Via branch 1: ε₁ − I₁R₁ = 12 − 6 = 6.0 V. Via branch 2:
+      ε₂ − I₂R₂ = 4 − (−1.0)(2) = 6.0 V. All agree ✓</li>
+      <li><strong>Power audit.</strong> Supplied: ε₁I₁ = 12 × 3.0 = 36 W. Absorbed:
+      ε₂ × 1.0 = 4 W stored chemically in the 4 V cell, plus I₁²R₁ = 18 W, I₂²R₂ = 2 W and
+      I₃²R₃ = 12 W as heat. Total 4 + 18 + 2 + 12 = 36 W ✓</li>
+    </ol>
+    <p class="wex__ans">I₁ = 3.0 A · I₂ = −1.0 A (i.e. 1.0 A the other way) · I₃ = 2.0 A · V<sub>ab</sub> = 6.0 V</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the free checks</p>
+    <p>Two audits cost thirty seconds and catch almost every sign error. (i) Compute the potential
+    difference between the same two nodes along <em>different</em> branches — the answers must
+    agree. (ii) Check that total power supplied equals total power absorbed. If a marker sees a
+    correct audit they will usually believe the rest.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the battery sign does not depend on the current</p>
+    <p>A battery's contribution to the loop equation is set purely by which plate you walk into
+    first: enter at −, exit at +, write +ε. The current may be flowing backwards through it (as I₂
+    is here) and the term is unchanged. Only <em>resistor</em> terms depend on the current
+    direction. Conversely, do not "fix" a negative current by flipping the arrow halfway through —
+    that changes the sign in one equation and not the others.</p>
+  </div>
+</section>
+
+<!-- ============================ § 08 ============================ -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Ammeters, voltmeters and the cost of measuring</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Ammeter</dt>
+      <dd>An instrument that measures the current <em>through</em> a branch, so it must be inserted
+        into that branch — the current has to pass through the meter.</dd>
+      <dt>Voltmeter</dt>
+      <dd>An instrument that measures the potential difference <em>between</em> two points, so it
+        must be bridged across them without breaking the circuit.</dd>
+      <dt>Loading error</dt>
+      <dd>The change a meter causes in the very quantity it is trying to measure, because it is
+        itself a circuit element.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ideal ammeter: R<sub>A</sub> = 0&nbsp;&nbsp;·&nbsp;&nbsp;ideal voltmeter: R<sub>V</sub> = ∞</span>
+      <span class="fx__tag">so that inserting the meter changes nothing</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">R<sub>sh</sub> = I<sub>g</sub> R<sub>g</sub> / (I − I<sub>g</sub>)</span><span class="fx__tag">shunt in <em>parallel</em>: turns a galvanometer into an ammeter of range I</span></div>
+      <div class="fx"><span class="fx__eq">R<sub>m</sub> = V / I<sub>g</sub> − R<sub>g</sub></span><span class="fx__tag">multiplier in <em>series</em>: turns it into a voltmeter of range V</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>R<sub>A</sub></b><span>ammeter internal resistance (Ω)</span></div>
+      <div><b>R<sub>V</sub></b><span>voltmeter internal resistance (Ω)</span></div>
+      <div><b>R<sub>g</sub></b><span>galvanometer coil resistance (Ω)</span></div>
+      <div><b>I<sub>g</sub></b><span>galvanometer full-scale deflection current (A)</span></div>
+      <div><b>R<sub>sh</sub></b><span>shunt resistance (Ω)</span></div>
+      <div><b>R<sub>m</sub></b><span>multiplier resistance (Ω)</span></div>
+      <div><b>I, V</b><span>desired full-scale range (A, V)</span></div>
+    </div>
+  </div>
+
+  <p>The two ideal resistances follow from the connection, not the other way round. An ammeter
+  sits in the path, so any resistance it adds reduces the current it is trying to report —
+  therefore R<sub>A</sub> must be as close to zero as possible. A voltmeter sits across the
+  component, so any current it steals reduces the pd it is trying to report — therefore
+  R<sub>V</sub> must be as large as possible. A typical bench digital multimeter has R<sub>V</sub>
+  ≈ 10 MΩ and, on its current ranges, a burden resistance of a fraction of an ohm to a few ohms.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Ammeter and voltmeter compared</caption>
+      <thead>
+        <tr><th></th><th>Ammeter</th><th>Voltmeter</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Measures</td><td>current through a branch</td><td>potential difference between two points</td></tr>
+        <tr><td>Connection</td><td><b>in series</b> — you must break the circuit to insert it</td><td><b>in parallel</b> — you clip it across without breaking anything</td></tr>
+        <tr><td>Ideal internal resistance</td><td class="num">0 Ω</td><td class="num">∞ Ω</td></tr>
+        <tr><td>Typical real value</td><td class="num">0.01 – 10 Ω (plus a fuse)</td><td class="num">1 – 10 MΩ (digital); 20 kΩ·V⁻¹ (analogue)</td></tr>
+        <tr><td>Built from a galvanometer by</td><td>a small <b>shunt in parallel</b> to divert most of the current</td><td>a large <b>multiplier in series</b> to drop most of the voltage</td></tr>
+        <tr><td>Effect of being non-ideal</td><td>reads <em>low</em>: the extra R reduces the loop current</td><td>reads <em>low</em>: it draws current, reducing the pd across the component</td></tr>
+        <tr><td>Classic wrong connection</td><td><b>across a battery</b> — a near short circuit; the fuse blows or the meter burns</td><td><b>in series in the loop</b> — its huge R stops the current; it reads ≈ the source emf and the circuit goes dead</td></tr>
+        <tr><td>Reading is most trustworthy when</td><td>R<sub>A</sub> ≪ the branch resistance</td><td>R<sub>V</sub> ≫ the resistance it is placed across</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo">
+    <h4>Connection mnemonic</h4>
+    <p><b>A</b>mmeter goes <b>a</b>long the wire (series, low R). <b>V</b>oltmeter goes across the
+    gap (parallel, high R). An ammeter across a battery <em>is</em> a short circuit; a voltmeter in
+    the line <em>is</em> a break.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 7 · How much does the voltmeter lie?</h4>
+    <p>Two 100 kΩ resistors are in series across an ideal 10.0 V supply, so each truly carries
+    5.00 V. What does a voltmeter read across one of them if (a) R<sub>V</sub> = 100 kΩ (a cheap
+    analogue meter) and (b) R<sub>V</sub> = 10.0 MΩ (a digital multimeter)?</p>
+    <ol>
+      <li>(a) The meter is now in parallel with the resistor it is measuring:
+      R<sub>p</sub> = (100 × 100)/(100 + 100) = 50 kΩ.</li>
+      <li>The circuit is now 100 kΩ in series with 50 kΩ, total 150 kΩ. Voltage divider:
+      V = 10.0 × 50/150 = <b>3.33 V</b> — an error of −33%.</li>
+      <li>(b) R<sub>p</sub> = (10⁵ × 10⁷)/(10⁵ + 10⁷) = 10¹²/1.01×10⁷ = 99.0 kΩ.</li>
+      <li>Total = 199.0 kΩ, so V = 10.0 × 99.0/199.0 = <b>4.975 V</b> — an error of −0.5%.</li>
+    </ol>
+    <p class="wex__ans">3.33 V with a 100 kΩ meter · 4.98 V with a 10 MΩ meter</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p>Loading error is worst when the meter's resistance is comparable to the circuit resistance
+    it is bridging. The rule of thumb: keep R<sub>V</sub> at least 100× the resistance you are
+    measuring across and the error stays under about 1%. This is not a laboratory curiosity —
+    it is why an ECG amplifier needs an input impedance of &gt;10 MΩ against skin–electrode
+    impedances of tens of kΩ, and why a badly prepared electrode site attenuates the trace.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · ohmmeters and live circuits</p>
+    <p>An ohmmeter contains its own source. Applying it to a powered circuit gives a meaningless
+    reading and may destroy the meter. Always de-energise first, and remember that a component
+    still connected in parallel with others is measured together with them, not on its own.</p>
+  </div>
+</section>
+
+<!-- ============================ § 09 ============================ -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>RC circuits and the time constant</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>RC circuit</dt>
+      <dd>A resistor and a capacitor in series. Because the resistor limits the current and current
+        is the rate of charge transfer, the capacitor's charge — and therefore its voltage — cannot
+        change instantaneously.</dd>
+      <dt>Time constant, τ</dt>
+      <dd>The product RC: the time in which the changing quantity closes 63.2% of whatever gap
+        remains between its present value and its final value.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">τ = R C&nbsp;&nbsp;&nbsp;[Ω × F = (V/A)(C/V) = C/A = s]</span>
+      <span class="fx__tag">series RC; the unit check is worth memorising</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">q(t) = Cε (1 − e<sup>−t/τ</sup>)&nbsp;&nbsp;v<sub>C</sub> = ε(1 − e<sup>−t/τ</sup>)</span><span class="fx__tag">charging from an initially uncharged capacitor</span></div>
+      <div class="fx"><span class="fx__eq">i(t) = (ε/R) e<sup>−t/τ</sup>&nbsp;&nbsp;v<sub>R</sub> = ε e<sup>−t/τ</sup></span><span class="fx__tag">charging: the current always <em>decays</em></span></div>
+      <div class="fx"><span class="fx__eq">q(t) = Q₀ e<sup>−t/τ</sup>&nbsp;&nbsp;v<sub>C</sub> = V₀ e<sup>−t/τ</sup>&nbsp;&nbsp;i = (V₀/R) e<sup>−t/τ</sup></span><span class="fx__tag">discharging; everything decays together</span></div>
+      <div class="fx"><span class="fx__eq">t<sub>½</sub> = τ ln2 = 0.693 RC</span><span class="fx__tag">time to halve — same algebra as radioactive decay</span></div>
+      <div class="fx"><span class="fx__eq">t = τ ln( ε / (ε − v<sub>C</sub>) )</span><span class="fx__tag">charging, solved for the time to reach a stated voltage</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>τ</b><span>time constant (s)</span></div>
+      <div><b>R</b><span>series resistance (Ω)</span></div>
+      <div><b>C</b><span>capacitance (F = C·V⁻¹)</span></div>
+      <div><b>q</b><span>charge on the capacitor at time t (C)</span></div>
+      <div><b>Q₀</b><span>initial charge (C)</span></div>
+      <div><b>ε</b><span>source emf (V)</span></div>
+      <div><b>i</b><span>instantaneous current (A)</span></div>
+      <div><b>v<sub>C</sub>, v<sub>R</sub></b><span>instantaneous voltages (V)</span></div>
+      <div><b>V₀</b><span>initial capacitor voltage (V)</span></div>
+      <div><b>t</b><span>time since the switch closed (s)</span></div>
+    </div>
+  </div>
+
+  <p>The exponential is not decoration. Apply the loop rule while charging:
+  <span class="fi">ε = iR + q/C</span>. The bigger q gets, the smaller the driving term ε − q/C
+  becomes, so the current falls; the falling current fills the capacitor more slowly still. A rate
+  of change proportional to the remaining gap always integrates to an exponential approach. The
+  same structure governs radioactive decay, drug elimination with first-order kinetics, and the
+  washout of an inhaled anaesthetic — which is why clinicians also count in half-lives and
+  "five time constants".</p>
+
+  <p>Two limiting behaviours are worth more marks than the algebra:</p>
+  <ul>
+    <li><strong>At t = 0 an uncharged capacitor behaves as a short circuit</strong> (v<sub>C</sub> = 0,
+    so the full emf sits across R and the current is at its maximum ε/R).</li>
+    <li><strong>At t → ∞ a capacitor behaves as an open circuit</strong> (i = 0, so no current flows
+    in that branch and the full emf sits across the capacitor).</li>
+  </ul>
+  <p>Between those two, the capacitor <em>voltage</em> is continuous and can never jump; the
+  <em>current</em> can and does jump the instant a switch moves.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 330" role="img" aria-label="Two exponential curves against time measured in time constants. The green charging curve starts at zero, rises steeply, passes 63 percent at one time constant and flattens towards 100 percent. The orange discharging curve starts at 100 percent, falls steeply, passes 37 percent at one time constant and flattens towards zero. Dashed guide lines mark the 63 percent and 37 percent levels at one time constant, and both curves are within about 1 percent of their final values by five time constants.">
+      <line x1="90" y1="265" x2="695" y2="265" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="90" y1="265" x2="90" y2="40" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="90" y1="50" x2="690" y2="50" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="2 6" opacity="0.7"/>
+      <g stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="4 4" opacity="0.75">
+        <line x1="90" y1="129" x2="206" y2="129"/>
+        <line x1="90" y1="186" x2="206" y2="186"/>
+        <line x1="206" y1="265" x2="206" y2="129"/>
+      </g>
+      <polyline fill="none" stroke="var(--v-energy)" stroke-width="2.8" points="90,265 119,217.4 148,180.4 177,151.6 206,129.1 235,111.6 264,98.0 322,79.1 380,67.7 438,60.7 496,56.5 554,54.0 612,52.4 670,51.4"/>
+      <polyline fill="none" stroke="var(--v-heat)" stroke-width="2.8" points="90,50 119,97.6 148,134.6 177,163.4 206,185.9 235,203.4 264,217.0 322,235.9 380,247.4 438,254.3 496,258.5 554,261.1 612,262.6 670,263.6"/>
+      <g stroke="var(--ink-soft)" stroke-width="1.5">
+        <line x1="206" y1="265" x2="206" y2="272"/><line x1="322" y1="265" x2="322" y2="272"/>
+        <line x1="438" y1="265" x2="438" y2="272"/><line x1="554" y1="265" x2="554" y2="272"/>
+        <line x1="670" y1="265" x2="670" y2="272"/>
+      </g>
+      <g font-family="sans-serif" font-size="13" fill="var(--ink-soft)" text-anchor="middle">
+        <text x="206" y="290">τ</text><text x="322" y="290">2τ</text><text x="438" y="290">3τ</text>
+        <text x="554" y="290">4τ</text><text x="670" y="290">5τ</text>
+      </g>
+      <g font-family="sans-serif" font-size="13" fill="var(--ink-soft)" text-anchor="end">
+        <text x="82" y="55">100%</text><text x="82" y="134">63%</text>
+        <text x="82" y="191">37%</text><text x="82" y="270">0</text>
+      </g>
+      <text x="300" y="112" font-family="sans-serif" font-size="14" font-weight="600" fill="var(--v-energy)">charging:  v = ε (1 − e^(−t/τ))</text>
+      <text x="300" y="176" font-family="sans-serif" font-size="14" font-weight="600" fill="var(--v-heat)">discharging:  v = V₀ e^(−t/τ)</text>
+      <text x="390" y="315" text-anchor="middle" font-family="sans-serif" font-size="13" fill="var(--ink-soft)">time, in units of τ = RC</text>
+      <text x="30" y="155" text-anchor="middle" font-family="sans-serif" font-size="13" fill="var(--ink-soft)" transform="rotate(-90 30 155)">fraction of final value</text>
+      <text x="688" y="42" text-anchor="end" font-family="sans-serif" font-size="12" fill="var(--ink-soft)">at 5τ: 99.3% charged / 0.7% left</text>
+    </svg>
+    <figcaption>The two curves are exact mirror images about the 50% line, because
+    (1 − e<sup>−t/τ</sup>) and e<sup>−t/τ</sup> are complements at every instant: at t = τ the
+    charging curve has reached 63.2% while the discharging curve has fallen to 36.8%, and
+    63.2 + 36.8 = 100 exactly. What is <em>not</em> symmetric is the quantity being plotted —
+    during charging it is q and v<sub>C</sub> that follow the rising curve while the current
+    follows the falling one.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Charging and discharging landmarks in units of the time constant</caption>
+      <thead>
+        <tr><th>Time</th><th>e<sup>−t/τ</sup></th><th>Charging: fraction of final value</th><th>Discharging: fraction remaining</th><th>Comment</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">0.693 τ</td><td class="num">0.500</td><td class="num">50.0%</td><td class="num">50.0%</td><td>the half-life, t<sub>½</sub> = RC ln2</td></tr>
+        <tr><td class="num">1 τ</td><td class="num">0.368</td><td class="num">63.2%</td><td class="num">36.8%</td><td>the definition of τ</td></tr>
+        <tr><td class="num">2 τ</td><td class="num">0.135</td><td class="num">86.5%</td><td class="num">13.5%</td><td>63.2% of the <em>remaining</em> gap closed again</td></tr>
+        <tr><td class="num">3 τ</td><td class="num">0.0498</td><td class="num">95.0%</td><td class="num">5.0%</td><td>often "good enough" in electronics</td></tr>
+        <tr><td class="num">4 τ</td><td class="num">0.0183</td><td class="num">98.2%</td><td class="num">1.8%</td><td>—</td></tr>
+        <tr><td class="num">5 τ</td><td class="num">0.00674</td><td class="num">99.3%</td><td class="num">0.7%</td><td>treated as fully charged / discharged</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Why five time constants counts as "finished".</strong> Strictly the exponential never
+  arrives; mathematically the capacitor is still charging at t = 10 s and at t = 10 years. But at
+  5τ the residual is 0.7%, which is smaller than the tolerance of the components themselves —
+  electrolytic capacitors are commonly ±20%, ordinary resistors ±5% — and smaller than most
+  instruments resolve. Waiting longer changes nothing you could measure, so 5τ is the engineering
+  convention. Note also that τ is defined by the gap, not by the starting point: the curve closes
+  63.2% of <em>whatever is left</em> in every subsequent τ, which is why the fractions in the table
+  are 63.2%, then 86.5% (= 63.2% of the remaining 36.8% added on), and so forth.</p>
+
+  <div class="wex">
+    <h4>Worked example 8 · Charging a capacitor through a resistor</h4>
+    <p>A 12.0 V battery charges an initially uncharged C = 470 μF capacitor through R = 10.0 kΩ.
+    Find τ, the initial current, the final charge, the capacitor voltage after one time constant,
+    and the time to reach 10.0 V.</p>
+    <ol>
+      <li>τ = RC = (10.0×10³)(470×10⁻⁶) = <b>4.70 s</b>.</li>
+      <li>At t = 0 the capacitor is a short circuit: i₀ = ε/R = 12.0/10 000 = <b>1.20 mA</b>.</li>
+      <li>At t → ∞ it is an open circuit: Q = Cε = (470×10⁻⁶)(12.0) = 5.64×10⁻³ C = <b>5.64 mC</b>.</li>
+      <li>At t = τ: v<sub>C</sub> = 0.632 × 12.0 = <b>7.58 V</b>.</li>
+      <li>Time to 10.0 V: from v<sub>C</sub> = ε(1 − e<sup>−t/τ</sup>),
+      e<sup>−t/τ</sup> = 1 − 10.0/12.0 = 0.1667, so t = τ ln 6 = 4.70 × 1.792 = <b>8.42 s</b>.</li>
+      <li>Sanity check at that instant: the remaining 2.0 V sits across R, so i = 2.0/10 000 =
+      0.20 mA, which is 16.7% of i₀ — matching e<sup>−t/τ</sup> = 0.1667 ✓</li>
+    </ol>
+    <p class="wex__ans">τ = 4.70 s · i₀ = 1.20 mA · Q<sub>∞</sub> = 5.64 mC · 7.58 V at 1τ · 8.42 s to reach 10.0 V</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 9 · Setting the rate of a cardiac pacemaker</h4>
+    <p>A simple pacemaker uses a relaxation oscillator: a capacitor charges through a resistor from
+    a 3.0 V lithium cell and the trigger circuit fires a stimulus pulse when v<sub>C</sub> reaches
+    63% of the supply — that is, after exactly one time constant. With C = 0.68 μF, what R gives a
+    paced rate of 72 min⁻¹?</p>
+    <ol>
+      <li>Required interval between beats: T = 60/72 = 0.833 s.</li>
+      <li>The trigger point is one time constant, so τ = 0.833 s.</li>
+      <li>R = τ/C = 0.833 / (0.68×10⁻⁶) = 1.23×10⁶ Ω.</li>
+      <li>Check the direction of the dependence: to pace faster you need a shorter τ, so a
+      <em>smaller</em> R or C. Halving R to 610 kΩ gives τ = 0.417 s and a rate of 144 min⁻¹.</li>
+    </ol>
+    <p class="wex__ans">R ≈ 1.2 MΩ</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · which quantity is being asked about</p>
+    <p>During <em>charging</em>, charge and capacitor voltage rise as (1 − e<sup>−t/τ</sup>) while
+    the <strong>current and the resistor voltage fall</strong> as e<sup>−t/τ</sup>. During
+    <em>discharging</em>, everything falls as e<sup>−t/τ</sup>. A question that says "after one
+    time constant" is therefore ambiguous until you decide whether it means 63% or 37% — and the
+    answer depends on which quantity, not only on which process.</p>
+  </div>
+</section>
+
+<!-- ============================ § 10 ============================ -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Where the energy goes: battery, capacitor, resistor</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Energy stored in a capacitor</dt>
+      <dd>The work needed to move charge from one plate to the other against the field that the
+        already-transferred charge has created. Because the opposing voltage grows linearly from 0
+        to V, the average opposing voltage is V/2 — which is where the factor of ½ comes from.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">U = ½ C V² = ½ Q V = Q² / 2C</span>
+      <span class="fx__tag">any capacitor at charge Q, voltage V</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">W<sub>battery</sub> = Q ε = C ε²</span><span class="fx__tag">charge Cε delivered at the constant potential ε</span></div>
+      <div class="fx"><span class="fx__eq">U<sub>C</sub> = ½ C ε²</span><span class="fx__tag">what ends up stored</span></div>
+      <div class="fx"><span class="fx__eq">W<sub>R</sub> = ∫ i²R dt = ½ C ε²</span><span class="fx__tag">what the resistor wastes — <em>independent of R</em></span></div>
+      <div class="fx"><span class="fx__eq">energy remaining while discharging ∝ e<sup>−2t/τ</sup></span><span class="fx__tag">because U ∝ v² — energy has a time constant of τ/2</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>U</b><span>energy stored in the capacitor (J)</span></div>
+      <div><b>C</b><span>capacitance (F)</span></div>
+      <div><b>V, ε</b><span>capacitor voltage, source emf (V)</span></div>
+      <div><b>Q</b><span>final charge, Cε (C)</span></div>
+      <div><b>W</b><span>work / energy transferred (J)</span></div>
+      <div><b>i</b><span>instantaneous charging current (A)</span></div>
+      <div><b>R</b><span>series resistance (Ω)</span></div>
+      <div><b>τ</b><span>time constant RC (s)</span></div>
+    </div>
+  </div>
+
+  <p>Charging a capacitor from a battery is the cleanest energy audit in the whole of circuit
+  theory, and it produces a result students refuse to believe the first time.</p>
+  <ul>
+    <li>The battery pushes a total charge Q = Cε round the circuit, and it does so at a constant
+    potential difference ε. So it gives up <b>W<sub>battery</sub> = Qε = Cε²</b>.</li>
+    <li>The capacitor ends up holding <b>U<sub>C</sub> = ½Cε²</b> — only half of that, because the
+    early coulombs arrive when the capacitor voltage is still low and therefore carry away less
+    energy than the last ones.</li>
+    <li>Conservation of energy leaves <b>W<sub>R</sub> = Cε² − ½Cε² = ½Cε²</b> for the resistor.</li>
+  </ul>
+
+  <p>Doing the integral confirms it and shows why R cancels:
+  <span class="fi">W<sub>R</sub> = ∫₀<sup>∞</sup> i²R dt = (ε²/R²)·R·∫₀<sup>∞</sup> e<sup>−2t/τ</sup> dt = (ε²/R)(τ/2) = (ε²/R)(RC/2) = ½Cε²</span>.
+  Make R smaller and the current is larger but the process is briefer, in exactly compensating
+  proportion.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the 50% theorem</p>
+    <p>Charging a capacitor through <em>any</em> resistance from a constant-voltage source is
+    exactly <strong>50% efficient</strong>. Half the energy is stored, half is dissipated, and the
+    value of R changes only how long it takes, never the split. This is a favourite question
+    because the obvious guess — "use a smaller resistor and waste less" — is wrong. (Practical
+    escape: charge through an inductor or a switched-mode converter instead of a resistor, which is
+    exactly what a defibrillator's charging circuit does.)</p>
+  </div>
+
+  <p>Discharging is simpler: with no source present, every joule that was stored ends up in the
+  resistor. Note though that the <em>energy</em> falls twice as fast as the voltage, since
+  U ∝ v², so the energy time constant is τ/2. By t = τ the voltage has fallen to 36.8% but the
+  stored energy is down to 0.368² = 13.5%; by t = 2τ, 98.2% of the energy has already been
+  delivered.</p>
+
+  <div class="wex">
+    <h4>Worked example 10 · The full audit for a charging capacitor</h4>
+    <p>Using the circuit of worked example 8 — ε = 12.0 V, C = 470 μF, R = 10.0 kΩ — find the
+    energy supplied by the battery, the energy finally stored, and the energy dissipated in R.
+    Then repeat with R = 100 Ω.</p>
+    <ol>
+      <li>Charge transferred: Q = Cε = 5.64×10⁻³ C.</li>
+      <li>W<sub>battery</sub> = Qε = (5.64×10⁻³)(12.0) = 6.77×10⁻² J = <b>67.7 mJ</b>.</li>
+      <li>U<sub>C</sub> = ½Cε² = ½(470×10⁻⁶)(144) = ½(6.768×10⁻²) = <b>33.8 mJ</b>.</li>
+      <li>W<sub>R</sub> = 67.7 − 33.8 = <b>33.8 mJ</b> — exactly half.</li>
+      <li>With R = 100 Ω, τ falls from 4.70 s to 0.047 s, so the whole process takes a hundredth of
+      the time. Q, W<sub>battery</sub>, U<sub>C</sub> and W<sub>R</sub> are <b>completely
+      unchanged</b>; only the peak current changes, from 1.20 mA to 120 mA.</li>
+    </ol>
+    <p class="wex__ans">67.7 mJ supplied = 33.8 mJ stored + 33.8 mJ dissipated, for every R</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 11 · A defibrillator discharge</h4>
+    <p>A defibrillator stores charge on C = 32 μF raised to V₀ = 5.0 kV and discharges it through a
+    transthoracic resistance of R = 50 Ω. Find the stored energy, the charge, the peak current, the
+    time constant, and the average power delivered during the pulse.</p>
+    <ol>
+      <li>U = ½CV₀² = ½(32×10⁻⁶)(5.0×10³)² = ½(32×10⁻⁶)(2.5×10⁷) = <b>400 J</b>
+      (clinical settings are typically 150–360 J).</li>
+      <li>Q = CV₀ = (32×10⁻⁶)(5000) = <b>0.16 C</b>.</li>
+      <li>Peak current, at t = 0: I₀ = V₀/R = 5000/50 = <b>100 A</b>.</li>
+      <li>τ = RC = (50)(32×10⁻⁶) = 1.6×10⁻³ s = <b>1.6 ms</b>, so the pulse is essentially over in
+      5τ = 8 ms.</li>
+      <li>Average power over those 8 ms: P = 400/8×10⁻³ = <b>5.0×10⁴ W = 50 kW</b> — from a device
+      running off a battery. The trick is entirely one of timing: the same 400 J is gathered over
+      several seconds at a few tens of watts and given back in 8 ms, a power ratio of order 10³.</li>
+      <li>Energy check: by t = 2τ = 3.2 ms the fraction delivered is 1 − e⁻⁴ = 98.2%.</li>
+    </ol>
+    <p class="wex__ans">400 J · 0.16 C · 100 A peak · τ = 1.6 ms · ≈50 kW average</p>
+  </div>
+
+  <p>Real defibrillators put an inductor in series with the patient, which stretches the pulse to
+  roughly 5–10 ms and caps the peak current at a few tens of amperes; modern biphasic units then
+  reverse the polarity part-way through, achieving the same defibrillation success at lower
+  delivered energy. The RC estimate above still gives the right order of magnitude for every
+  quantity, which is all an exam wants. The physiological point is the one to remember: the
+  capacitor exists because the <em>energy</em> can be gathered slowly from a small battery but the
+  <em>power</em> must be enormous and brief — long enough to depolarise the whole myocardium at
+  once, short enough not to burn it.</p>
+</section>
+
+<!-- ============================ § 11 ============================ -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Electrical safety: macroshock, microshock and the clinic</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Macroshock</dt>
+      <dd>Current applied at the body surface, which then spreads through the whole torso. Only a
+        small fraction of it passes through the heart, so a large total current is needed to do
+        harm.</dd>
+      <dt>Microshock</dt>
+      <dd>Current delivered directly to the myocardium through a conductive path such as a
+        temporary pacing wire, a fluid-filled catheter or a central line. The current is not
+        diluted, so roughly a thousand times less of it is dangerous.</dd>
+      <dt>Let-go current</dt>
+      <dd>The largest current at which a person can still voluntarily release a grasped conductor.
+        Above it the flexor muscles are tetanised and the hand clamps shut.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">I<sub>body</sub> = V / R<sub>body</sub></span>
+      <span class="fx__tag">current, not voltage, is what injures — voltage only matters through this</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">R<sub>body</sub> = R<sub>skin,in</sub> + R<sub>internal</sub> + R<sub>skin,out</sub></span><span class="fx__tag">skin dominates while it is dry and intact</span></div>
+      <div class="fx"><span class="fx__eq">R<sub>internal</sub> ≈ 300 – 500 Ω</span><span class="fx__tag">hand to hand, skin bypassed</span></div>
+      <div class="fx"><span class="fx__eq">VF threshold ≈ 100 mA (macroshock) ≈ 100 μA (microshock)</span><span class="fx__tag">60 Hz, sustained more than one cardiac cycle</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>I<sub>body</sub></b><span>current through the body (A)</span></div>
+      <div><b>V</b><span>potential difference applied across it (V)</span></div>
+      <div><b>R<sub>body</sub></b><span>total resistance of the current path (Ω)</span></div>
+      <div><b>R<sub>skin</sub></b><span>contact resistance of the skin (Ω)</span></div>
+      <div><b>R<sub>internal</sub></b><span>resistance of the tissues themselves (Ω)</span></div>
+    </div>
+  </div>
+
+  <p>"High voltage is dangerous" is a useful slogan and a poor physical statement. The damage is
+  done by current: it depolarises excitable membranes, tetanises muscle, and heats tissue at I²R.
+  Voltage matters only because it is the numerator of I = V/R<sub>body</sub>. A 30 kV static
+  discharge from a car door is harmless <em>not</em> because the current is small — its peak is of
+  order amperes — but because the stored charge is only a few microcoulombs and the whole event is
+  over in well under a microsecond, far too briefly to depolarise anything; 110 V across wet hands
+  can kill because it drives ≈100 mA for as long as the hand stays clamped.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Physiological effects of 60 Hz current passing hand to hand for about one second</caption>
+      <thead>
+        <tr><th>Current (60 Hz, hand→hand, ≈1 s)</th><th>Effect</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">0.5 – 1 mA</td><td>threshold of perception — a tingle</td><td>cutaneous sensory nerves just reach firing threshold</td></tr>
+        <tr><td class="num">≈5 mA</td><td>accepted "safe" maximum; GFCI/RCD trip point</td><td>painful but voluntary release is still possible</td></tr>
+        <tr><td class="num">10 – 20 mA</td><td><b>let-go threshold</b>: sustained contraction, cannot release</td><td>flexors are stronger than extensors, so the grip tightens</td></tr>
+        <tr><td class="num">20 – 50 mA</td><td>respiratory muscle tetany; asphyxia if sustained</td><td>the diaphragm and intercostals are held in spasm</td></tr>
+        <tr><td class="num">100 – 300 mA</td><td><b>ventricular fibrillation</b> — the usual cause of death</td><td>enough current reaches the myocardium during the vulnerable phase</td></tr>
+        <tr><td class="num">&gt; 1 – 6 A</td><td>sustained myocardial contraction, severe burns</td><td>the whole myocardium depolarises at once; a normal rhythm may resume when the current stops — the principle of the defibrillator</td></tr>
+        <tr><td class="num">≈100 μA direct to the heart</td><td><b>microshock</b> fibrillation</td><td>current density at the myocardium is not diluted by the torso</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Three modifiers change all of those numbers. <strong>Frequency:</strong> 50–60 Hz is close to
+  the most hazardous frequency there is, because it is slow enough to re-stimulate cardiac cells
+  cycle after cycle. DC thresholds are about 4–5 times higher, and above ~100 kHz stimulation
+  ceases altogether and only heating remains — which is precisely why electrosurgical units run at
+  300 kHz to 3 MHz and can pass amperes through a patient safely. <strong>Duration:</strong> the
+  shock must persist through the vulnerable T-wave phase of at least one cardiac cycle;
+  this is why an RCD that disconnects in 25 ms saves lives. <strong>Path:</strong> hand to hand, or
+  hand to the <em>opposite</em> foot, drives the current straight across the thorax; a path that
+  stays on one side — hand to the foot on that same side, or hand to elbow of the same arm —
+  largely misses the heart.</p>
+
+  <div class="wex">
+    <h4>Worked example 12 · The same 110 V outlet, three different skins</h4>
+    <p>Estimate the current through a person who bridges 110 V mains hand to hand when the total
+    path resistance is (a) 100 kΩ (dry, intact skin), (b) 1.5 kΩ (wet hands), and (c) 500 Ω (skin
+    bypassed — electrode gel, an abrasion, or an indwelling line).</p>
+    <ol>
+      <li>(a) I = 110/1.00×10⁵ = 1.1×10⁻³ A = <b>1.1 mA</b> — perceptible, a tingle, nothing more.</li>
+      <li>(b) I = 110/1500 = 7.3×10⁻² A = <b>73 mA</b> — past let-go, into the fibrillation band.
+      Nothing about the source changed; only the skin did.</li>
+      <li>(c) I = 110/500 = <b>220 mA</b> — squarely lethal.</li>
+      <li>Now the microshock case. To drive the ≈100 μA that can fibrillate a heart through an
+      intracardiac catheter of R ≈ 500 Ω you need only
+      V = IR = (100×10⁻⁶)(500) = 0.05 V = <b>50 mV</b>.</li>
+    </ol>
+    <p class="wex__ans">1.1 mA → 73 mA → 220 mA · and just 50 mV suffices for microshock</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the skin is the safety factor, and it is fragile</p>
+    <p>Essentially all of a dry person's protection lives in a 20 μm layer of dead keratinocytes.
+    Sweat, saline, conductive gel, a graze or a needle removes it, and the resistance falls by two
+    to three orders of magnitude. Every one of those is routine in a hospital. This is also why the
+    quoted "body resistance" in a textbook problem ranges over a factor of a thousand — read the
+    stem carefully to see which situation is intended.</p>
+  </div>
+
+  <h3>Grounding, GFCI, and why the third pin exists</h3>
+  <p>An appliance chassis is bonded to earth by the third conductor. If a live wire chafes and
+  touches the casing, the fault current flows to earth through a path of a fraction of an ohm, so
+  the current is enormous — and that enormous current is what trips the breaker or blows the fuse. The
+  protective earth does not make the fault safe; it makes the fault <em>loud</em>. Without it the
+  casing sits at 110 V, waiting, and the first person to touch it becomes the conducting path.
+  A residual-current device adds a second layer: it compares the current in the live and neutral
+  conductors and disconnects within tens of milliseconds if they differ by more than 5–30 mA,
+  because any imbalance means current is leaving by some third route — quite possibly a person.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · macroshock versus microshock</p>
+    <p>The distinguishing question is <em>where the current enters</em>. Skin contact spreads the
+    current through the torso and only a percent or so reaches the heart, so the fibrillation
+    threshold is ≈100 mA. A catheter, pacing wire or guidewire delivers current straight to the
+    myocardium with no dilution, so ≈100 μA can fibrillate — a factor of about 1000. Hence
+    cardiac-floating (CF) equipment standards cap patient leakage current at tens of microamperes,
+    hence equipotential bonding in cath labs and ICUs, and hence the rule that you never touch an
+    exposed pacing wire and an earthed object at the same time — gloves on, and everything round
+    the bed bonded to a single potential so that there is no pd to drive anything through the
+    wire. A patient with an intracardiac line has, electrically speaking, no skin.</p>
+  </div>
+
+  <p>The two clinical RC devices close the loop on this chapter. The <strong>defibrillator</strong>
+  is a capacitor discharge (§10) deliberately delivering a current far above the fibrillation
+  threshold — high enough to depolarise the entire myocardium simultaneously so that the sinoatrial
+  node can resume control. The <strong>pacemaker</strong> is an RC oscillator (§9) delivering pulses
+  of a few volts and a few milliamperes — some four orders of magnitude less current, and, because
+  each pulse lasts under a millisecond, about seven orders less energy — directly to the
+  endocardium. The same three symbols, R, C and ε, describe a device that restarts a heart and a
+  device that runs one for a decade.</p>
+</section>
+
+<!-- =========================== Self-test =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>Answer each one before revealing the explanation, and when you get one wrong go back to the
+  section it came from rather than memorising the letter. Six of these are calculational; do them
+  on paper, because the distractors are the answers you get from the specific mistakes this
+  chapter invites.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-11-electrostatics.html"><small>Previous</small><b>← Electric Charge, Field and Potential</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-13-magnetism.html"><small>Next</small><b>Magnetism and Electromagnetic Induction →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 12 · Direct-Current Circuits</p>
+    <p>Circuits are drawn as conventional schematics with conventional current, and time-dependent
+    quantities as exponential curves in units of the time constant; resistivities, physiological
+    current thresholds and device parameters are standard textbook approximations, quoted for
+    magnitude rather than as precise citations.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A copper wire of cross-sectional area 2.0 mm² carries a steady current of 5.0 A. Copper has n = 8.5×10²⁸ free electrons per cubic metre and e = 1.60×10⁻¹⁹ C. What is the drift speed of the electrons?",
+    "options": [
+      "1.8 mm·s⁻¹",
+      "0.37 mm·s⁻¹",
+      "0.18 mm·s⁻¹",
+      "About 2×10⁸ m·s⁻¹"
+    ],
+    "answer": 2,
+    "explain": "v<sub>d</sub> = I/(nqA) = 5.0 / [(8.5×10²⁸)(1.60×10⁻¹⁹)(2.0×10⁻⁶)] = 5.0/(2.72×10⁴) = 1.8×10⁻⁴ m·s⁻¹ = 0.18 mm·s⁻¹. The tempting 0.37 mm·s⁻¹ comes from forgetting that 2.0 mm² is 2.0×10⁻⁶ m², not 1.0×10⁻⁶ m². The 2×10⁸ m·s⁻¹ option is the speed of the <em>field</em> that starts the electrons moving — that is what makes a lamp light instantly, but it is not the drift speed."
+  },
+  {
+    "stem": "A cylindrical copper wire is drawn out until it is twice as long, its volume staying constant. Its new resistance is:",
+    "options": [
+      "twice the original value",
+      "four times the original value",
+      "half the original value",
+      "unchanged, because resistivity is a property of the material"
+    ],
+    "answer": 1,
+    "explain": "Constant volume means that if L doubles then A must halve, and R = ρL/A therefore changes by 2 × 2 = 4. Answering 'twice' means you tracked the length and forgot the cross-section. The last option confuses two different quantities: ρ really is unchanged (it belongs to copper), but R belongs to this particular piece of copper and depends on its geometry."
+  },
+  {
+    "stem": "As the temperature rises, the resistivity of an intrinsic semiconductor such as pure silicon behaves how, compared with a metal?",
+    "options": [
+      "It rises, and faster than in a metal",
+      "It rises, but more slowly than in a metal",
+      "It is unchanged — resistivity is temperature-independent in semiconductors",
+      "It falls, because thermal energy frees many more charge carriers"
+    ],
+    "answer": 3,
+    "explain": "In a metal the carrier density n is fixed, so heating only increases lattice scattering and ρ rises (α positive, ≈ +4×10⁻³ K⁻¹). In a semiconductor n rises roughly as e<sup>−E<sub>g</sub>/2k<sub>B</sub>T</sup>, and that exponential gain overwhelms the extra scattering, so ρ falls steeply and α is negative. The 'rises faster' distractor mistakes a semiconductor for a poor metal; it is a different mechanism, not a weaker one. This negative α is exactly what makes an NTC thermistor a usable clinical thermometer."
+  },
+  {
+    "stem": "A 6.0 Ω resistor and a 12 Ω resistor are connected in parallel across an ideal 24 V supply. What is the total power dissipated?",
+    "options": [
+      "144 W",
+      "48 W",
+      "96 W",
+      "32 W"
+    ],
+    "answer": 0,
+    "explain": "In parallel both resistors see the full 24 V, so P = V²/R for each: 576/6 = 96 W and 576/12 = 48 W, total 144 W. Equivalently R<sub>p</sub> = (6×12)/18 = 4.0 Ω and P = 576/4 = 144 W. Choosing 96 W or 48 W means you found one resistor only; 32 W comes from wrongly adding the resistances as if they were in series (576/18)."
+  },
+  {
+    "stem": "A cell of emf 1.50 V shows a terminal voltage of 1.20 V while delivering 0.60 A. Its internal resistance is:",
+    "options": [
+      "0.25 Ω",
+      "0.50 Ω",
+      "2.0 Ω",
+      "2.5 Ω"
+    ],
+    "answer": 1,
+    "explain": "V = ε − Ir, so r = (ε − V)/I = (1.50 − 1.20)/0.60 = 0.30/0.60 = 0.50 Ω. The lost 0.30 V is what is dropped <em>inside</em> the cell. Answering 2.0 Ω means you computed V/I = 1.20/0.60, which is the <em>external</em> load resistance, not the internal one; 2.5 Ω is ε/I, the resistance of the whole loop."
+  },
+  {
+    "stem": "A source of emf ε and internal resistance r is connected to a variable load R. When R is set to deliver the maximum possible power to the load, what fraction of the total power generated actually reaches the load?",
+    "options": [
+      "100% — that is what 'maximum' means",
+      "About 75%",
+      "Exactly 50%",
+      "It depends on the value of ε"
+    ],
+    "answer": 2,
+    "explain": "Maximum power transfer occurs at R = r, and then the two resistances are equal and carry the same current, so I²R = I²r: the load and the internal resistance dissipate identical amounts. The efficiency η = R/(R+r) is therefore exactly ½ at that setting, and P<sub>max</sub> = ε²/4r. The trap is conflating maximum power with maximum efficiency — efficiency actually rises towards 100% as R grows large, but the power delivered then falls towards zero. ε cancels out of the efficiency entirely."
+  },
+  {
+    "stem": "While applying Kirchhoff's loop rule you traverse a resistor R in the <em>same</em> direction as the current I you assigned to that branch. The term you write in the loop equation is:",
+    "options": [
+      "+IR, because you gain the resistor's voltage",
+      "Zero — resistors convert energy but do not change the potential",
+      "+IR if your assumed current turns out positive, −IR if it turns out negative",
+      "−IR, because you are moving from higher to lower potential"
+    ],
+    "answer": 3,
+    "explain": "Current flows from high to low potential through a resistor, so walking with the current is walking downhill: ΔV = −IR. Walking against it gives +IR. The third option describes a real bookkeeping mistake: you must fix the sign from your <em>assumed</em> direction when you write the equation and never revise it afterwards — a negative answer at the end simply reports that the true current runs the other way. Note also that a battery's sign is set only by which plate you enter first, never by the current."
+  },
+  {
+    "stem": "Two 20 kΩ resistors are connected in series across an ideal 12 V supply. A voltmeter of internal resistance 20 kΩ is then connected across one of them. What does it read?",
+    "options": [
+      "6.0 V",
+      "3.0 V",
+      "4.0 V",
+      "12 V"
+    ],
+    "answer": 2,
+    "explain": "The voltmeter is in parallel with the resistor it is measuring, so that arm becomes (20×20)/40 = 10 kΩ. The divider is now 20 kΩ and 10 kΩ, giving 12 × 10/30 = 4.0 V. The true undisturbed value is 6.0 V, so this cheap meter has introduced a −33% loading error. The lesson is quantitative: keep R<sub>V</sub> at least ~100× the resistance you bridge and the error drops below about 1%."
+  },
+  {
+    "stem": "A 12 V battery charges an initially uncharged 100 μF capacitor through a 1.0 kΩ resistor until charging is complete. How much energy is dissipated in the resistor in total?",
+    "options": [
+      "7.2 mJ",
+      "3.6 mJ",
+      "14.4 mJ",
+      "It depends on R — a smaller resistor would waste less"
+    ],
+    "answer": 0,
+    "explain": "The battery delivers Q = Cε = 1.2 mC at a constant 12 V, so it supplies W = Qε = Cε² = 14.4 mJ. The capacitor ends up storing U = ½Cε² = 7.2 mJ, so the resistor must dissipate the remaining 7.2 mJ. Charging a capacitor through a resistor is exactly 50% efficient whatever R is: the integral ∫i²R dt = (ε²/R)(RC/2) = ½Cε², and R cancels. A smaller R makes the current larger but the process proportionally shorter, so the last option is the classic wrong intuition."
+  },
+  {
+    "stem": "A worker's hand-to-hand resistance is 100 kΩ with dry intact skin but only 1.0 kΩ once the hands are wet. Bridging a 110 V supply, the current through the body changes from:",
+    "options": [
+      "1.1 mA to 11 mA — from imperceptible to a mild tingle",
+      "11 mA to 110 mA — from let-go current to fibrillation",
+      "1.1 mA to 110 mA, but both remain below the perception threshold",
+      "1.1 mA to 110 mA — from barely perceptible to the ventricular-fibrillation range"
+    ],
+    "answer": 3,
+    "explain": "I = V/R gives 110/10⁵ = 1.1 mA dry and 110/10³ = 110 mA wet: a factor of 100, straddling the perception threshold (≈1 mA) at one end and the fibrillation band (≈100–300 mA) at the other. Nothing about the supply changed — only the skin, which carries essentially all of a dry person's protection. The third option is wrong because 1.1 mA is already at the threshold of perception, and 110 mA is potentially lethal. In a clinical setting the skin is routinely bypassed by gel, abrasion or an indwelling line, and for a current path that reaches the myocardium directly the dangerous level falls by a further factor of about 1000, to ≈100 μA."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

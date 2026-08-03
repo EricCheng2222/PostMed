@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 05 · Rotational Motion and Static Equilibrium — PostMed Notebook</title>
+<meta name="description" content="Physics note 05: angular kinematics, torque and moment of inertia, Στ = Iα, rolling without slipping, angular momentum conservation, static equilibrium, centre of gravity and the three body levers — with 10 self-test questions.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 05</p>
+  <h1>Rotational Motion and Static Equilibrium</h1>
+  <p class="lede">
+    There is almost nothing new in this chapter. Every law of rotation is a law you already know with
+    six substitutions: <b>x→θ, v→ω, a→α, m→I, F→τ, p→L</b>. The one genuinely new piece of physics is
+    <strong>I</strong> — the discovery that for rotation it matters not only <em>how much</em> mass a body has
+    but <em>how far from the axis</em> that mass sits. Hold that, and the hoop losing to the sphere, the skater
+    speeding up, and the biceps needing 400 N to hold 50 N all become consequences rather than facts.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Torque, rotational inertia &amp; free-body diagrams</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~45 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Angular kinematics: 1-D motion in a new alphabet</a></li>
+      <li><a href="#s2">The linear–angular bridge, and why radians</a></li>
+      <li><a href="#s3">Torque: force that has found a lever arm</a></li>
+      <li><a href="#s4">Moment of inertia: where the mass sits</a></li>
+      <li><a href="#s5">Newton's second law for rotation</a></li>
+      <li><a href="#s6">Rotational kinetic energy and the rolling body</a></li>
+      <li><a href="#s7">Rolling without slipping, and the incline race</a></li>
+      <li><a href="#s8">Angular momentum and its conservation</a></li>
+      <li><a href="#s9">Static equilibrium: two conditions, free pivot</a></li>
+      <li><a href="#s10">Centre of gravity, base of support, stability</a></li>
+      <li><a href="#s11">The three classes of lever in the body</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Radian measure</b><code>θ = s / r</code></div>
+      <div class="fsheet__item"><b>Angular velocity</b><code>ω = Δθ / Δt</code></div>
+      <div class="fsheet__item"><b>Angular acceleration</b><code>α = Δω / Δt</code></div>
+      <div class="fsheet__item"><b>Constant α · 1</b><code>ω = ω₀ + αt</code></div>
+      <div class="fsheet__item"><b>Constant α · 2</b><code>Δθ = ω₀t + ½αt²</code></div>
+      <div class="fsheet__item"><b>Constant α · 3</b><code>ω² = ω₀² + 2αΔθ</code></div>
+      <div class="fsheet__item"><b>Constant α · 4</b><code>Δθ = ½(ω₀ + ω)t</code></div>
+      <div class="fsheet__item"><b>Tangential speed</b><code>v = rω</code></div>
+      <div class="fsheet__item"><b>Tangential acceleration</b><code>a<sub>t</sub> = rα</code></div>
+      <div class="fsheet__item"><b>Centripetal acceleration</b><code>a<sub>c</sub> = rω² = v²/r</code></div>
+      <div class="fsheet__item"><b>Torque</b><code>τ = rF sin θ = r<sub>⊥</sub>F</code></div>
+      <div class="fsheet__item"><b>Moment of inertia</b><code>I = Σ m<sub>i</sub> r<sub>i</sub>²</code></div>
+      <div class="fsheet__item"><b>Shape factor</b><code>I = βMR²</code></div>
+      <div class="fsheet__item"><b>Parallel-axis theorem</b><code>I = I<sub>cm</sub> + Md²</code></div>
+      <div class="fsheet__item"><b>Newton II (rotation)</b><code>Στ = Iα</code></div>
+      <div class="fsheet__item"><b>Rotational KE</b><code>K<sub>rot</sub> = ½Iω²</code></div>
+      <div class="fsheet__item"><b>Rolling body KE</b><code>K = ½Mv² + ½I<sub>cm</sub>ω²</code></div>
+      <div class="fsheet__item"><b>Rotational work / power</b><code>W = τΔθ (τ const) · P = τω</code></div>
+      <div class="fsheet__item"><b>Rolling condition</b><code>v<sub>cm</sub> = Rω · a<sub>cm</sub> = Rα</code></div>
+      <div class="fsheet__item"><b>Rolling down a slope</b><code>a = g sin θ / (1 + β)</code></div>
+      <div class="fsheet__item"><b>Speed after a drop h</b><code>v = √(2gh / (1 + β))</code></div>
+      <div class="fsheet__item"><b>No-slip condition</b><code>tan θ ≤ μ<sub>s</sub>(1 + β)/β</code></div>
+      <div class="fsheet__item"><b>Angular momentum</b><code>L = Iω · L = mvr sin φ</code></div>
+      <div class="fsheet__item"><b>Rotational Newton II</b><code>Στ<sub>ext</sub> = ΔL / Δt</code></div>
+      <div class="fsheet__item"><b>Conservation of L</b><code>I₁ω₁ = I₂ω₂</code></div>
+      <div class="fsheet__item"><b>KE from L</b><code>K = L² / (2I)</code></div>
+      <div class="fsheet__item"><b>Static equilibrium</b><code>ΣF = 0 and Στ = 0</code></div>
+      <div class="fsheet__item"><b>Centre of gravity</b><code>x<sub>cg</sub> = Σm<sub>i</sub>x<sub>i</sub> / Σm<sub>i</sub></code></div>
+      <div class="fsheet__item"><b>Tipping angle</b><code>tan θ<sub>crit</sub> = (b/2) / h<sub>cg</sub></code></div>
+      <div class="fsheet__item"><b>Mechanical advantage</b><code>MA = d<sub>E</sub> / d<sub>L</sub> = F<sub>L</sub> / F<sub>E</sub></code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Angular kinematics: 1-D motion in a new alphabet</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Angular position θ</dt>
+      <dd>The angle between a line painted on the rotating body and a fixed reference direction, measured
+          as arc length divided by radius. That ratio <em>is</em> the radian.</dd>
+      <dt>Angular velocity ω</dt>
+      <dd>The rate at which that angle changes. It is a property of the whole rigid body, not of a point on it.</dd>
+      <dt>Angular acceleration α</dt>
+      <dd>The rate at which ω changes — the rotational counterpart of a, and equally a signed quantity.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">θ = s / r&nbsp;&nbsp;&nbsp;(1 rev = 2π rad = 360°)</span>
+      <span class="fx__tag">definition of the radian; s measured along the arc</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ω = Δθ / Δt&nbsp;&nbsp;·&nbsp;&nbsp;α = Δω / Δt</span><span class="fx__tag">average values; instantaneous = the Δt → 0 limit</span></div>
+      <div class="fx"><span class="fx__eq">ω = ω₀ + αt</span><span class="fx__tag">constant α only</span></div>
+      <div class="fx"><span class="fx__eq">Δθ = ω₀t + ½αt²</span><span class="fx__tag">constant α only</span></div>
+      <div class="fx"><span class="fx__eq">ω² = ω₀² + 2αΔθ</span><span class="fx__tag">constant α only; no t</span></div>
+      <div class="fx"><span class="fx__eq">Δθ = ½(ω₀ + ω)t</span><span class="fx__tag">constant α only; no α</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>θ</b><span>angular position / displacement (rad)</span></div>
+      <div><b>ω</b><span>angular velocity (rad·s⁻¹)</span></div>
+      <div><b>α</b><span>angular acceleration (rad·s⁻²)</span></div>
+      <div><b>s</b><span>arc length swept by a point (m)</span></div>
+      <div><b>r</b><span>distance of that point from the axis (m)</span></div>
+      <div><b>t</b><span>elapsed time (s)</span></div>
+    </div>
+  </div>
+
+  <p>A rigid body turning about a fixed axis has exactly <strong>one degree of freedom</strong>: give me θ(t)
+     and I can locate every atom in it. That is why rotational kinematics is not a new subject — it is
+     one-dimensional kinematics with θ where x used to be. The four constant-α equations are not four new
+     formulas to memorise; they are the four you already carry, retyped.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Linear (constant a)</th><th>Angular (constant α)</th><th>Variable that is missing</th><th>Use it when…</th></tr></thead>
+      <tbody>
+        <tr><td class="num">v = v₀ + at</td><td class="num">ω = ω₀ + αt</td><td>Δθ</td><td>you know the time and want the final rate</td></tr>
+        <tr><td class="num">Δx = v₀t + ½at²</td><td class="num">Δθ = ω₀t + ½αt²</td><td>ω</td><td>you know the time and want the angle turned</td></tr>
+        <tr><td class="num">v² = v₀² + 2aΔx</td><td class="num">ω² = ω₀² + 2αΔθ</td><td>t</td><td>time is neither given nor asked for</td></tr>
+        <tr><td class="num">Δx = ½(v₀+v)t</td><td class="num">Δθ = ½(ω₀+ω)t</td><td>α</td><td>you know both rates but not α</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Sign convention — settle it before you write anything</h3>
+  <p>Choose <strong>counter-clockwise as positive</strong> and stay with it for the whole problem. Formally the
+     direction is set by the right-hand rule: curl the fingers of your right hand the way the body turns and
+     your thumb points along the <b>ω</b> vector, out of the page for counter-clockwise. In every plane problem
+     this reduces to a single sign, exactly as ± did in 1-D motion.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "α is negative" ≠ "it is slowing down"</p>
+    <p style="margin:0">A spinning body slows only when <strong>ω and α have opposite signs</strong>. A wheel with
+       ω = −6 rad·s⁻¹ and α = −2 rad·s⁻² is speeding up (clockwise, faster and faster). This is the same trap as
+       "negative acceleration means deceleration" in linear motion, and it is examined in exactly the same way.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 1 · Spinning up a clinical centrifuge</h4>
+    <p style="margin:0 0 .3rem">A rotor starts from rest and reaches 4000 rpm in 20 s with constant angular
+       acceleration. Find α, and the number of revolutions made during the spin-up.</p>
+    <ol>
+      <li><b>Convert to SI.</b> ω = 4000 rev·min⁻¹ × (2π rad/rev) ÷ (60 s/min) = 4000 × 0.10472
+          = <b>418.9 rad·s⁻¹</b>. Never leave rpm in a formula.</li>
+      <li><b>α from ω = ω₀ + αt</b> with ω₀ = 0: α = 418.9 / 20 = 20.9 rad·s⁻².</li>
+      <li><b>Angle from Δθ = ½(ω₀ + ω)t</b> — no need for α at all:
+          Δθ = ½(0 + 418.9)(20) = 4189 rad.</li>
+      <li><b>Back to revolutions.</b> 4189 / 2π = 666.7 rev.</li>
+      <li><b>Sanity check.</b> At a steady 4000 rpm it would make 4000/60 × 20 = 1333 rev in 20 s; starting from
+          rest and ramping linearly it should make exactly half of that — 667 rev. ✓</li>
+    </ol>
+    <span class="wex__ans">α ≈ 20.9 rad·s⁻² · Δθ ≈ 4.19 × 10³ rad ≈ 6.7 × 10² revolutions</span>
+  </div>
+
+  <div class="mnemo"><h4>The whole chapter in one line</h4>
+    <p>x→θ, v→ω, a→α, m→I, F→τ, p→L. Learn the six swaps and you have already read most of this page.</p></div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The linear–angular bridge, and why radians</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Tangential (linear) speed v</dt>
+      <dd>The speed with which a particular point of the rotating body moves through space — proportional to
+          its distance from the axis.</dd>
+      <dt>Tangential acceleration a<sub>t</sub></dt>
+      <dd>The component of a point's acceleration along its direction of travel; it exists only when the body's
+          rotation rate is changing.</dd>
+      <dt>Centripetal acceleration a<sub>c</sub></dt>
+      <dd>The component pointing at the axis; it exists whenever the body is rotating at all, even at constant ω.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v = rω</span>
+      <span class="fx__tag">ω in rad·s⁻¹; r measured ⟂ from the axis</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">s = rθ</span><span class="fx__tag">θ in radians</span></div>
+      <div class="fx"><span class="fx__eq">a<sub>t</sub> = rα</span><span class="fx__tag">zero when ω is constant</span></div>
+      <div class="fx"><span class="fx__eq">a<sub>c</sub> = rω² = v² / r</span><span class="fx__tag">never zero while the body turns</span></div>
+      <div class="fx"><span class="fx__eq">a = √(a<sub>t</sub>² + a<sub>c</sub>²)</span><span class="fx__tag">the two components are perpendicular</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v</b><span>tangential speed of one point (m·s⁻¹)</span></div>
+      <div><b>a<sub>t</sub></b><span>tangential acceleration (m·s⁻²)</span></div>
+      <div><b>a<sub>c</sub></b><span>centripetal acceleration (m·s⁻²)</span></div>
+      <div><b>a</b><span>total linear acceleration of the point (m·s⁻²)</span></div>
+      <div><b>r</b><span>perpendicular distance from the axis (m)</span></div>
+      <div><b>ω, α</b><span>rad·s⁻¹, rad·s⁻² — the same for every point</span></div>
+    </div>
+  </div>
+
+  <p>These four relations are the entire connection between the rotational world and the linear one. The
+     structural fact behind all of them: <strong>ω and α belong to the body, v and a belong to a point</strong>.
+     Two children on a roundabout share ω exactly; the one at the rim is moving twice as fast as the one at
+     half the radius, and feels twice the centripetal acceleration. Every "which quantity is the same for both
+     points?" exam question is testing this one sentence.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 560 262" role="img" aria-label="Left: a rotating disc where two points at different radii share the same angular velocity but the rim point has twice the tangential velocity. Right: one point on the rim carrying a centripetal acceleration toward the centre and a tangential acceleration at right angles to it.">
+      <defs>
+        <marker id="f1v" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-vel)"/></marker>
+        <marker id="f1a" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-accel)"/></marker>
+        <marker id="f1i" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--ink-faint)"/></marker>
+      </defs>
+      <text x="150" y="24" text-anchor="middle" font-size="12.5" fill="var(--ink)">One ω, many v</text>
+      <circle cx="150" cy="140" r="95" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <circle cx="150" cy="140" r="48" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="150" y1="140" x2="245" y2="140" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <circle cx="150" cy="140" r="3.5" fill="var(--ink-soft)"/>
+      <circle cx="198" cy="140" r="4" fill="var(--ink)"/>
+      <circle cx="245" cy="140" r="4" fill="var(--ink)"/>
+      <line x1="198" y1="140" x2="198" y2="103" stroke="var(--v-vel)" stroke-width="2.4" marker-end="url(#f1v)"/>
+      <line x1="245" y1="140" x2="245" y2="66" stroke="var(--v-vel)" stroke-width="2.4" marker-end="url(#f1v)"/>
+      <text x="205" y="120" font-size="11" fill="var(--v-vel)">½Rω</text>
+      <text x="252" y="76" font-size="11" fill="var(--v-vel)">v = Rω</text>
+      <text x="172" y="156" font-size="10" fill="var(--ink-faint)">R/2</text>
+      <text x="222" y="156" font-size="10" fill="var(--ink-faint)">R</text>
+      <path d="M112,196 A68,68 0 0 0 188,196" fill="none" stroke="var(--ink-soft)" stroke-width="2" marker-end="url(#f1i)"/>
+      <text x="150" y="254" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">ω and α: identical for every point</text>
+
+      <text x="430" y="24" text-anchor="middle" font-size="12.5" fill="var(--ink)">Two accelerations at one point</text>
+      <circle cx="430" cy="140" r="90" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <circle cx="430" cy="140" r="3.5" fill="var(--ink-soft)"/>
+      <line x1="430" y1="140" x2="430" y2="50" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <circle cx="430" cy="50" r="4" fill="var(--ink)"/>
+      <line x1="478" y1="50" x2="478" y2="97" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="430" y1="97" x2="478" y2="97" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="430" y1="50" x2="478" y2="97" stroke="var(--ink-soft)" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#f1i)"/>
+      <line x1="430" y1="50" x2="430" y2="97" stroke="var(--v-accel)" stroke-width="2.6" marker-end="url(#f1a)"/>
+      <line x1="430" y1="50" x2="478" y2="50" stroke="var(--v-accel)" stroke-width="2.6" marker-end="url(#f1a)"/>
+      <text x="484" y="46" font-size="11" fill="var(--v-accel)">a<tspan baseline-shift="sub" font-size="8">t</tspan> = Rα</text>
+      <text x="437" y="86" font-size="11" fill="var(--v-accel)">a<tspan baseline-shift="sub" font-size="8">c</tspan> = Rω²</text>
+      <text x="486" y="112" font-size="11" fill="var(--ink-soft)">a</text>
+      <text x="430" y="254" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">a<tspan baseline-shift="sub" font-size="8">c</tspan> exists at constant ω; a<tspan baseline-shift="sub" font-size="8">t</tspan> only if α ≠ 0</text>
+    </svg>
+    <figcaption>Left: rigidity forces one ω on the whole body, so tangential speed grows linearly with radius.
+      Right: a point on a spinning-up rim carries two perpendicular accelerations — centripetal (toward the axis,
+      present whenever ω ≠ 0) and tangential (along the motion, present only while α ≠ 0). Their vector sum is
+      the point's true acceleration.</figcaption>
+  </figure>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · degrees will silently destroy your answer</p>
+    <p style="margin:0">s = rθ, v = rω and a<sub>t</sub> = rα hold <strong>only in radians</strong>, because the
+      radian is <em>defined</em> as s/r. Feed in degrees and every one of them comes out 180/π ≈ 57.3 times too
+      large. This is also why "rad" never breaks a unit check: it is a ratio of two metres, i.e.
+      dimensionless, so m × rad·s⁻¹ correctly gives m·s⁻¹.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 2 · The g-force inside that centrifuge</h4>
+    <p style="margin:0 0 .3rem">Same rotor at its working speed of 4000 rpm (ω = 418.9 rad·s⁻¹). A blood sample
+      sits at r = 8.0 cm from the axis. Find its tangential speed and its centripetal acceleration, expressed
+      as a multiple of g.</p>
+    <ol>
+      <li><b>Tangential speed.</b> v = rω = 0.080 × 418.9 = 33.5 m·s⁻¹ — about 120 km·h⁻¹.</li>
+      <li><b>Centripetal acceleration.</b> a<sub>c</sub> = rω² = 0.080 × (418.9)² = 0.080 × 1.755 × 10⁵
+          = 1.40 × 10⁴ m·s⁻².</li>
+      <li><b>As a multiple of g.</b> 1.40 × 10⁴ / 9.8 = 1.43 × 10³.</li>
+      <li><b>Read it physically.</b> This "relative centrifugal field" of ≈1.4 × 10³ g is what makes erythrocytes,
+          buffy coat and plasma separate in minutes instead of days — sedimentation rate scales with the effective
+          gravitational field. Note it goes as ω², so doubling the rotor speed quadruples the separation force,
+          while doubling the radius only doubles it.</li>
+    </ol>
+    <span class="wex__ans">v ≈ 33.5 m·s⁻¹ · a<sub>c</sub> ≈ 1.4 × 10⁴ m·s⁻² ≈ 1.4 × 10³ g</span>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Torque: force that has found a lever arm</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Torque (moment) τ</dt>
+      <dd>The turning effect of a force about a chosen axis: the product of the force and the perpendicular
+          distance from the axis to the force's line of action.</dd>
+      <dt>Lever arm r<sub>⊥</sub></dt>
+      <dd>The shortest (perpendicular) distance from the axis to the infinite line along which the force acts —
+          not the distance to the point where the force is applied.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">τ = r F sin θ = r<sub>⊥</sub> F = r F<sub>⊥</sub></span>
+      <span class="fx__tag">θ = angle between <b>r</b> and <b>F</b>; axis must be named first</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">r<sub>⊥</sub> = r sin θ&nbsp;&nbsp;·&nbsp;&nbsp;F<sub>⊥</sub> = F sin θ</span><span class="fx__tag">two readings of the same product</span></div>
+      <div class="fx"><span class="fx__eq">Στ = τ₁ + τ₂ + …&nbsp;&nbsp;(signed sum)</span><span class="fx__tag">counter-clockwise +, clockwise −</span></div>
+      <div class="fx"><span class="fx__eq"><b>τ</b> = <b>r</b> × <b>F</b></span><span class="fx__tag">vector form; direction by the right-hand rule</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>τ</b><span>torque about the stated axis (N·m)</span></div>
+      <div><b>r</b><span>distance from axis to the point of application (m)</span></div>
+      <div><b>F</b><span>applied force (N)</span></div>
+      <div><b>θ</b><span>angle between <b>r</b> and <b>F</b> (rad or °)</span></div>
+      <div><b>r<sub>⊥</sub></b><span>lever arm / moment arm (m)</span></div>
+      <div><b>F<sub>⊥</sub></b><span>component of F perpendicular to <b>r</b> (N)</span></div>
+    </div>
+  </div>
+
+  <p>Force alone does not tell you whether something will turn. Push on a door at its hinge, however hard,
+     and nothing happens; the same push at the handle swings it open. The quantity that decides is the
+     product of force and lever arm, and the sin θ in the formula is doing exactly one job: it strips away
+     the component of the force that points along <b>r</b>, because that component only pulls the body toward
+     or away from the axis, where the axle absorbs it.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 520 288" role="img" aria-label="A bar pivoted at the left with a force applied at its far end at an angle. The perpendicular distance from the pivot to the force's line of action is marked as the lever arm r sine theta, and the force is decomposed into a component along the bar which produces no torque and a component perpendicular to the bar which produces all of it.">
+      <defs>
+        <marker id="f2f" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-force)"/></marker>
+        <marker id="f2fs" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-force)"/></marker>
+      </defs>
+      <line x1="270" y1="59" x2="375" y2="241" stroke="var(--ink-faint)" stroke-width="1.1" stroke-dasharray="6 5"/>
+      <text x="381" y="247" font-size="9.5" fill="var(--ink-faint)">line of action</text>
+      <line x1="90" y1="180" x2="340" y2="180" stroke="var(--ink-soft)" stroke-width="7" stroke-linecap="round"/>
+      <line x1="340" y1="180" x2="400" y2="180" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <line x1="90" y1="180" x2="278" y2="72" stroke="var(--v-accel)" stroke-width="2.2" stroke-dasharray="7 4"/>
+      <circle cx="90" cy="180" r="9" fill="none" stroke="var(--ink-soft)" stroke-width="2.5"/>
+      <circle cx="90" cy="180" r="3" fill="var(--ink-soft)"/>
+      <text x="90" y="207" text-anchor="middle" font-size="11" fill="var(--ink-soft)">axis</text>
+      <circle cx="340" cy="180" r="4.5" fill="var(--ink)"/>
+      <line x1="290" y1="180" x2="290" y2="93" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="340" y1="93" x2="290" y2="93" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="340" y1="180" x2="290" y2="180" stroke="var(--v-force)" stroke-width="2" stroke-dasharray="4 3" opacity=".7" marker-end="url(#f2fs)"/>
+      <line x1="340" y1="180" x2="340" y2="93" stroke="var(--v-force)" stroke-width="2" stroke-dasharray="4 3" opacity=".7" marker-end="url(#f2fs)"/>
+      <line x1="340" y1="180" x2="290" y2="93" stroke="var(--v-force)" stroke-width="3.2" marker-end="url(#f2f)"/>
+      <path d="M380,180 A40,40 0 0 0 320,145" fill="none" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <text x="366" y="156" font-size="12" fill="var(--ink-faint)">θ</text>
+      <text x="215" y="200" text-anchor="middle" font-size="12" fill="var(--ink-soft)">r</text>
+      <text x="170" y="120" text-anchor="middle" font-size="11.5" fill="var(--v-accel)">r<tspan baseline-shift="sub" font-size="8.5">⊥</tspan> = r sin θ</text>
+      <text x="276" y="84" text-anchor="end" font-size="13" fill="var(--v-force)">F</text>
+      <text x="348" y="112" font-size="10.5" fill="var(--v-force)">F<tspan baseline-shift="sub" font-size="8">⊥</tspan> = F sin θ — all the torque</text>
+      <text x="300" y="170" text-anchor="middle" font-size="10.5" fill="var(--v-force)">F<tspan baseline-shift="sub" font-size="8">∥</tspan> — no torque</text>
+      <text x="260" y="272" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">τ = r F sin θ = r<tspan baseline-shift="sub" font-size="8">⊥</tspan> F = r F<tspan baseline-shift="sub" font-size="8">⊥</tspan>&nbsp;&nbsp;— one number, three readings</text>
+    </svg>
+    <figcaption>Slide the force anywhere along its own line of action and the torque does not change — which is
+      why the lever arm, not the point of application, is what you measure. The component of <b>F</b> along the
+      bar is swallowed by the axle; only F sin θ turns anything. Here the torque is counter-clockwise, so by our
+      convention it is positive.</figcaption>
+  </figure>
+
+  <h3>Choosing the sign, and reading the special angles</h3>
+  <p>θ = 90° gives the maximum torque rF — this is why you push a spanner at right angles and why a muscle
+     acting perpendicular to a bone is at its most efficient. θ = 0° or 180° gives <strong>zero torque</strong>:
+     the line of action passes straight through the axis, so r<sub>⊥</sub> = 0. Every force whose line of action
+     goes through your chosen axis drops out of the torque equation — and that is the fact you will exploit
+     relentlessly in §09.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · N·m is not a joule</p>
+    <p style="margin:0">Torque and work have identical dimensions and you must still never write torque in
+      joules. Work is <em>force times displacement along the force</em>; torque is <em>force times distance
+      perpendicular to the force</em>. They are different physical objects that happen to share a unit
+      combination. Torque: <strong>N·m</strong>. Work: <strong>J</strong>. Rotational work does convert one to
+      the other, W = τΔθ, because the radian is dimensionless.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">"Torque" is meaningless until you name the axis. The same force has a different torque
+      about the elbow, about the shoulder, and about the centre of mass. In a multi-part question, check which
+      axis each part is asking about before substituting anything.</p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Moment of inertia: where the mass sits</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Moment of inertia I</dt>
+      <dd>A body's resistance to angular acceleration about a specified axis: the sum of each mass element
+          multiplied by the <em>square</em> of its perpendicular distance from that axis.</dd>
+      <dt>Parallel-axis theorem</dt>
+      <dd>The statement that I about any axis equals I about the parallel axis through the centre of mass, plus
+          Md² — so the centre-of-mass axis always gives the smallest possible I of that family.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">I = Σ m<sub>i</sub> r<sub>i</sub>²</span>
+      <span class="fx__tag">r measured ⟂ to the axis; the axis must be stated</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">I = β M R²</span><span class="fx__tag">shape factor β: 0.4 sphere, 0.5 disc, 1 hoop</span></div>
+      <div class="fx"><span class="fx__eq">I = I<sub>cm</sub> + M d²</span><span class="fx__tag">parallel-axis theorem; d from the CM axis, axes parallel</span></div>
+      <div class="fx"><span class="fx__eq">I<sub>z</sub> = I<sub>x</sub> + I<sub>y</sub></span><span class="fx__tag">perpendicular-axis theorem; flat laminae only</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>I</b><span>moment of inertia (kg·m²)</span></div>
+      <div><b>m<sub>i</sub></b><span>mass of the i-th element (kg)</span></div>
+      <div><b>r<sub>i</sub></b><span>⟂ distance of that element from the axis (m)</span></div>
+      <div><b>M</b><span>total mass of the body (kg)</span></div>
+      <div><b>R, L</b><span>radius / length of the body (m)</span></div>
+      <div><b>d</b><span>separation of the two parallel axes (m)</span></div>
+      <div><b>β</b><span>dimensionless shape factor I/MR²</span></div>
+    </div>
+  </div>
+
+  <p>This is the only genuinely new idea in the chapter. Mass measures resistance to being pushed; moment of
+     inertia measures resistance to being <em>turned</em>, and it is not a fixed number for a body. The r²
+     is what makes it interesting: move a gram from 1 cm to 10 cm from the axis and its contribution rises a
+     hundredfold. That single square is the reason a hoop loses a race, a skater speeds up by folding her arms
+     in, and a tightrope walker carries a long pole.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Body (uniform)</th><th>Axis</th><th>I</th><th>β = I/MR²</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Point mass</td><td>at distance r</td><td class="num">m r²</td><td class="num">1.000</td><td>the definition itself</td></tr>
+        <tr><td>Hoop, thin ring, thin-walled pipe</td><td>central, ⟂ to the plane</td><td class="num">M R²</td><td class="num">1.000</td><td>every gram is at the full radius — the worst case</td></tr>
+        <tr><td>Thin spherical shell</td><td>any diameter</td><td class="num">⅔ M R²</td><td class="num">0.667</td><td>mass on the surface, but spread over latitudes</td></tr>
+        <tr><td>Solid cylinder or disc</td><td>central, ⟂ to the face</td><td class="num">½ M R²</td><td class="num">0.500</td><td>mass evenly spread over the area</td></tr>
+        <tr><td>Solid sphere</td><td>any diameter</td><td class="num">⅖ M R²</td><td class="num">0.400</td><td>most of the volume lies well inside R</td></tr>
+        <tr><td>Disc</td><td>a diameter (in its own plane)</td><td class="num">¼ M R²</td><td class="num">0.250</td><td>from the ⟂-axis theorem: ½MR² split between two axes</td></tr>
+        <tr><td>Thin rod, length L</td><td>⟂ through the centre</td><td class="num">1/12 M L²</td><td>—</td><td>the reference case for a limb segment</td></tr>
+        <tr><td>Thin rod, length L</td><td>⟂ through one end</td><td class="num">⅓ M L²</td><td>—</td><td>= 1/12 ML² + M(L/2)², i.e. parallel axis</td></tr>
+        <tr><td>Rectangular plate a × b</td><td>⟂ through the centre</td><td class="num">1/12 M(a² + b²)</td><td>—</td><td>two rod results superposed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the β ladder is the whole of §07</p>
+    <p style="margin:0">Sphere 0.40 &lt; disc 0.50 &lt; shell 0.67 &lt; hoop 1.00. Learn the order, not just the
+      numbers: <strong>the further the mass sits from the axis, the larger β</strong>. Every rolling-race,
+      rolling-energy and rolling-acceleration question is decided by this single ladder.</p>
+  </div>
+
+  <h3>The parallel-axis theorem, and what it is <em>not</em></h3>
+  <p>I = I<sub>cm</sub> + Md² lets you shift the axis without redoing any sum, but the term I<sub>cm</sub> must
+     be the moment of inertia about the axis <strong>through the centre of mass and parallel to the new one</strong>.
+     You cannot chain it from an arbitrary axis to another arbitrary axis. Because Md² is never negative, the
+     centre-of-mass axis always has the smallest I of its parallel family — the easiest of them to spin the body
+     about. A freely thrown object does tumble about its centre of mass, but for a separate reason: gravity
+     exerts no torque about that point, so nothing is available to start it turning about any other.</p>
+
+  <div class="wex">
+    <h4>Worked example 3 · Swinging a leg from the hip</h4>
+    <p style="margin:0 0 .3rem">Model an adult leg as a uniform rod of mass M = 12 kg and length L = 0.90 m,
+       swinging about a transverse axis at the hip. Find I, and compare with the tempting shortcut of putting
+       all 12 kg at the leg's centre of mass.</p>
+    <ol>
+      <li><b>Rod about one end.</b> I = ⅓ML² = ⅓ × 12 × (0.90)² = ⅓ × 12 × 0.81 = <b>3.24 kg·m²</b>.</li>
+      <li><b>The shortcut.</b> Point mass at the CM, 0.45 m out: I = Md² = 12 × (0.45)² = 12 × 0.2025
+          = 2.43 kg·m² — <strong>25% too small</strong>.</li>
+      <li><b>Where the missing bit went.</b> Parallel axis: I = I<sub>cm</sub> + Md², and
+          I<sub>cm</sub> = 1/12 ML² = 12 × 0.81 / 12 = 0.81 kg·m². Then 0.81 + 2.43 = 3.24 ✓.</li>
+      <li><b>The lesson.</b> Collapsing a body to a point at its centre of mass is legal for translation
+          (Newton's second law) and illegal for rotation — you always lose exactly I<sub>cm</sub>.</li>
+    </ol>
+    <span class="wex__ans">I<sub>hip</sub> = 3.24 kg·m² · the point-mass shortcut loses I<sub>cm</sub> = 0.81 kg·m²</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "the moment of inertia of a disc"</p>
+    <p style="margin:0">There is no such thing. A disc has ½MR² about its central axis, ¼MR² about a diameter,
+      and 3/2 MR² about a tangent line perpendicular to its face (½MR² + MR²). If a question changes the axis
+      between parts, I changes — and so does α for the same torque.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Newton's second law for rotation</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Newton's second law for rotation</dt>
+      <dd>The statement that the net external torque on a rigid body about a fixed axis equals its moment of
+          inertia about that axis multiplied by its angular acceleration.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Στ = I α</span>
+      <span class="fx__tag">rigid body, fixed axis (or an axis through the CM)</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Στ = ΔL / Δt</span><span class="fx__tag">the more general form; valid when I changes too</span></div>
+      <div class="fx"><span class="fx__eq">α = Στ / I</span><span class="fx__tag">same torque, bigger I → smaller α</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>Στ</b><span>net external torque about the axis (N·m)</span></div>
+      <div><b>I</b><span>moment of inertia about that same axis (kg·m²)</span></div>
+      <div><b>α</b><span>angular acceleration (rad·s⁻²)</span></div>
+      <div><b>L</b><span>angular momentum (kg·m²·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>Everything on this page below §04 follows from putting Στ = Iα next to ΣF = ma. Note the two conditions
+     that are easy to skip: the torques must be <strong>external</strong> (internal forces cancel in pairs and
+     contribute nothing), and I and α must refer to the <strong>same</strong> axis. In problems where a body
+     both translates and rotates — a rolling wheel, a falling yo-yo — the legitimate move is to write ΣF = Ma
+     for the centre of mass <em>and</em> Στ = I<sub>cm</sub>α about the centre of mass, then link them with the
+     rolling condition.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Concept</th><th>Translation</th><th>Rotation</th><th>Bridge</th></tr></thead>
+      <tbody>
+        <tr><td>Position</td><td class="num">x (m)</td><td class="num">θ (rad)</td><td class="num">s = rθ</td></tr>
+        <tr><td>Rate of change</td><td class="num">v (m·s⁻¹)</td><td class="num">ω (rad·s⁻¹)</td><td class="num">v = rω</td></tr>
+        <tr><td>Second rate</td><td class="num">a (m·s⁻²)</td><td class="num">α (rad·s⁻²)</td><td class="num">a<sub>t</sub> = rα</td></tr>
+        <tr><td>Inertia</td><td class="num">m (kg)</td><td class="num">I (kg·m²)</td><td class="num">I = Σmr²</td></tr>
+        <tr><td>Cause of change</td><td class="num">F (N)</td><td class="num">τ (N·m)</td><td class="num">τ = rF sin θ</td></tr>
+        <tr><td>Newton II</td><td class="num">ΣF = ma</td><td class="num">Στ = Iα</td><td>—</td></tr>
+        <tr><td>Kinetic energy</td><td class="num">½mv²</td><td class="num">½Iω²</td><td>both in joules</td></tr>
+        <tr><td>Work</td><td class="num">W = FΔx</td><td class="num">W = τΔθ</td><td>θ in radians</td></tr>
+        <tr><td>Power</td><td class="num">P = Fv</td><td class="num">P = τω</td><td>—</td></tr>
+        <tr><td>Momentum</td><td class="num">p = mv</td><td class="num">L = Iω</td><td class="num">L = rp sin φ</td></tr>
+        <tr><td>Impulse</td><td class="num">FΔt = Δp</td><td class="num">τΔt = ΔL</td><td>—</td></tr>
+        <tr><td>Equilibrium</td><td class="num">ΣF = 0</td><td class="num">Στ = 0</td><td>both required</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 4 · A pulley with mass is not a frictionless hook</h4>
+    <p style="margin:0 0 .3rem">A block of m = 1.5 kg hangs from a light inextensible string wound over a pulley
+      modelled as a solid disc, M = 2.0 kg, R = 0.10 m, free to turn on a frictionless axle. The string does not
+      slip. Find the block's acceleration, the string tension, and the pulley's α. Take g = 9.8 m·s⁻².</p>
+    <ol>
+      <li><b>Block (translation), taking downward positive:</b> mg − T = ma.</li>
+      <li><b>Pulley (rotation) about its axle:</b> the only force with a lever arm is T, acting tangentially at
+          r<sub>⊥</sub> = R. So TR = I α = (½MR²)α.</li>
+      <li><b>Link them.</b> No slipping between string and rim means a = Rα, i.e. α = a/R. Substituting:
+          TR = ½MR² (a/R) → <b>T = ½Ma</b>. The tension depends only on the pulley's mass, not its radius.</li>
+      <li><b>Solve.</b> mg = ma + ½Ma → a = mg/(m + M/2) = (1.5)(9.8)/(1.5 + 1.0) = 14.7/2.5
+          = <b>5.88 m·s⁻²</b>.</li>
+      <li><b>Back-substitute.</b> T = ½(2.0)(5.88) = 5.88 N; α = a/R = 5.88/0.10 = 58.8 rad·s⁻².</li>
+      <li><b>Check.</b> mg − T = 14.7 − 5.88 = 8.82 N, and ma = 1.5 × 5.88 = 8.82 N ✓. Also note a &lt; g, as it
+          must be: some of the weight is spent spinning the pulley up. Set M = 0 and you recover a = g = 9.8 m·s⁻².</li>
+    </ol>
+    <span class="wex__ans">a = 5.88 m·s⁻² · T = 5.88 N · α = 58.8 rad·s⁻²</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · equal tensions on both sides of a pulley</p>
+    <p style="margin:0">"The tension is the same throughout the string" holds only for a <strong>massless</strong>
+      pulley. A pulley with moment of inertia needs a net torque to spin up, and a net torque requires
+      <em>unequal</em> tensions: T₁R − T₂R = Iα. If a problem gives the pulley a mass, it is telling you that
+      T₁ ≠ T₂, and any solution that assumes otherwise has already lost.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Rotational kinetic energy and the rolling body</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Rotational kinetic energy</dt>
+      <dd>The kinetic energy a body has purely because it is spinning — the sum of ½m<sub>i</sub>v<sub>i</sub>²
+          over all its parts, rewritten using v<sub>i</sub> = r<sub>i</sub>ω.</dd>
+      <dt>Kinetic energy of a rolling body</dt>
+      <dd>The exact statement that any motion of a rigid body splits into translation of its centre of mass plus
+          rotation about the centre of mass — and so does its kinetic energy.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">K<sub>rot</sub> = ½ I ω²</span>
+      <span class="fx__tag">ω in rad·s⁻¹, I about the rotation axis</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">K = ½ M v<sub>cm</sub>² + ½ I<sub>cm</sub> ω²</span><span class="fx__tag">König's split; always valid for a rigid body</span></div>
+      <div class="fx"><span class="fx__eq">K = ½ M v² (1 + β)</span><span class="fx__tag">rolling without slipping, with I<sub>cm</sub> = βMR²</span></div>
+      <div class="fx"><span class="fx__eq">W = τ Δθ&nbsp;&nbsp;·&nbsp;&nbsp;P = τ ω</span><span class="fx__tag">constant τ (otherwise W = ∫τ dθ); work–energy theorem: W<sub>net</sub> = ΔK<sub>rot</sub></span></div>
+    </div>
+    <div class="symtab">
+      <div><b>K<sub>rot</sub></b><span>rotational kinetic energy (J)</span></div>
+      <div><b>v<sub>cm</sub></b><span>speed of the centre of mass (m·s⁻¹)</span></div>
+      <div><b>I<sub>cm</sub></b><span>moment of inertia about the CM axis (kg·m²)</span></div>
+      <div><b>β</b><span>shape factor, I<sub>cm</sub>/MR² (dimensionless)</span></div>
+      <div><b>W</b><span>rotational work (J)</span></div>
+      <div><b>P</b><span>power delivered by a torque (W)</span></div>
+    </div>
+  </div>
+
+  <p>A spinning flywheel whose centre of mass is at rest still stores energy, and the amount is ½Iω². Nothing
+     new is being asserted: take Σ½m<sub>i</sub>v<sub>i</sub>², substitute v<sub>i</sub> = r<sub>i</sub>ω, pull the
+     common ω² out, and what is left inside is Σm<sub>i</sub>r<sub>i</sub>² = I. The ω² is why a modest flywheel
+     at high speed stores usable energy, and why a burst rotor is a genuine laboratory hazard.</p>
+
+  <p>For a body that both moves and spins — a wheel, a bowling ball, a limb segment swinging — the kinetic
+     energy is <strong>the sum of two terms and never a choice between them</strong>. Written with the shape
+     factor, K = ½Mv²(1 + β), so the fraction of the total energy tied up in spin is
+     <span class="fi">β/(1 + β)</span>: 28.6% for a solid sphere, 33.3% for a disc, 50% for a hoop. A hoop
+     arriving at the bottom of a slope has spent half of its released potential energy on turning, and only
+     half on getting there.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · when to use energy and when to use torque</p>
+    <p style="margin:0">If the question asks for a <em>speed after a drop</em> and no time appears, use
+      Mgh = ½Mv²(1 + β) and you are done in one line. If it asks for an <em>acceleration, a time, or a friction
+      force</em>, you need ΣF = Ma together with Στ = I<sub>cm</sub>α. Picking the wrong tool costs more marks
+      than any arithmetic slip.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Rolling without slipping, and the incline race</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Rolling without slipping</dt>
+      <dd>Motion in which the contact point of the body is instantaneously at rest relative to the surface, so
+          the distance travelled equals the arc length unwound from the rim.</dd>
+      <dt>Static friction in rolling</dt>
+      <dd>The only force in the problem with a lever arm about the centre of mass — gravity acts at the centre
+          of mass and the normal force points straight at it. Friction is therefore what spins the body up, and
+          because it acts at a point of zero velocity it does <strong>no work</strong>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v<sub>cm</sub> = R ω&nbsp;&nbsp;·&nbsp;&nbsp;a<sub>cm</sub> = R α&nbsp;&nbsp;·&nbsp;&nbsp;s = R θ</span>
+      <span class="fx__tag">rolling without slipping only</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">a = g sin θ / (1 + β)</span><span class="fx__tag">rolling down a slope of angle θ, from Στ and ΣF</span></div>
+      <div class="fx"><span class="fx__eq">v = √( 2gh / (1 + β) )</span><span class="fx__tag">from rest, after dropping a height h</span></div>
+      <div class="fx"><span class="fx__eq">f<sub>s</sub> = β M g sin θ / (1 + β)</span><span class="fx__tag">the static friction actually required</span></div>
+      <div class="fx"><span class="fx__eq">tan θ ≤ μ<sub>s</sub> (1 + β) / β</span><span class="fx__tag">steeper than this and it slips instead</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v<sub>cm</sub></b><span>speed of the centre (m·s⁻¹)</span></div>
+      <div><b>R</b><span>rolling radius (m)</span></div>
+      <div><b>h</b><span>vertical drop of the centre of mass (m)</span></div>
+      <div><b>θ</b><span>angle of the incline to the horizontal (° or rad)</span></div>
+      <div><b>f<sub>s</sub></b><span>static friction at the contact patch (N)</span></div>
+      <div><b>μ<sub>s</sub></b><span>coefficient of static friction (dimensionless)</span></div>
+      <div><b>β</b><span>shape factor I<sub>cm</sub>/MR² (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>Rolling is the superposition of two motions: the whole body sliding forward at v, plus a pure spin about
+     the centre at ω = v/R. Add them at the bottom of the wheel and they cancel exactly — the contact point is
+     momentarily stationary. Add them at the top and they reinforce — the top of a rolling wheel moves at
+     <strong>2v</strong>. That is why the spokes of a moving bicycle wheel blur at the top and stay sharp at the
+     bottom.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 560 250" role="img" aria-label="Left: a rolling wheel whose contact point has zero velocity, whose centre moves at v and whose topmost point moves at twice v. Right: a solid sphere and a hoop released together on an incline, with the sphere already further down the slope.">
+      <defs>
+        <marker id="f3v" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-vel)"/></marker>
+        <marker id="f3i" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--ink-faint)"/></marker>
+        <marker id="f3e" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-energy)"/></marker>
+        <marker id="f3f" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-force)"/></marker>
+      </defs>
+      <text x="150" y="24" text-anchor="middle" font-size="12.5" fill="var(--ink)">Rolling = sliding + spinning</text>
+      <line x1="20" y1="205" x2="285" y2="205" stroke="var(--ink-soft)" stroke-width="2"/>
+      <circle cx="150" cy="150" r="55" fill="none" stroke="var(--ink-soft)" stroke-width="2.5"/>
+      <line x1="150" y1="95" x2="150" y2="205" stroke="var(--line)" stroke-width="1.2"/>
+      <line x1="95" y1="150" x2="205" y2="150" stroke="var(--line)" stroke-width="1.2"/>
+      <path d="M176,172 A34,34 0 0 1 124,172" fill="none" stroke="var(--ink-faint)" stroke-width="1.8" marker-end="url(#f3i)"/>
+      <text x="150" y="192" text-anchor="middle" font-size="11" fill="var(--ink-faint)">ω</text>
+      <circle cx="150" cy="150" r="4" fill="var(--ink)"/>
+      <circle cx="150" cy="95" r="4" fill="var(--ink)"/>
+      <circle cx="150" cy="205" r="5" fill="var(--v-force)"/>
+      <line x1="150" y1="150" x2="212" y2="150" stroke="var(--v-vel)" stroke-width="2.6" marker-end="url(#f3v)"/>
+      <line x1="150" y1="95" x2="274" y2="95" stroke="var(--v-vel)" stroke-width="2.6" marker-end="url(#f3v)"/>
+      <text x="216" y="166" font-size="11.5" fill="var(--v-vel)">v</text>
+      <text x="215" y="86" font-size="11.5" fill="var(--v-vel)">2v</text>
+      <text x="150" y="226" text-anchor="middle" font-size="10.5" fill="var(--v-force)">contact point: v = 0</text>
+      <text x="150" y="243" text-anchor="middle" font-size="10" fill="var(--ink-soft)">so friction here does no work</text>
+
+      <text x="430" y="24" text-anchor="middle" font-size="12.5" fill="var(--ink)">Same height, same start — shape decides</text>
+      <path d="M320,205 L540,205 L540,85 Z" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <line x1="320" y1="205" x2="540" y2="85" stroke="var(--ink-soft)" stroke-width="2"/>
+      <circle cx="446" cy="111" r="22" fill="none" stroke="var(--v-force)" stroke-width="4.5"/>
+      <circle cx="380" cy="147" r="22" fill="var(--v-energy)" fill-opacity="0.28" stroke="var(--v-energy)" stroke-width="2.5"/>
+      <line x1="380" y1="147" x2="341" y2="168" stroke="var(--v-energy)" stroke-width="2.6" marker-end="url(#f3e)"/>
+      <line x1="446" y1="111" x2="423" y2="123" stroke="var(--v-force)" stroke-width="2.6" marker-end="url(#f3f)"/>
+      <text x="352" y="196" text-anchor="middle" font-size="10" fill="var(--v-energy)">sphere · β = 0.4</text>
+      <text x="486" y="80" text-anchor="middle" font-size="10" fill="var(--v-force)">hoop · β = 1</text>
+      <text x="432" y="235" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">order: sphere → disc → shell → hoop, whatever M and R</text>
+    </svg>
+    <figcaption>Left: superposing translation at v with rotation at ω = v/R gives 0 at the contact point, v at
+      the centre and 2v at the top. Right: released together, the sphere is already ahead — not because it is
+      lighter or smaller, but because it devotes the smallest fraction of its energy to spinning.</figcaption>
+  </figure>
+
+  <h3>Why the hoop always loses — and why M and R never appear</h3>
+  <p>Write energy conservation for a body released from rest and dropping a height h while rolling:
+     <span class="fi">Mgh = ½Mv² + ½I<sub>cm</sub>ω²</span>. Substitute I<sub>cm</sub> = βMR² and ω = v/R, and
+     the R² in I cancels the 1/R² in ω² exactly; then M cancels across the whole equation. What survives is
+     <span class="fi">v = √(2gh/(1 + β))</span> — a result that depends on <strong>shape alone</strong>. A
+     solid steel sphere the size of a marble and a solid wooden sphere the size of a beach ball reach the
+     bottom of the same slope at the same speed and at the same instant.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Body</th><th>I<sub>cm</sub></th><th>β</th><th>Share of KE in spin</th><th>a on a slope θ</th><th>v after h = 1.5 m</th><th>Finish</th></tr></thead>
+      <tbody>
+        <tr><td>Solid sphere</td><td class="num">⅖MR²</td><td class="num">0.400</td><td class="num">28.6%</td><td class="num">0.714 g sin θ</td><td class="num">4.58 m·s⁻¹</td><td>1st</td></tr>
+        <tr><td>Solid cylinder / disc</td><td class="num">½MR²</td><td class="num">0.500</td><td class="num">33.3%</td><td class="num">0.667 g sin θ</td><td class="num">4.43 m·s⁻¹</td><td>2nd</td></tr>
+        <tr><td>Spherical shell</td><td class="num">⅔MR²</td><td class="num">0.667</td><td class="num">40.0%</td><td class="num">0.600 g sin θ</td><td class="num">4.20 m·s⁻¹</td><td>3rd</td></tr>
+        <tr><td>Hoop / thin-walled pipe</td><td class="num">MR²</td><td class="num">1.000</td><td class="num">50.0%</td><td class="num">0.500 g sin θ</td><td class="num">3.83 m·s⁻¹</td><td>4th</td></tr>
+        <tr><td><em>Frictionless slider</em> (no spin)</td><td class="num">—</td><td class="num">0</td><td class="num">0%</td><td class="num">1.000 g sin θ</td><td class="num">5.42 m·s⁻¹</td><td><em>beats them all</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 5 · Sphere against hoop, 1.5 m of drop</h4>
+    <p style="margin:0 0 .3rem">A solid sphere (m = 0.20 kg, R = 3.0 cm) and a steel hoop (m = 1.4 kg,
+      R = 12 cm) are released from rest at the top of the same incline and roll without slipping through a
+      vertical drop of h = 1.5 m. Find each centre-of-mass speed at the bottom, and the ratio.</p>
+    <ol>
+      <li><b>Set up energy conservation.</b> Friction is static at a point of zero velocity, so it removes no
+          energy: Mgh = ½Mv²(1 + β).</li>
+      <li><b>Rearrange once, use twice.</b> v = √(2gh/(1 + β)), and 2gh = 2(9.8)(1.5) = 29.4 m²·s⁻².</li>
+      <li><b>Sphere, β = 0.4:</b> v = √(29.4/1.4) = √21.0 = <b>4.58 m·s⁻¹</b>.</li>
+      <li><b>Hoop, β = 1:</b> v = √(29.4/2) = √14.7 = <b>3.83 m·s⁻¹</b>.</li>
+      <li><b>Ratio.</b> 4.58/3.83 = 1.20, i.e. √(2/1.4) = √1.4286 = 1.195 — set entirely by β, so the masses
+          (0.20 kg vs 1.4 kg) and radii (3 cm vs 12 cm) given in the question are pure decoration.</li>
+      <li><b>Check against the slider.</b> A frictionless block from the same height reaches
+          √29.4 = 5.42 m·s⁻¹ — faster than both, because it puts nothing into spin.</li>
+    </ol>
+    <span class="wex__ans">v<sub>sphere</sub> = 4.58 m·s⁻¹ · v<sub>hoop</sub> = 3.83 m·s⁻¹ · ratio 1.20, independent of M and R</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "friction is present, so energy is lost"</p>
+    <p style="margin:0">In rolling without slipping the friction is <strong>static</strong> and acts at a point
+      that is instantaneously at rest, so its work is F × 0 = 0. Mechanical energy is conserved even though
+      friction is essential — remove it (put the ball on ice) and the ball slides without spinning. Energy is
+      only dissipated when the surfaces actually <em>slip</em> past each other, which is kinetic friction.</p>
+  </div>
+
+  <div class="mnemo"><h4>Two ways to read the same fact</h4>
+    <p>Energy view: the hoop wastes half its budget on spin. Dynamics view: the hoop has the largest I for its
+      mass, so the same gravitational torque gives it the smallest α. Same answer, and the exam may ask for
+      either.</p></div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Angular momentum and its conservation</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Angular momentum L</dt>
+      <dd>The rotational analogue of linear momentum: for a rigid body about a fixed axis, its moment of
+          inertia multiplied by its angular velocity.</dd>
+      <dt>Conservation of angular momentum</dt>
+      <dd>The statement that L is constant whenever the net <em>external</em> torque about the chosen axis is
+          zero — regardless of how violently the body rearranges itself internally.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">L = I ω&nbsp;&nbsp;⇒&nbsp;&nbsp;I₁ω₁ = I₂ω₂ when Στ<sub>ext</sub> = 0</span>
+      <span class="fx__tag">same axis on both sides</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">L = m v r sin φ = m v r<sub>⊥</sub></span><span class="fx__tag">single particle, about a chosen point</span></div>
+      <div class="fx"><span class="fx__eq">Στ<sub>ext</sub> = ΔL / Δt</span><span class="fx__tag">the true rotational Newton II</span></div>
+      <div class="fx"><span class="fx__eq">K<sub>rot</sub> = L² / (2I)</span><span class="fx__tag">from ½Iω² with ω = L/I; the fastest route to energy changes</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>L</b><span>angular momentum (kg·m²·s⁻¹, = N·m·s)</span></div>
+      <div><b>I</b><span>moment of inertia about the axis (kg·m²)</span></div>
+      <div><b>ω</b><span>angular velocity (rad·s⁻¹)</span></div>
+      <div><b>φ</b><span>angle between <b>r</b> and <b>v</b> (rad or °)</span></div>
+      <div><b>r<sub>⊥</sub></b><span>⟂ distance from the axis to the line of motion (m)</span></div>
+      <div><b>K<sub>rot</sub></b><span>rotational kinetic energy (J)</span></div>
+    </div>
+  </div>
+
+  <p>Στ = Iα is the special case of Στ = ΔL/Δt in which I is constant. The general form matters because the
+     most interesting rotating objects — skaters, divers, cats, collapsing stars — change their own I. When
+     they do, the torque law says that with no external torque, <strong>L is fixed and ω must move inversely
+     to I</strong>. Internal muscular forces come in action–reaction pairs whose torques cancel, so they can
+     redistribute mass but can never change L.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · why a diver in flight conserves L</p>
+    <p style="margin:0">Gravity acts effectively at the centre of mass, so its lever arm <em>about the centre of
+      mass</em> is zero and its torque about that point vanishes. Once the diver leaves the board, L about the
+      centre of mass is locked in for the whole flight, and the centre of mass itself follows a plain parabola
+      no matter what the limbs do. The diver controls only the <em>rate</em> of rotation, never the total
+      amount of turning available.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 6 · Two bodies that change their own I</h4>
+    <p style="margin:0 0 .35rem"><b>(a) The skater.</b> A skater spins on a frictionless vertical axis at
+      ω₁ = 1.5 rad·s⁻¹ with arms outstretched, I₁ = 4.0 kg·m². She pulls her arms in to I₂ = 1.2 kg·m². Find ω₂
+      and the change in her rotational kinetic energy.</p>
+    <ol>
+      <li>No external torque about the vertical axis (the ice is frictionless, gravity and the normal force are
+          parallel to the axis), so L = I₁ω₁ = 4.0 × 1.5 = 6.0 kg·m²·s⁻¹ is fixed.</li>
+      <li>ω₂ = L/I₂ = 6.0 / 1.2 = <b>5.0 rad·s⁻¹</b> — from 0.24 to 0.80 revolutions per second.</li>
+      <li>K₁ = ½I₁ω₁² = ½(4.0)(1.5)² = 4.5 J; K₂ = ½I₂ω₂² = ½(1.2)(5.0)² = 15 J.</li>
+      <li>ΔK = <b>+10.5 J</b>, a factor of 15/4.5 = 3.33 — which is exactly I₁/I₂, as K = L²/(2I) predicts.
+          The energy is <strong>not</strong> free: it is muscular work done pulling the arms inward against
+          the force needed to keep them circling.</li>
+    </ol>
+    <span class="wex__ans">(a) ω₂ = 5.0 rad·s⁻¹ · K rises 4.5 J → 15 J (×3.33 = I₁/I₂)</span>
+    <p style="margin:.9rem 0 .35rem"><b>(b) The diver.</b> A diver leaves the board with L fixed, in a layout
+      position with I₁ = 14 kg·m² and ω₁ = 3.0 rad·s⁻¹, and is airborne for 1.6 s. She tucks to
+      I₂ = 3.5 kg·m² for 1.2 s, then opens back out to the layout for the last 0.40 s. How many somersaults
+      does she complete, and how many would she have managed had she never tucked?</p>
+    <ol>
+      <li>L = 14 × 3.0 = 42 kg·m²·s⁻¹, unchanged in flight.</li>
+      <li>Tucked: ω₂ = 42 / 3.5 = 12 rad·s⁻¹ — four times faster, because I fell by a factor of four.</li>
+      <li>Angle turned = 12 × 1.2 + 3.0 × 0.40 = 14.4 + 1.2 = 15.6 rad.</li>
+      <li>15.6 / 2π = <b>2.48 revolutions</b> — two and a half somersaults.</li>
+      <li>Never tucking: 3.0 × 1.6 = 4.8 rad = 0.76 rev, barely three-quarters of one turn.</li>
+      <li>Note what the diver cannot do: she cannot add L in the air. All of it was bought on the board, where
+          the board did exert an external torque about her centre of mass.</li>
+    </ol>
+    <span class="wex__ans">(b) ω<sub>tuck</sub> = 12 rad·s⁻¹ · 2.48 rev instead of 0.76 rev</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · conserved L does not mean conserved energy</p>
+    <p style="margin:0">In every "pulls the arms in" problem, angular momentum is conserved and kinetic energy
+      <strong>increases</strong> by the factor I₁/I₂. In the reverse move — arms going out — K decreases and the
+      body does negative work. Treating these as elastic-collision-style "K is conserved" problems is one of the
+      most reliably punished errors in the topic. Use K = L²/(2I) and the direction is automatic.</p>
+  </div>
+
+  <p>The same principle explains why a rotating patient on a frictionless turntable can reorient her whole body
+     with no external help, why an ice skater's spin is stopped by scraping a blade (an external torque from
+     the ice), and why the Earth's day would lengthen if its mass migrated outward. In physiology, the
+     conservation statement is the reason a gymnast or a falling cat can change <em>orientation</em> in the air
+     with L = 0 throughout, by counter-rotating one part of the body against another — orientation is not
+     conserved, only angular momentum is.</p>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Static equilibrium: two conditions, free pivot</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Static equilibrium</dt>
+      <dd>The state of a rigid body that is at rest and stays at rest: its centre of mass does not accelerate
+          <em>and</em> it does not begin to rotate.</dd>
+      <dt>Independence of the pivot</dt>
+      <dd>The fact that, once the net force is zero, the net torque takes the same value about every point —
+          so the torque equation may be written about whichever point is most convenient.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Σ<b>F</b> = 0&nbsp;&nbsp;<b>and</b>&nbsp;&nbsp;Στ = 0</span>
+      <span class="fx__tag">both are required; neither implies the other</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ΣF<sub>x</sub> = 0&nbsp;·&nbsp;ΣF<sub>y</sub> = 0&nbsp;·&nbsp;Στ<sub>z</sub> = 0</span><span class="fx__tag">a plane problem gives exactly three independent equations</span></div>
+      <div class="fx"><span class="fx__eq">Στ<sub>B</sub> = Στ<sub>A</sub> − <b>d</b> × Σ<b>F</b></span><span class="fx__tag"><b>d</b> = displacement from pivot A to pivot B; the last term dies when ΣF = 0</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>ΣF<sub>x</sub>, ΣF<sub>y</sub></b><span>net force components (N)</span></div>
+      <div><b>Στ</b><span>net torque about the chosen axis (N·m)</span></div>
+      <div><b>d</b><span>displacement from the old pivot to the new one (m)</span></div>
+      <div><b>N</b><span>normal / support force (N)</span></div>
+      <div><b>W = mg</b><span>weight, acting at the centre of gravity (N)</span></div>
+    </div>
+  </div>
+
+  <p>Two conditions, because a rigid body has two ways to start moving. A pair of equal and opposite forces
+     applied at different points — a <strong>couple</strong> — has ΣF = 0 and yet spins the body up, which is
+     the clean proof that the force condition alone is not equilibrium. Conversely, a single force through the
+     centre of mass gives Στ<sub>cm</sub> = 0 and yet accelerates the body away.</p>
+
+  <h3>Why the pivot is yours to choose</h3>
+  <p>Move the reference point from A to B, a displacement <b>d</b>. Every position vector measured from the pivot
+     is shortened by that same <b>d</b>, so the net torque changes by −<b>d</b> × Σ<b>F</b>. In equilibrium Σ<b>F</b> = 0, so
+     <strong>the net torque is the same about every point in the plane</strong>. Practically this means: put
+     your axis on the line of action of the force you least want to think about, and it vanishes from the
+     equation. A support you cannot compute, a hinge reaction with two unknown components, a joint force — all
+     can be deleted by a smart choice of pivot.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · three equations, three unknowns, no more</p>
+    <p style="margin:0">A plane statics problem yields exactly three independent equations. Writing torque
+      equations about two different points is legitimate and often convenient — but the second one can only
+      <em>replace</em> a force equation, never add a fourth piece of information. If you find yourself with
+      four unknowns, the problem is statically indeterminate and you have missed a modelling assumption
+      (a rope is inextensible, a rod is light, a contact is frictionless).</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 7 · A plank on two supports</h4>
+    <p style="margin:0 0 .3rem">A uniform plank of length 4.0 m and mass 20 kg rests on a support A at its left
+      end and a support B 3.0 m from A. A 60 kg person stands 2.5 m from A. Find the force each support exerts.
+      Take g = 9.8 m·s⁻².</p>
+    <ol>
+      <li><b>Forces.</b> Plank weight 20 × 9.8 = 196 N acting at its centre, 2.0 m from A (uniform ⇒ centre of
+          gravity at the geometric centre). Person's weight 60 × 9.8 = 588 N at 2.5 m. Supports push up:
+          N<sub>A</sub> at 0 m, N<sub>B</sub> at 3.0 m.</li>
+      <li><b>Take torques about A</b> — this kills N<sub>A</sub>, whose lever arm about A is zero:
+          N<sub>B</sub>(3.0) = 196(2.0) + 588(2.5) = 392 + 1470 = 1862 N·m.</li>
+      <li>N<sub>B</sub> = 1862 / 3.0 = <b>620.7 N</b>.</li>
+      <li><b>Now use ΣF<sub>y</sub> = 0:</b> N<sub>A</sub> = 196 + 588 − 620.7 = <b>163.3 N</b>.</li>
+      <li><b>Independent check — torques about B</b> (nothing new, but it must come out right):
+          N<sub>A</sub>(3.0) = 196(1.0) + 588(0.5) → 490 = 196 + 294 = 490 ✓.</li>
+      <li><b>Extension worth 30 seconds.</b> If the person walks to 3.5 m — past support B — repeating step 2
+          gives N<sub>B</sub> = (392 + 2058)/3.0 = 816.7 N and hence N<sub>A</sub> = 784 − 816.7 = −32.7 N.
+          A negative "push" is impossible for a support that can only push: the plank tips about B unless A is
+          bolted down with 32.7 N of hold-down. <strong>A negative normal force is the algebra telling you the
+          object has left the surface.</strong></li>
+    </ol>
+    <span class="wex__ans">N<sub>A</sub> = 163 N · N<sub>B</sub> = 621 N (sum 784 N = total weight ✓)</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · weight acts at the centre of gravity, not "in the middle of the diagram"</p>
+    <p style="margin:0">For a uniform body the centre of gravity is at its geometric centre — but only if it is
+      uniform. Put a weight on one end of the plank, or model a limb whose muscle mass is proximal, and the
+      centre of gravity shifts. Draw the weight arrow from the centre of gravity every time; a lever arm
+      measured from the wrong point is an error you will not spot in the arithmetic.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Centre of gravity, base of support, stability</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Centre of gravity (CG)</dt>
+      <dd>The single point at which the whole weight of a body may be taken to act — the point about which the
+          total gravitational torque is zero. In a uniform gravitational field it coincides exactly with the
+          centre of mass.</dd>
+      <dt>Base of support</dt>
+      <dd>The area enclosed by all the points of contact between a body and the ground, including the space
+          between two feet or between a foot and a walking stick.</dd>
+      <dt>Stable equilibrium</dt>
+      <dd>A configuration in which a small displacement raises the centre of gravity, so that gravity generates
+          a restoring torque back toward the original position.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">x<sub>cg</sub> = Σ m<sub>i</sub> x<sub>i</sub> / Σ m<sub>i</sub></span>
+      <span class="fx__tag">and likewise for y; uniform g assumed</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">tan θ<sub>crit</sub> = (b/2) / h<sub>cg</sub></span><span class="fx__tag">uniform block of width b, CG centred over the base, on a tilting surface</span></div>
+      <div class="fx"><span class="fx__eq">stable ⇔ CG's vertical line falls inside the base</span><span class="fx__tag">the practical criterion</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>x<sub>cg</sub></b><span>horizontal coordinate of the CG (m)</span></div>
+      <div><b>m<sub>i</sub>, x<sub>i</sub></b><span>mass (kg) and position (m) of each part</span></div>
+      <div><b>b</b><span>width of the base of support (m)</span></div>
+      <div><b>h<sub>cg</sub></b><span>height of the CG above the base (m)</span></div>
+      <div><b>θ<sub>crit</sub></b><span>tilt at which tipping begins (°)</span></div>
+    </div>
+  </div>
+
+  <p>Stability is a torque problem in disguise. Tilt an object and gravity, acting down through the CG, has a
+     lever arm about the edge it is pivoting on. While the CG's vertical line still falls <em>inside</em> the
+     base, that torque pushes the object back down; the instant the line crosses the edge, the same torque
+     tips it over. Nothing about the object's mass appears — a heavy filing cabinet and a light cardboard box
+     of the same proportions tip at the same angle.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 600 224" role="img" aria-label="Three identical tall blocks on a surface. In the first the vertical line through the centre of gravity falls inside the base and it is stable; in the second the block is tilted so that the line passes exactly through the pivoting edge; in the third the line has passed beyond the edge and the block tips over.">
+      <defs>
+        <marker id="f5w" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-force)"/></marker>
+      </defs>
+      <line x1="20" y1="180" x2="580" y2="180" stroke="var(--ink-soft)" stroke-width="2"/>
+
+      <rect x="60" y="60" width="40" height="120" fill="none" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="60" y1="180" x2="100" y2="180" stroke="var(--v-energy)" stroke-width="5"/>
+      <line x1="80" y1="120" x2="80" y2="196" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <line x1="80" y1="120" x2="80" y2="160" stroke="var(--v-force)" stroke-width="2.4" marker-end="url(#f5w)"/>
+      <circle cx="80" cy="120" r="5" fill="var(--v-force)"/>
+      <text x="80" y="46" text-anchor="middle" font-size="11" fill="var(--ink)">stable</text>
+      <text x="80" y="214" text-anchor="middle" font-size="9.5" fill="var(--v-energy)">line inside the base</text>
+
+      <g transform="rotate(18.43 260 180)"><rect x="220" y="60" width="40" height="120" fill="none" stroke="var(--ink-soft)" stroke-width="2"/></g>
+      <line x1="260" y1="117" x2="260" y2="196" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <line x1="260" y1="117" x2="260" y2="157" stroke="var(--v-force)" stroke-width="2.4" marker-end="url(#f5w)"/>
+      <circle cx="260" cy="117" r="5" fill="var(--v-force)"/>
+      <circle cx="260" cy="180" r="4.5" fill="var(--v-accel)"/>
+      <text x="270" y="46" text-anchor="middle" font-size="11" fill="var(--ink)">θ = θ<tspan baseline-shift="sub" font-size="8">crit</tspan></text>
+      <text x="264" y="214" text-anchor="middle" font-size="9.5" fill="var(--v-accel)">line through the pivot edge</text>
+
+      <g transform="rotate(30 460 180)"><rect x="420" y="60" width="40" height="120" fill="none" stroke="var(--ink-soft)" stroke-width="2"/></g>
+      <line x1="472.7" y1="118" x2="472.7" y2="196" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <line x1="472.7" y1="118" x2="472.7" y2="158" stroke="var(--v-force)" stroke-width="2.4" marker-end="url(#f5w)"/>
+      <circle cx="472.7" cy="118" r="5" fill="var(--v-force)"/>
+      <circle cx="460" cy="180" r="4.5" fill="var(--v-force)"/>
+      <text x="478" y="46" text-anchor="middle" font-size="11" fill="var(--ink)">θ &gt; θ<tspan baseline-shift="sub" font-size="8">crit</tspan></text>
+      <text x="478" y="214" text-anchor="middle" font-size="9.5" fill="var(--v-force)">line outside — it tips</text>
+    </svg>
+    <figcaption>The weight vector always hangs straight down from the centre of gravity. Whether it lands
+      inside or outside the contact patch decides whether gravity restores or overturns. Widening the base or
+      lowering the CG both increase θ<sub>crit</sub> — which is the entire physics of a walking frame, a wide
+      stance, and a rugby crouch.</figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 8 · How far can it lean?</h4>
+    <p style="margin:0 0 .3rem">A uniform cabinet is 0.40 m wide and 1.20 m tall and stands on a surface that
+      is slowly tilted. At what tilt does it topple, and does the answer change if it is loaded with heavy
+      files at the top?</p>
+    <ol>
+      <li><b>Locate the CG.</b> Uniform ⇒ centre of the block: half-width 0.20 m from the pivot edge, height
+          h<sub>cg</sub> = 0.60 m above the base.</li>
+      <li><b>Tipping condition.</b> The block tips when the CG's vertical line reaches the downhill edge, i.e.
+          when tan θ<sub>crit</sub> = (b/2)/h<sub>cg</sub> = 0.20/0.60 = 0.3333.</li>
+      <li>θ<sub>crit</sub> = arctan(0.3333) = <b>18.4°</b>. Mass never entered the calculation.</li>
+      <li><b>Loading the top.</b> Files in the upper drawers raise h<sub>cg</sub>. Say the CG rises to 0.85 m:
+          tan θ<sub>crit</sub> = 0.20/0.85 = 0.2353 → θ<sub>crit</sub> = 13.2°. Adding weight has made it
+          <em>less</em> stable, because stability is set by CG height, not by weight.</li>
+      <li><b>The design fix.</b> Widen the base. Doubling b to 0.80 m with h<sub>cg</sub> = 0.60 m gives
+          tan θ = 0.40/0.60 = 0.667 → 33.7°.</li>
+    </ol>
+    <span class="wex__ans">θ<sub>crit</sub> = 18.4° · falls to 13.2° when the CG rises to 0.85 m · mass is irrelevant</span>
+  </div>
+
+  <h3>The human case</h3>
+  <p>In an adult standing erect the centre of gravity sits at roughly <strong>55–57% of standing height</strong>,
+     just anterior to the second sacral vertebra. Quiet standing is not static: the body sways continuously and
+     the postural muscles apply small corrective torques whenever the CG's projection drifts toward the edge of
+     the base — the ankle strategy. Everything clinical about falls is a statement about this geometry:</p>
+  <ul>
+    <li><strong>A cane or walking frame enlarges the base of support</strong>, not the person's strength; it
+        buys a larger margin between the CG projection and the edge.</li>
+    <li><strong>Carrying a load in front shifts the CG anteriorly</strong>, which is why pregnancy and large
+        anterior loads are compensated by increased lumbar lordosis and a backward lean — the body is moving
+        the CG back over the feet.</li>
+    <li><strong>A stooped (kyphotic) posture pushes the CG projection toward the toes</strong>, shrinking the
+        forward margin and leaving the ankle plantarflexors with less room to correct — a direct mechanical
+        contribution to fall risk in the elderly.</li>
+    <li><strong>Reaching sideways past the foot</strong> moves the CG outside the base entirely; recovery then
+        requires a step, i.e. a new base.</li>
+  </ul>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">Stability questions never need the mass. Compare (i) CG height and (ii) base width, and
+      remember the third case: <strong>neutral equilibrium</strong>, where displacement neither raises nor
+      lowers the CG (a sphere on a flat table, a cylinder lying on its side). Stable = CG rises;
+      unstable = CG falls; neutral = CG stays level.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>The three classes of lever in the body</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Lever</dt>
+      <dd>A rigid bar free to turn about a fulcrum, on which an effort and a load act at different lever arms;
+          the class is decided purely by which of the three lies between the other two.</dd>
+      <dt>Mechanical advantage MA</dt>
+      <dd>The ratio of load to effort achievable in equilibrium — equivalently, the ratio of the effort's lever
+          arm to the load's.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">F<sub>E</sub> d<sub>E</sub> = F<sub>L</sub> d<sub>L</sub>&nbsp;&nbsp;⇒&nbsp;&nbsp;MA = d<sub>E</sub>/d<sub>L</sub> = F<sub>L</sub>/F<sub>E</sub></span>
+      <span class="fx__tag">just Στ = 0 about the fulcrum</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Class 1: E — F — L&nbsp;·&nbsp;Class 2: F — L — E&nbsp;·&nbsp;Class 3: F — E — L</span><span class="fx__tag">reading along the bar; the middle letter names the class</span></div>
+      <div class="fx"><span class="fx__eq">F<sub>joint</sub> = F<sub>E</sub> + F<sub>L</sub> (signed)</span><span class="fx__tag">from ΣF = 0; the fulcrum reaction is never zero</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>F<sub>E</sub></b><span>effort — the muscle force (N)</span></div>
+      <div><b>F<sub>L</sub></b><span>load — the resistance (N)</span></div>
+      <div><b>d<sub>E</sub>, d<sub>L</sub></b><span>lever arms of effort and load about the fulcrum (m)</span></div>
+      <div><b>MA</b><span>mechanical advantage (dimensionless)</span></div>
+      <div><b>F<sub>joint</sub></b><span>reaction force at the joint / fulcrum (N)</span></div>
+    </div>
+  </div>
+
+  <p>Every skeletal joint is a lever: bone is the bar, the joint is the fulcrum, muscle supplies the effort,
+     and gravity or an external object supplies the load. The classification is not decoration — it tells you
+     immediately whether the muscle force will be larger or smaller than the load it is holding.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 660 220" role="img" aria-label="Three lever diagrams. Class one has the fulcrum between effort and load, illustrated by the head balanced on the atlanto-occipital joint. Class two has the load between fulcrum and effort, illustrated by rising on tiptoe. Class three has the effort between fulcrum and load, illustrated by the biceps flexing the elbow.">
+      <defs>
+        <marker id="f4e" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-energy)"/></marker>
+        <marker id="f4l" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--v-force)"/></marker>
+      </defs>
+      <line x1="220" y1="12" x2="220" y2="208" stroke="var(--line)" stroke-width="1"/>
+      <line x1="440" y1="12" x2="440" y2="208" stroke="var(--line)" stroke-width="1"/>
+
+      <text x="110" y="22" text-anchor="middle" font-size="12" fill="var(--ink)">Class 1 · E — F — L</text>
+      <line x1="25" y1="100" x2="195" y2="100" stroke="var(--ink-soft)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M110,103 L96,128 L124,128 Z" fill="var(--ink-faint)"/>
+      <line x1="45" y1="52" x2="45" y2="94" stroke="var(--v-energy)" stroke-width="2.8" marker-end="url(#f4e)"/>
+      <line x1="178" y1="52" x2="178" y2="94" stroke="var(--v-force)" stroke-width="2.8" marker-end="url(#f4l)"/>
+      <text x="45" y="44" text-anchor="middle" font-size="12" fill="var(--v-energy)">E</text>
+      <text x="178" y="44" text-anchor="middle" font-size="12" fill="var(--v-force)">L</text>
+      <text x="110" y="145" text-anchor="middle" font-size="12" fill="var(--ink-faint)">F</text>
+      <text x="110" y="176" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">Head on the atlanto-occipital joint:</text>
+      <text x="110" y="190" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">extensors pull down behind,</text>
+      <text x="110" y="204" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">skull weight hangs in front.</text>
+
+      <text x="330" y="22" text-anchor="middle" font-size="12" fill="var(--ink)">Class 2 · F — L — E</text>
+      <line x1="245" y1="100" x2="415" y2="100" stroke="var(--ink-soft)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M410,103 L396,128 L424,128 Z" fill="var(--ink-faint)"/>
+      <line x1="350" y1="52" x2="350" y2="94" stroke="var(--v-force)" stroke-width="2.8" marker-end="url(#f4l)"/>
+      <line x1="262" y1="148" x2="262" y2="106" stroke="var(--v-energy)" stroke-width="2.8" marker-end="url(#f4e)"/>
+      <text x="350" y="44" text-anchor="middle" font-size="12" fill="var(--v-force)">L</text>
+      <text x="262" y="163" text-anchor="middle" font-size="12" fill="var(--v-energy)">E</text>
+      <text x="410" y="145" text-anchor="middle" font-size="12" fill="var(--ink-faint)">F</text>
+      <text x="330" y="190" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">Rising on tiptoe: metatarsal heads pivot,</text>
+      <text x="330" y="204" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">Achilles lifts the heel behind the ankle.</text>
+
+      <text x="550" y="22" text-anchor="middle" font-size="12" fill="var(--ink)">Class 3 · F — E — L</text>
+      <line x1="465" y1="100" x2="635" y2="100" stroke="var(--ink-soft)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M470,103 L456,128 L484,128 Z" fill="var(--ink-faint)"/>
+      <line x1="505" y1="148" x2="505" y2="106" stroke="var(--v-energy)" stroke-width="2.8" marker-end="url(#f4e)"/>
+      <line x1="618" y1="52" x2="618" y2="94" stroke="var(--v-force)" stroke-width="2.8" marker-end="url(#f4l)"/>
+      <text x="470" y="145" text-anchor="middle" font-size="12" fill="var(--ink-faint)">F</text>
+      <text x="505" y="163" text-anchor="middle" font-size="12" fill="var(--v-energy)">E</text>
+      <text x="618" y="44" text-anchor="middle" font-size="12" fill="var(--v-force)">L</text>
+      <text x="550" y="190" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">Biceps flexing the elbow: insertion close in,</text>
+      <text x="550" y="204" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">load far out at the hand.</text>
+    </svg>
+    <figcaption>Effort in green, load in red, fulcrum as the triangle. The class is read off from whichever of
+      the three sits in the middle. Only class 2 guarantees MA &gt; 1; class 3 — the overwhelming majority of
+      skeletal muscle — always has MA &lt; 1.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Class</th><th>Order along the bar</th><th>Mechanical advantage</th><th>What it buys</th><th>In the body</th><th>Everyday</th></tr></thead>
+      <tbody>
+        <tr><td><b>First</b></td><td class="num">E — F — L</td><td>either side of 1, depending on the two arms</td>
+            <td>can trade force for range in either direction</td>
+            <td>head balanced on the atlanto-occipital joint; triceps extending the elbow (olecranon)</td><td>seesaw, crowbar, scissors</td></tr>
+        <tr><td><b>Second</b></td><td class="num">F — L — E</td><td><b>always &gt; 1</b> (d<sub>E</sub> &gt; d<sub>L</sub> by construction)</td>
+            <td>force multiplier — effort smaller than the load it balances</td>
+            <td>rising on tiptoe: metatarsal heads are the fulcrum, joint load at the ankle, Achilles at the calcaneus</td><td>wheelbarrow, nutcracker</td></tr>
+        <tr><td><b>Third</b></td><td class="num">F — E — L</td><td><b>always &lt; 1</b> (d<sub>E</sub> &lt; d<sub>L</sub> by construction)</td>
+            <td>speed and range multiplier — the hand moves far and fast for a small muscle shortening</td>
+            <td>biceps flexing the elbow; most skeletal muscle in the limbs</td><td>tweezers, fishing rod, broom</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo"><h4>Naming the classes</h4>
+    <p><b>1-2-3 → F-L-E in the middle.</b> Class 1 has the <u>F</u>ulcrum in the middle, class 2 the
+      <u>L</u>oad, class 3 the <u>E</u>ffort. Then remember only that class 3 is the body's default.</p></div>
+
+  <div class="wex">
+    <h4>Worked example 9 · Three joints, three lever classes</h4>
+    <p style="margin:0 0 .35rem"><b>(a) Elbow — third class.</b> A horizontal forearm plus hand has mass 2.0 kg
+      with its centre of gravity 0.15 m from the elbow joint. It holds a 5.0 kg ball whose centre is 0.35 m from
+      the joint. The biceps inserts 0.050 m from the joint and pulls vertically upward. Find the biceps force
+      and the force transmitted through the elbow joint.</p>
+    <ol>
+      <li>Weights: forearm 2.0 × 9.8 = 19.6 N at 0.15 m; ball 5.0 × 9.8 = 49.0 N at 0.35 m.</li>
+      <li><b>Torques about the elbow</b> (this deletes the unknown joint force, whose lever arm there is zero):
+          F<sub>B</sub>(0.050) = 19.6(0.15) + 49.0(0.35) = 2.94 + 17.15 = 20.09 N·m.</li>
+      <li>F<sub>B</sub> = 20.09 / 0.050 = <b>402 N</b> — roughly eight times the ball's weight. The ball alone
+          accounts for 49.0 × (0.35/0.050) = 343 N of that, since its lever ratio is MA = 0.050/0.35 = 0.14;
+          the forearm's own weight supplies the remaining 59 N.</li>
+      <li><b>Joint force from ΣF<sub>y</sub> = 0:</b> F<sub>joint</sub> = 19.6 + 49.0 − 402 = −333 N, i.e.
+          <b>333 N pressing down</b> on the forearm from the humerus. The joint carries far more than the load
+          it is holding — which is why joint surfaces are broad and why small increases in held weight matter
+          so much to a damaged joint.</li>
+    </ol>
+    <span class="wex__ans">(a) F<sub>biceps</sub> ≈ 4.0 × 10² N · elbow joint reaction ≈ 3.3 × 10² N</span>
+
+    <p style="margin:.9rem 0 .35rem"><b>(b) Tiptoe — second class.</b> A 700 N person rises onto the toes of
+      one foot. The ground pushes up at the metatarsal heads; the ankle joint is 0.12 m behind them and the
+      Achilles tendon inserts on the calcaneus 0.18 m behind them. Find the Achilles force and the ankle joint
+      reaction.</p>
+    <ol>
+      <li>Treat the foot as the lever. Forces on it: N = 700 N up at the toes (the only ground contact, so it
+          carries the whole body weight), the Achilles force F<sub>A</sub> up at 0.18 m, and the downward
+          reaction R from the tibia at 0.12 m.</li>
+      <li><b>Torques about the ankle</b> to eliminate R: 700 × 0.12 = F<sub>A</sub> × 0.06, so
+          F<sub>A</sub> = 84/0.06 = <b>1400 N = 2W</b>.</li>
+      <li><b>ΣF<sub>y</sub> = 0:</b> R = 700 + 1400 = <b>2100 N = 3W</b>.</li>
+      <li><b>Now read the lever.</b> MA = d<sub>E</sub>/d<sub>L</sub> = 0.18/0.12 = 1.5, and indeed
+          F<sub>A</sub> = R/1.5 = 2100/1.5 = 1400 N ✓. The class-2 advantage is real — but it relates the
+          tendon force to the <em>joint load</em>, not to body weight.</li>
+    </ol>
+    <span class="wex__ans">(b) Achilles ≈ 1.4 × 10³ N (2× body weight) · ankle reaction ≈ 2.1 × 10³ N (3× body weight)</span>
+
+    <p style="margin:.9rem 0 .35rem"><b>(c) Head — first class.</b> A 50 N head has its centre of gravity
+      0.030 m anterior to the atlanto-occipital joint; the posterior neck extensors act 0.050 m behind it.
+      Find the muscle force, then repeat for a forward-flexed "phone" posture in which the head's effective
+      lever arm grows to 0.080 m.</p>
+    <ol>
+      <li>Upright: F<sub>M</sub>(0.050) = 50(0.030) = 1.5 N·m → F<sub>M</sub> = <b>30 N</b>; joint reaction
+          = 50 + 30 = 80 N.</li>
+      <li>Flexed: F<sub>M</sub>(0.050) = 50(0.080) = 4.0 N·m → F<sub>M</sub> = <b>80 N</b>; joint reaction
+          = 50 + 80 = 130 N.</li>
+      <li>The head has not got heavier; its <em>lever arm</em> has lengthened by a factor of 2.7, and the
+          extensor load and the joint load rise with it. This is the mechanics behind sustained-flexion neck
+          pain, and the reason the clinical advice is always to raise the screen rather than to strengthen
+          the neck.</li>
+    </ol>
+    <span class="wex__ans">(c) 30 N upright → 80 N at 0.080 m lever arm; joint load 80 N → 130 N</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "mechanical advantage &gt; 1 means the muscle works less than body weight"</p>
+    <p style="margin:0">MA compares the effort with the <strong>load acting on that lever</strong>, and in the
+      tiptoe case the load is the ankle joint reaction (2100 N), not the 700 N body weight. Solve the free-body
+      diagram; do not read a number straight off the lever ratio. The same caution applies in reverse for class
+      3: MA &lt; 1 is not a design flaw — a 3 cm shortening of the biceps sweeps the hand through 20 cm, and
+      speed of movement is worth far more to a limb than raw force.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">Two facts carry most of the marks here. (1) <strong>Most human joints are third-class
+      levers</strong>, so muscle forces routinely exceed the load by an order of magnitude. (2) The
+      <strong>joint reaction force is obtained from ΣF = 0 after the torque equation</strong>, and it is
+      typically the largest force in the whole diagram.</p>
+  </div>
+</section>
+
+<!-- =========================== Self-test =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>Six of these require you to compute something and four are pure traps. When one goes wrong, do not
+     memorise the letter — go back to the section it came from and re-read the sentence that would have
+     stopped you. The distractors here are the specific mistakes this topic is examined on.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-04-momentum.html"><small>Previous</small><b>← Momentum, Impulse and Collisions</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-06-gravitation.html"><small>Next</small><b>Gravitation and Orbital Motion →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 05 · Rotational Motion and Static Equilibrium</p>
+    <p>Worked throughout with free-body and torque diagrams and the shape factor β = I/MR²; g is taken as
+       9.8 m·s⁻², and the anatomical lever arms and body-segment masses are standard textbook approximations
+       chosen for order of magnitude rather than precise citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A flywheel starts from rest and is given a constant angular acceleration α = 4.0 rad·s⁻². Through how many <em>revolutions</em> does it turn in the first 5.0 s?",
+    "options": ["15.9 rev", "7.96 rev", "50 rev", "314 rev"],
+    "answer": 1,
+    "explain": "Δθ = ½αt² = ½(4.0)(5.0²) = 50 rad, and 50 ÷ 2π = 7.96 rev. Option C is the commonest slip — the answer left in radians and relabelled as revolutions. Option D multiplies by 2π instead of dividing, and option A is what you get by forgetting the factor ½."
+  },
+  {
+    "stem": "A rigid disc is spinning up steadily. Point P sits on the rim at radius R, point Q at R/2. Which quantity is the <em>same</em> for P and Q at every instant?",
+    "options": ["Tangential speed v", "Centripetal acceleration a<sub>c</sub>", "Angular velocity ω", "Tangential acceleration a<sub>t</sub>"],
+    "answer": 2,
+    "explain": "Rigidity forces every point to sweep the same angle in the same time, so ω (and α) belong to the body as a whole. Everything with a metre in its unit scales with r: v = rω and a<sub>t</sub> = rα are twice as large at P, and so is a<sub>c</sub> = rω². Choosing A is the classic confusion of the body's rotation rate with a point's speed."
+  },
+  {
+    "stem": "A 40 N force is applied at the far end of a 0.25 m spanner, at 30° to the spanner's shaft. The torque about the bolt is:",
+    "options": ["5.0 N·m", "8.7 N·m", "10 N·m", "0.20 N·m"],
+    "answer": 0,
+    "explain": "τ = rF sin θ = (0.25)(40)(sin 30°) = (0.25)(40)(0.50) = 5.0 N·m. Option B uses cos 30°; the sine is correct because only the component of F perpendicular to r turns the bolt, while the parallel component is absorbed by the axle. Option C forgets the angle altogether and would only be right at 90°."
+  },
+  {
+    "stem": "A uniform rod has M = 3.0 kg and L = 1.2 m. What is its moment of inertia about a perpendicular axis through a point 0.30 m from one end?",
+    "options": ["0.27 kg·m²", "0.36 kg·m²", "1.44 kg·m²", "0.63 kg·m²"],
+    "answer": 3,
+    "explain": "The axis lies d = 0.60 − 0.30 = 0.30 m from the centre, so I = I<sub>cm</sub> + Md² = (1/12)(3.0)(1.2²) + (3.0)(0.30²) = 0.36 + 0.27 = 0.63 kg·m². Option B is I<sub>cm</sub> with the parallel-axis term forgotten, option A is the Md² term alone, and option C is the end-axis value ML²/3, which applies at d = 0.60 m, not 0.30 m."
+  },
+  {
+    "stem": "A solid sphere, a solid disc and a hoop — all of different masses and different radii — are released together at the top of the same incline and roll without slipping. In what order do they reach the bottom?",
+    "options": ["All three arrive together", "Sphere, then disc, then hoop", "Hoop, then disc, then sphere", "It depends on their masses"],
+    "answer": 1,
+    "explain": "Energy conservation gives a = g sin θ/(1 + β) with I<sub>cm</sub> = βMR²; the R² cancels against ω = v/R and M cancels across the whole equation, so only the shape factor survives — sphere 0.40, disc 0.50, hoop 1.00. The hoop keeps all its mass at the full radius and therefore spends 50% of its released energy on spin, against the sphere's 28.6%. 'The heavier one wins' is the instinct this question exists to punish."
+  },
+  {
+    "stem": "A skater spinning at 2.0 rad·s⁻¹ with I = 6.0 kg·m² pulls her arms in until I = 2.0 kg·m². By what factor does her rotational kinetic energy change?",
+    "options": ["It is unchanged", "×1.7", "×3.0", "×9.0"],
+    "answer": 2,
+    "explain": "There is no external torque about the spin axis, so L = Iω = 12 kg·m²·s⁻¹ is fixed and ω triples to 6.0 rad·s⁻¹. Since K = L²/(2I), K rises by the factor I₁/I₂ = 3.0, from 12 J to 36 J. Option A is the trap: angular momentum is conserved, energy is not — the extra 24 J is muscular work done pulling the arms inward."
+  },
+  {
+    "stem": "In a static-equilibrium problem, about which point should the torque equation be written?",
+    "options": ["Any point at all — with ΣF = 0 the net torque is identical about every point, so pick one that eliminates an unknown", "Only the centre of mass", "Only a real, physical hinge or pivot", "Any point, but only if the body is genuinely free to rotate"],
+    "answer": 0,
+    "explain": "Shifting the reference point by <b>d</b> changes the net torque by <b>d</b> × Σ<b>F</b>, which vanishes once the force condition holds — so the choice is completely free, and the efficient choice puts the axis on the line of action of an unknown force to delete it. Options B and C impose restrictions that do not exist; a torque axis is a bookkeeping choice, not a physical object."
+  },
+  {
+    "stem": "A horizontal forearm (treat it as massless) holds a 60 N weight in the hand, 0.40 m from the elbow joint. The biceps inserts 0.040 m from the joint and pulls vertically. What force must it produce?",
+    "options": ["6.0 N", "60 N", "240 N", "600 N"],
+    "answer": 3,
+    "explain": "Taking torques about the elbow, F(0.040) = (60)(0.40) = 24 N·m, so F = 600 N — ten times the load, because this third-class lever has MA = 0.040/0.40 = 0.10. Option B assumes the muscle pulls where the weight hangs (MA = 1); option C uses a 0.10 m insertion distance. The elbow joint itself then carries 600 − 60 = 540 N."
+  },
+  {
+    "stem": "A ball rolls down a ramp without slipping. What does the static friction force at the contact patch do?",
+    "options": ["It dissipates energy as heat, so mechanical energy is not conserved", "It does negative work on the ball, slowing it below the frictionless case", "It supplies the torque that spins the ball up, but does no work, because the contact point is instantaneously at rest", "Nothing — rolling without slipping requires no friction at all"],
+    "answer": 2,
+    "explain": "The contact point has zero velocity at the instant of contact, so the friction force acts through zero displacement and its work is exactly zero; mechanical energy is conserved even though friction is indispensable. It is nevertheless the only force with a lever arm about the centre of mass, which rules out option D — on ice the ball would slide without spinning. Heat is dissipated only when surfaces genuinely slip, i.e. under kinetic friction."
+  },
+  {
+    "stem": "A solid cylinder rolls from rest without slipping down a slope, dropping 2.0 m in height. Its centre-of-mass speed at the bottom is (g = 9.8 m·s⁻²):",
+    "options": ["4.4 m·s⁻¹", "5.1 m·s⁻¹", "6.3 m·s⁻¹", "7.2 m·s⁻¹"],
+    "answer": 1,
+    "explain": "Mgh = ½Mv²(1 + β) with β = ½ for a solid cylinder, so v = √(2gh/1.5) = √(39.2/1.5) = 5.1 m·s⁻¹; mass and radius cancel and never enter. Option C, 6.3 m·s⁻¹, is √(2gh) — the frictionless-sliding answer, which ignores that a third of the energy has gone into spin. Option A, 4.4 m·s⁻¹, is the hoop's answer, obtained by using β = 1."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

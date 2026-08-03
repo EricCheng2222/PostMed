@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 06 · Gravitation and Orbital Motion — PostMed Notebook</title>
+<meta name="description" content="Physics note 06: Newton's law of gravitation, the shell theorem, variation of g, gravitational potential energy, escape speed, circular orbits, orbital energy, Kepler's laws, weightlessness and tides — with 10 self-test questions.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 06</p>
+  <h1>Gravitation and Orbital Motion</h1>
+  <p class="lede">
+    Every result in this chapter comes out of one line: <b>F</b> = GMm/r², an <em>attraction</em> that
+    falls off as the <strong>square</strong> of the distance. Integrate that force once and you get an
+    energy that falls off as <strong>1/r</strong> and carries a minus sign — and from those two facts
+    alone follow g at the surface, escape speed, the radius of the geostationary ring, all three of
+    Kepler's laws, and the reason an astronaut floats even though gravity there is still 89 % of what
+    it is on the ground. Do not memorise nine formulas. Memorise one force law, one energy, and the
+    habit of asking <em>which mass, measured from which centre, at what distance</em>.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Representation: central force, energy diagrams &amp; orbits</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~35 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Newton's law of universal gravitation</a></li>
+      <li><a href="#s2">The shell theorem: why a sphere is a point</a></li>
+      <li><a href="#s3">g at the surface — and why it is not constant</a></li>
+      <li><a href="#s4">The gravitational field: force per unit mass</a></li>
+      <li><a href="#s5">Potential energy: the minus sign and the 1/r</a></li>
+      <li><a href="#s6">Escape speed</a></li>
+      <li><a href="#s7">Circular orbits and the geostationary ring</a></li>
+      <li><a href="#s8">Orbital energy and the satellite paradox</a></li>
+      <li><a href="#s9">Kepler's three laws</a></li>
+      <li><a href="#s10">Apparent weightlessness</a></li>
+      <li><a href="#s11">Tides: the gradient of gravity</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <!-- Page-top formula sheet -->
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Universal gravitation</b><code>F = G M m / r²</code></div>
+      <div class="fsheet__item"><b>Gravitational constant</b><code>G = 6.67×10⁻¹¹ N·m²·kg⁻²</code></div>
+      <div class="fsheet__item"><b>Gravitational field</b><code>g = F/m = G M / r²</code></div>
+      <div class="fsheet__item"><b>Surface g</b><code>g₀ = G M / R²</code></div>
+      <div class="fsheet__item"><b>g at altitude h</b><code>g = g₀ R² / (R+h)²</code></div>
+      <div class="fsheet__item"><b>g at depth (uniform)</b><code>g = g₀ · r/R</code></div>
+      <div class="fsheet__item"><b>Rotation correction</b><code>Δg ≈ −ω² R cos²λ</code></div>
+      <div class="fsheet__item"><b>Potential energy</b><code>U = − G M m / r</code></div>
+      <div class="fsheet__item"><b>Near-surface limit</b><code>ΔU ≈ m g h   (h ≪ R)</code></div>
+      <div class="fsheet__item"><b>Potential</b><code>V = U/m = − G M / r</code></div>
+      <div class="fsheet__item"><b>Escape speed</b><code>v_esc = √(2GM/R) = √(2g₀R)</code></div>
+      <div class="fsheet__item"><b>Circular orbit speed</b><code>v = √(G M / r)</code></div>
+      <div class="fsheet__item"><b>Circular orbit period</b><code>T = 2π √(r³ / G M)</code></div>
+      <div class="fsheet__item"><b>Circular orbit energy</b><code>E = − G M m / 2r = −K = U/2</code></div>
+      <div class="fsheet__item"><b>Kepler 2 (apsides)</b><code>r₁ v₁ = r₂ v₂</code></div>
+      <div class="fsheet__item"><b>Kepler 3</b><code>T² = 4π² a³ / G M</code></div>
+      <div class="fsheet__item"><b>Apparent weight</b><code>N = m (g − a)</code></div>
+      <div class="fsheet__item"><b>Tidal acceleration</b><code>Δg ≈ 2 G M d / r³</code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Newton's law of universal gravitation</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Universal gravitation</dt>
+      <dd>An always-attractive force that every particle of matter exerts on every other particle,
+        proportional to the product of the two masses and inversely proportional to the square of the
+        distance between them.</dd>
+      <dt>Gravitational constant G</dt>
+      <dd>The universal proportionality constant that converts "kilograms per metre squared" into
+        newtons — the same number for every pair of masses anywhere in the universe.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">F = G · M m / r²</span>
+      <span class="fx__tag">point masses, or spherically symmetric bodies (§2); r is centre-to-centre</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">G = 6.674×10⁻¹¹ N·m²·kg⁻² ≈ 6.67×10⁻¹¹</span><span class="fx__tag">measured, not derived</span></div>
+      <div class="fx"><span class="fx__eq"><b>F</b><sub>net</sub> = Σ <b>F</b><sub>i</sub></span><span class="fx__tag">superposition: add the forces as vectors, one source at a time</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>F</b><span>gravitational force magnitude (N)</span></div>
+      <div><b>G</b><span>gravitational constant (N·m²·kg⁻²)</span></div>
+      <div><b>M, m</b><span>the two masses (kg)</span></div>
+      <div><b>r</b><span>separation of the centres (m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Three features of this law do all the work later, so read them as claims rather than decoration.
+  </p>
+
+  <p>
+    <strong>(1) It is always attractive, and it is a mutual pair.</strong> The Earth pulls you with
+    686 N if you have a mass of 70 kg; you pull the Earth with 686 N as well. Newton's third law is
+    built in — the formula is symmetric in M and m. The reason the Earth does not visibly move is
+    a = F/m, not any asymmetry in the force.
+  </p>
+
+  <p>
+    <strong>(2) It is inverse-square.</strong> Double the separation and the force drops to a quarter,
+    not a half; triple it and the force drops to a ninth. The exponent is exactly 2 — not 1.99 — and
+    that exactness is what makes §2, §5 and §9 come out clean. Physically the exponent is 2 because
+    the "influence" spreads over the surface of a sphere, and a sphere's area grows as r².
+  </p>
+
+  <p>
+    <strong>(3) It obeys superposition.</strong> Gravity from several bodies is the <em>vector</em>
+    sum of the individual forces; each source contributes as though the others were absent. This is
+    why you can compute the pull of a whole planet by adding up the pull of its pieces, and why the
+    force of the Moon on you and the force of the Earth on you never "interfere".
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap: r is measured from the centre, not from the ground</p>
+    <p style="margin:0">
+      A satellite "at an altitude of 400 km" is at r = 6.37×10⁶ + 4.00×10⁵ = 6.77×10⁶ m from Earth's
+      centre, not 4.00×10⁵ m. Every question that gives you an <em>altitude</em> is testing whether you
+      add the planetary radius. And r is a distance between centres, never a surface-to-surface gap.
+    </p>
+  </div>
+
+  <p>
+    G is the weakest-acting and worst-measured of the fundamental constants — Cavendish first pinned it
+    down in 1798 with a torsion balance, and after two more centuries we still know it only to about
+    two parts in 10⁵; <span class="fi">e</span> and <span class="fi">h</span>, by contrast, are now
+    <em>exact</em> by definition in the SI, while G still has to be weighed. The reason
+    is the same reason gravity feels irrelevant in a laboratory: two 70 kg people standing 1 m apart
+    attract each other with about <span class="fi">3×10⁻⁷ N</span>. Between two protons, the electric
+    repulsion beats the gravitational attraction by a factor of roughly
+    <span class="fi">1.2×10³⁶</span>. Gravity only dominates on astronomical scales because it has no
+    negative charge to cancel it: pile up 10²⁴ kg of matter and every kilogram adds.
+  </p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · scaling questions</p>
+    <p style="margin:0">
+      Most gravitation questions are ratio questions in disguise. "A planet has twice Earth's mass and
+      three times its radius — what is g?" needs no constants:
+      <span class="fi">g ∝ M/R²</span>, so g = 9.81 × 2/9 = 2.18 m·s⁻².
+      Learn which power each quantity carries: <b>F, g ∝ 1/r²</b>; <b>U, V ∝ 1/r</b>;
+      <b>v<sub>orbit</sub>, v<sub>esc</sub> ∝ 1/√r</b>; <b>T ∝ r<sup>3/2</sup></b>;
+      <b>tidal stretch ∝ 1/r³</b>.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The shell theorem: why a sphere is a point</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Shell theorem</dt>
+      <dd>Two exact results about a thin, uniform spherical shell of mass: <b>(a)</b> at any external
+        point it pulls exactly as if its whole mass sat at its centre; <b>(b)</b> at any internal point
+        it pulls with exactly zero net force.</dd>
+      <dt>Enclosed mass</dt>
+      <dd>For a spherically symmetric body, the gravity at radius r is produced by the mass inside
+        radius r only; everything outside that radius contributes nothing.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">g(r) = G·M<sub>enc</sub>(r) / r²</span>
+      <span class="fx__tag">any spherically symmetric mass distribution</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">r ≥ R:  M<sub>enc</sub> = M  ⟹  g = GM/r²</span><span class="fx__tag">outside — behaves as a point mass</span></div>
+      <div class="fx"><span class="fx__eq">r &lt; R (uniform ρ):  M<sub>enc</sub> = M(r/R)³  ⟹  g = GMr/R³</span><span class="fx__tag">inside a sphere of constant density</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>M<sub>enc</sub></b><span>mass enclosed within radius r (kg)</span></div>
+      <div><b>R</b><span>radius of the body (m)</span></div>
+      <div><b>r</b><span>distance from the centre (m)</span></div>
+      <div><b>ρ</b><span>density (kg·m⁻³)</span></div>
+      <div><b>g</b><span>gravitational field strength (N·kg⁻¹ = m·s⁻²)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Newton wrote <span class="fi">F = GMm/r²</span> for <em>point</em> masses. The Earth is not a point;
+    it is 6 371 km of rock spread over your head, under your feet and to every side. Why is it legitimate
+    to treat the whole thing as a single dot at the centre 6 371 km below you? That is the shell theorem,
+    and Newton reportedly sat on the <em>Principia</em> for years until he could prove it.
+  </p>
+
+  <p>
+    The interior result is the more surprising one, and there is a clean argument for it. Stand
+    somewhere inside a uniform shell and look out along a narrow double cone in opposite directions.
+    The cone cuts a small patch of shell at distance r₁ on one side and a larger patch at distance r₂
+    on the other. Patch area grows as the square of the distance, so the far patch has
+    <span class="fi">(r₂/r₁)²</span> times more mass — but its pull is weaker by exactly
+    <span class="fi">(r₁/r₂)²</span>. The two cancel <strong>precisely</strong>. Sweep the cone over
+    the whole shell and every direction cancels: net force zero. Notice that this cancellation only
+    works because the force exponent is exactly 2. With <span class="fi">1/r³</span> gravity you would
+    feel a net pull towards the nearest wall.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 300" role="img" aria-label="Graph of gravitational field strength g against distance r from the centre of a uniform sphere: g rises linearly from zero at the centre to its maximum at the surface r equals R, then falls off as one over r squared outside.">
+      <defs>
+        <marker id="f1-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-soft)"/>
+        </marker>
+      </defs>
+      <!-- axes -->
+      <line x1="70" y1="250" x2="614" y2="250" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#f1-ah)"/>
+      <line x1="70" y1="250" x2="70" y2="38" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#f1-ah)"/>
+      <!-- guides -->
+      <line x1="243.3" y1="250" x2="243.3" y2="60" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="5 5"/>
+      <line x1="70" y1="60" x2="243.3" y2="60" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="5 5"/>
+      <!-- inside: linear -->
+      <path d="M 70,250 L 243.3,60" fill="none" stroke="var(--v-field)" stroke-width="2.6"/>
+      <!-- outside: 1/r^2 -->
+      <path d="M 243.3,60 L 286.6,128.4 L 330.0,165.6 L 373.3,188.0 L 416.6,202.5 L 459.9,212.5 L 503.2,219.6 L 546.6,224.9 L 589.9,228.9"
+            fill="none" stroke="var(--v-field)" stroke-width="2.6"/>
+      <circle cx="243.3" cy="60" r="4.5" fill="var(--v-field)"/>
+      <!-- labels -->
+      <text x="60" y="65" text-anchor="end" font-size="13" fill="var(--ink-soft)">g₀</text>
+      <text x="243.3" y="270" text-anchor="middle" font-size="13" fill="var(--ink-soft)">R</text>
+      <text x="416.6" y="270" text-anchor="middle" font-size="13" fill="var(--ink-soft)">2R</text>
+      <text x="589.9" y="270" text-anchor="middle" font-size="13" fill="var(--ink-soft)">3R</text>
+      <text x="340" y="292" text-anchor="middle" font-size="13" fill="var(--ink-soft)">distance from the centre, r</text>
+      <text x="70" y="28" text-anchor="middle" font-size="13" fill="var(--ink-soft)">g</text>
+      <text x="100" y="222" font-size="13" fill="var(--ink)">inside: g ∝ r</text>
+      <text x="410" y="140" font-size="13" fill="var(--ink)">outside: g ∝ 1/r²</text>
+      <text x="252" y="48" font-size="12" fill="var(--ink-soft)">surface — g is maximal here</text>
+    </svg>
+    <figcaption>
+      Field strength of a <em>uniform</em> sphere. Inside, only the enclosed mass counts and it grows
+      as r³ while the 1/r² weakening only costs r², so g rises linearly. Outside, the whole mass acts
+      from the centre and g falls as 1/r². The peak is exactly at the surface. The real Earth is not
+      uniform — its iron core is far denser than the mantle — so its interior curve is not a straight
+      line and g actually keeps rising to about 10.7 m·s⁻² at the core–mantle boundary before falling
+      to zero at the centre.
+    </figcaption>
+  </figure>
+
+  <div class="callout">
+    <p class="callout__title">A tunnel through the Earth is a spring</p>
+    <p style="margin:0">
+      For a uniform sphere, <span class="fi">g = (GM/R³)·r</span> — a restoring force strictly
+      proportional to displacement. That is Hooke's law, so an object dropped into a frictionless
+      tunnel through the centre executes simple harmonic motion (note 07) with period
+      <span class="fi">T = 2π√(R³/GM) = 2π√(R/g₀) ≈ 84.4 min</span>. Remarkably, that is the
+      <em>same</em> number as the period of a satellite skimming the surface — the same
+      <span class="fi">√(R³/GM)</span> appears in both.
+    </p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap: "the shells above you pull you up"</p>
+    <p style="margin:0">
+      Going down a mine, students often reason that the rock now overhead pulls upward and reduces your
+      weight. The correct statement is stronger and simpler: the shell of matter outside your radius
+      exerts <strong>exactly zero</strong> net force — not a small upward one. Only <span class="fi">M<sub>enc</sub></span>
+      matters. Equally, at the exact centre of a planet g = 0, but U is at its <em>minimum</em> (most
+      negative), not zero.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>g at the surface — and why it is not constant</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Surface gravitational field g₀</dt>
+      <dd>The gravitational force per kilogram at the surface of a body — equivalently, the
+        acceleration of a freely falling object there, once rotation is ignored.</dd>
+      <dt>Effective (apparent) g</dt>
+      <dd>What a plumb line and a spring balance actually measure at a rotating planet: the true
+        gravitational field minus the centripetal requirement of co-rotating with the surface.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">g₀ = G M / R²</span>
+      <span class="fx__tag">non-rotating, spherically symmetric body</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">g(h) = g₀ · R² / (R+h)²</span><span class="fx__tag">altitude h above the surface, any h</span></div>
+      <div class="fx"><span class="fx__eq">g(h) ≈ g₀ (1 − 2h/R)</span><span class="fx__tag">first-order approximation, valid only for h ≪ R</span></div>
+      <div class="fx"><span class="fx__eq">g(d) = g₀ (1 − d/R)</span><span class="fx__tag">depth d below the surface, <em>uniform</em> density</span></div>
+      <div class="fx"><span class="fx__eq">g<sub>eff</sub> ≈ g₀ − ω²R cos²λ</span><span class="fx__tag">rotation correction along the local vertical, latitude λ</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>g₀</b><span>surface field strength (m·s⁻² or N·kg⁻¹)</span></div>
+      <div><b>M</b><span>mass of the planet (kg)</span></div>
+      <div><b>R</b><span>planetary radius (m)</span></div>
+      <div><b>h</b><span>altitude above the surface (m)</span></div>
+      <div><b>d</b><span>depth below the surface (m)</span></div>
+      <div><b>ω</b><span>rotation rate, 7.29×10⁻⁵ rad·s⁻¹ for Earth (rad·s⁻¹)</span></div>
+      <div><b>λ</b><span>latitude (deg or rad)</span></div>
+    </div>
+  </div>
+
+  <p>
+    The famous 9.8 m·s⁻² is not a constant of nature. It is a derived quantity — one particular mass
+    divided by one particular radius squared — and every term in it can change. Using
+    G = 6.67×10⁻¹¹, M<sub>E</sub> = 5.97×10²⁴ kg and R<sub>E</sub> = 6.37×10⁶ m:
+  </p>
+
+  <div class="fx"><span class="fx__eq">g₀ = (6.67×10⁻¹¹ × 5.97×10²⁴) / (6.37×10⁶)² = 3.98×10¹⁴ / 4.06×10¹³ = 9.81 m·s⁻²</span><span class="fx__tag">GM<sub>E</sub> = 3.98×10¹⁴ m³·s⁻² is worth memorising as one number</span></div>
+
+  <p>
+    Read <span class="fi">g₀ = GM/R²</span> backwards and it becomes a weighing machine for planets:
+    measure g and R at the surface, and M follows. That is the only practical way we know the mass of
+    the Earth, and it is why Cavendish's torsion-balance measurement of G was described at the time as
+    "weighing the world".
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 1 · g at the altitude of the ISS</h4>
+    <p style="margin:.2rem 0 .3rem">The International Space Station orbits at h ≈ 400 km. Find g there,
+      and express it as a fraction of the surface value.</p>
+    <ol>
+      <li>Convert altitude to radius: r = R + h = 6.37×10⁶ + 4.00×10⁵ = <b>6.77×10⁶ m</b>.</li>
+      <li>Use the ratio form so no constants are needed:
+        <span class="fi">g = g₀ (R/r)²</span>.</li>
+      <li><span class="fi">R/r = 6.37/6.77 = 0.9409</span>; squaring, <span class="fi">(R/r)² = 0.8853</span>.</li>
+      <li><span class="fi">g = 9.81 × 0.8853 = 8.68 m·s⁻²</span>.</li>
+      <li>Sanity check with the crude linear rule <span class="fi">1 − 2h/R = 1 − 800/6370 = 0.874</span>
+        — close to 0.885 but already 1 % off, because h/R = 0.063 is not really small.</li>
+    </ol>
+    <span class="wex__ans">g ≈ 8.68 m·s⁻² — about 89 % of the surface value</span>
+    <p style="margin:.6rem 0 0;font-size:.9rem;color:var(--ink-soft)">
+      Hold on to this number. It is the single fact that kills the phrase "zero gravity" (§10).
+    </p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Causes of variation in the measured value of g at Earth's surface</caption>
+      <thead>
+        <tr><th>Cause</th><th>Mechanism</th><th>Relation</th><th class="num">Size of effect</th><th>Sign</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Altitude</b></td>
+          <td>r increases, inverse-square weakens the field</td>
+          <td><span class="fi">g₀R²/(R+h)²</span></td>
+          <td class="num">−0.31 % per 10 km<br>−11 % at the ISS</td>
+          <td>always decreases</td>
+        </tr>
+        <tr>
+          <td><b>Depth</b> (uniform model)</td>
+          <td>Outer shells contribute nothing; M<sub>enc</sub> shrinks as r³</td>
+          <td><span class="fi">g₀ (1 − d/R)</span></td>
+          <td class="num">−0.16 % per 10 km</td>
+          <td>decreases linearly to 0 at the centre</td>
+        </tr>
+        <tr>
+          <td><b>Depth</b> (real Earth)</td>
+          <td>Dense iron core; the mantle you leave behind is lighter than average</td>
+          <td>numerical (PREM)</td>
+          <td class="num">rises to ≈10.7 m·s⁻²<br>at 2 900 km depth</td>
+          <td><em>increases</em> first, then falls to 0</td>
+        </tr>
+        <tr>
+          <td><b>Latitude — rotation</b></td>
+          <td>Part of the true gravity is spent supplying centripetal acceleration ω²R cos²λ</td>
+          <td><span class="fi">−ω²R cos²λ</span></td>
+          <td class="num">−0.034 m·s⁻² at the equator<br>0 at the poles</td>
+          <td>reduces apparent weight most at the equator</td>
+        </tr>
+        <tr>
+          <td><b>Latitude — oblateness</b></td>
+          <td>Rotation has bulged the planet; the equator is ~21 km further from the centre</td>
+          <td><span class="fi">g ∝ 1/R²</span>, largely offset by the extra mass in the bulge</td>
+          <td class="num">−0.018 m·s⁻² net at the equator<br>(bare 1/R² would give −0.066)</td>
+          <td>reduces g at the equator</td>
+        </tr>
+        <tr>
+          <td><b>Net latitude effect</b></td>
+          <td>The two above, combined</td>
+          <td>—</td>
+          <td class="num">9.780 (equator) → 9.832 (pole)<br>a 0.53 % spread</td>
+          <td>you weigh ~0.4 % more in Helsinki (60° N) than in Singapore</td>
+        </tr>
+        <tr>
+          <td><b>Local geology</b></td>
+          <td>Ore bodies, salt domes, mountains — a broken spherical symmetry</td>
+          <td>survey data</td>
+          <td class="num">~10⁻⁵ m·s⁻² (mGal scale)</td>
+          <td>either — this is what gravimetric prospecting maps</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap: the rotation term is <em>not</em> "a centrifugal force pushing you off"</p>
+    <p style="margin:0">
+      In an inertial frame there is no outward force. What happens is that a person standing on the
+      equator is moving in a circle of radius R once per day, so a slice of the true gravitational pull
+      (magnitude <span class="fi">ω²R = 0.034 m·s⁻²</span>) is <em>consumed</em> as the net centripetal
+      force and is therefore not available to press them onto the scale. The scale reads the remainder.
+      That is why the effect is largest at the equator (full circle of radius R) and vanishes at the
+      poles (radius zero), and why it goes as cos²λ rather than cosλ: one cosine for the smaller
+      circle radius R cosλ, one for taking the component along the local vertical.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">
+      "Going up" and "going down" are <strong>not</strong> symmetric. Rising 10 km costs you
+      <span class="fi">2h/R</span> ≈ 0.31 % of g; descending 10 km (uniform model) costs
+      <span class="fi">d/R</span> ≈ 0.16 % — exactly <b>half</b> the rate, because outside you fight
+      the square while inside you gain enclosed mass. Any question offering "the same" as an option is
+      testing this.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>The gravitational field: force per unit mass</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Gravitational field <b>g</b></dt>
+      <dd>The gravitational force per unit mass that a source would exert on a small test mass placed
+        at a point — a vector property of the <em>point in space</em>, independent of whether anything
+        is there to feel it.</dd>
+      <dt>Gravitational potential V</dt>
+      <dd>The gravitational potential energy per unit mass at a point — a scalar, so fields from several
+        sources can be added arithmetically rather than as vectors.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq"><b>g</b> = <b>F</b>/m = G M / r²  (directed towards M)</span>
+      <span class="fx__tag">definition; the test mass m cancels out</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">V = U/m = − G M / r</span><span class="fx__tag">scalar potential, zero at infinity</span></div>
+      <div class="fx"><span class="fx__eq"><b>g</b><sub>net</sub> = Σ <b>g</b><sub>i</sub>   and   V<sub>net</sub> = Σ V<sub>i</sub></span><span class="fx__tag">superposition — vectors for g, plain sum for V</span></div>
+      <div class="fx"><span class="fx__eq">g = − dV/dr</span><span class="fx__tag">the field is the (negative) slope of the potential</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>g</b><span>field strength (N·kg⁻¹, identical to m·s⁻²)</span></div>
+      <div><b>V</b><span>gravitational potential (J·kg⁻¹)</span></div>
+      <div><b>U</b><span>potential energy of mass m in the field (J)</span></div>
+      <div><b>M</b><span>source mass (kg)</span></div>
+      <div><b>r</b><span>distance from the source centre (m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Dividing out the test mass is not bookkeeping; it changes what the object is. <b>F</b> requires two
+    masses and describes an interaction. <b>g</b> requires one mass and describes a <em>condition of
+    space</em>: the Earth writes a field everywhere, and whatever you later drop into it experiences
+    <span class="fi">F = mg</span>. This is the reason <b>g</b> has two apparently different units.
+    N·kg⁻¹ is the field reading; m·s⁻² is what that field does to something free to move. They are
+    dimensionally identical (<span class="fi">1 N = 1 kg·m·s⁻²</span>), and the numerical coincidence
+    "field strength = free-fall acceleration" is exactly the statement that
+    <strong>gravitational mass equals inertial mass</strong> — the equivalence principle, and the
+    reason a feather and a hammer fall together on the Moon.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 2 · superposition: where does the Earth–Moon field vanish?</h4>
+    <p style="margin:.2rem 0 .3rem">On the line joining Earth and Moon, find the point where the two
+      fields cancel. Take M<sub>E</sub> = 5.97×10²⁴ kg, M<sub>M</sub> = 7.35×10²² kg,
+      d = 3.84×10⁸ m between the centres.</p>
+    <ol>
+      <li>Let x be the distance from Earth's centre. The fields point in opposite directions there, so
+        set the magnitudes equal: <span class="fi">GM<sub>E</sub>/x² = GM<sub>M</sub>/(d−x)²</span>.</li>
+      <li>G cancels. Take the square root of both sides:
+        <span class="fi">√M<sub>E</sub>/x = √M<sub>M</sub>/(d−x)</span>, so
+        <span class="fi">(d−x)/x = √(M<sub>M</sub>/M<sub>E</sub>)</span>.</li>
+      <li><span class="fi">M<sub>M</sub>/M<sub>E</sub> = 7.35×10²²/5.97×10²⁴ = 0.01231</span>;
+        <span class="fi">√0.01231 = 0.1110</span>.</li>
+      <li><span class="fi">d/x = 1.1110</span>, so
+        <span class="fi">x = 3.84×10⁸ / 1.1110 = 3.46×10⁸ m</span>.</li>
+      <li>That is 90 % of the way to the Moon — only 3.8×10⁴ km from the Moon's <em>centre</em>
+        (3.7×10⁴ km above its surface). The Moon is 81
+        times lighter, and √81 = 9, so the null point sits 9 times closer to it.</li>
+    </ol>
+    <span class="wex__ans">x ≈ 3.46×10⁸ m from Earth's centre (90 % of the Earth–Moon distance)</span>
+    <p style="margin:.6rem 0 0;font-size:.9rem;color:var(--ink-soft)">
+      Note this is <em>not</em> the L1 Lagrange point (≈3.26×10⁸ m). L1 is where the fields plus the
+      rotating-frame term balance for a body <em>co-orbiting</em> with the Moon; here we only balanced
+      the two static fields.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · when to use V instead of g</p>
+    <p style="margin:0">
+      <b>g</b> is a vector: combining three sources means resolving components. V is a scalar: you just
+      add signed numbers, and every term is negative. If a question asks for <em>energy</em>, <em>work
+      done</em> or <em>escape speed</em> in a multi-body situation, go through V and never touch a
+      component. A useful corollary: at the null point of Worked example 2 the field is zero but the
+      potential is decidedly <strong>not</strong> zero — it is a maximum along that line
+      (V ≈ −1.28×10⁶ J·kg⁻¹). Zero field never implies zero potential energy.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Potential energy: the minus sign and the 1/r</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Gravitational potential energy U</dt>
+      <dd>The work an external agent must do to bring the two masses from infinite separation to a
+        separation r, moving them quasi-statically — a property of the <em>pair</em>, not of either
+        body alone.</dd>
+      <dt>Reference (zero) point</dt>
+      <dd>The separation at which U is defined to be zero. For the 1/r law the only convenient choice
+        is r → ∞, where the interaction genuinely vanishes.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">U = − G M m / r</span>
+      <span class="fx__tag">U → 0 as r → ∞; valid at all r outside the bodies</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ΔU = U₂ − U₁ = GMm (1/r₁ − 1/r₂)</span><span class="fx__tag">the only physically meaningful quantity</span></div>
+      <div class="fx"><span class="fx__eq">ΔU = mgh · R/(R+h) ≈ mgh</span><span class="fx__tag">near-surface limit, h ≪ R</span></div>
+      <div class="fx"><span class="fx__eq">F = − dU/dr = − d(−GMm/r)/dr = − GMm/r²</span><span class="fx__tag">force is the negative slope of U; the minus means "attractive"</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>U</b><span>gravitational potential energy of the pair (J)</span></div>
+      <div><b>ΔU</b><span>change in potential energy (J)</span></div>
+      <div><b>h</b><span>height risen near the surface (m)</span></div>
+      <div><b>g</b><span>local surface field, 9.81 m·s⁻² (m·s⁻²)</span></div>
+      <div><b>r</b><span>centre-to-centre separation (m)</span></div>
+    </div>
+  </div>
+
+  <h3>Why the exponent drops from 2 to 1</h3>
+  <p>
+    Energy is force integrated over distance, and integrating a power always raises its exponent by one
+    — here, <span class="fi">∫ r⁻² dr = −r⁻¹</span>. So a 1/r² force <em>must</em> give a 1/r energy.
+    This is not an extra fact to memorise; it is the same fact seen through an integral sign. It also
+    tells you which one dies away faster: at ten Earth radii the <em>force</em> has fallen to 1 % of
+    its surface value, but <span class="fi">|U|</span> is still 10 % — which is why you can be almost
+    weightless and still very deeply bound.
+  </p>
+
+  <h3>Why the sign is negative</h3>
+  <p>
+    Set the zero at infinity, where two masses do not interact at all. Now let them approach. Gravity
+    pulls them together, so gravity does <strong>positive</strong> work, and the potential energy of
+    the pair must therefore <strong>fall below its starting value of zero</strong>. Every finite
+    separation is a negative number. Equivalently: to separate them again you must <em>supply</em>
+    energy, so any bound configuration sits in a hole. The minus sign is not a convention you could
+    flip — given U(∞) = 0 and an attractive force, it is forced.
+  </p>
+
+  <h3>Why the reference is at infinity</h3>
+  <p>
+    Only <span class="fi">ΔU</span> is measurable, so the zero is ours to choose. But
+    <span class="fi">U = −GMm/r</span> diverges to −∞ at r = 0, so "zero at the centre" is unusable,
+    and "zero at the surface" would force a different formula for every planet. Infinity is the one
+    place where the physics itself says "nothing is happening here", so it gives a single universal
+    formula and makes the sign of U immediately meaningful:
+    <b>U &lt; 0 ⟹ bound; U + K &lt; 0 ⟹ cannot escape; E ≥ 0 ⟹ free</b>.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 320" role="img" aria-label="Energy diagram: the gravitational potential energy curve U equals minus GMm over r rises towards zero as r increases; at the orbital radius the total energy E is negative and equal to half of U, with kinetic energy filling the gap between U and E, and the remaining gap up to zero being the energy needed to escape.">
+      <defs>
+        <marker id="f2-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-soft)"/>
+        </marker>
+        <marker id="f2-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-vel)"/>
+        </marker>
+        <marker id="f2-amb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-accel)"/>
+        </marker>
+      </defs>
+      <!-- axes -->
+      <line x1="70" y1="70" x2="614" y2="70" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#f2-ah)"/>
+      <line x1="70" y1="300" x2="70" y2="42" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#f2-ah)"/>
+      <text x="612" y="60" text-anchor="end" font-size="12" fill="var(--ink-soft)">r → ∞</text>
+      <text x="78" y="62" font-size="12" fill="var(--ink-soft)">energy = 0</text>
+      <text x="70" y="34" text-anchor="middle" font-size="13" fill="var(--ink-soft)">E</text>
+      <text x="340" y="314" text-anchor="middle" font-size="13" fill="var(--ink-soft)">separation r</text>
+      <!-- U curve -->
+      <path d="M 150,275.7 L 160,250.0 L 170,230.0 L 180,214.0 L 190,200.9 L 205,185.2 L 220,172.9 L 240,160.0 L 260,150.0 L 280,142.0 L 300,135.5 L 330,127.6 L 360,121.4 L 400,115.0 L 450,108.9 L 500,104.3 L 550,100.6 L 580,98.8"
+            fill="none" stroke="var(--v-field)" stroke-width="2.6"/>
+      <text x="470" y="132" font-size="13" fill="var(--v-field)">U = − GMm / r</text>
+      <!-- r0 marker -->
+      <line x1="260" y1="150" x2="260" y2="278" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="5 5"/>
+      <text x="260" y="294" text-anchor="middle" font-size="13" fill="var(--ink-soft)">r₀ (orbit radius)</text>
+      <circle cx="260" cy="150" r="4.5" fill="var(--v-field)"/>
+      <!-- E level -->
+      <line x1="205" y1="110" x2="400" y2="110" stroke="var(--v-energy)" stroke-width="2" stroke-dasharray="7 4"/>
+      <text x="408" y="114" font-size="13" fill="var(--v-energy)">E = − GMm / 2r₀  (bound)</text>
+      <!-- K bracket -->
+      <line x1="238" y1="150" x2="238" y2="114" stroke="var(--v-vel)" stroke-width="2.4" marker-end="url(#f2-teal)"/>
+      <text x="230" y="136" text-anchor="end" font-size="12" fill="var(--v-vel)">K = +GMm/2r₀</text>
+      <!-- escape gap -->
+      <line x1="290" y1="110" x2="290" y2="74" stroke="var(--v-accel)" stroke-width="2.4" marker-end="url(#f2-amb)"/>
+      <text x="298" y="92" font-size="12" fill="var(--v-accel)">|E| = energy still needed to escape</text>
+      <text x="152" y="296" text-anchor="middle" font-size="12" fill="var(--ink-soft)">deep in the well</text>
+    </svg>
+    <figcaption>
+      The gravitational energy well. The curve is U(r); the flat dashed line is the total energy E of a
+      body in a circular orbit of radius r₀. The vertical gap below E is kinetic energy, the gap above
+      it is the extra energy the body still needs to reach r = ∞ with nothing left over. Because E is
+      negative the body is <em>bound</em>; the moment E reaches zero it is free. Note that for a
+      circular orbit K is exactly half of |U|, so E = U/2 = −K.
+    </figcaption>
+  </figure>
+
+  <h3>How mgh falls out of it</h3>
+  <p>
+    Raise a mass from R to R + h:
+  </p>
+  <div class="fx"><span class="fx__eq">ΔU = GMm(1/R − 1/(R+h)) = GMm·h / [R(R+h)] = (GMm/R²) · h · R/(R+h) = mgh · R/(R+h)</span><span class="fx__tag">exact</span></div>
+  <p>
+    The factor <span class="fi">R/(R+h)</span> is the entire difference between the "school" formula and
+    the exact one, and it tends to 1 when h ≪ R. Conceptually, mgh assumes the field does not weaken as
+    you climb — true for a staircase, false for a rocket.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 3 · how wrong is mgh on Everest?</h4>
+    <p style="margin:.2rem 0 .3rem">A 70 kg climber ascends from sea level to 8 850 m. Compare mgh with
+      the exact ΔU. Take g = 9.81 m·s⁻², R = 6.37×10⁶ m.</p>
+    <ol>
+      <li>Approximate: <span class="fi">mgh = 70 × 9.81 × 8 850 = 6.077×10⁶ J</span>.</li>
+      <li>Correction factor: <span class="fi">R/(R+h) = 6.370×10⁶ / 6.3789×10⁶ = 0.99861</span>.</li>
+      <li>Exact: <span class="fi">ΔU = 6.077×10⁶ × 0.99861 = 6.069×10⁶ J</span>.</li>
+      <li>Overestimate = 8.4×10³ J, i.e. <span class="fi">0.14 %</span> — the same order as the 0.10 %
+        you introduce by writing g = 9.8 instead of 9.81, and utterly swamped by the ~80 % of metabolic
+        energy that is lost as heat.</li>
+      <li>By contrast, at the ISS (h = 400 km) the factor is R/(R+h) = 0.941, so mgh would be 6 % wrong
+        — and the naive mgh answer for lifting to <em>infinity</em> would be infinite instead of the
+        correct GMm/R.</li>
+    </ol>
+    <span class="wex__ans">mgh = 6.08 MJ; exact = 6.07 MJ; error 0.14 %</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap: "U is bigger closer in, because gravity is stronger"</p>
+    <p style="margin:0">
+      No. As r decreases, U becomes <strong>more negative</strong>, i.e. <em>smaller</em>. Falling
+      towards a planet <em>loses</em> potential energy and gains kinetic energy, exactly as at ground
+      level. The confusion comes from comparing magnitudes instead of signed values: |U| grows, U
+      shrinks. In an exam, "which point has the greatest potential energy?" means the least negative
+      one — the point <b>furthest</b> from the mass.
+    </p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Comparison of gravitational force, field, potential energy and potential</caption>
+      <thead>
+        <tr><th>Quantity</th><th>Symbol</th><th>Formula</th><th>Scalar / vector</th><th class="num">SI unit</th><th>Falls off as</th><th>Sign</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Force</td><td>F</td><td><span class="fi">GMm/r²</span></td><td>vector</td><td class="num">N</td><td>1/r²</td><td>always attractive</td></tr>
+        <tr><td>Field strength</td><td>g</td><td><span class="fi">GM/r²</span></td><td>vector</td><td class="num">N·kg⁻¹ = m·s⁻²</td><td>1/r²</td><td>points towards M</td></tr>
+        <tr><td>Potential energy</td><td>U</td><td><span class="fi">−GMm/r</span></td><td>scalar</td><td class="num">J</td><td>1/r</td><td>always negative</td></tr>
+        <tr><td>Potential</td><td>V</td><td><span class="fi">−GM/r</span></td><td>scalar</td><td class="num">J·kg⁻¹</td><td>1/r</td><td>always negative</td></tr>
+        <tr><td>Tidal (differential) field</td><td>Δg</td><td><span class="fi">2GMd/r³</span></td><td>vector</td><td class="num">m·s⁻²</td><td>1/r³</td><td>stretch along the line, squeeze across it</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.9rem;color:var(--ink-soft)">
+    Each of the top two rows is the derivative with respect to r of the row two <em>below</em> it (up to
+    sign): V → g and U → F, and differentiating g once more gives the tidal field. Each differentiation adds one power
+    of 1/r. That single pattern relates every gravitational quantity on this page.
+  </p>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Escape speed</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Escape speed</dt>
+      <dd>The minimum launch speed at which a projectile, given no further propulsion and meeting no
+        resistance, will never fall back — arriving at infinite distance with exactly zero speed left.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v<sub>esc</sub> = √(2 G M / R) = √(2 g₀ R)</span>
+      <span class="fx__tag">from the surface of a body of mass M, radius R; no atmosphere, no thrust</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">½ m v² − GMm/R = 0</span><span class="fx__tag">the defining condition: total energy exactly zero</span></div>
+      <div class="fx"><span class="fx__eq">v<sub>esc</sub> = √2 · v<sub>circ</sub></span><span class="fx__tag">at the same radius — always a factor of 1.414</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v<sub>esc</sub></b><span>escape speed (m·s⁻¹)</span></div>
+      <div><b>v<sub>circ</sub></b><span>circular-orbit speed at the same radius (m·s⁻¹)</span></div>
+      <div><b>M</b><span>mass of the body escaped from (kg)</span></div>
+      <div><b>R</b><span>launch radius from the centre (m)</span></div>
+      <div><b>g₀</b><span>field strength at that radius (m·s⁻²)</span></div>
+    </div>
+  </div>
+
+  <p>
+    The derivation is one line of energy conservation. "Just barely escapes" means arriving at r = ∞
+    with v = 0, and both terms of the energy are zero there, so the total energy must have been zero at
+    launch too: <span class="fi">½mv² + (−GMm/R) = 0</span>, giving
+    <span class="fi">v = √(2GM/R)</span>.
+  </p>
+
+  <p>
+    <strong>The escaping mass m appears in both terms and cancels.</strong> Kinetic energy is
+    proportional to m; potential energy is proportional to m; the condition that they sum to zero is
+    therefore a statement about speed alone. A bacterium, a person and a battleship all need
+    11.2 km·s⁻¹ from Earth's surface. (What differs enormously is the <em>energy</em> —
+    <span class="fi">½mv²</span> — which is why launching a battleship is not a realistic proposition.)
+    This is the same cancellation that makes all objects fall at the same rate: gravitational effects
+    on a body's motion never depend on its own mass.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 4 · escape speed from Earth and from the Moon</h4>
+    <ol>
+      <li><b>Earth.</b> <span class="fi">v = √(2GM/R) = √(2 × 3.98×10¹⁴ / 6.37×10⁶)</span>.</li>
+      <li>Inside the root: <span class="fi">7.96×10¹⁴ / 6.37×10⁶ = 1.250×10⁸ m²·s⁻²</span>.</li>
+      <li><span class="fi">v = √(1.250×10⁸) = 1.118×10⁴ m·s⁻¹ = 11.2 km·s⁻¹</span>.</li>
+      <li>Cross-check with <span class="fi">√(2g₀R) = √(2 × 9.81 × 6.37×10⁶) = √(1.250×10⁸)</span> —
+        identical, as it must be.</li>
+      <li><b>Moon.</b> M = 7.35×10²² kg, R = 1.74×10⁶ m.
+        <span class="fi">2GM/R = 2 × 6.67×10⁻¹¹ × 7.35×10²² / 1.74×10⁶ = 5.64×10⁶</span>;
+        <span class="fi">v = 2.37 km·s⁻¹</span> — under a quarter of Earth's, which is why the lunar
+        module could take off on a single small engine, and why the Moon has no atmosphere: at 300 K
+        the faster tail of any gas distribution exceeds 2.4 km·s⁻¹ and leaks away over geological time.</li>
+    </ol>
+    <span class="wex__ans">Earth: 11.2 km·s⁻¹ · Moon: 2.37 km·s⁻¹</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three traps in one formula</p>
+    <p style="margin:0 0 .4rem">
+      <b>① "Escape velocity" is a speed.</b> Ignoring air and terrain, the launch <em>direction</em> is
+      irrelevant — energy is a scalar. Straight up, at 45°, sideways: same threshold.
+    </p>
+    <p style="margin:0 0 .4rem">
+      <b>② It does not mean "leaving Earth's gravity".</b> The field <span class="fi">GM/r²</span> is
+      never zero at any finite r. Escape means never returning, not reaching a boundary. A rocket that
+      keeps thrusting can leave at 1 m·s⁻¹ if it likes; escape speed only applies to unpowered
+      projectiles.
+    </p>
+    <p style="margin:0">
+      <b>③ Escape from Earth ≠ escape from the Solar System.</b> Leaving the Sun's well from Earth's
+      orbit requires <span class="fi">√(2GM<sub>☉</sub>/a) = 42.1 km·s⁻¹</span>; happily, Earth already
+      carries you at 29.8 km·s⁻¹, so probes launch in the direction of Earth's motion.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the √2 relation</p>
+    <p style="margin:0">
+      At any given radius, <span class="fi">v<sub>esc</sub> = √2 × v<sub>circ</sub></span>. From a
+      surface-grazing orbit, v<sub>circ</sub> = 7.90 km·s⁻¹ and 7.90 × 1.414 = 11.2 km·s⁻¹ ✓. This lets
+      you convert between the two in one step, and it also says that a satellite in circular orbit needs
+      its kinetic energy <em>doubled</em> (speed × √2, so K × 2) to escape from where it is.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Circular orbits and the geostationary ring</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Circular orbit</dt>
+      <dd>Free fall in which gravity is exactly the centripetal force required to bend the path into a
+        circle of that radius — the satellite is falling continuously and continuously missing.</dd>
+      <dt>Geostationary orbit</dt>
+      <dd>The one circular orbit whose period equals Earth's sidereal rotation period, lying in the
+        equatorial plane and running prograde, so the satellite appears fixed in the sky.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">G M m / r² = m v² / r  ⟹  v = √(G M / r)</span>
+      <span class="fx__tag">circular orbit only; m cancels — orbits do not care about the satellite's mass</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">T = 2π r / v = 2π √(r³ / G M)</span><span class="fx__tag">period of a circular orbit</span></div>
+      <div class="fx"><span class="fx__eq">r = ∛( G M T² / 4π² )</span><span class="fx__tag">inverted, for "find the radius given the period"</span></div>
+      <div class="fx"><span class="fx__eq">T<sub>geo</sub> = 23 h 56 min 4 s = 86 164 s</span><span class="fx__tag">sidereal day, not 86 400 s</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v</b><span>orbital speed (m·s⁻¹)</span></div>
+      <div><b>T</b><span>orbital period (s)</span></div>
+      <div><b>r</b><span>orbital radius from the centre (m)</span></div>
+      <div><b>M</b><span>mass of the central body (kg)</span></div>
+      <div><b>m</b><span>satellite mass (kg) — cancels out</span></div>
+    </div>
+  </div>
+
+  <p>
+    Everything about circular orbits comes from equating two things you already know: the gravitational
+    force <span class="fi">GMm/r²</span> and the centripetal requirement <span class="fi">mv²/r</span>.
+    The satellite mass cancels immediately, which is why a bolt and a space station released together
+    stay side by side. What is left is a rigid link between radius, speed and period: <b>choose any one
+    and the other two are fixed</b>. There is no such thing as "a satellite in a 400 km orbit going
+    slowly".
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 5 · the geostationary orbit, from scratch</h4>
+    <p style="margin:.2rem 0 .3rem">Find the radius, altitude and speed of a geostationary satellite.
+      GM<sub>E</sub> = 3.98×10¹⁴ m³·s⁻², R<sub>E</sub> = 6.37×10⁶ m.</p>
+    <ol>
+      <li><b>Use the sidereal day, not the solar day.</b> The satellite must match Earth's rotation
+        relative to the fixed stars: T = 23 h 56 min 4 s = 86 164 s. (Using the 86 400 s solar day
+        inflates r by ~77 km, since Δr/r = ⅔·ΔT/T — small, but the reasoning is the point.)</li>
+      <li><span class="fi">T² = (8.6164×10⁴)² = 7.424×10⁹ s²</span>.</li>
+      <li><span class="fi">r³ = GMT²/4π² = (3.98×10¹⁴ × 7.424×10⁹)/39.48 = 2.955×10²⁴/39.48 = 7.485×10²² m³</span>.</li>
+      <li><span class="fi">r = (74.85×10²¹)<sup>1/3</sup> = 4.21×10⁷ m</span> (since 4.21³ = 74.6, 4.22³ = 75.2).</li>
+      <li>Altitude: <span class="fi">h = 4.21×10⁷ − 0.637×10⁷ = 3.58×10⁷ m ≈ 35 800 km</span> — about
+        5.6 Earth radii up, roughly a tenth of the way to the Moon.</li>
+      <li>Speed: <span class="fi">v = 2πr/T = (6.283 × 4.21×10⁷)/86 164 = 3.07×10³ m·s⁻¹</span>.</li>
+    </ol>
+    <span class="wex__ans">r = 4.21×10⁷ m · h ≈ 35 800 km · v = 3.07 km·s⁻¹</span>
+    <p style="margin:.6rem 0 0;font-size:.9rem;color:var(--ink-soft)">
+      <b>Informatics footnote:</b> 35 800 km up and back is 71 600 km of vacuum, so one hop through a
+      geostationary satellite costs <span class="fi">7.16×10⁷/3.00×10⁸ = 0.24 s</span> of pure
+      light-speed delay, and a request-plus-reply costs ≈0.48 s. No amount of bandwidth removes it. That
+      is precisely why low-Earth-orbit constellations exist — at 550 km the same delay is ~4 ms.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · three conditions, not one</p>
+    <p style="margin:0">
+      A geostationary orbit must be <b>(1)</b> at r = 4.21×10⁷ m, <b>(2)</b> in the equatorial plane and
+      <b>(3)</b> prograde and circular. Miss any one and the satellite is merely
+      <em>geosynchronous</em> — it returns to the same place once a day but wanders in between, tracing
+      a figure-of-eight (an "analemma") if it is inclined. There is exactly one geostationary ring, and
+      it is a scarce, internationally allocated resource.
+    </p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Comparison of orbits around Earth</caption>
+      <thead>
+        <tr><th>Orbit</th><th class="num">Radius r</th><th class="num">Altitude</th><th class="num">Speed v</th><th class="num">Period T</th><th class="num">g at that radius</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Surface-grazing (ideal)</td><td class="num">6.37×10⁶ m</td><td class="num">0</td><td class="num">7.90 km·s⁻¹</td><td class="num">84.4 min</td><td class="num">9.81 m·s⁻²</td></tr>
+        <tr><td>ISS / low Earth orbit</td><td class="num">6.77×10⁶ m</td><td class="num">400 km</td><td class="num">7.67 km·s⁻¹</td><td class="num">92 min</td><td class="num">8.68 m·s⁻²</td></tr>
+        <tr><td>GPS constellation</td><td class="num">2.66×10⁷ m</td><td class="num">20 200 km</td><td class="num">3.87 km·s⁻¹</td><td class="num">11.97 h</td><td class="num">0.56 m·s⁻²</td></tr>
+        <tr><td><b>Geostationary</b></td><td class="num">4.21×10⁷ m</td><td class="num">35 800 km</td><td class="num">3.07 km·s⁻¹</td><td class="num">23.93 h</td><td class="num">0.22 m·s⁻²</td></tr>
+        <tr><td>The Moon</td><td class="num">3.84×10⁸ m</td><td class="num">—</td><td class="num">1.02 km·s⁻¹</td><td class="num">27.3 d</td><td class="num">0.0027 m·s⁻²</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.9rem;color:var(--ink-soft)">
+    Read the table down the columns: as r rises 60-fold, v falls by √60 ≈ 7.7 and T rises by
+    60<sup>3/2</sup> ≈ 465. Every entry obeys <span class="fi">v ∝ r<sup>−1/2</sup></span> and
+    <span class="fi">T ∝ r<sup>3/2</sup></span>. Note the Moon obeys exactly the same law as a
+    human-made satellite — there is nothing special about it.
+  </p>
+
+  <div class="callout">
+    <p class="callout__title">Relativity peeks in — and it matters for GPS</p>
+    <p style="margin:0">
+      GPS satellites sit high in a shallower part of the well, so their clocks run <em>fast</em> by
+      about 45 μs per day (gravitational time dilation); their 3.87 km·s⁻¹ speed makes them run
+      <em>slow</em> by about 7 μs per day (special relativity). The net +38 μs·day⁻¹ is corrected in the
+      satellite clock's design frequency. Uncorrected, position errors would accumulate at roughly
+      11 km per day. Beyond the syllabus, but it is the cleanest everyday proof that gravitational
+      potential is physically real.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Orbital energy and the satellite paradox</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Total mechanical energy of an orbit</dt>
+      <dd>The sum of the satellite's kinetic energy and the pair's gravitational potential energy — a
+        constant of the motion, and negative for every bound orbit.</dd>
+      <dt>Bound vs unbound</dt>
+      <dd>E &lt; 0 is an ellipse (a circle is the special case), E = 0 is a parabola (the escape
+        threshold), E &gt; 0 is a hyperbola (a fly-by that never returns).</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">E = K + U = ½ m v² − GMm/r = − G M m / 2r</span>
+      <span class="fx__tag">circular orbit of radius r; for an ellipse replace r by the semi-major axis a</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">K = + GMm/2r,  U = − GMm/r</span><span class="fx__tag">so U = −2K and E = −K = U/2 (the virial theorem)</span></div>
+      <div class="fx"><span class="fx__eq">ΔE to move from r₁ to r₂ = (GMm/2)(1/r₁ − 1/r₂)</span><span class="fx__tag">positive when r₂ &gt; r₁ — climbing costs energy</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>E</b><span>total mechanical energy (J)</span></div>
+      <div><b>K</b><span>kinetic energy (J)</span></div>
+      <div><b>U</b><span>gravitational potential energy (J)</span></div>
+      <div><b>a</b><span>semi-major axis of an elliptical orbit (m)</span></div>
+      <div><b>m</b><span>satellite mass (kg)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Substitute the orbit condition <span class="fi">v² = GM/r</span> into the kinetic energy:
+    <span class="fi">K = ½m(GM/r) = GMm/2r</span>. Add <span class="fi">U = −GMm/r</span> and the
+    potential energy wins by a factor of two:
+  </p>
+  <div class="fx"><span class="fx__eq">E = GMm/2r − GMm/r = − GMm/2r</span><span class="fx__tag">negative ⟹ bound, always</span></div>
+
+  <p>
+    Three consequences are worth stating explicitly. <b>(i)</b> E is negative, so the satellite is
+    trapped; it becomes free exactly when E reaches zero, which reproduces §6. <b>(ii)</b>
+    <span class="fi">|E| = K</span>: the energy still needed to escape from a circular orbit equals the
+    kinetic energy the satellite already has — hence the √2 speed factor. <b>(iii)</b> A <em>smaller</em>
+    r means a <em>more negative</em> E, i.e. <strong>less total energy</strong>. Low orbits are the low
+    ones energetically as well as geometrically.
+  </p>
+
+  <h3>The paradox: drag makes a satellite speed up</h3>
+  <p>
+    A satellite in low Earth orbit brushes the residual atmosphere. Drag removes mechanical energy, so
+    E becomes more negative, so r shrinks — and since <span class="fi">v = √(GM/r)</span>, the satellite
+    <strong>gets faster</strong>. Friction accelerates it. This is genuinely counter-intuitive and is
+    examined regularly.
+  </p>
+  <p>
+    The bookkeeping resolves it. As r falls by a small amount, K rises by
+    <span class="fi">GMm/2r² · |Δr|</span> while U falls by <span class="fi">GMm/r² · |Δr|</span> —
+    exactly twice as much. U changes twice as fast as K, so the total still decreases even though the
+    speed increases. Drag has taken energy out of the system; gravity has converted more than that
+    amount of potential energy into kinetic. The general statement is the <b>virial theorem</b>: for an
+    inverse-square force, <span class="fi">U = −2K</span> at all times in a circular orbit, so E always
+    follows U rather than K.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap: "fire the engine forwards to catch the target ahead of you"</p>
+    <p style="margin:0">
+      Thrusting prograde adds energy, raising the orbit — and a higher orbit is <em>slower</em> and has
+      a <em>longer</em> period, so you fall further behind. To catch something ahead of you in the same
+      orbit you must brake, drop to a lower and faster orbit, get ahead, then climb back. In orbital
+      mechanics "speed up to go faster" is false; the working intuition is
+      <b>lower = faster, higher = slower, and radius is set by energy</b>.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · sign audit</p>
+    <p style="margin:0">
+      For a bound circular orbit at radius r: <b>U = −GMm/r</b> (negative, largest magnitude),
+      <b>K = +GMm/2r</b> (positive, half the magnitude of U), <b>E = −GMm/2r</b> (negative, equal to
+      −K). Options offering <span class="fi">−GMm/r</span> or <span class="fi">+GMm/2r</span> for the
+      total energy are the standard distractors: the first is U alone, the second is K alone.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Kepler's three laws</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Kepler's first law (orbits)</dt>
+      <dd>Every planetary orbit is an ellipse with the Sun at <em>one focus</em> — not at the centre,
+        and there is nothing at the other focus.</dd>
+      <dt>Kepler's second law (areas)</dt>
+      <dd>The line from the Sun to the planet sweeps out equal areas in equal times.</dd>
+      <dt>Kepler's third law (periods)</dt>
+      <dd>The square of the orbital period is proportional to the cube of the semi-major axis, with a
+        constant that depends only on the central mass.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">T² = ( 4π² / G M ) · a³</span>
+      <span class="fx__tag">M is the central mass; strictly M + m, negligible when m ≪ M</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">dA/dt = L / 2m = constant</span><span class="fx__tag">second law = conservation of angular momentum</span></div>
+      <div class="fx"><span class="fx__eq">r<sub>p</sub> v<sub>p</sub> = r<sub>a</sub> v<sub>a</sub></span><span class="fx__tag">perihelion ↔ aphelion only, where v ⟂ r</span></div>
+      <div class="fx"><span class="fx__eq">r<sub>p</sub> = a(1−e),  r<sub>a</sub> = a(1+e)</span><span class="fx__tag">e = eccentricity, 0 ≤ e &lt; 1 for an ellipse</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>T</b><span>orbital period (s)</span></div>
+      <div><b>a</b><span>semi-major axis (m)</span></div>
+      <div><b>e</b><span>eccentricity (dimensionless)</span></div>
+      <div><b>L</b><span>angular momentum, m·v·r·sinθ (kg·m²·s⁻¹)</span></div>
+      <div><b>A</b><span>area swept by the radius vector (m²)</span></div>
+      <div><b>r<sub>p</sub>, r<sub>a</sub></b><span>perihelion / aphelion distance (m)</span></div>
+    </div>
+  </div>
+
+  <h3>Deriving the third law from gravitation</h3>
+  <p>
+    Kepler found <span class="fi">T² ∝ a³</span> empirically in 1619 by fitting Tycho Brahe's data; it
+    was a rule with no reason. Newton supplied the reason in two lines. For a circular orbit, gravity
+    provides the centripetal force and the speed is <span class="fi">2πr/T</span>:
+  </p>
+  <div class="fx"><span class="fx__eq">GMm/r² = m(2πr/T)²/r = 4π²mr/T²   ⟹   T² = (4π²/GM) r³</span><span class="fx__tag">circular case; the full ellipse gives the same with r → a</span></div>
+  <p>
+    The satellite mass cancels, the constant is <span class="fi">4π²/GM</span>, and the exponents 2 and
+    3 come directly from the inverse square. Change the force law and the exponents change — Kepler's
+    third law is a fingerprint of 1/r².
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 6 · weighing the Sun with Kepler's third law</h4>
+    <p style="margin:.2rem 0 .3rem">Earth's orbit: a = 1.496×10¹¹ m, T = 1 yr = 3.156×10⁷ s. Find the
+      Sun's mass.</p>
+    <ol>
+      <li>Rearrange: <span class="fi">M = 4π² a³ / (G T²)</span>. Note this gives the mass of the
+        <em>central</em> body; Earth's own mass has cancelled and cannot be found this way.</li>
+      <li><span class="fi">a³ = (1.496×10¹¹)³ = 3.348×10³³ m³</span>.</li>
+      <li><span class="fi">T² = (3.156×10⁷)² = 9.960×10¹⁴ s²</span>.</li>
+      <li>Numerator: <span class="fi">4π² × 3.348×10³³ = 39.48 × 3.348×10³³ = 1.322×10³⁵</span>.</li>
+      <li>Denominator: <span class="fi">6.67×10⁻¹¹ × 9.960×10¹⁴ = 6.643×10⁴</span>.</li>
+      <li><span class="fi">M = 1.322×10³⁵ / 6.643×10⁴ = 1.99×10³⁰ kg</span> — about 333 000 Earths.</li>
+    </ol>
+    <span class="wex__ans">M<sub>☉</sub> ≈ 1.99×10³⁰ kg</span>
+    <p style="margin:.6rem 0 0;font-size:.9rem;color:var(--ink-soft)">
+      The same trick with the Moon's orbit (r = 3.84×10⁸ m, T = 27.3 d) gives Earth's mass, and with a
+      star's wobble it gives the masses of exoplanets. Orbits are the astronomer's only balance.
+    </p>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 340" role="img" aria-label="An elliptical orbit with the Sun at the left focus. Two shaded sectors of equal area are shown: a wide fan near perihelion where the planet moves fast, and a narrow fan near aphelion where the planet moves slowly. Velocity arrows show the perihelion speed is four times the aphelion speed.">
+      <defs>
+        <marker id="f4-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-vel)"/>
+        </marker>
+      </defs>
+      <text x="320" y="22" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Equal areas in equal times</text>
+      <!-- major axis -->
+      <line x1="120" y1="170" x2="520" y2="170" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="6 5"/>
+      <!-- swept sectors -->
+      <path d="M 200,170 L 220,31.4 A 200,160 0 0 0 220,308.6 Z" fill="var(--v-vel)" fill-opacity="0.22" stroke="var(--v-vel)" stroke-width="1.3"/>
+      <path d="M 200,170 L 509.1,117.9 A 200,160 0 0 1 509.1,222.1 Z" fill="var(--v-vel)" fill-opacity="0.22" stroke="var(--v-vel)" stroke-width="1.3"/>
+      <!-- ellipse -->
+      <ellipse cx="320" cy="170" rx="200" ry="160" fill="none" stroke="var(--ink-soft)" stroke-width="1.8"/>
+      <!-- foci -->
+      <circle cx="200" cy="170" r="10" fill="var(--v-heat)"/>
+      <line x1="434" y1="164" x2="446" y2="176" stroke="var(--line)" stroke-width="2"/>
+      <line x1="446" y1="164" x2="434" y2="176" stroke="var(--line)" stroke-width="2"/>
+      <text x="440" y="196" text-anchor="middle" font-size="11" fill="var(--ink-soft)">empty focus</text>
+      <text x="200" y="150" text-anchor="middle" font-size="12" fill="var(--ink)">Sun (focus)</text>
+      <!-- planet positions -->
+      <circle cx="120" cy="170" r="6" fill="var(--ink)"/>
+      <circle cx="520" cy="170" r="6" fill="var(--ink)"/>
+      <!-- velocity arrows -->
+      <line x1="120" y1="176" x2="120" y2="238" stroke="var(--v-vel)" stroke-width="3" marker-end="url(#f4-teal)"/>
+      <line x1="520" y1="164" x2="520" y2="148" stroke="var(--v-vel)" stroke-width="3" marker-end="url(#f4-teal)"/>
+      <text x="130" y="250" font-size="12" fill="var(--v-vel)">v fast (perihelion)</text>
+      <text x="512" y="140" text-anchor="end" font-size="12" fill="var(--v-vel)">v slow (aphelion)</text>
+      <text x="160" y="176" text-anchor="middle" font-size="12" fill="var(--ink)">Δt</text>
+      <text x="404" y="176" text-anchor="middle" font-size="12" fill="var(--ink)">Δt</text>
+    </svg>
+    <figcaption>
+      The two shaded fans have <strong>equal area</strong> and are swept in <strong>equal time</strong>.
+      Near the focus the radius is short, so the planet must cover a long arc quickly; far away the
+      radius is long, so a short slow arc sweeps the same area. Here e = 0.6, giving
+      r<sub>a</sub>/r<sub>p</sub> = 4 and therefore v<sub>p</sub>/v<sub>a</sub> = 4. Real planetary
+      orbits are far rounder — Earth's e is only 0.0167, so its speed varies by just 3.4 % over the
+      year, and the picture would be indistinguishable from a circle.
+    </figcaption>
+  </figure>
+
+  <h3>The second law is angular momentum in disguise</h3>
+  <p>
+    Gravity is a <b>central</b> force: it always points from the planet straight at the Sun. Torque is
+    <span class="fi">τ = r F sinθ</span> and θ = 180° for a central force, so the torque about the Sun
+    is identically zero and the angular momentum <span class="fi">L = m v r sinθ</span> is conserved.
+    In a small time dt the radius vector sweeps a thin triangle of area
+    <span class="fi">dA = ½ r · (v dt) sinθ = (L/2m) dt</span>. Since L and m are constants,
+    <span class="fi">dA/dt</span> is constant — which <em>is</em> the second law. Kepler's empirical
+    rule and a conservation law are the same statement.
+  </p>
+  <p>
+    At perihelion and aphelion (and nowhere else) the velocity is perpendicular to the radius, so
+    sinθ = 1 and the conservation law collapses to the pleasant form
+    <span class="fi">r<sub>p</sub> v<sub>p</sub> = r<sub>a</sub> v<sub>a</sub></span>. For Earth,
+    <span class="fi">v<sub>p</sub>/v<sub>a</sub> = (1+e)/(1−e) = 1.0167/0.9833 = 1.034</span> — we move
+    3.4 % faster in early January (perihelion) than in early July. Note that this has nothing to do with
+    the seasons, which are caused by axial tilt.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Kepler's three laws: statement, underlying physics and common traps</caption>
+      <thead>
+        <tr><th>Law</th><th>Statement</th><th>Underlying physics</th><th>What it does <em>not</em> say</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>1 · Orbits</b></td>
+          <td>Ellipse with the Sun at one focus</td>
+          <td>The general bound solution of an inverse-square central force is a conic section</td>
+          <td>Not "at the centre". The other focus is empty. Circles are the e = 0 special case, not the rule.</td>
+        </tr>
+        <tr>
+          <td><b>2 · Areas</b></td>
+          <td>Equal areas swept in equal times</td>
+          <td>Conservation of angular momentum — gravity is central, so zero torque about the Sun</td>
+          <td>Not "equal arc lengths" and not "constant speed". Also true for <em>any</em> central force, not only 1/r².</td>
+        </tr>
+        <tr>
+          <td><b>3 · Periods</b></td>
+          <td><span class="fi">T² = (4π²/GM) a³</span></td>
+          <td>Setting gravity equal to the centripetal requirement; the exponents come from 1/r²</td>
+          <td>Not <span class="fi">T ∝ a³</span>. The constant is <em>not</em> universal: it depends on the central mass, so Earth's satellites and the Sun's planets use different constants.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo">
+    <h4>Ratio shortcut for the third law</h4>
+    <p>Around the same central body, <span class="fi">(T₂/T₁)² = (a₂/a₁)³</span>. In astronomical units
+      and years around the Sun the constant is exactly 1, so a = 4 AU gives
+      T = 4<sup>3/2</sup> = 8 yr, and Mars at 1.52 AU gives 1.52<sup>1.5</sup> = 1.87 yr. No G, no
+      masses, no calculator.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Apparent weightlessness</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>True weight</dt>
+      <dd>The gravitational force on a body, <span class="fi">W = mg</span>. It is never zero anywhere
+        in the Solar System.</dd>
+      <dt>Apparent weight</dt>
+      <dd>The magnitude of the contact (normal) force supporting the body — what a bathroom scale, a
+        seat or the soles of your feet actually register.</dd>
+      <dt>Apparent weightlessness (free fall)</dt>
+      <dd>The state in which the support force is zero because the body and its surroundings are
+        accelerating together under gravity alone.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">N = m ( g − a )</span>
+      <span class="fx__tag">a = downward acceleration of the frame; N is the scale reading</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">a = g  ⟹  N = 0</span><span class="fx__tag">free fall: lift with a cut cable, parabolic flight, or orbit</span></div>
+      <div class="fx"><span class="fx__eq">g<sub>ISS</sub> = 8.68 m·s⁻² = 0.89 g₀</span><span class="fx__tag">gravity at 400 km — nowhere near zero</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>N</b><span>normal / support force = apparent weight (N)</span></div>
+      <div><b>W</b><span>true weight, mg (N)</span></div>
+      <div><b>a</b><span>acceleration of the frame, downward positive (m·s⁻²)</span></div>
+      <div><b>m</b><span>mass — unchanged by any of this (kg)</span></div>
+    </div>
+  </div>
+
+  <p>
+    A satellite in orbit is not beyond gravity's reach; it is <strong>obeying gravity completely</strong>.
+    From Worked example 1, the field at the ISS is 8.68 m·s⁻², about 89 % of its value on the ground. If
+    gravity there were really zero the station would fly off in a straight line, which is precisely what
+    it does not do. What is missing is not gravity but the <em>floor</em>: the station, the astronaut
+    and the loose pen all accelerate at the same 8.68 m·s⁻² towards Earth's centre, so nothing presses
+    on anything else and N = 0. The correct term is <b>free fall</b>, and NASA's own word is
+    <b>microgravity</b> — residual accelerations of order 10⁻⁶ g from drag, crew movement and the tidal
+    gradient across the 100 m station.
+  </p>
+
+  <p>
+    The same state is reachable without leaving the atmosphere. In a lift whose cable is cut, a
+    parabolic-flight aircraft (about 22 s of free fall per arc), or the moment after you jump off a
+    wall, N = 0 and you are "weightless" in exactly the sense an astronaut is. Orbit only adds enough
+    sideways speed that the fall never terminates in a floor.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap: "centrifugal force balances gravity in orbit"</p>
+    <p style="margin:0">
+      In an inertial frame there is <em>no</em> outward force to balance anything — gravity is
+      unopposed, which is exactly why the satellite accelerates (centripetally) instead of travelling
+      straight. You may work in the rotating frame and introduce a centrifugal pseudo-force, in which
+      case it does cancel gravity, but then you must say so and accept a non-inertial frame. Answer
+      options that assert a real outward force in an inertial frame are always wrong. Likewise,
+      "weightless because there is no air" confuses buoyancy with weight.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · what changes and what does not</p>
+    <p style="margin:0">
+      In free fall, <b>mass is unchanged</b>, <b>true weight mg is almost unchanged</b> and
+      <b>apparent weight is zero</b>. Anything that needs a support force stops working: sedimentation,
+      convection, pouring liquid, a mercury barometer, using a spring balance. Anything driven by
+      mass or by intermolecular forces continues normally: inertia (a floating hammer still hurts),
+      surface tension (water forms spheres), diffusion, and every chemical reaction.
+    </p>
+  </div>
+
+  <div class="callout">
+    <p class="callout__title">Why physiologists care</p>
+    <p style="margin:0">
+      The human cardiovascular system is calibrated to a hydrostatic column of roughly 120 cm of blood
+      — a pressure difference of about 13 kPa (≈100 mmHg) between foot and head when standing. Remove
+      g's support and that gradient vanishes: fluid shifts cephalad within hours (puffy face, "bird
+      legs"), central baroreceptors read the volume as excessive, and plasma volume falls by
+      10–15 % in the first days. On return, orthostatic intolerance follows. Weight-bearing bone,
+      deprived of load, demineralises at roughly 1–1.5 % per month at the hip and spine, and the
+      spaceflight-associated neuro-ocular syndrome (optic disc oedema, hyperopic shift) is thought to
+      follow from the same headward shift. All of it is the physiology of N = 0 — the same reason
+      prolonged bed rest is itself a clinical problem.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Tides: the gradient of gravity</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Tidal (differential) acceleration</dt>
+      <dd>The <em>difference</em> between the gravitational field of a distant body at a point on Earth
+        and its field at Earth's centre — what is left over after removing the acceleration the whole
+        Earth already shares.</dd>
+      <dt>Tidal bulge</dt>
+      <dd>The equilibrium deformation of the oceans produced by that residual field: two bulges, one
+        facing the perturbing body and one directly opposite.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Δg ≈ 2 G M d / r³</span>
+      <span class="fx__tag">stretch at the near and far points, for d ≪ r</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">tidal strength ∝ M / r³   (not M / r²)</span><span class="fx__tag">it is the gradient of the field, so one extra power of r</span></div>
+      <div class="fx"><span class="fx__eq">Δg<sub>Moon</sub> / Δg<sub>Sun</sub> ≈ 2.2</span><span class="fx__tag">although the Sun pulls Earth 178× harder overall</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>Δg</b><span>differential (tidal) acceleration (m·s⁻²)</span></div>
+      <div><b>M</b><span>mass of the perturbing body — Moon or Sun (kg)</span></div>
+      <div><b>r</b><span>distance to the perturbing body (m)</span></div>
+      <div><b>d</b><span>radius of the body being stretched, here R<sub>E</sub> (m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    The Moon does not "lift" the near ocean while somehow flinging the far one away. The clean statement
+    is this: <strong>the whole Earth is in free fall towards the Moon</strong>, and free fall is
+    unnoticeable. What the oceans respond to is only the part of the Moon's field that
+    <em>differs</em> from the field at Earth's centre. On the near side the Moon's pull is a little
+    stronger than average, so the residual points towards the Moon; on the far side it is a little
+    weaker, so the residual points away from the Moon. Both residuals point <em>outward from Earth's
+    centre</em> — hence two bulges, on opposite sides. Around the flanks the residual points inward,
+    which is where the water comes from.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 360" role="img" aria-label="Two-panel diagram. Top: Earth with three marked points and the Moon far to the right; the Moon's pull is longest at the near point A, medium at the centre O and shortest at the far point B. Bottom: after subtracting the pull at the centre, the residual at A points towards the Moon and the residual at B points away from it, giving two outward bulges.">
+      <defs>
+        <marker id="f3-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-force)"/>
+        </marker>
+        <marker id="f3-amb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-accel)"/>
+        </marker>
+      </defs>
+
+      <text x="18" y="22" font-size="13" font-weight="600" fill="var(--ink)">① The Moon's pull is not the same everywhere on Earth</text>
+      <!-- Earth -->
+      <circle cx="110" cy="80" r="42" fill="none" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <circle cx="68" cy="80" r="4" fill="var(--ink)"/>
+      <circle cx="110" cy="80" r="4" fill="var(--ink)"/>
+      <circle cx="152" cy="80" r="4" fill="var(--ink)"/>
+      <text x="60" y="72" text-anchor="end" font-size="12" fill="var(--ink)">B (far)</text>
+      <text x="106" y="66" text-anchor="end" font-size="12" fill="var(--ink)">O</text>
+      <text x="158" y="72" font-size="12" fill="var(--ink)">A (near)</text>
+      <text x="110" y="140" text-anchor="middle" font-size="12" fill="var(--ink-soft)">Earth</text>
+      <!-- line to Moon -->
+      <line x1="162" y1="80" x2="536" y2="80" stroke="var(--line)" stroke-width="1.3" stroke-dasharray="6 5"/>
+      <text x="350" y="70" text-anchor="middle" font-size="12" fill="var(--ink-soft)">r = 3.84 × 10⁸ m</text>
+      <circle cx="562" cy="80" r="16" fill="var(--ink-soft)" fill-opacity="0.35" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="562" y="118" text-anchor="middle" font-size="12" fill="var(--ink-soft)">Moon</text>
+
+      <!-- bar comparison -->
+      <text x="18" y="168" font-size="13" fill="var(--ink)">Pull per kilogram, at each point (differences hugely exaggerated)</text>
+      <text x="152" y="196" text-anchor="end" font-size="12" fill="var(--ink-soft)">at A (near)</text>
+      <text x="152" y="221" text-anchor="end" font-size="12" fill="var(--ink-soft)">at O (centre)</text>
+      <text x="152" y="246" text-anchor="end" font-size="12" fill="var(--ink-soft)">at B (far)</text>
+      <line x1="162" y1="192" x2="352" y2="192" stroke="var(--v-force)" stroke-width="3.4" marker-end="url(#f3-red)"/>
+      <line x1="162" y1="217" x2="314" y2="217" stroke="var(--v-force)" stroke-width="3.4" marker-end="url(#f3-red)"/>
+      <line x1="162" y1="242" x2="284" y2="242" stroke="var(--v-force)" stroke-width="3.4" marker-end="url(#f3-red)"/>
+      <text x="364" y="196" font-size="12" fill="var(--ink-soft)">strongest — A is closest</text>
+      <text x="326" y="221" font-size="12" fill="var(--ink-soft)">average — this is Earth's own free fall</text>
+      <text x="296" y="246" font-size="12" fill="var(--ink-soft)">weakest — B is furthest</text>
+
+      <!-- residuals -->
+      <text x="18" y="288" font-size="13" font-weight="600" fill="var(--ink)">② Subtract the pull at O — what is left is the tide</text>
+      <line x1="230" y1="298" x2="230" y2="350" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <text x="222" y="315" text-anchor="end" font-size="12" fill="var(--ink-soft)">A</text>
+      <text x="222" y="334" text-anchor="end" font-size="12" fill="var(--ink-soft)">O</text>
+      <text x="222" y="353" text-anchor="end" font-size="12" fill="var(--ink-soft)">B</text>
+      <line x1="230" y1="311" x2="302" y2="311" stroke="var(--v-accel)" stroke-width="3.4" marker-end="url(#f3-amb)"/>
+      <text x="312" y="315" font-size="12" fill="var(--ink-soft)">outward, towards the Moon</text>
+      <text x="238" y="334" font-size="12" fill="var(--ink-soft)">zero — the centre is simply in free fall</text>
+      <line x1="230" y1="349" x2="158" y2="349" stroke="var(--v-accel)" stroke-width="3.4" marker-end="url(#f3-amb)"/>
+      <text x="238" y="353" font-size="12" fill="var(--ink-soft)">outward, away from the Moon</text>
+    </svg>
+    <figcaption>
+      Tides come from the <em>difference</em> between the field at a point and the field at Earth's
+      centre, not from the field itself. Both residuals point away from Earth's centre, which is why
+      there are two bulges and two high tides per lunar day. The real differential is about
+      1.1×10⁻⁶ m·s⁻² — roughly 10⁻⁷ of g — so the arrow lengths here are wildly exaggerated.
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 7 · Moon versus Sun</h4>
+    <p style="margin:.2rem 0 .3rem">The Sun is 2.7×10⁷ times more massive than the Moon. Why does the
+      Moon dominate the tides? M<sub>M</sub> = 7.35×10²² kg at 3.84×10⁸ m;
+      M<sub>☉</sub> = 1.99×10³⁰ kg at 1.496×10¹¹ m.</p>
+    <ol>
+      <li><b>Direct pull</b> goes as <span class="fi">M/r²</span>:
+        <span class="fi">(M<sub>☉</sub>/M<sub>M</sub>)(r<sub>M</sub>/r<sub>☉</sub>)² =
+        2.71×10⁷ × (2.567×10⁻³)² = 2.71×10⁷ × 6.59×10⁻⁶ = 178</span>. The Sun pulls Earth
+        <b>178 times harder</b> than the Moon does.</li>
+      <li><b>Tidal effect</b> goes as <span class="fi">M/r³</span>. Moon:
+        <span class="fi">7.35×10²² / (3.84×10⁸)³ = 7.35×10²² / 5.66×10²⁵ = 1.30×10⁻³</span>.</li>
+      <li>Sun: <span class="fi">1.99×10³⁰ / (1.496×10¹¹)³ = 1.99×10³⁰ / 3.35×10³³ = 5.94×10⁻⁴</span>.</li>
+      <li>Ratio: <span class="fi">1.30×10⁻³ / 5.94×10⁻⁴ = 2.2</span>. The Moon's tidal effect is
+        <b>2.2 times</b> the Sun's, even though its pull is 178 times weaker — the one extra power of r
+        reverses the verdict.</li>
+      <li>Magnitude check: <span class="fi">Δg = 2GM<sub>M</sub>R<sub>E</sub>/r³ =
+        2 × 6.67×10⁻¹¹ × 1.30×10⁻³ × 6.37×10⁶ = 1.1×10⁻⁶ m·s⁻²</span>, about 10⁻⁷ of g. Tides are
+        enormous only because the ocean is a fluid covering a whole hemisphere and can respond
+        resonantly to a persistent tiny force.</li>
+    </ol>
+    <span class="wex__ans">Moon : Sun tidal effect = 2.2 : 1, despite a 1 : 178 ratio of direct pull</span>
+  </div>
+
+  <p>
+    The rest of tidal behaviour follows. Earth rotates through the two bulges, so most coasts see
+    <b>two high tides per lunar day</b> of 24 h 50 min — one every 12 h 25 min, and about 50 minutes
+    later each day because the Moon has moved on in its orbit. When Sun and Moon line up (new and full
+    moon) the two tidal fields add and give <b>spring tides</b>; at first and last quarter they oppose
+    and give <b>neap tides</b>, roughly (1 + 0.46) against (1 − 0.46), a range ratio of about 2.7.
+    Actual local tides depart wildly from this equilibrium picture because ocean basins have their own
+    resonances and coastlines funnel water — which is why the Bay of Fundy manages 16 m and the
+    Mediterranean barely 0.3 m.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap: the far-side bulge</p>
+    <p style="margin:0">
+      Two wrong stories circulate. <em>"The Moon repels the far side"</em> — gravity is never
+      repulsive. <em>"Centrifugal force from Earth's rotation throws the water out"</em> — Earth's own
+      spin is symmetric about the axis and cannot produce a bulge that tracks the Moon. The correct
+      account needs only subtraction: the far side is pulled <b>less</b> than the centre, and being
+      pulled less than your surroundings is indistinguishable from being pushed outward.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · 1/r³ shows up elsewhere</p>
+    <p style="margin:0">
+      The same differential-gravity logic explains why a body falling into a black hole is
+      "spaghettified", why Saturn's rings sit inside the Roche limit where tidal stretch beats the
+      moonlet's self-gravity, and why the Moon is tidally locked — the bulges Earth raises on the Moon
+      dissipated its spin energy until one face was fixed. The Moon returns the favour: tidal friction
+      is slowing Earth's rotation by about 2 ms per century and pushing the Moon outward by ~3.8 cm per
+      year, angular momentum being conserved between the two.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== Quiz =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>
+    Five of these need a calculation and five need a decision about physics. If you miss one, do not
+    memorise the letter — go back to the section it came from and re-derive the answer, because the
+    exam will change the numbers.
+  </p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-05-rotation.html"><small>Previous</small><b>← Rotational Motion and Static Equilibrium</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-07-oscillations.html"><small>Next</small><b>Oscillations and Simple Harmonic Motion →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 06 · Gravitation and Orbital Motion</p>
+    <p>Gravitation is presented as a single central inverse-square force plus its energy; constants
+      (G = 6.67×10⁻¹¹ N·m²·kg⁻², M<sub>E</sub> = 5.97×10²⁴ kg, R<sub>E</sub> = 6.37×10⁶ m,
+      g = 9.81 m·s⁻²) are standard textbook approximations, used for order of magnitude rather than
+      precise citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "An astronaut aboard the ISS at an altitude of 400 km floats freely inside the module. Which statement best explains this?",
+    "options": [
+      "Earth's gravitational field is essentially zero at that altitude, so there is nothing to pull the astronaut down.",
+      "A real outward centrifugal force acts on the astronaut and exactly balances gravity, giving zero net force.",
+      "Astronaut and station fall together with the same acceleration, so no contact force is needed; the field there is still about 8.7 m·s⁻².",
+      "Weight disappears because there is no air at that altitude to press on the body."
+    ],
+    "answer": 2,
+    "explain": "At r = 6.77×10⁶ m, g = 9.81 × (6.37/6.77)² = <b>8.68 m·s⁻²</b> — about 89 % of the ground value, so option A is simply false, and if gravity really were zero the station would leave in a straight line. Option B invents a real outward force; in an inertial frame gravity is unopposed, which is exactly why the station accelerates centripetally instead of flying off. What is absent is the normal force, not gravity: this is free fall, and the proper name is microgravity."
+  },
+  {
+    "stem": "A probe is at an altitude of one Earth radius above the surface. Taking surface g = 9.81 m·s⁻², what is the gravitational field strength there?",
+    "options": [
+      "2.45 m·s⁻²",
+      "4.91 m·s⁻²",
+      "9.81 m·s⁻²",
+      "1.09 m·s⁻²"
+    ],
+    "answer": 0,
+    "explain": "Altitude R means <b>r = 2R from the centre</b>, and g ∝ 1/r², so g = 9.81/2² = <b>2.45 m·s⁻²</b>. The tempting 4.91 comes from halving g as if the field fell off as 1/r; the tempting 1.09 is 9.81/3², from using r = 3R by adding the radius twice. Whenever a question gives an altitude, the first move is always to convert it to a centre-to-centre distance."
+  },
+  {
+    "stem": "A planet has twice Earth's mass and twice Earth's radius. Escape speed from Earth is 11.2 km·s⁻¹. What is the escape speed from this planet?",
+    "options": [
+      "5.6 km·s⁻¹",
+      "15.8 km·s⁻¹",
+      "22.4 km·s⁻¹",
+      "11.2 km·s⁻¹ — the same as Earth"
+    ],
+    "answer": 3,
+    "explain": "v<sub>esc</sub> = √(2GM/R), so v ∝ √(M/R). Doubling both M and R leaves M/R unchanged, and the escape speed is <b>identical</b>. The 15.8 km·s⁻¹ option is √2 × 11.2, which would be right if only the mass doubled; 22.4 doubles the speed, which would need M/R to quadruple. The lesson is to track the ratio M/R rather than M and R separately."
+  },
+  {
+    "stem": "Which single statement about Kepler's laws is correct?",
+    "options": [
+      "The Sun sits at the centre of each planet's elliptical orbit.",
+      "The second law is a restatement of angular-momentum conservation, because gravity is a central force and exerts no torque about the Sun.",
+      "The third law states that the period is proportional to the cube of the semi-major axis, T ∝ a³.",
+      "A planet moves fastest at aphelion, where its orbit is widest."
+    ],
+    "answer": 1,
+    "explain": "Gravity always points from the planet straight at the Sun, so the torque about the Sun is zero and L = mvr sinθ is conserved; since the swept area rate is dA/dt = L/2m, equal areas in equal times follows immediately. Option A is the classic error — the Sun is at one <b>focus</b>, and the other focus is empty. Option C drops the square: the law is T² ∝ a³. Option D is backwards: r<sub>p</sub>v<sub>p</sub> = r<sub>a</sub>v<sub>a</sub> means the planet is fastest at <b>perihelion</b>, where r is smallest."
+  },
+  {
+    "stem": "A hypothetical planet orbits the Sun with a semi-major axis of 4 AU. What is its orbital period?",
+    "options": [
+      "4 years",
+      "16 years",
+      "8 years",
+      "64 years"
+    ],
+    "answer": 2,
+    "explain": "With AU and years around the Sun, Kepler's third law is simply T² = a³, so T = 4<sup>3/2</sup> = √(4³) = √64 = <b>8 years</b>. The 16-year option squares the axis instead of cubing it, and 64 years reports a³ without taking the square root. Always finish the job: cube the axis, <em>then</em> take the square root."
+  },
+  {
+    "stem": "A satellite in low Earth orbit experiences a small but persistent atmospheric drag. Over the following weeks, what happens?",
+    "options": [
+      "Its orbital radius shrinks, its speed increases, and its total mechanical energy decreases.",
+      "Its orbital radius shrinks and it slows down, because friction always removes kinetic energy.",
+      "Its speed increases and it climbs into a higher orbit.",
+      "Its speed is unchanged and only its period shortens."
+    ],
+    "answer": 0,
+    "explain": "Drag removes mechanical energy, so E = −GMm/2r becomes <b>more negative</b> and r must shrink; but v = √(GM/r), so a smaller r means a <b>larger</b> speed. Option B is the intuitive trap: drag does take energy out, yet as r falls U drops twice as fast as K rises (the virial relation U = −2K), so the satellite ends up faster while still having lost energy. Option C violates energy conservation — you cannot climb by losing energy."
+  },
+  {
+    "stem": "A 500 kg satellite is in a circular orbit of radius 8.0×10⁶ m around Earth (GM = 3.98×10¹⁴ m³·s⁻²). What is its total mechanical energy?",
+    "options": [
+      "−2.49×10¹⁰ J",
+      "+1.24×10¹⁰ J",
+      "−6.22×10⁹ J",
+      "−1.24×10¹⁰ J"
+    ],
+    "answer": 3,
+    "explain": "E = −GMm/2r = −(3.98×10¹⁴ × 500)/(2 × 8.0×10⁶) = −1.99×10¹⁷/1.6×10⁷ = <b>−1.24×10¹⁰ J</b>. The distractor −2.49×10¹⁰ J is U alone (it forgets to add the kinetic energy), and +1.24×10¹⁰ J is K alone with the wrong sign for a bound orbit. Remember the pattern for any circular orbit: K = +GMm/2r, U = −GMm/r, E = −K = U/2, and E must be negative or the satellite would not be bound."
+  },
+  {
+    "stem": "Gravitational potential energy is written U = −GMm/r. What is the real reason for the minus sign?",
+    "options": [
+      "Because the gravitational force vector points downward, and downward is conventionally the negative direction.",
+      "Because U is defined to be zero at infinite separation, and energy must be supplied to pull the masses apart — so every finite separation lies below zero.",
+      "Because the orbiting mass is treated as negative in the two-body problem.",
+      "Because U falls off as 1/r², which is faster than the force does."
+    ],
+    "answer": 1,
+    "explain": "Given an attractive force and the choice U(∞) = 0, the sign is <b>forced</b>: gravity does positive work as the masses approach, so U must fall below its starting value of zero. Option A confuses a coordinate convention with an energy reference — U is a scalar and has no direction. Option D is doubly wrong: U goes as 1/r, one power <em>slower</em> than the force, because integrating r⁻² gives −r⁻¹."
+  },
+  {
+    "stem": "Treating Earth as a uniform sphere of radius R, what is g at a depth of R/2 below the surface, if surface g is 9.81 m·s⁻²?",
+    "options": [
+      "9.81 m·s⁻², unchanged — by the shell theorem the outer shells still pull you down.",
+      "39.2 m·s⁻², from applying the inverse-square law with r = R/2.",
+      "4.9 m·s⁻²",
+      "Zero, because the shells above and below you cancel."
+    ],
+    "answer": 2,
+    "explain": "Only the mass inside your radius acts, and for uniform density M<sub>enc</sub> = M(r/R)³, so g = GM<sub>enc</sub>/r² = g₀(r/R) = 9.81 × 0.5 = <b>4.9 m·s⁻²</b>. Option A misstates the shell theorem, which says the outer shell contributes exactly <b>zero</b>, not the full amount; option B applies the external 1/r² formula inside the body, where it does not hold. (In the real Earth the dense iron core makes g actually <em>rise</em> with depth for the first 2 900 km — the uniform model is a teaching idealisation.)"
+  },
+  {
+    "stem": "Why are there two tidal bulges on Earth — one facing the Moon and one directly opposite it?",
+    "options": [
+      "The Moon's field is stronger than average on the near side and weaker on the far side; measured relative to Earth's centre, both ends are stretched outward.",
+      "The Moon raises the near bulge and the Sun raises the far one.",
+      "Earth's rotation flings water outward, and this is largest along the Earth–Moon line.",
+      "The Moon attracts the water on the near side and repels the water on the far side."
+    ],
+    "answer": 0,
+    "explain": "The whole Earth is already in free fall towards the Moon, so what the oceans respond to is the <b>difference</b> between the local field and the field at the centre — Δg ≈ 2GMd/r³. That residual points towards the Moon on the near side and away from it on the far side, i.e. outward at both ends. Option D is impossible: gravity is never repulsive. Option C fails because Earth's own spin is symmetric about its axis and could not produce a bulge that follows the Moon around the sky."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

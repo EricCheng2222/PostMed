@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics — PostMed Notebook</title>
+<meta name="description" content="A complete freshman physics course in fifteen notes: kinematics, dynamics, energy, momentum, rotation, gravitation, oscillations, waves, fluids, thermodynamics, electromagnetism, optics and modern physics. Every note opens with definitions and formulas and ends with a ten-question self-test.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="../index.html">Subjects</a>
+      <a href="#route">How to use</a>
+      <a href="biochemistry.html">Biochemistry</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <div class="article-head">
+    <p class="eyebrow">Subject shelf</p>
+    <h1>Physics</h1>
+    <p class="lede" style="max-width:46rem">
+      A complete pass through <strong>first-year university physics</strong>, in fifteen notes. Freshman
+      physics is not fifteen unrelated topics — it is a handful of conservation laws applied over and over
+      to different objects. Energy, momentum and charge are conserved; forces cause acceleration; fields
+      fall off with distance. Everything below is those ideas, wearing different clothes.
+    </p>
+    <div class="article-meta">
+      <span class="tag tag--accent">15 notes · complete</span>
+      <span class="tag">150 self-test questions</span>
+      <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+      <span>~10 h of reading</span>
+    </div>
+  </div>
+
+  <section class="section" id="route">
+    <h2>How these notes are built</h2>
+    <div class="grid grid--3">
+      <div class="card">
+        <h4>① Definition and formula, at the top</h4>
+        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Every section opens with a panel giving
+          the definition, the governing formula, the condition under which it is valid, and what every
+          symbol means in SI units. You can revise from those panels alone the night before.</p>
+      </div>
+      <div class="card">
+        <h4>② Then the reasoning</h4>
+        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Underneath, the explanation of
+          <em>why</em> the formula has that shape, the worked examples, the diagrams, and the sign
+          conventions and confusions that actually cost marks.</p>
+      </div>
+      <div class="card">
+        <h4>③ Then ten questions</h4>
+        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Each note ends with a self-test that
+          marks instantly and explains every answer — including why the tempting wrong option is wrong.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:1.5rem">
+      <p class="callout__title">If you are short on time</p>
+      <p style="margin:0">Notes <b>01–05</b> are load-bearing: almost everything later reuses free-body
+        diagrams, energy conservation and momentum conservation. If you only have a week, read those
+        properly, then take the rest from their formula sheets and self-tests.</p>
+    </div>
+  </section>
+
+  <!-- ============ Part I ============ -->
+  <section id="mechanics">
+    <div class="subject-head">
+      <h2>Part I · Mechanics</h2>
+      <span>notes 01–05</span>
+    </div>
+    <div class="stack">
+
+      <a class="entry" href="physics-01-kinematics.html">
+        <div class="entry__no">01<small>PHYSICS</small></div>
+        <div>
+          <h3>Kinematics: motion in one and two dimensions</h3>
+          <p>Displacement, velocity and acceleration defined properly; the four constant-acceleration
+            equations and the graph they come from; the slope-and-area duality between <i>x–t</i>, <i>v–t</i>
+            and <i>a–t</i>; vectors and components; relative velocity; projectile motion built on the
+            independence of the two axes; and centripetal acceleration.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Motion graphs &amp; vector decomposition</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-02-newton-dynamics.html">
+        <div class="entry__no">02<small>PHYSICS</small></div>
+        <div>
+          <h3>Newton's laws, forces and friction</h3>
+          <p>The three laws stated precisely, and the free-body diagram as the one technique that solves
+            everything. Mass versus weight, the normal force as a constraint, tension, static and kinetic
+            friction, inclined planes, Atwood machines, apparent weight, terminal velocity, banked curves
+            and vertical loops — and why centrifugal force is bookkeeping, not an interaction.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Free-body diagrams</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-03-work-energy.html">
+        <div class="entry__no">03<small>PHYSICS</small></div>
+        <div>
+          <h3>Work, energy and power</h3>
+          <p>Work by constant and variable forces, the work–energy theorem as the bridge between force and
+            motion, conservative versus non-conservative forces, gravitational and elastic potential
+            energy, conservation of mechanical energy, energy accounting with friction, power, and
+            potential-energy curves as a map of equilibrium.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Energy bar charts</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-04-momentum.html">
+        <div class="entry__no">04<small>PHYSICS</small></div>
+        <div>
+          <h3>Momentum, impulse and collisions</h3>
+          <p>Impulse as the area under a force–time curve, and why stretching a collision in time is what
+            airbags and crumple zones are for. Conservation of momentum and what "isolated" really requires;
+            elastic, inelastic and perfectly inelastic collisions; the centre of mass and its theorem; and
+            the two-stage ballistic pendulum where using the wrong conservation law is the classic error.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Before / after ledgers</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-05-rotation.html">
+        <div class="entry__no">05<small>PHYSICS</small></div>
+        <div>
+          <h3>Rotational motion and static equilibrium</h3>
+          <p>Every translational quantity has a rotational twin — this note builds the dictionary. Torque,
+            moment of inertia and the parallel-axis theorem, rotational kinetic energy, rolling without
+            slipping and why a hoop loses the race, angular momentum and the spinning skater, then static
+            equilibrium and the three classes of lever in the musculoskeletal system.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Linear ↔ rotational dictionary</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ Part II ============ -->
+  <section id="waves">
+    <div class="subject-head">
+      <h2>Part II · Gravitation, oscillations and waves</h2>
+      <span>notes 06–08</span>
+    </div>
+    <div class="stack">
+
+      <a class="entry" href="physics-06-gravitation.html">
+        <div class="entry__no">06<small>PHYSICS</small></div>
+        <div>
+          <h3>Gravitation and orbital motion</h3>
+          <p>The inverse-square law and the shell theorem; how <i>g</i> varies with altitude and depth;
+            why gravitational potential energy is negative and goes as 1/<i>r</i>; escape velocity;
+            circular orbits and the geostationary case worked numerically; Kepler's three laws derived
+            rather than recited; and why astronauts are weightless without being beyond gravity.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Orbit energy diagram</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-07-oscillations.html">
+        <div class="entry__no">07<small>PHYSICS</small></div>
+        <div>
+          <h3>Oscillations and simple harmonic motion</h3>
+          <p>One condition — acceleration proportional to displacement and directed back towards it —
+            generates the whole chapter. Displacement, velocity and acceleration and their phase
+            relationships; the spring and pendulum periods and what they are independent of; energy in
+            SHM; damping and the three regimes; driven oscillation and resonance.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Phase &amp; energy exchange</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-08-waves-sound.html">
+        <div class="entry__no">08<small>PHYSICS</small></div>
+        <div>
+          <h3>Waves and sound</h3>
+          <p>What actually travels in a wave, and why crossing a boundary changes the wavelength but never
+            the frequency. Superposition and interference, standing waves and the harmonic series for
+            strings and for open and closed pipes, the decibel scale, beats, and the Doppler effect with a
+            sign convention you can trust — plus its use in medical ultrasound.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Harmonic series &amp; interference</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ Part III ============ -->
+  <section id="matter">
+    <div class="subject-head">
+      <h2>Part III · Fluids and heat</h2>
+      <span>notes 09–10</span>
+    </div>
+    <div class="stack">
+
+      <a class="entry" href="physics-09-fluids.html">
+        <div class="entry__no">09<small>PHYSICS</small></div>
+        <div>
+          <h3>Fluid statics and dynamics</h3>
+          <p>The most clinically loaded chapter in the course. Hydrostatic pressure and why blood pressure
+            is quoted in mmHg; Archimedes; continuity and Bernoulli and what they really assume; viscosity
+            and Poiseuille's fourth-power law, which is why a small change in vessel radius changes
+            everything; the Reynolds number, bruits and murmurs; and Laplace's law applied to the alveolus
+            and to surfactant.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Flow &amp; pressure profiles</span>
+            <span class="tag">Physiology-heavy</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-10-thermal.html">
+        <div class="entry__no">10<small>PHYSICS</small></div>
+        <div>
+          <h3>Thermal physics and thermodynamics</h3>
+          <p>The difference between heat, internal energy and temperature, made precise. Specific and
+            latent heat and why water's values matter for thermoregulation; conduction, convection and
+            radiation; the ideal gas law and the kinetic theory behind it; the first law applied to the
+            four standard processes; entropy, heat engines and the Carnot limit — and why a living
+            organism does not violate the second law.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">PV diagrams &amp; energy ledgers</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ Part IV ============ -->
+  <section id="em">
+    <div class="subject-head">
+      <h2>Part IV · Electromagnetism</h2>
+      <span>notes 11–13</span>
+    </div>
+    <div class="stack">
+
+      <a class="entry" href="physics-11-electrostatics.html">
+        <div class="entry__no">11<small>PHYSICS</small></div>
+        <div>
+          <h3>Electric charge, field and potential</h3>
+          <p>Coulomb's law and the field it creates; Gauss's law and the symmetries that make it useful;
+            conductors in equilibrium and electrostatic shielding; potential as a <em>scalar</em>, which is
+            the single most useful contrast with the field; equipotentials and the field as a gradient;
+            capacitance, dielectrics and stored energy — and the cell membrane as a capacitor.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Field lines &amp; equipotentials</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-12-circuits.html">
+        <div class="entry__no">12<small>PHYSICS</small></div>
+        <div>
+          <h3>Direct-current circuits</h3>
+          <p>Why a lamp lights instantly although electrons drift at a fraction of a millimetre per second.
+            Resistance and resistivity, Ohm's law as a material property rather than a universal law, EMF
+            and internal resistance, series and parallel reasoned out rather than recited, Kirchhoff's
+            rules with a sign procedure that works, RC charging and the time constant, and electrical
+            safety in a clinical setting.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Circuit reduction &amp; loop tracing</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-13-magnetism.html">
+        <div class="entry__no">13<small>PHYSICS</small></div>
+        <div>
+          <h3>Magnetism and electromagnetic induction</h3>
+          <p>The magnetic force is always perpendicular to velocity, so it does no work — nearly every
+            magnetism question is a corollary. Circular motion in a field, mass spectrometers, forces on
+            wires and torque on loops, the fields currents produce, then Faraday and Lenz with the
+            direction worked out explicitly, inductance, transformers, and the physics behind MRI.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Right-hand rules, drawn out</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ Part V ============ -->
+  <section id="modern">
+    <div class="subject-head">
+      <h2>Part V · Light and modern physics</h2>
+      <span>notes 14–15</span>
+    </div>
+    <div class="stack">
+
+      <a class="entry" href="physics-14-optics.html">
+        <div class="entry__no">14<small>PHYSICS</small></div>
+        <div>
+          <h3>Geometric and wave optics</h3>
+          <p>Reflection, refraction and total internal reflection, with fibre optics and endoscopy;
+            mirrors and thin lenses with a sign convention set out as a table you can actually use; lens
+            power in dioptres and the corrective lens for myopia and hyperopia calculated properly; then
+            interference, diffraction, the Rayleigh criterion — the reason electron microscopy exists —
+            and polarisation.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Ray diagrams &amp; sign tables</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="physics-15-modern.html">
+        <div class="entry__no">15<small>PHYSICS</small></div>
+        <div>
+          <h3>Modern physics: quanta, atoms and nuclei</h3>
+          <p>The three observations the wave theory of light cannot explain, and what Einstein did about
+            them. Photons, de Broglie waves and the electron microscope, the uncertainty principle, the
+            Bohr atom and its spectra, X-ray production and attenuation, binding energy, the modes of
+            radioactive decay, the decay law and half-life, dose units, fission and fusion, PET and
+            technetium-99m, and special relativity in brief.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Energy-level diagrams &amp; exponential laws</span>
+            <span class="tag">Imaging &amp; radiation</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a href="../index.html"><small>Back</small><b>← All subjects</b></a>
+    <a href="physics-01-kinematics.html"><small>Start here</small><b>01 · Kinematics →</b></a>
+    <a href="biochemistry.html"><small>Other shelf</small><b>Biochemistry →</b></a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics · fifteen notes covering first-year university physics</p>
+    <p>Fully static site. No external dependencies, no tracking. Constants and numerical values are standard
+       textbook approximations, used to build a sense of magnitude rather than for precise citation.</p>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -4,51 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PostMed Notebook · KMU Post-Baccalaureate Medicine (Informatics Track)</title>
-<meta name="description" content="A study notebook for the post-baccalaureate medicine entrance exam. Every topic is built around the representation that explains it best — interactive scales, decision trees, parameter simulations, pathway maps — and ends with a self-test.">
+<meta name="description" content="A study notebook for the post-baccalaureate medicine entrance exam. Each subject has its own shelf; every note opens with definitions and formulas, explains why they take the shape they do, and ends with a self-test.">
 <link rel="stylesheet" href="assets/css/site.css">
-<style>
-.hero { padding: 4rem 0 2.5rem; }
-.hero h1 { margin-bottom: .6rem; }
-.hero__target {
-  display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 1.5rem;
-  border: 1px solid var(--line); background: var(--card); border-radius: 999px;
-  padding: .3rem .9rem .3rem .4rem; font-size: .85rem; color: var(--ink-soft);
-}
-.hero__target b { background: var(--accent); color: #fff; border-radius: 999px; padding: .1rem .6rem; font-size: .78rem; }
-
-.principle { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin: 2rem 0 0; }
-.principle .card h3 { margin-top: 0; }
-.principle .card p { font-size: .92rem; color: var(--ink-soft); margin: 0; }
-.principle .card span { font-size: 1.3rem; display: block; margin-bottom: .3rem; }
-
-.entry {
-  display: grid; grid-template-columns: 4.4rem 1fr; gap: 1.1rem;
-  border: 1px solid var(--line); background: var(--card); border-radius: var(--radius);
-  padding: 1.15rem 1.3rem; box-shadow: var(--shadow); text-decoration: none; color: inherit;
-  transition: border-color .15s, transform .15s, box-shadow .15s;
-}
-.entry:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-.entry__no {
-  font-family: var(--mono); font-size: 1.5rem; font-weight: 700; color: var(--accent);
-  line-height: 1.1; padding-top: .15rem;
-}
-.entry__no small { display: block; font-size: .6rem; letter-spacing: .1em; color: var(--ink-faint); }
-.entry h3 { margin: 0 0 .3rem; }
-.entry p { font-size: .93rem; color: var(--ink-soft); margin: 0 0 .6rem; }
-.entry__tags { display: flex; flex-wrap: wrap; gap: .35rem; }
-
-.entry--soon { opacity: .7; cursor: default; box-shadow: none; }
-.entry--soon:hover { border-color: var(--line); transform: none; box-shadow: none; }
-.entry--soon .entry__no { color: var(--ink-faint); }
-
-.stack { display: grid; gap: .9rem; }
-.subject-head {
-  display: flex; align-items: baseline; gap: .75rem; margin: 2.75rem 0 1rem;
-  border-bottom: 1px solid var(--line); padding-bottom: .5rem;
-}
-.subject-head h2 { margin: 0; }
-.subject-head span { font-size: .84rem; color: var(--ink-faint); margin-left: auto; }
-</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -57,8 +14,9 @@
   <div class="topbar__inner">
     <a class="brand" href="index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
     <nav>
-      <a href="#biochem">Biochemistry</a>
-      <a href="#roadmap">Roadmap</a>
+      <a href="#subjects">Subjects</a>
+      <a href="pages/physics.html">Physics</a>
+      <a href="pages/biochemistry.html">Biochemistry</a>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -73,100 +31,77 @@
     <p class="lede" style="max-width:45rem">
       This is not a copy of the lecture notes. Every topic starts with one question:
       <strong>what should this concept actually look like?</strong>
-      Energy questions become a ruler. Classification questions become a spectrum. Kinetics becomes a curve
-      you can move. Understand it and you remember it; remember it and you can write it down under exam pressure.
+      Energy questions become a ruler. Classification questions become a spectrum. Motion becomes a graph
+      whose slope and area you can read off. Understand it and you remember it; remember it and you can
+      write it down under exam pressure.
     </p>
 
     <div class="principle">
-      <div class="card"><span>📐</span><h3>One representation per page</h3>
-        <p>Each note commits to a primary way of showing its material, so the content never collapses into another undifferentiated bullet list.</p></div>
+      <div class="card"><span>📐</span><h3>Definition and formula first</h3>
+        <p>Every section opens with the definition, the formula that carries it, and what each symbol means in SI units — then explains why the formula has the shape it does.</p></div>
       <div class="card"><span>🎯</span><h3>Written for the exam</h3>
-        <p>"Exam point", "easily confused" and "one line to remember" boxes map directly onto how questions are actually asked.</p></div>
-      <div class="card"><span>✍️</span><h3>5–10 questions per page</h3>
-        <p>Answers are marked instantly with full explanations, so a miss tells you exactly which section to re-read.</p></div>
+        <p>"Exam point" and "Trap" boxes map directly onto how questions are actually asked, including the sign conventions that quietly cost marks.</p></div>
+      <div class="card"><span>✍️</span><h3>A self-test on every page</h3>
+        <p>Ten questions per note, marked instantly with full explanations, so a miss tells you exactly which section to re-read.</p></div>
     </div>
   </section>
 
-  <!-- ===================== Biochemistry ===================== -->
-  <section id="biochem">
+  <!-- ===================== Subject directory ===================== -->
+  <section id="subjects">
     <div class="subject-head">
-      <h2>Biochemistry</h2>
-      <span>1 note published</span>
+      <h2>Subjects</h2>
+      <span>16 notes published</span>
     </div>
 
-    <div class="stack">
-      <a class="entry" href="pages/biochem-01-bonds-lipids.html">
-        <div class="entry__no">01<small>BIOCHEM</small></div>
-        <div>
-          <h3>Bonds, functional groups &amp; the hydrophobic effect</h3>
-          <p>
-            Built on one ruler — how many kJ/mol is a bond worth. Covalent bonds versus the four noncovalent
-            interactions; the functional groups of biochemistry ranked from hydrophilic to hydrophobic, with the
-            condensation reactions each one can undergo; water and its hydrogen-bond network; the entropy-driven
-            hydrophobic effect; amphipathic self-assembly into micelles, bilayers and liposomes; the lipid map;
-            and how saturation sets melting point and then membrane fluidity.
-          </p>
-          <div class="entry__tags">
-            <span class="tag tag--accent">Interactive energy ruler</span>
-            <span class="tag">Polarity spectrum</span>
-            <span class="tag">Thermodynamic decomposition</span>
-            <span class="tag">10 questions</span>
-          </div>
-        </div>
+    <div class="subjects">
+
+      <a class="subject subject--physics" href="pages/physics.html">
+        <span class="subject__mark" aria-hidden="true">⚛️</span>
+        <p class="subject__count">15 notes · complete</p>
+        <h3>Physics</h3>
+        <p>A full pass through freshman physics — kinematics through to nuclear medicine. Mechanics,
+          fluids, thermodynamics, electromagnetism, optics and modern physics, each note opening with
+          its definitions and formulas and closing with ten questions.</p>
+        <span class="subject__go">Open the physics shelf →</span>
       </a>
 
-      <div class="entry entry--soon">
-        <div class="entry__no">02<small>BIOCHEM</small></div>
-        <div>
-          <h3>Amino acids and protein structure</h3>
-          <p>Grouping the 20 side chains by property, pI and titration curves, the geometry behind secondary structure, folding and denaturation.</p>
-          <div class="entry__tags"><span class="tag">Classification decision tree + flip cards</span><span class="tag">Planned</span></div>
-        </div>
+      <a class="subject subject--biochem" href="pages/biochemistry.html">
+        <span class="subject__mark" aria-hidden="true">🧬</span>
+        <p class="subject__count">1 note · in progress</p>
+        <h3>Biochemistry</h3>
+        <p>Built on energy scale: how many kJ/mol a bond is worth, and what follows from it — bonding,
+          functional groups, water, the hydrophobic effect, lipids and membranes.</p>
+        <span class="subject__go">Open the biochemistry shelf →</span>
+      </a>
+
+      <div class="subject subject--chem subject--soon">
+        <span class="subject__mark" aria-hidden="true">⚗️</span>
+        <p class="subject__count">Planned</p>
+        <h3>Chemistry</h3>
+        <p>Acid–base and buffers as a titration-curve simulator; thermodynamics and equilibrium in
+          numeric panels; functional-group interconversions as a matrix; mechanisms as step-by-step
+          arrow pushing; stereochemistry in rotatable models.</p>
+        <span class="subject__go">Added as revision progresses</span>
       </div>
 
-      <div class="entry entry--soon">
-        <div class="entry__no">03<small>BIOCHEM</small></div>
-        <div>
-          <h3>Enzyme kinetics and inhibition</h3>
-          <p>Michaelis–Menten, Lineweaver–Burk, and what each of the four inhibition types does to K<sub>m</sub> and V<sub>max</sub>.</p>
-          <div class="entry__tags"><span class="tag">Adjustable-parameter curve simulator</span><span class="tag">Planned</span></div>
-        </div>
+      <div class="subject subject--biology subject--soon">
+        <span class="subject__mark" aria-hidden="true">🫀</span>
+        <p class="subject__count">Planned</p>
+        <h3>Biology &amp; Physiology</h3>
+        <p>Membrane transport and the action potential as a timeline animation; endocrine axes as
+          feedback-loop diagrams; the renal concentrating mechanism walked through segment by segment.</p>
+        <span class="subject__go">Added as revision progresses</span>
       </div>
 
-      <div class="entry entry--soon">
-        <div class="entry__no">04<small>BIOCHEM</small></div>
-        <div>
-          <h3>Glycolysis, the TCA cycle and oxidative phosphorylation</h3>
-          <p>The energy ledger, the regulated steps, the shuttle systems and the ATP arithmetic.</p>
-          <div class="entry__tags"><span class="tag">Metabolic pathway map</span><span class="tag">Planned</span></div>
-        </div>
+      <div class="subject subject--info subject--soon">
+        <span class="subject__mark" aria-hidden="true">📊</span>
+        <p class="subject__count">Planned</p>
+        <h3>Informatics track</h3>
+        <p>Biostatistics with interactive tables and sampling simulations; algorithms and data
+          structures with a step tracer; an introduction to medical informatics.</p>
+        <span class="subject__go">Added as revision progresses</span>
       </div>
-    </div>
-  </section>
 
-  <!-- ===================== Roadmap ===================== -->
-  <section id="roadmap">
-    <div class="subject-head">
-      <h2>Other subjects</h2>
-      <span>added as revision progresses</span>
-    </div>
-    <div class="grid grid--2">
-      <div class="card">
-        <h3>Biology / Physiology</h3>
-        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Membrane transport and the action potential (timeline animation), endocrine axes (feedback loop diagrams), renal concentrating mechanism (segment-by-segment walkthrough).</p>
-      </div>
-      <div class="card">
-        <h3>Organic chemistry</h3>
-        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Functional group interconversions (matrix view), reaction mechanisms (step-by-step arrow pushing), stereochemistry (rotatable models).</p>
-      </div>
-      <div class="card">
-        <h3>General chemistry</h3>
-        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Acid–base and buffers (titration curve simulator), thermodynamics and equilibrium (numeric panels).</p>
-      </div>
-      <div class="card">
-        <h3>Informatics track subjects</h3>
-        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Biostatistics (interactive tables and sampling simulations), algorithms and data structures (step tracer), introduction to medical informatics.</p>
-      </div>
     </div>
   </section>
 

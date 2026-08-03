@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 03 · Work, Energy and Power — PostMed Notebook</title>
+<meta name="description" content="Physics note 03: work by constant and variable forces, kinetic and potential energy, the work-energy theorem, conservation of mechanical energy, friction losses, power, potential-energy curves, efficiency and human metabolic power, ending with a 10-question self-test.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 03</p>
+  <h1>Work, Energy and Power</h1>
+  <p class="lede">
+    Newton's second law works instant by instant: to use it you need the force at every point of
+    the path. <strong>Energy methods throw the path away.</strong> Work is the bookkeeping device
+    that compresses "a force acting over a distance" into a single signed number, and once you
+    know that gravity and springs give back exactly what they take, most mechanics problems
+    collapse from three coupled equations to one line of arithmetic. The price of that shortcut is
+    that energy never tells you <em>when</em> — only <em>how fast</em> and <em>how far</em>.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Representation: signed scalars &amp; areas under curves</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~35 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Work: force × displacement, with a cosine</a></li>
+      <li><a href="#s2">Variable forces: the area under F–x</a></li>
+      <li><a href="#s3">Kinetic energy and the work–energy theorem</a></li>
+      <li><a href="#s4">Conservative and non-conservative forces</a></li>
+      <li><a href="#s5">Potential energy: gravitational and elastic</a></li>
+      <li><a href="#s6">Conservation of mechanical energy</a></li>
+      <li><a href="#s7">Energy accounting when friction is present</a></li>
+      <li><a href="#s8">Power, and the units it comes dressed in</a></li>
+      <li><a href="#s9">Reading a potential-energy curve</a></li>
+      <li><a href="#s10">Efficiency and the human engine</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Work, constant force</b><code>W = <b>F</b>·<b>d</b> = F d cos θ</code></div>
+      <div class="fsheet__item"><b>Work, variable force</b><code>W = ∫ F<sub>x</sub> dx = area under F–x</code></div>
+      <div class="fsheet__item"><b>Hooke's law</b><code>F<sub>s</sub> = −k x</code></div>
+      <div class="fsheet__item"><b>Elastic potential energy</b><code>U<sub>s</sub> = ½ k x²</code></div>
+      <div class="fsheet__item"><b>Kinetic energy</b><code>K = ½ m v² = p² / (2m)</code></div>
+      <div class="fsheet__item"><b>Work–energy theorem</b><code>W<sub>net</sub> = ΔK</code></div>
+      <div class="fsheet__item"><b>Gravitational PE (near surface)</b><code>U<sub>g</sub> = m g y</code></div>
+      <div class="fsheet__item"><b>Potential energy, definition</b><code>ΔU = −W<sub>cons</sub></code></div>
+      <div class="fsheet__item"><b>Conservative-force test</b><code>∮ <b>F</b>·d<b>s</b> = 0</code></div>
+      <div class="fsheet__item"><b>Mechanical energy</b><code>E<sub>mech</sub> = K + U</code></div>
+      <div class="fsheet__item"><b>Conservation</b><code>K<sub>i</sub> + U<sub>i</sub> = K<sub>f</sub> + U<sub>f</sub></code></div>
+      <div class="fsheet__item"><b>Speed after a drop</b><code>v = √(2 g Δh)</code></div>
+      <div class="fsheet__item"><b>With friction</b><code>K<sub>i</sub> + U<sub>i</sub> = K<sub>f</sub> + U<sub>f</sub> + f<sub>k</sub> d</code></div>
+      <div class="fsheet__item"><b>General energy balance</b><code>W<sub>nc</sub> = ΔK + ΔU</code></div>
+      <div class="fsheet__item"><b>Skid / braking distance</b><code>d = v² / (2 μ<sub>k</sub> g)</code></div>
+      <div class="fsheet__item"><b>Average power</b><code>P̄ = W / Δt = ΔE / Δt</code></div>
+      <div class="fsheet__item"><b>Instantaneous power</b><code>P = <b>F</b>·<b>v</b> = F v cos θ</code></div>
+      <div class="fsheet__item"><b>Force from a PE curve</b><code>F<sub>x</sub> = −dU/dx</code></div>
+      <div class="fsheet__item"><b>Efficiency</b><code>η = W<sub>useful</sub> / E<sub>input</sub></code></div>
+      <div class="fsheet__item"><b>Horsepower</b><code>1 hp = 746 W</code></div>
+      <div class="fsheet__item"><b>Kilowatt-hour</b><code>1 kWh = 3.60×10⁶ J</code></div>
+      <div class="fsheet__item"><b>Food energy</b><code>1 kcal = 1 Cal = 4184 J</code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Work: force × displacement, with a cosine</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Work</dt>
+      <dd>The energy transferred to an object by a force acting through a displacement. It is a
+        <strong>scalar with a sign</strong> — not a vector, but not necessarily positive either.</dd>
+      <dt>Joule</dt>
+      <dd>The work done when a force of 1 N moves its point of application 1 m along its own direction.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">W = <b>F</b>·<b>d</b> = F d cos θ</span>
+      <span class="fx__tag">constant force, straight-line displacement</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">1 J = 1 N·m = 1 kg·m²·s⁻²</span><span class="fx__tag">SI unit of work and of every kind of energy</span></div>
+      <div class="fx"><span class="fx__eq">W<sub>net</sub> = ΣW<sub>i</sub> = <b>F</b><sub>net</sub>·<b>d</b></span><span class="fx__tag">net work = sum of the works of all forces</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>W</b><span>work done by one force (J)</span></div>
+      <div><b>F</b><span>magnitude of that force (N)</span></div>
+      <div><b>d</b><span>magnitude of the displacement of the point of application (m)</span></div>
+      <div><b>θ</b><span>angle between <b>F</b> and <b>d</b> (degrees or rad; cos θ is dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Throughout this page <strong>bold symbols are vectors</strong> (<b>F</b>, <b>d</b>, <b>v</b>) and
+    plain italic-free letters are their magnitudes. Work is the <em>dot product</em> of two vectors, and
+    a dot product is a scalar: it has magnitude and sign but no direction. That single fact is why
+    energy methods are easier than force methods — you add numbers, not arrows.
+  </p>
+  <p>
+    Read the formula as <strong>"the component of the force along the motion, times the distance
+    moved"</strong>. Everything perpendicular to the motion is discarded, because a sideways force
+    changes where you go, not how fast you go. The cosine is not decoration; it is the whole physical
+    content of the definition.
+  </p>
+
+  <figure class="figure">
+      <svg viewBox="0 0 720 215" role="img" aria-label="Three panels showing the sign of work. Left: a force at an acute angle to the displacement does positive work. Centre: a normal force perpendicular to the displacement does zero work. Right: kinetic friction directed opposite to the displacement does negative work.">
+        <defs>
+          <marker id="f1-af" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--v-force)"/></marker>
+          <marker id="f1-ad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--ink-soft)"/></marker>
+        </defs>
+
+        <g transform="translate(0,0)">
+          <text x="120" y="22" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--v-energy)">Positive work</text>
+          <text x="120" y="41" text-anchor="middle" font-size="11.5" fill="var(--ink-faint)">0° ≤ θ &lt; 90°  ·  speeds the body up</text>
+          <line x1="20" y1="150" x2="220" y2="150" stroke="var(--line)" stroke-width="2"/>
+          <rect x="55" y="120" width="46" height="30" rx="3" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="101" y1="135" x2="163" y2="135" stroke="var(--v-force)" stroke-width="1.5" stroke-dasharray="4 3" opacity=".6"/>
+          <line x1="163" y1="135" x2="163" y2="99" stroke="var(--v-force)" stroke-width="1.5" stroke-dasharray="4 3" opacity=".6"/>
+          <line x1="101" y1="135" x2="163" y2="99" stroke="var(--v-force)" stroke-width="3" marker-end="url(#f1-af)"/>
+          <text x="176" y="97" font-size="13" font-weight="700" fill="var(--v-force)">F</text>
+          <text x="118" y="130" font-size="11.5" fill="var(--v-force)">θ</text>
+          <text x="132" y="150" text-anchor="middle" font-size="10.5" fill="var(--v-force)">F cos θ</text>
+          <line x1="55" y1="180" x2="200" y2="180" stroke="var(--ink-soft)" stroke-width="2" marker-end="url(#f1-ad)"/>
+          <text x="125" y="200" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">displacement d</text>
+        </g>
+
+        <g transform="translate(240,0)">
+          <text x="120" y="22" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink-soft)">Zero work</text>
+          <text x="120" y="41" text-anchor="middle" font-size="11.5" fill="var(--ink-faint)">θ = 90°  ·  speed unchanged</text>
+          <line x1="20" y1="150" x2="220" y2="150" stroke="var(--line)" stroke-width="2"/>
+          <rect x="55" y="120" width="46" height="30" rx="3" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="78" y1="120" x2="78" y2="72" stroke="var(--v-force)" stroke-width="3" marker-end="url(#f1-af)"/>
+          <path d="M64,120 L64,106 L78,106" fill="none" stroke="var(--ink-faint)" stroke-width="1.2"/>
+          <text x="88" y="84" font-size="13" font-weight="700" fill="var(--v-force)">N</text>
+          <line x1="55" y1="180" x2="200" y2="180" stroke="var(--ink-soft)" stroke-width="2" marker-end="url(#f1-ad)"/>
+          <text x="125" y="200" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">displacement d</text>
+        </g>
+
+        <g transform="translate(480,0)">
+          <text x="120" y="22" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--v-force)">Negative work</text>
+          <text x="120" y="41" text-anchor="middle" font-size="11.5" fill="var(--ink-faint)">90° &lt; θ ≤ 180°  ·  slows the body down</text>
+          <line x1="20" y1="150" x2="220" y2="150" stroke="var(--line)" stroke-width="2"/>
+          <rect x="90" y="120" width="46" height="30" rx="3" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="90" y1="147" x2="34" y2="147" stroke="var(--v-force)" stroke-width="3" marker-end="url(#f1-af)"/>
+          <text x="52" y="138" font-size="13" font-weight="700" fill="var(--v-force)">f<tspan font-size="9" dy="3">k</tspan></text>
+          <line x1="90" y1="180" x2="205" y2="180" stroke="var(--ink-soft)" stroke-width="2" marker-end="url(#f1-ad)"/>
+          <text x="145" y="200" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">displacement d</text>
+        </g>
+      </svg>
+      <figcaption>
+        The cosine sorts every force into one of three boxes. Only the component of <b>F</b> parallel
+        to <b>d</b> survives; the perpendicular part contributes exactly nothing. Note that the middle
+        panel is not "a small amount of work" — it is <em>identically</em> zero, for any magnitude of N.
+      </figcaption>
+  </figure>
+
+  <h3>When work is zero</h3>
+  <p>Three quite different situations all give W = 0, and exams like to mix them:</p>
+  <ul>
+    <li><strong>No displacement.</strong> Push a wall for an hour: d = 0, so W = 0 no matter how tired
+      you are. (Your muscles still burn fuel — see §10 — but no mechanical work leaves your body.)</li>
+    <li><strong>Force perpendicular to displacement.</strong> The normal force on a block sliding along
+      a level floor; the tension in a string during uniform circular motion; the magnetic force on a
+      moving charge. This is why <strong>centripetal force never changes speed</strong>.</li>
+    <li><strong>No force.</strong> Trivial, but it is the reason a puck coasting on frictionless ice
+      keeps exactly the kinetic energy it started with.</li>
+  </ul>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Situation</th><th>Angle θ between <b>F</b> and <b>d</b></th><th>cos θ</th><th>Sign of W</th><th>Effect on speed</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Push in the direction of travel</td><td class="num">0°</td><td class="num">+1</td><td>maximum positive</td><td>speeds up</td></tr>
+        <tr><td>Rope pulling a sledge at an angle</td><td class="num">0° &lt; θ &lt; 90°</td><td class="num">0 to +1</td><td>positive</td><td>speeds up</td></tr>
+        <tr><td>Normal force on a level floor</td><td class="num">90°</td><td class="num">0</td><td><b>exactly zero</b></td><td>unchanged</td></tr>
+        <tr><td>Centripetal force, uniform circular motion</td><td class="num">90°</td><td class="num">0</td><td><b>exactly zero</b></td><td>unchanged</td></tr>
+        <tr><td>Magnetic force on a moving charge</td><td class="num">90° always</td><td class="num">0</td><td><b>exactly zero</b></td><td>unchanged</td></tr>
+        <tr><td>Gravity on a ball moving upward</td><td class="num">180°</td><td class="num">−1</td><td>negative</td><td>slows down</td></tr>
+        <tr><td>Kinetic friction on a sliding block</td><td class="num">180°</td><td class="num">−1</td><td>negative</td><td>slows down</td></tr>
+        <tr><td>Braking hand lowering a box slowly</td><td class="num">180°</td><td class="num">−1</td><td>negative</td><td>unchanged (gravity cancels it)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "negative work" does not mean "no work"</p>
+    <p style="margin:0">
+      Negative work is a real, quantified transfer of energy <em>out</em> of the object. When you catch
+      a falling ball, your hand does negative work on it equal in magnitude to the kinetic energy the
+      ball loses. This is exactly why <strong>a long, soft catch hurts less than a short, hard one</strong>:
+      the energy removed is fixed, so a larger stopping distance d demands a smaller force F. The same
+      arithmetic is the entire design principle behind crumple zones, airbags, crash helmets and
+      landing technique — a topic you will meet again in Note 04 as the impulse–momentum theorem.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · which distance goes into the formula?</p>
+    <p style="margin:0">
+      <b>d</b> is the <strong>displacement of the point where the force is applied</strong>, not the
+      total path length — with one important exception. For <strong>kinetic friction</strong> what you
+      need is the length of the sliding path, because friction reverses whenever the motion reverses
+      and therefore always takes energy out. A block that slides 2 m out and 2 m back has net
+      displacement zero but has lost <span class="fi">f<sub>k</sub> × 4 m</span> of mechanical energy.
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 1 · Sorting out the four forces on a dragged toolbox</h4>
+    <p style="margin:.2rem 0 .4rem">
+      An 18 kg toolbox is dragged 8.0 m across a level workshop floor by a strap held at 35° above the
+      horizontal with a tension of 60 N. The coefficient of kinetic friction is μ<sub>k</sub> = 0.20.
+      Find the work done by each force, the net work, and the final speed if the box started from rest.
+      Take g = 9.8 m·s⁻².
+    </p>
+    <ol>
+      <li><b>Normal force first</b> — friction depends on it, and the strap is lifting.
+        <br>N = mg − T sin 35° = (18)(9.8) − (60)(0.5736) = 176.4 − 34.4 = <b>142.0 N</b>.
+        <br>Note N ≠ mg here. Assuming N = mg is the single most common error in this problem.</li>
+      <li><b>Friction force</b>: f<sub>k</sub> = μ<sub>k</sub>N = (0.20)(142.0) = 28.4 N.</li>
+      <li><b>Work by the strap</b>: W<sub>T</sub> = T d cos 35° = (60)(8.0)(0.8192) = <b>+393 J</b>.</li>
+      <li><b>Work by friction</b>: θ = 180°, so W<sub>f</sub> = −(28.4)(8.0) = <b>−227 J</b>.</li>
+      <li><b>Work by gravity and by the normal force</b>: both are vertical, the displacement is
+        horizontal, θ = 90° → <b>0 J each</b>.</li>
+      <li><b>Net work</b>: 393 − 227 = <b>+166 J</b>.</li>
+      <li><b>Final speed</b> from the work–energy theorem (§03): ½mv² = 166 J
+        → v = √(2 × 166 / 18) = √18.4 = <b>4.3 m·s⁻¹</b>.</li>
+    </ol>
+    <span class="wex__ans">W<sub>T</sub> = +393 J · W<sub>f</sub> = −227 J · W<sub>N</sub> = W<sub>g</sub> = 0 · W<sub>net</sub> = +166 J · v = 4.3 m·s⁻¹</span>
+  </div>
+
+  <div class="mnemo">
+    <h4>One-line hook</h4>
+    <p>Work = (force <em>along</em> the motion) × (distance moved). If it is sideways, it does not count.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Variable forces: the area under F–x</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Work done by a variable force</dt>
+      <dd>The accumulated F<sub>x</sub> dx along the path — geometrically, the <strong>signed area
+        between the F–x curve and the x-axis</strong>, counting area below the axis as negative.</dd>
+      <dt>Spring constant k</dt>
+      <dd>The stiffness of an elastic element: the force needed per unit of extension or compression.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">W = ∫<sub>x<sub>i</sub></sub><sup>x<sub>f</sub></sup> F<sub>x</sub> dx</span>
+      <span class="fx__tag">any force law, one dimension</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">F<sub>s</sub> = −k x</span><span class="fx__tag">Hooke's law; x measured from the natural length, minus sign = restoring</span></div>
+      <div class="fx"><span class="fx__eq">W<sub>by spring</sub> = ½k x<sub>i</sub>² − ½k x<sub>f</sub>²</span><span class="fx__tag">negative when you stretch it, positive when it relaxes</span></div>
+      <div class="fx"><span class="fx__eq">W<sub>on spring</sub> = ½k x<sub>f</sub>² − ½k x<sub>i</sub>²</span><span class="fx__tag">work of the external agent; equal and opposite</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>F<sub>x</sub></b><span>component of the force along the direction of motion (N)</span></div>
+      <div><b>x</b><span>extension or compression from the natural length (m)</span></div>
+      <div><b>k</b><span>spring constant / stiffness (N·m⁻¹)</span></div>
+      <div><b>W</b><span>work (J)</span></div>
+    </div>
+  </div>
+
+  <p>
+    <span class="fi">W = Fd cos θ</span> assumes the force never changes. Real forces usually do: a
+    spring gets harder to stretch, drag grows with speed, a muscle weakens as it shortens. The repair
+    is the standard one in physics — chop the path into slices so short that F is effectively constant
+    over each, add up F<sub>x</sub>Δx, and let the slices shrink. That sum is an integral, and an
+    integral of F against x is <strong>the area under the graph</strong>. You almost never need
+    calculus to evaluate it: on an exam the graph is made of triangles and rectangles.
+  </p>
+
+  <h3>The spring is the worked case</h3>
+  <p>
+    A spring pulls back with <span class="fi">F<sub>s</sub> = −kx</span>. The minus sign says
+    <em>restoring</em>: stretch it (x &gt; 0) and it pulls back (F &lt; 0). To hold it stretched you
+    must supply <span class="fi">+kx</span>, a force that grows linearly from zero. Plot that applied
+    force against x and you get a straight line through the origin; the area under it out to
+    extension x is a triangle:
+  </p>
+  <div class="fx fx--hero">
+    <span class="fx__eq">W = ½ · (base) · (height) = ½ · x · (kx) = ½ k x²</span>
+    <span class="fx__tag">ideal spring, obeying Hooke's law over the whole range</span>
+  </div>
+  <p>
+    The factor of ½ is not a fudge — it is the <em>average</em> force. The force ramps from 0 to kx, so
+    its mean value over the stretch is ½kx, and work = (mean force)(distance) = ½kx · x. That reading
+    generalises: for <em>any</em> linearly varying force, use the average of the endpoint values.
+  </p>
+
+  <figure class="figure">
+      <svg viewBox="0 0 660 330" role="img" aria-label="Graph of the applied force on a spring against extension. The line F equals k x rises from the origin. The shaded triangle under the line from zero to twelve centimetres is the work one point eight joules; the shaded trapezoid from twelve to twenty-four centimetres is three times larger at five point four joules.">
+        <defs>
+          <marker id="f2-ax" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--ink-soft)"/></marker>
+        </defs>
+        <polygon points="70,270 315,270 315,165" fill="var(--v-energy)" opacity=".3"/>
+        <polygon points="315,270 560,270 560,60 315,165" fill="var(--v-energy)" opacity=".55"/>
+        <line x1="70" y1="165" x2="315" y2="165" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="315" y1="165" x2="315" y2="270" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="70" y1="60" x2="560" y2="60" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="560" y1="60" x2="560" y2="270" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="70" y1="270" x2="620" y2="270" stroke="var(--ink-soft)" stroke-width="1.6" marker-end="url(#f2-ax)"/>
+        <line x1="70" y1="270" x2="70" y2="40" stroke="var(--ink-soft)" stroke-width="1.6" marker-end="url(#f2-ax)"/>
+        <line x1="70" y1="270" x2="560" y2="60" stroke="var(--v-force)" stroke-width="2.6"/>
+        <text x="568" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="var(--v-force)">F = k x</text>
+        <text x="63" y="170" text-anchor="end" font-size="11.5" fill="var(--ink-faint)">30 N</text>
+        <text x="63" y="65" text-anchor="end" font-size="11.5" fill="var(--ink-faint)">60 N</text>
+        <text x="64" y="288" text-anchor="middle" font-size="11.5" fill="var(--ink-faint)">0</text>
+        <text x="315" y="290" text-anchor="middle" font-size="11.5" fill="var(--ink-faint)">x₁ = 12 cm</text>
+        <text x="560" y="290" text-anchor="middle" font-size="11.5" fill="var(--ink-faint)">2x₁ = 24 cm</text>
+        <text x="620" y="310" text-anchor="end" font-size="11.5" fill="var(--ink-soft)">extension x (cm)</text>
+        <text x="26" y="155" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)" transform="rotate(-90 26 155)">applied force F (N)</text>
+        <text x="188" y="250" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">½kx₁² = 1.80 J</text>
+        <text x="440" y="196" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">3 × ½kx₁² = 5.40 J</text>
+      </svg>
+      <figcaption>
+        A spring with k = 250 N·m⁻¹. Stretching the first 12 cm costs 1.80 J; stretching the
+        <em>second</em> 12 cm costs 5.40 J — three times as much, because the triangle has become a
+        trapezoid. Energy in a spring is quadratic in x, so the last centimetre of any stretch is
+        always the expensive one.
+      </figcaption>
+  </figure>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · where is x measured from?</p>
+    <p style="margin:0">
+      In <span class="fi">U<sub>s</sub> = ½kx²</span>, x is the displacement <strong>from the spring's
+      natural (unstretched) length</strong> — never from the floor, never from the equilibrium position
+      of a hanging mass, never from where you happened to put the origin. A second trap: because x is
+      squared, <strong>compression by x stores exactly as much energy as extension by x</strong>. Elastic
+      potential energy is never negative.
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 2 · A spring-loaded launcher</h4>
+    <p style="margin:.2rem 0 .4rem">
+      A toy launcher uses a spring with k = 250 N·m⁻¹, compressed 12 cm. (a) How much energy is stored?
+      (b) How much extra work would it take to compress it to 24 cm instead? (c) If the launcher fires a
+      50 g projectile horizontally and the spring gives back all its energy, how fast does it leave?
+    </p>
+    <ol>
+      <li><b>(a)</b> W = ½kx² = ½(250)(0.12)² = (125)(0.0144) = <b>1.80 J</b>.</li>
+      <li><b>(b)</b> At 24 cm: ½(250)(0.24)² = (125)(0.0576) = 7.20 J. The <em>extra</em> work is
+        7.20 − 1.80 = <b>5.40 J</b> = exactly 3 × 1.80 J. Doubling the compression quadruples the
+        stored energy, so the second half of the squeeze costs three times the first.</li>
+      <li><b>(c)</b> All of U<sub>s</sub> becomes K: ½mv² = 1.80 J
+        → v² = 2(1.80)/0.050 = 72.0 m²·s⁻² → v = <b>8.5 m·s⁻¹</b>.
+        <br>Equivalently v = x√(k/m) = 0.12 × √5000 = 0.12 × 70.7 = 8.5 m·s⁻¹ — a formula worth
+        recognising, since √(k/m) is the angular frequency ω of the same spring in oscillation.</li>
+    </ol>
+    <span class="wex__ans">(a) 1.80 J  ·  (b) 5.40 J extra  ·  (c) 8.5 m·s⁻¹</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · reading areas off any F–x graph</p>
+    <p style="margin:0">
+      Given a piecewise-linear F–x graph, the work is just the sum of the shapes: rectangles, triangles,
+      trapezoids. <strong>Area below the x-axis counts as negative work.</strong> This is the standard
+      way an exam tests whether you have understood the definition rather than memorised
+      <span class="fi">Fd cos θ</span> — and it is also how muscle physiology plots work: the area
+      enclosed by a pressure–volume loop of the left ventricle is the mechanical work the heart does
+      per beat (about 1 J for the left ventricle at rest, which is the same integral with P and V in
+      place of F and x).
+    </p>
+  </div>
+</section>
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Kinetic energy and the work–energy theorem</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Kinetic energy</dt>
+      <dd>The energy a body has because of its motion — numerically, the total work needed to bring it
+        from rest to speed v. It is a scalar, never negative, and has no direction.</dd>
+      <dt>Work–energy theorem</dt>
+      <dd>The net work done on a particle equals the change in its kinetic energy. It is the bridge
+        between the force picture and the motion picture.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">W<sub>net</sub> = ΔK = ½m v<sub>f</sub>² − ½m v<sub>i</sub>²</span>
+      <span class="fx__tag">any force, constant or variable; any path</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">K = ½ m v²</span><span class="fx__tag">non-relativistic: valid while v ≪ c</span></div>
+      <div class="fx"><span class="fx__eq">K = p² / (2m)</span><span class="fx__tag">the form you will want in Note 04 (collisions)</span></div>
+      <div class="fx"><span class="fx__eq">d = v² / (2 μ<sub>k</sub> g)</span><span class="fx__tag">skid to rest on a level surface; mass cancels</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>K</b><span>kinetic energy (J)</span></div>
+      <div><b>m</b><span>mass (kg)</span></div>
+      <div><b>v</b><span>speed (m·s⁻¹)</span></div>
+      <div><b>p</b><span>magnitude of momentum, p = mv (kg·m·s⁻¹)</span></div>
+      <div><b>W<sub>net</sub></b><span>net work by all forces (J)</span></div>
+      <div><b>μ<sub>k</sub></b><span>coefficient of kinetic friction (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Where does ½mv² come from? Take the simplest case — a constant net force along the motion — and
+    combine Newton's second law with the constant-acceleration kinematics of Note 01:
+  </p>
+  <div class="fx-grid">
+    <div class="fx"><span class="fx__eq">v<sub>f</sub>² = v<sub>i</sub>² + 2 a d</span><span class="fx__tag">kinematics, constant a</span></div>
+    <div class="fx"><span class="fx__eq">× ½m  →  ½m v<sub>f</sub>² − ½m v<sub>i</sub>² = (m a) d = F<sub>net</sub> d</span><span class="fx__tag">Newton's second law substituted</span></div>
+  </div>
+  <p>
+    The right-hand side is the net work; the left-hand side defines the quantity whose change that work
+    equals. So ½mv² is not an arbitrary definition — it is <em>forced</em> on us by demanding that
+    "force × distance" have a clean interpretation. The result then turns out to hold far beyond the
+    assumptions used to derive it: with the integral definition of work it is true for variable forces
+    and curved paths as well.
+  </p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the quadratic is the whole story</p>
+    <p style="margin:0">
+      K depends on <strong>v², not v</strong>. Double the speed and you quadruple the kinetic energy, so
+      you quadruple the stopping distance at a given braking force, and you quadruple the energy that
+      has to be absorbed by a body in a collision. This one fact is why <strong>trauma severity climbs
+      so much faster than speed</strong>, and why dropping a limit from 60 km·h⁻¹ to 30 km·h⁻¹ outside a
+      hospital removes <em>three quarters</em> of the energy a pedestrian would have to absorb, not half.
+      Contrast a fall, where the energy on landing is mgh and therefore grows only <em>linearly</em> with
+      height: a 4 m fall delivers exactly twice the energy of a 2 m fall, at only √2 times the impact
+      speed. Know which variable the quadratic is in.
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 3 · Braking distance and why mass does not appear</h4>
+    <p style="margin:.2rem 0 .4rem">
+      A car skids to rest with its wheels locked on a level road, μ<sub>k</sub> = 0.70, g = 9.8 m·s⁻².
+      Find the skid distance at 14 m·s⁻¹ (≈ 50 km·h⁻¹) and at 28 m·s⁻¹ (≈ 100 km·h⁻¹).
+    </p>
+    <ol>
+      <li><b>Identify the forces that do work.</b> Gravity and the normal force are perpendicular to the
+        motion → zero work. Only friction acts along the road: W<sub>net</sub> = −f<sub>k</sub>d =
+        −μ<sub>k</sub> m g d.</li>
+      <li><b>Apply the theorem.</b> −μ<sub>k</sub> m g d = 0 − ½mv², so
+        <span class="fi">d = v² / (2 μ<sub>k</sub> g)</span>. <strong>The mass cancels</strong> — a truck
+        and a motorcycle with the same tyres skid the same distance.</li>
+      <li><b>Substitute.</b> 2μ<sub>k</sub>g = 2(0.70)(9.8) = 13.72 m·s⁻².
+        <br>At 14 m·s⁻¹: d = 196 / 13.72 = <b>14.3 m</b>.
+        <br>At 28 m·s⁻¹: d = 784 / 13.72 = <b>57.1 m</b>.</li>
+      <li><b>Read the ratio.</b> Doubling the speed multiplied the distance by exactly 4 — and that is
+        <em>before</em> adding the reaction distance, which grows only linearly with speed.</li>
+    </ol>
+    <span class="wex__ans">d(14 m·s⁻¹) = 14.3 m  ·  d(28 m·s⁻¹) = 57.1 m  ·  ratio = 4.00, independent of mass</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "net" work means the sum over <em>every</em> force</p>
+    <p style="margin:0">
+      W<sub>net</sub> = ΔK is a statement about the <strong>total</strong>. In Worked example 1 the strap
+      did +393 J but the box gained only 166 J, because friction removed 227 J. Students who write
+      "W = ΔK" and then substitute the work of the applied force alone get the wrong answer every time.
+      Either sum all the works, or use the net force in <span class="fi">W = F<sub>net</sub> d cos θ</span> —
+      never mix the two.
+    </p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · when you are not a particle</p>
+    <p style="margin:0">
+      Stand up from a chair, or jump: your kinetic energy rises, yet the floor's normal force did
+      <em>zero</em> work because the floor never moved. There is no contradiction — the theorem in the
+      form W<sub>net</sub> = ΔK applies to a <strong>point particle</strong>. For a deformable body the
+      correct statement is the centre-of-mass equation, and the energy actually came from
+      <strong>internal chemical energy in your muscles</strong>. The external force merely provided the
+      push. Any exam item about jumping, walking or a car accelerating on its tyres is testing this
+      distinction: static friction on a rolling wheel does no work at the contact point, but the engine
+      still burns fuel.
+    </p>
+  </div>
+
+  <div class="mnemo">
+    <h4>One-line hook</h4>
+    <p>Work is what a force <em>does</em>; kinetic energy is what the body <em>has</em>. The theorem says the first is the change in the second.</p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Conservative and non-conservative forces</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Conservative force</dt>
+      <dd>A force whose total work around any closed path is exactly zero — equivalently, one whose work
+        between two points depends only on the endpoints and not on the route taken.</dd>
+      <dt>Non-conservative force</dt>
+      <dd>A force whose work does depend on the path, so that no potential-energy function can be
+        assigned to it.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">∮ <b>F</b>·d<b>s</b> = 0</span>
+      <span class="fx__tag">the definitive test: zero work around every closed loop</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">W<sub>A→B</sub> is the same for every path A → B</span><span class="fx__tag">equivalent statement</span></div>
+      <div class="fx"><span class="fx__eq">W<sub>cons</sub> = −ΔU = U<sub>i</sub> − U<sub>f</sub></span><span class="fx__tag">only possible for conservative forces — this is what U <em>means</em></span></div>
+    </div>
+    <div class="symtab">
+      <div><b>∮</b><span>integral taken once around a closed loop (dimensionless operator)</span></div>
+      <div><b>F</b><span>the force being tested, a vector (N)</span></div>
+      <div><b>ds</b><span>infinitesimal vector element of the path (m)</span></div>
+      <div><b>U</b><span>potential energy associated with the force (J)</span></div>
+      <div><b>W<sub>cons</sub></b><span>work done by the conservative force (J)</span></div>
+    </div>
+  </div>
+
+  <p>
+    This is the classification that makes potential energy possible at all. If the work a force does
+    from A to B is the same however you travel, then that work is a property of <em>where you are</em>,
+    not of <em>how you got there</em> — so you can tabulate it as a function of position and call it
+    −U. If the work depends on the route, no such function exists, and there is nothing to tabulate.
+  </p>
+
+  <h3>Applying the closed-loop test</h3>
+  <p>
+    <strong>Gravity passes.</strong> Carry a book up 2 m and back down 2 m by any route: gravity does
+    −mg(2) going up and +mg(2) coming down. Net zero. It does not matter whether you took the stairs
+    or a spiral ramp, because only the vertical component of each step contributes.
+  </p>
+  <p>
+    <strong>Kinetic friction fails, and fails badly.</strong> Friction always opposes the <em>relative
+    sliding</em>, so it does negative work on the way out and negative work on the way back. Round a
+    closed loop of total path length L it does −f<sub>k</sub>L, which is never zero. Worse, its value
+    depends on how long a route you chose — take the scenic path and you lose more. That path dependence
+    is precisely why "friction potential energy" is a meaningless phrase.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Property</th><th>Conservative</th><th>Non-conservative</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Work around a closed path</td><td>exactly <b>zero</b></td><td>non-zero (negative for dissipative forces)</td></tr>
+        <tr><td>Dependence on route</td><td>endpoints only</td><td>depends on the whole path</td></tr>
+        <tr><td>Potential-energy function U</td><td><b>exists</b>, with F<sub>x</sub> = −dU/dx</td><td><b>cannot be defined</b></td></tr>
+        <tr><td>Is the energy recoverable?</td><td>yes — fully, and reversibly</td><td>no — it leaves as heat, sound or deformation</td></tr>
+        <tr><td>Effect on E<sub>mech</sub> = K + U</td><td>leaves it unchanged</td><td>changes it: W<sub>nc</sub> = ΔE<sub>mech</sub></td></tr>
+        <tr><td>Textbook examples</td><td>gravity, ideal spring, electrostatic (Coulomb) force</td><td>kinetic friction, air drag, viscous resistance, a hand pushing, a motor's tension, an explosion</td></tr>
+        <tr><td>Microscopic picture</td><td>energy stored in an ordered configuration</td><td>energy scattered into disordered molecular motion</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <p class="callout__title">"Non-conservative" does not mean "energy is destroyed"</p>
+    <p style="margin:0">
+      Total energy is always conserved — that is the first law of thermodynamics and it has no
+      exceptions. What non-conservative forces destroy is only the <strong>mechanical</strong>
+      bookkeeping: the energy is still there, but it has been dispersed into the random kinetic energy
+      of molecules (thermal energy), into sound, or into permanent deformation, and you cannot get it
+      back as organised motion. The honest name for friction and drag is <strong>dissipative</strong>.
+    </p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · non-conservative ≠ dissipative ≠ does work</p>
+    <p style="margin:0">
+      The normal force, the tension in an inextensible string, and static friction are all
+      non-conservative, yet in most problems they do <strong>zero</strong> work and dissipate nothing —
+      they simply steer. Ticking "the normal force removes energy from the block on an incline" is a
+      classic wrong answer: N is perpendicular to the motion, so W<sub>N</sub> = 0, always. Conversely
+      a hand or a motor is non-conservative and does large <em>positive</em> work. Non-conservative
+      means "path-dependent", nothing more.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Potential energy: gravitational and elastic</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Potential energy</dt>
+      <dd>Energy stored in the <strong>configuration</strong> of a system because a conservative force
+        acts inside it. It belongs to the system (ball <em>and</em> Earth; both ends of the spring),
+        not to a single object.</dd>
+      <dt>Reference level</dt>
+      <dd>The arbitrarily chosen position at which U is declared to be zero. Only differences in U have
+        physical meaning.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">U<sub>g</sub> = m g y</span>
+      <span class="fx__tag">near Earth's surface only, where g is effectively constant</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ΔU = −W<sub>cons</sub></span><span class="fx__tag">the definition of potential energy</span></div>
+      <div class="fx"><span class="fx__eq">ΔU<sub>g</sub> = m g Δy = m g (y<sub>f</sub> − y<sub>i</sub>)</span><span class="fx__tag">Δy is the <em>vertical</em> rise, not distance along a slope</span></div>
+      <div class="fx"><span class="fx__eq">U<sub>s</sub> = ½ k x²</span><span class="fx__tag">ideal spring; x from natural length; always ≥ 0</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>U<sub>g</sub></b><span>gravitational potential energy (J)</span></div>
+      <div><b>m</b><span>mass (kg)</span></div>
+      <div><b>g</b><span>gravitational field strength, 9.8 N·kg⁻¹ = 9.8 m·s⁻²</span></div>
+      <div><b>y</b><span>height above the chosen reference level (m)</span></div>
+      <div><b>U<sub>s</sub></b><span>elastic potential energy (J)</span></div>
+      <div><b>k</b><span>spring constant (N·m⁻¹)</span></div>
+      <div><b>x</b><span>extension or compression (m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Potential energy is a piece of accounting genius. Rather than track the work gravity does at every
+    step of a complicated path, you agree once and for all to store "the work gravity would do if the
+    object came back to the reference level" as a number attached to position. Then gravity never
+    appears in your work sum again — it appears as U on the other side of the equation. That is the
+    whole trick, and it works only because gravity is conservative (§04).
+  </p>
+  <p>
+    The minus sign in <span class="fi">ΔU = −W<sub>cons</sub></span> is the one to get right. Lift a
+    book: gravity does negative work, so ΔU is positive and the store fills. Drop it: gravity does
+    positive work, ΔU is negative, the store empties into kinetic energy.
+  </p>
+
+  <h3>Why the reference level is genuinely arbitrary</h3>
+  <p>
+    Put a 1.5 kg book on a table 0.80 m above the floor. Measuring from the floor,
+    U = (1.5)(9.8)(0.80) = 11.8 J. Measuring from the table top, U = 0. Measuring from the ceiling,
+    U is negative. All three are correct, and <strong>every physical prediction is identical</strong>,
+    because physics only ever asks for ΔU. If the book falls to the floor, ΔU = −11.8 J in every one of
+    those choices.
+  </p>
+  <p>
+    Practical rule: <strong>put y = 0 at the lowest point the object reaches</strong>. Then every U is
+    positive and you never lose a sign. If a problem has a spring as well, the spring's reference level
+    is not free — it is fixed at the natural length by the form ½kx².
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · Δy is vertical height, not distance along the incline</p>
+    <p style="margin:0">
+      A block sliding 4.2 m down a slope inclined at 36.5° falls
+      <span class="fi">Δy = 4.2 sin 36.5° = 2.5 m</span>, and mgΔy uses the <strong>2.5</strong>, not
+      the 4.2. Friction, by contrast, uses the <strong>4.2</strong> — it acts along the surface. Mixing
+      the two lengths up is the single most productive source of wrong answers in incline problems.
+      A second, subtler trap: <span class="fi">U<sub>g</sub> = mgy</span> assumes constant g, so it is
+      valid for buildings and mountains but not for satellites, where U = −GMm/r takes over.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · potential energy belongs to the system</p>
+    <p style="margin:0">
+      Strictly, gravitational potential energy is a property of the <strong>Earth–object system</strong>,
+      because it arises from the interaction between the two. Saying "the ball has 20 J of potential
+      energy" is shorthand that examiners tolerate in calculation questions and punish in concept
+      questions. The same holds for a spring: the energy resides in the <em>deformation</em>, shared by
+      both ends, not in one coil.
+    </p>
+  </div>
+</section>
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Conservation of mechanical energy</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Mechanical energy</dt>
+      <dd>The sum of the kinetic and potential energies of a system: the energy that is available as
+        organised motion or as stored configuration.</dd>
+      <dt>Conservation of mechanical energy</dt>
+      <dd>If every force that does work is conservative, E<sub>mech</sub> has the same numerical value
+        at every instant of the motion.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">K<sub>i</sub> + U<sub>i</sub> = K<sub>f</sub> + U<sub>f</sub></span>
+      <span class="fx__tag">valid only when no non-conservative force does work</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">E<sub>mech</sub> = K + U<sub>g</sub> + U<sub>s</sub> = constant</span><span class="fx__tag">definition plus the conservation statement</span></div>
+      <div class="fx"><span class="fx__eq">½m v<sub>i</sub>² + m g y<sub>i</sub> = ½m v<sub>f</sub>² + m g y<sub>f</sub></span><span class="fx__tag">gravity only; m cancels throughout</span></div>
+      <div class="fx"><span class="fx__eq">v = √(2 g Δh)</span><span class="fx__tag">released from rest, gravity only — independent of mass <em>and</em> of path shape</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>E<sub>mech</sub></b><span>mechanical energy (J)</span></div>
+      <div><b>K</b><span>kinetic energy, ½mv² (J)</span></div>
+      <div><b>U</b><span>total potential energy (J)</span></div>
+      <div><b>Δh</b><span>vertical drop (m)</span></div>
+      <div><b>v</b><span>speed (m·s⁻¹)</span></div>
+      <div><b>g</b><span>9.8 m·s⁻²</span></div>
+    </div>
+  </div>
+
+  <p>
+    Start from the work–energy theorem and split the net work into two piles — conservative and not:
+  </p>
+  <div class="fx-grid">
+    <div class="fx"><span class="fx__eq">W<sub>cons</sub> + W<sub>nc</sub> = ΔK</span><span class="fx__tag">work–energy theorem, forces sorted</span></div>
+    <div class="fx"><span class="fx__eq">−ΔU + W<sub>nc</sub> = ΔK  ⟹  W<sub>nc</sub> = ΔK + ΔU = ΔE<sub>mech</sub></span><span class="fx__tag">using ΔU = −W<sub>cons</sub></span></div>
+  </div>
+  <p>
+    Set W<sub>nc</sub> = 0 and mechanical energy is constant. This is the master equation of the
+    chapter: <strong>the work of non-conservative forces is exactly the change in mechanical
+    energy.</strong> Conservation is the special case, not a separate law.
+  </p>
+
+  <h3>One line where kinematics needs three</h3>
+  <p>
+    Here is the payoff, in the form exams like best. <em>A ball is thrown at 15 m·s⁻¹ at 40° above the
+    horizontal. Ignoring air resistance, how fast is it moving when it is 3.0 m above the launch
+    point?</em>
+  </p>
+  <p>The kinematic route needs three steps, all of them chances to slip:</p>
+  <ol>
+    <li>resolve: v<sub>x</sub> = 15 cos 40° = 11.49 m·s⁻¹, v<sub>y0</sub> = 15 sin 40° = 9.64 m·s⁻¹;</li>
+    <li>vertical motion: v<sub>y</sub>² = 9.64² − 2(9.8)(3.0) = 92.97 − 58.8 = 34.17 → v<sub>y</sub> = 5.85 m·s⁻¹;</li>
+    <li>recombine: v = √(11.49² + 5.85²) = √166.2 = 12.9 m·s⁻¹.</li>
+  </ol>
+  <p>The energy route needs one:</p>
+  <div class="fx fx--hero">
+    <span class="fx__eq">v² = v<sub>0</sub>² − 2 g h = 225 − 2(9.8)(3.0) = 166.2  →  v = 12.9 m·s⁻¹</span>
+    <span class="fx__tag">m cancels; the launch angle never enters</span>
+  </div>
+  <p>
+    And it delivers a bonus the long route hides: <strong>the answer does not depend on the launch
+    angle at all</strong>. Any projectile launched at 15 m·s⁻¹ is moving at 12.9 m·s⁻¹ when it passes
+    3.0 m above the launch point — in whatever direction, provided it is launched steeply enough to get
+    there at all (h<sub>max</sub> = v<sub>0</sub>²sin²θ/2g reaches 3.0 m only for θ ≳ 31°). Energy knows
+    about heights, not about directions.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 4 · Same speed, different questions</h4>
+    <p style="margin:.2rem 0 .4rem">
+      Using the ball above (v<sub>0</sub> = 15 m·s⁻¹ at 40°, g = 9.8 m·s⁻²): (a) confirm the speed at
+      h = 3.0 m; (b) find the maximum height; (c) explain why the same method cannot tell you
+      <em>when</em> the ball is at 3.0 m.
+    </p>
+    <ol>
+      <li><b>(a)</b> ½mv² + mgh = ½mv<sub>0</sub>². Cancel m: v² = v<sub>0</sub>² − 2gh
+        = 225 − 58.8 = 166.2 m²·s⁻² → v = <b>12.9 m·s⁻¹</b>. The kinematic check above agrees to three
+        figures, as it must.</li>
+      <li><b>(b)</b> At the top the ball is <em>not</em> at rest — it still has v<sub>x</sub> = 11.49 m·s⁻¹.
+        Only the vertical part is spent: h<sub>max</sub> = v<sub>y0</sub>²/(2g) = 92.97/19.6 =
+        <b>4.74 m</b>. Writing 0 = 225 − 2(9.8)h and getting 11.5 m is the classic error — that would be
+        the answer for a ball thrown straight up.</li>
+      <li><b>(c)</b> Energy relates speed to position, and it contains no t. To get the time you must go
+        back to <span class="fi">y = v<sub>y0</sub>t − ½gt²</span>. Energy answers "how fast" and "how
+        high"; kinematics answers "when".</li>
+    </ol>
+    <span class="wex__ans">(a) 12.9 m·s⁻¹ (angle-independent) · (b) 4.74 m · (c) energy carries no time information</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · what energy conservation buys and what it costs</p>
+    <p style="margin:0">
+      <b>It buys:</b> the speed at any point of an arbitrarily complicated smooth path — a roller
+      coaster, a pendulum, a curved slide, a loop — using only the height difference. A bead released
+      from rest on <em>any</em> frictionless track reaches the bottom at
+      <span class="fi">√(2gΔh)</span>, whatever shape the track has.
+      <b>It costs:</b> all information about time and about the direction of <b>v</b>. If the question
+      says "how long" or "at what angle", energy alone cannot finish it.
+    </p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>The question asks for…</th><th>Reach for…</th><th>Because</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Speed at a stated position or height</td><td><b>Energy conservation</b></td><td>relates v to position with no time variable</td></tr>
+        <tr><td>Speed after a curved or irregular path</td><td><b>Energy conservation</b></td><td>path shape drops out; only Δh survives</td></tr>
+        <tr><td>Energy lost to friction or drag</td><td><b>Energy accounting</b> (§07)</td><td>W<sub>nc</sub> = ΔE<sub>mech</sub></td></tr>
+        <tr><td>How long the motion takes</td><td>Kinematics / Newton's 2nd law</td><td>energy equations contain no t</td></tr>
+        <tr><td>Direction of the velocity</td><td>Kinematics / vector components</td><td>energy is a scalar</td></tr>
+        <tr><td>Force or acceleration at one instant</td><td>Newton's 2nd law</td><td>energy integrates force; it cannot un-integrate it</td></tr>
+        <tr><td>Velocities after a collision</td><td>Momentum first (Note 04)</td><td>momentum is conserved even when K is not</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo">
+    <h4>One-line hook</h4>
+    <p>Energy tells you <em>how fast</em>; Newton tells you <em>when</em>. Choose the tool by the question word.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Energy accounting when friction is present</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Thermal energy generated by sliding</dt>
+      <dd>The mechanical energy converted into disordered molecular motion at a sliding interface. It
+        equals the friction force times the distance the surfaces slide <em>past each other</em>.</dd>
+      <dt>Energy accounting</dt>
+      <dd>The general statement that mechanical energy in equals mechanical energy out plus everything
+        that leaked. Nothing is lost; it is only relabelled.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">K<sub>i</sub> + U<sub>i</sub> = K<sub>f</sub> + U<sub>f</sub> + f<sub>k</sub> d</span>
+      <span class="fx__tag">sliding friction present; d = length of the sliding path</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ΔE<sub>th</sub> = f<sub>k</sub> d = μ<sub>k</sub> N d</span><span class="fx__tag">d is <em>relative</em> sliding distance, not net displacement</span></div>
+      <div class="fx"><span class="fx__eq">W<sub>nc</sub> = ΔK + ΔU = ΔE<sub>mech</sub></span><span class="fx__tag">general form; W<sub>nc</sub> &lt; 0 for friction and drag</span></div>
+      <div class="fx"><span class="fx__eq">f<sub>k</sub> = μ<sub>k</sub> N</span><span class="fx__tag">N is the normal force, = mg cos θ on an incline</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>f<sub>k</sub></b><span>kinetic friction force (N)</span></div>
+      <div><b>N</b><span>normal force at the sliding surface (N)</span></div>
+      <div><b>d</b><span>sliding path length (m)</span></div>
+      <div><b>ΔE<sub>th</sub></b><span>thermal energy generated (J)</span></div>
+      <div><b>W<sub>nc</sub></b><span>work of non-conservative forces (J)</span></div>
+      <div><b>μ<sub>k</sub></b><span>coefficient of kinetic friction (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Almost no real problem is frictionless, and the repair is small: mechanical energy is no longer
+    constant, so put the leak explicitly on the low side of the ledger. Read the master equation as a
+    sentence — <em>what you started with equals what you ended with plus what escaped as heat.</em>
+    Written this way every term is positive and the sign errors disappear.
+  </p>
+
+  <figure class="figure">
+      <svg viewBox="0 0 660 300" role="img" aria-label="Stacked energy bar chart for a child on a slide. At the top of the slide all 612.5 joules are gravitational potential energy. Half way down, 306 joules remain potential, 156 joules are kinetic and 150 joules have become thermal. At the bottom, 312.5 joules are kinetic and 300 joules are thermal. The total bar height never changes.">
+        <rect x="70" y="18" width="14" height="12" rx="2" fill="var(--v-energy)"/>
+        <text x="92" y="29" font-size="11.5" fill="var(--ink-soft)">U — gravitational</text>
+        <text x="240" y="29" font-size="11.5" fill="var(--ink-soft)">K — kinetic</text>
+        <rect x="218" y="18" width="14" height="12" rx="2" fill="var(--v-vel)"/>
+        <rect x="352" y="18" width="14" height="12" rx="2" fill="var(--v-heat)"/>
+        <text x="374" y="29" font-size="11.5" fill="var(--ink-soft)">E<tspan font-size="9" dy="3">th</tspan><tspan dy="-3"> — thermal (friction)</tspan></text>
+
+        <line x1="70" y1="60" x2="600" y2="60" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="5 4"/>
+        <text x="70" y="53" font-size="11" fill="var(--ink-faint)">total energy 612.5 J — the bar height never changes</text>
+
+        <rect x="90" y="60" width="100" height="180" fill="var(--v-energy)"/>
+        <text x="140" y="155" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--paper)">612.5 J</text>
+
+        <rect x="280" y="150" width="100" height="90" fill="var(--v-energy)"/>
+        <rect x="280" y="104" width="100" height="46" fill="var(--v-vel)"/>
+        <rect x="280" y="60" width="100" height="44" fill="var(--v-heat)"/>
+        <text x="330" y="201" text-anchor="middle" font-size="12" font-weight="700" fill="var(--paper)">306 J</text>
+        <text x="330" y="132" text-anchor="middle" font-size="12" font-weight="700" fill="var(--paper)">156 J</text>
+        <text x="330" y="87" text-anchor="middle" font-size="12" font-weight="700" fill="var(--paper)">150 J</text>
+
+        <rect x="470" y="148" width="100" height="92" fill="var(--v-vel)"/>
+        <rect x="470" y="60" width="100" height="88" fill="var(--v-heat)"/>
+        <text x="520" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="var(--paper)">312.5 J</text>
+        <text x="520" y="109" text-anchor="middle" font-size="12" font-weight="700" fill="var(--paper)">300 J</text>
+
+        <line x1="60" y1="240" x2="610" y2="240" stroke="var(--line)" stroke-width="2"/>
+        <text x="140" y="260" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">top · at rest, h = 2.5 m</text>
+        <text x="330" y="260" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">half-way down</text>
+        <text x="520" y="260" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">bottom · v = 5.0 m·s⁻¹</text>
+        <text x="330" y="284" text-anchor="middle" font-size="11" fill="var(--ink-faint)">The thermal slice only ever grows — that is what "dissipative" means.</text>
+      </svg>
+      <figcaption>
+        Energy bars for Worked example 5. Potential energy converts to kinetic energy, but friction
+        skims a growing slice off the top on the way down. The total is fixed; only the labels change.
+        Drawing this three-bar diagram before writing any algebra is the fastest way to avoid sign errors.
+      </figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 5 · A child on a playground slide</h4>
+    <p style="margin:.2rem 0 .4rem">
+      A 25 kg child starts from rest at the top of a straight slide, 2.5 m above the ground, and arrives
+      at the bottom at 5.0 m·s⁻¹. The sliding surface is 4.2 m long. (a) How much mechanical energy was
+      dissipated? (b) What was the average friction force? (c) What is μ<sub>k</sub>? (d) What speed
+      would a frictionless slide have given? Take g = 9.8 m·s⁻².
+    </p>
+    <ol>
+      <li><b>Set the reference level</b> at the bottom, so U<sub>f</sub> = 0 and every number is positive.</li>
+      <li><b>(a)</b> U<sub>i</sub> = mgh = (25)(9.8)(2.5) = 612.5 J.
+        K<sub>f</sub> = ½(25)(5.0)² = 312.5 J.
+        <br>ΔE<sub>th</sub> = 612.5 − 312.5 = <b>300 J</b> — very nearly half the available energy.</li>
+      <li><b>(b)</b> ΔE<sub>th</sub> = f<sub>k</sub>d, and d is the 4.2 m along the surface:
+        f<sub>k</sub> = 300/4.2 = <b>71 N</b>.</li>
+      <li><b>(c)</b> The slide's angle: sin θ = 2.5/4.2 = 0.595 → θ = 36.5°, cos θ = 0.804.
+        N = mg cos θ = (25)(9.8)(0.804) = 197 N. So μ<sub>k</sub> = 71.4/197 = <b>0.36</b> — plausible
+        for cloth on plastic.</li>
+      <li><b>(d)</b> Frictionless: v = √(2gh) = √(2 × 9.8 × 2.5) = √49 = <b>7.0 m·s⁻¹</b>.
+        Friction cost 2.0 m·s⁻¹ of exit speed but 300 J of energy — another reminder that energy is
+        quadratic in v, so equal energy losses are not equal speed losses.</li>
+    </ol>
+    <span class="wex__ans">(a) 300 J · (b) 71 N · (c) μ<sub>k</sub> ≈ 0.36 · (d) 7.0 m·s⁻¹ frictionless</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · f<sub>k</sub>d uses the path, and it is <em>never</em> recovered</p>
+    <p style="margin:0">
+      Send a block up a rough incline and let it slide back to the start. Gravity's contribution to the
+      round trip is exactly zero — but friction has acted over <em>twice</em> the ramp length, so the
+      block returns with less kinetic energy than it left with. Concretely, for launch speed
+      v<sub>0</sub> the return speed obeys
+      <span class="fi">v²/v<sub>0</sub>² = (sin θ − μ<sub>k</sub> cos θ)/(sin θ + μ<sub>k</sub> cos θ)</span>.
+      With θ = 30° and μ<sub>k</sub> = 0.25 that ratio is 0.396, so the block comes back at 63 % of its
+      launch speed. Setting the return speed equal to v<sub>0</sub> is the classic mistake.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · "relative sliding distance" matters when both surfaces move</p>
+    <p style="margin:0">
+      For a block sliding on a stationary floor the friction force does −f<sub>k</sub>d on the block and
+      generates +f<sub>k</sub>d of heat, so the two numbers coincide. If <em>both</em> surfaces move — a
+      block skidding on a moving conveyor, or a book slipping on a sliding tray — then
+      <span class="fi">ΔE<sub>th</sub> = f<sub>k</sub> × (relative displacement)</span>, which is neither
+      body's displacement. That distinction separates a competent answer from a lucky one.
+    </p>
+  </div>
+</section>
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Power, and the units it comes dressed in</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Power</dt>
+      <dd>The rate at which energy is transferred, or equivalently the rate at which work is done. It
+        is a scalar, and it may be positive or negative depending on the direction of the transfer.</dd>
+      <dt>Watt</dt>
+      <dd>One joule per second. Power is a <em>rate</em>; energy is an <em>amount</em>. Confusing the two
+        is the most common unit error in the whole chapter.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">P = dW/dt = <b>F</b>·<b>v</b> = F v cos θ</span>
+      <span class="fx__tag">instantaneous power; θ = angle between <b>F</b> and <b>v</b></span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">P̄ = W / Δt = ΔE / Δt</span><span class="fx__tag">average power over an interval</span></div>
+      <div class="fx"><span class="fx__eq">1 W = 1 J·s⁻¹ = 1 kg·m²·s⁻³</span><span class="fx__tag">SI unit</span></div>
+      <div class="fx"><span class="fx__eq">1 hp = 746 W  ·  1 kWh = 3.60×10⁶ J</span><span class="fx__tag">746 W is the mechanical horsepower (745.7 W); the metric PS is 735.5 W</span></div>
+      <div class="fx"><span class="fx__eq">P<sub>drag</sub> ∝ v³</span><span class="fx__tag">whenever the resistive force itself goes as v²</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>P</b><span>instantaneous power (W)</span></div>
+      <div><b>P̄</b><span>average power (W)</span></div>
+      <div><b>W</b><span>work done in the interval (J)</span></div>
+      <div><b>Δt</b><span>duration of the interval (s)</span></div>
+      <div><b>F</b><span>applied force (N)</span></div>
+      <div><b>v</b><span>speed of the point of application (m·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Two forms, two uses. <span class="fi">P̄ = W/Δt</span> answers "how much energy per second on
+    average"; <span class="fi">P = Fv</span> answers "how hard is this engine working right now". The
+    second follows from the first in one step: in a short time dt the force moves its point of
+    application by <span class="fi">dx = v dt</span>, so <span class="fi">dW = F dx = F v dt</span>.
+  </p>
+
+  <h3>Why P = Fv changes how machines are built</h3>
+  <p>
+    At a fixed power output, <strong>force and speed trade off against each other</strong>: F = P/v. A
+    cyclist in a low gear pushes hard and moves slowly; in a high gear the same legs deliver the same
+    power but as a smaller force at a higher speed. That single relation is the reason gearboxes exist,
+    the reason a car's acceleration falls away at high speed, and the reason a winch that lifts 500 kg
+    does it slowly.
+  </p>
+  <p>
+    Combine it with aerodynamic drag and the scaling becomes brutal. Above about 60 km·h⁻¹ the dominant
+    resistance is <span class="fi">F<sub>drag</sub> = ½ C ρ A v²</span>, so the power needed to hold
+    speed is <span class="fi">P = F v ∝ v³</span>. <strong>Doubling your cruising speed needs eight
+    times the power</strong>, which is why a car's fuel consumption per kilometre rises so steeply on
+    the motorway and why cycling records are set in still air.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 6 · How powerful is a person running upstairs?</h4>
+    <p style="margin:.2rem 0 .4rem">
+      A 68 kg student runs up one flight of stairs, a vertical rise of 3.6 m, in 5.0 s. Find the useful
+      mechanical work, the average mechanical power in watts and in horsepower, and estimate the
+      metabolic power drawn if muscle is 25 % efficient. Take g = 9.8 m·s⁻².
+    </p>
+    <ol>
+      <li><b>Work against gravity.</b> The only thing that changes (apart from a little kinetic energy at
+        the start, which we neglect) is height: W = mgh = (68)(9.8)(3.6) = <b>2.40×10³ J</b>.
+        Horizontal movement along each step contributes nothing, because gravity is vertical.</li>
+      <li><b>Average mechanical power.</b> P̄ = 2399/5.0 = <b>4.8×10² W</b>.</li>
+      <li><b>In horsepower.</b> 480/746 = <b>0.64 hp</b>. A fit human sustains roughly a fifth of a
+        horsepower for long periods and can peak near one horsepower for a few seconds — the unit was
+        calibrated on horses for a reason.</li>
+      <li><b>Metabolic cost.</b> If only 25 % of the chemical energy consumed emerges as mechanical work,
+        the body must draw P<sub>in</sub> = 480/0.25 = <b>1.9×10³ W</b>. That is about twenty times the
+        resting metabolic rate (≈ 100 W, §10), and the other 1.4 kW appears immediately as heat — which
+        is why one flight of stairs makes you warm before it makes you tired.</li>
+    </ol>
+    <span class="wex__ans">W = 2.40 kJ · P̄ = 480 W = 0.64 hp · metabolic ≈ 1.9 kW at 25 % efficiency</span>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 7 · Cruising at constant speed</h4>
+    <p style="margin:.2rem 0 .4rem">
+      A car travels at a steady 25 m·s⁻¹ (90 km·h⁻¹) on level road against a total resistive force
+      (drag + rolling) of 480 N. (a) What power must the engine deliver at the wheels? (b) What happens
+      if the driver raises the speed to 50 m·s⁻¹ and drag dominates?
+    </p>
+    <ol>
+      <li><b>(a)</b> At constant speed the net force is zero, so the driving force equals the resistance:
+        F = 480 N. P = Fv = (480)(25) = <b>1.2×10⁴ W = 12 kW ≈ 16 hp</b>. Note how modest this is
+        compared with the engine's rated 75–100 kW: most of an engine's power exists for acceleration
+        and hills, not for cruising.</li>
+      <li><b>(b)</b> If F ∝ v², doubling v multiplies the force by 4 and the power by 8:
+        P ≈ 8 × 12 kW = <b>96 kW</b>. The car would be at the limit of its engine, and fuel used per
+        kilometre would be about four times higher.</li>
+    </ol>
+    <span class="wex__ans">(a) 12 kW ≈ 16 hp · (b) ≈ 96 kW, an eightfold increase for a doubled speed</span>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Unit</th><th>Quantity</th><th>Exact / conventional value in SI</th><th>Where you meet it</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>joule (J)</td><td>energy</td><td class="num">1 J = 1 N·m = 1 kg·m²·s⁻²</td><td>everything in SI</td></tr>
+        <tr><td>erg</td><td>energy</td><td class="num">1 erg = 10⁻⁷ J</td><td>older CGS literature</td></tr>
+        <tr><td>calorie (cal)</td><td>energy</td><td class="num">1 cal = 4.184 J</td><td>calorimetry, thermochemistry</td></tr>
+        <tr><td><b>kilocalorie (kcal) = 1 food Calorie</b></td><td>energy</td><td class="num">1 kcal = 4184 J ≈ 4.18 kJ</td><td>nutrition labels, metabolism</td></tr>
+        <tr><td>electronvolt (eV)</td><td>energy</td><td class="num">1 eV = 1.60×10⁻¹⁹ J</td><td>atomic, nuclear, radiology</td></tr>
+        <tr><td><b>kilowatt-hour (kWh)</b></td><td><b>energy</b>, not power</td><td class="num">1 kWh = 3.60×10⁶ J = 3.6 MJ</td><td>electricity bills</td></tr>
+        <tr><td>watt (W)</td><td>power</td><td class="num">1 W = 1 J·s⁻¹</td><td>everything in SI</td></tr>
+        <tr><td>horsepower (hp)</td><td>power</td><td class="num">1 hp = 745.7 W ≈ 746 W</td><td>engines; metric PS = 735.5 W</td></tr>
+        <tr><td>kcal per hour</td><td>power</td><td class="num">1 kcal·h⁻¹ = 1.16 W</td><td>exercise physiology</td></tr>
+        <tr><td>MET</td><td>power per unit mass</td><td class="num">1 MET ≈ 1 kcal·kg⁻¹·h⁻¹ ≈ 1.16 W·kg⁻¹</td><td>clinical exercise prescription</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · kW is a rate, kWh is an amount</p>
+    <p style="margin:0">
+      A kilowatt-hour is a kilowatt <em>multiplied by</em> an hour: 1000 J·s⁻¹ × 3600 s = 3.6×10⁶ J. It
+      is an <strong>energy</strong>, and it is what the electricity company actually sells you. "Per
+      hour" appearing in a unit name is a reliable sign of a rate; "hour" multiplying is a reliable sign
+      of an amount. A 2 kW kettle run for half an hour uses 1.0 kWh = 3.6 MJ — enough, incidentally, to
+      lift a 70 kg person 5.2 km if it could all be converted.
+    </p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · average versus instantaneous</p>
+    <p style="margin:0">
+      Questions are written to catch you swapping the two. "A crane lifts 800 kg through 12 m in 30 s"
+      wants <span class="fi">P̄ = mgh/Δt</span> = (800)(9.8)(12)/30 = 3.14 kW. "…and what is the power
+      at the moment it is moving at 0.60 m·s⁻¹?" wants <span class="fi">P = Fv</span> =
+      (800)(9.8)(0.60) = 4.70 kW. The two differ because the lift includes acceleration and
+      deceleration phases; only for genuinely constant speed do they coincide.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Reading a potential-energy curve</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Potential-energy curve</dt>
+      <dd>A graph of U against position for a conservative system. Its <strong>slope</strong> gives the
+        force at every point and its <strong>shape</strong> classifies every equilibrium.</dd>
+      <dt>Equilibrium</dt>
+      <dd>A position where the net force is zero — that is, where the U curve is flat.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">F<sub>x</sub> = − dU/dx</span>
+      <span class="fx__tag">one dimension, conservative force only</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">K(x) = E − U(x) ≥ 0</span><span class="fx__tag">defines the classically allowed region; K = 0 at a turning point</span></div>
+      <div class="fx"><span class="fx__eq">dU/dx = 0</span><span class="fx__tag">condition for equilibrium</span></div>
+      <div class="fx"><span class="fx__eq">d²U/dx² &gt; 0 stable · &lt; 0 unstable · = 0 neutral</span><span class="fx__tag">curvature test, applied where dU/dx = 0; the = 0 case is only neutral if U is flat over a whole region, otherwise inconclusive</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>U(x)</b><span>potential energy as a function of position (J)</span></div>
+      <div><b>F<sub>x</sub></b><span>force component along x (N)</span></div>
+      <div><b>E</b><span>total mechanical energy, a horizontal line on the graph (J)</span></div>
+      <div><b>K(x)</b><span>kinetic energy at position x (J)</span></div>
+      <div><b>x</b><span>position (m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    <span class="fi">F<sub>x</sub> = −dU/dx</span> is just <span class="fi">ΔU = −W</span> read
+    backwards, and it is worth checking on the two cases you already know. For a spring,
+    U = ½kx² gives dU/dx = kx, so F = −kx — Hooke's law recovered. For gravity near the ground,
+    U = mgy gives dU/dy = mg, so F<sub>y</sub> = −mg, i.e. downward. The formula is not new physics; it is the same
+    physics written so a graph can answer questions.
+  </p>
+  <p>
+    The minus sign has a picture: <strong>the force always points downhill on the U curve</strong>, and
+    it is strongest where the curve is steepest. A ball placed on the graph would roll the way the real
+    force pushes. That is a rare case where the intuitive picture is also literally correct.
+  </p>
+
+  <figure class="figure">
+      <svg viewBox="0 0 660 300" role="img" aria-label="A potential energy curve with three regions. A valley at x equals 170 is a stable equilibrium where forces point inward. A peak at x equals 300 is an unstable equilibrium where forces point outward. A flat region on the right is neutral equilibrium with zero force. A horizontal dashed line marks the total energy E, meeting the curve at two turning points that bound the motion.">
+        <defs>
+          <marker id="f4-af" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--v-force)"/></marker>
+          <marker id="f4-ax" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--ink-soft)"/></marker>
+        </defs>
+        <line x1="50" y1="250" x2="640" y2="250" stroke="var(--ink-soft)" stroke-width="1.6" marker-end="url(#f4-ax)"/>
+        <line x1="50" y1="250" x2="50" y2="35" stroke="var(--ink-soft)" stroke-width="1.6" marker-end="url(#f4-ax)"/>
+        <text x="26" y="140" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)" transform="rotate(-90 26 140)">potential energy U(x)</text>
+        <text x="632" y="272" text-anchor="end" font-size="11.5" fill="var(--ink-soft)">position x</text>
+
+        <line x1="88" y1="150" x2="240" y2="150" stroke="var(--v-accel)" stroke-width="1.4" stroke-dasharray="6 4"/>
+        <text x="82" y="146" text-anchor="end" font-size="12" font-weight="700" fill="var(--v-accel)">E</text>
+        <circle cx="104" cy="150" r="3.5" fill="var(--v-accel)"/>
+        <circle cx="217" cy="150" r="3.5" fill="var(--v-accel)"/>
+        <text x="160" y="141" text-anchor="middle" font-size="10.5" fill="var(--v-accel)">turning points: K = 0</text>
+
+        <path d="M70,70 C120,210 150,200 170,200 C200,200 240,80 300,80 C360,80 390,190 430,190 L600,190"
+              fill="none" stroke="var(--v-field)" stroke-width="3"/>
+
+        <circle cx="170" cy="191" r="8" fill="var(--v-energy)" stroke="var(--ink)" stroke-width="1.2"/>
+        <line x1="132" y1="224" x2="158" y2="224" stroke="var(--v-force)" stroke-width="2.4" marker-end="url(#f4-af)"/>
+        <line x1="208" y1="224" x2="182" y2="224" stroke="var(--v-force)" stroke-width="2.4" marker-end="url(#f4-af)"/>
+        <text x="170" y="243" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">stable</text>
+
+        <circle cx="300" cy="71" r="8" fill="var(--v-energy)" stroke="var(--ink)" stroke-width="1.2"/>
+        <line x1="288" y1="52" x2="256" y2="52" stroke="var(--v-force)" stroke-width="2.4" marker-end="url(#f4-af)"/>
+        <line x1="312" y1="52" x2="344" y2="52" stroke="var(--v-force)" stroke-width="2.4" marker-end="url(#f4-af)"/>
+        <text x="300" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">unstable</text>
+
+        <circle cx="520" cy="181" r="8" fill="var(--v-energy)" stroke="var(--ink)" stroke-width="1.2"/>
+        <text x="520" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">neutral</text>
+        <text x="520" y="233" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">dU/dx = 0 everywhere, so F = 0</text>
+
+        <text x="92" y="62" font-size="10.5" fill="var(--ink-faint)">steep slope</text>
+        <text x="92" y="76" font-size="10.5" fill="var(--ink-faint)">= large force</text>
+      </svg>
+      <figcaption>
+        Everything about a one-dimensional conservative system is in this one graph. Red arrows show
+        F = −dU/dx: they point inward at the valley (a displacement is opposed → stable), outward at the
+        peak (a displacement is amplified → unstable), and vanish on the flat stretch (neutral). The
+        amber line is the total energy E; the particle can only exist where the curve lies below it, and
+        it turns around where they meet.
+      </figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Feature of the U curve</th><th>Slope dU/dx</th><th>Curvature d²U/dx²</th><th>Force on a small displacement</th><th>Name</th><th>Everyday picture</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Minimum</b> (valley)</td><td class="num">0</td><td class="num">&gt; 0</td><td>restoring — pushes it back</td><td><b>Stable</b></td><td>marble in a bowl; a bond at its natural length</td></tr>
+        <tr><td><b>Maximum</b> (peak)</td><td class="num">0</td><td class="num">&lt; 0</td><td>amplifying — pushes it further away</td><td><b>Unstable</b></td><td>pencil balanced on its tip</td></tr>
+        <tr><td><b>Flat region</b></td><td class="num">0</td><td class="num">0</td><td>none — it just stays put</td><td><b>Neutral</b></td><td>ball on a level table</td></tr>
+        <tr><td>Steep downhill</td><td class="num">large negative</td><td>—</td><td>large force in +x</td><td>—</td><td>near a charged plate</td></tr>
+        <tr><td>Curve meets the line E</td><td>—</td><td>—</td><td>K = 0 momentarily; motion reverses</td><td><b>Turning point</b></td><td>pendulum at the end of its swing</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the standard three-part question</p>
+    <p style="margin:0">
+      Given U(x) as a polynomial, you will be asked to (i) differentiate to get F(x), (ii) set F = 0 to
+      find the equilibria, (iii) classify them. Example: <span class="fi">U(x) = 3x² − 12x</span> (J,
+      x in m) gives F = −(6x − 12) = 12 − 6x, which vanishes at x = 2.0 m; since d²U/dx² = +6 J·m⁻² is
+      positive, that point is a <strong>stable</strong> equilibrium, with U<sub>min</sub> = −12 J. Note
+      that a negative U is perfectly acceptable — it is only a consequence of where the reference level
+      sits.
+    </p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · equilibrium point ≠ turning point</p>
+    <p style="margin:0">
+      An <strong>equilibrium</strong> is where the <em>force</em> is zero (dU/dx = 0); a
+      <strong>turning point</strong> is where the <em>speed</em> is zero (E = U). They are different
+      conditions and usually different places: a pendulum bob has zero speed at the ends of its swing —
+      where the force is largest — and maximum speed at the bottom, where the force along the motion is
+      zero. Where E lies also decides the qualitative behaviour: below the barrier the particle is
+      <strong>bound</strong> and oscillates in the well; above it, the particle escapes.
+    </p>
+  </div>
+
+  <p>
+    This diagram is the reason the section exists at all for medical candidates. The same well appears
+    as the <strong>Lennard-Jones curve</strong> for two atoms: the bond length is the position of the
+    minimum, the bond energy is the depth of the well, and the curvature at the bottom is the effective
+    spring constant that sets the vibrational frequency measured by infrared spectroscopy. Protein
+    folding funnels, ligand binding wells and membrane-transport barriers are all read the same way —
+    depth means stability, and the height of the barrier between two wells sets how fast the system can
+    hop from one to the other.
+  </p>
+</section>
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Efficiency and the human engine</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Efficiency</dt>
+      <dd>The fraction of the energy supplied to a device that emerges as the useful output you wanted.
+        A dimensionless number between 0 and 1, usually quoted as a percentage.</dd>
+      <dt>Metabolic rate</dt>
+      <dd>The rate at which a body converts chemical energy from food, measured in watts (or, clinically,
+        in kcal per day or in METs).</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">η = W<sub>useful</sub> / E<sub>input</sub> = P<sub>out</sub> / P<sub>in</sub></span>
+      <span class="fx__tag">0 ≤ η &lt; 1 for any real machine whose useful output is work; a heat engine is capped further by the second law</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">E<sub>wasted</sub> = (1 − η) E<sub>input</sub></span><span class="fx__tag">almost always ends up as heat</span></div>
+      <div class="fx"><span class="fx__eq">1 kcal = 1 Cal = 4184 J</span><span class="fx__tag">the capital-C Calorie on a food label is a kilocalorie</span></div>
+      <div class="fx"><span class="fx__eq">1 MET ≈ 1 kcal·kg⁻¹·h⁻¹ ≈ 1.16 W·kg⁻¹</span><span class="fx__tag">clinical unit of metabolic rate; 1 MET ≈ resting</span></div>
+      <div class="fx"><span class="fx__eq">Q = m c ΔT</span><span class="fx__tag">to convert waste heat into a temperature rise; c<sub>body</sub> ≈ 3470 J·kg⁻¹·K⁻¹</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>η</b><span>efficiency (dimensionless, or %)</span></div>
+      <div><b>W<sub>useful</sub></b><span>useful work output (J)</span></div>
+      <div><b>E<sub>input</sub></b><span>total energy supplied (J)</span></div>
+      <div><b>P</b><span>power in or out (W)</span></div>
+      <div><b>c</b><span>specific heat capacity (J·kg⁻¹·K⁻¹)</span></div>
+      <div><b>ΔT</b><span>temperature rise (K, numerically equal to °C)</span></div>
+    </div>
+  </div>
+
+  <p>
+    No machine converts everything. The missing fraction is not a design failing that better engineering
+    could remove — it is the second law of thermodynamics expressed as an accounting statement. What
+    matters for problem-solving is remembering which quantity goes on top: <strong>useful output over
+    total input</strong>, and both must be the same kind of quantity (both energies or both powers).
+  </p>
+
+  <h3>Human beings run at about 20–25 %</h3>
+  <p>
+    Skeletal muscle converts roughly a fifth to a quarter of the chemical energy it consumes into
+    mechanical work; the rest appears immediately as heat. This is not poor by engine standards — a
+    petrol engine manages 25–30 % — but it has a consequence no engine has to worry about: the waste
+    heat is generated inside a body whose enzymes fail above about 40 °C. <strong>Thermoregulation is
+    therefore not a side issue in exercise physiology; it is the binding constraint</strong>, which is
+    why evaporative cooling, skin blood flow and hydration dominate endurance performance.
+  </p>
+  <p>
+    Two numbers anchor the whole picture. A resting adult eating about 2000 kcal a day is dissipating
+    <span class="fi">2000 × 4184 / 86400 = 97 W</span> — <strong>a human at rest is a 100 W heater</strong>,
+    which is exactly why a crowded lecture room warms up. Of that, roughly 20 W goes to the brain: about
+    a fifth of the resting budget for 2 % of the body mass.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Source</th><th>Power</th><th>Kind</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Human brain</td><td class="num">≈ 20 W</td><td>metabolic</td><td>≈ 20 % of resting budget, ≈ 2 % of body mass</td></tr>
+        <tr><td><b>Resting adult (BMR)</b></td><td class="num">≈ 100 W</td><td>metabolic</td><td>≈ 2000 kcal·day⁻¹; ≈ 1 MET</td></tr>
+        <tr><td>Walking briskly</td><td class="num">≈ 300–400 W</td><td>metabolic</td><td>3–4 METs</td></tr>
+        <tr><td>Fit amateur cyclist, sustained 1 h</td><td class="num">≈ 200 W</td><td>mechanical</td><td>≈ 800–1000 W metabolic at 20–25 % efficiency</td></tr>
+        <tr><td>Elite cyclist, sustained 1 h</td><td class="num">≈ 400 W</td><td>mechanical</td><td>the "functional threshold" of professional racing</td></tr>
+        <tr><td>Sprint or stair dash, few seconds</td><td class="num">1–2 kW</td><td>mechanical</td><td>anaerobic; not sustainable</td></tr>
+        <tr><td>Domestic kettle</td><td class="num">1.5–2 kW</td><td>electrical</td><td>≈ 15–20 people at rest</td></tr>
+        <tr><td>Small car engine</td><td class="num">≈ 75 kW</td><td>mechanical</td><td>≈ 100 hp; ≈ 750 resting humans</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 8 · How far does a 250 kcal snack take you?</h4>
+    <p style="margin:.2rem 0 .4rem">
+      A 70 kg person eats a snack labelled 250 Calories. Muscle is 20 % efficient, g = 9.8 m·s⁻².
+      (a) How much energy is that in joules? (b) In principle, how high could the person climb on it?
+      (c) How much heat is produced? (d) If none of that heat escaped, by how much would core
+      temperature rise (c<sub>body</sub> ≈ 3470 J·kg⁻¹·K⁻¹), and how much sweat must evaporate to shed
+      it (latent heat ≈ 2.43×10⁶ J·kg⁻¹ at skin temperature)?
+    </p>
+    <ol>
+      <li><b>(a)</b> A food "Calorie" is a kilocalorie: E = 250 × 4184 = <b>1.05×10⁶ J</b> ≈ 1.0 MJ.</li>
+      <li><b>(b)</b> Only 20 % becomes mechanical work: W = 0.20 × 1.046×10⁶ = 2.09×10⁵ J.
+        Climbing means mgh, so h = 2.092×10⁵ / [(70)(9.8)] = 209200/686 = <b>3.0×10² m</b> — roughly a
+        100-storey building, on one small snack. Human muscle is remarkably economical; the reason
+        weight loss is hard is not that exercise is inefficient but that food is extraordinarily
+        energy-dense.</li>
+      <li><b>(c)</b> The other 80 % is heat: 0.80 × 1.046×10⁶ = <b>8.4×10⁵ J</b>.</li>
+      <li><b>(d)</b> ΔT = Q/(mc) = 836800/[(70)(3470)] = 836800/242900 = <b>3.4 K</b>. A core temperature
+        of 40.4 °C is genuinely dangerous, so the heat must go. Evaporating sweat:
+        m = 836800/2.43×10⁶ = 0.34 kg ≈ <b>340 mL</b>. That is the physics behind fluid replacement
+        advice, and behind why exertional heat illness is a humidity problem rather than a temperature
+        problem — high humidity blocks the evaporation, not the sweating.</li>
+    </ol>
+    <span class="wex__ans">(a) 1.05 MJ · (b) ≈ 305 m of climb · (c) 8.4×10⁵ J of heat · (d) ΔT ≈ 3.4 K, ≈ 340 mL of sweat</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · food energy densities are worth memorising</p>
+    <p style="margin:0">
+      Fat yields ≈ <b>9 kcal·g⁻¹</b> (37 kJ·g⁻¹); carbohydrate and protein ≈ <b>4 kcal·g⁻¹</b>
+      (17 kJ·g⁻¹); ethanol ≈ <b>7 kcal·g⁻¹</b> (29 kJ·g⁻¹). Fat wins because its carbon is the most
+      <em>reduced</em> — it has the most C–H bonds to oxidise, exactly the argument made in Biochem
+      note 01. Combined with 1 kcal = 4184 J, these four numbers let you convert any nutrition label
+      into joules and any joule figure into a plausible physiological statement.
+    </p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · negative work is metabolically cheap, but it is not free</p>
+    <p style="margin:0">
+      Walking <em>downhill</em>, your quadriceps contract while lengthening (eccentric contraction) and
+      do <strong>negative</strong> mechanical work — they absorb the energy gravity releases. Measured
+      metabolically, eccentric work costs roughly three to five times less per joule than concentric
+      work, which is why descending feels easier than ascending. It is also why it produces far more
+      delayed-onset muscle soreness: the mechanical loading per active fibre is higher even though the
+      energy cost is lower. The physics point for the exam is narrower and cleaner:
+      <strong>W &lt; 0 does not imply E<sub>input</sub> = 0</strong>. A muscle burns ATP whether it is
+      shortening, lengthening, or holding still against a load with no displacement at all.
+    </p>
+  </div>
+
+  <div class="mnemo">
+    <h4>One-line hook</h4>
+    <p>You are a 100 W heater that turns one fifth of its fuel into motion. Everything else in this section is a consequence of those two numbers.</p>
+  </div>
+</section>
+
+<!-- =========================== Quiz =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 11</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>
+    Each answer is explained the moment you choose. If one goes wrong, go back to the section it came
+    from and re-read the definition — the letter is worth nothing on its own, and every distractor here
+    was chosen because it is a mistake people actually make.
+  </p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-02-newton-dynamics.html"><small>Previous</small><b>← Newton's Laws, Forces and Friction</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-04-momentum.html"><small>Next</small><b>Momentum, Impulse and Collisions →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 03 · Work, Energy and Power</p>
+    <p>Representation used on this page: signed scalars, areas under force–displacement curves and
+       stacked energy bars. Numerical values (g = 9.8 m·s⁻², 1 hp = 746 W, 1 kcal = 4184 J, muscle
+       efficiency ≈ 20 %, body specific heat ≈ 3470 J·kg⁻¹·K⁻¹) are standard textbook approximations,
+       used to build a sense of magnitude rather than for precise citation.</p>
+  </div>
+</footer>
+
+<!-- =========================== Question bank =========================== -->
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A waiter carries a tray horizontally across a room at constant speed. How much work does the waiter's upward force on the tray do?",
+    "options": [
+      "Positive, and equal to mgd",
+      "Zero",
+      "Negative, and equal to −mgd",
+      "Positive, but less than mgd"
+    ],
+    "answer": 1,
+    "explain": "The supporting force is vertical and the displacement is horizontal, so θ = 90° and cos θ = 0 — the work is <b>identically zero</b>, no matter how heavy the tray or how far the room. The tempting answer <i>mgd</i> multiplies a vertical force by a horizontal distance, which is exactly the pairing the cosine exists to forbid. The waiter still burns ATP, but that is metabolic cost, not mechanical work (§01, §10)."
+  },
+  {
+    "stem": "A 25 kg crate is pushed 6.0 m along a level floor by a 90 N force directed 30° <b>below</b> the horizontal. How much work does the push do on the crate?",
+    "options": [
+      "468 J",
+      "540 J",
+      "270 J",
+      "−468 J"
+    ],
+    "answer": 0,
+    "explain": "W = Fd cos θ = (90)(6.0)(cos 30°) = 540 × 0.866 = <b>468 J</b>. The force points below the horizontal but its forward component is still along the displacement, so the angle in the formula is 30° and the work is positive — 'below the horizontal' is not the same as 'opposing the motion'. 540 J drops the cosine entirely, and 270 J uses cos 60° (or sin 30°) by resolving along the wrong axis. The mass is a decoy: it is needed only if you are asked about friction."
+  },
+  {
+    "stem": "A spring obeys Hooke's law with k = 400 N·m⁻¹. Stretching it from its natural length to 10 cm stores 2.0 J. How much <b>additional</b> work is needed to stretch it from 10 cm to 20 cm?",
+    "options": [
+      "2.0 J",
+      "4.0 J",
+      "6.0 J",
+      "8.0 J"
+    ],
+    "answer": 2,
+    "explain": "U = ½kx² is quadratic, so U(0.20) = ½(400)(0.04) = 8.0 J and the extra work is 8.0 − 2.0 = <b>6.0 J</b>, three times the first stage. Choosing 2.0 J assumes equal stretches cost equally (true only for a constant force); choosing 8.0 J quotes the total stored rather than the increment. The general rule is W = ½k(x<sub>f</sub>² − x<sub>i</sub>²) — always subtract the squares, never the lengths (§02)."
+  },
+  {
+    "stem": "Which of these forces is <b>not</b> conservative?",
+    "options": [
+      "The gravitational force near Earth's surface",
+      "The restoring force of an ideal spring",
+      "The electrostatic force between two point charges",
+      "Kinetic friction between a block and a table"
+    ],
+    "answer": 3,
+    "explain": "Kinetic friction always opposes the relative sliding, so it does negative work on the way out <i>and</i> on the way back: around a closed loop of path length L it does −f<sub>k</sub>L, which is never zero, and its value depends on the route you chose. The other three all satisfy ∮<b>F</b>·d<b>s</b> = 0 and therefore admit a potential-energy function. Note the corollary: there is no such thing as 'friction potential energy' (§04)."
+  },
+  {
+    "stem": "A 1.5 kg book sits on a table 0.80 m above the floor (g = 9.8 m·s⁻²). Which statement is correct?",
+    "options": [
+      "Its gravitational potential energy is 11.8 J, and no other value is acceptable",
+      "Its gravitational potential energy is zero, because it is not moving",
+      "The value of U depends on the reference level you choose, but ΔU for a fall to the floor is fixed at −11.8 J",
+      "U would double if the book's mass were halved"
+    ],
+    "answer": 2,
+    "explain": "Only <b>differences</b> in potential energy are physical. Measuring from the floor gives U = mgh = (1.5)(9.8)(0.80) = 11.8 J; measuring from the table top gives 0; measuring from the ceiling gives a negative number — and all three predict the same ΔU = −11.8 J for the fall. Option B confuses potential energy with kinetic energy (U has nothing to do with motion), and option D inverts the direct proportionality U ∝ m (§05)."
+  },
+  {
+    "stem": "A ball is thrown from ground level at 20 m·s⁻¹. Ignoring air resistance, how fast is it moving when it is 8.0 m above the launch point? (g = 9.8 m·s⁻²)",
+    "options": [
+      "Cannot be determined without knowing the launch angle",
+      "17.9 m·s⁻¹",
+      "4.4 m·s⁻¹",
+      "15.6 m·s⁻¹"
+    ],
+    "answer": 3,
+    "explain": "Conservation of mechanical energy gives v² = v<sub>0</sub>² − 2gh = 400 − 2(9.8)(8.0) = 400 − 156.8 = 243.2, so v = <b>15.6 m·s⁻¹</b>. The launch angle genuinely does not matter: energy relates speed to <i>height</i>, and it carries no directional information — which is why option A, though it sounds cautious, is wrong. 17.9 m·s⁻¹ comes from dropping the factor 2 in 2gh, and 4.4 m·s⁻¹ is the <i>change</i> in speed (20 − 15.6), not the speed itself (§06)."
+  },
+  {
+    "stem": "A 2.0 kg block is released from rest at the top of a ramp 1.5 m high and reaches the bottom at 4.0 m·s⁻¹. How much mechanical energy became thermal energy? (g = 9.8 m·s⁻²)",
+    "options": [
+      "0 J — total energy is always conserved",
+      "13.4 J",
+      "16.0 J",
+      "29.4 J"
+    ],
+    "answer": 1,
+    "explain": "U<sub>i</sub> = mgh = (2.0)(9.8)(1.5) = 29.4 J and K<sub>f</sub> = ½(2.0)(4.0)² = 16.0 J, so ΔE<sub>th</sub> = 29.4 − 16.0 = <b>13.4 J</b>. Option A confuses <i>total</i> energy (always conserved) with <i>mechanical</i> energy (not conserved when friction acts) — the energy still exists, it has simply been dispersed as heat. Options C and D quote the final kinetic energy and the initial potential energy rather than the difference (§07)."
+  },
+  {
+    "stem": "A cyclist holds a steady 8.0 m·s⁻¹ against a total resistive force of 25 N. What mechanical power is she delivering?",
+    "options": [
+      "200 W, about 0.27 hp",
+      "200 J, about 0.27 hp",
+      "3.1 W, about 0.0042 hp",
+      "1.6 kW, about 2.1 hp"
+    ],
+    "answer": 0,
+    "explain": "At constant speed the driving force equals the resistance, so P = Fv = (25)(8.0) = <b>200 W</b>, and 200/746 = 0.27 hp. Option B has the right number with the wrong unit — a joule is an amount of energy, a watt is a rate, and mixing them is the most-punished slip in this topic. Option C divides instead of multiplying, and option D multiplies by v twice, which would be right only if the force itself were proportional to v (§08)."
+  },
+  {
+    "stem": "A particle moves along the x-axis with potential energy U(x) = 3x² − 12x (U in joules, x in metres). The point x = 2.0 m is:",
+    "options": [
+      "An unstable equilibrium point",
+      "A stable equilibrium point",
+      "A point where the force on the particle is 6.0 N in the +x direction",
+      "A turning point of the motion, whatever the total energy"
+    ],
+    "answer": 1,
+    "explain": "F<sub>x</sub> = −dU/dx = −(6x − 12) = 12 − 6x, which is zero at x = 2.0 m, so it is an equilibrium and option C is wrong. The curvature d²U/dx² = +6 J·m⁻² is positive, meaning U has a <b>minimum</b> there, so any small displacement produces a restoring force — the equilibrium is <b>stable</b>. Option D confuses the two zero conditions: an equilibrium is where the force vanishes, a turning point is where the kinetic energy vanishes (E = U), and where those lie depends on the total energy (§09)."
+  },
+  {
+    "stem": "A 2.0 kW electric kettle runs for 30 minutes. How much energy does it use?",
+    "options": [
+      "1.0 kWh = 3.6×10³ J",
+      "0.5 kWh = 1.8×10⁶ J",
+      "60 kWh = 2.16×10⁸ J",
+      "1.0 kWh = 3.6×10⁶ J"
+    ],
+    "answer": 3,
+    "explain": "Energy = power × time = 2.0 kW × 0.50 h = <b>1.0 kWh</b>, and 1 kWh = 1000 J·s⁻¹ × 3600 s = <b>3.6×10⁶ J</b>. Option A gets the kWh right but converts with 3600 rather than 3.6×10⁶; option B halves the power instead of using the half-hour; option C substitutes 30 for the time without converting minutes to hours. Remember that a kilowatt-hour is a <i>product</i>, so it is an energy — it is the unit your electricity bill is written in (§08)."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

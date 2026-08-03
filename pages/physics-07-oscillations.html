@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 07 · Oscillations and Simple Harmonic Motion — PostMed Notebook</title>
+<meta name="description" content="Physics note 07: Hooke's law, the defining condition a = -ω²x, phase relations, mass-spring and pendulum periods, energy, the reference circle, damping and resonance, ending with a 10-question self-test.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 07</p>
+  <h1>Oscillations and Simple Harmonic Motion</h1>
+  <p class="lede">This whole chapter grows out of one line: <b>a = -ω²x</b>. Once a system's acceleration is
+     proportional to its displacement and points back at equilibrium, the sinusoid, the phase relations, the
+     period, the energy split and the resonance curve are all forced — you are not memorising six formulas,
+     you are reading off six consequences. The other half of the chapter is learning to spot that line in
+     disguise: as a spring, as a swinging rod, as a twisted wire, as a molecular bond.</p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Sinusoids, phase &amp; energy partition</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~45 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Hooke's law and the restoring force</a></li>
+      <li><a href="#s2">The one condition: a = -ω²x</a></li>
+      <li><a href="#s3">x(t), v(t), a(t) and their phases</a></li>
+      <li><a href="#s4">Angular frequency, period, frequency</a></li>
+      <li><a href="#s5">The mass–spring oscillator</a></li>
+      <li><a href="#s6">The simple pendulum and small angles</a></li>
+      <li><a href="#s7">Physical and torsional pendulums</a></li>
+      <li><a href="#s8">Energy in SHM</a></li>
+      <li><a href="#s9">SHM as the shadow of circular motion</a></li>
+      <li><a href="#s10">Damping: the three regimes</a></li>
+      <li><a href="#s11">Driving, resonance and Q</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Hooke's law</b><code>F = -kx</code></div>
+      <div class="fsheet__item"><b>Elastic PE</b><code>U = ½kx²</code></div>
+      <div class="fsheet__item"><b>SHM condition</b><code>a = -ω²x</code></div>
+      <div class="fsheet__item"><b>Displacement</b><code>x = A cos(ωt + φ)</code></div>
+      <div class="fsheet__item"><b>Velocity</b><code>v = -ωA sin(ωt + φ)</code></div>
+      <div class="fsheet__item"><b>Acceleration</b><code>a = -ω²A cos(ωt + φ)</code></div>
+      <div class="fsheet__item"><b>Speed at x</b><code>v = ±ω√(A² - x²)</code></div>
+      <div class="fsheet__item"><b>Peak values</b><code>v_max = ωA, a_max = ω²A</code></div>
+      <div class="fsheet__item"><b>ω, T, f</b><code>ω = 2πf = 2π/T</code></div>
+      <div class="fsheet__item"><b>Mass–spring</b><code>T = 2π√(m/k)</code></div>
+      <div class="fsheet__item"><b>Hanging spring</b><code>T = 2π√(d/g), d = mg/k</code></div>
+      <div class="fsheet__item"><b>Springs combined</b><code>k∥ = k₁+k₂ · 1/k = 1/k₁+1/k₂</code></div>
+      <div class="fsheet__item"><b>Simple pendulum</b><code>T = 2π√(L/g)</code></div>
+      <div class="fsheet__item"><b>Large amplitude</b><code>T = T₀[1 + ¼sin²(θ₀/2) + …]</code></div>
+      <div class="fsheet__item"><b>Physical pendulum</b><code>T = 2π√(I/mgd)</code></div>
+      <div class="fsheet__item"><b>Torsional</b><code>T = 2π√(I/κ)</code></div>
+      <div class="fsheet__item"><b>Total energy</b><code>E = ½kA² = ½mω²A²</code></div>
+      <div class="fsheet__item"><b>Kinetic at x</b><code>K = ½k(A² - x²)</code></div>
+      <div class="fsheet__item"><b>Damped motion</b><code>m·a + b·v + kx = 0</code></div>
+      <div class="fsheet__item"><b>Damped frequency</b><code>ω_d = √(ω₀² - b²/4m²)</code></div>
+      <div class="fsheet__item"><b>Critical damping</b><code>b_c = 2√(mk) = 2mω₀</code></div>
+      <div class="fsheet__item"><b>Driven amplitude</b><code>A = (F₀/m)/√((ω₀²-ω²)² + (bω/m)²)</code></div>
+      <div class="fsheet__item"><b>Amplitude resonance</b><code>ω_r = √(ω₀² - b²/2m²)</code></div>
+      <div class="fsheet__item"><b>Quality factor</b><code>Q = ω₀m/b = ω₀/Δω = f₀/Δf</code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Hooke's law and the restoring force</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Restoring force</dt>
+      <dd>A force that always points back towards a fixed equilibrium position, and whose magnitude grows
+          with the displacement away from it.</dd>
+      <dt>Hooke's law</dt>
+      <dd>The statement that for an ideal spring the restoring force is <em>directly proportional</em> to the
+          displacement from equilibrium.</dd>
+      <dt>Spring constant k</dt>
+      <dd>The force needed per unit extension — a property of the object, not of the motion.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq"><b>F</b> = -k<b>x</b></span>
+      <span class="fx__tag">ideal spring, inside the elastic limit</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">U = ½kx²</span><span class="fx__tag">elastic PE stored; x from natural length</span></div>
+      <div class="fx"><span class="fx__eq">k∥ = k₁ + k₂</span><span class="fx__tag">springs in parallel (side by side)</span></div>
+      <div class="fx"><span class="fx__eq">1/k = 1/k₁ + 1/k₂</span><span class="fx__tag">springs in series (end to end)</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>F</b><span>restoring force (N)</span></div>
+      <div><b>k</b><span>spring constant / stiffness (N·m⁻¹)</span></div>
+      <div><b>x</b><span>displacement from equilibrium (m)</span></div>
+      <div><b>U</b><span>elastic potential energy (J)</span></div>
+    </div>
+  </div>
+
+  <p>The minus sign carries the entire physics. It says the force is always aimed at the equilibrium point,
+     so the system is <strong>pulled back whichever way it is pushed</strong>. Everything downstream — the
+     oscillation, the sinusoid, the period — is a consequence of that one sign; drop it and you get runaway
+     exponential growth instead of oscillation.</p>
+
+  <p>The proportionality is the second half. A force that merely restores (a stretched rubber band, a pendulum
+     at 60°) produces oscillation, but not <em>simple harmonic</em> oscillation. Only the linear restoring force
+     gives a period that is independent of amplitude, and only that gives you a clock.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Sign-convention trap: where is x measured from?</p>
+    <p style="margin:0"><b>x is the displacement from the equilibrium position</b> — not from the wall, not from
+      the pivot, and, for a hanging spring, <strong>not from the spring's natural length</strong>. A spring
+      hanging with a mass on it sits stretched by <span class="fi">d = mg/k</span>; that stretched position
+      <em>is</em> the equilibrium, and x is measured from there (see §05). Get this wrong and gravity
+      contaminates every subsequent equation.</p>
+  </div>
+
+  <h3>Combining springs — and the half-spring result</h3>
+  <p>Two springs <strong>in parallel</strong> both stretch by the same x and their forces add, so
+     <span class="fi">k∥ = k₁ + k₂</span>: stiffer. Two springs <strong>in series</strong> carry the same force
+     and their extensions add, so the compliances (1/k) add: softer. The consequence students are asked to
+     produce on the spot: <strong>cut a spring in half and each half has twice the original k</strong>, because
+     for a given pull each half stretches only half as much. Halving the spring therefore shortens the period
+     by a factor √2.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">What is examined here</p>
+    <p style="margin:0">Series/parallel combinations feeding straight into <span class="fi">T = 2π√(m/k)</span>;
+      the cut-spring result; and the area under an F–x graph being the stored energy <span class="fi">½kx²</span>
+      (a triangle, hence the ½ — this is <em>not</em> "force × distance" with the full force, because the force
+      grows from zero).</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Why any of this matters biologically</h4>
+    <p>Every stable chemical bond, every folded protein, every elastic tissue behaves Hookean <em>near its
+      resting configuration</em>: the initial straight portion of a stress–strain curve for tendon, artery
+      wall or lung tissue is exactly a spring constant. Bond stretching as a spring is also the model behind
+      infrared vibrational spectroscopy, where the absorbed frequency is <span class="fi">(1/2π)√(k/μ)</span>
+      with μ the <em>reduced</em> mass of the two bonded atoms.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The one condition: a = -ω²x</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Simple harmonic motion (SHM)</dt>
+      <dd>Motion in which the acceleration is proportional to the displacement from a fixed equilibrium point
+          and is directed towards it.</dd>
+      <dt>Angular frequency ω</dt>
+      <dd>The positive constant whose square is that proportionality constant; equivalently, the rate at which
+          the phase of the motion advances.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">a = -ω²x  ⟺  d²x/dt² + ω²x = 0</span>
+      <span class="fx__tag">the definition — everything else follows</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ω = √(k_eff / m_eff)</span><span class="fx__tag">"stiffness over inertia", in whatever coordinate you are using</span></div>
+      <div class="fx"><span class="fx__eq">k_eff = (d²U/dx²) at the minimum</span><span class="fx__tag">why every stable equilibrium oscillates harmonically for small displacements</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>a</b><span>acceleration (m·s⁻²)</span></div>
+      <div><b>x</b><span>displacement from equilibrium (m)</span></div>
+      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+      <div><b>k_eff</b><span>effective stiffness (N·m⁻¹)</span></div>
+      <div><b>m_eff</b><span>effective inertia (kg)</span></div>
+      <div><b>U</b><span>potential energy (J)</span></div>
+    </div>
+  </div>
+
+  <p>Combine Newton's second law with Hooke's law and the mass cancels out of the force but not out of the
+     acceleration: <span class="fi">ma = -kx</span> gives <span class="fi">a = -(k/m)x</span>. The bracket
+     <span class="fi">k/m</span> is a positive constant fixed by the hardware. Call it ω². That is the whole
+     derivation, and it is worth noticing what it does <em>not</em> contain: no A, no initial velocity, no
+     mention of how the motion was started. <strong>ω is a property of the system; A and φ are properties of
+     the kick.</strong> That separation is the origin of isochronism — same period whatever the amplitude —
+     and it is why oscillators make good clocks and bad amplitude meters.</p>
+
+  <h3>The master method</h3>
+  <p>For any problem in this chapter, do exactly this:</p>
+  <ol>
+    <li>Displace the system by a small amount and write the <strong>net</strong> restoring force (or torque).</li>
+    <li>Force everything into the form <span class="fi">a = -(positive constant) × x</span>, or, for a rotation,
+        <span class="fi">α = -(positive constant) × θ</span>.</li>
+    <li>Read off <span class="fi">ω² = that constant</span>, then <span class="fi">T = 2π/ω</span>.</li>
+  </ol>
+  <p>You never need to solve a differential equation. Steps 1 and 2 are where the marks are, and step 2 is
+     usually where a small-angle or small-displacement approximation is smuggled in.</p>
+
+  <div class="wex">
+    <h4>Worked example 1 — reading ω straight off the equation of motion</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">A 0.30 kg body moves along x with acceleration
+       <span class="fi">a = -64x</span> (SI units). Find the period, and the maximum speed if the amplitude is
+       3.0 cm.</p>
+    <ol>
+      <li>The equation already has the form <span class="fi">a = -ω²x</span>, so <span class="fi">ω² = 64 rad²·s⁻²</span>
+          and <span class="fi">ω = 8.0 rad·s⁻¹</span>. The mass is a distractor — it is already baked into the 64.</li>
+      <li><span class="fi">T = 2π/ω = 6.283/8.0 = 0.785 s</span>.</li>
+      <li><span class="fi">v_max = ωA = 8.0 × 0.030 = 0.24 m·s⁻¹</span>.</li>
+      <li>(If you did want k: <span class="fi">k = mω² = 0.30 × 64 = 19.2 N·m⁻¹</span>.)</li>
+    </ol>
+    <span class="wex__ans">T = 0.785 s · v_max = 0.24 m·s⁻¹</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The single most expensive trap in this chapter</p>
+    <p style="margin:0">In SHM the acceleration <strong>is not constant</strong> — it is proportional to x, so it
+      changes continuously and reverses twice per cycle. The constant-acceleration (SUVAT) equations
+      <span class="fi">v = u + at</span>, <span class="fi">v² = u² + 2as</span> are therefore
+      <strong>illegal here</strong>, always. The SHM replacement for "v² = u² + 2as" is
+      <span class="fi">v = ±ω√(A² - x²)</span>.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Why SHM turns up everywhere</p>
+    <p style="margin:0">Expand any smooth potential about a stable minimum:
+      <span class="fi">U(x) ≈ U₀ + ½U″(x₀)(x - x₀)²</span> — the linear term vanishes because it is a minimum.
+      So <em>every</em> stable equilibrium in physics is a spring with
+      <span class="fi">k_eff = U″(x₀)</span> provided the displacement is small enough. Molecular bonds, nuclei
+      in a crystal, a marble in a bowl, an ion in a trap: all SHM in the small-oscillation limit. This is the
+      reason the chapter is worth its exam weight.</p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>x(t), v(t), a(t) and their phases</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Amplitude A</dt>
+      <dd>The maximum magnitude of the displacement from equilibrium — half the total range of the motion.</dd>
+      <dt>Phase (ωt + φ)</dt>
+      <dd>The angle that fixes where in the cycle the oscillator currently is.</dd>
+      <dt>Phase constant φ</dt>
+      <dd>The value of the phase at t = 0; it encodes how the motion was started, nothing else.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">x(t) = A cos(ωt + φ)</span>
+      <span class="fx__tag">general solution of a = -ω²x</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">v(t) = -ωA sin(ωt + φ)</span><span class="fx__tag">amplitude ωA</span></div>
+      <div class="fx"><span class="fx__eq">a(t) = -ω²A cos(ωt + φ) = -ω²x</span><span class="fx__tag">amplitude ω²A</span></div>
+      <div class="fx"><span class="fx__eq">v = ±ω√(A² - x²)</span><span class="fx__tag">speed at a given displacement, time eliminated</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>A</b><span>amplitude (m)</span></div>
+      <div><b>φ</b><span>phase constant (rad)</span></div>
+      <div><b>t</b><span>time (s)</span></div>
+      <div><b>v</b><span>velocity (m·s⁻¹)</span></div>
+      <div><b>a</b><span>acceleration (m·s⁻²)</span></div>
+      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>Differentiating a cosine twice returns a cosine with a minus sign and a factor ω² — which is precisely the
+     defining condition. That is why the solution is sinusoidal and why nothing else is. Each differentiation
+     does two things: it multiplies the amplitude by ω, and it advances the phase by a quarter cycle.
+     Both facts are worth holding as one sentence.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 410" role="img" aria-label="Three stacked graphs against one time axis over a single period: displacement is a cosine starting at plus A; velocity is a negative sine, peaking a quarter period earlier than displacement; acceleration is an inverted cosine, exactly out of step with displacement." style="font-family:var(--sans)">
+      <g stroke="var(--ink-faint)" stroke-width="1" opacity=".45" stroke-dasharray="3 4">
+        <line x1="118" y1="24" x2="118" y2="370"/>
+        <line x1="261" y1="24" x2="261" y2="370"/>
+        <line x1="404" y1="24" x2="404" y2="370"/>
+        <line x1="547" y1="24" x2="547" y2="370"/>
+        <line x1="690" y1="24" x2="690" y2="370"/>
+      </g>
+      <g stroke="var(--ink-faint)" stroke-width="1" opacity=".8">
+        <line x1="118" y1="78" x2="690" y2="78"/>
+        <line x1="118" y1="196" x2="690" y2="196"/>
+        <line x1="118" y1="314" x2="690" y2="314"/>
+      </g>
+      <path d="M118,32 C141.8,32 165.7,37 189.5,45.5 C213.3,54 237.2,66 261,78 C284.8,90 308.7,102 332.5,110.5 C356.3,119 380.2,124 404,124 C427.8,124 451.7,119 475.5,110.5 C499.3,102 523.2,90 547,78 C570.8,66 594.7,54 618.5,45.5 C642.3,37 666.2,32 690,32" fill="none" stroke="var(--ink)" stroke-width="2.4"/>
+      <path d="M118,196 C141.8,208 165.7,220 189.5,228.5 C213.3,237 237.2,242 261,242 C284.8,242 308.7,237 332.5,228.5 C356.3,220 380.2,208 404,196 C427.8,184 451.7,172 475.5,163.5 C499.3,155 523.2,150 547,150 C570.8,150 594.7,155 618.5,163.5 C642.3,172 666.2,184 690,196" fill="none" stroke="var(--v-vel)" stroke-width="2.4"/>
+      <path d="M118,360 C141.8,360 165.7,355 189.5,346.5 C213.3,338 237.2,326 261,314 C284.8,302 308.7,290 332.5,281.5 C356.3,273 380.2,268 404,268 C427.8,268 451.7,273 475.5,281.5 C499.3,290 523.2,302 547,314 C570.8,326 594.7,338 618.5,346.5 C642.3,355 666.2,360 690,360" fill="none" stroke="var(--v-accel)" stroke-width="2.4"/>
+      <g text-anchor="end" font-size="11" fill="var(--ink-faint)">
+        <text x="108" y="36">+A</text><text x="108" y="128">-A</text>
+        <text x="108" y="154">+ωA</text><text x="108" y="246">-ωA</text>
+        <text x="108" y="272">+ω²A</text><text x="108" y="364">-ω²A</text>
+      </g>
+      <g text-anchor="end" font-size="15" font-weight="700">
+        <text x="108" y="83" fill="var(--ink)">x</text>
+        <text x="108" y="201" fill="var(--v-vel)">v</text>
+        <text x="108" y="319" fill="var(--v-accel)">a</text>
+      </g>
+      <g text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">
+        <text x="118" y="388">0</text><text x="261" y="388">T/4</text><text x="404" y="388">T/2</text>
+        <text x="547" y="388">3T/4</text><text x="690" y="388">T</text>
+      </g>
+      <circle cx="261" cy="78" r="3.5" fill="var(--ink)"/>
+      <circle cx="261" cy="242" r="3.5" fill="var(--v-vel)"/>
+      <circle cx="261" cy="314" r="3.5" fill="var(--v-accel)"/>
+    </svg>
+    <figcaption>One full period, started from rest at x = +A (so φ = 0). Read the marked instant t = T/4:
+      the displacement is zero, the speed is at its maximum, and the acceleration is zero. Each lane is the one
+      above it shifted a quarter period to the <em>left</em> and rescaled by ω: that is what "differentiating
+      advances the phase by 90°" looks like. Velocity <b>leads</b> displacement — its peak at 3T/4 arrives a
+      quarter period before the displacement peak at T; acceleration is 180° out of phase with displacement,
+      which is just the minus sign in a = -ω²x drawn out.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Quantity</th><th>Expression</th><th>Amplitude</th><th>Phase relative to x</th><th>At x = 0</th><th>At x = ±A</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Displacement x</b></td><td>A cos(ωt + φ)</td><td class="num">A</td><td>reference</td><td class="num">0</td><td class="num">±A (max)</td></tr>
+        <tr><td><b>Velocity v</b></td><td>-ωA sin(ωt + φ)</td><td class="num">ωA</td><td><b>leads by 90°</b> (π/2)</td><td class="num">±ωA (max)</td><td class="num">0</td></tr>
+        <tr><td><b>Acceleration a</b></td><td>-ω²A cos(ωt + φ)</td><td class="num">ω²A</td><td><b>antiphase, 180°</b> (π)</td><td class="num">0</td><td class="num">∓ω²A (max)</td></tr>
+        <tr><td><b>Restoring force F</b></td><td>-kA cos(ωt + φ)</td><td class="num">kA = mω²A</td><td>antiphase, 180°</td><td class="num">0</td><td class="num">∓kA (max)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Note the structural fact hiding in that table: <strong>x and a peak together in time but in opposite
+     directions, while v peaks exactly where they both vanish.</strong> That is not a coincidence to be
+     memorised — it is what "the force is proportional to minus the displacement" looks like plotted.</p>
+
+  <h3>Fixing φ from the way the motion starts</h3>
+  <p>Only two starts appear in practice. <strong>Released from rest at the extreme</strong>
+     (x = A, v = 0 at t = 0) gives φ = 0, so <span class="fi">x = A cos ωt</span>. <strong>Given a push
+     through the equilibrium point</strong> (x = 0, v = +v₀ at t = 0) gives φ = -π/2, so
+     <span class="fi">x = A sin ωt</span> with <span class="fi">A = v₀/ω</span>. Cosine for "let go", sine for
+     "flicked" — and the two differ only by where you started the clock, never by anything physical.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two confusions worth pre-empting</p>
+    <p style="margin:0 0 .4rem"><b>"Zero velocity means zero acceleration."</b> At the turning point the speed
+      is momentarily zero but the restoring force is at its <em>largest</em>. Same as a ball at the top of its
+      flight: instantaneously stationary, still accelerating at g.</p>
+    <p style="margin:0"><b>"Leads" means later.</b> It does not. If v leads x by 90°, the velocity graph reaches
+      its peak <strong>a quarter period before</strong> the displacement graph reaches its own. Physically:
+      the oscillator is moving fastest on its way <em>towards</em> the extreme it has not yet reached.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The workhorse formula</p>
+    <p style="margin:0"><span class="fi">v = ±ω√(A² - x²)</span> answers every "what is the speed at this
+      displacement?" question without ever mentioning t. It also encodes both extremes at once: put x = 0 and
+      you get ωA; put x = ±A and you get zero. Derive it from energy (§08) if you forget it.</p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Angular frequency, period, frequency</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Period T</dt>
+      <dd>The time for one complete cycle — the shortest time after which both position and velocity repeat.</dd>
+      <dt>Frequency f</dt>
+      <dd>The number of complete cycles per second.</dd>
+      <dt>Angular frequency ω</dt>
+      <dd>The rate at which the phase angle advances, in radians per second.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ω = 2πf = 2π/T</span>
+      <span class="fx__tag">always true, for any periodic motion</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">f = 1/T</span><span class="fx__tag">definition of frequency</span></div>
+      <div class="fx"><span class="fx__eq">T = 2π/ω = 2π√(m/k)</span><span class="fx__tag">for a mass–spring system</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>T</b><span>period (s)</span></div>
+      <div><b>f</b><span>frequency (Hz = s⁻¹, cycles per second)</span></div>
+      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>ω and f describe the same thing in different currency: f counts <em>cycles</em>, ω counts
+     <em>radians</em>, and one cycle is 2π radians. The factor 2π is not decoration — it is the exchange rate,
+     and it is where marks are lost more often than anywhere else in this chapter.</p>
+
+  <p>The reason ω rather than f appears in every SHM formula is that a cosine takes an angle, not a count.
+     <span class="fi">cos(2πft)</span> and <span class="fi">cos(ωt)</span> are the same function; writing ω just
+     saves carrying a 2π through every differentiation. §09 makes the "angular" part literal: ω really is the
+     angular velocity of a point going round a circle whose shadow is the oscillation.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Units will not save you</p>
+    <p style="margin:0">Hz and rad·s⁻¹ are <strong>both dimensionally s⁻¹</strong>, because the radian is
+      dimensionless. So a dimensional check cannot catch the classic error of substituting f where ω belongs.
+      Concretely, for the oscillator in §05 (k = 40 N·m⁻¹, m = 0.25 kg): ω = 12.6 rad·s⁻¹ but
+      f = 2.01 Hz. Using 2.01 in <span class="fi">v_max = ωA</span> gives an answer 6.3× too small and it
+      still "has the right units". Read the question: <em>"angular frequency"</em> means ω,
+      <em>"frequency"</em> or an answer in Hz means f.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Memory hook</h4>
+    <p>ω = 2πf, T = 2π/ω. The 2π is the price of using radians — pay it once at the start of the problem and
+      never again.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>The mass–spring oscillator</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Mass–spring oscillator</dt>
+      <dd>A mass whose only net force, measured from its equilibrium position, is the linear restoring force
+          of a spring.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">T = 2π√(m/k)</span>
+      <span class="fx__tag">independent of amplitude and of g</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ω = √(k/m)   f = (1/2π)√(k/m)</span><span class="fx__tag">same content, three currencies</span></div>
+      <div class="fx"><span class="fx__eq">d = mg/k  ⟹  T = 2π√(d/g)</span><span class="fx__tag">vertical spring, d = static extension</span></div>
+      <div class="fx"><span class="fx__eq">T = 2π√((m + m_s/3)/k)</span><span class="fx__tag">correction for a spring of mass m_s</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>m</b><span>oscillating mass (kg)</span></div>
+      <div><b>k</b><span>spring constant (N·m⁻¹)</span></div>
+      <div><b>T</b><span>period (s)</span></div>
+      <div><b>d</b><span>static extension under the weight (m)</span></div>
+      <div><b>g</b><span>gravitational field strength (m·s⁻²)</span></div>
+      <div><b>m_s</b><span>mass of the spring itself (kg)</span></div>
+    </div>
+  </div>
+
+  <p>The derivation is one line — <span class="fi">ma = -kx ⟹ ω² = k/m</span> — but the shape of the answer
+     deserves a sentence. <strong>k is in the denominator of T because stiffness hurries the mass back;
+     m is in the numerator because inertia resists being hurried.</strong> The square root means the response
+     is blunt: to double the period you must <em>quadruple</em> the mass, or reduce the stiffness to a quarter.</p>
+
+  <h3>Why gravity drops out</h3>
+  <p>Hang the same spring vertically. It stretches by <span class="fi">d = mg/k</span> before it comes to rest;
+     that stretched position is the new equilibrium. Now measure x downwards from <em>there</em>. The net force is</p>
+  <div class="fx"><span class="fx__eq">F = mg - k(d + x) = mg - mg - kx = -kx</span><span class="fx__tag">gravity cancels exactly</span></div>
+  <p>Gravity has done nothing except move the origin. So the period is the same lying on a frictionless table,
+     hanging in a lift, or on the Moon. Contrast the pendulum in §06, whose entire restoring force <em>is</em>
+     gravity and whose period therefore scales as 1/√g. <strong>The spring is blind to gravity; the pendulum
+     is blind to mass.</strong> Those two blindnesses are the most reliably examined facts in the chapter.</p>
+
+  <div class="wex">
+    <h4>Worked example 2 — a full kinematic profile</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">A 0.25 kg block on a frictionless surface is attached to a
+       spring of k = 40 N·m⁻¹, pulled 8.0 cm from equilibrium and released. Find ω, T, f, the maximum speed,
+       the maximum acceleration, and the speed as it passes x = 4.0 cm.</p>
+    <ol>
+      <li><span class="fi">ω = √(k/m) = √(40/0.25) = √160 = 12.65 rad·s⁻¹</span>.</li>
+      <li><span class="fi">T = 2π/ω = 6.283/12.65 = 0.497 s</span>, so <span class="fi">f = 1/T = 2.01 Hz</span>.
+          (Note ω and f differ by the factor 2π — §04.)</li>
+      <li><span class="fi">v_max = ωA = 12.65 × 0.080 = 1.01 m·s⁻¹</span>, reached at x = 0.</li>
+      <li><span class="fi">a_max = ω²A = 160 × 0.080 = 12.8 m·s⁻²</span>, reached at x = ±A. Note ω² = 160
+          exactly, so no rounding creeps in here.</li>
+      <li>At x = 4.0 cm use <span class="fi">v = ω√(A² - x²) = 12.65 × √(0.0064 - 0.0016) = 12.65 × 0.0693
+          = 0.876 m·s⁻¹</span>. Sanity check: at half amplitude the speed should be
+          <span class="fi">√3/2 = 86.6 %</span> of v_max, and 0.866 × 1.012 = 0.876 ✓.</li>
+    </ol>
+    <span class="wex__ans">ω = 12.6 rad·s⁻¹ · T = 0.497 s · f = 2.01 Hz · v_max = 1.01 m·s⁻¹ · a_max = 12.8 m·s⁻² · v(A/2) = 0.876 m·s⁻¹</span>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 3 — getting k from a static measurement</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">A 0.60 kg mass hung on a spring stretches it by 12 cm. It is
+       then pulled down a little and released. Find k and the period. (g = 9.8 m·s⁻²)</p>
+    <ol>
+      <li>At the new equilibrium the spring force balances the weight:
+          <span class="fi">kd = mg ⟹ k = (0.60 × 9.8)/0.12 = 5.88/0.12 = 49 N·m⁻¹</span>.</li>
+      <li><span class="fi">T = 2π√(m/k) = 2π√(0.60/49) = 2π√0.01224 = 2π × 0.1107 = 0.695 s</span>
+          (<span class="fi">f = 1.44 Hz</span>).</li>
+      <li>Shortcut worth knowing: substituting k = mg/d gives <span class="fi">T = 2π√(d/g)</span>, so a
+          hanging spring has the <em>same period as a simple pendulum whose length equals the static
+          extension</em>. Check: <span class="fi">2π√(0.12/9.8) = 0.695 s</span> ✓ — and notice that m has
+          disappeared from this version, because a heavier mass stretches the spring proportionally more.</li>
+    </ol>
+    <span class="wex__ans">k = 49 N·m⁻¹ · T = 0.695 s</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Ratio questions</p>
+    <p style="margin:0">Because <span class="fi">T ∝ √(m/k)</span>, almost every exam variant is a ratio: four
+      times the mass → twice the period; four times the stiffness → half the period; two identical springs in
+      parallel → k doubles → T falls by √2; the same two in series → k halves → T rises by √2. You rarely need
+      to compute a number.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Amplitude independence is <em>exact</em> here</p>
+    <p style="margin:0">For a mass–spring system the period is independent of amplitude as an exact
+      consequence of Hooke's law, with no approximation anywhere — right up to the elastic limit or until the
+      coils clash. For a pendulum (§06) amplitude independence is only an <strong>approximation</strong>, valid
+      for small swings. Do not carry the spring's exactness over to the pendulum.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>The simple pendulum and small angles</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Simple pendulum</dt>
+      <dd>An idealised point mass on a massless, inextensible string, swinging under gravity about a fixed
+          pivot.</dd>
+      <dt>Small-angle approximation</dt>
+      <dd>The replacement of sin θ by θ (θ in radians), legitimate because sin θ = θ - θ³/6 + … so the leading
+          error is only θ²/6.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">T = 2π√(L/g)</span>
+      <span class="fx__tag">small angles only, θ₀ ≲ 10°</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">τ = -mgL sin θ ≈ -mgLθ</span><span class="fx__tag">restoring torque; the ≈ is the whole approximation</span></div>
+      <div class="fx"><span class="fx__eq">α = -(g/L)θ  ⟹  ω = √(g/L)</span><span class="fx__tag">using I = mL²; m cancels</span></div>
+      <div class="fx"><span class="fx__eq">T = T₀[1 + ¼sin²(θ₀/2) + (9/64)sin⁴(θ₀/2) + …]</span><span class="fx__tag">exact series; T₀ = 2π√(L/g)</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>L</b><span>pivot to centre of the bob (m)</span></div>
+      <div><b>g</b><span>gravitational field strength (m·s⁻²)</span></div>
+      <div><b>θ</b><span>angular displacement (rad)</span></div>
+      <div><b>θ₀</b><span>angular amplitude (rad, quoted in °)</span></div>
+      <div><b>τ</b><span>restoring torque (N·m)</span></div>
+      <div><b>I</b><span>moment of inertia about the pivot (kg·m²)</span></div>
+      <div><b>α</b><span>angular acceleration (rad·s⁻²)</span></div>
+    </div>
+  </div>
+
+  <p>Resolve the weight at angle θ: the component along the string is balanced by the tension, and the
+     component <em>perpendicular</em> to the string, <span class="fi">mg sin θ</span>, is what restores.
+     Its torque about the pivot is <span class="fi">-mgL sin θ</span>, and with
+     <span class="fi">I = mL²</span> Newton's second law for rotation gives
+     <span class="fi">α = -(g/L) sin θ</span>.</p>
+
+  <p><strong>That is not SHM.</strong> It has sin θ where the definition demands θ. Only after replacing
+     sin θ by θ does the equation collapse to <span class="fi">α = -(g/L)θ</span>, and only then can you read
+     off <span class="fi">ω = √(g/L)</span>. Everything you know about pendulum periods is conditional on that
+     substitution, so it is worth knowing exactly what it costs.</p>
+
+  <h3>Why the bob's mass does not matter</h3>
+  <p>m appears twice and cancels: once in the restoring torque (because the restoring agent <em>is</em> the
+     weight, ∝ m) and once in the moment of inertia (∝ m). It is the same cancellation of gravitational and
+     inertial mass that makes all objects fall at the same rate. Compare the spring, where the restoring force
+     comes from the spring — it has no idea how much mass is attached — so there is nothing for the inertia to
+     cancel against and <span class="fi">T ∝ √m</span> survives.</p>
+
+  <h3>How much does sin θ ≈ θ actually cost?</h3>
+  <p>Two different errors are in play and confusing them is a standard trap. The error in the
+     <strong>force</strong> is large and grows fast; the error in the <strong>period</strong> is much smaller.
+     Two reasons: the force error quoted in the table is its <em>peak</em> value, reached only at the ends of
+     the swing, while the period responds to the error averaged over the whole cycle — roughly half as big —
+     and the period depends on the restoring strength through a square root, which halves any fractional error
+     again.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Amplitude θ₀</th><th>θ₀ in radians</th><th>sin θ₀</th><th>Peak force error (θ₀ vs sin θ₀)</th><th>True period exceeds 2π√(L/g) by</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>5°</td><td class="num">0.0873</td><td class="num">0.0872</td><td class="num">+0.13 %</td><td class="num">+0.05 %</td></tr>
+        <tr><td><b>10°</b></td><td class="num">0.1745</td><td class="num">0.1736</td><td class="num">+0.51 %</td><td class="num"><b>+0.19 %</b></td></tr>
+        <tr><td>15°</td><td class="num">0.2618</td><td class="num">0.2588</td><td class="num">+1.15 %</td><td class="num">+0.43 %</td></tr>
+        <tr><td>20°</td><td class="num">0.3491</td><td class="num">0.3420</td><td class="num">+2.06 %</td><td class="num">+0.77 %</td></tr>
+        <tr><td><b>30°</b></td><td class="num">0.5236</td><td class="num">0.5000</td><td class="num">+4.72 %</td><td class="num"><b>+1.74 %</b></td></tr>
+        <tr><td>45°</td><td class="num">0.7854</td><td class="num">0.7071</td><td class="num">+11.1 %</td><td class="num">+4.00 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Read the two headline rows. At <strong>10°</strong> the linear model overstates the restoring torque by
+     about 0.5 %, yet the period is only 0.19 % short — well inside the error of any student measurement, which
+     is why 10° is the conventional cut-off. (On a clock 0.19 % is not small at all: it is a drift of
+     0.0019 × 86 400 s ≈ 165 s, nearly three minutes, a day — which is why real pendulum clocks are kept to a
+     degree or two.) At <strong>30°</strong> the force error has grown to 4.7 % but the period is
+     still only 1.7 % out. Quoting 4.7 % as the period error is a classic wrong answer.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Which way does the error go?</p>
+    <p style="margin:0">For θ &gt; 0, <strong>θ &gt; sin θ</strong>. So the small-angle model assumes a
+      restoring torque that is <em>too strong</em>, and therefore predicts a period that is <em>too short</em>.
+      A real pendulum swinging widely is always <strong>slower</strong> than 2π√(L/g) — a wide-swinging
+      pendulum clock <em>loses</em> time. Getting the direction of the correction right is worth as much as
+      getting its size right.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 4 — the seconds pendulum, and correcting a slow clock</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) How long is a pendulum whose period is 2.00 s?
+       (b) Such a clock is found to lose 60 s per day. By how much must the bob be raised? (g = 9.8 m·s⁻²)</p>
+    <ol>
+      <li>(a) Rearrange <span class="fi">T = 2π√(L/g)</span>:
+          <span class="fi">L = gT²/(4π²) = (9.8 × 4.00)/39.48 = 39.2/39.48 = 0.993 m</span>.
+          This is the classic "seconds pendulum" — it takes <em>one</em> second per one-way swing, hence a
+          <em>two</em>-second period. Halving the period to 1.00 s would need L = 0.248 m, a quarter of the
+          length, because <span class="fi">L ∝ T²</span>.</li>
+      <li>(b) Losing time means the period is too long. The fractional error is
+          <span class="fi">ΔT/T = 60/86400 = 6.94 × 10⁻⁴</span>.</li>
+      <li>Since <span class="fi">T ∝ √L</span>, fractional changes relate as
+          <span class="fi">ΔT/T = ½ ΔL/L</span>, so
+          <span class="fi">ΔL/L = 2 × 6.94 × 10⁻⁴ = 1.39 × 10⁻³</span>.</li>
+      <li><span class="fi">ΔL = 1.39 × 10⁻³ × 0.993 = 1.38 × 10⁻³ m</span>. The pendulum must be
+          <strong>shortened</strong> by about 1.4 mm — i.e. raise the bob.</li>
+    </ol>
+    <span class="wex__ans">L = 0.993 m · shorten by ≈ 1.4 mm</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">What is examined here</p>
+    <p style="margin:0"><span class="fi">T ∝ √L</span> and <span class="fi">T ∝ 1/√g</span>. Quadruple the
+      length to double the period. Take the clock up a mountain or towards the equator (smaller g) and it runs
+      <strong>slow</strong>. Take it into a lift accelerating upwards and the effective g rises, so it runs
+      <strong>fast</strong>; in free fall the effective g is zero and it does not swing at all. And L is
+      measured from the pivot to the <strong>centre of mass of the bob</strong>, not to its top — a favourite
+      one-mark deduction.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Where this shows up in the body</h4>
+    <p>A swinging leg is a pendulum: with <span class="fi">T ∝ √L</span>, longer legs have a longer natural
+      swing period, which is why tall people walk with a slower, longer stride and small children take quick
+      short steps. Walking near the leg's natural period is the metabolically cheapest cadence, because the
+      swing is then driven mostly by gravity rather than by muscle.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Physical and torsional pendulums</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Physical (compound) pendulum</dt>
+      <dd>Any rigid body free to swing under gravity about a horizontal axis that does not pass through its
+          centre of mass.</dd>
+      <dt>Torsional oscillator</dt>
+      <dd>A body suspended on a wire or fibre that supplies a restoring torque proportional to the angle of
+          twist.</dd>
+      <dt>Equivalent simple length</dt>
+      <dd>The length of the simple pendulum that would have the same period as a given physical pendulum.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">T = 2π√(I / mgd)</span>
+      <span class="fx__tag">physical pendulum, small angles</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">L_eq = I/(md)</span><span class="fx__tag">equivalent simple pendulum length</span></div>
+      <div class="fx"><span class="fx__eq">uniform rod about one end: T = 2π√(2L/3g)</span><span class="fx__tag">I = ⅓mL², d = L/2</span></div>
+      <div class="fx"><span class="fx__eq">τ = -κθ  ⟹  T = 2π√(I/κ)</span><span class="fx__tag">torsional; no small-angle restriction</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>I</b><span>moment of inertia about the pivot (kg·m²)</span></div>
+      <div><b>d</b><span>pivot to centre of mass (m)</span></div>
+      <div><b>m</b><span>mass of the body (kg)</span></div>
+      <div><b>κ</b><span>torsion constant (N·m·rad⁻¹)</span></div>
+      <div><b>θ</b><span>angular displacement (rad)</span></div>
+      <div><b>L_eq</b><span>equivalent simple length (m)</span></div>
+    </div>
+  </div>
+
+  <p>The recipe from §02 works unchanged, just in angular variables. Tilt the body by θ: its weight acts at the
+     centre of mass, a distance d from the pivot, so the restoring torque is
+     <span class="fi">τ = -mgd sin θ ≈ -mgdθ</span>. Newton's second law for rotation,
+     <span class="fi">Iα = τ</span>, gives <span class="fi">α = -(mgd/I)θ</span>, hence
+     <span class="fi">ω² = mgd/I</span>. Put <span class="fi">I = mL²</span> and <span class="fi">d = L</span>
+     and you recover the simple pendulum — it is the special case where all the mass sits at the far end.</p>
+
+  <p>The mass still cancels, because for a rigid body of fixed shape <span class="fi">I ∝ m</span>. What does
+     <em>not</em> cancel is <strong>how the mass is distributed</strong>: spreading it inwards reduces I more
+     than it reduces d, so the body swings faster. That is the whole content of the formula.</p>
+
+  <div class="wex">
+    <h4>Worked example 5 — a swinging rod, and a twisting disc</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) A uniform rod of length 1.00 m hangs from a pivot at one
+       end and swings through a small angle. Find its period and compare it with a simple pendulum of the same
+       length. (b) A disc of mass 0.40 kg and radius 5.0 cm hangs from a wire of torsion constant
+       κ = 0.020 N·m·rad⁻¹ and is given a small twist. Find its period.</p>
+    <ol>
+      <li>(a) For a uniform rod about one end, <span class="fi">I = ⅓mL²</span> and the centre of mass is at
+          <span class="fi">d = L/2</span>. So
+          <span class="fi">T = 2π√(⅓mL² / (mg·L/2)) = 2π√(2L/3g)</span> — the mass has vanished as promised.</li>
+      <li><span class="fi">T = 2π√(2 × 1.00 / (3 × 9.8)) = 2π√(2/29.4) = 2π√0.06803 = 2π × 0.2608 = 1.64 s</span>.</li>
+      <li>A simple pendulum of L = 1.00 m gives <span class="fi">T = 2π√(1.00/9.8) = 2.01 s</span>. The rod is
+          faster by a factor <span class="fi">√(2/3) = 0.816</span>, because its equivalent simple length is
+          only <span class="fi">L_eq = 2L/3 = 0.667 m</span> — most of the rod's mass is nearer the pivot than
+          the bob of the simple pendulum is.</li>
+      <li>(b) For a disc about its central axis <span class="fi">I = ½mR² = ½ × 0.40 × (0.050)² =
+          5.0 × 10⁻⁴ kg·m²</span>.</li>
+      <li><span class="fi">T = 2π√(I/κ) = 2π√(5.0 × 10⁻⁴ / 0.020) = 2π√0.025 = 2π × 0.1581 = 0.993 s</span>.</li>
+    </ol>
+    <span class="wex__ans">rod: T = 1.64 s (vs 2.01 s) · disc: T = 0.993 s</span>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Oscillator</th><th>"Stiffness"</th><th>"Inertia"</th><th>Period</th><th>Independent of</th><th>Depends on</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Mass–spring</b></td><td class="num">k</td><td class="num">m</td><td class="num">2π√(m/k)</td><td>amplitude (exactly), <b>g</b>, orientation</td><td>m, k</td></tr>
+        <tr><td><b>Simple pendulum</b></td><td class="num">mg/L</td><td class="num">m</td><td class="num">2π√(L/g)</td><td><b>mass of the bob</b>, amplitude (only approximately)</td><td>L, g</td></tr>
+        <tr><td><b>Physical pendulum</b></td><td class="num">mgd</td><td class="num">I</td><td class="num">2π√(I/mgd)</td><td>mass (I ∝ m), amplitude (approximately)</td><td>shape, pivot position, g</td></tr>
+        <tr><td><b>Torsional</b></td><td class="num">κ</td><td class="num">I</td><td class="num">2π√(I/κ)</td><td>amplitude (exactly), <b>g</b>, orientation</td><td>I, κ</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Read that table as one idea in four costumes: <strong>ω = √(stiffness / inertia)</strong>. Everything else
+     is bookkeeping about which quantity plays which role.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Why torsional oscillators are the precision instruments</p>
+    <p style="margin:0">A twisted wire obeys <span class="fi">τ = -κθ</span> <strong>linearly over large
+      angles</strong> — there is no sin θ to approximate away. So a torsional oscillator is genuinely
+      isochronous over a wide amplitude range and, because κ can be made tiny, exquisitely sensitive to small
+      torques. Hence the torsion balance in the Cavendish and Coulomb experiments, and the balance wheel and
+      hairspring of a mechanical watch — a torsional oscillator, which is also why a watch keeps time in any
+      orientation while a pendulum clock must stand upright.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two things people write down wrongly</p>
+    <p style="margin:0">I must be taken about the <strong>pivot</strong>, not about the centre of mass — use
+      the parallel-axis theorem <span class="fi">I = I_cm + md²</span> if you are given I_cm. And d is the
+      <strong>pivot-to-centre-of-mass</strong> distance, which for a uniform rod pivoted at its end is L/2,
+      not L. Substituting d = L is the single commonest slip in this section.</p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Energy in SHM</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Total mechanical energy of an oscillator</dt>
+      <dd>The constant sum of the kinetic and elastic potential energies of an undamped oscillator; it is
+          fixed at the moment the oscillator is set going and never changes thereafter.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">E = ½kA² = ½mω²A²</span>
+      <span class="fx__tag">undamped SHM; note E ∝ A²</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">U(x) = ½kx²</span><span class="fx__tag">maximum at the turning points</span></div>
+      <div class="fx"><span class="fx__eq">K(x) = ½k(A² - x²) = ½mω²(A² - x²)</span><span class="fx__tag">maximum at the centre</span></div>
+      <div class="fx"><span class="fx__eq">K + U = E = constant</span><span class="fx__tag">no damping, no driving</span></div>
+      <div class="fx"><span class="fx__eq">⟨K⟩ = ⟨U⟩ = E/2</span><span class="fx__tag">time averages over a whole cycle</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>E</b><span>total mechanical energy (J)</span></div>
+      <div><b>U</b><span>potential energy (J)</span></div>
+      <div><b>K</b><span>kinetic energy (J)</span></div>
+      <div><b>A</b><span>amplitude (m)</span></div>
+      <div><b>k</b><span>spring constant (N·m⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>Evaluate the total energy at the easiest point in the cycle. At a turning point the oscillator is
+     momentarily at rest, so all the energy is potential: <span class="fi">E = ½kA²</span>. At the centre it is
+     all kinetic: <span class="fi">E = ½mv_max² = ½m(ωA)²</span>. The two expressions agree because
+     <span class="fi">mω² = k</span> — a useful identity in its own right.</p>
+
+  <p>Setting <span class="fi">½mv² + ½kx² = ½kA²</span> and solving for v regenerates the workhorse of §03,
+     <span class="fi">v = ±ω√(A² - x²)</span>, with no calculus. Energy is usually the fastest route to any
+     "speed at this displacement" question.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 700 340" role="img" aria-label="Energy against displacement: potential energy is an upward parabola with minimum at the centre, kinetic energy is the inverted parabola, and their sum is a horizontal line at the total energy. The two parabolas cross at x equal to plus or minus A over root two." style="font-family:var(--sans)">
+      <line x1="80" y1="266" x2="640" y2="266" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="350" y1="290" x2="350" y2="46" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <g stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 4" opacity=".7">
+        <line x1="100" y1="266" x2="100" y2="60"/>
+        <line x1="600" y1="266" x2="600" y2="60"/>
+        <line x1="173.2" y1="266" x2="173.2" y2="166"/>
+        <line x1="526.8" y1="266" x2="526.8" y2="166"/>
+        <line x1="173.2" y1="166" x2="526.8" y2="166"/>
+      </g>
+      <line x1="100" y1="66" x2="600" y2="66" stroke="var(--v-energy)" stroke-width="2.6"/>
+      <path d="M100,66 Q350,466 600,66" fill="none" stroke="var(--v-force)" stroke-width="2.6"/>
+      <path d="M100,266 Q350,-134 600,266" fill="none" stroke="var(--v-vel)" stroke-width="2.6"/>
+      <circle cx="173.2" cy="166" r="4" fill="var(--ink)"/>
+      <circle cx="526.8" cy="166" r="4" fill="var(--ink)"/>
+      <g font-size="13">
+        <text x="356" y="58" fill="var(--v-energy)" font-weight="700">E = K + U = ½kA²  (constant)</text>
+        <text x="540" y="130" fill="var(--v-force)" font-weight="700">U = ½kx²</text>
+        <text x="160" y="130" fill="var(--v-vel)" font-weight="700" text-anchor="end">K = ½k(A² - x²)</text>
+      </g>
+      <g font-size="12" fill="var(--ink-soft)" text-anchor="middle">
+        <text x="100" y="288">-A</text>
+        <text x="350" y="288">0</text>
+        <text x="600" y="288">+A</text>
+        <text x="350" y="316">displacement x</text>
+      </g>
+      <text x="350" y="186" font-size="11.5" fill="var(--ink-faint)" text-anchor="middle">K = U = E/2 at x = ±A/√2 ≈ ±0.71A</text>
+      <text x="646" y="270" font-size="13" fill="var(--ink-soft)">x</text>
+      <text x="356" y="42" font-size="12" fill="var(--ink-faint)">energy</text>
+    </svg>
+    <figcaption>Energy against <em>displacement</em> (not time). The potential-energy parabola is the shape of
+      the spring's potential well; the kinetic energy is whatever is left under the horizontal total. The
+      oscillator is confined to the region where the parabola sits below E, and the turning points are exactly
+      where it touches it. Because both curves are parabolas, they cross at ±A/√2 ≈ ±0.71A — the energies are
+      split evenly at 71 % of the amplitude, not at half of it.</figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 6 — where the energy is</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">Take the oscillator of Worked example 2: m = 0.25 kg,
+       k = 40 N·m⁻¹, A = 8.0 cm. Find the total energy; the kinetic and potential energies at x = 4.0 cm; and
+       the displacement at which they are equal.</p>
+    <ol>
+      <li><span class="fi">E = ½kA² = 0.5 × 40 × (0.080)² = 0.5 × 40 × 6.4 × 10⁻³ = 0.128 J</span>.
+          Cross-check with <span class="fi">½mv_max² = 0.5 × 0.25 × (1.012)² = 0.128 J</span> ✓.</li>
+      <li>At x = 4.0 cm: <span class="fi">U = ½kx² = 0.5 × 40 × 1.6 × 10⁻³ = 0.032 J</span>, which is
+          <span class="fi">(x/A)² = ¼</span> of E — as it must be, since U ∝ x².</li>
+      <li>So <span class="fi">K = E - U = 0.128 - 0.032 = 0.096 J</span>, three-quarters of the total.
+          <strong>Half the amplitude means a quarter of the energy is potential, not half.</strong>
+          (And <span class="fi">v = √(2K/m) = √(0.768) = 0.876 m·s⁻¹</span>, agreeing with §05.)</li>
+      <li>K = U requires <span class="fi">½kx² = ½E = ¼kA²</span>, so
+          <span class="fi">x = A/√2 = 0.080/1.414 = 0.0566 m = 5.7 cm</span>, where each store holds
+          <span class="fi">0.064 J</span> and the speed is <span class="fi">v_max/√2 = 0.716 m·s⁻¹</span>.</li>
+    </ol>
+    <span class="wex__ans">E = 0.128 J · at 4.0 cm: U = 0.032 J, K = 0.096 J · K = U at x = 5.7 cm</span>
+  </div>
+
+  <h3>Two consequences worth carrying forward</h3>
+  <p><strong>Energy goes as amplitude squared.</strong> Double the amplitude and the energy is four times
+     larger, while the period does not budge. This is the same <span class="fi">E ∝ A²</span> that governs the
+     intensity of waves and sound in note 08 and of electromagnetic waves later — a 3 dB, factor-of-two change
+     in energy corresponds to only a factor √2 in amplitude.</p>
+  <p><strong>The energy oscillates at twice the frequency of the displacement.</strong> K and U each complete a
+     full cycle in T/2, because <span class="fi">cos²</span> and <span class="fi">sin²</span> repeat twice per
+     period of the cosine. The oscillator passes through "all kinetic" twice per cycle, once going each way.
+     Their time averages are both E/2, because the average of cos² over a cycle is ½.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Do not double-count gravity on a vertical spring</p>
+    <p style="margin:0">With x measured from the <em>hanging</em> equilibrium, the combined
+      gravitational-plus-elastic potential energy is exactly <span class="fi">½kx² + constant</span>. So use
+      <span class="fi">E = ½kA²</span> as it stands and <strong>do not add a separate mgh term</strong>. Adding
+      one is the standard way to get a vertical-spring energy question wrong, and it also breaks the symmetry
+      of the answer: the motion is symmetric about the hanging equilibrium, so the energy expression must be
+      too.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Ratios to have ready</p>
+    <p style="margin:0">At <span class="fi">x = A/2</span>: U = E/4, K = 3E/4, speed = (√3/2)v_max ≈ 0.87 v_max.
+      At <span class="fi">x = A/√2 ≈ 0.71A</span>: U = K = E/2, speed = v_max/√2 ≈ 0.71 v_max.
+      At <span class="fi">x = (√3/2)A ≈ 0.87A</span>: U = 3E/4, K = E/4, speed = v_max/2.
+      Notice how displacement and speed swap roles between the first and last of those — the pattern is
+      <span class="fi">(x/A)² + (v/v_max)² = 1</span>.</p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>SHM as the shadow of circular motion</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Reference circle</dt>
+      <dd>The auxiliary circle of radius A on which a point moves at constant angular speed ω, such that its
+          projection onto a diameter reproduces the simple harmonic motion exactly.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">x = A cos θ,  θ = ωt + φ</span>
+      <span class="fx__tag">projection of uniform circular motion of radius A</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">speed on the circle = ωA  ⟹  v_x = -ωA sin θ</span><span class="fx__tag">tangential velocity, projected</span></div>
+      <div class="fx"><span class="fx__eq">a_c = ω²A  ⟹  a_x = -ω²A cos θ = -ω²x</span><span class="fx__tag">centripetal acceleration, projected</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>A</b><span>circle radius = SHM amplitude (m)</span></div>
+      <div><b>θ</b><span>phase angle (rad)</span></div>
+      <div><b>ω</b><span>angular speed of the reference point (rad·s⁻¹)</span></div>
+      <div><b>a_c</b><span>centripetal acceleration (m·s⁻²)</span></div>
+    </div>
+  </div>
+
+  <p>Take a point going round a circle of radius A at constant angular speed ω and shine a light from the side.
+     The shadow on the wall performs simple harmonic motion — and the correspondence is exact, not an analogy.
+     It is worth adopting because it derives the entire §03 table geometrically, without differentiating
+     anything.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 680 380" role="img" aria-label="A point P on a circle of radius A at phase angle theta; dashed lines project P onto a horizontal axis below, and the tangential velocity and centripetal acceleration vectors at P are projected onto the same axis, giving minus omega A sine theta and minus omega squared A cosine theta." style="font-family:var(--sans)">
+      <defs>
+        <marker id="osc-ah-vel" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--v-vel)"/></marker>
+        <marker id="osc-ah-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--v-accel)"/></marker>
+      </defs>
+      <circle cx="250" cy="152" r="110" fill="none" stroke="var(--ink-faint)" stroke-width="1.5"/>
+      <line x1="250" y1="152" x2="372" y2="152" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="4 4"/>
+      <path d="M290,152 A40,40 0 0 0 227.1,119.2" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/>
+      <text x="264" y="126" font-size="12" fill="var(--ink-soft)">θ = ωt + φ</text>
+      <line x1="250" y1="152" x2="186.9" y2="61.9" stroke="var(--ink)" stroke-width="1.8"/>
+      <text x="202" y="100" font-size="12.5" fill="var(--ink)" font-weight="700" text-anchor="end">A</text>
+      <circle cx="250" cy="152" r="3" fill="var(--ink-soft)"/>
+      <circle cx="186.9" cy="61.9" r="5.5" fill="var(--ink)"/>
+      <text x="196" y="46" font-size="13" fill="var(--ink)" font-weight="700">P</text>
+      <line x1="186.9" y1="61.9" x2="121.4" y2="107.8" stroke="var(--v-vel)" stroke-width="2.4" marker-end="url(#osc-ah-vel)"/>
+      <text x="112" y="120" font-size="12" fill="var(--v-vel)" font-weight="700" text-anchor="middle">ωA</text>
+      <line x1="186.9" y1="61.9" x2="228.2" y2="120.9" stroke="var(--v-accel)" stroke-width="2.4" marker-end="url(#osc-ah-acc)"/>
+      <text x="248" y="112" font-size="12" fill="var(--v-accel)" font-weight="700">ω²A</text>
+      <line x1="186.9" y1="61.9" x2="186.9" y2="352" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <line x1="110" y1="278" x2="400" y2="278" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g stroke="var(--ink-soft)" stroke-width="1.2">
+        <line x1="140" y1="273" x2="140" y2="283"/>
+        <line x1="250" y1="273" x2="250" y2="283"/>
+        <line x1="360" y1="273" x2="360" y2="283"/>
+      </g>
+      <g font-size="11.5" fill="var(--ink-soft)" text-anchor="middle">
+        <text x="140" y="298">-A</text><text x="250" y="298">0</text><text x="360" y="298">+A</text>
+      </g>
+      <circle cx="186.9" cy="278" r="5.5" fill="var(--ink)"/>
+      <text x="186.9" y="268" font-size="11.5" fill="var(--ink)" text-anchor="middle">x = A cos θ</text>
+      <line x1="186.9" y1="324" x2="131.9" y2="324" stroke="var(--v-vel)" stroke-width="2.2" marker-end="url(#osc-ah-vel)"/>
+      <text x="126" y="328" font-size="11.5" fill="var(--v-vel)" text-anchor="end">-ωA sin θ</text>
+      <line x1="186.9" y1="352" x2="231.9" y2="352" stroke="var(--v-accel)" stroke-width="2.2" marker-end="url(#osc-ah-acc)"/>
+      <text x="238" y="356" font-size="11.5" fill="var(--v-accel)">-ω²A cos θ</text>
+      <g font-size="13" fill="var(--ink)">
+        <text x="430" y="72" font-weight="700">P circles at constant ω</text>
+        <text x="430" y="106">x  = A cos θ</text>
+        <text x="430" y="136">v<tspan font-size="10" dy="4">x</tspan><tspan dy="-4"> = -ωA sin θ</tspan></text>
+        <text x="430" y="166">a<tspan font-size="10" dy="4">x</tspan><tspan dy="-4"> = -ω²A cos θ = -ω²x</tspan></text>
+      </g>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="430" y="198">The velocity vector sits 90° ahead</text>
+        <text x="430" y="216">of the radius — so v leads x by 90°.</text>
+        <text x="430" y="240">The acceleration points at the centre,</text>
+        <text x="430" y="258">180° from the radius — so a is antiphase.</text>
+        <text x="430" y="288">A never enters ω, so T is the same</text>
+        <text x="430" y="306">for every circle: isochronism.</text>
+      </g>
+    </svg>
+    <figcaption>The reference circle. The two short arrows below the axis are the shadow's own velocity (teal)
+      and acceleration (amber) — the projections of the two vectors drawn at P. Here P is in the second
+      quadrant: the shadow is left of centre and still moving further left, yet its acceleration already points
+      right — decelerating before the turning point. Project
+      the tangential speed ωA and you get the velocity amplitude; project the centripetal acceleration ω²A and
+      you get both the acceleration amplitude and, automatically, a = -ω²x. This is where "angular frequency"
+      stops being a name and becomes an actual angular velocity.</figcaption>
+  </figure>
+
+  <p>Three payoffs. First, the amplitudes <span class="fi">ωA</span> and <span class="fi">ω²A</span> come free
+     from circular-motion results you already know. Second, the phase relations become geometry: the velocity
+     vector is perpendicular to the radius and 90° ahead of it, the acceleration is antiparallel to the radius,
+     and their shadows inherit exactly those angles. Third, <strong>isochronism becomes obvious</strong> —
+     the radius A does not appear in ω anywhere, so the time to go round is independent of the size of the
+     circle.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Timing questions, solved in one line</p>
+    <p style="margin:0">"How long does the oscillator take to travel from x = A to x = A/2?" On the reference
+      circle that is a phase change of <span class="fi">arccos(½) = 60° = π/3</span>, so
+      <span class="fi">t = (π/3)/ω = T/6</span>. Likewise A to 0 is 90°, i.e. T/4; A to -A is 180°, i.e. T/2.
+      The trap is to assume the time is proportional to the distance travelled — going from A to A/2 covers
+      only half the way to the centre but eats <strong>two-thirds</strong> of the T/4 needed to reach it
+      (T/6 out of T/4), because the oscillator is still slow near the extreme. Proportionality would have
+      predicted T/8.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Damping: the three regimes</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Damping</dt>
+      <dd>A resistive force proportional to velocity that continuously removes mechanical energy from the
+          oscillator.</dd>
+      <dt>Damping ratio ζ</dt>
+      <dd>The damping constant expressed as a fraction of the value that just prevents oscillation.</dd>
+      <dt>Critical damping</dt>
+      <dd>The smallest amount of damping for which the system returns to equilibrium without overshooting it.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">m(d²x/dt²) + b(dx/dt) + kx = 0</span>
+      <span class="fx__tag">linear damping, no driving force</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">x(t) = A₀ e^(-bt/2m) cos(ω_d t + φ)</span><span class="fx__tag">underdamped only</span></div>
+      <div class="fx"><span class="fx__eq">ω_d = √(ω₀² - b²/4m²) &lt; ω₀</span><span class="fx__tag">damping always slows the oscillation</span></div>
+      <div class="fx"><span class="fx__eq">b_c = 2√(mk) = 2mω₀,  ζ = b/b_c</span><span class="fx__tag">critical damping constant</span></div>
+      <div class="fx"><span class="fx__eq">E(t) = E₀ e^(-bt/m)</span><span class="fx__tag">energy decays twice as fast as amplitude</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>b</b><span>damping constant (N·s·m⁻¹ = kg·s⁻¹)</span></div>
+      <div><b>ω₀</b><span>undamped natural angular frequency, √(k/m) (rad·s⁻¹)</span></div>
+      <div><b>ω_d</b><span>damped angular frequency (rad·s⁻¹)</span></div>
+      <div><b>ζ</b><span>damping ratio (dimensionless)</span></div>
+      <div><b>A₀</b><span>initial amplitude (m)</span></div>
+      <div><b>E₀</b><span>initial energy (J)</span></div>
+    </div>
+  </div>
+
+  <p>A drag force <span class="fi">-bv</span> is the simplest thing that can remove energy without changing
+     the equilibrium position, and it is a good model for air resistance at low speed, viscous fluid damping
+     and eddy-current braking. Because it depends on velocity rather than displacement, it does not shift where
+     the system settles — only how it gets there.</p>
+
+  <p>The amplitude envelope falls exponentially, <span class="fi">A(t) = A₀e^(-bt/2m)</span>, with time constant
+     <span class="fi">τ = 2m/b</span>. The <em>energy</em> falls with time constant m/b — half as long — because
+     <span class="fi">E ∝ A²</span> and squaring an exponential doubles its rate. Students routinely quote one
+     time constant for the other.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 700 370" role="img" aria-label="Three damped responses released from rest at plus A: an underdamped curve that oscillates inside a decaying exponential envelope, a critically damped curve that returns to zero quickly without crossing it, and an overdamped curve that creeps back far more slowly." style="font-family:var(--sans)">
+      <line x1="80" y1="176" x2="676" y2="176" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="86" y1="46" x2="86" y2="300" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <path d="M86,64 C110.2,74.5 134.5,83.5 158.8,91.5 C183,99.4 207.3,106.2 231.5,112.2 C255.7,118.2 280,123.3 304.2,127.8 C328.5,132.3 352.8,136.2 377,139.6 C401.2,143 425.5,146 449.8,148.6 C474,151.1 498.3,153.3 522.5,155.3 C546.7,157.2 571,158.9 595.2,160.4 C619.5,161.8 643.8,163.1 668,164.2" fill="none" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="5 5"/>
+      <path d="M86,288 C110.2,277.5 134.5,268.5 158.8,260.5 C183,252.6 207.3,245.8 231.5,239.8 C255.7,233.8 280,228.7 304.2,224.2 C328.5,219.7 352.8,215.8 377,212.4 C401.2,209 425.5,206 449.8,203.4 C474,200.9 498.3,198.7 522.5,196.7 C546.7,194.8 571,193.1 595.2,191.6 C619.5,190.2 643.8,188.9 668,187.8" fill="none" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="5 5"/>
+      <path d="M86,64 C94.1,64 102.2,71.5 110.2,83.9 C118.3,96.4 126.4,113.7 134.5,132.2 C142.6,150.7 150.7,170.2 158.8,187.3 C166.8,204.4 174.9,219 183,229.1 C191.1,239.2 199.2,244.7 207.2,245.4 C215.3,246.2 223.4,242.3 231.5,235.1 C239.6,227.8 247.7,217.4 255.8,206.1 C263.8,194.7 271.9,182.6 280,171.7 C288.1,160.8 296.2,151.4 304.2,144.7 C312.3,138 320.4,134 328.5,133.1 C336.6,132.1 344.7,134.1 352.8,138.2 C360.8,142.4 368.9,148.6 377,155.6 C385.1,162.5 393.2,170.1 401.2,177 C409.3,183.8 417.4,189.9 425.5,194.4 C433.6,198.8 441.7,201.6 449.8,202.5 C457.8,203.4 465.9,202.4 474,200.1 C482.1,197.7 490.2,194 498.2,189.8 C506.3,185.5 514.4,180.8 522.5,176.5 C530.6,172.2 538.7,168.2 546.8,165.3 C554.8,162.4 562.9,160.5 571,159.7 C579.1,159 587.2,159.4 595.2,160.7 C603.3,162 611.4,164.2 619.5,166.8 C627.6,169.4 635.7,172.3 643.8,175 C651.8,177.7 659.9,180.3 668,182.2" fill="none" stroke="var(--v-accel)" stroke-width="2.4"/>
+      <path d="M86,64 C98.1,64 110.3,78.2 122.4,91 C134.5,103.9 146.6,116.6 158.8,126.6 C170.9,136.7 183,144.4 195.1,150.4 C207.3,156.3 219.4,160.4 231.5,163.5 C243.6,166.6 255.8,168.6 267.9,170.1 C280,171.6 292.1,172.6 304.2,173.3 C316.4,174 328.5,174.5 340.6,174.8 C352.7,175.1 364.9,175.3 377,175.5 C389.1,175.6 401.3,175.7 413.4,175.8 C425.5,175.8 437.6,175.9 449.8,175.9 C461.9,175.9 474,175.9 486.1,176 C498.2,176 510.4,176 522.5,176 C534.6,176 546.8,176 558.9,176 C571,176 583.1,176 595.2,176 C607.4,176 619.5,176 631.6,176 C643.7,176 655.9,176 668,176" fill="none" stroke="var(--v-energy)" stroke-width="2.8"/>
+      <path d="M86,64 C99.9,64 113.7,74.1 127.6,80 C141.4,85.9 155.3,91.2 169.1,96.1 C183,101 196.9,105.4 210.7,109.5 C224.6,113.6 238.4,117.3 252.3,120.7 C266.1,124.1 280,127.2 293.9,130 C307.7,132.8 321.6,135.4 335.4,137.7 C349.3,140 363.1,142.2 377,144.1 C390.9,146.1 404.7,147.9 418.6,149.5 C432.4,151.1 446.3,152.6 460.1,153.9 C474,155.3 487.9,156.5 501.7,157.6 C515.6,158.8 529.4,159.8 543.3,160.7 C557.1,161.7 571,162.5 584.9,163.3 C598.7,164.1 612.6,164.8 626.4,165.4 C640.3,166.1 654.1,166.7 668,167.2" fill="none" stroke="var(--v-field)" stroke-width="2.4"/>
+      <g font-size="11.5" fill="var(--ink-soft)" text-anchor="end">
+        <text x="78" y="68">+A</text><text x="78" y="180">0</text><text x="78" y="292">-A</text>
+      </g>
+      <text x="600" y="200" font-size="11.5" fill="var(--ink-faint)">time →</text>
+      <g stroke-width="2.6">
+        <line x1="92" y1="322" x2="124" y2="322" stroke="var(--v-accel)"/>
+        <line x1="330" y1="322" x2="362" y2="322" stroke="var(--v-energy)"/>
+        <line x1="92" y1="350" x2="124" y2="350" stroke="var(--v-field)"/>
+        <line x1="330" y1="350" x2="362" y2="350" stroke="var(--ink-faint)" stroke-dasharray="5 5"/>
+      </g>
+      <g font-size="12" fill="var(--ink-soft)">
+        <text x="132" y="326">underdamped (ζ = 0.15)</text>
+        <text x="370" y="326">critically damped (ζ = 1)</text>
+        <text x="132" y="354">overdamped (ζ = 3)</text>
+        <text x="370" y="354">decay envelope e^(-ζω₀t)</text>
+      </g>
+    </svg>
+    <figcaption>All three released from rest at +A with the same k and m; only b differs. The underdamped
+      curve is a cosine squeezed inside the dashed exponential envelope. The critically damped curve reaches
+      equilibrium in the shortest possible time <em>without crossing it</em>. The overdamped curve never
+      crosses either — but it is still nearly 8 % away from equilibrium when the critically damped one settled
+      long ago. That comparison is the whole reason instruments are built critically damped.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Regime</th><th>Condition</th><th>ζ</th><th>What the motion does</th><th>Where you meet it</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Underdamped</b></td><td class="num">b &lt; 2√(mk)</td><td class="num">ζ &lt; 1</td>
+            <td>Oscillates at ω_d &lt; ω₀ inside a decaying envelope; overshoots repeatedly.</td>
+            <td>A struck tuning fork; a swing left alone; a worn car shock absorber that keeps bouncing.</td></tr>
+        <tr><td><b>Critically damped</b></td><td class="num">b = 2√(mk)</td><td class="num">ζ = 1</td>
+            <td>Returns to equilibrium in the <b>shortest possible time with no overshoot</b>; does not cross zero.</td>
+            <td>Galvanometer and balance pointers, door closers, car suspension, lift levelling.</td></tr>
+        <tr><td><b>Overdamped</b></td><td class="num">b &gt; 2√(mk)</td><td class="num">ζ &gt; 1</td>
+            <td>Also no oscillation, but creeps back <b>slowly</b> — the more damping, the slower.</td>
+            <td>A pointer in thick oil; an over-damped arterial pressure line; heavy hydraulic dampers.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why an instrument wants exactly critical damping</h3>
+  <p>Consider a moving-coil galvanometer, or the pointer of an analytical balance. You want the needle to go to
+     its reading and <strong>stop</strong>, as fast as possible, so the operator can take the value and move on.
+     If it is underdamped the needle swings past the true reading and oscillates around it; you must wait
+     several cycles, and a reading taken early is biased in whichever direction the needle happened to be
+     swinging. If it is overdamped it never overshoots but crawls asymptotically towards the value, and you
+     wait even longer for the last few percent. Critical damping is the single setting that reaches the reading
+     soonest without ever passing it — which is why galvanometers are built with a specific coil resistance and
+     why "critical damping resistance" appears on their specification sheets. The same argument settles car
+     shock absorbers, self-closing doors, and the levelling of a lift.</p>
+
+  <div class="mnemo">
+    <h4>The clinical version: the arterial line</h4>
+    <p>An invasive blood-pressure line is a fluid-filled catheter plus transducer — a damped oscillator with a
+      natural frequency. <b>Underdamped</b> (long compliant tubing, whip): the trace overshoots, overestimating
+      systolic and underestimating diastolic pressure. <b>Overdamped</b> (air bubble, clot, kink): the trace is
+      blunted and systolic is underestimated. The bedside test is the fast-flush (square-wave) test — count the
+      oscillations after the flush. Note that the practical optimum here is <em>slightly under</em> critical
+      (ζ ≈ 0.6–0.7), which trades a tiny overshoot for extra usable bandwidth; a pointer instrument that must
+      never overshoot at all uses ζ = 1.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two traps</p>
+    <p style="margin:0 0 .4rem"><b>"Only critical damping stops the oscillation."</b> No — overdamped systems
+      do not oscillate either. What is unique about critical damping is that it is the <em>fastest</em>
+      non-oscillatory return.</p>
+    <p style="margin:0"><b>"Damping does not change the frequency."</b> It does:
+      <span class="fi">ω_d = √(ω₀² - b²/4m²)</span> is always less than ω₀, so a damped oscillator is always a
+      little <strong>slower</strong> than the same system undamped. The shift is second order in b, so it is
+      tiny when damping is light — which is exactly why the approximation ω_d ≈ ω₀ is usually safe and why the
+      exam likes asking about the sign of the shift rather than its size.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Driving, resonance and Q</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Driven (forced) oscillation</dt>
+      <dd>Oscillation sustained by an external periodic force; in the steady state the system oscillates at
+          the <em>driving</em> frequency, not its own.</dd>
+      <dt>Resonance</dt>
+      <dd>The large response that occurs when the driving frequency is close to the system's natural
+          frequency.</dd>
+      <dt>Quality factor Q</dt>
+      <dd>A dimensionless measure of how lightly damped an oscillator is: how many radians of oscillation it
+          takes to lose its energy, and equivalently how sharp its resonance is.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">A(ω) = (F₀/m) / √((ω₀² - ω²)² + (bω/m)²)</span>
+      <span class="fx__tag">steady-state amplitude of a driven damped oscillator</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ω_r = √(ω₀² - b²/2m²) &lt; ω₀</span><span class="fx__tag">where the amplitude peaks</span></div>
+      <div class="fx"><span class="fx__eq">Q = ω₀m/b = ω₀/Δω = f₀/Δf</span><span class="fx__tag">Δω = full width at half power</span></div>
+      <div class="fx"><span class="fx__eq">A(ω₀) = Q·F₀/k</span><span class="fx__tag">Q times the static deflection</span></div>
+      <div class="fx"><span class="fx__eq">|ΔE|/E per cycle = 2π/Q</span><span class="fx__tag">fractional energy lost per cycle</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>F₀</b><span>amplitude of the driving force (N)</span></div>
+      <div><b>ω</b><span>driving angular frequency (rad·s⁻¹)</span></div>
+      <div><b>ω₀</b><span>natural angular frequency (rad·s⁻¹)</span></div>
+      <div><b>ω_r</b><span>amplitude-resonance frequency (rad·s⁻¹)</span></div>
+      <div><b>Q</b><span>quality factor (dimensionless)</span></div>
+      <div><b>Δω, Δf</b><span>resonance width, FWHM (rad·s⁻¹, Hz)</span></div>
+    </div>
+  </div>
+
+  <p>Start a driven oscillator and two things happen at once: a transient at the system's own damped frequency,
+     which dies away, and a steady state at the <strong>driver's</strong> frequency, which does not. Only the
+     steady state survives, so after the transient the oscillator moves at whatever frequency you feed it —
+     never at its own. What its own frequency controls is the <em>size</em> of that response.</p>
+
+  <p>Look at the denominator of A(ω). The term <span class="fi">(ω₀² - ω²)²</span> vanishes when the driving
+     matches the natural frequency, leaving only the damping term <span class="fi">(bω/m)²</span> to keep the
+     amplitude finite. That is resonance in one sentence: <strong>at resonance nothing opposes the build-up
+     except the damping</strong>, so a lightly damped system responds enormously and an undamped one would
+     respond without limit.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 700 360" role="img" aria-label="Steady-state amplitude against driving frequency for three quality factors. The Q equals ten curve is a tall narrow spike at the natural frequency, Q equals three is a modest broad bump, and Q equals one is almost flat." style="font-family:var(--sans)">
+      <line x1="88" y1="292" x2="666" y2="292" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="88" y1="300" x2="88" y2="40" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="343.5" y1="292" x2="343.5" y2="52" stroke="var(--ink-faint)" stroke-width="1.1" stroke-dasharray="4 4"/>
+      <g stroke="var(--ink-faint)" stroke-width="1" opacity=".35">
+        <line x1="88" y1="246.9" x2="666" y2="246.9"/>
+        <line x1="88" y1="201.8" x2="666" y2="201.8"/>
+        <line x1="88" y1="156.7" x2="666" y2="156.7"/>
+        <line x1="88" y1="111.6" x2="666" y2="111.6"/>
+        <line x1="88" y1="66.5" x2="666" y2="66.5"/>
+      </g>
+      <path d="M88,269.5 C100.8,269.5 113.5,269.3 126.3,268.9 C139.1,268.6 151.9,268 164.6,267.2 C177.4,266.4 190.2,265.4 203,263.8 C215.7,262.2 228.5,260.2 241.3,256.9 C249.8,254.8 258.3,252.1 266.8,248.2 C273.6,245.1 280.4,241.2 287.3,235.5 C293.2,230.6 299.2,224.3 305.1,214.3 C309.4,207.2 313.7,198.2 317.9,184.8 C321.3,174 324.7,160.1 328.1,141.3 C330.3,129.6 332.4,115.6 334.5,101.7 C335.8,93.4 337.1,85.2 338.3,78.7 C339.2,74.4 340,70.9 340.9,68.7 C341.8,66.6 342.6,65.8 343.5,66.5 C344.3,67.3 345.2,69.6 346,73.1 C346.9,76.6 347.7,81.2 348.6,86.5 C349.8,94.4 351.1,103.6 352.4,112.6 C354.5,127.5 356.7,141.7 358.8,153.5 C362.2,172.5 365.6,186.2 369,196.9 C373.3,210.2 377.5,219.1 381.8,226.2 C387.7,236 393.7,242.2 399.7,247.2 C408.2,254.3 416.7,258.6 425.2,262.1 C436.3,266.6 447.3,269.4 458.4,271.7 C471.2,274.4 484,276.2 496.7,277.6 C513.8,279.6 530.8,280.9 547.8,282 C564.8,283 581.9,283.8 598.9,284.5 C615.9,285.2 633,285.7 650,286.1" fill="none" stroke="var(--v-force)" stroke-width="2.4"/>
+      <path d="M88,269.5 C100.8,269.5 113.5,269.3 126.3,269 C139.1,268.6 151.9,268.1 164.6,267.4 C177.4,266.6 190.2,265.6 203,264.2 C215.7,262.8 228.5,261 241.3,258.4 C249.8,256.6 258.3,254.5 266.8,251.8 C273.6,249.6 280.4,247.1 287.3,244 C293.2,241.4 299.2,238.3 305.1,235.2 C309.4,232.9 313.7,230.5 317.9,228.5 C321.3,226.9 324.7,225.5 328.1,224.6 C330.3,224 332.4,223.6 334.5,223.5 C335.8,223.4 337.1,223.4 338.3,223.5 C339.2,223.6 340,223.7 340.9,223.8 C341.8,224 342.6,224.1 343.5,224.4 C344.3,224.6 345.2,224.9 346,225.2 C346.9,225.5 347.7,225.8 348.6,226.2 C349.8,226.7 351.1,227.3 352.4,228 C354.5,229.1 356.7,230.4 358.8,231.8 C362.2,233.9 365.6,236.3 369,238.6 C373.3,241.6 377.5,244.4 381.8,247 C387.7,250.6 393.7,253.8 399.7,256.5 C408.2,260.4 416.7,263.4 425.2,265.9 C436.3,269.1 447.3,271.4 458.4,273.3 C471.2,275.4 484,277 496.7,278.3 C513.8,280.1 530.8,281.3 547.8,282.3 C564.8,283.3 581.9,284 598.9,284.7 C615.9,285.3 633,285.8 650,286.2" fill="none" stroke="var(--v-accel)" stroke-width="2.4"/>
+      <path d="M88,269.5 C100.8,269.5 113.5,269.4 126.3,269.2 C139.1,269 151.9,268.8 164.6,268.5 C177.4,268.2 190.2,267.8 203,267.4 C215.7,267 228.5,266.6 241.3,266.3 C249.8,266.1 258.3,266 266.8,266 C273.6,266 280.4,266 287.3,266.2 C293.2,266.3 299.2,266.5 305.1,266.8 C309.4,267 313.7,267.2 317.9,267.5 C321.3,267.7 324.7,267.9 328.1,268.2 C330.3,268.4 332.4,268.5 334.5,268.7 C335.8,268.8 337.1,268.9 338.3,269 C339.2,269.1 340,269.2 340.9,269.2 C341.8,269.3 342.6,269.4 343.5,269.5 C344.3,269.5 345.2,269.6 346,269.7 C346.9,269.8 347.7,269.8 348.6,269.9 C349.8,270 351.1,270.1 352.4,270.3 C354.5,270.5 356.7,270.7 358.8,270.9 C362.2,271.2 365.6,271.5 369,271.9 C373.3,272.3 377.5,272.7 381.8,273.1 C387.7,273.7 393.7,274.3 399.7,274.8 C408.2,275.6 416.7,276.4 425.2,277.1 C436.3,278 447.3,278.9 458.4,279.6 C471.2,280.5 484,281.2 496.7,281.9 C513.8,282.8 530.8,283.5 547.8,284.2 C564.8,284.8 581.9,285.3 598.9,285.7 C615.9,286.2 633,286.6 650,286.9" fill="none" stroke="var(--v-vel)" stroke-width="2.4"/>
+      <line x1="356" y1="132.6" x2="436" y2="120" stroke="var(--ink-faint)" stroke-width="1"/>
+      <text x="442" y="124" font-size="11.5" fill="var(--ink-faint)">half-power width Δω = ω₀/Q</text>
+      <g font-size="12.5" font-weight="700">
+        <text x="354" y="62" fill="var(--v-force)">Q = 10</text>
+        <text x="374" y="220" fill="var(--v-accel)">Q = 3</text>
+        <text x="212" y="256" fill="var(--v-vel)" text-anchor="end">Q = 1</text>
+      </g>
+      <g font-size="11" fill="var(--ink-faint)" text-anchor="end">
+        <text x="80" y="296">0</text><text x="80" y="251">2</text><text x="80" y="206">4</text>
+        <text x="80" y="161">6</text><text x="80" y="116">8</text><text x="80" y="70">10</text>
+      </g>
+      <g font-size="11" fill="var(--ink-soft)" text-anchor="middle">
+        <text x="88" y="310">0</text><text x="215.7" y="310">0.5</text><text x="343.5" y="310">1.0</text>
+        <text x="471.2" y="310">1.5</text><text x="599.1" y="310">2.0</text>
+        <text x="369" y="336">driving frequency ω / ω₀</text>
+      </g>
+      <text x="88" y="30" font-size="11" fill="var(--ink-faint)">amplitude ÷ static deflection F₀/k</text>
+    </svg>
+    <figcaption>The resonance curve for three quality factors, same driving force amplitude throughout. Three
+      things scale together: the peak height is Q times the static deflection F₀/k, the width is ω₀/Q, and the
+      free decay lasts about Q radians of oscillation. High Q therefore means tall, narrow and long-ringing;
+      low Q means small, broad and quickly silent. Note also that every curve tends to F₀/k at ω → 0 (the
+      spring simply follows the force) and to zero at high ω (the mass cannot keep up).</figcaption>
+  </figure>
+
+  <h3>The quality factor is one number wearing three hats</h3>
+  <p>Q can be defined by the <strong>sharpness</strong> of the resonance (<span class="fi">Q = f₀/Δf</span>), by
+     the <strong>height</strong> of the resonance (<span class="fi">A(ω₀) = Q × F₀/k</span>), or by the
+     <strong>persistence</strong> of the free decay (<span class="fi">|ΔE|/E = 2π/Q</span> per cycle, so the
+     amplitude falls to 1/e after about Q/π cycles). They are the same number because they all measure the same
+     thing: how many oscillations the system gets through before the damping has taken its energy.</p>
+
+  <div class="wex">
+    <h4>Worked example 7 — Q from a decay, and the bandwidth it implies</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">A tuning fork sounds at 440 Hz. After it is struck, its
+       amplitude falls to 1/e of its initial value in 2.0 s. Find Q, the number of oscillations in that time,
+       the fractional energy lost per cycle, and the width of its resonance.</p>
+    <ol>
+      <li>The amplitude decays as <span class="fi">e^(-t/τ)</span> with <span class="fi">τ = 2m/b = 2.0 s</span>.
+          Since <span class="fi">Q = ω₀m/b = ω₀τ/2</span>,
+          <span class="fi">Q = πf₀τ = π × 440 × 2.0 = 2.8 × 10³</span>.</li>
+      <li>Number of cycles in that time: <span class="fi">N = f₀τ = 440 × 2.0 = 880</span>. Consistent with the
+          rule of thumb <span class="fi">Q = πN</span>: π × 880 = 2765 ✓.</li>
+      <li>Fractional energy lost per cycle: <span class="fi">2π/Q = 6.283/2765 = 2.3 × 10⁻³</span>, about
+          0.23 % — which is precisely why a fork rings for seconds rather than milliseconds.</li>
+      <li>Resonance width: <span class="fi">Δf = f₀/Q = 440/2765 = 0.16 Hz</span>. A fork will barely respond to
+          a driver even one hertz off tune — the physical basis of using one as a frequency standard.</li>
+    </ol>
+    <span class="wex__ans">Q ≈ 2.8 × 10³ · 880 cycles · 0.23 % of E lost per cycle · Δf ≈ 0.16 Hz</span>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>System</th><th>Order-of-magnitude Q</th><th>Consequence</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Car suspension (working shock absorber)</td><td class="num">≈ 0.5–1</td><td>Deliberately near critical: one gentle rebound, no bouncing.</td></tr>
+        <tr><td>Diagnostic ultrasound transducer</td><td class="num">≈ 2–5</td><td><b>Deliberately spoiled</b> by a backing layer: low Q → short pulse → good axial resolution, at the cost of sensitivity.</td></tr>
+        <tr><td>Tuning fork, guitar string</td><td class="num">≈ 10³</td><td>Rings for seconds; a definite, narrow pitch.</td></tr>
+        <tr><td>Quartz crystal in a watch</td><td class="num">≈ 10⁴–10⁶</td><td>Frequency stable enough to keep time to seconds per month.</td></tr>
+        <tr><td>Proton NMR line in tissue (MRI)</td><td class="num">very high</td><td>Extremely narrow resonance → chemical-shift specificity and slice selection with a field gradient.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Two of those rows are worth dwelling on. In <strong>MRI</strong>, an RF field drives proton spins at the
+     Larmor frequency; because the resonance is so narrow, a deliberately imposed gradient in the magnetic
+     field means only one thin slice of tissue is in resonance at a time — that is how spatial information gets
+     into the image at all. In <strong>ultrasound imaging</strong>, exactly the opposite is wanted: a piezoelectric
+     crystal driven at its thickness resonance would ring for many cycles, smearing echoes in depth, so a
+     backing layer is bonded on to lower Q on purpose. Short pulse, broad bandwidth, sharp axial resolution.
+     Sensitivity and resolution trade against each other through Q, and that trade-off is entirely this
+     section's physics.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Where exactly is the peak?</p>
+    <p style="margin:0">The <b>amplitude</b> resonance sits at <span class="fi">ω_r = √(ω₀² - b²/2m²)</span>,
+      which is always <strong>below</strong> ω₀; damping never pushes the peak up. The shift is second order in
+      the damping, so for anything with Q above about 5 it is invisible and "resonance is at ω₀" is a perfectly
+      good working statement. Note also that <b>velocity</b> resonance — and therefore maximum power transfer
+      from the driver — occurs <em>exactly</em> at ω₀, where the driving force is in phase with the velocity
+      and the oscillator's displacement lags the driver by exactly a quarter cycle.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">What is examined here</p>
+    <p style="margin:0"><span class="fi">Q = f₀/Δf</span> and <span class="fi">2π/Q</span> as the fractional
+      energy lost per cycle are the two numerical handles. Conceptually: the steady-state frequency is the
+      driver's, never the oscillator's; the amplitude at resonance is finite only because of damping; and more
+      damping means a lower, broader peak shifted slightly down in frequency. As for the famous engineering
+      cautionary tales — soldiers breaking step on bridges is genuine forced resonance, and the Millennium
+      Bridge sway was pedestrians synchronising with a lateral mode; the Tacoma Narrows collapse is usually
+      quoted here but was aeroelastic flutter, a self-excited instability rather than simple forced resonance.
+      Worth knowing if you want to use the example.</p>
+  </div>
+</section>
+
+<!-- =========================== Self-test =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>Four options each, mixed difficulty. When you get one wrong, do not memorise the letter — go back to the
+     section it came from and re-derive the answer, because these questions are variations on the same handful
+     of ideas and the exam will vary them again.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-06-gravitation.html"><small>Previous</small><b>← Gravitation and Orbital Motion</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-08-waves-sound.html"><small>Next</small><b>Waves and Sound →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 07 · Oscillations and Simple Harmonic Motion</p>
+    <p>Motion is represented throughout as sinusoids in time plus the reference circle, with vectors set in
+       bold; g is taken as 9.8 m·s⁻² and the quoted quality factors and instrument values are standard textbook
+       approximations, given for magnitude rather than as precise citations.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A particle moves so that its acceleration is always directed towards one fixed point and is proportional to its distance from that point. Which statement follows from this condition <em>alone</em>?",
+    "options": [
+      "Its speed is constant.",
+      "Its period does not depend on how far it was displaced to begin with.",
+      "Its acceleration is constant, so the constant-acceleration (SUVAT) equations may be used.",
+      "Its kinetic energy is constant."
+    ],
+    "answer": 1,
+    "explain": "The condition <em>is</em> <span class='fi'>a = -ω²x</span>, and ω is fixed by the hardware (ω² = k<sub>eff</sub>/m), not by the size of the initial displacement — so <span class='fi'>T = 2π/ω</span> contains no A. Option C is the standard trap: the acceleration is <em>proportional to x</em>, so it changes continuously and reverses twice a cycle, which makes SUVAT illegal here. Speed and kinetic energy both vary too, peaking at the centre and vanishing at the turning points."
+  },
+  {
+    "stem": "A 0.40 kg block on a horizontal frictionless surface is attached to a spring of stiffness 90 N·m⁻¹ and oscillates with amplitude 5.0 cm. What is its maximum speed?",
+    "options": [
+      "0.12 m·s⁻¹",
+      "0.48 m·s⁻¹",
+      "0.75 m·s⁻¹",
+      "11.3 m·s⁻¹"
+    ],
+    "answer": 2,
+    "explain": "ω = √(k/m) = √(90/0.40) = √225 = 15.0 rad·s⁻¹, so v<sub>max</sub> = ωA = 15.0 × 0.050 = 0.75 m·s⁻¹. Option A (0.12) is what you get by using the frequency f = 15.0/2π = 2.39 Hz in place of ω — the single commonest slip in this chapter, and one the units cannot catch since Hz and rad·s⁻¹ are both s⁻¹. Option D is ω²A = 11.25, which is the maximum <em>acceleration</em> in m·s⁻², and option B is the average speed 4A/T."
+  },
+  {
+    "stem": "A mass hangs at rest on a vertical spring and is set oscillating. The whole apparatus is then taken to the Moon, where g = 1.6 m·s⁻². What happens to the period of the oscillation?",
+    "options": [
+      "It increases by a factor of about 2.5, because g is smaller.",
+      "It decreases by a factor of about 2.5.",
+      "It increases by a factor of about 6.1.",
+      "It is unchanged."
+    ],
+    "answer": 3,
+    "explain": "<span class='fi'>T = 2π√(m/k)</span> contains no g at all. Gravity only shifts the equilibrium position — the static extension becomes mg/k with the smaller g — and measured from that new equilibrium the net force is still exactly -kx, so the oscillation is identical. Option A is the trap of importing the pendulum result: a <em>pendulum</em> would indeed be √(9.8/1.6) = 2.5 times slower, because for a pendulum gravity <em>is</em> the restoring force. Remember it as: the spring is blind to gravity, the pendulum is blind to mass."
+  },
+  {
+    "stem": "How long must a simple pendulum be if its period is to be 1.00 s? (g = 9.8 m·s⁻²)",
+    "options": [
+      "0.25 m",
+      "0.78 m",
+      "0.99 m",
+      "1.56 m"
+    ],
+    "answer": 0,
+    "explain": "Rearranging <span class='fi'>T = 2π√(L/g)</span> gives L = gT²/(4π²) = 9.8/39.5 = 0.248 m ≈ 0.25 m. Option C is the celebrated 'seconds pendulum' at 0.993 m — but that has a period of <b>2.00 s</b> (one second per one-way swing, two per full cycle), and since L ∝ T², halving the period quarters the length. Option D comes from dividing by 2π instead of by (2π)², a slip worth checking for whenever your pendulum lengths come out several times too big."
+  },
+  {
+    "stem": "A body performing SHM is momentarily at its maximum displacement, x = +A. At that instant its velocity and acceleration are:",
+    "options": [
+      "v = ωA and a = 0",
+      "v = 0 and a = 0",
+      "v = 0 and a = -ω²A",
+      "v = ωA and a = -ω²A"
+    ],
+    "answer": 2,
+    "explain": "At a turning point the body is instantaneously at rest, but the restoring force — and therefore the acceleration — is at its <b>largest</b>, pointing back towards the centre: a = -ω²x = -ω²A. Option B is the trap of assuming zero velocity implies zero acceleration; the same mistake would have a ball at the top of its flight not accelerating. Option A describes the opposite point of the cycle, x = 0, where the speed peaks and the acceleration vanishes."
+  },
+  {
+    "stem": "A uniform rod of length L hangs from a frictionless pivot at one end and swings through a small angle. How does its period compare with that of a simple pendulum whose string length is also L?",
+    "options": [
+      "The same — both depend only on the length and on g.",
+      "About 0.82 times as long: the rod swings faster.",
+      "About 1.22 times as long: the rod swings more slowly.",
+      "About 0.67 times as long."
+    ],
+    "answer": 1,
+    "explain": "For a physical pendulum <span class='fi'>T = 2π√(I/mgd)</span>; for a rod about one end, I = ⅓mL² and d = L/2, giving T = 2π√(2L/3g). Dividing by the simple-pendulum result 2π√(L/g) leaves √(2/3) = 0.816, so the rod is <em>faster</em> — most of its mass sits nearer the pivot than the bob does. Option D is the classic slip of quoting the <em>equivalent length</em> ratio 2/3 = 0.67 instead of taking its square root; option A forgets that the mass distribution, though not the mass itself, matters."
+  },
+  {
+    "stem": "The amplitude of an undamped mass–spring oscillator is doubled. What happens to its total energy and to its period?",
+    "options": [
+      "Energy doubles; period doubles.",
+      "Energy quadruples; period doubles.",
+      "Energy unchanged; period unchanged.",
+      "Energy quadruples; period unchanged."
+    ],
+    "answer": 3,
+    "explain": "<span class='fi'>E = ½kA²</span>, so doubling A quadruples the energy — and the maximum speed ωA merely doubles, consistent with E ∝ v<sub>max</sub>². The period is 2π√(m/k) and contains no A whatsoever, so it does not move; that amplitude-independence (isochronism) is exactly what makes an oscillator usable as a clock. Options A and B both smuggle in a period change; there is nothing in the formula for it to come from."
+  },
+  {
+    "stem": "A pendulum is released from 30° instead of from 5°. Compared with the small-angle prediction 2π√(L/g), its actual period is:",
+    "options": [
+      "exactly the same, because the period of a pendulum is independent of amplitude",
+      "about 1.7 % longer",
+      "about 1.7 % shorter",
+      "about 4.7 % longer"
+    ],
+    "answer": 1,
+    "explain": "The exact series T = T₀[1 + ¼sin²(θ₀/2) + …] gives +1.74 % at 30° (against only +0.05 % at 5°). It must be <em>longer</em>, because θ &gt; sin θ means the small-angle model assumes a restoring torque that is too strong. Option D quotes 4.72 %, which is the error in the approximation sin θ ≈ θ itself — i.e. the error in the <b>force</b>, not the period; the period error is smaller because the force is only badly wrong near the ends of the swing and because the period depends on restoring strength through a square root. Option A is true only in the small-angle limit."
+  },
+  {
+    "stem": "The pointer of an analytical balance is designed to be critically damped. The reason is that critical damping:",
+    "options": [
+      "brings the pointer to its final reading in the shortest possible time without overshooting it",
+      "is the only regime in which the pointer does not oscillate",
+      "removes friction from the pivot so that no energy is lost",
+      "gives the largest pointer deflection for a given mass"
+    ],
+    "answer": 0,
+    "explain": "Critical damping (b = 2√(mk)) is the boundary case: the fastest return to equilibrium that never crosses it, so the operator can read the value at once and cannot be misled by an overshoot. Option B is the trap — <b>overdamped</b> systems do not oscillate either; they simply crawl in more slowly, which is why they are worse, not better. Option C inverts the physics entirely: damping <em>adds</em> dissipation, it does not remove it."
+  },
+  {
+    "stem": "A driven oscillator has a natural frequency of 250 Hz, and its resonance curve has a full width at half power of 5.0 Hz. Which statement is correct?",
+    "options": [
+      "Q = 0.020, and the amplitude peaks exactly at 250 Hz.",
+      "Q = 1250, and about 0.5 % of the stored energy is lost per cycle.",
+      "Q = 50, and the amplitude peaks slightly above 250 Hz because damping raises the natural frequency.",
+      "Q = 50, about 13 % of the stored energy is lost per cycle, and the amplitude peaks slightly below 250 Hz."
+    ],
+    "answer": 3,
+    "explain": "Q = f₀/Δf = 250/5.0 = 50, and the fractional energy lost per cycle is 2π/Q = 6.28/50 = 0.126, about 13 %. Damping always shifts the amplitude peak <b>down</b>, to ω<sub>r</sub> = √(ω₀² - b²/2m²), never up — so option C has the sign backwards. Option A inverts the definition of Q. Note the useful nuance behind the shift: it is the <em>velocity</em> (and hence the power absorbed) that peaks exactly at ω₀, while the displacement amplitude peaks just below it."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

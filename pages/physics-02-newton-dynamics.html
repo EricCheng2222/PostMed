@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 02 · Newton’s Laws, Forces and Friction — PostMed Notebook</title>
+<meta name="description" content="Physics note 02: Newton's three laws and inertial frames, free-body diagrams, normal force and tension, static and kinetic friction, inclines, Atwood machines, drag, circular motion and pseudo-forces — with 10 self-test questions.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 02</p>
+  <h1>Newton’s Laws, Forces and Friction</h1>
+  <p class="lede">
+    Note 01 described motion. This note explains it. The organising idea is small and ruthless:
+    <strong>acceleration is caused by the vector sum of the forces that other bodies exert on
+    <em>this</em> body, and by nothing else</strong>. Every result below — the incline, the Atwood
+    machine, terminal velocity, the banked curve — is what you get when you isolate one body, add
+    up the arrows, and set the sum equal to <span class="fi">m<b>a</b></span>. The formulas are
+    consequences of that one habit, not facts to memorise.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Representation: free-body diagrams &amp; vector resolution</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~40 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Inertia and the inertial frame</a></li>
+      <li><a href="#s2">The second law as a vector equation</a></li>
+      <li><a href="#s3">The third law: interaction pairs</a></li>
+      <li><a href="#s4">Free-body diagrams, step by step</a></li>
+      <li><a href="#s5">Weight, normal force and tension</a></li>
+      <li><a href="#s6">Friction: static, kinetic, angle of repose</a></li>
+      <li><a href="#s7">The inclined plane</a></li>
+      <li><a href="#s8">Connected bodies and the Atwood machine</a></li>
+      <li><a href="#s9">Drag and terminal velocity</a></li>
+      <li><a href="#s10">Dynamics of uniform circular motion</a></li>
+      <li><a href="#s11">Non-inertial frames and pseudo-forces</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <!-- Page-top formula sheet -->
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Second law</b><code>Σ<b>F</b> = m<b>a</b></code></div>
+      <div class="fsheet__item"><b>Components (2-D)</b><code>ΣF<sub>x</sub> = ma<sub>x</sub> · ΣF<sub>y</sub> = ma<sub>y</sub></code></div>
+      <div class="fsheet__item"><b>Momentum form</b><code>Σ<b>F</b> = d<b>p</b>/dt</code></div>
+      <div class="fsheet__item"><b>Third law</b><code><b>F</b><sub>A→B</sub> = −<b>F</b><sub>B→A</sub></code></div>
+      <div class="fsheet__item"><b>Weight</b><code>W = mg</code></div>
+      <div class="fsheet__item"><b>Normal, flat surface</b><code>N = m(g + a<sub>y</sub>)</code></div>
+      <div class="fsheet__item"><b>Normal, incline</b><code>N = mg cos θ</code></div>
+      <div class="fsheet__item"><b>Static friction</b><code>f<sub>s</sub> ≤ μ<sub>s</sub>N</code></div>
+      <div class="fsheet__item"><b>Kinetic friction</b><code>f<sub>k</sub> = μ<sub>k</sub>N</code></div>
+      <div class="fsheet__item"><b>Angle of repose</b><code>tan θ<sub>r</sub> = μ<sub>s</sub></code></div>
+      <div class="fsheet__item"><b>Slide down an incline</b><code>a = g(sin θ − μ<sub>k</sub> cos θ)</code></div>
+      <div class="fsheet__item"><b>Atwood acceleration</b><code>a = (m₂ − m₁)g / (m₁ + m₂)</code></div>
+      <div class="fsheet__item"><b>Atwood tension</b><code>T = 2m₁m₂g / (m₁ + m₂)</code></div>
+      <div class="fsheet__item"><b>Stokes drag</b><code>F<sub>d</sub> = 6πηrv</code></div>
+      <div class="fsheet__item"><b>Quadratic drag</b><code>F<sub>d</sub> = ½ρC<sub>d</sub>Av²</code></div>
+      <div class="fsheet__item"><b>Terminal speed, linear</b><code>v<sub>t</sub> = mg / b</code></div>
+      <div class="fsheet__item"><b>Terminal speed, quadratic</b><code>v<sub>t</sub> = √(2mg / ρC<sub>d</sub>A)</code></div>
+      <div class="fsheet__item"><b>Sedimentation</b><code>v<sub>t</sub> = 2r²(ρ<sub>s</sub> − ρ<sub>f</sub>)g / 9η</code></div>
+      <div class="fsheet__item"><b>Reynolds number</b><code>Re = ρvL / η</code></div>
+      <div class="fsheet__item"><b>Centripetal acceleration</b><code>a<sub>c</sub> = v²/r = ω²r</code></div>
+      <div class="fsheet__item"><b>Flat curve</b><code>v<sub>max</sub> = √(μ<sub>s</sub>gr)</code></div>
+      <div class="fsheet__item"><b>Banked, frictionless</b><code>tan θ = v² / (rg)</code></div>
+      <div class="fsheet__item"><b>Banked, with friction</b><code>v<sub>max</sub>² = rg(tan θ + μ<sub>s</sub>)/(1 − μ<sub>s</sub> tan θ)</code></div>
+      <div class="fsheet__item"><b>Conical pendulum</b><code>T<sub>period</sub> = 2π√(L cos θ / g)</code></div>
+      <div class="fsheet__item"><b>Vertical loop, top</b><code>v<sub>min</sub> = √(gr)</code></div>
+      <div class="fsheet__item"><b>Pseudo-force</b><code><b>F</b><sub>pseudo</sub> = −m<b>A</b><sub>frame</sub></code></div>
+      <div class="fsheet__item"><b>Centrifugal (rotating frame)</b><code>F<sub>cf</sub> = mω²r, outward</code></div>
+      <div class="fsheet__item"><b>Relative centrifugal field</b><code>RCF = ω²r / g</code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Inertia and the inertial frame</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Force</dt>
+      <dd>An interaction between two bodies. It is a vector, it always has an identifiable
+        <em>other</em> body as its source, and its effect is to change momentum.</dd>
+      <dt>Inertia (mass)</dt>
+      <dd>The property of a body that quantifies how strongly it resists a change in its velocity.
+        Operationally: apply the same force to two bodies and the accelerations are inversely
+        proportional to their masses.</dd>
+      <dt>Inertial reference frame</dt>
+      <dd>A frame in which a body subject to no interactions moves in a straight line at constant
+        speed. Newton’s first law asserts that such frames exist.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Σ<b>F</b> = 0 ⟺ <b>v</b> = constant</span>
+      <span class="fx__tag">first law; true only in an inertial frame</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">m₁ / m₂ = a₂ / a₁</span><span class="fx__tag">same force applied to each — the operational definition of mass</span></div>
+      <div class="fx"><span class="fx__eq">1 N = 1 kg·m·s⁻²</span><span class="fx__tag">the newton is a derived unit, not a fundamental one</span></div>
+    </div>
+    <div class="symtab">
+      <div><b><b>F</b></b><span>force, a vector (N = kg·m·s⁻²)</span></div>
+      <div><b>m</b><span>inertial mass (kg)</span></div>
+      <div><b><b>v</b></b><span>velocity (m·s⁻¹)</span></div>
+      <div><b><b>a</b></b><span>acceleration (m·s⁻²)</span></div>
+      <div><b><b>p</b></b><span>momentum, m<b>v</b> (kg·m·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    <strong>Newton’s first law.</strong> There exist reference frames — call them inertial — in which
+    a body with no net force on it keeps a constant velocity. Constant velocity means constant speed
+    <em>and</em> constant direction; standing still is only the special case <span class="fi">v = 0</span>.
+  </p>
+  <p>
+    The conceptual break with Aristotle is worth stating explicitly, because it is exactly what an
+    exam question probes: <strong>motion needs no cause; only a <em>change</em> of motion does.</strong>
+    A puck gliding across ice slows down not because motion "runs out" but because friction is a force.
+    Remove the force and the motion persists indefinitely.
+  </p>
+
+  <h3>Why the first law is not a special case of the second</h3>
+  <p>
+    Read as an equation, "<span class="fi">Σ<b>F</b> = 0 ⇒ <b>a</b> = 0</span>" really is a trivial
+    corollary of <span class="fi">Σ<b>F</b> = m<b>a</b></span>. But that reading throws away the law’s
+    actual content, which is <strong>existential</strong>: it claims that a particular class of
+    reference frames exists, and it is only in those frames that the second law is true.
+  </p>
+  <p>
+    Why does that matter? Because <span class="fi">Σ<b>F</b> = m<b>a</b></span> on its own is
+    unfalsifiable. Observe any acceleration you like and you can always "explain" it by declaring
+    that some force must have been present. The first law closes that loophole. It says: there is a
+    frame in which the <em>only</em> accelerations you ever have to account for are traceable to
+    identifiable interactions with identifiable other bodies. Pick a frame that fails this test — a
+    braking bus, a spinning carousel — and objects accelerate with no source body in sight, and
+    <span class="fi">Σ<b>F</b> = m<b>a</b></span> simply gives wrong answers unless you patch it
+    (§ 11).
+  </p>
+  <p>
+    So the logical order is: <strong>first law defines the arena → second law is the law of motion
+    inside it → third law constrains what forces are allowed to look like.</strong>
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "no net force" ≠ "no motion"</p>
+    <p style="margin:0">A body moving in a circle at constant <em>speed</em> has changing velocity,
+      so it is <strong>not</strong> in equilibrium and the net force on it is not zero — see § 10.
+      Equally, a lift moving upward at a steady 2 m·s⁻¹ has zero net force on its passenger; the
+      scale reads their full weight. Velocity and acceleration are independent.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · is the Earth’s surface inertial?</p>
+    <p style="margin:0">Almost. A laboratory on the rotating Earth accelerates toward the rotation
+      axis at <span class="fi">ω²R = (7.29×10⁻⁵)² × 6.37×10⁶ ≈ 0.034 m·s⁻²</span> at the equator —
+      about <strong>0.35 % of g</strong>. For every problem in this note that is negligible, so we
+      treat the ground as inertial. It stops being negligible for long-range ballistics, ocean
+      currents and weather systems, where the Coriolis effect shows up.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The second law as a vector equation</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Newton’s second law</dt>
+      <dd>The net force on a body is the rate of change of its momentum. For a body of constant
+        mass this is mass times acceleration, and the acceleration is parallel to the net force.</dd>
+      <dt>Net force</dt>
+      <dd>The vector sum of every force exerted <em>on one chosen body</em> by other bodies. Forces
+        on different bodies never appear in the same sum.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Σ<b>F</b> = m<b>a</b></span>
+      <span class="fx__tag">inertial frame, constant mass</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Σ<b>F</b> = d<b>p</b>/dt</span><span class="fx__tag">general form; the one to keep when the mass changes — but <b>p</b> must be that of a <em>fixed</em> set of particles (a rocket <em>plus</em> its exhaust)</span></div>
+      <div class="fx"><span class="fx__eq">ΣF<sub>x</sub> = ma<sub>x</sub> ; ΣF<sub>y</sub> = ma<sub>y</sub></span><span class="fx__tag">one independent scalar equation per axis</span></div>
+      <div class="fx"><span class="fx__eq">ΣF<sub>x</sub> = 0 ; ΣF<sub>y</sub> = 0</span><span class="fx__tag">equilibrium: at rest <em>or</em> at constant velocity</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>Σ<b>F</b></b><span>net (resultant) force on the body (N)</span></div>
+      <div><b>m</b><span>mass of that body (kg)</span></div>
+      <div><b><b>a</b></b><span>acceleration of that body (m·s⁻²)</span></div>
+      <div><b><b>p</b></b><span>momentum m<b>v</b> (kg·m·s⁻¹)</span></div>
+      <div><b>t</b><span>time (s)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Everything hard about the second law is contained in three words: <strong>net</strong>,
+    <strong>on one body</strong>, and <strong>vector</strong>.
+  </p>
+  <ul>
+    <li><strong>Net.</strong> You add the arrows, not the magnitudes. Two 10 N forces at right angles
+      give 14.1 N, not 20 N.</li>
+    <li><strong>On one body.</strong> Choose the body first, then list only the forces other things
+      exert on it. Mixing in the forces it exerts on other things is the single most common way
+      dynamics problems go wrong (§ 3).</li>
+    <li><strong>Vector.</strong> In two dimensions this is <em>two</em> scalar equations, which is
+      why two unknowns are solvable. Choosing the axes intelligently — one axis along the known
+      direction of <b>a</b> — is most of the work (§ 7).</li>
+  </ul>
+  <p>
+    Note also that <b>a</b> is parallel to Σ<b>F</b>, and to nothing else. It is <em>not</em> parallel
+    to <b>v</b>. A ball thrown upward has <b>a</b> pointing down throughout, including at the instant
+    it is momentarily at rest at the top. "Deceleration" is not a separate concept — it is simply
+    <b>a</b> antiparallel to <b>v</b>.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · <span class="fi">Σ<b>F</b> = m<b>a</b></span> is not a definition of force</p>
+    <p style="margin:0">If it were, it would be empty. Its physical content comes from the fact that
+      the forces on the left-hand side are given <em>independently</em> by force laws —
+      <span class="fi">mg</span> for gravity, <span class="fi">μ<sub>k</sub>N</span> for kinetic
+      friction, <span class="fi">−kx</span> for a spring — and those same laws predict the motion of
+      every other body too. The equation is a testable claim connecting two independently measurable
+      things, not a naming convention.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · units and magnitude sense</p>
+    <p style="margin:0"><strong>1 N = 1 kg·m·s⁻²</strong>. Useful anchors: a 1 kg object weighs 9.8 N;
+      an adult of 70 kg weighs about 690 N; a 1 N force accelerates a 1 kg mass at 1 m·s⁻². Any answer
+      that gives a person a weight of 70 N or an acceleration of 500 m·s⁻² is a sign-or-substitution
+      error, not physics.</p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>The third law: interaction pairs</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Newton’s third law</dt>
+      <dd>Forces exist only as pairs belonging to a single interaction between two bodies: if A
+        pushes or pulls B, then B pushes or pulls A with equal magnitude in the opposite direction.</dd>
+      <dt>Third-law pair</dt>
+      <dd>The two halves of <em>one</em> interaction. They act on <em>different</em> bodies, are of
+        the <em>same type</em>, and are exactly equal in magnitude at every instant, no matter what
+        either body is doing.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq"><b>F</b><sub>A→B</sub> = − <b>F</b><sub>B→A</sub></span>
+      <span class="fx__tag">always exactly true; no conditions, no exceptions in mechanics</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq"><b>F</b><sub>A→B</sub> + <b>F</b><sub>B→A</sub> = 0</span><span class="fx__tag">but they never cancel, because they act on different bodies</span></div>
+    </div>
+    <div class="symtab">
+      <div><b><b>F</b><sub>A→B</sub></b><span>force exerted by body A on body B (N)</span></div>
+      <div><b><b>F</b><sub>B→A</sub></b><span>force exerted by body B on body A (N)</span></div>
+    </div>
+  </div>
+
+  <p>
+    A third-law pair shares four things and differs in one. Same <strong>magnitude</strong>, same
+    <strong>line of action</strong>, same <strong>interaction type</strong> (gravity pairs with
+    gravity, contact with contact), same <strong>instant</strong> — and <strong>different
+    bodies</strong>. That last item is the whole story: because the two forces act on different
+    bodies, they can never cancel in a single free-body diagram, and the world is not frozen.
+  </p>
+
+  <h3>The normal force is not the reaction to weight</h3>
+  <p>
+    This is the classic trap, and it is worth doing slowly. A book of mass <span class="fi">m</span>
+    rests on a table. Two forces act on the book: gravity <span class="fi">W = mg</span> downward and
+    the normal force <span class="fi">N</span> upward. They are equal and opposite. They are
+    <strong>not</strong> a third-law pair.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Force</th><th>Acts on</th><th>Exerted by</th><th>Type</th><th>Its true third-law partner</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Weight <b>W</b> = mg, down</td><td>the book</td><td>the Earth</td><td>gravity</td><td>the book’s gravitational pull <b>on the Earth</b>, magnitude mg, upward</td></tr>
+        <tr><td>Normal <b>N</b>, up</td><td>the book</td><td>the table</td><td>contact (electromagnetic)</td><td>the book’s push <b>on the table</b>, magnitude N, downward</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Two independent tests separate the cases, and either one is enough:</p>
+  <ol>
+    <li><strong>Whose diagram?</strong> A third-law pair never appears on the same free-body diagram.
+      <span class="fi">N</span> and <span class="fi">W</span> both act on the book, so they cannot be
+      a pair. They balance because of the <em>second</em> law: the book is not accelerating.</li>
+    <li><strong>Does the equality survive?</strong> A third-law pair is equal in magnitude under all
+      circumstances. <span class="fi">N = mg</span> survives almost nothing: press down on the book
+      and <span class="fi">N &gt; mg</span>; put the table in a descending lift and
+      <span class="fi">N &lt; mg</span>; tilt the table and <span class="fi">N = mg cos θ</span>; let
+      both fall and <span class="fi">N = 0</span> while <span class="fi">W</span> is unchanged.</li>
+  </ol>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Two forces are…</th><th>Third-law pair</th><th>Balanced forces on one body</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bodies they act on</td><td><b>Two different</b> bodies</td><td><b>The same</b> body</td></tr>
+        <tr><td>Interaction type</td><td>Necessarily identical</td><td>Usually different (e.g. gravity vs contact)</td></tr>
+        <tr><td>Equal magnitudes?</td><td>Always, unconditionally</td><td>Only when a = 0 along that axis</td></tr>
+        <tr><td>Reason they are equal</td><td>Third law</td><td>Second law with a = 0</td></tr>
+        <tr><td>Can they cancel?</td><td>Never — different bodies</td><td>Yes, that is what "balanced" means</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Two paradoxes that dissolve immediately</h3>
+  <p>
+    <strong>"If the cart pulls back on the horse as hard as the horse pulls the cart, nothing can
+    ever move."</strong> Those two forces act on different bodies, so they belong to different
+    equations. To find whether the <em>cart</em> accelerates, draw the cart only: the harness pulls
+    it forward, friction and drag oppose. To find whether the <em>horse</em> accelerates, draw the
+    horse only: the ground pushes it forward by friction, the harness pulls it back. The system
+    accelerates because the ground’s friction on the horse’s hooves exceeds the resistance on the cart.
+  </p>
+  <p>
+    <strong>"What force pushes me forward when I walk?"</strong> You push backward on the ground with
+    your foot; the ground pushes forward on you. The forward force on a walking human is
+    <em>friction from the floor</em>. This is why a frictionless floor is unwalkable, and why the
+    force that accelerates a car forward is a <em>forward-pointing</em> static friction force at the
+    tyre contact patch.
+  </p>
+
+  <div class="mnemo">
+    <h4>One-line test</h4>
+    <p>Write every force as "<em>X on Y</em>". The third-law partner is obtained by swapping the two
+      names: "<em>Y on X</em>". If you cannot name X, it is not a force.</p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Free-body diagrams, step by step</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Free-body diagram (FBD)</dt>
+      <dd>A drawing of one chosen body, removed from its surroundings, showing every force exerted
+        <em>on</em> it by something else — and nothing else at all.</dd>
+      <dt>System</dt>
+      <dd>Whatever you draw the boundary around. It may be one block, or several bodies treated as a
+        single object, in which case all forces internal to the boundary drop out in pairs.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">one body → one diagram → two equations</span>
+      <span class="fx__tag">in 2-D; solvable when unknowns ≤ equations</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ΣF<sub>x</sub> = ma<sub>x</sub></span><span class="fx__tag">choose x along the known direction of <b>a</b></span></div>
+      <div class="fx"><span class="fx__eq">ΣF<sub>y</sub> = ma<sub>y</sub> = 0</span><span class="fx__tag">perpendicular to <b>a</b>; this is what determines N</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>N</b><span>normal (contact) force (N)</span></div>
+      <div><b>f</b><span>friction force (N)</span></div>
+      <div><b>T</b><span>string tension (N)</span></div>
+      <div><b>W</b><span>weight, mg (N)</span></div>
+      <div><b>θ</b><span>angle to a chosen axis (degrees or rad)</span></div>
+    </div>
+  </div>
+
+  <p>The recipe below is mechanical on purpose. Follow it and the algebra becomes bookkeeping.</p>
+  <ol>
+    <li><strong>Choose the body.</strong> Say out loud which object you are drawing. If a problem has
+      two blocks, you will usually need two diagrams.</li>
+    <li><strong>Redraw it alone</strong>, as a box or a dot, with the surroundings erased.</li>
+    <li><strong>Contact first.</strong> Walk around the boundary and ask <em>what touches it?</em>
+      Every contact contributes a normal force perpendicular to the surface and, if the surfaces are
+      rough, a friction force parallel to it. Every attached string contributes a tension
+      <em>along</em> the string, <em>away</em> from the body.</li>
+    <li><strong>Then action-at-a-distance.</strong> In this note that means gravity: one
+      <span class="fi">mg</span> arrow, straight down, from the centre of mass.</li>
+    <li><strong>Choose axes.</strong> Put one axis along the direction you know <b>a</b> lies in.
+      On an incline that means tilting the axes; in circular motion it means radial and tangential.</li>
+    <li><strong>Write and count.</strong> <span class="fi">ΣF<sub>x</sub> = ma<sub>x</sub></span>,
+      <span class="fi">ΣF<sub>y</sub> = ma<sub>y</sub></span>. Count unknowns. If there are more
+      unknowns than equations, you are missing a constraint (an inextensible string, a surface the
+      body stays on, a wheel that does not slip).</li>
+  </ol>
+
+  <figure class="figure">
+    <svg viewBox="0 0 680 270" role="img" aria-label="Left panel: a twelve kilogram crate on a rough floor being pushed by a force directed twenty degrees below the horizontal. Right panel: the corresponding free-body diagram showing the normal force upward, the weight downward, the applied force at twenty degrees below the horizontal resolved into horizontal and vertical components, and friction pointing backwards.">
+      <defs>
+        <marker id="f1-af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-force)"/>
+        </marker>
+        <marker id="f1-ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-faint)"/>
+        </marker>
+      </defs>
+      <text x="24" y="24" font-size="12.5" font-weight="600" fill="var(--ink-soft)">① the physical picture</text>
+      <text x="360" y="24" font-size="12.5" font-weight="600" fill="var(--ink-soft)">② the free-body diagram</text>
+      <line x1="345" y1="12" x2="345" y2="258" stroke="var(--line)" stroke-width="1"/>
+
+      <!-- panel A -->
+      <line x1="24" y1="210" x2="330" y2="210" stroke="var(--ink-soft)" stroke-width="2"/>
+      <g stroke="var(--ink-faint)" stroke-width="1" opacity=".7">
+        <line x1="34" y1="210" x2="24" y2="222"/><line x1="54" y1="210" x2="44" y2="222"/>
+        <line x1="74" y1="210" x2="64" y2="222"/><line x1="94" y1="210" x2="84" y2="222"/>
+        <line x1="114" y1="210" x2="104" y2="222"/><line x1="134" y1="210" x2="124" y2="222"/>
+        <line x1="154" y1="210" x2="144" y2="222"/><line x1="174" y1="210" x2="164" y2="222"/>
+        <line x1="194" y1="210" x2="184" y2="222"/><line x1="214" y1="210" x2="204" y2="222"/>
+        <line x1="234" y1="210" x2="224" y2="222"/><line x1="254" y1="210" x2="244" y2="222"/>
+        <line x1="274" y1="210" x2="264" y2="222"/><line x1="294" y1="210" x2="284" y2="222"/>
+        <line x1="314" y1="210" x2="304" y2="222"/><line x1="330" y1="210" x2="320" y2="222"/>
+      </g>
+      <rect x="150" y="150" width="90" height="60" rx="3" fill="var(--ink-faint)" opacity=".22" stroke="var(--ink)" stroke-width="1.6"/>
+      <text x="195" y="185" font-size="12" text-anchor="middle" fill="var(--ink)">12 kg</text>
+      <line x1="78" y1="150" x2="146" y2="175" stroke="var(--v-force)" stroke-width="2.6" marker-end="url(#f1-af)"/>
+      <text x="24" y="138" font-size="11.5" fill="var(--v-force)">F = 60 N, 20° below horizontal</text>
+      <text x="330" y="236" font-size="11" text-anchor="end" fill="var(--ink-faint)">rough floor</text>
+
+      <!-- panel B -->
+      <line x1="470" y1="150" x2="555" y2="150" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <line x1="555" y1="150" x2="555" y2="181" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <line x1="470" y1="150" x2="470" y2="40" stroke="var(--v-force)" stroke-width="2.6" marker-end="url(#f1-af)"/>
+      <line x1="470" y1="150" x2="470" y2="246" stroke="var(--v-force)" stroke-width="2.6" marker-end="url(#f1-af)"/>
+      <line x1="470" y1="150" x2="555" y2="181" stroke="var(--v-force)" stroke-width="2.6" marker-end="url(#f1-af)"/>
+      <line x1="470" y1="150" x2="382" y2="150" stroke="var(--v-force)" stroke-width="2.6" marker-end="url(#f1-af)"/>
+      <circle cx="470" cy="150" r="7" fill="var(--ink)"/>
+      <path d="M510,150 A40,40 0 0 1 507.6,163.7" fill="none" stroke="var(--ink-faint)" stroke-width="1.2"/>
+      <text x="516" y="169" font-size="10.5" fill="var(--ink-faint)">20°</text>
+      <text x="478" y="46" font-size="12" fill="var(--v-force)">N</text>
+      <text x="478" y="242" font-size="12" fill="var(--v-force)">W = mg = 118 N</text>
+      <text x="562" y="192" font-size="12" fill="var(--v-force)">F = 60 N</text>
+      <text x="376" y="144" font-size="12" text-anchor="end" fill="var(--v-force)">f</text>
+      <text x="512" y="142" font-size="11" text-anchor="middle" fill="var(--ink-faint)">F cos θ</text>
+      <text x="562" y="168" font-size="11" fill="var(--ink-faint)">F sin θ</text>
+      <line x1="380" y1="250" x2="415" y2="250" stroke="var(--ink-faint)" stroke-width="1.4" marker-end="url(#f1-ai)"/>
+      <line x1="380" y1="250" x2="380" y2="215" stroke="var(--ink-faint)" stroke-width="1.4" marker-end="url(#f1-ai)"/>
+      <text x="420" y="254" font-size="11" fill="var(--ink-faint)">x</text>
+      <text x="374" y="212" font-size="11" text-anchor="end" fill="var(--ink-faint)">y</text>
+    </svg>
+    <figcaption>
+      The whole technique in one picture. Only four arrows survive the transfer from ① to ②, and every
+      one of them names a source body: the Earth (W), the floor (N and f), the hand (F). The dashed
+      lines are not forces — they are the resolution of F into components. Note that the downward
+      component <span class="fi">F sin θ</span> is <em>added</em> to the weight when the normal force
+      is calculated, so <span class="fi">N = mg + F sin θ &gt; mg</span> here.
+    </figcaption>
+  </figure>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · arrows that must never appear on an FBD</p>
+    <ul style="margin:.2rem 0 0;padding-left:1.15rem">
+      <li><strong><span class="fi">m<b>a</b></span></strong> — that is the right-hand side of the
+        equation, not a force. Drawing it is double counting.</li>
+      <li><strong><span class="fi">mv²/r</span> or "centripetal force"</strong> — a role played by
+        real forces, never an extra one (§ 10).</li>
+      <li><strong>"The force of motion"</strong> or "the force that keeps it going" — there is no such
+        thing. That is the first law.</li>
+      <li><strong>Centrifugal force</strong> — only legitimate in a rotating frame, and then it is a
+        pseudo-force (§ 11). Never mix it with a ground-frame diagram.</li>
+      <li><strong>Forces the body exerts on other things</strong> — those belong on the other body’s
+        diagram.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the axis choice is the marks</p>
+    <p style="margin:0">Graders and multiple-choice distractors both key on the same decision: which
+      way did you point x? Point it along <b>a</b>. On an incline the acceleration is along the
+      surface, so tilt the axes and resolve <span class="fi">mg</span>; in circular motion the
+      acceleration is radial, so use radial/tangential axes. Resolving the <em>weight</em> instead of
+      the <em>normal force</em> is what keeps the algebra to one line.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Weight, normal force and tension</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Weight</dt>
+      <dd>The gravitational force the Earth exerts on a body: a vector of magnitude
+        <span class="fi">mg</span> directed toward the Earth’s centre. It is a force, measured in
+        newtons.</dd>
+      <dt>Normal force</dt>
+      <dd>The component of a contact force perpendicular to the contacting surface. It is a
+        <em>constraint</em> force: it takes on whatever value is required to stop the two bodies
+        interpenetrating, and it can only push (<span class="fi">N ≥ 0</span>).</dd>
+      <dt>Tension</dt>
+      <dd>The pull a stretched string, rope or cable transmits along its own length, always directed
+        away from the body and along the string.</dd>
+      <dt>Apparent weight</dt>
+      <dd>The magnitude of the normal (or supporting) force acting on a body — what a scale reads,
+        and what your body’s pressure receptors report.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">N = m(g + a<sub>y</sub>)</span>
+      <span class="fx__tag">horizontal surface, up positive, no other vertical forces</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">W = mg</span><span class="fx__tag">g = 9.8 m·s⁻² near the Earth’s surface</span></div>
+      <div class="fx"><span class="fx__eq">N = mg cos θ</span><span class="fx__tag">body on an incline of angle θ, no extra perpendicular force</span></div>
+      <div class="fx"><span class="fx__eq">N = mg + F sin θ</span><span class="fx__tag">push directed θ below the horizontal</span></div>
+      <div class="fx"><span class="fx__eq">T is the same at every point of a massless string</span><span class="fx__tag">ideal string over an ideal (massless, frictionless) pulley</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>W</b><span>weight (N)</span></div>
+      <div><b>m</b><span>mass (kg)</span></div>
+      <div><b>g</b><span>gravitational field strength, 9.8 N·kg⁻¹ = 9.8 m·s⁻²</span></div>
+      <div><b>N</b><span>normal force (N)</span></div>
+      <div><b>T</b><span>tension (N)</span></div>
+      <div><b>a<sub>y</sub></b><span>vertical acceleration, positive up (m·s⁻²)</span></div>
+      <div><b>θ</b><span>angle of the surface or of the applied force (°)</span></div>
+    </div>
+  </div>
+
+  <h3>Mass versus weight</h3>
+  <p>
+    These are different kinds of quantity, and the confusion is baked into everyday language ("I weigh
+    62 kilos"). In physics, <strong>mass is the resistance to acceleration and the source of gravity;
+    weight is the force gravity actually exerts here.</strong>
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th></th><th>Mass</th><th>Weight</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Kind of quantity</td><td>Scalar</td><td>Vector (a force)</td></tr>
+        <tr><td>SI unit</td><td class="num">kg</td><td class="num">N</td></tr>
+        <tr><td>What it measures</td><td>Inertia; also gravitational "charge"</td><td>The pull of the local gravitational field</td></tr>
+        <tr><td>Depends on location?</td><td>No — same on Earth, Moon, in orbit</td><td>Yes — proportional to local g</td></tr>
+        <tr><td>Value for a 70 kg adult</td><td class="num">70 kg everywhere</td><td class="num">686 N (Earth) · 113 N (Moon) · 260 N (Mars)</td></tr>
+        <tr><td>In free fall</td><td>Unchanged</td><td>Unchanged — it is the <em>apparent</em> weight that is zero</td></tr>
+        <tr><td>Measured with</td><td>Balance (compares masses)</td><td>Spring scale / load cell (reads N)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Note the phrasing in the last row of the table: an astronaut in orbit is <em>not</em> weightless in
+    the sense of gravity being absent — at the altitude of the ISS, <span class="fi">g</span> is still
+    about 89 % of its surface value. They are in free fall, so nothing supports them, so
+    <span class="fi">N = 0</span> and their <strong>apparent</strong> weight is zero.
+  </p>
+
+  <h3>Why the normal force is a constraint force</h3>
+  <p>
+    There is no force law for <span class="fi">N</span>. You cannot look it up the way you look up
+    <span class="fi">mg</span> or <span class="fi">μ<sub>k</sub>N</span>. Instead,
+    <span class="fi">N</span> is <strong>whatever it has to be</strong> so that the body does not sink
+    into the surface — that is, so that the acceleration perpendicular to the surface is zero. You
+    therefore <em>solve</em> for it from <span class="fi">ΣF<sub>⊥</sub> = ma<sub>⊥</sub></span>,
+    every single time.
+  </p>
+  <p>
+    That has one important consequence. Surfaces push but cannot pull, so
+    <span class="fi">N ≥ 0</span>. The moment your algebra says the required
+    <span class="fi">N</span> is negative, the physical constraint has failed and
+    <strong>contact is lost</strong> — the body leaves the surface. That single condition,
+    <span class="fi">N = 0</span>, is the entire content of the "minimum speed at the top of a loop"
+    problem in § 10 and of a car going airborne over a hump.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 1 · The lift and the bathroom scale</h4>
+    <p style="margin:.2rem 0 .4rem">A 70 kg person stands on a scale in a lift. The scale reads the
+      normal force it exerts. Find the reading when the lift (a) is at rest or moving at constant
+      velocity, (b) accelerates upward at 2.0 m·s⁻², (c) accelerates downward at 2.0 m·s⁻², (d) has
+      its cable cut. Take <span class="fi">g = 9.8 m·s⁻²</span>.</p>
+    <ol>
+      <li><strong>One body: the person.</strong> Two forces on them —
+        <span class="fi">N</span> up (from the scale) and <span class="fi">mg</span> down (from the
+        Earth). Take up as positive.</li>
+      <li><strong>Second law, vertical:</strong>
+        <span class="fi">N − mg = ma<sub>y</sub></span>, so
+        <span class="fi">N = m(g + a<sub>y</sub>)</span>. The person’s acceleration is the lift’s
+        acceleration, because they move together.</li>
+      <li><strong>(a) <span class="fi">a<sub>y</sub> = 0</span>:</strong>
+        <span class="fi">N = 70 × 9.8 = 686 N</span>. Constant velocity gives the same answer as
+        rest — speed is irrelevant.</li>
+      <li><strong>(b) <span class="fi">a<sub>y</sub> = +2.0</span>:</strong>
+        <span class="fi">N = 70 × (9.8 + 2.0) = 70 × 11.8 = 826 N</span>, a 20 % increase. This is
+        the pressed-into-the-floor sensation as a lift starts upward.</li>
+      <li><strong>(c) <span class="fi">a<sub>y</sub> = −2.0</span>:</strong>
+        <span class="fi">N = 70 × (9.8 − 2.0) = 70 × 7.8 = 546 N</span>.</li>
+      <li><strong>(d) free fall, <span class="fi">a<sub>y</sub> = −9.8</span>:</strong>
+        <span class="fi">N = 70 × 0 = 0</span>. Weight is unchanged at 686 N; it is the support that
+        has vanished.</li>
+    </ol>
+    <span class="wex__ans">686 N · 826 N · 546 N · 0 N</span>
+  </div>
+
+  <h3>Ideal strings and ideal pulleys</h3>
+  <p>
+    Two idealisations do a great deal of work, and each earns its keep for a reason you should be able
+    to state:
+  </p>
+  <ul>
+    <li><strong>Massless string ⇒ the tension is the same everywhere along it.</strong> Apply the
+      second law to any short segment: <span class="fi">T₂ − T₁ = m<sub>segment</sub>a = 0</span>
+      when the segment has no mass. If the rope is heavy — a climbing rope, a lift cable — the tension
+      genuinely varies along its length, being largest at the top.</li>
+    <li><strong>Inextensible string ⇒ a kinematic constraint.</strong> Bodies joined by a taut string
+      have equal <em>speeds</em> along the string and equal acceleration magnitudes. This is the extra
+      equation that makes two-body problems solvable.</li>
+    <li><strong>Ideal pulley (massless, frictionless) ⇒ it redirects the tension without changing
+      it.</strong> A real pulley has rotational inertia, so accelerating it requires a net torque,
+      which requires <span class="fi">T₁ ≠ T₂</span> on the two sides.</li>
+    <li><strong>A string can only pull.</strong> Like <span class="fi">N ≥ 0</span>, this is a
+      one-sided constraint: <span class="fi">T ≥ 0</span>. When the algebra demands negative tension,
+      the string goes slack.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "the tension equals the hanging weight"</p>
+    <p style="margin:0">Only if the system is in equilibrium. Hang a 5.0 kg mass from a string and let
+      it accelerate downward at 2.0 m·s⁻²: <span class="fi">T = m(g − a) = 5.0 × 7.8 = 39 N</span>,
+      not 49 N. Similarly, a rope over a pulley with unequal masses has a tension strictly
+      <em>between</em> the two weights (§ 8).</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · g has two readings, and both are correct</p>
+    <p style="margin:0"><span class="fi">g = 9.8 m·s⁻²</span> is the free-fall acceleration;
+      <span class="fi">g = 9.8 N·kg⁻¹</span> is the gravitational field strength. They are the same
+      number with the same dimensions, and using the second reading makes
+      <span class="fi">W = mg</span> read naturally as "force per kilogram, times kilograms". Clinical
+      aside: this is why traction, splint and sling calculations are done in newtons, while the
+      patient’s chart records kilograms.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Friction: static, kinetic, angle of repose</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Friction</dt>
+      <dd>The component of a contact force parallel to the surface, arising from adhesion and
+        interlocking between the microscopic asperities that make up the real contact area.</dd>
+      <dt>Static friction</dt>
+      <dd>The friction acting when the surfaces are not sliding on one another. Like the normal force
+        it is a constraint force: it takes whatever value prevents relative sliding, up to a ceiling.</dd>
+      <dt>Kinetic friction</dt>
+      <dd>The friction acting when the surfaces <em>are</em> sliding. Its magnitude is approximately
+        constant and it is directed opposite to the <em>relative sliding velocity</em> of the surfaces.</dd>
+      <dt>Angle of repose</dt>
+      <dd>The steepest incline angle at which a body still does not slide.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">f<sub>s</sub> ≤ μ<sub>s</sub>N &nbsp;·&nbsp; f<sub>k</sub> = μ<sub>k</sub>N</span>
+      <span class="fx__tag">note the inequality on the left and the equality on the right</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">f<sub>s,max</sub> = μ<sub>s</sub>N</span><span class="fx__tag">only at the instant of impending slipping</span></div>
+      <div class="fx"><span class="fx__eq">tan θ<sub>r</sub> = μ<sub>s</sub></span><span class="fx__tag">angle of repose; independent of mass</span></div>
+      <div class="fx"><span class="fx__eq">μ<sub>k</sub> ≤ μ<sub>s</sub></span><span class="fx__tag">true for almost all pairs of surfaces</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>f<sub>s</sub></b><span>static friction force (N)</span></div>
+      <div><b>f<sub>k</sub></b><span>kinetic friction force (N)</span></div>
+      <div><b>μ<sub>s</sub></b><span>coefficient of static friction (dimensionless)</span></div>
+      <div><b>μ<sub>k</sub></b><span>coefficient of kinetic friction (dimensionless)</span></div>
+      <div><b>N</b><span>normal force at that contact (N)</span></div>
+      <div><b>θ<sub>r</sub></b><span>angle of repose (°)</span></div>
+    </div>
+  </div>
+
+  <h3>Why one is an inequality and the other is not</h3>
+  <p>
+    Static friction is not a force law; it is a constraint, exactly like <span class="fi">N</span>.
+    Push a heavy crate with 5 N and it does not move, so friction is 5 N. Push with 20 N and it still
+    does not move, so friction is now 20 N. Friction has no opinion — it supplies whatever is needed
+    to keep <span class="fi">a = 0</span>. What it cannot do is supply more than
+    <span class="fi">μ<sub>s</sub>N</span>. Hence
+    <span class="fi">f<sub>s</sub> ≤ μ<sub>s</sub>N</span>, and hence the correct procedure:
+  </p>
+  <ol>
+    <li>Assume the body does not slide. Solve <span class="fi">ΣF = 0</span> for the friction force
+      <em>required</em>.</li>
+    <li>Compare with the ceiling <span class="fi">μ<sub>s</sub>N</span>. Compute
+      <span class="fi">N</span> from the perpendicular equation — it is frequently not
+      <span class="fi">mg</span>.</li>
+    <li>If required ≤ ceiling, the assumption holds: the body is static and friction equals the
+      required value. If required &gt; ceiling, the body slides, and only now do you switch to
+      <span class="fi">f<sub>k</sub> = μ<sub>k</sub>N</span> and solve for
+      <span class="fi">a</span>.</li>
+  </ol>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 330" role="img" aria-label="Graph of friction force against applied horizontal force. Friction rises along a line of slope one while the body is static, reaches a maximum equal to mu-s times N, then drops discontinuously to the constant kinetic value mu-k times N once sliding begins.">
+      <defs>
+        <marker id="f2-ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-soft)"/>
+        </marker>
+      </defs>
+      <line x1="80" y1="290" x2="80" y2="46" stroke="var(--ink-soft)" stroke-width="1.6" marker-end="url(#f2-ai)"/>
+      <line x1="80" y1="290" x2="604" y2="290" stroke="var(--ink-soft)" stroke-width="1.6" marker-end="url(#f2-ai)"/>
+      <g stroke="var(--ink-faint)" stroke-width="1.1" stroke-dasharray="4 3">
+        <line x1="80" y1="90" x2="280" y2="90"/>
+        <line x1="80" y1="140" x2="280" y2="140"/>
+        <line x1="280" y1="290" x2="280" y2="90"/>
+      </g>
+      <polyline points="80,290 280,90" fill="none" stroke="var(--v-force)" stroke-width="2.8"/>
+      <line x1="280" y1="90" x2="280" y2="140" stroke="var(--v-force)" stroke-width="2" stroke-dasharray="5 4"/>
+      <line x1="280" y1="140" x2="580" y2="140" stroke="var(--v-force)" stroke-width="2.8"/>
+      <circle cx="280" cy="90" r="4.5" fill="var(--v-force)"/>
+      <text x="74" y="94" font-size="11.5" text-anchor="end" fill="var(--ink)">μs N</text>
+      <text x="74" y="144" font-size="11.5" text-anchor="end" fill="var(--ink)">μk N</text>
+      <text x="280" y="308" font-size="11" text-anchor="middle" fill="var(--ink-faint)">F = μs N</text>
+      <text x="460" y="312" font-size="12" text-anchor="middle" fill="var(--ink-soft)">applied horizontal force F</text>
+      <text x="30" y="180" font-size="12" text-anchor="middle" fill="var(--ink-soft)" transform="rotate(-90 30 180)">friction force f</text>
+      <text x="170" y="170" font-size="11.5" text-anchor="middle" fill="var(--ink)" transform="rotate(-45 170 170)">static: f = F, no sliding</text>
+      <text x="300" y="130" font-size="11.5" fill="var(--ink)">kinetic: f = μk N, sliding</text>
+      <text x="300" y="66" font-size="11" fill="var(--ink-faint)">Because μk is smaller than μs, the friction force</text>
+      <text x="300" y="82" font-size="11" fill="var(--ink-faint)">drops the instant the body breaks away.</text>
+    </svg>
+    <figcaption>
+      The friction response curve. To the left of the peak, friction is a <em>dependent</em> variable
+      that mirrors whatever you apply — there is no formula to plug into. Only at the peak does
+      <span class="fi">f<sub>s</sub> = μ<sub>s</sub>N</span> hold. The drop at breakaway is why a
+      stuck drawer suddenly flies open, and it is the mechanism behind stick–slip phenomena: brake
+      squeal, a bowed violin string, and the audible creak of a joint with degraded synovial fluid.
+    </figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th></th><th>Static friction</th><th>Kinetic friction</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Surfaces are…</td><td>Not sliding relative to each other</td><td>Sliding relative to each other</td></tr>
+        <tr><td>Magnitude</td><td><b>Variable</b>, 0 ≤ f<sub>s</sub> ≤ μ<sub>s</sub>N</td><td><b>Fixed</b> at μ<sub>k</sub>N (approximately)</td></tr>
+        <tr><td>How you find it</td><td>Solve ΣF = ma, then check the ceiling</td><td>Substitute μ<sub>k</sub>N directly</td></tr>
+        <tr><td>Direction</td><td>Opposite the <em>impending</em> relative sliding</td><td>Opposite the <em>actual</em> relative sliding velocity</td></tr>
+        <tr><td>Does it do work on the body?</td><td>Often zero (rolling contact, walking)</td><td>Always negative on the sliding pair; generates heat</td></tr>
+        <tr><td>Typical magnitude</td><td>Larger</td><td>Smaller — hence ABS braking and the anti-lock principle</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The two approximate laws, and why they work at all</h3>
+  <p>
+    Amontons–Coulomb friction says <span class="fi">f ∝ N</span>, independent of the apparent contact
+    area and (roughly) of the sliding speed. Both claims look wrong until you realise that surfaces
+    touch only at asperity tips. The <em>real</em> contact area is a tiny fraction of the apparent
+    area, and it is that real area which grows in proportion to <span class="fi">N</span>. Doubling
+    the footprint of a tyre halves the pressure and leaves the real contact area, and therefore the
+    friction, unchanged. These are empirical approximations, not fundamental laws: they fail for very
+    clean surfaces, very high pressures, and lubricated contacts.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Contact pair</th><th class="num">μ<sub>s</sub></th><th class="num">μ<sub>k</sub></th><th>Why it matters</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Rubber on dry concrete</td><td class="num">≈ 1.0</td><td class="num">≈ 0.8</td><td>Braking limit ≈ 1.0 g on the verge of slipping; ≈ 0.8 g once the wheels lock</td></tr>
+        <tr><td>Rubber on wet concrete</td><td class="num">≈ 0.7</td><td class="num">≈ 0.5</td><td>Since d ∝ 1/μ, stopping distance grows by ~60 % on these numbers alone</td></tr>
+        <tr><td>Steel on steel, dry</td><td class="num">≈ 0.74</td><td class="num">≈ 0.57</td><td>Reference pair in most textbook tables</td></tr>
+        <tr><td>Steel on steel, lubricated</td><td class="num">≈ 0.15</td><td class="num">≈ 0.06</td><td>What a boundary lubricant buys you</td></tr>
+        <tr><td>Wood on wood</td><td class="num">≈ 0.4</td><td class="num">≈ 0.2</td><td>Angle of repose ≈ 22°</td></tr>
+        <tr><td>Ice on ice</td><td class="num">≈ 0.1</td><td class="num">≈ 0.03</td><td>A meltwater film acts as the lubricant</td></tr>
+        <tr><td>PTFE on PTFE</td><td class="num">≈ 0.04</td><td class="num">≈ 0.04</td><td>Among the lowest of engineered solids</td></tr>
+        <tr><td><b>Synovial joint (cartilage on cartilage)</b></td><td class="num">—</td><td class="num">≈ 0.003–0.01</td><td><b>Lower than any engineered bearing.</b> Osteoarthritis raises it, and the joint starts to behave like a rough surface</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 2 · Same force, opposite outcome — push versus pull</h4>
+    <p style="margin:.2rem 0 .4rem">A 12 kg crate sits on a floor with
+      <span class="fi">μ<sub>s</sub> = 0.50</span> and
+      <span class="fi">μ<sub>k</sub> = 0.35</span>. A 60 N force is applied at 20° to the horizontal.
+      (a) Directed 20° <em>below</em> the horizontal (a push). (b) Directed 20° <em>above</em> the
+      horizontal (a pull). Use <span class="fi">sin 20° = 0.342</span>,
+      <span class="fi">cos 20° = 0.940</span>, <span class="fi">g = 9.8 m·s⁻²</span>.</p>
+    <ol>
+      <li><strong>Common quantities.</strong> <span class="fi">mg = 12 × 9.8 = 117.6 N</span>;
+        <span class="fi">F cos 20° = 60 × 0.940 = 56.4 N</span> (horizontal);
+        <span class="fi">F sin 20° = 60 × 0.342 = 20.5 N</span> (vertical).</li>
+      <li><strong>(a) Push. Vertical equation first:</strong> the vertical component points
+        <em>down</em>, so <span class="fi">N = mg + F sin 20° = 117.6 + 20.5 = 138.1 N</span>.
+        Ceiling: <span class="fi">f<sub>s,max</sub> = 0.50 × 138.1 = 69.1 N</span>.</li>
+      <li><strong>Compare:</strong> the required friction is 56.4 N, which is below 69.1 N.
+        The crate does <strong>not</strong> move; friction is 56.4 N and
+        <span class="fi">a = 0</span>.</li>
+      <li><strong>(b) Pull. Vertical equation:</strong> the vertical component now points <em>up</em>,
+        so <span class="fi">N = mg − F sin 20° = 117.6 − 20.5 = 97.1 N</span>. Ceiling:
+        <span class="fi">f<sub>s,max</sub> = 0.50 × 97.1 = 48.6 N</span>.</li>
+      <li><strong>Compare:</strong> 56.4 N required &gt; 48.6 N available, so it slides. Switch to
+        kinetic friction: <span class="fi">f<sub>k</sub> = 0.35 × 97.1 = 34.0 N</span>.</li>
+      <li><strong>Horizontal second law:</strong>
+        <span class="fi">a = (56.4 − 34.0)/12 = 22.4/12 = 1.87 m·s⁻²</span>.</li>
+    </ol>
+    <p style="margin:.6rem 0 0;font-size:.92rem">The identical 60 N force leaves the crate motionless
+      when pushed and accelerates it when pulled, purely because the vertical component changes
+      <span class="fi">N</span>, and <span class="fi">N</span> sets the friction ceiling. This is why
+      you pull a suitcase rather than push it.</p>
+    <span class="wex__ans">(a) stationary, f = 56 N · (b) a = 1.9 m·s⁻²</span>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 3 · Angle of repose</h4>
+    <p style="margin:.2rem 0 .4rem">A coin rests on a flat board. The board is tilted slowly; the coin
+      begins to slip at 22°. What is <span class="fi">μ<sub>s</sub></span>, and does the answer depend
+      on the coin?</p>
+    <ol>
+      <li><strong>Axes along and perpendicular to the board.</strong> At the instant of slipping the
+        coin is still static but friction is at its ceiling.</li>
+      <li><strong>Perpendicular:</strong> <span class="fi">N = mg cos θ</span>.</li>
+      <li><strong>Along the slope:</strong> <span class="fi">mg sin θ = f<sub>s,max</sub> =
+        μ<sub>s</sub>N = μ<sub>s</sub> mg cos θ</span>.</li>
+      <li><strong>Divide.</strong> <span class="fi">m</span> and <span class="fi">g</span> both
+        cancel: <span class="fi">tan θ<sub>r</sub> = μ<sub>s</sub></span>.</li>
+      <li><strong>Substitute:</strong> <span class="fi">μ<sub>s</sub> = tan 22° = 0.404</span>.</li>
+    </ol>
+    <p style="margin:.6rem 0 0;font-size:.92rem">Because the mass cancels, a heavy coin and a light
+      coin of the same material slip at exactly the same angle. This is the cheapest possible
+      measurement of <span class="fi">μ<sub>s</sub></span>, and it is also why a heap of dry sand
+      always settles to the same cone angle regardless of how much sand you pour.</p>
+    <span class="wex__ans">μ<sub>s</sub> = tan 22° ≈ 0.40 · independent of mass</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · friction opposes <em>relative sliding</em>, not motion</p>
+    <p style="margin:0">The force that accelerates a car forward is static friction from the road,
+      pointing <strong>forward</strong>. The tyre’s contact patch tries to slide backward, so friction
+      acts forward on it. Likewise the friction on a box sitting on an accelerating truck bed points
+      <strong>forward</strong> — it is the only horizontal force available to accelerate the box.
+      Asking "which way would the surfaces slide if friction vanished?" gets the direction right every
+      time.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the three sentences worth memorising verbatim</p>
+    <p style="margin:0">(1) <span class="fi">f<sub>s</sub> ≤ μ<sub>s</sub>N</span> — an inequality;
+      equality holds only at impending slipping. (2) <span class="fi">N</span> is almost never
+      <span class="fi">mg</span> unless the surface is horizontal and no other vertical force acts.
+      (3) <span class="fi">μ</span> is dimensionless and can exceed 1 (racing tyres reach ≈ 1.5).</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>The inclined plane</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Inclined plane</dt>
+      <dd>A flat surface making an angle <span class="fi">θ</span> with the horizontal. The physical
+        content is a <em>constraint</em>: a body in contact with it can only accelerate parallel to
+        the surface, so the perpendicular acceleration is zero.</dd>
+      <dt>Resolution along the surface</dt>
+      <dd>Choosing the x-axis along the slope and the y-axis along the surface normal, so that
+        <span class="fi">a<sub>y</sub> = 0</span> and the two equations decouple.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">a = g(sin θ − μ<sub>k</sub> cos θ)</span>
+      <span class="fx__tag">block sliding <em>down</em> a rough incline; positive means down-slope</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">N = mg cos θ</span><span class="fx__tag">perpendicular equation; no other perpendicular forces</span></div>
+      <div class="fx"><span class="fx__eq">mg sin θ</span><span class="fx__tag">the down-slope driving component of the weight</span></div>
+      <div class="fx"><span class="fx__eq">a = g sin θ</span><span class="fx__tag">frictionless limit</span></div>
+      <div class="fx"><span class="fx__eq">it slides ⟺ tan θ &gt; μ<sub>s</sub></span><span class="fx__tag">released from rest, no other applied force</span></div>
+      <div class="fx"><span class="fx__eq">a = g(sin θ + μ<sub>k</sub> cos θ)</span><span class="fx__tag">block moving <em>up</em> the slope: friction now acts down-slope as well, so the (still down-slope-positive) acceleration is larger — a deceleration</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>θ</b><span>incline angle from the horizontal (°)</span></div>
+      <div><b>N</b><span>normal force (N)</span></div>
+      <div><b>μ<sub>s</sub>, μ<sub>k</sub></b><span>friction coefficients (dimensionless)</span></div>
+      <div><b>a</b><span>acceleration along the slope (m·s⁻²)</span></div>
+      <div><b>g</b><span>9.8 m·s⁻²</span></div>
+    </div>
+  </div>
+
+  <h3>Why the axes get tilted</h3>
+  <p>
+    You already know the direction of the acceleration: the block stays on the plane, so
+    <b>a</b> is parallel to the surface. Point the x-axis that way and the y-equation immediately
+    becomes <span class="fi">ΣF<sub>y</sub> = 0</span>, which hands you <span class="fi">N</span>
+    for free. Use horizontal/vertical axes instead and both components of <b>a</b> are non-zero, both
+    equations couple, and you do three times the algebra for the same answer.
+  </p>
+  <p>
+    The price is that the weight, which is not along either axis, must be resolved. The geometry that
+    everyone half-remembers is this: <strong>the angle between <span class="fi">mg</span> and the
+    inward surface normal is the same <span class="fi">θ</span> as the incline angle</strong>, because
+    tilting the surface by <span class="fi">θ</span> tilts its normal by <span class="fi">θ</span>.
+    Hence the component <em>perpendicular</em> to the surface carries the cosine and the component
+    <em>along</em> it carries the sine.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 660 340" role="img" aria-label="A block on a thirty-degree incline. The weight acts vertically downward and is resolved by a dashed parallelogram into a component mg sine theta down the slope and mg cosine theta into the surface. The normal force N points out of the surface and is equal and opposite to mg cosine theta; kinetic friction acts up the slope.">
+      <defs>
+        <marker id="f3-af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-force)"/>
+        </marker>
+        <marker id="f3-ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-faint)"/>
+        </marker>
+      </defs>
+      <polygon points="60,290 520,290 520,24" fill="var(--ink-faint)" opacity=".13" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g stroke="var(--ink-faint)" stroke-width="1" opacity=".7">
+        <line x1="70" y1="290" x2="60" y2="302"/><line x1="100" y1="290" x2="90" y2="302"/>
+        <line x1="130" y1="290" x2="120" y2="302"/><line x1="160" y1="290" x2="150" y2="302"/>
+        <line x1="190" y1="290" x2="180" y2="302"/><line x1="220" y1="290" x2="210" y2="302"/>
+        <line x1="250" y1="290" x2="240" y2="302"/><line x1="280" y1="290" x2="270" y2="302"/>
+        <line x1="310" y1="290" x2="300" y2="302"/><line x1="340" y1="290" x2="330" y2="302"/>
+        <line x1="370" y1="290" x2="360" y2="302"/><line x1="400" y1="290" x2="390" y2="302"/>
+        <line x1="430" y1="290" x2="420" y2="302"/><line x1="460" y1="290" x2="450" y2="302"/>
+        <line x1="490" y1="290" x2="480" y2="302"/><line x1="520" y1="290" x2="510" y2="302"/>
+      </g>
+      <path d="M110,290 A50,50 0 0 0 103,265" fill="none" stroke="var(--ink-faint)" stroke-width="1.3"/>
+      <text x="118" y="282" font-size="12" fill="var(--ink)">θ = 30°</text>
+
+      <!-- tilted axes key -->
+      <g stroke="var(--ink-faint)" stroke-width="1.4">
+        <line x1="140" y1="70" x2="188" y2="42" marker-end="url(#f3-ai)"/>
+        <line x1="140" y1="70" x2="112" y2="22" marker-end="url(#f3-ai)"/>
+      </g>
+      <text x="194" y="40" font-size="11.5" fill="var(--ink-faint)">x′ (along slope)</text>
+      <text x="106" y="18" font-size="11.5" text-anchor="end" fill="var(--ink-faint)">y′ (normal)</text>
+
+      <rect x="232" y="142" width="70" height="28" rx="3" transform="rotate(-30 267 170)" fill="var(--ink-faint)" opacity=".3" stroke="var(--ink)" stroke-width="1.5"/>
+
+      <!-- dashed parallelogram -->
+      <g stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 3">
+        <line x1="217" y1="182" x2="260" y2="257"/>
+        <line x1="303" y1="232" x2="260" y2="257"/>
+      </g>
+      <!-- weight components -->
+      <line x1="260" y1="157" x2="217" y2="182" stroke="var(--v-force)" stroke-width="2" opacity=".75" marker-end="url(#f3-af)"/>
+      <line x1="260" y1="157" x2="303" y2="232" stroke="var(--v-force)" stroke-width="2" opacity=".75" marker-end="url(#f3-af)"/>
+      <!-- weight, normal, friction -->
+      <line x1="260" y1="157" x2="260" y2="257" stroke="var(--v-force)" stroke-width="2.8" marker-end="url(#f3-af)"/>
+      <line x1="260" y1="157" x2="217" y2="82" stroke="var(--v-force)" stroke-width="2.8" marker-end="url(#f3-af)"/>
+      <line x1="260" y1="157" x2="288" y2="141" stroke="var(--v-force)" stroke-width="2.8" marker-end="url(#f3-af)"/>
+      <circle cx="260" cy="157" r="4" fill="var(--ink)"/>
+      <path d="M260,212 A55,55 0 0 0 287.5,204.6" fill="none" stroke="var(--ink-faint)" stroke-width="1.3"/>
+      <text x="274" y="211" font-size="11" fill="var(--ink)">θ</text>
+
+      <text x="212" y="76" font-size="12" text-anchor="end" fill="var(--v-force)">N = mg cos θ</text>
+      <text x="268" y="253" font-size="12" fill="var(--v-force)">W = mg</text>
+      <text x="296" y="134" font-size="12" fill="var(--v-force)">f = μk N</text>
+      <text x="211" y="192" font-size="11.5" text-anchor="end" fill="var(--v-force)">mg sin θ</text>
+      <text x="310" y="240" font-size="11.5" fill="var(--v-force)">mg cos θ</text>
+    </svg>
+    <figcaption>
+      Only three real forces act on the block — weight, normal, friction. The two faint arrows are not
+      extra forces; they are <span class="fi">mg</span> rewritten in the tilted axes, and the dashed
+      lines close the parallelogram. Since the perpendicular acceleration is zero,
+      <span class="fi">N</span> is exactly equal and opposite to <span class="fi">mg cos θ</span>,
+      which is why <span class="fi">N &lt; mg</span> on any incline.
+    </figcaption>
+  </figure>
+
+  <h3>Sanity checks that catch a sine/cosine swap instantly</h3>
+  <ul>
+    <li><strong><span class="fi">θ → 0</span> (flat).</strong>
+      <span class="fi">N = mg cos 0 = mg</span> ✓ and the driving force
+      <span class="fi">mg sin 0 = 0</span> ✓. If your formula gives <span class="fi">N = 0</span> on
+      flat ground, you have swapped them.</li>
+    <li><strong><span class="fi">θ → 90°</span> (vertical wall).</strong>
+      <span class="fi">N = 0</span> (the wall cannot support it) and
+      <span class="fi">a = g</span> ✓ — free fall.</li>
+    <li><strong>Mass cancels</strong> in <span class="fi">a = g(sin θ − μ<sub>k</sub> cos θ)</span>.
+      If <span class="fi">m</span> survives in your acceleration, you have made an algebra error.</li>
+  </ul>
+
+  <div class="wex">
+    <h4>Worked example 4 · Block released on a rough 30° incline</h4>
+    <p style="margin:.2rem 0 .4rem">A 4.0 kg block is placed on a 30° incline with
+      <span class="fi">μ<sub>s</sub> = 0.40</span> and <span class="fi">μ<sub>k</sub> = 0.30</span>
+      and released from rest. (a) Does it slide? (b) Find <span class="fi">N</span> and
+      <span class="fi">a</span>. (c) How fast is it moving after sliding 2.0 m?
+      <span class="fi">cos 30° = 0.866</span>, <span class="fi">g = 9.8 m·s⁻²</span>.</p>
+    <ol>
+      <li><strong>(a) Slip test.</strong> Compare <span class="fi">tan θ</span> with
+        <span class="fi">μ<sub>s</sub></span>: <span class="fi">tan 30° = 0.577 &gt; 0.40</span>, so
+        the required static friction exceeds the ceiling and the block slides. (Equivalently: the
+        angle of repose here is <span class="fi">arctan 0.40 = 21.8°</span>, and 30° is steeper.)</li>
+      <li><strong>(b) Perpendicular equation.</strong>
+        <span class="fi">N = mg cos θ = 4.0 × 9.8 × 0.866 = 33.9 N</span>. Note this is well below
+        <span class="fi">mg = 39.2 N</span>.</li>
+      <li><strong>Kinetic friction.</strong>
+        <span class="fi">f<sub>k</sub> = μ<sub>k</sub>N = 0.30 × 33.9 = 10.2 N</span>, acting
+        <em>up</em> the slope.</li>
+      <li><strong>Along-slope equation.</strong>
+        <span class="fi">mg sin θ − f<sub>k</sub> = ma</span> →
+        <span class="fi">19.6 − 10.2 = 4.0 a</span> → <span class="fi">a = 2.35 m·s⁻²</span>.
+        Check against the formula:
+        <span class="fi">g(sin θ − μ<sub>k</sub>cos θ) = 9.8(0.500 − 0.260) = 2.35 ✓</span>.</li>
+      <li><strong>(c) Constant acceleration</strong> (friction and the slope are both constant, so the
+        note-01 kinematics apply): <span class="fi">v² = 2as = 2 × 2.35 × 2.0 = 9.41</span>, so
+        <span class="fi">v = 3.07 m·s⁻¹</span>.</li>
+    </ol>
+    <span class="wex__ans">N = 34 N · a = 2.4 m·s⁻² down-slope · v = 3.1 m·s⁻¹</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · friction flips when the direction of travel flips</p>
+    <p style="margin:0">Throw the same block <em>up</em> the slope and friction now acts
+      <em>down</em>-slope, giving a deceleration of
+      <span class="fi">g(sin θ + μ<sub>k</sub> cos θ) = 9.8(0.500 + 0.260) = 7.45 m·s⁻²</span> —
+      more than three times the magnitude of the downward acceleration. So the trip up is much shorter
+      than the trip down, and the block returns to the bottom slower than it left. A separate question
+      is whether it comes back at all: once it stops it will only restart if
+      <span class="fi">tan θ &gt; μ<sub>s</sub></span>, which here it does.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the incline in three numbers</p>
+    <p style="margin:0"><span class="fi">N = mg cos θ</span> · <span class="fi">mg sin θ</span> is the
+      driving component · <span class="fi">tan θ<sub>r</sub> = μ<sub>s</sub></span> is the slip
+      threshold. Almost every incline question in a first-year paper is one of these three wearing a
+      costume, and the mass cancels in the last two.</p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Connected bodies and the Atwood machine</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Connected system</dt>
+      <dd>Two or more bodies linked by an inextensible string, so that their motions are related by a
+        kinematic constraint rather than being independent.</dd>
+      <dt>Atwood machine</dt>
+      <dd>Two masses hanging from the ends of a light string passed over an ideal pulley. Its purpose
+        is to produce an acceleration much smaller than <span class="fi">g</span>, so that it can be
+        measured with a clock.</dd>
+      <dt>System method</dt>
+      <dd>Treating several connected bodies as one object. Every internal force (the tension) appears
+        twice, in a third-law pair, and cancels — leaving only external forces.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">a = (m₂ − m₁)g / (m₁ + m₂)</span>
+      <span class="fx__tag">Atwood machine, ideal string and pulley; m₂ descends</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">T = 2m₁m₂g / (m₁ + m₂)</span><span class="fx__tag">same tension throughout the ideal string</span></div>
+      <div class="fx"><span class="fx__eq">a = ΣF<sub>external</sub> / Σm</span><span class="fx__tag">system method; gives a but never gives T</span></div>
+      <div class="fx"><span class="fx__eq">|a₁| = |a₂|</span><span class="fx__tag">the inextensibility constraint — the extra equation you need</span></div>
+      <div class="fx"><span class="fx__eq">a = (m₂g − μ<sub>k</sub>m₁g) / (m₁ + m₂)</span><span class="fx__tag">m₁ on a rough horizontal table, m₂ hanging</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>m₁, m₂</b><span>the two connected masses (kg)</span></div>
+      <div><b>a</b><span>common acceleration magnitude (m·s⁻²)</span></div>
+      <div><b>T</b><span>string tension (N)</span></div>
+      <div><b>μ<sub>k</sub></b><span>coefficient of kinetic friction at the table (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <h3>Two methods, and when each is the right tool</h3>
+  <p>
+    <strong>The system method</strong> draws one boundary around everything. Internal tensions are
+    third-law pairs inside the boundary, so they cancel, and you are left with
+    <span class="fi">a = ΣF<sub>ext</sub>/Σm</span> in a single line. It is fast, and it is the only
+    sensible way to get <span class="fi">a</span>. Its limitation is exactly its strength: because the
+    tension cancelled, the system method can never tell you what the tension is.
+  </p>
+  <p>
+    <strong>The per-body method</strong> draws a separate FBD for each mass, giving one equation each,
+    plus the constraint <span class="fi">|a₁| = |a₂|</span>. Use it whenever a question asks for a
+    tension, a contact force between two blocks, or "what does the string have to withstand".
+  </p>
+  <p>
+    The sign bookkeeping is where marks are lost. The clean approach: <strong>define one positive
+    sense that runs along the string</strong> — say, "up on the left-hand side, over the pulley, down
+    on the right-hand side" — and use it consistently for both bodies. Then a single scalar
+    <span class="fi">a</span> describes the whole system, and no absolute-value signs are needed.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 5 · Atwood machine, then the same string on a rough table</h4>
+    <p style="margin:.2rem 0 .4rem"><strong>Part A.</strong> An ideal Atwood machine carries
+      <span class="fi">m₁ = 3.0 kg</span> and <span class="fi">m₂ = 5.0 kg</span>. Find
+      <span class="fi">a</span>, <span class="fi">T</span>, and the force the pulley’s axle must
+      supply. <span class="fi">g = 9.8 m·s⁻²</span>.</p>
+    <ol>
+      <li><strong>Positive sense:</strong> <span class="fi">m₂</span> down, <span class="fi">m₁</span>
+        up. Then both bodies have the same scalar acceleration <span class="fi">a</span>.</li>
+      <li><strong>System method for a:</strong> the external forces along that sense are
+        <span class="fi">m₂g</span> forward and <span class="fi">m₁g</span> backward, so
+        <span class="fi">a = (m₂ − m₁)g/(m₁+m₂) = (2.0 × 9.8)/8.0 = 2.45 m·s⁻²</span>.</li>
+      <li><strong>Per-body for T</strong> — use the lighter block:
+        <span class="fi">T − m₁g = m₁a</span> →
+        <span class="fi">T = m₁(g + a) = 3.0 × 12.25 = 36.75 N</span>.</li>
+      <li><strong>Cross-check on the heavier block:</strong>
+        <span class="fi">m₂g − T = m₂a</span> →
+        <span class="fi">T = 5.0 × (9.8 − 2.45) = 5.0 × 7.35 = 36.75 N ✓</span>. The tension lies
+        strictly between the two weights, 29.4 N and 49.0 N, as it must.</li>
+      <li><strong>The axle</strong> holds up two string segments, so it supplies
+        <span class="fi">2T = 73.5 N</span> — which is <em>less</em> than the total weight of
+        <span class="fi">8.0 × 9.8 = 78.4 N</span>. That is not an error: the system’s centre of mass
+        is accelerating downward, so the net external force on it must point down.</li>
+    </ol>
+    <p style="margin:.6rem 0 .4rem"><strong>Part B.</strong> Now put
+      <span class="fi">m₁ = 2.0 kg</span> on a horizontal table with
+      <span class="fi">μ<sub>k</sub> = 0.25</span>, connected over a pulley at the table edge to
+      <span class="fi">m₂ = 3.0 kg</span> hanging. Find <span class="fi">a</span> and
+      <span class="fi">T</span>.</p>
+    <ol>
+      <li><strong>Normal force on the table block:</strong>
+        <span class="fi">N = m₁g = 19.6 N</span>, so
+        <span class="fi">f<sub>k</sub> = 0.25 × 19.6 = 4.9 N</span>, opposing its motion.</li>
+      <li><strong>System method:</strong> external driving force
+        <span class="fi">m₂g = 29.4 N</span>, external resisting force
+        <span class="fi">f<sub>k</sub> = 4.9 N</span>, total mass 5.0 kg →
+        <span class="fi">a = (29.4 − 4.9)/5.0 = 4.90 m·s⁻²</span>.</li>
+      <li><strong>Tension</strong> from the table block:
+        <span class="fi">T − f<sub>k</sub> = m₁a</span> →
+        <span class="fi">T = 4.9 + 2.0 × 4.9 = 14.7 N</span>.</li>
+      <li><strong>Check</strong> with the hanging block:
+        <span class="fi">m₂g − T = 29.4 − 14.7 = 14.7 N</span>, and
+        <span class="fi">m₂a = 3.0 × 4.9 = 14.7 N ✓</span>.</li>
+    </ol>
+    <span class="wex__ans">A: a = 2.45 m·s⁻², T = 36.8 N, axle 73.5 N · B: a = 4.90 m·s⁻², T = 14.7 N</span>
+  </div>
+
+  <h3>Limits worth checking</h3>
+  <div class="grid grid--3" style="margin:1rem 0 0">
+    <div class="card">
+      <h4>Equal masses</h4>
+      <p style="font-size:.9rem;margin:0"><span class="fi">m₁ = m₂ = m</span> gives
+        <span class="fi">a = 0</span> and <span class="fi">T = mg</span> — static equilibrium, as it
+        must be.</p>
+    </div>
+    <div class="card">
+      <h4>One mass vanishing</h4>
+      <p style="font-size:.9rem;margin:0"><span class="fi">m₁ → 0</span> gives
+        <span class="fi">a → g</span> and <span class="fi">T → 0</span>: the heavy block is in free
+        fall with a slack string.</p>
+    </div>
+    <div class="card">
+      <h4>One mass enormous</h4>
+      <p style="font-size:.9rem;margin:0"><span class="fi">m₂ ≫ m₁</span> gives
+        <span class="fi">a → g</span> and <span class="fi">T → 2m₁g</span> — the light block is
+        yanked upward at <span class="fi">g</span>, needing twice its own weight.</p>
+    </div>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · a real pulley breaks the equal-tension rule</p>
+    <p style="margin:0">"The tension is the same on both sides" follows from the pulley being
+      <em>massless and frictionless</em>. Give the pulley a moment of inertia and you need a net
+      torque to angularly accelerate it, which requires <span class="fi">T₂ &gt; T₁</span>. Any
+      question that mentions the pulley’s mass or radius is signalling that this idealisation has been
+      withdrawn — that is a rotational-dynamics problem, not this one.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the constraint is a real equation</p>
+    <p style="margin:0">Two bodies give two equations and typically three unknowns
+      (<span class="fi">a₁</span>, <span class="fi">a₂</span>, <span class="fi">T</span>). The
+      inextensible string supplies the third: <span class="fi">|a₁| = |a₂|</span>. If a problem seems
+      to have one unknown too many, the missing equation is almost always a geometric constraint —
+      a string that does not stretch, a surface the body stays on, or a wheel that rolls without
+      slipping.</p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Drag and terminal velocity</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Drag</dt>
+      <dd>The force a fluid exerts on a body moving through it, directed opposite to the body’s
+        velocity relative to the fluid. Unlike friction between solids, its magnitude depends
+        strongly on speed.</dd>
+      <dt>Terminal velocity</dt>
+      <dd>The constant velocity reached when drag (plus buoyancy) has grown to exactly cancel the
+        weight, so the net force — and therefore the acceleration — is zero.</dd>
+      <dt>Reynolds number</dt>
+      <dd>The dimensionless ratio of inertial to viscous effects in the flow; it decides which drag
+        law applies.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">m dv/dt = mg − F<sub>d</sub>(v) → 0 as v → v<sub>t</sub></span>
+      <span class="fx__tag">terminal velocity is where the drag force equals the weight</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">F<sub>d</sub> = bv = 6πηrv</span><span class="fx__tag">linear (Stokes) drag on a sphere; Re ≪ 1</span></div>
+      <div class="fx"><span class="fx__eq">F<sub>d</sub> = ½ρC<sub>d</sub>Av²</span><span class="fx__tag">quadratic drag; Re ≳ 10³</span></div>
+      <div class="fx"><span class="fx__eq">v<sub>t</sub> = mg/b &nbsp;·&nbsp; v<sub>t</sub> = √(2mg / ρC<sub>d</sub>A)</span><span class="fx__tag">terminal speed in the two regimes</span></div>
+      <div class="fx"><span class="fx__eq">v(t) = v<sub>t</sub>(1 − e<sup>−t/τ</sup>), τ = m/b</span><span class="fx__tag">linear regime only; released from rest</span></div>
+      <div class="fx"><span class="fx__eq">v<sub>t</sub> = 2r²(ρ<sub>s</sub> − ρ<sub>f</sub>)g / 9η</span><span class="fx__tag">sedimentation of a sphere, buoyancy included</span></div>
+      <div class="fx"><span class="fx__eq">Re = ρvL / η</span><span class="fx__tag">L is a characteristic length (a diameter, say)</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>F<sub>d</sub></b><span>drag force (N)</span></div>
+      <div><b>η</b><span>dynamic viscosity (Pa·s)</span></div>
+      <div><b>ρ</b><span>fluid density (kg·m⁻³)</span></div>
+      <div><b>ρ<sub>s</sub>, ρ<sub>f</sub></b><span>densities of sphere and fluid (kg·m⁻³)</span></div>
+      <div><b>C<sub>d</sub></b><span>drag coefficient (dimensionless)</span></div>
+      <div><b>A</b><span>frontal (projected) area (m²)</span></div>
+      <div><b>r</b><span>sphere radius (m)</span></div>
+      <div><b>b</b><span>linear drag constant (kg·s⁻¹ = N·s·m⁻¹)</span></div>
+      <div><b>τ</b><span>time constant of the approach to v<sub>t</sub> (s)</span></div>
+      <div><b>v<sub>t</sub></b><span>terminal speed (m·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Drag is the first force in this note whose magnitude depends on the velocity. That has an
+    immediate consequence you must internalise: <strong>the acceleration is not constant, so the
+    constant-acceleration kinematics of note 01 do not apply.</strong> You cannot write
+    <span class="fi">v = v₀ + at</span> for a falling raindrop. What you <em>can</em> do without any
+    calculus is find the terminal velocity, because that is a statics problem: set the net force to
+    zero.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th></th><th>Linear (viscous / Stokes) drag</th><th>Quadratic (inertial / form) drag</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Force law</td><td class="num">F = 6πηrv</td><td class="num">F = ½ρC<sub>d</sub>Av²</td></tr>
+        <tr><td>Physical origin</td><td>Shearing of the fluid layers around the body</td><td>Pushing fluid out of the way; a turbulent wake</td></tr>
+        <tr><td>Regime</td><td>Re ≪ 1 — small, slow, or viscous</td><td>Re ≳ 10³ — large, fast, or thin fluid</td></tr>
+        <tr><td>Fluid property that matters</td><td>Viscosity η</td><td>Density ρ</td></tr>
+        <tr><td>Terminal speed</td><td class="num">v<sub>t</sub> = mg/b ∝ r²</td><td class="num">v<sub>t</sub> = √(2mg/ρC<sub>d</sub>A)</td></tr>
+        <tr><td>Approach to v<sub>t</sub></td><td>Exponential, τ = m/b</td><td>Also asymptotic, but a tanh curve</td></tr>
+        <tr><td>Examples</td><td>Red cells settling in plasma, bacteria swimming, aerosol droplets &lt; 1 μm, a ball bearing in glycerol</td><td>Skydivers, cars, cricket balls, blood in a large artery at peak systole</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Terminal velocity is an <strong>attractor</strong>, not a speed limit reached at a particular
+    instant. Start below it and drag is too small, so you speed up; start above it (a diver pulling
+    out of a dive) and drag exceeds the weight, so you slow down. In the linear regime the approach is
+    exponential with time constant <span class="fi">τ = m/b</span>, so after
+    <span class="fi">3τ</span> you are within 5 % of <span class="fi">v<sub>t</sub></span>.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 6 · A skydiver, and a red cell settling in plasma</h4>
+    <p style="margin:.2rem 0 .4rem"><strong>Part A — quadratic regime.</strong> A 75 kg skydiver falls
+      spread-eagle with <span class="fi">A = 0.70 m²</span>, <span class="fi">C<sub>d</sub> = 0.70</span>,
+      in air of density <span class="fi">ρ = 1.2 kg·m⁻³</span>. Find the terminal speed.</p>
+    <ol>
+      <li><strong>Set drag equal to weight:</strong>
+        <span class="fi">½ρC<sub>d</sub>Av<sub>t</sub>² = mg</span>, so
+        <span class="fi">v<sub>t</sub> = √(2mg / ρC<sub>d</sub>A)</span>.</li>
+      <li><strong>Numerator:</strong> <span class="fi">2mg = 2 × 75 × 9.8 = 1470 N</span>.
+        <strong>Denominator:</strong> <span class="fi">ρC<sub>d</sub>A = 1.2 × 0.70 × 0.70 = 0.588</span>.</li>
+      <li><strong>Divide and take the root:</strong>
+        <span class="fi">1470/0.588 = 2500</span>, so
+        <span class="fi">v<sub>t</sub> = √2500 = 50 m·s⁻¹</span> — about 180 km·h⁻¹, which is the
+        standard belly-to-earth figure (real skydivers measure 50–55 m·s⁻¹).</li>
+      <li><strong>Scaling check:</strong> because <span class="fi">v<sub>t</sub> ∝ √(m/A)</span>, a
+        head-down dive that halves <span class="fi">A</span> multiplies the terminal speed by
+        <span class="fi">√2</span>, not by 2.</li>
+    </ol>
+    <p style="margin:.6rem 0 .4rem"><strong>Part B — linear regime, and why haematologists care.</strong>
+      Model a red blood cell as a sphere of equivalent radius <span class="fi">r = 2.8 μm</span> with density
+      excess <span class="fi">ρ<sub>s</sub> − ρ<sub>f</sub> = 75 kg·m⁻³</span> over plasma of
+      viscosity <span class="fi">η = 1.5×10⁻³ Pa·s</span>. Estimate its settling speed.</p>
+    <ol>
+      <li><strong>Balance</strong> weight minus buoyancy against Stokes drag; the standard result is
+        <span class="fi">v<sub>t</sub> = 2r²(ρ<sub>s</sub> − ρ<sub>f</sub>)g / 9η</span>.</li>
+      <li><strong>Numerator:</strong>
+        <span class="fi">2 × (2.8×10⁻⁶)² × 75 × 9.8 = 2 × 7.84×10⁻¹² × 735 = 1.15×10⁻⁸</span>.</li>
+      <li><strong>Denominator:</strong> <span class="fi">9 × 1.5×10⁻³ = 1.35×10⁻²</span>.</li>
+      <li><strong>Divide:</strong> <span class="fi">v<sub>t</sub> = 8.5×10⁻⁷ m·s⁻¹</span>. Multiply
+        by 3600 s: <span class="fi">3.1×10⁻³ m·h⁻¹ = 3.1 mm·h⁻¹</span>.</li>
+      <li><strong>Interpret.</strong> That is the erythrocyte sedimentation rate, and 3 mm·h⁻¹ sits
+        squarely in the normal range. Because <span class="fi">v<sub>t</sub> ∝ r²</span>, inflammation
+        raises the ESR dramatically: acute-phase proteins such as fibrinogen make cells stack into
+        rouleaux, and an aggregate of effective radius three times larger settles roughly nine times
+        faster.</li>
+    </ol>
+    <span class="wex__ans">A: v<sub>t</sub> ≈ 50 m·s⁻¹ · B: v<sub>t</sub> ≈ 3.1 mm·h⁻¹</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · scaling in the quadratic regime</p>
+    <p style="margin:0">Doubling the mass does <strong>not</strong> double the terminal speed; it
+      multiplies it by <span class="fi">√2 ≈ 1.41</span>, because drag grows as
+      <span class="fi">v²</span>. The same square root is why a mouse survives a fall that kills a
+      horse: mass scales as <span class="fi">L³</span> while frontal area scales as
+      <span class="fi">L²</span>, so <span class="fi">v<sub>t</sub> ∝ √(L³/L²) = √L</span> — small
+      animals simply have low terminal speeds.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · which drag law, and why it matters clinically</p>
+    <p style="margin:0">Anything cell-sized, micron-sized or slow is Stokes; anything person-sized or
+      fast is quadratic. The Stokes branch underwrites three things you will meet again: the
+      <strong>ESR</strong>, <strong>centrifugal separation</strong> of blood components (§ 11), and
+      <strong>aerosol deposition</strong> in the airways — particles above ~5 μm sediment out in the
+      upper airway, while particles of 1–3 μm settle slowly enough to reach the alveoli, which is
+      precisely the target window for inhaled drugs.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Dynamics of uniform circular motion</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Uniform circular motion</dt>
+      <dd>Motion on a circular path at constant speed. The velocity changes direction continuously,
+        so the body is accelerating even though the speed is constant.</dd>
+      <dt>Centripetal acceleration</dt>
+      <dd>The acceleration of a body in circular motion, directed toward the centre of the circle,
+        of magnitude <span class="fi">v²/r</span>.</dd>
+      <dt>Centripetal force</dt>
+      <dd>Not a kind of force. It is the <em>name for the role</em> played by the net radial component
+        of the real forces — tension, gravity, normal force, friction — that happen to point toward
+        the centre.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ΣF<sub>radial</sub> = m v²/r = m ω²r</span>
+      <span class="fx__tag">toward the centre; uniform circular motion</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">a<sub>c</sub> = v²/r = ω²r = 4π²r/T<sub>period</sub>²</span><span class="fx__tag">three interchangeable forms</span></div>
+      <div class="fx"><span class="fx__eq">v<sub>max</sub> = √(μ<sub>s</sub> g r)</span><span class="fx__tag">flat curve; friction alone supplies the turn</span></div>
+      <div class="fx"><span class="fx__eq">tan θ = v² / (rg)</span><span class="fx__tag">banked curve at the design speed, no friction needed</span></div>
+      <div class="fx"><span class="fx__eq">v<sub>max</sub>² = rg(tan θ + μ<sub>s</sub>) / (1 − μ<sub>s</sub> tan θ)</span><span class="fx__tag">banked curve with friction, fastest safe speed</span></div>
+      <div class="fx"><span class="fx__eq">T<sub>period</sub> = 2π√(L cos θ / g)</span><span class="fx__tag">conical pendulum of string length L, half-angle θ</span></div>
+      <div class="fx"><span class="fx__eq">v<sub>min</sub> = √(gr)</span><span class="fx__tag">top of a vertical loop on a string or inside a track</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v</b><span>tangential speed (m·s⁻¹)</span></div>
+      <div><b>r</b><span>radius of the circular path (m)</span></div>
+      <div><b>ω</b><span>angular speed, v/r (rad·s⁻¹)</span></div>
+      <div><b>T<sub>period</sub></b><span>time for one revolution (s)</span></div>
+      <div><b>a<sub>c</sub></b><span>centripetal acceleration (m·s⁻²)</span></div>
+      <div><b>θ</b><span>bank angle or pendulum half-angle (°)</span></div>
+      <div><b>μ<sub>s</sub></b><span>static friction coefficient (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Nothing new happens here. It is still <span class="fi">Σ<b>F</b> = m<b>a</b></span>; the only new
+    ingredient is that you already know the acceleration — magnitude
+    <span class="fi">v²/r</span>, direction toward the centre — before you start. So you point one
+    axis radially inward, write <span class="fi">ΣF<sub>radial</sub> = mv²/r</span>, and identify
+    which <em>real</em> forces are supplying it.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Situation</th><th>Which real force plays the centripetal role</th><th>Radial equation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Car on a flat road</td><td>Static friction from the road</td><td class="num">mv²/r = f<sub>s</sub> ≤ μ<sub>s</sub>mg</td></tr>
+        <tr><td>Car on a frictionless bank</td><td>Horizontal component of the normal force</td><td class="num">N sin θ = mv²/r</td></tr>
+        <tr><td>Conical pendulum</td><td>Horizontal component of the string tension</td><td class="num">T sin θ = mv²/r</td></tr>
+        <tr><td>Ball on a string, top of a vertical circle</td><td>Tension <b>and</b> gravity, both pointing down</td><td class="num">T + mg = mv²/r</td></tr>
+        <tr><td>Ball on a string, bottom of the circle</td><td>Tension inward minus gravity outward</td><td class="num">T − mg = mv²/r</td></tr>
+        <tr><td>Rider inside a loop-the-loop, at the top</td><td>Track normal force <b>and</b> gravity</td><td class="num">N + mg = mv²/r</td></tr>
+        <tr><td>Satellite in orbit</td><td>Gravitation</td><td class="num">GMm/r² = mv²/r</td></tr>
+        <tr><td>Electron in a magnetic field</td><td>Magnetic force</td><td class="num">qvB = mv²/r</td></tr>
+        <tr><td>Sample in a centrifuge</td><td>Pressure gradient from the surrounding fluid and tube</td><td class="num">a<sub>c</sub> = ω²r</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The banked curve</h3>
+  <p>
+    A car turns because something pushes it toward the centre of the turn. On a flat road that
+    something is friction, and friction is unreliable — rain, ice, worn tyres. Banking the road makes
+    the <em>normal</em> force do the job instead, and the normal force never runs out.
+  </p>
+  <p>
+    Set up axes horizontally and vertically (not along the slope — the acceleration is horizontal
+    here, which is exactly why the incline’s tilted axes are the <em>wrong</em> choice). With no
+    friction there are only two forces:
+  </p>
+  <div class="fx-grid">
+    <div class="fx"><span class="fx__eq">vertical: N cos θ − mg = 0 ⇒ N = mg / cos θ</span><span class="fx__tag">no vertical acceleration</span></div>
+    <div class="fx"><span class="fx__eq">horizontal: N sin θ = mv²/r</span><span class="fx__tag">the whole net force</span></div>
+    <div class="fx"><span class="fx__eq">divide: tan θ = v²/(rg)</span><span class="fx__tag">mass cancels — the design speed is the same for a lorry and a motorbike</span></div>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 680 330" role="img" aria-label="Left panel: cross-section of a banked curve, showing the bank angle theta, the radius r measured from the curve axis to the car, and the car sitting on the sloped surface. Right panel: free-body diagram of the car showing the normal force perpendicular to the road surface, tilted toward the axis, resolved by dashed lines into a vertical component balancing the weight and a horizontal component supplying the centripetal acceleration.">
+      <defs>
+        <marker id="f4-af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-force)"/>
+        </marker>
+        <marker id="f4-aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-accel)"/>
+        </marker>
+        <marker id="f4-ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-soft)"/>
+        </marker>
+        <marker id="f4-ai2" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M10,0 L0,5 L10,10 z" fill="var(--ink-soft)"/>
+        </marker>
+      </defs>
+      <text x="24" y="22" font-size="12.5" font-weight="600" fill="var(--ink-soft)">① the bank in cross-section</text>
+      <text x="360" y="22" font-size="12.5" font-weight="600" fill="var(--ink-soft)">② free-body diagram of the car</text>
+      <line x1="345" y1="12" x2="345" y2="318" stroke="var(--line)" stroke-width="1"/>
+
+      <line x1="52" y1="42" x2="52" y2="300" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <text x="52" y="34" font-size="11" text-anchor="middle" fill="var(--ink-faint)">curve axis</text>
+      <line x1="52" y1="262" x2="330" y2="262" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="4 3"/>
+      <polygon points="112,262 312,169 312,262" fill="var(--ink-faint)" opacity=".16" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <rect x="189" y="194" width="46" height="21" rx="3" transform="rotate(-24.94 212 215.5)" fill="var(--ink-faint)" opacity=".38" stroke="var(--ink)" stroke-width="1.4"/>
+      <path d="M152,262 A40,40 0 0 0 148.3,245.1" fill="none" stroke="var(--ink-faint)" stroke-width="1.3"/>
+      <text x="158" y="255" font-size="11.5" fill="var(--ink)">θ</text>
+      <line x1="52" y1="288" x2="212" y2="288" stroke="var(--ink-soft)" stroke-width="1.4" marker-end="url(#f4-ai)" marker-start="url(#f4-ai2)"/>
+      <text x="132" y="281" font-size="11.5" text-anchor="middle" fill="var(--ink-soft)">r</text>
+
+      <g stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 3">
+        <line x1="540" y1="158" x2="540" y2="49"/>
+        <line x1="540" y1="158" x2="489" y2="158"/>
+        <line x1="540" y1="49" x2="489" y2="49"/>
+        <line x1="489" y1="158" x2="489" y2="49"/>
+      </g>
+      <line x1="540" y1="158" x2="489" y2="49" stroke="var(--v-force)" stroke-width="2.8" marker-end="url(#f4-af)"/>
+      <line x1="540" y1="158" x2="540" y2="267" stroke="var(--v-force)" stroke-width="2.8" marker-end="url(#f4-af)"/>
+      <circle cx="540" cy="158" r="7" fill="var(--ink)"/>
+      <path d="M540,110 A48,48 0 0 0 519.7,114.5" fill="none" stroke="var(--ink-faint)" stroke-width="1.3"/>
+      <text x="523" y="102" font-size="11.5" fill="var(--ink)">θ</text>
+      <text x="482" y="42" font-size="12" text-anchor="end" fill="var(--v-force)">N</text>
+      <text x="548" y="262" font-size="12" fill="var(--v-force)">W = mg</text>
+      <text x="548" y="100" font-size="11.5" fill="var(--ink-faint)">N cos θ</text>
+      <text x="482" y="150" font-size="11.5" text-anchor="end" fill="var(--ink-faint)">N sin θ</text>
+      <line x1="600" y1="300" x2="524" y2="300" stroke="var(--v-accel)" stroke-width="2.4" marker-end="url(#f4-aa)"/>
+      <text x="516" y="304" font-size="11.5" text-anchor="end" fill="var(--v-accel)">a = v²/r</text>
+    </svg>
+    <figcaption>
+      The bank is drawn at about 25° for legibility; real motorway banks are 5–10°. Only two forces act
+      in the frictionless case, and the acceleration is <em>horizontal</em>, not along the road — which
+      is why the axes are horizontal and vertical here even though the surface is tilted. Vertically
+      <span class="fi">N cos θ = mg</span>, so <span class="fi">N = mg/cos θ &gt; mg</span>; the
+      leftover <span class="fi">N sin θ</span> is the entire net force and supplies
+      <span class="fi">mv²/r</span>.
+    </figcaption>
+  </figure>
+
+  <h3>The conical pendulum</h3>
+  <p>
+    A bob on a string of length <span class="fi">L</span> swept round a horizontal circle at
+    half-angle <span class="fi">θ</span> is the same algebra with <span class="fi">T</span> in place of
+    <span class="fi">N</span>: <span class="fi">T cos θ = mg</span> vertically and
+    <span class="fi">T sin θ = mv²/r</span> radially, with
+    <span class="fi">r = L sin θ</span>. Dividing gives
+    <span class="fi">v² = gr tan θ</span>, and substituting for <span class="fi">r</span> and
+    converting to a period gives
+    <span class="fi">T<sub>period</sub> = 2π√(L cos θ / g)</span>. Two features are examinable: the
+    mass cancels, and <span class="fi">θ</span> can approach but never reach 90°, because
+    <span class="fi">T cos θ</span> must always find enough vertical component to hold up the weight.
+  </p>
+
+  <h3>The vertical loop, and the meaning of "minimum speed"</h3>
+  <p>
+    At the top of a vertical circle both the weight and the string tension (or the track’s normal
+    force, for a rider on the <em>inside</em> of a loop) point downward — toward the centre. So
+  </p>
+  <div class="fx"><span class="fx__eq">T + mg = mv²/r &nbsp;⇒&nbsp; T = m(v²/r − g)</span><span class="fx__tag">top of the loop</span></div>
+  <p>
+    A string can only pull and a track can only push, so <span class="fi">T ≥ 0</span> and
+    <span class="fi">N ≥ 0</span>. Setting the limiting value to zero gives
+    <span class="fi">v<sub>min</sub> = √(gr)</span>. Below that speed the required centripetal force is
+    less than the weight gravity is already supplying, so the body leaves the circular path — the
+    string goes slack, the rider falls away from the track. Note the physical meaning: at
+    <span class="fi">v<sub>min</sub></span> gravity alone provides exactly the needed
+    <span class="fi">mv²/r</span>, and the rider is momentarily in free fall.
+  </p>
+  <p>
+    Two important riders. First, this applies to a <em>string or an inner track surface</em>, which can
+    only pull inward or push inward. A rigid rod or a tube can also push <em>outward</em>, so a bead in
+    a tube can go round arbitrarily slowly, even stopping at the top. Second, at the bottom of the loop
+    the two forces oppose: <span class="fi">N − mg = mv²/r</span>, so
+    <span class="fi">N = m(g + v²/r)</span> and the apparent weight is <em>larger</em> than
+    <span class="fi">mg</span>.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 7 · Three circular-motion problems with one method</h4>
+    <p style="margin:.2rem 0 .4rem"><strong>(a) Banked curve.</strong> A bend of radius 80 m is banked
+      at 15°. What is the design speed, and what is the fastest safe speed if
+      <span class="fi">μ<sub>s</sub> = 0.35</span>?
+      <span class="fi">tan 15° = 0.268</span>.</p>
+    <ol>
+      <li><span class="fi">v² = rg tan θ = 80 × 9.8 × 0.268 = 784 × 0.268 = 210</span>, so
+        <span class="fi">v = 14.5 m·s⁻¹ = 52 km·h⁻¹</span>. At exactly this speed no friction at all is
+        needed.</li>
+      <li>With friction available up the slope:
+        <span class="fi">v<sub>max</sub>² = rg(tan θ + μ<sub>s</sub>)/(1 − μ<sub>s</sub>tan θ)
+        = 784 × 0.618/0.906 = 535</span>, so
+        <span class="fi">v<sub>max</sub> = 23.1 m·s⁻¹ = 83 km·h⁻¹</span>. Friction more than doubles the
+        kinetic energy the bend can tolerate.</li>
+    </ol>
+    <p style="margin:.6rem 0 .4rem"><strong>(b) Conical pendulum.</strong> A 0.20 kg bob on a 1.2 m
+      string sweeps a cone of half-angle 30°. Find the tension, the speed and the period.
+      <span class="fi">cos 30° = 0.866</span>, <span class="fi">tan 30° = 0.577</span>.</p>
+    <ol>
+      <li><span class="fi">T = mg/cos θ = (0.20 × 9.8)/0.866 = 1.96/0.866 = 2.26 N</span>.</li>
+      <li><span class="fi">r = L sin θ = 1.2 × 0.500 = 0.60 m</span>, and
+        <span class="fi">v² = gr tan θ = 9.8 × 0.60 × 0.577 = 3.39</span> →
+        <span class="fi">v = 1.84 m·s⁻¹</span>.</li>
+      <li><span class="fi">T<sub>period</sub> = 2π√(L cos θ/g) = 2π√(1.039/9.8) = 2π × 0.326 = 2.05 s</span>.
+        Cross-check: <span class="fi">2πr/v = 2π × 0.60/1.84 = 2.05 s ✓</span>.</li>
+    </ol>
+    <p style="margin:.6rem 0 .4rem"><strong>(c) Vertical loop.</strong> A ball on a string is whirled in
+      a vertical circle of radius 5.0 m. Find the minimum speed at the top, and the tension at the
+      bottom if the ball only just makes it round (ignore air resistance).</p>
+    <ol>
+      <li><span class="fi">v<sub>top</sub> = √(gr) = √(9.8 × 5.0) = √49 = 7.0 m·s⁻¹</span>.</li>
+      <li>Energy from top to bottom, falling a height <span class="fi">2r = 10 m</span>:
+        <span class="fi">v<sub>bot</sub>² = v<sub>top</sub>² + 2g(2r) = 49 + 196 = 245 m²·s⁻²</span>.</li>
+      <li>At the bottom: <span class="fi">T − mg = mv<sub>bot</sub>²/r</span> →
+        <span class="fi">T = m(9.8 + 245/5.0) = m(9.8 + 49) = 58.8m = 6.0 mg</span>.</li>
+    </ol>
+    <p style="margin:.6rem 0 0;font-size:.92rem">That last result is worth remembering: a
+      <em>minimum-speed</em> vertical loop produces exactly <strong>6 g</strong> at the bottom,
+      independent of the radius and the mass. It is why loop-the-loop rollercoasters are built as
+      teardrop shapes (a smaller radius at the top) rather than circles — a circular loop fast enough
+      to be safe at the top is punishing at the bottom, and sustained +6 G<sub>z</sub> pushes a rider
+      toward greyout and loss of cerebral perfusion.</p>
+    <span class="wex__ans">(a) 14.5 → 23.1 m·s⁻¹ · (b) T = 2.3 N, v = 1.8 m·s⁻¹, period 2.0 s · (c) 7.0 m·s⁻¹, T = 6mg</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · never draw <span class="fi">mv²/r</span> on the diagram</p>
+    <p style="margin:0"><span class="fi">mv²/r</span> belongs on the <em>right-hand side</em> of
+      <span class="fi">ΣF = ma</span>. Adding it as an arrow among the forces counts the same physics
+      twice and usually produces the wrong sign as well. Ask instead: <em>which real body is pushing
+      or pulling this one toward the centre?</em> If you cannot name it, the object is not going in a
+      circle.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the top of the loop, in one line</p>
+    <p style="margin:0">At the top, both forces point <em>down</em> because down <em>is</em> toward the
+      centre: <span class="fi">N + mg = mv²/r</span>. Setting <span class="fi">N = 0</span> gives
+      <span class="fi">v<sub>min</sub> = √(gr)</span>. The common wrong answer is
+      <span class="fi">√(2gr)</span>, which comes from an energy argument through a height
+      <span class="fi">r</span> and answers a different question entirely.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Non-inertial frames and pseudo-forces</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Non-inertial frame</dt>
+      <dd>A reference frame that is itself accelerating (linearly or rotationally) with respect to an
+        inertial frame. In it, a body with no forces on it appears to accelerate.</dd>
+      <dt>Pseudo-force (inertial force, fictitious force)</dt>
+      <dd>The term <span class="fi">−m<b>A</b></span> that must be added to the real forces to make
+        <span class="fi">Σ<b>F</b> = m<b>a</b>′</span> come out right in an accelerating frame. It is a
+        correction for the frame’s own acceleration, not an interaction between bodies.</dd>
+      <dt>Centrifugal force</dt>
+      <dd>The pseudo-force appearing in a <em>rotating</em> frame, directed radially outward, of
+        magnitude <span class="fi">mω²r</span>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Σ<b>F</b><sub>real</sub> + (−m<b>A</b>) = m<b>a</b>′</span>
+      <span class="fx__tag">frame accelerating with <b>A</b>; <b>a</b>′ is measured in that frame</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">F<sub>cf</sub> = mω²r = mv²/r, outward</span><span class="fx__tag">rotating frame only</span></div>
+      <div class="fx"><span class="fx__eq"><b>F</b><sub>Cor</sub> = −2m<b>ω</b> × <b>v</b>′</span><span class="fx__tag">rotating frame, body moving within it</span></div>
+      <div class="fx"><span class="fx__eq">g<sub>eff</sub> = g + A</span><span class="fx__tag">frame accelerating <em>upward</em> with A (as vectors, <b>g</b><sub>eff</sub> = <b>g</b> − <b>A</b>); the "apparent gravity" inside</span></div>
+      <div class="fx"><span class="fx__eq">RCF = ω²r / g</span><span class="fx__tag">centrifuge, expressed as a multiple of g</span></div>
+    </div>
+    <div class="symtab">
+      <div><b><b>A</b></b><span>acceleration of the frame relative to an inertial frame (m·s⁻²)</span></div>
+      <div><b><b>a</b>′</b><span>acceleration of the body as measured in the frame (m·s⁻²)</span></div>
+      <div><b>ω</b><span>angular speed of the rotating frame (rad·s⁻¹)</span></div>
+      <div><b>r</b><span>distance from the rotation axis (m)</span></div>
+      <div><b>RCF</b><span>relative centrifugal field, a pure number (× g)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Everything so far has been written in a frame fixed to the ground, which we argued in § 1 is
+    inertial to about 0.35 %. Sometimes it is far more convenient to work in a frame that is
+    accelerating — inside the lift, inside the turning car, inside the centrifuge rotor — because in
+    that frame the object of interest is at rest. The price of that convenience is that
+    <span class="fi">Σ<b>F</b> = m<b>a</b></span> stops being true, and you have to buy it back by
+    adding a term.
+  </p>
+  <p>
+    The rule is short. If the frame accelerates with <b>A</b>, then for <em>every</em> body of mass
+    <span class="fi">m</span> in that frame you add a pseudo-force
+    <span class="fi">−m<b>A</b></span>, and then proceed exactly as usual. Nothing else changes.
+  </p>
+
+  <h3>The lift, done again from inside</h3>
+  <p>
+    Take worked example 1 again, but stand in the lift. The lift accelerates upward with
+    <span class="fi">A = +2.0 m·s⁻²</span>, so we add a downward pseudo-force of magnitude
+    <span class="fi">mA</span> to the person. In the lift frame they are at rest, so
+    <span class="fi">a′ = 0</span>:
+  </p>
+  <div class="fx"><span class="fx__eq">N − mg − mA = 0 ⇒ N = m(g + A) = 70 × 11.8 = 826 N</span><span class="fx__tag">identical to the ground-frame answer, as it must be</span></div>
+  <p>
+    The two frames must agree, because <span class="fi">N</span> is a physical reading on a physical
+    scale. What the pseudo-force buys is a change of viewpoint: inside the lift it feels exactly as if
+    gravity had strengthened to <span class="fi">g<sub>eff</sub> = 11.8 m·s⁻²</span>. That is a genuine
+    and useful equivalence — plumb lines hang along <span class="fi">g<sub>eff</sub></span>, water
+    surfaces lie perpendicular to it, and pendulums swing through small angles with period
+    <span class="fi">2π√(L/g<sub>eff</sub>)</span>.
+  </p>
+  <p>
+    Push the idea to the limit: in free fall <span class="fi">A = −g</span>, so the pseudo-force is
+    <span class="fi">+mg</span> upward and cancels the weight <em>exactly</em>, for every body,
+    regardless of mass. That exact cancellation is possible only because gravitational force is
+    proportional to the same mass that appears in <span class="fi">m<b>a</b></span>. It is the
+    observation Einstein elevated to the equivalence principle, and it is why "zero gravity" in orbit
+    is really "free fall with a good view".
+  </p>
+
+  <h3>Why the centrifugal force is bookkeeping, not an interaction</h3>
+  <p>
+    Sit in a car taking a left-hand bend and you are thrown against the right-hand door. It is
+    tempting to say an outward force pushed you. In the ground frame there is no such force. What
+    happens is: your body tends to continue in a straight line (first law), the car curves left into
+    you, and <strong>the door pushes you inward</strong> — that inward push is the only horizontal
+    force on you, and it supplies your <span class="fi">mv²/r</span>. The sensation of being thrown
+    outward is the sensation of your own inertia being overcome.
+  </p>
+  <p>
+    In the car’s rotating frame you are motionless, which requires the forces to balance, so we add
+    an outward <span class="fi">mω²r</span> to cancel the door’s inward push. That term is a
+    bookkeeping entry that restores the form of the second law in a frame where it does not naturally
+    hold. Test it against the criteria for a real force:
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Criterion</th><th>Real force (e.g. the door’s normal push)</th><th>Pseudo-force (centrifugal, Coriolis)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Has an identifiable source body</td><td>Yes — the door</td><td><b>No</b> — nothing is exerting it</td></tr>
+        <tr><td>Has a third-law partner</td><td>Yes — you push the door outward</td><td><b>No</b> — nothing receives the reaction</td></tr>
+        <tr><td>Same in every frame</td><td>Yes</td><td><b>No</b> — vanishes in an inertial frame</td></tr>
+        <tr><td>Proportional to mass</td><td>Not generally</td><td>Always, exactly like gravity</td></tr>
+        <tr><td>Obeys a force law</td><td>Yes (contact, gravitation, …)</td><td>Defined entirely by the frame’s motion</td></tr>
+        <tr><td>May appear on a ground-frame FBD</td><td>Yes</td><td><b>Never</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · centripetal and centrifugal are not a third-law pair</p>
+    <p style="margin:0">They are the <em>same</em> physics described in two different frames, and they
+      must never appear together. Choose one: either work in the ground frame, where the net inward
+      force equals <span class="fi">mv²/r</span> and there is no centrifugal force at all; or work in
+      the rotating frame, where the body is in equilibrium because the real inward force is balanced
+      by the outward pseudo-force. Writing "the centripetal force balances the centrifugal force" is
+      the single most common conceptual error in this whole topic — if they balanced, the object would
+      travel in a straight line.</p>
+  </div>
+
+  <h3>The centrifuge: a machine built out of a pseudo-force</h3>
+  <p>
+    Inside the rotor, the pseudo-force per unit mass is <span class="fi">ω²r</span>, which plays
+    exactly the role of <span class="fi">g</span> — it drives sedimentation in the same way gravity
+    does, only thousands of times harder. Laboratory practice quotes it as the <strong>relative
+    centrifugal field</strong>, <span class="fi">RCF = ω²r/g</span>, in multiples of
+    <span class="fi">g</span>, precisely because the rate law is the Stokes result from § 9 with
+    <span class="fi">g</span> replaced by <span class="fi">ω²r</span>.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 8 · Relative centrifugal field</h4>
+    <p style="margin:.2rem 0 .4rem">(a) A benchtop centrifuge spins at 3000 rpm with a rotor radius of
+      0.10 m. What is the RCF? (b) A high-speed rotor protocol calls for 15 000 × g at a radius of
+      0.080 m. What rotor speed is needed?</p>
+    <ol>
+      <li><strong>Convert rpm to rad·s⁻¹:</strong>
+        <span class="fi">ω = 3000 × 2π/60 = 100π = 314 rad·s⁻¹</span>. (Forgetting this conversion is
+        the classic error; degrees and revolutions have no place in
+        <span class="fi">a = ω²r</span>.)</li>
+      <li><strong>Centripetal acceleration:</strong>
+        <span class="fi">ω²r = (314)² × 0.10 = 9.87×10⁴ × 0.10 = 9.87×10³ m·s⁻²</span>.</li>
+      <li><strong>Divide by g:</strong>
+        <span class="fi">RCF = 9.87×10³ / 9.8 ≈ 1.0×10³</span> — a field of about 1000 g, enough to
+        pack red cells in a few minutes.</li>
+      <li><strong>(b) Invert:</strong>
+        <span class="fi">ω = √(RCF × g / r) = √(15 000 × 9.8 / 0.080) = √(1.84×10⁶) = 1.36×10³ rad·s⁻¹</span>.</li>
+      <li><strong>Back to rpm:</strong>
+        <span class="fi">1355 × 60/(2π) ≈ 1.3×10⁴ rpm</span>.</li>
+    </ol>
+    <p style="margin:.6rem 0 0;font-size:.92rem">Note the strong dependence on speed:
+      <span class="fi">RCF ∝ ω²</span>, so doubling the rpm quadruples the field. This is why
+      protocols always specify × g rather than rpm — the same rpm in a rotor of different radius gives
+      a different field.</p>
+    <span class="wex__ans">(a) ≈ 1.0×10³ × g · (b) ≈ 1.3×10⁴ rpm</span>
+  </div>
+
+  <h3>The Earth, honestly</h3>
+  <p>
+    The ground beneath you is a rotating frame, so a strictly correct ground-frame analysis carries
+    two pseudo-forces. The centrifugal one contributes
+    <span class="fi">ω²R = 0.034 m·s⁻²</span> outward at the equator, which is why measured
+    <span class="fi">g</span> is about 9.780 m·s⁻² at the equator against 9.832 m·s⁻² at the poles
+    (the remainder of that difference comes from the equatorial bulge). Because the centrifugal term
+    is simply folded into the measured value of <span class="fi">g</span>, it never has to be written
+    down separately, which is exactly why we could ignore it for ten sections.
+  </p>
+  <p>
+    The Coriolis term <span class="fi">−2m<b>ω</b> × <b>v</b>′</span> cannot be absorbed that way,
+    because it depends on the body’s velocity. It is negligible on the scale of a laboratory but it
+    dominates on the scale of the atmosphere, deflecting winds to the right in the northern hemisphere
+    and producing the rotation of cyclones. It does <em>not</em> determine which way your sink drains
+    — that is set by the basin’s shape and residual swirl, which are orders of magnitude larger.
+  </p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · decide the frame before you draw</p>
+    <p style="margin:0">Write at the top of the diagram which frame you are in, and stay in it.
+      <strong>Ground frame:</strong> real forces only, and the acceleration is
+      <span class="fi">v²/r</span> or <span class="fi">a<sub>lift</sub></span>.
+      <strong>Accelerating frame:</strong> real forces plus <span class="fi">−m<b>A</b></span>, and
+      the body of interest is usually at rest. Both give identical, correct answers. Mixing them
+      gives an answer that is wrong by a factor of two or by a sign, which is precisely what the
+      distractors are built from.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>The whole note in one sentence</h4>
+    <p>Pick one body, list only the forces other bodies exert on it, point an axis along the
+      acceleration, and set the sum equal to <span class="fi">m<b>a</b></span> — <em>N</em> and
+      <em>f<sub>s</sub></em> are whatever the constraints demand, everything else you look up.</p>
+  </div>
+</section>
+
+<!-- =========================== Self-test =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>
+    Answer before reading the explanation, and when you miss one, go back to the section rather than
+    memorising the letter. Almost every wrong option below is a real student error with a name:
+    treating <span class="fi">N</span> as the reaction to weight, using
+    <span class="fi">f = μ<sub>s</sub>N</span> when nothing is slipping, assuming
+    <span class="fi">N = mg</span>, or putting a centrifugal force on a ground-frame diagram.
+  </p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-01-kinematics.html"><small>Previous</small><b>← Kinematics: Motion in One and Two Dimensions</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-03-work-energy.html"><small>Next</small><b>Work, Energy and Power →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 02 · Newton’s Laws, Forces and Friction</p>
+    <p>Vectors are set in bold and every problem is solved by free-body diagram plus component
+       resolution; numerical values are standard textbook approximations (g = 9.8 m·s⁻²) chosen for
+       magnitude and teaching clarity rather than precise citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A book lies at rest on a table. Which force is the Newton's-third-law partner of the gravitational force the Earth exerts on the book?",
+    "options": [
+      "The normal force the table exerts on the book.",
+      "The force the book exerts downward on the table.",
+      "The gravitational force the book exerts on the Earth.",
+      "The weight of the table."
+    ],
+    "answer": 2,
+    "explain": "A third-law pair is <b>one interaction seen from both bodies</b>: gravity Earth→book pairs with gravity book→Earth — same magnitude, opposite direction, acting on <b>different</b> bodies. Option A fails two independent tests: the normal force acts on the <b>same</b> body as the weight, and it is a contact (electromagnetic) force rather than gravity. N happens to equal mg here only because the book's vertical acceleration is zero; tilt the table or put it in a lift and the equality breaks, whereas a genuine third-law pair is equal under all circumstances."
+  },
+  {
+    "stem": "Why is Newton's first law not simply the special case Σ<b>F</b> = 0 of the second law?",
+    "options": [
+      "Because the first law applies only to bodies at rest, while the second applies to moving bodies.",
+      "Because it is an existence claim: it asserts that inertial frames exist, and the second law is valid only in them.",
+      "Because the first law is about momentum whereas the second is about force.",
+      "Because the first law fails for bodies of very large mass."
+    ],
+    "answer": 1,
+    "explain": "Read purely as algebra, “ΣF = 0 ⇒ a = 0” really is a trivial corollary. Its actual content is the <b>specification of the arena</b>: there exists a class of frames in which a body free of interactions is unaccelerated, and only there does Σ<b>F</b> = m<b>a</b> hold. Without it you could explain away any acceleration by inventing a force, making the second law unfalsifiable. Option A is wrong because the first law covers constant velocity, not just rest."
+  },
+  {
+    "stem": "A 10 kg box sits on a horizontal floor with μ<sub>s</sub> = 0.40 and μ<sub>k</sub> = 0.30. You push horizontally with 20 N and the box does not move. What is the friction force on the box? (g = 9.8 m·s⁻²)",
+    "options": ["39 N", "29 N", "0 N", "20 N"],
+    "answer": 3,
+    "explain": "Static friction is a <b>constraint force</b>: it takes exactly the value needed to keep ΣF = 0, so f<sub>s</sub> = 20 N. The ceiling μ<sub>s</sub>N = 0.40 × 98 = 39.2 N is only the maximum it <i>could</i> supply. Option A is the classic error of substituting into f = μ<sub>s</sub>N when the body is nowhere near slipping; option B uses μ<sub>k</sub>N, which applies only once sliding has actually started."
+  },
+  {
+    "stem": "A 12 kg crate rests on a floor with μ<sub>s</sub> = 0.50 and μ<sub>k</sub> = 0.35. A 60 N force is applied at 20° <b>below</b> the horizontal. What happens? (g = 9.8 m·s⁻², sin 20° = 0.342, cos 20° = 0.940)",
+    "options": [
+      "It stays at rest, and the friction force on it is 69 N.",
+      "It accelerates at about 1.9 m·s⁻².",
+      "It stays at rest, and the friction force on it is 56 N.",
+      "It accelerates at about 4.7 m·s⁻²."
+    ],
+    "answer": 2,
+    "explain": "Pushing downward at an angle <b>increases</b> the normal force: N = mg + F sin20° = 117.6 + 20.5 = 138.1 N, so the ceiling is f<sub>s,max</sub> = 0.50 × 138.1 = 69.1 N. The driving component is F cos20° = 56.4 N, which is below the ceiling, so the crate stays put and static friction matches it exactly at 56 N. Option A mistakes the ceiling for the actual value; option B is what you get if you <b>pull</b> at 20° above the horizontal, which lowers N to 97 N and does start the crate moving."
+  },
+  {
+    "stem": "A 4.0 kg block is released from rest on a 30° incline with μ<sub>k</sub> = 0.30. Its acceleration down the slope is closest to: (g = 9.8 m·s⁻², cos 30° = 0.866)",
+    "options": ["4.9 m·s⁻²", "2.0 m·s⁻²", "2.4 m·s⁻²", "7.0 m·s⁻²"],
+    "answer": 2,
+    "explain": "a = g(sin θ − μ<sub>k</sub> cos θ) = 9.8(0.500 − 0.300 × 0.866) = 9.8 × 0.240 = 2.4 m·s⁻². Option A is the frictionless value g sin θ; option B comes from using N = mg instead of N = mg cos θ; option D swaps the sine and the cosine. Note that the mass cancels entirely — a heavier block of the same material slides down at exactly the same rate."
+  },
+  {
+    "stem": "An ideal Atwood machine carries 3.0 kg on one side and 5.0 kg on the other. What is the tension in the string? (g = 9.8 m·s⁻²)",
+    "options": ["36.8 N", "29.4 N", "39.2 N", "49.0 N"],
+    "answer": 0,
+    "explain": "T = 2m₁m₂g/(m₁+m₂) = 2(3.0)(5.0)(9.8)/8.0 = 36.8 N. Check from either block: with a = (2.0 × 9.8)/8.0 = 2.45 m·s⁻², the rising 3.0 kg gives T = m₁(g + a) = 3.0 × 12.25 = 36.8 N. Option D is the hanging weight of the heavier block, which would only be the tension if the system were <b>not</b> accelerating; the true tension always lies strictly between the two weights, 29.4 N and 49.0 N."
+  },
+  {
+    "stem": "A 60 kg person stands on a bathroom scale in a lift. The scale reads 480 N. The lift is: (g = 9.8 m·s⁻²)",
+    "options": [
+      "accelerating upward at 1.8 m·s⁻²",
+      "in free fall",
+      "moving downward at a constant 1.8 m·s⁻¹",
+      "accelerating downward at 1.8 m·s⁻²"
+    ],
+    "answer": 3,
+    "explain": "The scale reads the normal force, so with up positive N = m(g + a<sub>y</sub>): 480 = 60(9.8 + a<sub>y</sub>) gives a<sub>y</sub> = 8.0 − 9.8 = −1.8 m·s⁻², i.e. 1.8 m·s⁻² <b>downward</b>. Option C is the classic velocity/acceleration confusion — at any constant velocity, up or down, the scale would read the full 588 N. Free fall (option B) would give a reading of exactly zero."
+  },
+  {
+    "stem": "A skydiver in a stable spread-eagle position reaches a terminal speed of 55 m·s⁻¹. She pulls into a head-down dive that halves her effective frontal area, with the drag coefficient unchanged. Her new terminal speed is closest to:",
+    "options": ["78 m·s⁻¹", "39 m·s⁻¹", "55 m·s⁻¹", "110 m·s⁻¹"],
+    "answer": 0,
+    "explain": "In the quadratic-drag regime v<sub>t</sub> = √(2mg/ρC<sub>d</sub>A), so v<sub>t</sub> ∝ A<sup>−1/2</sup>. Halving A multiplies the terminal speed by √2: 55 × 1.41 ≈ 78 m·s⁻¹. Option D assumes v<sub>t</sub> ∝ 1/A, the usual mistake of forgetting that drag grows as v² rather than v; option B applies the √2 factor the wrong way round."
+  },
+  {
+    "stem": "A car rounds a <b>frictionless</b> banked curve at exactly the design speed. Which statement is correct?",
+    "options": [
+      "N = mg, and friction supplies the centripetal force.",
+      "N = mg cos θ, and gravity supplies the centripetal force.",
+      "The centrifugal force balances the horizontal component of N, so the net force on the car is zero.",
+      "N = mg/cos θ, and the horizontal component of N supplies the centripetal force."
+    ],
+    "answer": 3,
+    "explain": "There is no vertical acceleration, so N cos θ = mg and N = mg/cos θ, which is <b>larger</b> than mg. The leftover horizontal component N sin θ is then the only unbalanced force and it supplies mv²/r. Option B copies the incline result N = mg cos θ, which applies when the acceleration is <b>along</b> the surface, not horizontal. Option C is the pseudo-force trap: in the ground frame there is no centrifugal force, and the net force is certainly not zero — the car is accelerating toward the centre."
+  },
+  {
+    "stem": "A ball on a light string is whirled in a vertical circle of radius 2.5 m. What is the minimum speed it can have at the top and still keep the string taut? (g = 9.8 m·s⁻²)",
+    "options": ["3.5 m·s⁻¹", "4.9 m·s⁻¹", "7.0 m·s⁻¹", "9.8 m·s⁻¹"],
+    "answer": 1,
+    "explain": "At the top, both the tension and the weight point toward the centre: T + mg = mv²/r. A string can only pull, so T ≥ 0, and the limiting case T = 0 gives v<sub>min</sub> = √(gr) = √(9.8 × 2.5) = √24.5 = 4.9 m·s⁻¹. Option C is √(2gr), which answers a different question — the speed gained falling through a height r — and is the most common wrong answer. Note the mass cancels, so the result is the same for any ball."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

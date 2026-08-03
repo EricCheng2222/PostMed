@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 08 · Waves and Sound — PostMed Notebook</title>
+<meta name="description" content="Physics note 08: wave anatomy, v = fλ and boundary crossing, wave speed in strings and fluids, intensity and decibels, interference, standing waves, pipes, beats, Doppler and medical ultrasound — with a 10-question self-test.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 08</p>
+  <h1>Waves and Sound</h1>
+  <p class="lede">
+    One idea carries this entire chapter: <strong>the medium sets the speed, the source sets the
+    frequency, and the wavelength is whatever those two force it to be.</strong> Every result below —
+    why λ changes at a boundary but f does not, why a closed pipe drops an octave, why beats and the
+    Doppler shift look so similar yet come from opposite causes, why a 12 MHz probe cannot see a
+    kidney — is that one sentence applied under different constraints.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Wave functions, standing-wave diagrams &amp; decibel arithmetic</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~35 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">What a wave is, and what actually travels</a></li>
+      <li><a href="#s2">The vocabulary and the travelling-wave function</a></li>
+      <li><a href="#s3">v = fλ: who sets what</a></li>
+      <li><a href="#s4">Wave speed comes from the medium</a></li>
+      <li><a href="#s5">Energy, intensity and the inverse-square law</a></li>
+      <li><a href="#s6">Superposition and interference</a></li>
+      <li><a href="#s7">Reflection and standing waves on a string</a></li>
+      <li><a href="#s8">Air columns: open-open vs open-closed</a></li>
+      <li><a href="#s9">Sound as a pressure wave; the decibel</a></li>
+      <li><a href="#s10">Beats, Doppler and the sonic boom</a></li>
+      <li><a href="#s11">Medical ultrasound</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Wave relation</b><code>v = f λ = λ / T</code></div>
+      <div class="fsheet__item"><b>Wave number</b><code>k = 2π / λ</code></div>
+      <div class="fsheet__item"><b>Angular frequency</b><code>ω = 2πf = 2π / T</code></div>
+      <div class="fsheet__item"><b>Travelling wave</b><code>y = A sin(kx − ωt + φ)</code></div>
+      <div class="fsheet__item"><b>Phase speed</b><code>v = ω / k</code></div>
+      <div class="fsheet__item"><b>Max particle speed</b><code>v<sub>y,max</sub> = ωA</code></div>
+      <div class="fsheet__item"><b>Speed on a string</b><code>v = √(F<sub>T</sub> / μ)</code></div>
+      <div class="fsheet__item"><b>Speed in a fluid</b><code>v = √(B / ρ)</code></div>
+      <div class="fsheet__item"><b>Speed in a solid rod</b><code>v = √(Y / ρ)</code></div>
+      <div class="fsheet__item"><b>Speed in air</b><code>v ≈ 331 + 0.60 T<sub>C</sub></code></div>
+      <div class="fsheet__item"><b>Speed in an ideal gas</b><code>v = √(γRT / M)</code></div>
+      <div class="fsheet__item"><b>Power on a string</b><code>P = ½ μ v ω² A²</code></div>
+      <div class="fsheet__item"><b>Intensity</b><code>I = P / A<sub>area</sub></code></div>
+      <div class="fsheet__item"><b>Point source</b><code>I = P / (4πr²)</code></div>
+      <div class="fsheet__item"><b>Inverse square</b><code>I₁r₁² = I₂r₂²</code></div>
+      <div class="fsheet__item"><b>Intensity vs amplitude</b><code>I = 2π²ρv f²A² ∝ A²f²</code></div>
+      <div class="fsheet__item"><b>Constructive</b><code>Δr = n λ</code></div>
+      <div class="fsheet__item"><b>Destructive</b><code>Δr = (n + ½) λ</code></div>
+      <div class="fsheet__item"><b>Phase from path</b><code>Δφ = 2π Δr / λ</code></div>
+      <div class="fsheet__item"><b>String harmonics</b><code>f<sub>n</sub> = n v / 2L, n = 1,2,3…</code></div>
+      <div class="fsheet__item"><b>Open-open pipe</b><code>f<sub>n</sub> = n v / 2L, n = 1,2,3…</code></div>
+      <div class="fsheet__item"><b>Open-closed pipe</b><code>f<sub>n</sub> = n v / 4L, n = 1,3,5…</code></div>
+      <div class="fsheet__item"><b>Node spacing</b><code>Δx = λ / 2</code></div>
+      <div class="fsheet__item"><b>Sound level</b><code>β = 10 log₁₀(I / I₀)</code></div>
+      <div class="fsheet__item"><b>Reference intensity</b><code>I₀ = 1.0×10⁻¹² W·m⁻²</code></div>
+      <div class="fsheet__item"><b>N equal sources</b><code>β<sub>N</sub> = β₁ + 10 log₁₀ N</code></div>
+      <div class="fsheet__item"><b>Pressure amplitude</b><code>Δp<sub>max</sub> = ρ v ω s<sub>max</sub></code></div>
+      <div class="fsheet__item"><b>Beats</b><code>f<sub>beat</sub> = |f₁ − f₂|</code></div>
+      <div class="fsheet__item"><b>Doppler</b><code>f′ = f (v + v<sub>O</sub>) / (v − v<sub>S</sub>)</code></div>
+      <div class="fsheet__item"><b>Mach cone</b><code>sin θ = v / v<sub>S</sub></code></div>
+      <div class="fsheet__item"><b>Echo depth</b><code>d = c t / 2</code></div>
+      <div class="fsheet__item"><b>Doppler echo shift</b><code>Δf = 2 f₀ v cos θ / c</code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>What a wave is, and what actually travels</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Mechanical wave</dt>
+      <dd>A self-propagating disturbance of a medium that carries energy and momentum through the
+        medium while each piece of the medium only oscillates about its own equilibrium position.</dd>
+      <dt>Transverse wave</dt>
+      <dd>A wave in which the displacement of the medium is perpendicular to the direction the wave
+        travels.</dd>
+      <dt>Longitudinal wave</dt>
+      <dd>A wave in which the displacement of the medium is parallel to the direction the wave
+        travels — a moving pattern of compressions and rarefactions.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">y(x, t) = f(x − vt)</span>
+      <span class="fx__tag">any shape that keeps its form and slides at speed v in +x</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">y(x, t) = f(x + vt)</span><span class="fx__tag">same shape travelling in −x</span></div>
+      <div class="fx"><span class="fx__eq">v = √(restoring stiffness / inertia)</span><span class="fx__tag">the shape of every mechanical wave-speed formula</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>y</b><span>displacement of the medium from equilibrium (m)</span></div>
+      <div><b>x</b><span>position along the direction of travel (m)</span></div>
+      <div><b>t</b><span>time (s)</span></div>
+      <div><b>v</b><span>wave (phase) speed — speed of the pattern, not of the matter (m·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Start with the negative statement, because it is where marks are lost: <strong>a wave does not
+    transport matter</strong>. When you speak, no air molecule from your larynx reaches the listener.
+    Each molecule jiggles a fraction of a micrometre about a fixed point and hands the disturbance on.
+    What crosses the room is <strong>energy and phase</strong> — the "where in the cycle we are"
+    information — at a speed set entirely by the air.
+  </p>
+  <p>
+    The reason <span class="fi">f(x − vt)</span> is the definition of "a wave" is worth one line of
+    thought. Ask where the pattern has a particular value: it is wherever the argument
+    <span class="fi">x − vt</span> is constant, i.e. wherever <span class="fi">x = vt + const</span>.
+    That point moves at speed <span class="fi">v</span>. So <em>any</em> function of the combination
+    <span class="fi">(x − vt)</span> is automatically a rigid shape gliding right at <span class="fi">v</span>.
+    The sine wave of the next section is just the most useful special case.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 310" role="img"
+         aria-label="Top panel: a sine curve travelling to the right with a vertical double arrow at a crest showing that particles move perpendicular to the direction of travel, and a bracket marking one wavelength. Bottom panel: a row of vertical ticks with alternating dense and sparse regions labelled compression and rarefaction, with a horizontal double arrow showing that particles move parallel to the direction of travel.">
+      <defs>
+        <marker id="w8-arrV" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--v-vel)"/>
+        </marker>
+        <marker id="w8-arrF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--v-force)"/>
+        </marker>
+      </defs>
+
+      <text x="24" y="24" font-size="13" font-weight="700" fill="var(--ink)">① TRANSVERSE — displacement ⟂ direction of travel</text>
+      <g stroke="var(--v-vel)" stroke-width="2" marker-end="url(#w8-arrV)" fill="none">
+        <line x1="470" y1="46" x2="596" y2="46"/>
+      </g>
+      <text x="533" y="38" text-anchor="middle" font-size="11" fill="var(--v-vel)">wave travels</text>
+
+      <line x1="60" y1="100" x2="600" y2="100" stroke="var(--line)" stroke-width="1" stroke-dasharray="5 5"/>
+      <path d="M 70 100 C 91.7 54.7 113.3 54.7 135 100 C 156.7 145.3 178.3 145.3 200 100 C 221.7 54.7 243.3 54.7 265 100 C 286.7 145.3 308.3 145.3 330 100 C 351.7 54.7 373.3 54.7 395 100 C 416.7 145.3 438.3 145.3 460 100 C 481.7 54.7 503.3 54.7 525 100 C 546.7 145.3 568.3 145.3 590 100"
+            fill="none" stroke="var(--v-vel)" stroke-width="2.5"/>
+
+      <g stroke="var(--v-force)" stroke-width="2" marker-start="url(#w8-arrF)" marker-end="url(#w8-arrF)">
+        <line x1="102.5" y1="58" x2="102.5" y2="142"/>
+      </g>
+      <circle cx="102.5" cy="66" r="4.5" fill="var(--v-force)"/>
+      <text x="102.5" y="162" text-anchor="middle" font-size="10.5" fill="var(--v-force)">particle motion</text>
+
+      <g stroke="var(--ink-faint)" stroke-width="1.2">
+        <line x1="167.5" y1="158" x2="297.5" y2="158"/>
+        <line x1="167.5" y1="152" x2="167.5" y2="164"/>
+        <line x1="297.5" y1="152" x2="297.5" y2="164"/>
+      </g>
+      <text x="232.5" y="150" text-anchor="middle" font-size="12" font-family="var(--mono)" fill="var(--ink-faint)">λ</text>
+
+      <text x="24" y="198" font-size="13" font-weight="700" fill="var(--ink)">② LONGITUDINAL — displacement ∥ direction of travel</text>
+      <g stroke="var(--v-vel)" stroke-width="2" marker-end="url(#w8-arrV)" fill="none">
+        <line x1="470" y1="196" x2="596" y2="196"/>
+      </g>
+
+      <g stroke="var(--ink-soft)" stroke-width="1.6">
+        <line x1="70.0"  y1="214" x2="70.0"  y2="270"/><line x1="88.9"  y1="214" x2="88.9"  y2="270"/>
+        <line x1="105.5" y1="214" x2="105.5" y2="270"/><line x1="118.5" y1="214" x2="118.5" y2="270"/>
+        <line x1="127.9" y1="214" x2="127.9" y2="270"/><line x1="135.0" y1="214" x2="135.0" y2="270"/>
+        <line x1="142.1" y1="214" x2="142.1" y2="270"/><line x1="151.5" y1="214" x2="151.5" y2="270"/>
+        <line x1="164.5" y1="214" x2="164.5" y2="270"/><line x1="181.1" y1="214" x2="181.1" y2="270"/>
+        <line x1="200.0" y1="214" x2="200.0" y2="270"/><line x1="218.9" y1="214" x2="218.9" y2="270"/>
+        <line x1="235.5" y1="214" x2="235.5" y2="270"/><line x1="248.5" y1="214" x2="248.5" y2="270"/>
+        <line x1="257.9" y1="214" x2="257.9" y2="270"/><line x1="265.0" y1="214" x2="265.0" y2="270"/>
+        <line x1="272.1" y1="214" x2="272.1" y2="270"/><line x1="281.5" y1="214" x2="281.5" y2="270"/>
+        <line x1="294.5" y1="214" x2="294.5" y2="270"/><line x1="311.1" y1="214" x2="311.1" y2="270"/>
+        <line x1="330.0" y1="214" x2="330.0" y2="270"/><line x1="348.9" y1="214" x2="348.9" y2="270"/>
+        <line x1="365.5" y1="214" x2="365.5" y2="270"/><line x1="378.5" y1="214" x2="378.5" y2="270"/>
+        <line x1="387.9" y1="214" x2="387.9" y2="270"/><line x1="395.0" y1="214" x2="395.0" y2="270"/>
+        <line x1="402.1" y1="214" x2="402.1" y2="270"/><line x1="411.5" y1="214" x2="411.5" y2="270"/>
+        <line x1="424.5" y1="214" x2="424.5" y2="270"/><line x1="441.1" y1="214" x2="441.1" y2="270"/>
+        <line x1="460.0" y1="214" x2="460.0" y2="270"/><line x1="478.9" y1="214" x2="478.9" y2="270"/>
+        <line x1="495.5" y1="214" x2="495.5" y2="270"/><line x1="508.5" y1="214" x2="508.5" y2="270"/>
+        <line x1="517.9" y1="214" x2="517.9" y2="270"/><line x1="525.0" y1="214" x2="525.0" y2="270"/>
+        <line x1="532.1" y1="214" x2="532.1" y2="270"/><line x1="541.5" y1="214" x2="541.5" y2="270"/>
+        <line x1="554.5" y1="214" x2="554.5" y2="270"/><line x1="571.1" y1="214" x2="571.1" y2="270"/>
+        <line x1="590.0" y1="214" x2="590.0" y2="270"/>
+      </g>
+
+      <g stroke="var(--ink-faint)" stroke-width="1">
+        <line x1="265" y1="272" x2="265" y2="280"/>
+        <line x1="460" y1="272" x2="460" y2="280"/>
+      </g>
+      <text x="265" y="293" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">compression</text>
+      <text x="460" y="293" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">rarefaction</text>
+
+      <g stroke="var(--v-force)" stroke-width="2" marker-start="url(#w8-arrF)" marker-end="url(#w8-arrF)">
+        <line x1="72" y1="285" x2="128" y2="285"/>
+      </g>
+      <text x="100" y="303" text-anchor="middle" font-size="10.5" fill="var(--v-force)">particle motion</text>
+    </svg>
+    <figcaption>
+      Both panels show the <em>same</em> physics: a disturbance sliding right while the medium goes
+      nowhere. The only difference is the direction of the local displacement (red). In the
+      longitudinal panel the ticks are equally spaced at equilibrium; the wave has shifted each one
+      slightly, crowding them into compressions and thinning them into rarefactions.
+    </figcaption>
+  </figure>
+
+  <p>
+    Which type a medium supports is decided by what restoring force it can supply. A transverse wave
+    requires the medium to resist <strong>shear</strong> — you have to be able to pull one layer
+    sideways and have it pull back. A longitudinal wave only requires resistance to
+    <strong>compression</strong>, which every material has. Hence:
+  </p>
+  <ul>
+    <li><strong>Fluids (gases and liquids) carry longitudinal waves only.</strong> They have a bulk
+      modulus but essentially no shear modulus. Sound in air, in water and in soft tissue is purely
+      longitudinal.</li>
+    <li><strong>Solids carry both.</strong> A steel rod transmits compression waves and shear waves,
+      at different speeds.</li>
+    <li>Surface waves on water are a hybrid: the water parcels move in near-circles, part transverse
+      and part longitudinal.</li>
+  </ul>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">
+      The classic application is seismology: <b>P-waves</b> (primary, longitudinal) pass through the
+      Earth's liquid outer core, <b>S-waves</b> (secondary, transverse) do not — which is how we know
+      the outer core is liquid. Medically, the same rule means diagnostic ultrasound in soft tissue is
+      a longitudinal pressure wave, and shear-wave elastography works precisely because tissue,
+      unlike a true fluid, does have a small shear modulus.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The vocabulary and the travelling-wave function</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Amplitude A</dt>
+      <dd>The maximum displacement from equilibrium — a <em>half</em>-swing, not a peak-to-peak
+        distance.</dd>
+      <dt>Wavelength λ / period T</dt>
+      <dd>The repeat distance of the wave in space, and its repeat interval in time.</dd>
+      <dt>Wave number k / angular frequency ω</dt>
+      <dd>The same two repeats expressed as radians of phase: radians per metre and radians per second.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">y(x, t) = A sin(kx − ωt + φ)</span>
+      <span class="fx__tag">sinusoidal wave travelling in +x</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">k = 2π / λ &nbsp;·&nbsp; ω = 2πf = 2π / T</span><span class="fx__tag">definitions</span></div>
+      <div class="fx"><span class="fx__eq">v = ω / k = f λ</span><span class="fx__tag">phase speed of the pattern</span></div>
+      <div class="fx"><span class="fx__eq">v<sub>y</sub> = −Aω cos(kx − ωt + φ) &nbsp;→&nbsp; v<sub>y,max</sub> = ωA</span><span class="fx__tag">speed of one particle of the medium</span></div>
+      <div class="fx"><span class="fx__eq">a<sub>y,max</sub> = ω²A</span><span class="fx__tag">each particle is a simple harmonic oscillator</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>A</b><span>amplitude (m)</span></div>
+      <div><b>λ</b><span>wavelength (m)</span></div>
+      <div><b>T</b><span>period (s)</span></div>
+      <div><b>f</b><span>frequency (Hz = s⁻¹)</span></div>
+      <div><b>k</b><span>wave number (rad·m⁻¹)</span></div>
+      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+      <div><b>φ</b><span>phase constant, sets the shape at t = 0 (rad)</span></div>
+      <div><b>v<sub>y</sub></b><span>transverse velocity of a point of the medium (m·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    <span class="fi">k</span> and <span class="fi">ω</span> exist for one reason: the sine function
+    eats radians, not metres or seconds. To advance one full wavelength you must advance the argument
+    by 2π, so <span class="fi">kλ = 2π</span>. To advance one full period you must advance it by 2π
+    again, so <span class="fi">ωT = 2π</span>. That is the whole derivation. Read
+    <span class="fi">k</span> as "radians of phase per metre" and <span class="fi">ω</span> as
+    "radians of phase per second", and the ratio <span class="fi">ω/k</span> — radians per second
+    divided by radians per metre — is obviously metres per second.
+  </p>
+  <p>
+    The <strong>sign inside the bracket is the direction of travel</strong>, and it is worth deriving
+    rather than memorising. A given phase is at <span class="fi">kx − ωt = const</span>, so
+    <span class="fi">x = (ω/k)t + const</span>: as <span class="fi">t</span> increases,
+    <span class="fi">x</span> increases. Minus → moves in <b>+x</b>. Plus → moves in <b>−x</b>.
+  </p>
+
+  <div class="mnemo">
+    <h4>Memory hook</h4>
+    <p>Minus means "later means further right". <span class="fi">(kx − ωt)</span> → the wave chases
+      +x; <span class="fi">(kx + ωt)</span> → it retreats to −x.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · wave speed is not particle speed</p>
+    <p style="margin:0">
+      <span class="fi">v = ω/k</span> is the speed of the <em>pattern</em> and is fixed by the medium.
+      <span class="fi">v<sub>y,max</sub> = ωA</span> is the top speed of a <em>particle</em> and
+      depends on amplitude. They are different quantities with the same units, and an exam will
+      cheerfully offer you both as options. Turn the volume up on a loudspeaker and
+      <span class="fi">v<sub>y,max</sub></span> rises while <span class="fi">v</span> does not
+      move at all — loud sound does not arrive early.
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 1 · reading everything off a wave function</h4>
+    <p style="margin:.2rem 0 0">A transverse wave on a long cord is
+      <span class="fi">y(x, t) = 0.020 sin(6.0x − 300t)</span>, with x and y in metres, t in seconds.
+      Find A, λ, f, T, the wave speed and direction, and the maximum transverse speed of a point on
+      the cord.</p>
+    <ol>
+      <li>Match to <span class="fi">A sin(kx − ωt)</span>: <b>A = 0.020 m</b> (2.0 cm),
+        k = 6.0 rad·m⁻¹, ω = 300 rad·s⁻¹.</li>
+      <li>λ = 2π/k = 6.2832 / 6.0 = <b>1.047 m ≈ 1.05 m</b>.</li>
+      <li>f = ω/2π = 300 / 6.2832 = <b>47.7 Hz</b>; T = 1/f = <b>0.0209 s ≈ 20.9 ms</b>.</li>
+      <li>v = ω/k = 300 / 6.0 = <b>50 m·s⁻¹</b>. The sign is minus, so it travels in <b>+x</b>.
+        Check with v = fλ: 47.746 × 1.0472 = 50.0 m·s⁻¹ ✓</li>
+      <li>v<sub>y,max</sub> = ωA = 300 × 0.020 = <b>6.0 m·s⁻¹</b> — more than eight times smaller
+        than the wave speed. (a<sub>y,max</sub> = ω²A = 9.0×10⁴ × 0.020 = 1.8×10³ m·s⁻².)</li>
+    </ol>
+    <span class="wex__ans">A = 2.0 cm · λ = 1.05 m · f = 47.7 Hz · v = 50 m·s⁻¹ (+x) · v<sub>y,max</sub> = 6.0 m·s⁻¹</span>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>v = fλ: who sets what</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>The universal wave relation</dt>
+      <dd>In one period the wave advances exactly one wavelength; dividing that distance by that time
+        gives the speed. It holds for every wave — sound, light, water, a wave on a rope — because it
+        is a statement of bookkeeping, not of physics.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v = f λ = λ / T</span>
+      <span class="fx__tag">all waves, all media, no conditions</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">v = v(medium)</span><span class="fx__tag">stiffness and inertia only</span></div>
+      <div class="fx"><span class="fx__eq">f = f(source)</span><span class="fx__tag">conserved across a boundary</span></div>
+      <div class="fx"><span class="fx__eq">λ = v / f</span><span class="fx__tag">the dependent variable — it obeys the other two</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v</b><span>wave speed (m·s⁻¹)</span></div>
+      <div><b>f</b><span>frequency (Hz)</span></div>
+      <div><b>λ</b><span>wavelength (m)</span></div>
+      <div><b>T</b><span>period (s)</span></div>
+    </div>
+  </div>
+
+  <p>
+    This is the load-bearing idea of the chapter. <strong>Speed is a property of the medium</strong>:
+    it comes out of the stiffness and density of whatever the wave is moving through, and the wave has
+    no say in the matter. <strong>Frequency is a property of the source</strong>: a 440 Hz tuning fork
+    pushes the air 440 times a second, and nothing downstream can change that count.
+  </p>
+  <p>
+    Now put a boundary in the path. On the far side the speed is different. But the interface is
+    <em>driven</em> by the incoming wave — the last layer of medium 1 is physically attached to the
+    first layer of medium 2, so they move together, and they move at the driving frequency. You cannot
+    create or destroy cycles at an interface: whatever arrives per second must leave per second.
+    Frequency is therefore conserved, speed changes, and <span class="fi">λ = v/f</span> has no choice
+    but to change in exact proportion to <span class="fi">v</span>.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Quantity</th><th>Changes at a boundary?</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Frequency f</b></td><td>No</td><td>The interface oscillates at the driving frequency. Cycles in per second = cycles out per second.</td></tr>
+        <tr><td><b>Period T</b></td><td>No</td><td>T = 1/f, so it inherits f's immunity.</td></tr>
+        <tr><td><b>Speed v</b></td><td><b>Yes</b></td><td>Set by the new medium's stiffness and density. This is the <em>cause</em> of the change.</td></tr>
+        <tr><td><b>Wavelength λ</b></td><td><b>Yes</b></td><td>λ = v/f with f pinned, so λ scales exactly as v does. This is the <em>consequence</em>.</td></tr>
+        <tr><td><b>Amplitude</b></td><td><b>Yes</b></td><td>Energy splits between a transmitted and a reflected wave; the mismatch in acoustic impedance ρv decides the split.</td></tr>
+        <tr><td><b>Phase</b></td><td>On reflection</td><td>Reflection from a "stiffer/denser" medium inverts the wave (π shift); reflection from a "looser" one does not. See §07.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo">
+    <h4>Memory hook</h4>
+    <p>The medium sets the speed, the source sets the frequency, and the wavelength does what it is
+      told.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 2 · one ultrasound pulse, three wavelengths</h4>
+    <p style="margin:.2rem 0 0">A transducer emits a 2.5 MHz pulse. Speeds: fat 1450 m·s⁻¹, average
+      soft tissue 1540 m·s⁻¹, cortical bone 4080 m·s⁻¹. Find the wavelength in each, and state the
+      frequency in bone.</p>
+    <ol>
+      <li>λ = v/f with f = 2.5×10⁶ Hz throughout.</li>
+      <li>Fat: 1450 / 2.5×10⁶ = 5.80×10⁻⁴ m = <b>0.580 mm</b>.</li>
+      <li>Soft tissue: 1540 / 2.5×10⁶ = 6.16×10⁻⁴ m = <b>0.616 mm</b>.</li>
+      <li>Bone: 4080 / 2.5×10⁶ = 1.632×10⁻³ m = <b>1.63 mm</b> — nearly three times longer.</li>
+      <li>The frequency in bone is still <b>2.5 MHz</b>. The transducer set it; the bone cannot
+        change it.</li>
+    </ol>
+    <span class="wex__ans">λ = 0.580 / 0.616 / 1.63 mm · f = 2.5 MHz everywhere</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "the wave slows down, so the pitch drops"</p>
+    <p style="margin:0">
+      No. Shout into a swimming pool and the sound in the water is the same note, with a wavelength
+      about 4.3 times longer (1480/343). The only mechanism that changes an observed frequency is
+      <strong>relative motion</strong> (the Doppler effect, §10) — never a change of medium.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Wave speed comes from the medium</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Wave speed</dt>
+      <dd>The rate at which a medium can pass a disturbance along — always the square root of a
+        restoring stiffness divided by an inertia. Stiffer returns faster; heavier responds slower.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v = √(F<sub>T</sub> / μ)</span>
+      <span class="fx__tag">small-amplitude transverse wave on a uniform, perfectly flexible string</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">v = √(B / ρ)</span><span class="fx__tag">longitudinal wave in a fluid (gas or liquid)</span></div>
+      <div class="fx"><span class="fx__eq">v = √(Y / ρ)</span><span class="fx__tag">longitudinal wave along a thin solid rod</span></div>
+      <div class="fx"><span class="fx__eq">v = √(γRT / M)</span><span class="fx__tag">ideal gas; T is absolute temperature</span></div>
+      <div class="fx"><span class="fx__eq">μ = m / L</span><span class="fx__tag">linear mass density of the string</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>F<sub>T</sub></b><span>tension in the string (N)</span></div>
+      <div><b>μ</b><span>linear mass density, mass per unit length (kg·m⁻¹)</span></div>
+      <div><b>B</b><span>bulk modulus, resistance to compression (Pa)</span></div>
+      <div><b>Y</b><span>Young's modulus (Pa)</span></div>
+      <div><b>ρ</b><span>density (kg·m⁻³)</span></div>
+      <div><b>γ</b><span>adiabatic index (1.40 for air, 1.67 for a monatomic gas) — dimensionless</span></div>
+      <div><b>R</b><span>gas constant, 8.31 J·mol⁻¹·K⁻¹</span></div>
+      <div><b>M</b><span>molar mass (kg·mol⁻¹)</span></div>
+      <div><b>T</b><span>absolute temperature (K)</span></div>
+    </div>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Notation trap · T is not T</p>
+    <p style="margin:0">
+      In <span class="fi">v = √(T/μ)</span> as written in most textbooks, <b>T means tension</b> —
+      not period, and not temperature, both of which are also T on this page. This note writes tension
+      as <span class="fi">F<sub>T</sub></span> to keep them apart. Whenever you see a bare T in a wave
+      formula, check the units: newtons, seconds or kelvin.
+    </p>
+  </div>
+
+  <p>
+    Every line above is the same statement. The numerator measures how hard the medium pushes back
+    when you deform it; the denominator measures how much mass has to be accelerated. A tighter string
+    snaps back harder, so <span class="fi">v ∝ √F<sub>T</sub></span>. A heavier string has more
+    inertia per metre, so <span class="fi">v ∝ 1/√μ</span>. The square root is not decoration — it
+    means the returns diminish. <strong>Doubling the tension multiplies the speed by only
+    √2 ≈ 1.41</strong>; to double the speed you need four times the tension.
+  </p>
+  <p>
+    The same logic dissolves an intuition that fails constantly: <em>denser is not slower</em>. Steel
+    is about 6500 times denser than air (7800 kg·m⁻³ against 1.2), yet sound travels roughly 15 times
+    faster in steel, because steel's stiffness is up by an enormous factor more than its density is. Density only wins when you compare
+    materials of similar stiffness.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Medium</th><th class="num">Speed of sound (m·s⁻¹)</th><th class="num">Density (kg·m⁻³)</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Air, 0 °C</td><td class="num">331</td><td class="num">1.29</td><td>Reference value for the linear approximation</td></tr>
+        <tr><td>Air, 20 °C</td><td class="num">343</td><td class="num">1.20</td><td>The number to use unless told otherwise</td></tr>
+        <tr><td>Air, 37 °C</td><td class="num">353</td><td class="num">1.14</td><td>Body-temperature airway gas</td></tr>
+        <tr><td>Helium, 20 °C</td><td class="num">≈ 1000</td><td class="num">0.166</td><td>Small M, large γ → fast; the "squeaky voice" gas</td></tr>
+        <tr><td>Lung (aerated)</td><td class="num">≈ 600</td><td class="num">≈ 300</td><td>Air-filled and floppy — the worst ultrasound window in the body</td></tr>
+        <tr><td>Fat</td><td class="num">1450</td><td class="num">920</td><td>Slowest soft tissue</td></tr>
+        <tr><td>Water, 20 °C</td><td class="num">1480</td><td class="num">998</td><td>Nearly incompressible → high B</td></tr>
+        <tr><td>Average soft tissue</td><td class="num">1540</td><td class="num">1050</td><td>The value every scanner assumes when it converts time to depth</td></tr>
+        <tr><td>Blood</td><td class="num">1570</td><td class="num">1060</td><td></td></tr>
+        <tr><td>Muscle</td><td class="num">1580</td><td class="num">1070</td><td></td></tr>
+        <tr><td>Cortical bone</td><td class="num">≈ 4080</td><td class="num">1900</td><td>Huge impedance mismatch → strong reflection, acoustic shadow</td></tr>
+        <tr><td>Steel</td><td class="num">≈ 5000</td><td class="num">7800</td><td>Dense but far stiffer — density loses</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · why helium changes your voice</p>
+    <p style="margin:0">
+      Breathing helium does <strong>not</strong> make your vocal folds vibrate faster — the fundamental
+      pitch is set by the folds and barely moves. What changes is the <em>speed of sound</em> in the
+      gas filling your vocal tract (≈ 1000 m·s⁻¹ instead of 353), so the tract's
+      <strong>resonant frequencies</strong> <span class="fi">f<sub>n</sub> = n v/4L</span> all shift up
+      by about a factor of three. Different formants, same fundamental — a timbre change, not a pitch
+      change. Note also that <span class="fi">v = √(γRT/M)</span> contains no pressure: for an ideal
+      gas, changing the pressure changes ρ in exactly compensating proportion, so
+      <strong>altitude does not change the speed of sound except through temperature</strong>.
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 3 · speed on a string, and how it scales</h4>
+    <p style="margin:.2rem 0 0">A string of length 0.640 m and mass 1.60 g is stretched to a tension
+      of 80.0 N. (a) Find μ and the wave speed. (b) What tension would double the speed?</p>
+    <ol>
+      <li>μ = m/L = 1.60×10⁻³ kg / 0.640 m = <b>2.50×10⁻³ kg·m⁻¹</b>.</li>
+      <li>v = √(F<sub>T</sub>/μ) = √(80.0 / 2.50×10⁻³) = √(3.20×10⁴) = <b>178.9 m·s⁻¹</b>.</li>
+      <li>Since v ∝ √F<sub>T</sub>, doubling v requires <b>four times</b> the tension:
+        F<sub>T</sub>′ = 4 × 80.0 = <b>320 N</b>. Check: √(320 / 2.50×10⁻³) = √(1.28×10⁵)
+        = 357.8 m·s⁻¹ = 2 × 178.9 ✓</li>
+    </ol>
+    <span class="wex__ans">μ = 2.50×10⁻³ kg·m⁻¹ · v = 178.9 m·s⁻¹ · 320 N to double v</span>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Energy, intensity and the inverse-square law</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Intensity</dt>
+      <dd>The wave power crossing unit area held perpendicular to the direction of travel — how much
+        energy per second lands on each square metre.</dd>
+      <dt>Inverse-square law</dt>
+      <dd>For a point source radiating equally in all directions into a lossless medium, intensity
+        falls as 1/r² purely because the same power is spread over the growing surface of a sphere.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">I = P / (4πr²)</span>
+      <span class="fx__tag">isotropic point source, no absorption</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">I₁ r₁² = I₂ r₂²</span><span class="fx__tag">ratio form — avoids ever needing P</span></div>
+      <div class="fx"><span class="fx__eq">I = 2π² ρ v f² A² ∝ A² f²</span><span class="fx__tag">sinusoidal wave; A is displacement amplitude</span></div>
+      <div class="fx"><span class="fx__eq">P = ½ μ v ω² A²</span><span class="fx__tag">average power of a <em>sinusoidal</em> wave on a string</span></div>
+      <div class="fx"><span class="fx__eq">A ∝ 1 / r</span><span class="fx__tag">amplitude of a spherical wave (since I ∝ A²)</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>I</b><span>intensity (W·m⁻²)</span></div>
+      <div><b>P</b><span>power radiated or transported (W)</span></div>
+      <div><b>r</b><span>distance from the source (m)</span></div>
+      <div><b>A</b><span>displacement amplitude (m)</span></div>
+      <div><b>ρ</b><span>density of the medium (kg·m⁻³)</span></div>
+      <div><b>μ</b><span>linear mass density of the string (kg·m⁻¹)</span></div>
+      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Two proportionalities do most of the work. First, <strong>intensity goes as the square of the
+    amplitude</strong>, because each oscillating particle is a harmonic oscillator with energy
+    <span class="fi">½mω²A²</span>. Halve the amplitude and you quarter the energy. Second,
+    <strong>intensity goes as the square of the frequency</strong> at fixed amplitude, because a
+    faster oscillation means larger particle speeds for the same excursion. Both squares come from the
+    same place: energy is quadratic in speed.
+  </p>
+  <p>
+    The 1/r² fall-off is <strong>pure geometry</strong>, not absorption. Nothing is lost; the same
+    power is smeared over a sphere whose area <span class="fi">4πr²</span> grows quadratically. That
+    is why it fails whenever the geometry is different — an ideal line source gives 1/r, a plane wave
+    in a waveguide gives no fall-off at all, and a focused ultrasound beam actually
+    <em>increases</em> in intensity towards its focus. Real absorption (§11) is an additional,
+    exponential loss on top.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 4 · a point source in open air</h4>
+    <p style="margin:.2rem 0 0">A small loudspeaker radiates 0.80 W of acoustic power uniformly in all
+      directions. (a) What is the intensity 2.0 m away? (b) At what distance has the intensity fallen
+      to 1.0×10⁻³ W·m⁻²?</p>
+    <ol>
+      <li>I = P/(4πr²) = 0.80 / (4π × 2.0²) = 0.80 / 50.27 = <b>1.59×10⁻² W·m⁻²</b>.</li>
+      <li>Rearrange: r = √(P / 4πI) = √(0.80 / (4π × 1.0×10⁻³)) = √(0.80 / 1.2566×10⁻²)
+        = √63.66 = <b>7.98 m ≈ 8.0 m</b>.</li>
+      <li>Sanity check with the ratio form: going from 2.0 m to 8.0 m is ×4 in distance, so ×1/16 in
+        intensity: 1.59×10⁻² / 16 = 9.9×10⁻⁴ W·m⁻² ✓</li>
+    </ol>
+    <span class="wex__ans">I(2.0 m) = 1.59×10⁻² W·m⁻² · r = 8.0 m for 1.0×10⁻³ W·m⁻²</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · four times the distance is not a quarter of the intensity</p>
+    <p style="margin:0">
+      It is a <strong>sixteenth</strong>. The inverse-square law squares the distance ratio. The
+      amplitude, however, falls only by a factor of four, because <span class="fi">A ∝ 1/r</span>.
+      Read the question carefully: "intensity" and "amplitude" scale differently.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Superposition and interference</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Superposition principle</dt>
+      <dd>Where two waves overlap, the displacement of the medium is the algebraic sum of what each
+        wave would produce alone; afterwards each wave continues unchanged.</dd>
+      <dt>Interference</dt>
+      <dd>The steady pattern of reinforcement and cancellation produced when waves of the same
+        frequency meet with a fixed phase relationship.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">y<sub>total</sub> = y₁ + y₂</span>
+      <span class="fx__tag">valid while amplitudes are small enough for the medium to stay linear</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Δφ = 2π Δr / λ</span><span class="fx__tag">phase difference produced by a path difference</span></div>
+      <div class="fx"><span class="fx__eq">Δr = n λ &nbsp;→&nbsp; constructive</span><span class="fx__tag">sources in phase; n = 0, 1, 2, …</span></div>
+      <div class="fx"><span class="fx__eq">Δr = (n + ½) λ &nbsp;→&nbsp; destructive</span><span class="fx__tag">sources in phase; n = 0, 1, 2, …</span></div>
+      <div class="fx"><span class="fx__eq">A<sub>max</sub> = A₁ + A₂ &nbsp;·&nbsp; A<sub>min</sub> = |A₁ − A₂|</span><span class="fx__tag">amplitudes add, intensities do not</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>Δr</b><span>path difference from the two sources to the point (m)</span></div>
+      <div><b>Δφ</b><span>phase difference at that point (rad)</span></div>
+      <div><b>n</b><span>an integer (dimensionless)</span></div>
+      <div><b>λ</b><span>wavelength in the medium (m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Superposition is the reason two conversations can cross a room without garbling each other: waves
+    pass through one another and emerge unchanged. It holds because the wave equation is
+    <strong>linear</strong> — a good approximation until amplitudes get large (a shock wave, §10, is
+    exactly the case where it fails).
+  </p>
+  <p>
+    Interference is superposition plus bookkeeping. Two identical sources start in step; by the time
+    their waves reach a particular point they have travelled different distances. Every extra
+    wavelength of path is one extra complete cycle, which puts them back in step. Hence: an
+    <strong>integer number of wavelengths of path difference → crests meet crests → constructive</strong>;
+    a <strong>half-integer number → crest meets trough → destructive</strong>. That is the whole rule,
+    and it is the same rule that governs the double slit in optics.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the conditions swap if the sources are out of phase</p>
+    <p style="margin:0">
+      <span class="fi">Δr = nλ</span> means "constructive" only if the two sources are
+      <em>emitting in phase</em>. Reverse the wires on one loudspeaker and it emits antiphase; then
+      <span class="fi">Δr = nλ</span> gives <strong>silence</strong> and
+      <span class="fi">Δr = (n + ½)λ</span> gives maximum loudness. Always ask about the source phase
+      before applying the condition. The general statement is the safe one: constructive when the
+      <em>total</em> phase difference (path plus source) is a multiple of 2π.
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 5 · two loudspeakers</h4>
+    <p style="margin:.2rem 0 0">Two speakers driven in phase from one amplifier emit a pure 686 Hz
+      tone; v = 343 m·s⁻¹. A listener stands 4.00 m from one speaker and 5.25 m from the other.
+      (a) What do they hear? (b) What is the lowest frequency that would instead give a maximum at
+      that same spot?</p>
+    <ol>
+      <li>λ = v/f = 343 / 686 = <b>0.500 m</b>.</li>
+      <li>Δr = 5.25 − 4.00 = 1.25 m. In wavelengths: 1.25 / 0.500 = <b>2.5 λ</b>.</li>
+      <li>2.5 is half-integer, i.e. (n + ½) with n = 2 → <b>destructive interference</b>. If the two
+        speakers are equally loud at that point the tone very nearly vanishes.</li>
+      <li>For a maximum, Δr must be a whole number of wavelengths: 1.25 = nλ → λ = 1.25/n →
+        f = v/λ = 343n / 1.25 = 274.4 n Hz.</li>
+      <li>The lowest non-zero case is n = 1: <b>f = 274.4 Hz</b> (λ = 1.25 m).</li>
+    </ol>
+    <span class="wex__ans">Δr = 2.5λ → destructive · lowest constructive frequency = 274.4 Hz</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · intensities do not simply add</p>
+    <p style="margin:0">
+      Two coherent sources each producing intensity I give <strong>4I</strong> at a constructive point
+      and <strong>0</strong> at a destructive one — because <em>amplitudes</em> add
+      (A + A = 2A, and I ∝ A² → 4I). Energy is not created: it is redistributed from the dark fringes
+      into the bright ones, and the average over the pattern is still 2I. If the sources are
+      <em>incoherent</em> (independent noise), there is no stable pattern and the intensities really
+      do add to 2I — which is the case assumed in the decibel arithmetic of §09.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Reflection and standing waves on a string</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Standing wave</dt>
+      <dd>The interference pattern of two identical waves travelling in opposite directions: the
+        pattern no longer moves, and every point oscillates in place with a fixed amplitude that
+        depends on where it is.</dd>
+      <dt>Node / antinode</dt>
+      <dd>A node is a point that never moves; an antinode is a point that swings with maximum
+        amplitude. Adjacent nodes are λ/2 apart, and a node and its neighbouring antinode are λ/4
+        apart.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">f<sub>n</sub> = n v / (2L),&nbsp; n = 1, 2, 3, …</span>
+      <span class="fx__tag">string fixed at both ends — all harmonics present</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">λ<sub>n</sub> = 2L / n</span><span class="fx__tag">an integer number of half-wavelengths must fit</span></div>
+      <div class="fx"><span class="fx__eq">f₁ = (1/2L) √(F<sub>T</sub>/μ)</span><span class="fx__tag">fundamental, combining §04 and §07</span></div>
+      <div class="fx"><span class="fx__eq">y = 2A sin(kx) cos(ωt)</span><span class="fx__tag">standing wave: space and time factorise</span></div>
+      <div class="fx"><span class="fx__eq">f<sub>n</sub> = n f₁</span><span class="fx__tag">harmonic series</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>n</b><span>harmonic number (dimensionless)</span></div>
+      <div><b>L</b><span>length of the vibrating segment (m)</span></div>
+      <div><b>v</b><span>wave speed on the string (m·s⁻¹)</span></div>
+      <div><b>f<sub>n</sub></b><span>frequency of the n-th harmonic (Hz)</span></div>
+      <div><b>λ<sub>n</sub></b><span>wavelength of the n-th harmonic (m)</span></div>
+    </div>
+  </div>
+
+  <h3>Reflection: the phase flip is the key</h3>
+  <p>
+    Send a pulse down a rope to a <strong>fixed end</strong>. The rope pulls up on the post; by
+    Newton's third law the post pulls down on the rope, and the reflected pulse comes back
+    <strong>inverted</strong> — a phase change of π. Send the same pulse to a <strong>free end</strong>
+    (a light ring sliding on a frictionless pole): there is no reaction force, the end overshoots, and
+    the pulse returns <strong>upright</strong>, with no phase change.
+  </p>
+  <p>
+    That single rule determines everything downstream. An inverted reflection superposed on the
+    incoming wave forces the displacement at the boundary to be permanently zero — a
+    <strong>node at every fixed end</strong>. A non-inverted reflection doubles the displacement there
+    — an <strong>antinode at every free end</strong>. Standing waves are then simply the wavelengths
+    that fit those end conditions.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 410" role="img"
+         aria-label="Three standing-wave patterns on a string fixed at both ends: the fundamental with one antinode and nodes only at the ends, the second harmonic with two antinodes and a node at the centre, and the third harmonic with three antinodes and two interior nodes.">
+      <g stroke="var(--ink-soft)" stroke-width="3.5" stroke-linecap="round">
+        <line x1="100" y1="30"  x2="100" y2="138"/><line x1="540" y1="30"  x2="540" y2="138"/>
+        <line x1="100" y1="150" x2="100" y2="258"/><line x1="540" y1="150" x2="540" y2="258"/>
+        <line x1="100" y1="270" x2="100" y2="378"/><line x1="540" y1="270" x2="540" y2="378"/>
+      </g>
+      <g stroke="var(--line)" stroke-width="1" stroke-dasharray="5 5">
+        <line x1="100" y1="84"  x2="540" y2="84"/>
+        <line x1="100" y1="204" x2="540" y2="204"/>
+        <line x1="100" y1="324" x2="540" y2="324"/>
+      </g>
+
+      <text x="100" y="18" font-size="11.5" font-weight="700" fill="var(--ink)">n = 1 · λ₁ = 2L · f₁ = v/2L  (fundamental)</text>
+      <path d="M 100 84 C 246.7 36 393.3 36 540 84" fill="none" stroke="var(--v-vel)" stroke-width="2.5"/>
+      <path d="M 100 84 C 246.7 132 393.3 132 540 84" fill="none" stroke="var(--v-vel)" stroke-width="1.6" stroke-dasharray="6 4" opacity=".7"/>
+
+      <text x="100" y="138" font-size="11.5" font-weight="700" fill="var(--ink)">n = 2 · λ₂ = L · f₂ = 2f₁</text>
+      <path d="M 100 204 C 173.3 156 246.7 156 320 204 C 393.3 252 466.7 252 540 204" fill="none" stroke="var(--v-vel)" stroke-width="2.5"/>
+      <path d="M 100 204 C 173.3 252 246.7 252 320 204 C 393.3 156 466.7 156 540 204" fill="none" stroke="var(--v-vel)" stroke-width="1.6" stroke-dasharray="6 4" opacity=".7"/>
+
+      <text x="100" y="258" font-size="11.5" font-weight="700" fill="var(--ink)">n = 3 · λ₃ = 2L/3 · f₃ = 3f₁</text>
+      <path d="M 100 324 C 148.9 276 197.8 276 246.7 324 C 295.6 372 344.4 372 393.3 324 C 442.2 276 491.1 276 540 324" fill="none" stroke="var(--v-vel)" stroke-width="2.5"/>
+      <path d="M 100 324 C 148.9 372 197.8 372 246.7 324 C 295.6 276 344.4 276 393.3 324 C 442.2 372 491.1 372 540 324" fill="none" stroke="var(--v-vel)" stroke-width="1.6" stroke-dasharray="6 4" opacity=".7"/>
+
+      <g fill="var(--v-force)">
+        <circle cx="100" cy="84"  r="4.5"/><circle cx="540" cy="84"  r="4.5"/>
+        <circle cx="100" cy="204" r="4.5"/><circle cx="320" cy="204" r="4.5"/><circle cx="540" cy="204" r="4.5"/>
+        <circle cx="100" cy="324" r="4.5"/><circle cx="246.7" cy="324" r="4.5"/><circle cx="393.3" cy="324" r="4.5"/><circle cx="540" cy="324" r="4.5"/>
+      </g>
+      <g fill="none" stroke="var(--v-accel)" stroke-width="2">
+        <circle cx="320" cy="84"  r="4.5"/>
+        <circle cx="210" cy="204" r="4.5"/><circle cx="430" cy="204" r="4.5"/>
+        <circle cx="173.3" cy="324" r="4.5"/><circle cx="320" cy="324" r="4.5"/><circle cx="466.7" cy="324" r="4.5"/>
+      </g>
+
+      <text x="320" y="400" text-anchor="middle" font-size="11" fill="var(--ink-soft)">● node — permanently still &nbsp;·&nbsp; ○ antinode — maximum swing &nbsp;·&nbsp; adjacent nodes are λ/2 apart</text>
+    </svg>
+    <figcaption>
+      The solid and dashed curves are the two extremes of the same oscillation, half a period apart —
+      the string sweeps back and forth between them. Both ends are fixed, so both must be nodes;
+      the allowed patterns are exactly those containing a whole number of half-wavelengths, which
+      gives <span class="fi">λ<sub>n</sub> = 2L/n</span> and hence
+      <span class="fi">f<sub>n</sub> = nv/2L</span>.
+    </figcaption>
+  </figure>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · what a standing wave is not</p>
+    <p style="margin:0">
+      A standing wave <strong>transports no net energy</strong> — the two travelling waves carry equal
+      power in opposite directions. It also has <strong>no single wavelength on display</strong>: in
+      <span class="fi">y = 2A sin(kx) cos(ωt)</span> the position and time dependencies have
+      separated, so nothing propagates. Note too that every point between two nodes moves
+      <em>in phase</em> (they all reach maximum together), and points on opposite sides of a node move
+      in antiphase.
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 6 · tuning the string of Worked example 3</h4>
+    <p style="margin:.2rem 0 0">The same string: L = 0.640 m, μ = 2.50×10⁻³ kg·m⁻¹,
+      F<sub>T</sub> = 80.0 N, so v = 178.9 m·s⁻¹. (a) Find f₁ and f₃. (b) What tension raises the
+      fundamental to 147.0 Hz?</p>
+    <ol>
+      <li>f₁ = v/(2L) = 178.885 / (2 × 0.640) = 178.885 / 1.280 = <b>139.8 Hz</b>.</li>
+      <li>f₃ = 3f₁ = <b>419.3 Hz</b> (and f₂ = 279.5 Hz — a fixed-fixed string has every harmonic).</li>
+      <li>Since f₁ ∝ v ∝ √F<sub>T</sub>, we have F<sub>T</sub> ∝ f₁². So
+        F<sub>T</sub>′ = 80.0 × (147.0 / 139.75)² = 80.0 × (1.0519)² = 80.0 × 1.1064 = <b>88.5 N</b>.</li>
+      <li>Check: v′ = √(88.5 / 2.50×10⁻³) = √(3.54×10⁴) = 188.2 m·s⁻¹;
+        f₁′ = 188.2 / 1.280 = 147.0 Hz ✓</li>
+    </ol>
+    <span class="wex__ans">f₁ = 139.8 Hz · f₃ = 419.3 Hz · tension needed = 88.5 N</span>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Air columns: open-open vs open-closed</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Air column resonance</dt>
+      <dd>A longitudinal standing wave inside a tube. The allowed wavelengths are those that place a
+        displacement antinode at every open end and a displacement node at every closed end. Idealised:
+        a real open end radiates, so the antinode sits slightly outside it and L should carry an end
+        correction of about 0.6 × the tube radius.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">open-open: f<sub>n</sub> = n v / (2L),&nbsp; n = 1, 2, 3, …</span>
+      <span class="fx__tag">both ends open — every harmonic</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">open-closed: f<sub>n</sub> = n v / (4L),&nbsp; n = 1, 3, 5, …</span><span class="fx__tag">one end closed — odd harmonics only</span></div>
+      <div class="fx"><span class="fx__eq">λ₁ = 2L (open-open) &nbsp;·&nbsp; λ₁ = 4L (open-closed)</span><span class="fx__tag">fundamental wavelengths</span></div>
+      <div class="fx"><span class="fx__eq">f₁(closed) = ½ f₁(open)</span><span class="fx__tag">same length → one octave lower</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>L</b><span>length of the air column (m)</span></div>
+      <div><b>v</b><span>speed of sound in the gas filling the tube (m·s⁻¹)</span></div>
+      <div><b>n</b><span>harmonic number — note the restricted set for a closed pipe (dimensionless)</span></div>
+      <div><b>f<sub>n</sub></b><span>resonant frequency (Hz)</span></div>
+    </div>
+  </div>
+
+  <p>
+    The boundary conditions come straight from physical common sense, provided you keep track of
+    <em>which</em> quantity you are talking about.
+  </p>
+  <ul>
+    <li><strong>Closed (rigid) end:</strong> air cannot move through a wall, so the
+      <em>displacement</em> is pinned at zero — a <b>displacement node</b>. But the air piles up
+      against the wall, so the <em>pressure</em> swings hardest there — a <b>pressure antinode</b>.</li>
+    <li><strong>Open end:</strong> the air is free to move, giving a <b>displacement antinode</b>;
+      and it is connected to the atmosphere, so the pressure is clamped to atmospheric — a
+      <b>pressure node</b>.</li>
+  </ul>
+  <p>
+    Now count. An open-open pipe needs an antinode at each end, and the shortest pattern with
+    antinodes at both ends is half a wavelength, so <span class="fi">L = λ/2</span> and every
+    <span class="fi">L = nλ/2</span> works. An open-closed pipe needs an antinode at one end and a
+    node at the other; antinode-to-node is a <strong>quarter</strong> of a wavelength, so
+    <span class="fi">L = λ/4</span>, and the next patterns add a further half wavelength each time:
+    <span class="fi">L = λ/4, 3λ/4, 5λ/4, …</span> — which is exactly the statement that
+    <strong>only odd multiples of the fundamental exist</strong>. An even harmonic would require an
+    antinode at both ends or a node at both ends, and neither is available.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 315" role="img"
+         aria-label="Two pipes. The upper open-open pipe shows a fundamental with displacement antinodes at both open ends and a node in the middle, wavelength equals two L. The lower open-closed pipe shows a displacement antinode at the open left end tapering to a node at the closed right wall, wavelength equals four L.">
+      <text x="24" y="22" font-size="12.5" font-weight="700" fill="var(--ink)">OPEN–OPEN (flute, organ flue pipe)</text>
+      <g stroke="var(--ink-soft)" stroke-width="2.5">
+        <line x1="100" y1="45" x2="460" y2="45"/>
+        <line x1="100" y1="125" x2="460" y2="125"/>
+      </g>
+      <line x1="100" y1="85" x2="460" y2="85" stroke="var(--line)" stroke-width="1" stroke-dasharray="5 5"/>
+      <path d="M 100 55 C 229.6 55 330.4 115 460 115" fill="none" stroke="var(--v-vel)" stroke-width="2.5"/>
+      <path d="M 100 115 C 229.6 115 330.4 55 460 55" fill="none" stroke="var(--v-vel)" stroke-width="2.5"/>
+      <circle cx="280" cy="85" r="4.5" fill="var(--v-force)"/>
+      <text x="100" y="142" text-anchor="middle" font-size="10" fill="var(--ink-soft)">antinode</text>
+      <text x="280" y="142" text-anchor="middle" font-size="10" fill="var(--v-force)">node</text>
+      <text x="452" y="142" text-anchor="middle" font-size="10" fill="var(--ink-soft)">antinode</text>
+      <g font-size="11" font-family="var(--mono)" fill="var(--ink-soft)">
+        <text x="480" y="66">λ₁ = 2L</text>
+        <text x="480" y="86">f₁ = v/2L</text>
+        <text x="480" y="106">n = 1,2,3,…</text>
+      </g>
+
+      <text x="24" y="184" font-size="12.5" font-weight="700" fill="var(--ink)">OPEN–CLOSED (clarinet, ear canal, stopped pipe)</text>
+      <g stroke="var(--ink-soft)" stroke-width="2.5">
+        <line x1="100" y1="205" x2="460" y2="205"/>
+        <line x1="100" y1="285" x2="460" y2="285"/>
+      </g>
+      <line x1="460" y1="203" x2="460" y2="287" stroke="var(--ink-soft)" stroke-width="5"/>
+      <line x1="100" y1="245" x2="460" y2="245" stroke="var(--line)" stroke-width="1" stroke-dasharray="5 5"/>
+      <path d="M 100 215 C 229.6 215 344.8 230 460 245" fill="none" stroke="var(--v-vel)" stroke-width="2.5"/>
+      <path d="M 100 275 C 229.6 275 344.8 260 460 245" fill="none" stroke="var(--v-vel)" stroke-width="2.5"/>
+      <circle cx="460" cy="245" r="4.5" fill="var(--v-force)"/>
+      <text x="100" y="302" text-anchor="middle" font-size="10" fill="var(--ink-soft)">antinode (open)</text>
+      <text x="448" y="302" text-anchor="middle" font-size="10" fill="var(--v-force)">node (wall)</text>
+      <g font-size="11" font-family="var(--mono)" fill="var(--ink-soft)">
+        <text x="480" y="226">λ₁ = 4L</text>
+        <text x="480" y="246">f₁ = v/4L</text>
+        <text x="480" y="266">n = 1,3,5,…</text>
+      </g>
+    </svg>
+    <figcaption>
+      Both curves show the envelope of <em>displacement</em>, not pressure. The open-open pipe fits
+      half a wavelength; the open-closed pipe fits only a quarter, so for the same length it sounds an
+      octave lower — and adding half a wavelength at a time to a quarter-wave pattern can only ever
+      produce odd multiples of the fundamental.
+    </figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>System</th><th>Boundary conditions</th><th class="num">λ₁</th><th class="num">f<sub>n</sub></th><th>Harmonics present</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>String, both ends fixed</b></td>
+          <td>Node at each end</td>
+          <td class="num">2L</td>
+          <td class="num">n v / 2L</td>
+          <td>All: 1, 2, 3, 4, …</td>
+          <td>Guitar, violin, vocal folds</td>
+        </tr>
+        <tr>
+          <td><b>Pipe, both ends open</b></td>
+          <td>Displacement antinode at each end</td>
+          <td class="num">2L</td>
+          <td class="num">n v / 2L</td>
+          <td>All: 1, 2, 3, 4, …</td>
+          <td>Flute, open organ pipe</td>
+        </tr>
+        <tr>
+          <td><b>Pipe, one end closed</b></td>
+          <td>Antinode at the open end, node at the closed end</td>
+          <td class="num">4L</td>
+          <td class="num">n v / 4L</td>
+          <td><b>Odd only</b>: 1, 3, 5, 7, …</td>
+          <td>Clarinet, stopped organ pipe, external ear canal</td>
+        </tr>
+        <tr>
+          <td><b>String or pipe, both ends free</b></td>
+          <td>Antinode at each end</td>
+          <td class="num">2L</td>
+          <td class="num">n v / 2L</td>
+          <td>All: 1, 2, 3, 4, …</td>
+          <td>Free-free bar; same series as open-open</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · displacement or pressure?</p>
+    <p style="margin:0">
+      An open end is a <strong>displacement antinode</strong> and a <strong>pressure node</strong>.
+      Students routinely state one and reason with the other, and every conclusion after that is
+      wrong. The safe habit: <em>always draw the displacement pattern</em> (as in the figure above),
+      because the boundary conditions are easiest to justify there, then remember that the pressure
+      pattern is its mirror image — nodes where displacement has antinodes and vice versa (§09).
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 7 · the same tube, two ways</h4>
+    <p style="margin:.2rem 0 0">A 0.250 m tube is filled with air at 20 °C (v = 343 m·s⁻¹).
+      (a) List its three lowest resonances when one end is closed. (b) Repeat with both ends open.
+      (c) You measure resonances at 343, 1029 and 1715 Hz — which configuration is it?</p>
+    <ol>
+      <li>Closed at one end: f₁ = v/4L = 343 / (4 × 0.250) = 343 / 1.000 = <b>343 Hz</b>.
+        Only odd n, so the next two are 3f₁ = <b>1029 Hz</b> and 5f₁ = <b>1715 Hz</b>.</li>
+      <li>Open at both ends: f₁ = v/2L = 343 / 0.500 = <b>686 Hz</b>, then 2f₁ = <b>1372 Hz</b> and
+        3f₁ = <b>2058 Hz</b>.</li>
+      <li>The measured set 343, 1029, 1715 is in the ratio 1 : 3 : 5 → <b>open-closed</b>. The
+        open-open pipe would give 1 : 2 : 3 starting at twice the frequency. Note the open-closed pipe
+        sounds exactly one octave <em>lower</em> than the open-open pipe of the same length.</li>
+    </ol>
+    <span class="wex__ans">closed: 343, 1029, 1715 Hz · open: 686, 1372, 2058 Hz · the data are open-closed</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · your ear canal is a stopped pipe</p>
+    <p style="margin:0">
+      The external auditory canal is roughly 2.5 cm long, open at the pinna and closed by the tympanic
+      membrane. Treating it as an open-closed pipe gives
+      <span class="fi">f₁ = v/4L ≈ 343 / (4 × 0.025) ≈ 3.4 kHz</span> (3.5 kHz if you use the
+      353 m·s⁻¹ of body-temperature air) — and human hearing is indeed
+      most sensitive around 3–4 kHz, with a resonant gain of roughly 10–15 dB. The physics of a
+      clarinet explains an audiogram. (The same quarter-wave logic, with the ~17 cm vocal tract,
+      predicts the first vowel formant near 500 Hz.)
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Sound as a pressure wave; the decibel</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Sound</dt>
+      <dd>A longitudinal wave in a compressible medium, describable either as a displacement wave
+        <span class="fi">s(x,t)</span> or as the pressure fluctuation <span class="fi">Δp(x,t)</span>
+        about ambient — the two are 90° out of phase.</dd>
+      <dt>Sound intensity level β</dt>
+      <dd>A logarithmic measure of intensity relative to a fixed reference, expressed in decibels.
+        It is a <em>ratio</em>, so it has no physical dimensions.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">β = 10 log₁₀ (I / I₀),&nbsp; I₀ = 1.0×10⁻¹² W·m⁻²</span>
+      <span class="fx__tag">I₀ = threshold of hearing at 1 kHz</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">β₂ − β₁ = 10 log₁₀ (I₂ / I₁)</span><span class="fx__tag">the form you should actually use</span></div>
+      <div class="fx"><span class="fx__eq">β<sub>N</sub> = β₁ + 10 log₁₀ N</span><span class="fx__tag">N identical <em>incoherent</em> sources</span></div>
+      <div class="fx"><span class="fx__eq">Δp<sub>max</sub> = ρ v ω s<sub>max</sub></span><span class="fx__tag">pressure amplitude from displacement amplitude</span></div>
+      <div class="fx"><span class="fx__eq">I = Δp<sub>max</sub>² / (2 ρ v)</span><span class="fx__tag">intensity from pressure amplitude</span></div>
+      <div class="fx"><span class="fx__eq">v ≈ 331 + 0.60 T<sub>C</sub> &nbsp;·&nbsp; v ∝ √T<sub>abs</sub></span><span class="fx__tag">air; linear form good to about ±30 °C</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>β</b><span>sound intensity level (dB — a ratio, dimensionless)</span></div>
+      <div><b>I</b><span>intensity (W·m⁻²)</span></div>
+      <div><b>I₀</b><span>reference intensity, 1.0×10⁻¹² W·m⁻²</span></div>
+      <div><b>Δp<sub>max</sub></b><span>pressure amplitude (Pa)</span></div>
+      <div><b>s<sub>max</sub></b><span>displacement amplitude of the air (m)</span></div>
+      <div><b>ρv</b><span>acoustic impedance of the medium (kg·m⁻²·s⁻¹, "rayl")</span></div>
+      <div><b>T<sub>C</sub></b><span>temperature in degrees Celsius (°C)</span></div>
+      <div><b>T<sub>abs</sub></b><span>absolute temperature (K)</span></div>
+    </div>
+  </div>
+
+  <h3>Displacement and pressure are the same wave, a quarter wavelength apart</h3>
+  <p>
+    Pressure responds to the <em>gradient</em> of displacement, not to displacement itself:
+    <span class="fi">Δp = −B ∂s/∂x</span>. Air is compressed where neighbouring parcels are converging,
+    which happens where the displacement curve crosses zero most steeply. So wherever the displacement
+    is zero, the pressure swing is maximal, and vice versa. The physical picture is satisfying: at the
+    instant a region is most compressed, the molecules there have just finished converging and are
+    momentarily at rest.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 260" role="img"
+         aria-label="Two sinusoids one quarter wavelength apart: a solid displacement curve and a dashed pressure curve. Vertical guides show that where the displacement crosses zero the pressure reaches a maximum, labelled compression, or a minimum, labelled rarefaction.">
+      <text x="70" y="26" font-size="11.5" fill="var(--v-vel)">— displacement s(x)</text>
+      <text x="250" y="26" font-size="11.5" fill="var(--v-force)">- - pressure Δp(x)</text>
+      <text x="596" y="26" text-anchor="end" font-size="11.5" fill="var(--ink-soft)">90° (λ/4) out of phase</text>
+
+      <line x1="60" y1="140" x2="600" y2="140" stroke="var(--line)" stroke-width="1" stroke-dasharray="5 5"/>
+      <g stroke="var(--line)" stroke-width="1.2" stroke-dasharray="4 4">
+        <line x1="135" y1="92" x2="135" y2="205"/>
+        <line x1="330" y1="92" x2="330" y2="205"/>
+      </g>
+
+      <path d="M 70 140 C 91.7 89.3 113.3 89.3 135 140 C 156.7 190.7 178.3 190.7 200 140 C 221.7 89.3 243.3 89.3 265 140 C 286.7 190.7 308.3 190.7 330 140 C 351.7 89.3 373.3 89.3 395 140 C 416.7 190.7 438.3 190.7 460 140 C 481.7 89.3 503.3 89.3 525 140 C 546.7 190.7 568.3 190.7 590 140"
+            fill="none" stroke="var(--v-vel)" stroke-width="2.5"/>
+
+      <path d="M 70 178 C 81.7 178 92.1 159 102.5 140 C 124.2 89.3 145.8 89.3 167.5 140 C 189.2 190.7 210.8 190.7 232.5 140 C 254.2 89.3 275.8 89.3 297.5 140 C 319.2 190.7 340.8 190.7 362.5 140 C 384.2 89.3 405.8 89.3 427.5 140 C 449.2 190.7 470.8 190.7 492.5 140 C 514.2 89.3 535.8 89.3 557.5 140 C 567.9 159 578.3 178 590 178"
+            fill="none" stroke="var(--v-force)" stroke-width="2.2" stroke-dasharray="7 4"/>
+
+      <g fill="var(--ink-soft)" font-size="10.5" text-anchor="middle">
+        <text x="135" y="224">displacement node</text>
+        <text x="135" y="238">= pressure antinode (compression)</text>
+        <text x="330" y="252">displacement node = pressure antinode (rarefaction)</text>
+      </g>
+    </svg>
+    <figcaption>
+      One sound wave, two descriptions. A microphone measures Δp; the eardrum is driven by Δp; but the
+      boundary conditions of §08 are stated most easily in terms of s. Convert between them by
+      shifting a quarter of a wavelength and swapping the words "node" and "antinode".
+    </figcaption>
+  </figure>
+
+  <h3>Speed of sound in air</h3>
+  <p>
+    From <span class="fi">v = √(γRT/M)</span>, the speed depends on the absolute temperature as
+    <span class="fi">√T</span> and on nothing else that varies much. Substituting γ = 1.40,
+    R = 8.31 J·mol⁻¹·K⁻¹, M = 0.0289 kg·mol⁻¹ and T = 293 K gives 343 m·s⁻¹ — which is why the
+    convenient linear fit <span class="fi">v ≈ 331 + 0.60 T<sub>C</sub></span> reproduces 343 m·s⁻¹ at
+    20 °C. Two consequences worth stating explicitly:
+  </p>
+  <ul>
+    <li><strong>Pressure does not appear.</strong> For an ideal gas, raising the pressure raises B and
+      ρ in the same proportion. Sound is not faster at sea level than on a mountain except through the
+      temperature difference.</li>
+    <li><strong>Molar mass and γ do appear.</strong> That is the helium effect of §04, and it is also
+      why sound is slightly faster in humid air (H₂O, M = 18, displaces N₂ and O₂, M = 28 and 32).</li>
+  </ul>
+
+  <h3>Decibels</h3>
+  <p>
+    The ear spans about twelve orders of magnitude in intensity, from 10⁻¹² W·m⁻² to about 1 W·m⁻²
+    where sound becomes painful. A logarithmic scale compresses that into a usable 0–120, and it also
+    matches perception, which is roughly logarithmic. The reference <span class="fi">I₀</span> is not
+    a law of nature — it is a convention chosen to put the threshold of hearing at 1 kHz at exactly
+    0 dB. A pressure check: <span class="fi">Δp<sub>max</sub> = √(2ρvI₀) = √(2 × 411.6 × 10⁻¹²)</span>
+    ≈ 2.9×10⁻⁵ Pa. That is an <em>amplitude</em>; divide by √2 for the rms value, 2.0×10⁻⁵ Pa — the
+    familiar 20 μPa reference pressure, which is quoted rms. Either way it is about
+    3×10⁻¹⁰ of atmospheric.
+  </p>
+  <p>The three numbers to have automatic:</p>
+  <ul>
+    <li><strong>+3 dB = ×2 intensity.</strong> (10 log₁₀2 = 3.01.) Two identical incoherent machines.</li>
+    <li><strong>+10 dB = ×10 intensity</strong>, ×√10 ≈ 3.2 in pressure amplitude, and roughly
+      <em>twice as loud</em> subjectively. The gap between "ten times the energy" and "twice as loud"
+      is the whole reason the decibel exists.</li>
+    <li><strong>+20 dB = ×100 intensity, ×10 amplitude.</strong></li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · decibels never add arithmetically</p>
+    <p style="margin:0">
+      Two 60 dB sources give <strong>63 dB</strong>, not 120 dB. Convert to intensity, add the
+      intensities, convert back — or use the shortcut <span class="fi">+10 log₁₀N</span>. And a
+      corollary that surprises people: adding a 50 dB source to a 70 dB source changes essentially
+      nothing (70.04 dB), because its intensity is a hundred times smaller. <strong>The loudest source
+      dominates.</strong>
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 8 · from watts to decibels</h4>
+    <p style="margin:.2rem 0 0">Use the 0.80 W point source of Worked example 4. (a) Find β at 2.0 m
+      and at 8.0 m. (b) Four such sources are placed together, running independently. Find β at 2.0 m.</p>
+    <ol>
+      <li>At 2.0 m, I = 1.5915×10⁻² W·m⁻². I/I₀ = 1.5915×10⁻² / 10⁻¹² = 1.5915×10¹⁰.</li>
+      <li>β = 10 log₁₀(1.5915×10¹⁰) = 10 × 10.2018 = <b>102.0 dB</b> — genuinely damaging with
+        prolonged exposure.</li>
+      <li>At 8.0 m, I = 0.80/(4π × 64) = 9.947×10⁻⁴ W·m⁻²; β = 10 log₁₀(9.947×10⁸)
+        = 10 × 8.9977 = <b>90.0 dB</b>.</li>
+      <li>Cross-check without recomputing: ×4 in distance is ×1/16 in intensity, and
+        10 log₁₀(1/16) = −12.0 dB. 102.0 − 12.0 = 90.0 ✓</li>
+      <li>Four independent sources: β = 102.0 + 10 log₁₀4 = 102.0 + 6.0 = <b>108.0 dB</b>. Four times
+        the power buys 6 dB — a little under twice the perceived loudness.</li>
+    </ol>
+    <span class="wex__ans">102.0 dB at 2.0 m · 90.0 dB at 8.0 m · 108.0 dB for four sources</span>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Beats, Doppler and the sonic boom</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Beats</dt>
+      <dd>The slow rise and fall in loudness heard when two waves of slightly different frequency
+        superpose at the same place. The beat frequency is the difference of the two frequencies.</dd>
+      <dt>Doppler effect</dt>
+      <dd>The change in <em>observed</em> frequency caused by motion of the source or the observer
+        relative to the medium. The source's emitted frequency never changes.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">f′ = f · (v + v<sub>O</sub>) / (v − v<sub>S</sub>)</span>
+      <span class="fx__tag">v<sub>O</sub>, v<sub>S</sub> counted positive <b>towards</b> the other party; still medium, motion along the line joining them, v<sub>S</sub> &lt; v</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">f<sub>beat</sub> = |f₁ − f₂|</span><span class="fx__tag">two tones at one point; perceived pitch is the mean</span></div>
+      <div class="fx"><span class="fx__eq">λ′ = (v − v<sub>S</sub>) / f</span><span class="fx__tag">a moving source really does compress λ in the medium</span></div>
+      <div class="fx"><span class="fx__eq">f′ ≈ f (1 ± u/v)</span><span class="fx__tag">low-speed limit; source and observer agree to first order</span></div>
+      <div class="fx"><span class="fx__eq">sin θ = v / v<sub>S</sub></span><span class="fx__tag">Mach cone half-angle, valid only when v<sub>S</sub> &gt; v</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>f</b><span>frequency emitted by the source (Hz)</span></div>
+      <div><b>f′</b><span>frequency received by the observer (Hz)</span></div>
+      <div><b>v</b><span>speed of sound in the medium (m·s⁻¹)</span></div>
+      <div><b>v<sub>O</sub></b><span>observer's speed, <b>+</b> if moving towards the source (m·s⁻¹)</span></div>
+      <div><b>v<sub>S</sub></b><span>source's speed, <b>+</b> if moving towards the observer (m·s⁻¹)</span></div>
+      <div><b>θ</b><span>half-angle of the shock cone (rad or °)</span></div>
+    </div>
+  </div>
+
+  <h3>Beats</h3>
+  <p>
+    Add two equal-amplitude cosines and the product formula gives
+    <span class="fi">2A cos(2π·(f₁−f₂)t/2) · cos(2π·(f₁+f₂)t/2)</span>: a fast oscillation at the
+    <em>average</em> frequency, inside an envelope oscillating at <em>half</em> the difference. The
+    trap is right there. The envelope has frequency <span class="fi">(f₁−f₂)/2</span>, but loudness
+    depends on the <em>magnitude</em> of the envelope, and a sinusoid reaches maximum magnitude twice
+    per cycle. So the audible beat rate is twice the envelope frequency:
+    <span class="fi">f<sub>beat</sub> = |f₁ − f₂|</span>.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the factor of two, and the missing sign</p>
+    <p style="margin:0">
+      440 Hz against 446 Hz gives <strong>6 beats per second</strong>, not 3. Also note the absolute
+      value: hearing 6 beats per second tells you the unknown fork is <strong>either</strong> 434
+      <strong>or</strong> 446 Hz. To resolve it you must perturb one fork — add a little mass to the
+      unknown fork (lowering its frequency) and see whether the beating speeds up or slows down.
+    </p>
+  </div>
+
+  <h3>Doppler: one formula, one memorable rule</h3>
+  <p>
+    Do not memorise four cases. Memorise <strong>"approaching raises the pitch"</strong> and let it
+    fix the signs. Write
+  </p>
+  <div class="fx">
+    <span class="fx__eq">f′ = f (v + v<sub>O</sub>) / (v − v<sub>S</sub>)</span>
+    <span class="fx__tag">count both speeds positive when that party is closing the gap</span>
+  </div>
+  <p>
+    Check it against intuition: if the observer moves towards the source, <span class="fi">v<sub>O</sub></span>
+    is positive, the numerator grows, <span class="fi">f′</span> rises ✓. If the source moves towards
+    the observer, <span class="fi">v<sub>S</sub></span> is positive, the denominator shrinks,
+    <span class="fi">f′</span> rises ✓. Receding motions take negative values and the frequency drops.
+    If you can never remember which sign goes where, you can always reconstruct it in two seconds from
+    this test.
+  </p>
+  <p>
+    The two cases look symmetric but are physically different, and this is the favourite conceptual
+    question of the topic:
+  </p>
+  <ul>
+    <li><strong>Moving source:</strong> each new crest is emitted from a point further along, so the
+      crests in the medium are genuinely bunched up. The <strong>wavelength itself changes</strong>:
+      <span class="fi">λ′ = (v − v<sub>S</sub>)/f</span> ahead of the source. The wave speed in the
+      medium does <em>not</em> change.</li>
+    <li><strong>Moving observer:</strong> the wavelength in the medium is untouched. The observer
+      simply runs into crests at a higher rate because their closing speed on the wave pattern is
+      <span class="fi">v + v<sub>O</sub></span>.</li>
+  </ul>
+  <p>
+    Because the air defines a preferred frame, the two are <strong>not equivalent</strong> — unlike
+    the relativistic Doppler effect for light, where there is no medium and only relative velocity can
+    matter. They agree to first order (<span class="fi">f′ ≈ f(1 ± u/v)</span>) and differ at order
+    <span class="fi">(u/v)²</span>, which Worked example 9 makes concrete.
+  </p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · no shift for purely transverse motion</p>
+    <p style="margin:0">
+      Only the component of velocity <strong>along the line joining source and observer</strong>
+      produces a shift. A car passing you at its closest point is, at that instant, moving purely
+      transversely — so the sound it <em>emits</em> at that instant reaches you unshifted (a moment
+      later, since it still has to travel), and the pitch drop you notice is spread over the approach
+      and departure, not concentrated at the moment of passing. The same fact
+      is the central limitation of clinical Doppler: a beam at 90° to blood flow measures
+      <strong>zero velocity</strong> (§11).
+    </p>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 350" role="img"
+         aria-label="Left panel: concentric circular wavefronts emitted by a source moving to the right at half the wave speed, bunched closely ahead of the source and widely spaced behind it. Right panel: a supersonic source at twice the wave speed, whose wavefronts are all enclosed by a Mach cone of half-angle thirty degrees.">
+      <defs>
+        <marker id="w8-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--v-force)"/>
+        </marker>
+      </defs>
+
+      <text x="145" y="26" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">v<tspan font-size="9" dy="3">S</tspan><tspan dy="-3"> = ½v  (subsonic)</tspan></text>
+      <g fill="none" stroke="var(--v-field)" stroke-width="1.8" opacity=".9">
+        <circle cx="145" cy="175" r="128"/>
+        <circle cx="161" cy="175" r="96"/>
+        <circle cx="177" cy="175" r="64"/>
+        <circle cx="193" cy="175" r="32"/>
+      </g>
+      <circle cx="209" cy="175" r="5" fill="var(--v-force)"/>
+      <line x1="213" y1="175" x2="252" y2="175" stroke="var(--v-force)" stroke-width="2" marker-end="url(#w8-arr2)"/>
+      <text x="14" y="330" font-size="10.5" fill="var(--ink-soft)">behind: λ ×1.5 → f ×⅔</text>
+      <text x="286" y="330" text-anchor="end" font-size="10.5" fill="var(--ink-soft)">ahead: λ ×½ → f ×2</text>
+
+      <line x1="305" y1="40" x2="305" y2="340" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 6"/>
+
+      <text x="470" y="26" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">v<tspan font-size="9" dy="3">S</tspan><tspan dy="-3"> = 2v  (supersonic) — Mach cone</tspan></text>
+      <g fill="none" stroke="var(--v-field)" stroke-width="1.8" opacity=".9">
+        <circle cx="418" cy="175" r="96"/>
+        <circle cx="466" cy="175" r="72"/>
+        <circle cx="514" cy="175" r="48"/>
+        <circle cx="562" cy="175" r="24"/>
+      </g>
+      <g stroke="var(--v-force)" stroke-width="2.2">
+        <line x1="610" y1="175" x2="410.8" y2="60"/>
+        <line x1="610" y1="175" x2="410.8" y2="290"/>
+      </g>
+      <path d="M 564 175 A 46 46 0 0 1 570.2 152" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/>
+      <text x="581" y="164" font-size="12" font-family="var(--mono)" fill="var(--ink-soft)">θ</text>
+      <circle cx="610" cy="175" r="5" fill="var(--v-force)"/>
+      <text x="470" y="330" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">sin θ = v / v<tspan font-size="8" dy="2">S</tspan><tspan dy="-2"> = ½  →  θ = 30°</tspan></text>
+    </svg>
+    <figcaption>
+      Left: the source (red) emits at a constant rate; each circle has been expanding since it was
+      emitted. Ahead of the source the circles are packed three times more tightly than behind — with
+      <span class="fi">v<sub>S</sub> = ½v</span> the wavelength ahead is halved and behind is
+      multiplied by 1.5. Right: once <span class="fi">v<sub>S</sub> &gt; v</span> the source outruns
+      its own wavefronts, which pile up on a cone. The Doppler formula's denominator has gone to zero
+      and beyond — it no longer applies.
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 9 · an ambulance, and why the two cases differ</h4>
+    <p style="margin:.2rem 0 0">A siren emits 800 Hz; v = 343 m·s⁻¹. (a) What does a stationary
+      bystander hear as the ambulance approaches at 30.0 m·s⁻¹, and after it has passed? (b) Instead,
+      the ambulance is parked and the bystander drives towards it at 30.0 m·s⁻¹. What now?</p>
+    <ol>
+      <li>Approaching source: v<sub>S</sub> = +30.0, v<sub>O</sub> = 0.
+        f′ = 800 × 343 / (343 − 30.0) = 800 × 343/313 = 800 × 1.09585 = <b>876.7 Hz</b>.</li>
+      <li>Receding source: v<sub>S</sub> = −30.0.
+        f′ = 800 × 343 / (343 + 30.0) = 800 × 343/373 = 800 × 0.91957 = <b>735.7 Hz</b>.</li>
+      <li>The pitch therefore drops by 876.7 − 735.7 = <b>141.0 Hz</b> as it goes past — about three
+        semitones, which is why the effect is so audible.</li>
+      <li>Moving observer, stationary source: v<sub>O</sub> = +30.0, v<sub>S</sub> = 0.
+        f′ = 800 × (343 + 30.0)/343 = 800 × 373/343 = 800 × 1.08746 = <b>870.0 Hz</b>.</li>
+      <li>876.7 Hz versus 870.0 Hz. Same relative speed, different answers — because the air is not
+        moving in either case, and it is motion <em>relative to the air</em> that matters. The
+        discrepancy is 0.8 %, of order (30/343)² = 0.76 % ✓</li>
+    </ol>
+    <span class="wex__ans">approach 876.7 Hz · recede 735.7 Hz · moving observer 870.0 Hz</span>
+  </div>
+
+  <h3>The sonic boom in one paragraph</h3>
+  <p>
+    When <span class="fi">v<sub>S</sub> = v</span> the denominator of the Doppler formula hits zero:
+    every wavefront the source has ever emitted arrives at the same instant, and superposition piles
+    them into a single enormous pressure pulse. Beyond that speed the source outruns its own sound and
+    the wavefronts envelope a cone with <span class="fi">sin θ = v/v<sub>S</sub> = 1/M</span>, where
+    M is the Mach number. The boom is not a one-off event at the moment of "breaking the sound
+    barrier" — the cone trails the aircraft continuously, and you hear a boom whenever its surface
+    sweeps over you. Note also that the amplitudes here are far too large for superposition to remain
+    linear; a shock front is precisely where the linear wave theory of this chapter breaks down.
+  </p>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Medical ultrasound: what every formula on this page is for</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Diagnostic ultrasound</dt>
+      <dd>Pulse-echo imaging with longitudinal sound above 20 kHz — clinically 2–15 MHz — in which
+        depth is inferred from echo delay and brightness from the strength of reflection at
+        impedance boundaries.</dd>
+      <dt>Doppler ultrasound</dt>
+      <dd>Measurement of blood velocity from the frequency shift of sound scattered by moving red
+        cells. The shift is doubled because the cell acts first as a moving observer, then as a
+        moving source.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Δf = 2 f₀ v cos θ / c</span>
+      <span class="fx__tag">Doppler shift from blood moving at v; requires v ≪ c</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">d = c t / 2</span><span class="fx__tag">depth from round-trip echo time; c assumed 1540 m·s⁻¹</span></div>
+      <div class="fx"><span class="fx__eq">λ = c / f₀</span><span class="fx__tag">axial resolution is a small multiple of λ</span></div>
+      <div class="fx"><span class="fx__eq">Z = ρ c</span><span class="fx__tag">acoustic impedance; mismatch decides echo strength</span></div>
+      <div class="fx"><span class="fx__eq">attenuation ≈ 0.5 dB · cm⁻¹ · MHz⁻¹</span><span class="fx__tag">soft tissue rule of thumb, per cm of travel</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>Δf</b><span>Doppler frequency shift (Hz)</span></div>
+      <div><b>f₀</b><span>transmitted frequency (Hz)</span></div>
+      <div><b>v</b><span>blood (scatterer) speed (m·s⁻¹)</span></div>
+      <div><b>θ</b><span>angle between the beam and the flow direction (° or rad)</span></div>
+      <div><b>c</b><span>speed of sound in tissue, 1540 m·s⁻¹</span></div>
+      <div><b>t</b><span>round-trip time of the echo (s)</span></div>
+      <div><b>d</b><span>depth of the reflector (m)</span></div>
+      <div><b>Z</b><span>acoustic impedance (kg·m⁻²·s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Every reflection you see on a B-mode image is the boundary-crossing physics of §03 and §05: at an
+    interface, the fraction of intensity reflected is set by the mismatch in acoustic impedance
+    <span class="fi">Z = ρc</span>. Soft tissues have very similar Z, so most of the beam continues
+    and only a few per cent comes back — which is exactly what you want for imaging deep structures.
+    Air (Z ≈ 400) and bone (Z ≈ 7.8×10⁶) are wildly mismatched with tissue (Z ≈ 1.6×10⁶), so nearly
+    everything reflects at those interfaces. That single fact explains the coupling gel (to exclude a
+    layer of air), the acoustic shadow behind a gallstone or a rib, and why lung and bowel gas are
+    ultrasound's blind spots.
+  </p>
+
+  <h3>The resolution–penetration trade-off</h3>
+  <p>
+    Two consequences of frequency pull in opposite directions:
+  </p>
+  <ul>
+    <li><strong>Resolution improves with frequency.</strong> Axial resolution is roughly half the
+      spatial pulse length, i.e. a small multiple of <span class="fi">λ = c/f₀</span>. Doubling f₀
+      halves λ and halves the smallest separation you can resolve.</li>
+    <li><strong>Penetration worsens with frequency.</strong> Absorption in soft tissue rises roughly
+      linearly with frequency: about 0.5 dB per centimetre per MHz. Doubling f₀ doubles the loss in
+      dB, which is a squaring of the intensity loss.</li>
+  </ul>
+  <p>
+    So the choice of probe is a decision about depth, made in advance and irreversibly. Put an
+    imaging depth of 10 cm through the arithmetic: the pulse travels 20 cm round trip, so at 5 MHz the
+    attenuation is 0.5 × 5 × 20 = <b>50 dB</b> (a factor of 10⁵ in intensity), and at 10 MHz it is
+    <b>100 dB</b> (a factor of 10¹⁰). The second echo is simply not detectable.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th class="num">f₀</th><th class="num">λ in soft tissue</th><th>Typical use</th><th class="num">Useful depth</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">2.5 MHz</td><td class="num">0.62 mm</td><td>Transthoracic echocardiography, obstetric, large abdomen</td><td class="num">~25 cm</td></tr>
+        <tr><td class="num">3.5 MHz</td><td class="num">0.44 mm</td><td>General adult abdominal, renal</td><td class="num">~20 cm</td></tr>
+        <tr><td class="num">5 MHz</td><td class="num">0.31 mm</td><td>Paediatric abdomen, deep vascular, transvaginal</td><td class="num">~15 cm</td></tr>
+        <tr><td class="num">7.5 MHz</td><td class="num">0.21 mm</td><td>Thyroid, breast, carotid, peripheral vessels</td><td class="num">~7 cm</td></tr>
+        <tr><td class="num">12 MHz</td><td class="num">0.13 mm</td><td>Superficial vessels, musculoskeletal, skin, vascular access</td><td class="num">~4 cm</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · why the factor of 2 in the Doppler shift</p>
+    <p style="margin:0">
+      The red cell first <em>receives</em> the beam while moving — a moving observer, one Doppler
+      factor. It then <em>re-radiates</em> that received frequency as a scatterer while still moving —
+      a moving source, a second Doppler factor. Two shifts compound, giving
+      <span class="fi">Δf = 2f₀v cos θ/c</span> in the low-speed limit. Any clinical Doppler equation
+      that lacks the 2 is being applied to a one-way geometry.
+    </p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the cos θ, and why sonographers keep the angle below 60°</p>
+    <p style="margin:0">
+      At θ = 90° the measured shift is zero however fast the blood is moving — the transverse-motion
+      result of §10. To recover the true velocity the machine divides by cos θ, and the sensitivity of
+      that division to an angle error grows sharply: at 60°, misjudging the angle by 5° changes the
+      reported velocity by about 18 %; at 80° the same 5° error very nearly doubles it. Hence the
+      clinical rule of insonating at <strong>θ ≤ 60°</strong>. Note this is the exact opposite of the
+      rule for B-mode imaging, where you want the beam <em>perpendicular</em> to the interface to get
+      the strongest specular echo.
+    </p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 10 · a carotid Doppler study</h4>
+    <p style="margin:.2rem 0 0">A 5.0 MHz probe insonates the carotid at θ = 60° to the flow;
+      c = 1540 m·s⁻¹. (a) Peak systolic blood speed is 0.50 m·s⁻¹ — find the Doppler shift.
+      (b) An echo from a vessel wall returns 130 μs after transmission — how deep is it?
+      (c) What is λ, and roughly what axial resolution does that imply?</p>
+    <ol>
+      <li>Δf = 2f₀ v cos θ / c = 2 × 5.0×10⁶ × 0.50 × cos 60° / 1540
+        = (5.0×10⁶ × 0.50) / 1540 = 2.5×10⁶ / 1540 = <b>1.62×10³ Hz ≈ 1.6 kHz</b>.</li>
+      <li>That lands squarely in the audible range — which is why Doppler machines simply play the
+        shift through a loudspeaker and why an experienced ear can diagnose a stenosis from the sound.</li>
+      <li>d = ct/2 = 1540 × 130×10⁻⁶ / 2 = 0.2002 / 2 = <b>0.100 m = 10.0 cm</b>.</li>
+      <li>λ = c/f₀ = 1540 / 5.0×10⁶ = 3.08×10⁻⁴ m = <b>0.308 mm</b>. A realistic 2-cycle pulse is
+        about 0.6 mm long, so axial resolution is roughly <b>0.3 mm</b> — half the pulse length.</li>
+    </ol>
+    <span class="wex__ans">Δf = 1.6 kHz · depth = 10.0 cm · λ = 0.308 mm → ≈ 0.3 mm axial resolution</span>
+  </div>
+
+  <div class="mnemo">
+    <h4>The chapter in one line</h4>
+    <p>High frequency buys detail and pays in depth; the angle you hold the probe at decides whether
+      the Doppler number means anything at all.</p>
+  </div>
+</section>
+
+<!-- =========================== Self-test =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>Each answer is explained as soon as you choose. If you miss one, go back to the section it came
+     from and re-read the reasoning rather than memorising the letter — several of these are the same
+     trap dressed differently.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-07-oscillations.html"><small>Previous</small><b>← Oscillations and Simple Harmonic Motion</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-09-fluids.html"><small>Next</small><b>Fluid Statics and Dynamics →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 08 · Waves and Sound</p>
+    <p>Representation used on this page: travelling- and standing-wave functions, displacement-envelope
+       diagrams and decibel arithmetic. Speeds, impedances and attenuation coefficients are standard
+       textbook approximations, quoted for magnitude rather than precise citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "You speak and a listener 10 m away hears you. Which statement is correct?",
+    "options": [
+      "Air molecules from your larynx travel the full 10 m to the listener's ear",
+      "The air drifts slowly towards the listener, carrying the sound with it",
+      "Each air molecule oscillates about a fixed point; energy and phase travel the 10 m",
+      "Nothing travels at all — the disturbance appears everywhere simultaneously"
+    ],
+    "answer": 2,
+    "explain": "A mechanical wave transports <b>energy and phase, not matter</b>. Each molecule oscillates by a fraction of a micrometre about its equilibrium position and hands the disturbance on. Options A and B describe a net flow of air, which is wind, not sound; option D would require infinite speed."
+  },
+  {
+    "stem": "A 500 Hz sound wave passes from air (v = 343 m·s⁻¹) into water (v = 1480 m·s⁻¹). In the water:",
+    "options": [
+      "f = 500 Hz and λ falls from 0.686 m to 0.159 m",
+      "f = 500 Hz and λ rises from 0.686 m to 2.96 m",
+      "f rises to about 2160 Hz while λ stays at 0.686 m",
+      "Both f and λ rise by the factor 1480/343"
+    ],
+    "answer": 1,
+    "explain": "The interface is driven by the incoming wave, so cycles per second are conserved: <b>f cannot change at a boundary</b>. Speed is fixed by the new medium, so λ = v/f must scale with v: 1480/500 = 2.96 m, about 4.3 times longer than 343/500 = 0.686 m. Option C is the classic error of thinking a faster medium means a higher pitch — only relative motion (Doppler) changes an observed frequency."
+  },
+  {
+    "stem": "A transverse wave on a cord is y(x,t) = 0.040 sin(2.5x − 60t), with x, y in metres and t in seconds. Its speed and direction are:",
+    "options": [
+      "24 m·s⁻¹ in the +x direction",
+      "24 m·s⁻¹ in the −x direction",
+      "2.4 m·s⁻¹ in the +x direction",
+      "150 m·s⁻¹ in the +x direction"
+    ],
+    "answer": 0,
+    "explain": "v = ω/k = 60/2.5 = <b>24 m·s⁻¹</b>, and a minus sign in (kx − ωt) means a fixed phase requires x to grow with t, i.e. travel in <b>+x</b>. The tempting 2.4 m·s⁻¹ is ωA = 60 × 0.040, the maximum <i>transverse speed of a particle</i> — a different quantity that happens to share the units. 150 m·s⁻¹ is ω × k, which has no physical meaning here."
+  },
+  {
+    "stem": "A guitar string sounds a fundamental of 200 Hz. Its tension is increased to exactly four times the original value, with nothing else changed. The new fundamental is:",
+    "options": ["100 Hz", "283 Hz", "400 Hz", "800 Hz"],
+    "answer": 2,
+    "explain": "v = √(F<sub>T</sub>/μ), so quadrupling the tension <b>doubles</b> the speed, and f₁ = v/2L doubles with it: <b>400 Hz</b>. 800 Hz assumes f ∝ F<sub>T</sub> and forgets the square root; 283 Hz (= 200√2) is the answer for tension merely <i>doubled</i>. Remember the general scaling: f₁ ∝ √F<sub>T</sub>, so to double the pitch you need four times the tension."
+  },
+  {
+    "stem": "Two loudspeakers driven in phase emit a 343 Hz tone (v = 343 m·s⁻¹). At a point 6.0 m from one speaker and 7.5 m from the other, the interference is:",
+    "options": [
+      "Fully constructive, because the path difference is a whole number of metres",
+      "Fully constructive, because 1.5 m is greater than one wavelength",
+      "Neither — path difference has no effect when the sources are in phase",
+      "Fully destructive, because the path difference is 1.5 wavelengths"
+    ],
+    "answer": 3,
+    "explain": "λ = v/f = 343/343 = 1.00 m, and Δr = 7.5 − 6.0 = 1.5 m = <b>1.5λ</b>, a half-integer number of wavelengths, so crest meets trough: <b>destructive</b>. The trap in options A and B is comparing Δr with a round number of metres rather than with λ — only the ratio Δr/λ matters. Had the speakers been wired in antiphase, this same point would be a maximum."
+  },
+  {
+    "stem": "A tube 0.500 m long is closed at one end. With v = 343 m·s⁻¹, its three lowest resonant frequencies are:",
+    "options": [
+      "343, 686 and 1029 Hz",
+      "171.5, 514.5 and 857.5 Hz",
+      "171.5, 343.0 and 514.5 Hz",
+      "686, 1372 and 2058 Hz"
+    ],
+    "answer": 1,
+    "explain": "A closed end must be a <b>displacement node</b> and the open end a displacement antinode, and node-to-antinode is λ/4, so f₁ = v/4L = 343/2.00 = <b>171.5 Hz</b>. Only odd harmonics fit, giving 1f₁, 3f₁, 5f₁ = 171.5, 514.5, 857.5 Hz. Option C wrongly includes the second harmonic (an even multiple is impossible here); option A is the open-open series v/2L = 343 Hz."
+  },
+  {
+    "stem": "One machine alone produces a sound level of 68 dB at your workstation. Four identical machines running independently produce:",
+    "options": ["71 dB", "72 dB", "74 dB", "272 dB"],
+    "answer": 2,
+    "explain": "Intensities add, levels do not: β = 68 + 10 log₁₀4 = 68 + 6.0 = <b>74 dB</b>. 272 dB (= 4 × 68) is the arithmetic trap — decibels are logarithms and are never multiplied by the number of sources. 71 dB would be the answer for only two machines (+3 dB), and the general rule is +10 log₁₀N."
+  },
+  {
+    "stem": "Two tuning forks, 440 Hz and 446 Hz, are struck together. How many loudness maxima are heard per second?",
+    "options": ["3", "443", "886", "6"],
+    "answer": 3,
+    "explain": "f<sub>beat</sub> = |f₁ − f₂| = <b>6 per second</b>. The tempting 3 comes from the amplitude envelope, which does oscillate at (f₁ − f₂)/2 = 3 Hz — but loudness follows the <i>magnitude</i> of the envelope, and a sinusoid peaks in magnitude twice per cycle. 443 Hz is the mean, which is the pitch you actually perceive, not the beat rate."
+  },
+  {
+    "stem": "A siren emits 500 Hz; v = 343 m·s⁻¹. Compare (i) the siren receding from a stationary listener at 34.3 m·s⁻¹ with (ii) the listener receding from a stationary siren at 34.3 m·s⁻¹.",
+    "options": [
+      "Both give 450.0 Hz — only the relative velocity matters",
+      "(i) 454.5 Hz and (ii) 450.0 Hz",
+      "(i) 450.0 Hz and (ii) 454.5 Hz",
+      "(i) 550.0 Hz and (ii) 545.5 Hz"
+    ],
+    "answer": 1,
+    "explain": "Receding source: f′ = 500 × 343/(343 + 34.3) = 500/1.1 = <b>454.5 Hz</b>. Receding observer: f′ = 500 × (343 − 34.3)/343 = 500 × 0.9 = <b>450.0 Hz</b>. Option A is the seductive one: because the air defines a rest frame, a moving source and a moving observer are <b>not</b> equivalent — they agree only to first order in u/v. Option D has both frequencies rising, but receding motion always lowers the pitch."
+  },
+  {
+    "stem": "During a Doppler study the ultrasound beam is aimed exactly perpendicular to the direction of blood flow. The measured Doppler shift will be:",
+    "options": [
+      "Zero, because only the velocity component along the beam produces a shift",
+      "Maximum, because the blood crosses the beam at the greatest possible rate",
+      "Equal to 2f₀v/c, since the shift does not depend on angle",
+      "Negative, indicating flow away from the transducer"
+    ],
+    "answer": 0,
+    "explain": "Δf = 2f₀v cos θ/c, and cos 90° = 0, so a perpendicular beam reports <b>zero velocity no matter how fast the blood moves</b> — the same transverse-motion result as a car sounding its true pitch at the instant it passes you. Option C drops the cos θ that is the whole point, and it is why sonographers insonate at θ ≤ 60°, where dividing by cos θ does not catastrophically amplify angle error."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

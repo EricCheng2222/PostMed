@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 11 · Electric Charge, Field and Potential — PostMed Notebook</title>
+<meta name="description" content="Physics note 11: charge and its quantisation, Coulomb's law, the electric field and field lines, Gauss's law, conductors at equilibrium, potential and the volt, capacitance, dielectrics and stored energy — with 10 self-test questions.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 11</p>
+  <h1>Electric Charge, Field and Potential</h1>
+  <p class="lede">
+    Electrostatics has exactly one law — Coulomb's inverse square — and everything else is
+    bookkeeping built on top of it. The bookkeeping matters because it is what makes problems
+    solvable: divide the force by the test charge and you get a <strong>vector field</strong>;
+    divide the energy by the test charge and you get a <strong>scalar potential</strong>. The
+    single most valuable habit in this chapter is knowing which of those two to reach for, because
+    scalars add with a pen and vectors need a protractor.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Fields, flux and scalar potential</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~40 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Charge: quantised, conserved, two-signed</a></li>
+      <li><a href="#s2">Conductors, insulators, semiconductors — and three ways to charge them</a></li>
+      <li><a href="#s3">Coulomb's law and the scale of the electric force</a></li>
+      <li><a href="#s4">The electric field and its lines</a></li>
+      <li><a href="#s5">Flux and Gauss's law</a></li>
+      <li><a href="#s6">Conductors in electrostatic equilibrium</a></li>
+      <li><a href="#s7">Potential energy, potential and the volt</a></li>
+      <li><a href="#s8">Equipotentials and E = −dV/dx</a></li>
+      <li><a href="#s9">Capacitance, parallel plates and dielectrics</a></li>
+      <li><a href="#s10">Energy in a capacitor, energy in the field</a></li>
+      <li><a href="#s11">Series, parallel, membranes and defibrillators</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <!-- Page-top formula sheet -->
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Quantisation</b><code>q = n e, n = 0, ±1, ±2 …</code></div>
+      <div class="fsheet__item"><b>Elementary charge</b><code>e = 1.60×10⁻¹⁹ C</code></div>
+      <div class="fsheet__item"><b>Coulomb's law</b><code>F = k|q₁q₂| / r²</code></div>
+      <div class="fsheet__item"><b>Coulomb constant</b><code>k = 1/(4πε₀) = 8.99×10⁹ N·m²·C⁻²</code></div>
+      <div class="fsheet__item"><b>Permittivity of free space</b><code>ε₀ = 8.85×10⁻¹² F·m⁻¹</code></div>
+      <div class="fsheet__item"><b>Electric field</b><code>E = F / q₀</code></div>
+      <div class="fsheet__item"><b>Field of a point charge</b><code>E = kQ / r²</code></div>
+      <div class="fsheet__item"><b>Dipole moment · axial field</b><code>p = qd · E = 2kp / r³</code></div>
+      <div class="fsheet__item"><b>Electric flux</b><code>Φ = E A cos θ</code></div>
+      <div class="fsheet__item"><b>Gauss's law</b><code>∮ E·dA = Q(enc) / ε₀</code></div>
+      <div class="fsheet__item"><b>Infinite sheet</b><code>E = σ / (2ε₀)</code></div>
+      <div class="fsheet__item"><b>Conductor surface</b><code>E = σ / ε₀</code></div>
+      <div class="fsheet__item"><b>Infinite line</b><code>E = λ / (2πε₀r) = 2kλ / r</code></div>
+      <div class="fsheet__item"><b>Uniform sphere, inside</b><code>E = kQr / R³</code></div>
+      <div class="fsheet__item"><b>Potential energy of a pair</b><code>U = k q₁q₂ / r</code></div>
+      <div class="fsheet__item"><b>Potential</b><code>V = U / q₀ = kQ / r</code></div>
+      <div class="fsheet__item"><b>Energy change · work</b><code>ΔU = qΔV, W(field) = −qΔV</code></div>
+      <div class="fsheet__item"><b>Field as gradient</b><code>E(x) = −dV/dx</code></div>
+      <div class="fsheet__item"><b>Uniform field</b><code>E = V / d</code></div>
+      <div class="fsheet__item"><b>Electron-volt</b><code>1 eV = 1.60×10⁻¹⁹ J</code></div>
+      <div class="fsheet__item"><b>Capacitance</b><code>C = Q / V</code></div>
+      <div class="fsheet__item"><b>Parallel plates</b><code>C = κ ε₀ A / d</code></div>
+      <div class="fsheet__item"><b>Stored energy</b><code>U = ½QV = ½CV² = Q² / 2C</code></div>
+      <div class="fsheet__item"><b>Energy density</b><code>u = ½ κ ε₀ E²</code></div>
+      <div class="fsheet__item"><b>Capacitors in parallel</b><code>C = C₁ + C₂ + …</code></div>
+      <div class="fsheet__item"><b>Capacitors in series</b><code>1/C = 1/C₁ + 1/C₂ + …</code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Charge: quantised, conserved, two-signed</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Electric charge</dt>
+      <dd>An intrinsic property of matter — like mass — that determines how strongly a particle
+        sources and responds to the electromagnetic interaction. Unlike mass it comes in two signs.</dd>
+      <dt>Quantisation</dt>
+      <dd>Every free object's net charge is an integer multiple of the elementary charge <i>e</i>.
+        There is no such thing as half a unit of free charge.</dd>
+      <dt>Conservation</dt>
+      <dd>The algebraic sum of the charge in an isolated system never changes. Charging is always
+        <em>transfer</em>, never creation.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">q = n e   with n = 0, ±1, ±2, …</span>
+      <span class="fx__tag">any isolated body</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">e = 1.602×10⁻¹⁹ C ≈ 1.60×10⁻¹⁹ C</span><span class="fx__tag">proton +e, electron −e</span></div>
+      <div class="fx"><span class="fx__eq">Σ q(isolated system) = constant</span><span class="fx__tag">exact, no known exception</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>q</b><span>net charge (C, coulomb)</span></div>
+      <div><b>n</b><span>an integer (dimensionless)</span></div>
+      <div><b>e</b><span>elementary charge, 1.60×10⁻¹⁹ C</span></div>
+    </div>
+  </div>
+
+  <p>
+    Two facts fix the whole subject. First, charge is <strong>quantised</strong>: Millikan's oil-drop
+    experiment found that drops only ever carried 1<i>e</i>, 2<i>e</i>, 3<i>e</i>… and never anything in
+    between. Quarks carry ±⅓<i>e</i> and ±⅔<i>e</i>, but they are permanently confined inside hadrons, so
+    every charge you can actually isolate and measure is a whole multiple of <i>e</i>. Second, charge is
+    <strong>conserved</strong>: rub a rod on fur and the rod does not manufacture charge — electrons move
+    from one to the other, and the pair together stays neutral.
+  </p>
+  <p>
+    Note what quantisation does <em>not</em> mean. The step size 1.60×10⁻¹⁹ C is so small compared with
+    laboratory charges that charge behaves as a continuous variable for every purpose in this chapter.
+    One coulomb is 1/(1.60×10⁻¹⁹) = <strong>6.25×10¹⁸ elementary charges</strong>. When we say a capacitor
+    holds 2.7 nC we are talking about roughly 1.7×10¹⁰ electrons — a number large enough that the
+    graininess is invisible.
+  </p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · is this charge possible?</p>
+    <p>A stock item asks which of several values could be a body's net charge. Divide each by
+      1.60×10⁻¹⁹ C and keep the one that gives a whole number. 6.4×10⁻¹⁹ C = 4<i>e</i> ✓;
+      2.4×10⁻¹⁹ C = 1.5<i>e</i> ✗; 8.0×10⁻²⁰ C = 0.5<i>e</i> ✗.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "neutral" ≠ "no charge"</p>
+    <p>A neutral object is full of charge; the positives and negatives simply balance. That is why a
+      neutral object can still be <em>attracted</em> to a charged rod (§2) and why a neutral conductor
+      can still carry a huge field on its surface. Neutral means <i>net</i> zero, nothing more.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Conductors, insulators, semiconductors — and three ways to charge them</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Conductor</dt>
+      <dd>A material containing charge carriers that are free to move macroscopically — delocalised
+        electrons in a metal, dissolved ions in an electrolyte.</dd>
+      <dt>Insulator (dielectric)</dt>
+      <dd>A material in which every charge is bound to its own molecule; charge deposited on it stays
+        where you put it.</dd>
+      <dt>Semiconductor</dt>
+      <dd>A material whose carrier population is small but thermally and chemically tunable, so its
+        conductivity can be engineered by doping.</dd>
+      <dt>Polarisation</dt>
+      <dd>The separation of bound charge inside a neutral object placed in a field: no net charge
+        appears, but the near face becomes oppositely charged to the source.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ρ(conductor) ~ 10⁻⁸ Ω·m ≪ ρ(semiconductor) ~ 10⁻⁵–10³ ≪ ρ(insulator) ≥ 10¹⁰</span>
+      <span class="fx__tag">room temperature, order of magnitude</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">p(induced) = α E</span><span class="fx__tag">linear response of a neutral molecule</span></div>
+      <div class="fx"><span class="fx__eq">n(free e⁻ in Cu) ≈ 8.5×10²⁸ m⁻³</span><span class="fx__tag">≈ one per atom</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>ρ</b><span>resistivity (Ω·m)</span></div>
+      <div><b>n</b><span>carrier number density (m⁻³)</span></div>
+      <div><b>p</b><span>induced dipole moment (C·m)</span></div>
+      <div><b>α</b><span>polarisability (C·m²·V⁻¹)</span></div>
+      <div><b>E</b><span>applied field (V·m⁻¹ = N·C⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    The classification is about <em>mobility</em>, not about how much charge a material contains. Copper
+    and glass hold comparable numbers of electrons per cubic metre; in copper about one electron per atom
+    is delocalised across the whole lattice, in glass every electron is locked to a bond. The practical
+    consequence is that excess charge placed on a conductor redistributes itself over the surface within
+    nanoseconds, whereas excess charge on an insulator sits in a patch until something carries it away.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Class</th><th>Carriers</th><th>ρ / Ω·m</th><th>ρ vs temperature</th><th>Examples</th><th>Why it matters here</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Conductor</strong></td>
+          <td>Delocalised electrons</td>
+          <td class="num">10⁻⁸ – 10⁻⁶</td>
+          <td><strong>Rises</strong> with T (more lattice scattering)</td>
+          <td>Cu, Ag, Al</td>
+          <td>E = 0 inside at equilibrium; charge lives on the surface (§6)</td>
+        </tr>
+        <tr>
+          <td><strong>Electrolyte</strong><br><small style="color:var(--ink-faint)">ionic conductor</small></td>
+          <td>Solvated ions, free to migrate</td>
+          <td class="num">10⁻¹ – 10¹</td>
+          <td><strong>Falls</strong> with T (lower viscosity → faster ions)</td>
+          <td>Saline, cytoplasm, blood (≈1.5 Ω·m), CSF</td>
+          <td>The conductor inside the body — it is why tissue conducts at all (note 12 §2)</td>
+        </tr>
+        <tr>
+          <td><strong>Semiconductor</strong></td>
+          <td>Electrons <em>and</em> holes, few but tunable</td>
+          <td class="num">10⁻⁵ – 10³</td>
+          <td><strong>Falls</strong> with T (more carriers promoted)</td>
+          <td>Si, Ge, GaAs</td>
+          <td>Doping controls n over 10 orders of magnitude — every sensor and chip</td>
+        </tr>
+        <tr>
+          <td><strong>Insulator / dielectric</strong></td>
+          <td>All charge bound; only polarisation</td>
+          <td class="num">10¹⁰ – 10¹⁶</td>
+          <td>Falls slowly (weak thermal ionisation)</td>
+          <td>Glass, rubber, PTFE, the lipid bilayer</td>
+          <td>κ multiplies capacitance (§9); breakdown sets the voltage limit</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    The temperature behaviour is the discriminator examiners like: in a metal the carrier count is fixed
+    and heating only makes the lattice vibrate more, so resistivity <em>rises</em>; in a semiconductor
+    heating promotes many more electrons across the gap, so resistivity <em>falls</em>. Physiologically,
+    remember that the body is a conductor by virtue of its ions — that is precisely why a defibrillator
+    current crosses the chest (§11) and why the lipid bilayer, an excellent insulator only 2–5 nm thick,
+    is what stands between the intracellular and extracellular conductors.
+  </p>
+
+  <h3>The three charging mechanisms</h3>
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Method</th><th>Contact?</th><th>What moves</th><th>Sign of the result</th><th>Typical demo</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Friction</strong> (triboelectric)</td>
+          <td>Yes, rubbing</td>
+          <td>Electrons transfer between two <em>insulators</em> with different electron affinity</td>
+          <td>The two objects end up with <strong>equal and opposite</strong> charge</td>
+          <td>Glass rod on silk (rod +); rubber on fur (rod −)</td>
+        </tr>
+        <tr>
+          <td><strong>Conduction</strong></td>
+          <td>Yes, touching</td>
+          <td>Charge flows until both bodies share one potential</td>
+          <td><strong>Same sign</strong> as the charging body</td>
+          <td>Charged rod touched to an electroscope</td>
+        </tr>
+        <tr>
+          <td><strong>Induction</strong></td>
+          <td><strong>No</strong></td>
+          <td>Free charge inside the target rearranges; earthing then drains one sign away</td>
+          <td><strong>Opposite sign</strong> to the inducing body</td>
+          <td>Charged rod near a grounded metal sphere</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    <strong>Induction, step by step.</strong> Bring a positive rod near an isolated metal sphere: the
+    sphere's free electrons are attracted to the near side, so the near side goes negative and the far
+    side positive — but the sphere is still neutral overall. Now touch a wire from the far side to earth.
+    Electrons flow <em>up from the earth</em> to neutralise that positive far side. Break the earth
+    connection first, <em>then</em> remove the rod, and the surplus electrons spread out: the sphere is
+    left <strong>negative</strong>. Reverse the order — remove the rod first — and the electrons simply
+    drain back to earth and you get nothing.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · why a charged comb picks up neutral paper</p>
+    <p>Polarisation is not charging. The paper stays neutral, but the induced negative face is
+      <em>closer</em> to the positive comb than the induced positive face is. Because Coulomb's law falls
+      as 1/r², the nearer attraction beats the farther repulsion and there is a <strong>net
+      attraction</strong>. This is why <em>attraction proves nothing</em> about an object's charge —
+      only <strong>repulsion is a definitive test</strong> that two objects carry the same sign.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Memory hook</h4>
+    <p>Touch it and it copies you; hover-and-earth it and it opposes you. <em>Conduction = same sign,
+      induction = opposite sign.</em></p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Coulomb's law and the scale of the electric force</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Coulomb's law</dt>
+      <dd>The electrostatic force between two point charges acts along the line joining them, is
+        proportional to the product of the charges, and falls as the inverse square of their separation.</dd>
+      <dt>Principle of superposition</dt>
+      <dd>The force on a charge from many others is the <em>vector</em> sum of the individual pairwise
+        forces, each computed as if the others were absent.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">F = k |q₁ q₂| / r² = (1 / 4πε₀) · |q₁ q₂| / r²</span>
+      <span class="fx__tag">point charges (or spheres, using centre-to-centre r), at rest, in vacuum</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">k = 1/(4πε₀) = 8.99×10⁹ N·m²·C⁻²</span><span class="fx__tag">the Coulomb constant</span></div>
+      <div class="fx"><span class="fx__eq">ε₀ = 8.85×10⁻¹² C²·N⁻¹·m⁻² = 8.85×10⁻¹² F·m⁻¹</span><span class="fx__tag">permittivity of free space</span></div>
+      <div class="fx"><span class="fx__eq"><b>F</b>(net) = <b>F</b>₁ + <b>F</b>₂ + <b>F</b>₃ + …</span><span class="fx__tag">vector sum — resolve into components</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>F</b><span>force magnitude (N)</span></div>
+      <div><b>q₁, q₂</b><span>the two charges (C)</span></div>
+      <div><b>r</b><span>separation, centre to centre (m)</span></div>
+      <div><b>k</b><span>Coulomb constant (N·m²·C⁻²)</span></div>
+      <div><b>ε₀</b><span>permittivity of free space (F·m⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Use the formula with <em>magnitudes only</em> and put the direction in by hand: like charges repel
+    along the line joining them, unlike charges attract along it. Feeding signed charges into the formula
+    and then also arguing about direction is how sign errors are made.
+  </p>
+  <p>
+    Why is <i>k</i> written as 1/(4πε₀)? Because a point charge spreads its influence over spheres, and
+    the surface area of a sphere is 4πr². Writing the constant this way puts the geometric 4π where it
+    belongs and leaves ε₀ as the pure "how easily does a field establish itself in this medium" constant.
+    That pays off immediately in Gauss's law (§5) and in capacitance (§9), where the 4π disappears
+    entirely. In a medium of dielectric constant κ, replace ε₀ by κε₀ — the force <em>weakens</em>, which
+    is why ionic bonds are ~80× weaker in water (κ ≈ 80) than in vacuum.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 1 · superposition along a line</h4>
+    <p>Three point charges on the x-axis: q₁ = +6.0 μC at x = 0, q₂ = −4.0 μC at x = 0.30 m,
+      q₃ = +2.0 μC at x = 0.50 m. Find the net force on q₃.</p>
+    <ol>
+      <li><strong>Force from q₁ on q₃.</strong> r = 0.50 m. F₁₃ = (8.99×10⁹)(6.0×10⁻⁶)(2.0×10⁻⁶)/(0.50)²
+        = 0.1079/0.25 = <strong>0.432 N</strong>. Both positive → repulsion → points in <strong>+x</strong>.</li>
+      <li><strong>Force from q₂ on q₃.</strong> r = 0.20 m. F₂₃ = (8.99×10⁹)(4.0×10⁻⁶)(2.0×10⁻⁶)/(0.20)²
+        = 0.0719/0.040 = <strong>1.798 N</strong>. Opposite signs → attraction → points toward q₂, i.e.
+        <strong>−x</strong>.</li>
+      <li><strong>Add as vectors.</strong> Both lie on the x-axis, so this is simple addition with signs:
+        F = +0.432 − 1.798 = −1.366 N.</li>
+      <li><strong>Sanity check.</strong> q₂ is smaller in magnitude but 2.5× closer; 1/r² gives it a
+        factor 6.25 advantage, which comfortably beats the factor 1.5 in charge. The nearer charge should
+        dominate — it does.</li>
+    </ol>
+    <span class="wex__ans">F(net) ≈ 1.37 N, directed toward q₂ (the −x direction)</span>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 2 · two protons: electric versus gravitational</h4>
+    <p>Compare the electric repulsion and the gravitational attraction between two protons a distance
+      r = 1.0×10⁻¹⁵ m apart (m<sub>p</sub> = 1.67×10⁻²⁷ kg, G = 6.67×10⁻¹¹ N·m²·kg⁻²).</p>
+    <ol>
+      <li><strong>Electric.</strong> F<sub>E</sub> = k e²/r² = (8.99×10⁹)(1.60×10⁻¹⁹)²/(1.0×10⁻¹⁵)²
+        = 2.30×10⁻²⁸ / 1.0×10⁻³⁰ = <strong>2.3×10² N</strong>. That is roughly the weight of a 23 kg
+        child — acting on a single proton.</li>
+      <li><strong>Gravitational.</strong> F<sub>G</sub> = G m<sub>p</sub>²/r² = (6.67×10⁻¹¹)(1.67×10⁻²⁷)²/(1.0×10⁻³⁰)
+        = 1.86×10⁻⁶⁴ / 1.0×10⁻³⁰ = <strong>1.9×10⁻³⁴ N</strong>.</li>
+      <li><strong>Ratio.</strong> Both laws go as 1/r², so <em>r cancels</em> and the ratio is a pure
+        number: F<sub>E</sub>/F<sub>G</sub> = k e² / (G m<sub>p</sub>²) = 2.30×10⁻²⁸ / 1.86×10⁻⁶⁴.</li>
+    </ol>
+    <span class="wex__ans">F(E) / F(G) ≈ 1.2×10³⁶ — independent of separation</span>
+    <p style="margin-top:.7rem;font-size:.92rem;color:var(--ink-soft)">
+      Two consequences worth carrying. (i) Gravity is <strong>utterly negligible</strong> in any problem
+      involving charged particles — never include weight unless the question is explicitly about a
+      charged oil drop or a suspended pith ball. (ii) Since 230 N of repulsion does not blow nuclei
+      apart, there must be a stronger, shorter-ranged interaction: the strong nuclear force.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Feature</th><th>Coulomb force</th><th>Newtonian gravity</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Law</td><td class="num">F = k q₁q₂ / r²</td><td class="num">F = G m₁m₂ / r²</td></tr>
+        <tr><td>Constant</td><td class="num">k = 8.99×10⁹ N·m²·C⁻²</td><td class="num">G = 6.67×10⁻¹¹ N·m²·kg⁻²</td></tr>
+        <tr><td>Source</td><td>Charge — <strong>two signs</strong></td><td>Mass — <strong>one sign</strong></td></tr>
+        <tr><td>Direction</td><td>Attractive <em>or</em> repulsive</td><td>Always attractive</td></tr>
+        <tr><td>Can it be screened?</td><td><strong>Yes</strong> — a conductor cancels it (Faraday cage)</td><td>No known screening</td></tr>
+        <tr><td>Relative strength (2 protons)</td><td class="num">1.2×10³⁶</td><td class="num">1</td></tr>
+        <tr><td>Dominates at</td><td>Atomic and molecular scale — all of chemistry</td><td>Astronomical scale, where charge neutralises</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · scaling questions</p>
+    <p>Most Coulomb questions never need a calculator. "One charge is tripled and the separation
+      doubled" → F → F × 3 / 2² = <strong>0.75 F</strong>. Read the ratio straight off the exponents:
+      charge is first power, distance is inverse square.</p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>The electric field and its lines</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Electric field</dt>
+      <dd>The force per unit positive charge that a source distribution would exert at a point —
+        a vector defined at <em>every</em> point in space, whether or not anything is there to feel it.</dd>
+      <dt>Test charge</dt>
+      <dd>A charge q₀ small enough that placing it does not disturb the sources it is measuring; the
+        definition is strictly a limit as q₀ → 0.</dd>
+      <dt>Electric dipole</dt>
+      <dd>Two equal and opposite charges ±q separated by a small distance d, characterised by the
+        dipole moment <b>p</b> = qd pointing from − to +.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq"><b>E</b> = <b>F</b> / q₀   ⟹   <b>F</b> = q<b>E</b></span>
+      <span class="fx__tag">definition; the force on a negative q reverses</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">E = kQ / r² = Q / (4πε₀r²)</span><span class="fx__tag">point charge, or outside any spherical charge</span></div>
+      <div class="fx"><span class="fx__eq"><b>E</b>(net) = Σ <b>E</b>ᵢ</span><span class="fx__tag">vector superposition — components, then Pythagoras</span></div>
+      <div class="fx"><span class="fx__eq">E(axis) = 2kp / r³ ·  E(bisector) = kp / r³</span><span class="fx__tag">dipole, far field r ≫ d</span></div>
+      <div class="fx"><span class="fx__eq">τ = pE sin θ ·  U = −pE cos θ</span><span class="fx__tag">dipole in a uniform external field</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>E</b><span>electric field (N·C⁻¹ = V·m⁻¹)</span></div>
+      <div><b>F</b><span>force on the test charge (N)</span></div>
+      <div><b>q₀</b><span>test charge (C)</span></div>
+      <div><b>Q</b><span>source charge (C)</span></div>
+      <div><b>r</b><span>distance from the source (m)</span></div>
+      <div><b>p</b><span>dipole moment, p = qd (C·m)</span></div>
+      <div><b>τ</b><span>torque on the dipole (N·m)</span></div>
+      <div><b>θ</b><span>angle between <b>p</b> and <b>E</b> (rad)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Coulomb's law describes an interaction between <em>two</em> objects; the field concept splits it into
+    two independent halves. The source sets up a field; the field then acts on whatever is placed in it.
+    The point of dividing by q₀ is that <strong>E is a property of the sources alone</strong> — change the
+    probe and F changes, but F/q₀ does not. The limit q₀ → 0 is in the definition for a real reason: a
+    finite probe would repel the source charges on a conductor and alter the very field it is measuring.
+  </p>
+  <p>
+    The units are worth pausing on. N·C⁻¹ and V·m⁻¹ are the same unit: V·m⁻¹ = (J·C⁻¹)/m =
+    (N·m·C⁻¹)/m = N·C⁻¹. Use N·C⁻¹ when you are thinking about force, V·m⁻¹ when you are thinking about
+    potential gradients (§8). For reference, dry air breaks down at about 3×10⁶ V·m⁻¹, and a resting cell
+    membrane sustains about 1.4×10⁷ V·m⁻¹ (§11).
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 300" role="img" aria-label="Two panels of electric field lines. Left: an isolated positive point charge with twelve straight lines radiating outward in all directions. Right: an electric dipole, with lines leaving the positive charge, curving through the space between and around the pair, and ending on the negative charge.">
+      <defs>
+        <marker id="es-arrF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-field)"></path>
+        </marker>
+      </defs>
+      <g stroke="var(--v-field)" stroke-width="1.7" fill="none" marker-end="url(#es-arrF)">
+        <path d="M179,140 L253,140"></path>
+        <path d="M175.8,152 L239.9,189"></path>
+        <path d="M167,160.8 L204,224.9"></path>
+        <path d="M155,164 L155,238"></path>
+        <path d="M143,160.8 L106,224.9"></path>
+        <path d="M134.2,152 L70.1,189"></path>
+        <path d="M131,140 L57,140"></path>
+        <path d="M134.2,128 L70.1,91"></path>
+        <path d="M143,119.2 L106,55.1"></path>
+        <path d="M155,116 L155,42"></path>
+        <path d="M167,119.2 L204,55.1"></path>
+        <path d="M175.8,128 L239.9,91"></path>
+      </g>
+      <circle cx="155" cy="140" r="15" fill="var(--v-force)"></circle>
+      <text x="155" y="146" text-anchor="middle" font-size="17" font-weight="700" fill="var(--paper)">+</text>
+      <text x="155" y="278" text-anchor="middle" font-size="12" fill="var(--ink-soft)">Point charge · lines radiate, density ∝ 1/r²</text>
+
+      <line x1="358" y1="25" x2="358" y2="275" stroke="var(--line)" stroke-width="1.5"></line>
+
+      <g stroke="var(--v-field)" stroke-width="1.7" fill="none" marker-end="url(#es-arrF)">
+        <path d="M485,140 L595,140"></path>
+        <path d="M481.5,130.4 C505,105 575,105 598.5,130.4"></path>
+        <path d="M481.5,149.6 C505,175 575,175 598.5,149.6"></path>
+        <path d="M472.6,125.2 C495,72 585,72 607.4,125.2"></path>
+        <path d="M472.6,154.8 C495,208 585,208 607.4,154.8"></path>
+        <path d="M460.4,128.5 C428,58 652,58 619.6,128.5"></path>
+        <path d="M460.4,151.5 C428,222 652,222 619.6,151.5"></path>
+        <path d="M455,140 L412,140"></path>
+        <path d="M668,140 L628,140"></path>
+      </g>
+      <circle cx="470" cy="140" r="15" fill="var(--v-force)"></circle>
+      <text x="470" y="146" text-anchor="middle" font-size="17" font-weight="700" fill="var(--paper)">+</text>
+      <circle cx="610" cy="140" r="15" fill="var(--v-vel)"></circle>
+      <text x="610" y="146" text-anchor="middle" font-size="19" font-weight="700" fill="var(--paper)">−</text>
+      <text x="540" y="278" text-anchor="middle" font-size="12" fill="var(--ink-soft)">Dipole · every line starts on + and ends on −</text>
+    </svg>
+    <figcaption>
+      Field lines are a bookkeeping device, not a physical object. Red = positive charge, teal = negative,
+      violet = the field. The rules: lines <strong>begin on positive and end on negative</strong> charge
+      (or run to infinity); their <strong>local density is proportional to |E|</strong>; the tangent gives
+      the direction of <b>E</b>; the <strong>number of lines leaving a charge is proportional to its
+      magnitude</strong>; and lines <strong>never cross</strong>, because a crossing point would have two
+      different field directions at once. In the dipole picture the field between the charges is strong
+      (the lines are packed) and it never vanishes anywhere in the plane.
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 3 · vector superposition of two fields</h4>
+    <p>Two charges of q = +4.0 nC each sit at (−3.0 cm, 0) and (+3.0 cm, 0). Find the field at the point
+      P = (0, 4.0 cm).</p>
+    <ol>
+      <li><strong>Distance from each charge to P.</strong> r = √(0.030² + 0.040²) = <strong>0.050 m</strong>
+        (a 3-4-5 triangle), so r² = 2.5×10⁻³ m².</li>
+      <li><strong>Magnitude of each field.</strong> E₁ = E₂ = kq/r² = (8.99×10⁹)(4.0×10⁻⁹)/(2.5×10⁻³)
+        = 35.96/2.5×10⁻³ = <strong>1.44×10⁴ N·C⁻¹</strong>, each pointing <em>away</em> from its own
+        positive charge.</li>
+      <li><strong>Resolve.</strong> By symmetry the x-components are equal and opposite → they cancel.
+        Each y-component is E × (4.0/5.0) = 1.4384×10⁴ × 0.80 = 1.15×10⁴ N·C⁻¹.</li>
+      <li><strong>Add.</strong> E<sub>y</sub> = 2 × 1.1507×10⁴ = 2.30×10⁴ N·C⁻¹; E<sub>x</sub> = 0.</li>
+    </ol>
+    <span class="wex__ans">E = 2.30×10⁴ N·C⁻¹, straight up the +y axis</span>
+    <p style="margin-top:.7rem;font-size:.92rem;color:var(--ink-soft)">
+      Note how much machinery that took: two magnitudes, two direction cosines, a cancellation argument.
+      Hold on to this example — in §7 we compute the <em>potential</em> at exactly the same point in one
+      line.</p>
+  </div>
+
+  <p>
+    <strong>The dipole</strong> is the charge distribution biology runs on: a water molecule has
+    p ≈ 6.2×10⁻³⁰ C·m, and every peptide bond, membrane lipid head and transmembrane helix carries one.
+    Far from a dipole the field falls as <strong>1/r³</strong>, not 1/r², because the two charges nearly
+    cancel and only their separation survives. On the axis it is twice as strong as at the same distance
+    on the perpendicular bisector, where it also points <em>antiparallel</em> to <b>p</b>. In a uniform
+    field a dipole feels <strong>zero net force but a non-zero torque</strong> τ = pE sin θ, which is why
+    polar molecules rotate to align with a field rather than being dragged along it.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the field does not care about the test charge</p>
+    <p>If a test charge of +2 nC feels 6×10⁻⁵ N at a point, the field there is 3×10⁴ N·C⁻¹. Replace it
+      with −6 nC and the force becomes 1.8×10⁻⁴ N in the <em>opposite</em> direction — but the field is
+      still 3×10⁴ N·C⁻¹ in the original direction. E belongs to the sources; F belongs to the pairing.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Flux and Gauss's law</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Electric flux</dt>
+      <dd>A measure of how much field passes through a surface — literally the number of field lines
+        crossing it, counting outward as positive.</dd>
+      <dt>Gauss's law</dt>
+      <dd>The net flux out of any closed surface equals the charge enclosed by that surface divided by
+        ε₀. Charge outside the surface contributes exactly zero net flux.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Φ(E) = ∮ <b>E</b>·d<b>A</b> = Q(enclosed) / ε₀</span>
+      <span class="fx__tag">any closed surface, always true</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Φ = E A cos θ</span><span class="fx__tag">uniform field, flat area, θ measured from the normal</span></div>
+      <div class="fx"><span class="fx__eq">E · 4πr² = Q/ε₀  ⟹  E = kQ/r²</span><span class="fx__tag">Gauss ⟹ Coulomb, for a sphere</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>Φ(E)</b><span>electric flux (N·m²·C⁻¹ = V·m)</span></div>
+      <div><b>E</b><span>field magnitude (N·C⁻¹)</span></div>
+      <div><b>A</b><span>area of the surface (m²)</span></div>
+      <div><b>θ</b><span>angle between <b>E</b> and the outward normal (rad)</span></div>
+      <div><b>Q(enc)</b><span>net charge inside the surface (C)</span></div>
+      <div><b>σ, λ</b><span>surface (C·m⁻²) and line (C·m⁻¹) charge density</span></div>
+    </div>
+  </div>
+
+  <p>
+    Gauss's law is Coulomb's law rewritten so that geometry does the work. Because the field of a point
+    charge falls exactly as 1/r² while the area of a sphere grows exactly as r², the product E×A is
+    <em>independent of r</em> — the flux is a conserved count of lines. A charge outside your surface
+    sends every line that enters straight back out again, so it contributes nothing. Only enclosed charge
+    counts, and only the <strong>net</strong> enclosed charge at that.
+  </p>
+  <p>
+    Crucially, Gauss's law is <em>always true</em> but only <em>useful</em> when the symmetry lets you
+    pull E outside the integral: spherical, cylindrical or planar. Choose a Gaussian surface on which E is
+    either constant and perpendicular, or parallel to the surface (contributing zero flux).
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Charge distribution</th><th>Gaussian surface</th><th>Field</th><th>Falls off as</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Point charge Q</td><td>Concentric sphere</td><td class="num">E = kQ/r²</td><td class="num">1/r²</td><td>Recovers Coulomb's law</td></tr>
+        <tr><td>Infinite line, density λ</td><td>Coaxial cylinder</td><td class="num">E = λ/(2πε₀r) = 2kλ/r</td><td class="num">1/r</td><td>Ends contribute no flux</td></tr>
+        <tr><td>Infinite sheet, density σ</td><td>Pillbox through the sheet</td><td class="num">E = σ/(2ε₀)</td><td><strong>constant</strong></td><td>Flux out of <em>two</em> faces</td></tr>
+        <tr><td>Just outside a charged conductor</td><td>Pillbox, one face in the metal</td><td class="num">E = σ/ε₀</td><td><strong>constant</strong></td><td>Only <em>one</em> face has flux — hence 2× the sheet</td></tr>
+        <tr><td>Between parallel capacitor plates</td><td>Pillbox around one plate</td><td class="num">E = σ/ε₀ = Q/(ε₀A)</td><td><strong>uniform</strong></td><td>Ignoring edge fringing</td></tr>
+        <tr><td>Uniform insulating sphere, r &lt; R</td><td>Inner sphere</td><td class="num">E = kQr/R³</td><td class="num">∝ r</td><td>Grows linearly from the centre</td></tr>
+        <tr><td>Any spherical distribution, r &gt; R</td><td>Outer sphere</td><td class="num">E = kQ/r²</td><td class="num">1/r²</td><td>Looks exactly like a point charge</td></tr>
+        <tr><td>Inside a hollow conductor (no charge in the cavity)</td><td>Sphere in the cavity</td><td class="num">E = 0</td><td>—</td><td>The Faraday-cage result (§6)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    The two "constant" rows are the ones students get wrong. A thin isolated sheet radiates from
+    <em>both</em> faces, so the pillbox catches 2EA of flux and E = σ/(2ε₀). The surface of a conductor
+    has field on the outside only — inside the metal E = 0 — so the same pillbox catches only EA and
+    E = σ/ε₀. Same algebra, factor of two apart, because of where the field is allowed to exist.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 4 · a charged conducting sphere, inside and out</h4>
+    <p>A solid metal sphere of radius R = 0.10 m carries Q = +5.0 nC. Find E at r = 0.050 m, at the
+      surface, and at r = 0.30 m.</p>
+    <ol>
+      <li><strong>r = 0.050 m (inside the metal).</strong> All the excess charge sits on the surface, so
+        the Gaussian sphere encloses nothing: Q(enc) = 0 ⟹ <strong>E = 0</strong>.</li>
+      <li><strong>r = R = 0.10 m (at the surface).</strong> E = kQ/R² = (8.99×10⁹)(5.0×10⁻⁹)/(0.010)
+        = 44.95/0.010 = <strong>4.5×10³ N·C⁻¹</strong>.</li>
+      <li><strong>Cross-check with σ/ε₀.</strong> σ = Q/(4πR²) = 5.0×10⁻⁹/(4π × 0.010) = 3.98×10⁻⁸ C·m⁻²;
+        σ/ε₀ = 3.98×10⁻⁸/8.85×10⁻¹² = 4.5×10³ N·C⁻¹ ✓ — the two routes agree, as they must.</li>
+      <li><strong>r = 0.30 m (outside).</strong> E = kQ/r² = 44.95/0.090 = <strong>5.0×10² N·C⁻¹</strong>,
+        exactly what a point charge of +5.0 nC at the centre would give.</li>
+    </ol>
+    <span class="wex__ans">E(0.050 m) = 0 · E(R) = 4.5×10³ N·C⁻¹ · E(0.30 m) = 5.0×10² N·C⁻¹</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · zero flux does not mean zero field</p>
+    <p>Put a Gaussian sphere between the two charges of a dipole so that it encloses no charge: the net
+      flux is zero, yet the field there is large. Flux is a <em>signed sum</em> — as much goes in as comes
+      out. Similarly, E on the Gaussian surface is produced by <strong>all</strong> the charges in the
+      universe, not just the enclosed ones; it is only the <em>net flux</em> that depends on Q(enc) alone.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Conductors in electrostatic equilibrium</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Electrostatic equilibrium</dt>
+      <dd>The state a conductor reaches — within nanoseconds — when no charge inside it is moving any
+        more. Every property below follows from that one sentence.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq"><b>E</b> = 0 everywhere inside the conducting material</span>
+      <span class="fx__tag">otherwise free charges would still be accelerating</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">All excess charge resides on the surface</span><span class="fx__tag">Gauss: any interior surface encloses zero net charge</span></div>
+      <div class="fx"><span class="fx__eq"><b>E</b> ⟂ surface,  E = σ/ε₀ just outside</span><span class="fx__tag">a tangential component would drive a surface current</span></div>
+      <div class="fx"><span class="fx__eq">V = constant throughout the conductor</span><span class="fx__tag">the whole body is one equipotential volume</span></div>
+      <div class="fx"><span class="fx__eq">σ ∝ 1/R  ⟹  E(surface) ∝ 1/R</span><span class="fx__tag">connected conductors of local radius R</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>E</b><span>electric field (N·C⁻¹ = V·m⁻¹)</span></div>
+      <div><b>σ</b><span>surface charge density (C·m⁻²)</span></div>
+      <div><b>V</b><span>electric potential (V)</span></div>
+      <div><b>R</b><span>local radius of curvature (m)</span></div>
+      <div><b>ε₀</b><span>permittivity of free space (F·m⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Everything in the box above is one idea repeated. If there were any field left inside the metal, the
+    free electrons would feel a force and move; if they are moving, you are not at equilibrium yet. So at
+    equilibrium the interior field must be exactly zero. Then Gauss's law applied to any closed surface
+    drawn just inside the metal gives Q(enc) = ε₀Φ = 0 — so any excess charge has nowhere to be except the
+    outer surface. And a tangential field component at the surface would push surface charge sideways, so
+    the field must meet the surface at a right angle.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 300" role="img" aria-label="Two panels. Left: a metal slab in a uniform horizontal electric field; the field lines stop on induced negative charge on the left face and restart from induced positive charge on the right face, with zero field inside the slab. Right: a hollow thick-walled conductor; external field lines terminate on its outer surface and the cavity inside is completely field-free.">
+      <defs>
+        <marker id="es-arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-field)"></path>
+        </marker>
+      </defs>
+
+      <rect x="140" y="80" width="110" height="140" rx="6" fill="var(--ink-faint)" fill-opacity="0.18" stroke="var(--ink-soft)" stroke-width="1.5"></rect>
+      <g stroke="var(--v-field)" stroke-width="1.7" fill="none" marker-end="url(#es-arrG)">
+        <path d="M32,100 L136,100"></path>
+        <path d="M32,130 L136,130"></path>
+        <path d="M32,160 L136,160"></path>
+        <path d="M32,190 L136,190"></path>
+        <path d="M254,100 L340,100"></path>
+        <path d="M254,130 L340,130"></path>
+        <path d="M254,160 L340,160"></path>
+        <path d="M254,190 L340,190"></path>
+      </g>
+      <g font-size="15" font-weight="700" text-anchor="middle">
+        <text x="150" y="106" fill="var(--v-vel)">−</text>
+        <text x="150" y="136" fill="var(--v-vel)">−</text>
+        <text x="150" y="166" fill="var(--v-vel)">−</text>
+        <text x="150" y="196" fill="var(--v-vel)">−</text>
+        <text x="240" y="106" fill="var(--v-force)">+</text>
+        <text x="240" y="136" fill="var(--v-force)">+</text>
+        <text x="240" y="166" fill="var(--v-force)">+</text>
+        <text x="240" y="196" fill="var(--v-force)">+</text>
+      </g>
+      <text x="195" y="146" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">E = 0</text>
+      <text x="195" y="168" text-anchor="middle" font-size="11" fill="var(--ink-soft)">solid metal</text>
+      <text x="186" y="252" text-anchor="middle" font-size="12" fill="var(--ink-soft)">Induced surface charge cancels the</text>
+      <text x="186" y="270" text-anchor="middle" font-size="12" fill="var(--ink-soft)">applied field everywhere inside</text>
+
+      <line x1="362" y1="25" x2="362" y2="285" stroke="var(--line)" stroke-width="1.5"></line>
+
+      <rect x="424" y="72" width="238" height="158" rx="8" fill="var(--ink-faint)" fill-opacity="0.18" stroke="var(--ink-soft)" stroke-width="1.5"></rect>
+      <rect x="466" y="106" width="154" height="90" rx="6" fill="var(--line-soft)" stroke="var(--ink-soft)" stroke-width="1.2"></rect>
+      <g stroke="var(--v-field)" stroke-width="1.7" fill="none" marker-end="url(#es-arrG)">
+        <path d="M386,110 L420,110"></path>
+        <path d="M386,151 L420,151"></path>
+        <path d="M386,192 L420,192"></path>
+        <path d="M666,110 L700,110"></path>
+        <path d="M666,151 L700,151"></path>
+        <path d="M666,192 L700,192"></path>
+        <path d="M386,45 L700,45"></path>
+        <path d="M386,257 L700,257"></path>
+      </g>
+      <g font-size="14" font-weight="700" text-anchor="middle">
+        <text x="436" y="115" fill="var(--v-vel)">−</text>
+        <text x="436" y="156" fill="var(--v-vel)">−</text>
+        <text x="436" y="197" fill="var(--v-vel)">−</text>
+        <text x="650" y="115" fill="var(--v-force)">+</text>
+        <text x="650" y="156" fill="var(--v-force)">+</text>
+        <text x="650" y="197" fill="var(--v-force)">+</text>
+      </g>
+      <text x="543" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">E = 0</text>
+      <text x="543" y="170" text-anchor="middle" font-size="11" fill="var(--ink-soft)">cavity — and no charge on its walls</text>
+      <text x="543" y="286" text-anchor="middle" font-size="12" fill="var(--ink-soft)">Faraday cage: the cavity is shielded from anything outside</text>
+    </svg>
+    <figcaption>
+      Left: put a conductor in an external field and its free electrons pile up on the near face until the
+      field they create exactly cancels the applied field inside the metal. Field lines therefore
+      <strong>terminate on the induced negative face and restart on the positive face</strong>, meeting
+      both at right angles. Right: the same argument applied to a hollow conductor. Because the walls are
+      an equipotential and no charge is enclosed, the only solution inside the cavity is E = 0 and no
+      charge on the cavity walls — a <strong>Faraday cage</strong>. This is why an MRI room is a copper
+      box, why you are safe inside a car in a lightning storm, and why shielded cables work.
+    </figcaption>
+  </figure>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · charge on a shell with a charge inside it</p>
+    <p>Place +Q at the centre of an isolated neutral conducting shell. Draw a Gaussian surface inside the
+      metal: E = 0 there, so Q(enc) = 0, so the <strong>inner surface must carry −Q</strong>. The shell as
+      a whole is neutral, so the <strong>outer surface carries +Q</strong>. Outside, the field is exactly
+      kQ/r², identical to no shell at all. Shielding works <em>one way</em>: a conductor protects its
+      cavity from the outside world, but a charge inside the cavity still announces itself to the
+      outside — unless you earth the shell, which drains the +Q from the outer surface.</p>
+  </div>
+
+  <p>
+    <strong>Why charge concentrates at points.</strong> Imagine two conducting spheres of radii R₁ and R₂
+    joined by a long thin wire. They are one conductor, so they share one potential:
+    kQ₁/R₁ = kQ₂/R₂, which means <b>Q ∝ R</b>. But the surface density is σ = Q/(4πR²) ∝ R/R² =
+    <strong>1/R</strong>, and the surface field is E = σ/ε₀ ∝ 1/R too. The <em>smaller</em> radius —
+    a spike, an edge, a needle tip — carries less total charge but a far higher density and field. Push it
+    past 3×10⁶ V·m⁻¹ and the air ionises: corona discharge, St Elmo's fire, and the entire operating
+    principle of the lightning rod, which bleeds charge away quietly rather than waiting for a strike.
+    The same effect is why sharp electrode tips are used deliberately in electrosurgery and why they are
+    avoided in high-voltage insulation.
+  </p>
+
+  <div class="mnemo">
+    <h4>Memory hook</h4>
+    <p>Inside metal: <strong>no field, no charge, one potential</strong>. At the surface: <strong>right
+      angles</strong>. At a point: <strong>everything concentrates</strong>.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Potential energy, potential and the volt</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Electric potential energy</dt>
+      <dd>The work an external agent must do to assemble a configuration of charges from infinite
+        separation, quasi-statically. A <em>scalar</em>, measured in joules.</dd>
+      <dt>Electric potential</dt>
+      <dd>Potential energy per unit charge at a point: V = U/q₀. Like the field, it is a property of the
+        sources alone, but it is a <strong>scalar</strong>.</dd>
+      <dt>The volt</dt>
+      <dd>One volt is one joule per coulomb. A "12 V battery" means each coulomb pushed round the circuit
+        is given 12 J.</dd>
+      <dt>Electron-volt</dt>
+      <dd>The energy gained by one elementary charge falling through one volt: 1 eV = 1.60×10⁻¹⁹ J.
+        An energy unit, never a voltage.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">V = U / q₀ = kQ / r        (V → 0 as r → ∞)</span>
+      <span class="fx__tag">point charge; carry the sign of Q</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">U(pair) = k q₁ q₂ / r</span><span class="fx__tag">note: 1/r, not 1/r² — and signed</span></div>
+      <div class="fx"><span class="fx__eq">V(net) = Σ kQᵢ / rᵢ</span><span class="fx__tag"><strong>algebraic</strong> sum — no components, ever</span></div>
+      <div class="fx"><span class="fx__eq">ΔU = q ΔV = q(V(b) − V(a))</span><span class="fx__tag">moving charge q from a to b</span></div>
+      <div class="fx"><span class="fx__eq">W(by field) = −ΔU = −q ΔV</span><span class="fx__tag">path-independent: the force is conservative</span></div>
+      <div class="fx"><span class="fx__eq">1 eV = (1.60×10⁻¹⁹ C)(1 V) = 1.60×10⁻¹⁹ J</span><span class="fx__tag">energy unit for particles</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>U</b><span>electric potential energy (J)</span></div>
+      <div><b>V</b><span>electric potential (V = J·C⁻¹)</span></div>
+      <div><b>q, q₀</b><span>moved charge / test charge (C)</span></div>
+      <div><b>Q</b><span>source charge, with sign (C)</span></div>
+      <div><b>r</b><span>distance from the source (m)</span></div>
+      <div><b>W</b><span>work (J)</span></div>
+    </div>
+  </div>
+
+  <p>
+    This is the section that saves you time in every other section. The electric force is conservative —
+    the work it does moving a charge between two points is independent of the path — so a potential
+    energy exists, and dividing by the test charge gives a scalar field V that encodes everything about
+    the sources. Two consequences you should exploit relentlessly:
+  </p>
+  <ul>
+    <li><strong>Potentials add like numbers.</strong> To find V from ten charges, compute ten values of
+      kQ/r and add them with their signs. No angles, no components, no diagram.</li>
+    <li><strong>Only differences matter.</strong> V = 0 at infinity is a convention (in circuits we
+      instead set earth = 0). Every physical statement involves ΔV.</li>
+  </ul>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>&nbsp;</th><th>Electric field <b>E</b></th><th>Electric potential V</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Kind of quantity</td><td><strong>Vector</strong></td><td><strong>Scalar</strong></td></tr>
+        <tr><td>Definition</td><td class="num">E = F / q₀</td><td class="num">V = U / q₀</td></tr>
+        <tr><td>SI unit</td><td class="num">N·C⁻¹ = V·m⁻¹</td><td class="num">V = J·C⁻¹</td></tr>
+        <tr><td>Point charge</td><td class="num">kQ/r², along r̂</td><td class="num">kQ/r, signed</td></tr>
+        <tr><td>Falls off as</td><td class="num">1/r²</td><td class="num">1/r</td></tr>
+        <tr><td>Superposition</td><td>Vector sum — resolve into components</td><td><strong>Add the numbers</strong></td></tr>
+        <tr><td>Midpoint of two equal <em>+q</em>, separation 2a</td><td class="num">E = 0</td><td class="num">V = 2kq/a ≠ 0</td></tr>
+        <tr><td>Midpoint of a dipole (+q, −q), separation 2a</td><td class="num">E = 2kq/a² ≠ 0</td><td class="num">V = 0</td></tr>
+        <tr><td>Inside a conductor</td><td class="num">0</td><td>Constant — not necessarily zero</td></tr>
+        <tr><td>Link between them</td><td class="num">E = −dV/dx</td><td class="num">V(b) − V(a) = −∫ <b>E</b>·d<b>l</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 5 · the same geometry, done with potential</h4>
+    <p>(a) Two charges of +4.0 nC at (−3.0 cm, 0) and (+3.0 cm, 0): find V at P = (0, 4.0 cm).
+      (b) Now flip the right-hand charge to −4.0 nC and find both V and E at P.</p>
+    <ol>
+      <li><strong>(a)</strong> Each charge is r = 0.050 m from P. V = kq/r + kq/r =
+        2 × (8.99×10⁹)(4.0×10⁻⁹)/0.050 = 2 × 719.2 = <strong>1.44×10³ V</strong>. That is the entire
+        calculation — one line, versus the four-step vector job in Worked example 3.</li>
+      <li><strong>(b) Potential.</strong> V = +719.2 + (−719.2) = <strong>exactly 0</strong>.</li>
+      <li><strong>(b) Field.</strong> The magnitudes are unchanged at 1.4384×10⁴ N·C⁻¹ each. Now the
+        <em>y</em>-components cancel and the <em>x</em>-components add: E<sub>x</sub> =
+        2 × 1.4384×10⁴ × (3.0/5.0) = <strong>1.73×10⁴ N·C⁻¹</strong> in the +x direction.</li>
+    </ol>
+    <span class="wex__ans">(a) V = 1.44×10³ V · (b) V = 0 but E = 1.73×10⁴ N·C⁻¹</span>
+    <p style="margin-top:.7rem;font-size:.92rem;color:var(--ink-soft)">
+      Part (b) is the classic trap in one picture: <strong>V = 0 does not mean E = 0</strong>. The
+      converse case is the <em>midpoint</em> of the pair in part (a): there the two field vectors are equal
+      and opposite so E = 0, while V = 2kq/(0.030 m) = 2.4×10³ V. <strong>E = 0 does not mean V = 0</strong>
+      either. They are independent statements about a point.</p>
+  </div>
+
+  <p>
+    <strong>Signs and work.</strong> Positive charges accelerate from high V toward low V; negative
+    charges accelerate from low V toward high V. Both are moving toward <em>lower potential energy</em> —
+    which is the statement to trust, because U = qV flips sign with q while V does not. Formally,
+    W(field) = −ΔU = −qΔV, so if a proton falls through ΔV = −100 V it gains
+    U → K of +1.6×10⁻¹⁷ J.
+  </p>
+  <p>
+    <strong>The electron-volt exists to make those numbers readable.</strong> An electron accelerated from
+    rest through 100 V arrives with 100 eV = 1.60×10⁻¹⁷ J, giving
+    v = √(2K/m) = √(2 × 1.60×10⁻¹⁷ / 9.11×10⁻³¹) = 5.9×10⁶ m·s⁻¹, about 2% of c — safely
+    non-relativistic. Push the tube to 100 kV, as in a diagnostic X-ray unit, and the electrons carry
+    100 keV; there the non-relativistic formula is already ~14% wrong, and the electrons produce
+    bremsstrahlung X-rays with a sharp maximum photon energy of exactly 100 keV. The kV setting on an
+    X-ray or CT machine is literally choosing the top of the photon energy spectrum.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · 1/r for potential, 1/r² for field</p>
+    <p>Potential of a point charge is kQ/<strong>r</strong>; the field is kQ/<strong>r²</strong>.
+      Likewise the interaction <em>energy</em> of a pair is kq₁q₂/<strong>r</strong> while the
+      <em>force</em> is kq₁q₂/<strong>r²</strong>. The energy expression also keeps the signs: two like
+      charges have U &gt; 0 (you had to push them together), an unlike pair has U &lt; 0 (bound).</p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Equipotentials and E = −dV/dx</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Equipotential surface</dt>
+      <dd>The locus of all points at the same potential. Moving a charge anywhere along it costs
+        <strong>zero work</strong>.</dd>
+      <dt>Field as a gradient</dt>
+      <dd>The electric field is the negative rate of change of potential with position: it points
+        "downhill", in the direction in which V falls most steeply.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">E(x) = − dV / dx</span>
+      <span class="fx__tag">component of <b>E</b> along x; minus sign is not optional</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">E = V / d</span><span class="fx__tag">uniform field between parallel plates, d = separation</span></div>
+      <div class="fx"><span class="fx__eq">ΔV = − E d  (moving a distance d along <b>E</b>)</span><span class="fx__tag">V always drops along a field line</span></div>
+      <div class="fx"><span class="fx__eq">W = q(V(a) − V(b)) = 0 along an equipotential</span><span class="fx__tag">because <b>E</b> ⟂ displacement</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>E</b><span>field component (V·m⁻¹ = N·C⁻¹)</span></div>
+      <div><b>V</b><span>potential (V)</span></div>
+      <div><b>x</b><span>position along the chosen axis (m)</span></div>
+      <div><b>d</b><span>plate separation / displacement (m)</span></div>
+      <div><b>W</b><span>work done (J)</span></div>
+    </div>
+  </div>
+
+  <p>
+    <b>E</b> and V are not two independent things; V is the potential-energy landscape per unit charge,
+    and <b>E</b> is its slope. The minus sign encodes the physics: a positive charge is pushed
+    <em>down</em> the potential hill, exactly as a ball rolls down a gravitational one. Two operational
+    consequences: where the equipotentials are <strong>closely spaced, the field is strong</strong>
+    (steep hill); where V is flat, E = 0.
+  </p>
+  <p>
+    <strong>Why equipotentials are always perpendicular to field lines.</strong> Suppose <b>E</b> had a
+    component along an equipotential surface. Then moving a test charge a small distance along that
+    surface would do work W = qE<sub>∥</sub>Δl ≠ 0, so ΔV ≠ 0 — contradicting the assumption that the
+    surface is an equipotential. The only escape is E<sub>∥</sub> = 0, i.e. <b>E</b> ⟂ surface. This is
+    the same argument that made the field meet a conductor at right angles in §6, since the surface of a
+    conductor <em>is</em> an equipotential.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 340" role="img" aria-label="Two panels. Left: a positive point charge with radial field lines crossing four dashed circular equipotentials labelled V naught, V naught over two, over three and over four. Right: two parallel charged plates with uniform horizontal field lines and four equally spaced dashed vertical equipotentials labelled from 0.8 to 0.2 of the plate voltage.">
+      <defs>
+        <marker id="es-arrH" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--v-field)"></path>
+        </marker>
+      </defs>
+
+      <g fill="none" stroke="var(--ink-faint)" stroke-width="1.3" stroke-dasharray="5 4">
+        <circle cx="170" cy="160" r="32"></circle>
+        <circle cx="170" cy="160" r="64"></circle>
+        <circle cx="170" cy="160" r="96"></circle>
+        <circle cx="170" cy="160" r="128"></circle>
+      </g>
+      <g stroke="var(--v-field)" stroke-width="1.7" fill="none" marker-end="url(#es-arrH)">
+        <path d="M184,160 L310,160"></path>
+        <path d="M179.9,169.9 L269,259"></path>
+        <path d="M170,174 L170,300"></path>
+        <path d="M160.1,169.9 L71,259"></path>
+        <path d="M156,160 L30,160"></path>
+        <path d="M160.1,150.1 L71,61"></path>
+        <path d="M170,146 L170,20"></path>
+        <path d="M179.9,150.1 L269,61"></path>
+      </g>
+      <circle cx="170" cy="160" r="14" fill="var(--v-force)"></circle>
+      <text x="170" y="166" text-anchor="middle" font-size="16" font-weight="700" fill="var(--paper)">+</text>
+      <g font-size="11" fill="var(--ink)" font-weight="600">
+        <text x="200" y="145">V₀</text>
+        <text x="229" y="133">V₀/2</text>
+        <text x="259" y="121">V₀/3</text>
+        <text x="289" y="109">V₀/4</text>
+      </g>
+      <text x="170" y="330" text-anchor="middle" font-size="12" fill="var(--ink-soft)">Point charge · V ∝ 1/r, so equal steps in r are unequal steps in V</text>
+
+      <line x1="362" y1="25" x2="362" y2="315" stroke="var(--line)" stroke-width="1.5"></line>
+
+      <rect x="430" y="60" width="9" height="220" fill="var(--v-force)"></rect>
+      <rect x="651" y="60" width="9" height="220" fill="var(--v-vel)"></rect>
+      <g fill="none" stroke="var(--ink-faint)" stroke-width="1.3" stroke-dasharray="5 4">
+        <line x1="482" y1="58" x2="482" y2="282"></line>
+        <line x1="525" y1="58" x2="525" y2="282"></line>
+        <line x1="567" y1="58" x2="567" y2="282"></line>
+        <line x1="610" y1="58" x2="610" y2="282"></line>
+      </g>
+      <g stroke="var(--v-field)" stroke-width="1.7" fill="none" marker-end="url(#es-arrH)">
+        <path d="M442,90 L649,90"></path>
+        <path d="M442,130 L649,130"></path>
+        <path d="M442,170 L649,170"></path>
+        <path d="M442,210 L649,210"></path>
+        <path d="M442,250 L649,250"></path>
+      </g>
+      <g font-size="10.5" fill="var(--ink)" text-anchor="middle" font-weight="600">
+        <text x="434" y="50">V₀</text>
+        <text x="482" y="50">0.8V₀</text>
+        <text x="525" y="50">0.6V₀</text>
+        <text x="567" y="50">0.4V₀</text>
+        <text x="610" y="50">0.2V₀</text>
+        <text x="656" y="50">0</text>
+      </g>
+      <text x="545" y="305" text-anchor="middle" font-size="12" fill="var(--ink-soft)">Uniform field · equal steps in V are equally spaced, E = V₀/d</text>
+      <text x="545" y="325" text-anchor="middle" font-size="12" fill="var(--ink-soft)">Field points from high V to low V, ⟂ to every equipotential</text>
+    </svg>
+    <figcaption>
+      Dashed grey = equipotentials, violet = field lines. Left: because V = kQ/r, the equipotentials
+      drawn at r, 2r, 3r, 4r carry potentials V₀, V₀/2, V₀/3, V₀/4 — equal spacing in <em>distance</em>
+      means shrinking steps in <em>potential</em>, which is the field weakening as 1/r². Right: between
+      parallel plates E is constant, so equal potential steps are equally spaced and E = V₀/d exactly.
+      In both panels the two families cross at right angles everywhere, and the arrows always run
+      <strong>downhill in V</strong>.
+    </figcaption>
+  </figure>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · reading E off a V–x graph</p>
+    <p>Given a graph of V against x, the field is <strong>minus the gradient</strong>. A flat region
+      (V constant) ⟹ E<sub>x</sub> = 0. A steeply falling region ⟹ large positive E<sub>x</sub>. A rising
+      region ⟹ E<sub>x</sub> is negative, i.e. the field points in −x. Students routinely forget the
+      minus sign and get the direction backwards; the check is that <b>E</b> must always point from high
+      V to low V.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "no work" does not mean "no force"</p>
+    <p>Sliding a charge around an equipotential takes zero work, but the field is still pushing on it the
+      whole time — the force is simply perpendicular to the motion, exactly like the tension in a
+      conical pendulum or the normal force on a level floor. Zero work, non-zero force.</p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Capacitance, parallel plates and dielectrics</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Capacitance</dt>
+      <dd>The charge a conductor pair stores per volt of potential difference between them. A property of
+        the <strong>geometry and the filling material</strong> alone — it does not depend on Q or V.</dd>
+      <dt>The farad</dt>
+      <dd>One farad is one coulomb per volt. It is an enormous unit; real capacitors run from pF
+        (10⁻¹²) to mF (10⁻³).</dd>
+      <dt>Dielectric constant κ</dt>
+      <dd>The factor by which an insulating filler multiplies capacitance, equal to the factor by which
+        the material's polarisation reduces the field inside it for a given free charge.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">C = Q / V        [F = C·V⁻¹]</span>
+      <span class="fx__tag">definition; Q is the charge on <em>one</em> plate</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">C = κ ε₀ A / d</span><span class="fx__tag">parallel plates, d ≪ plate dimensions (no fringing)</span></div>
+      <div class="fx"><span class="fx__eq">E = V/d = σ/(κε₀) = Q/(κε₀A)</span><span class="fx__tag">uniform field in the gap</span></div>
+      <div class="fx"><span class="fx__eq">κ = ε / ε₀ ≥ 1</span><span class="fx__tag">vacuum 1, air 1.0006, paper ~3.7, water ~80</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>C</b><span>capacitance (F, farad)</span></div>
+      <div><b>Q</b><span>magnitude of charge on each plate (C)</span></div>
+      <div><b>V</b><span>potential difference between plates (V)</span></div>
+      <div><b>A</b><span>plate area (m²)</span></div>
+      <div><b>d</b><span>plate separation (m)</span></div>
+      <div><b>κ</b><span>dielectric constant (dimensionless)</span></div>
+      <div><b>σ</b><span>free surface charge density (C·m⁻²)</span></div>
+      <div><b>ε₀</b><span>permittivity of free space (F·m⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    A capacitor is any pair of conductors carrying equal and opposite charge. Its capacitance is fixed
+    once you fix the geometry: charge the thing more heavily and V rises in exact proportion, leaving
+    Q/V unchanged. For parallel plates the derivation is three lines of Gauss's law: E = σ/ε₀ = Q/(ε₀A)
+    between the plates, V = Ed = Qd/(ε₀A), so C = Q/V = ε₀A/d. Everything the formula says is
+    intuitive — <strong>bigger plates hold more charge at the same voltage, and a smaller gap makes the
+    plates pull harder on each other's charge</strong>.
+  </p>
+  <p>
+    Insert a dielectric and its molecules polarise: permanent dipoles rotate to align with the field,
+    and even non-polar molecules acquire an induced moment p = αE. The layer of bound charge that appears
+    on each face of the slab is <em>opposite</em> to the free charge on the adjacent plate, so it partly
+    cancels it. The field in the gap falls from E₀ to E₀/κ, the voltage falls with it, and — since C = Q/V
+    — the capacitance rises by κ. A dielectric also does a second, practical job: its breakdown field is
+    far higher than air's, so the capacitor survives more volts before it arcs.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 6 · a real parallel-plate capacitor</h4>
+    <p>Two square plates 5.0 cm × 5.0 cm are separated by d = 0.10 mm of air and connected to a 12 V
+      battery. Find C, Q, the field in the gap and the surface charge density.</p>
+    <ol>
+      <li><strong>Geometry.</strong> A = (0.050)² = 2.5×10⁻³ m²; d = 1.0×10⁻⁴ m.</li>
+      <li><strong>Capacitance</strong> (κ ≈ 1 for air). C = ε₀A/d = (8.85×10⁻¹²)(2.5×10⁻³)/(1.0×10⁻⁴)
+        = 2.21×10⁻¹⁰ F = <strong>221 pF</strong>.</li>
+      <li><strong>Charge.</strong> Q = CV = (2.2125×10⁻¹⁰)(12) = 2.66×10⁻⁹ C = <strong>2.7 nC</strong>
+        — about 1.7×10¹⁰ electrons moved from one plate to the other.</li>
+      <li><strong>Field.</strong> E = V/d = 12 / 1.0×10⁻⁴ = <strong>1.2×10⁵ V·m⁻¹</strong>, comfortably
+        below the 3×10⁶ V·m⁻¹ breakdown field of air.</li>
+      <li><strong>Surface charge density.</strong> σ = ε₀E = (8.85×10⁻¹²)(1.2×10⁵) = 1.06×10⁻⁶ C·m⁻²;
+        cross-check Q/A = 2.655×10⁻⁹/2.5×10⁻³ = 1.06×10⁻⁶ C·m⁻² ✓.</li>
+    </ol>
+    <span class="wex__ans">C = 221 pF · Q = 2.7 nC · E = 1.2×10⁵ V·m⁻¹ · σ = 1.06 μC·m⁻²</span>
+  </div>
+
+  <h3>Sliding in a dielectric: battery connected or disconnected?</h3>
+  <p>
+    This is the single most examined capacitor question, and the whole answer is deciding
+    <strong>which quantity is held fixed</strong>. If the battery stays connected, V is clamped. If the
+    battery is removed first, Q is stranded on the plates and cannot change. Everything else follows from
+    C → κC.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Quantity</th><th>Battery <strong>connected</strong> (V fixed)</th><th>Battery <strong>disconnected</strong> (Q fixed)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Capacitance C</td><td class="num">× κ</td><td class="num">× κ</td></tr>
+        <tr><td>Voltage V</td><td><strong>unchanged</strong></td><td class="num">÷ κ</td></tr>
+        <tr><td>Charge Q</td><td class="num">× κ (battery supplies more)</td><td><strong>unchanged</strong></td></tr>
+        <tr><td>Field E in the gap</td><td>unchanged, since E = V/d</td><td class="num">÷ κ</td></tr>
+        <tr><td>Stored energy U</td><td class="num">× κ (U = ½CV²)</td><td class="num">÷ κ (U = Q²/2C)</td></tr>
+        <tr><td>Force on the slab</td><td colspan="2"><strong>Pulled in</strong> in both cases — the fringing field always drags the dielectric into the gap</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "the energy went up, so where did it come from?"</p>
+    <p>With the battery connected, U increases by a factor κ. That energy is not free: the battery pumps
+      an extra charge (κ−1)Q through a p.d. V, doing work (κ−1)QV, of which exactly half ends up as extra
+      field energy and half is delivered as mechanical work on the slab plus resistive loss. With the
+      battery disconnected, U <em>falls</em> by κ — the field itself does the work of pulling the slab
+      in. Same slab, same κ, opposite sign of ΔU. Always identify the clamped variable first.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Energy in a capacitor, energy in the field</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Stored energy</dt>
+      <dd>The work done separating the charge, recoverable when the capacitor discharges. The factor ½
+        appears because the voltage rises linearly from 0 to V as you charge it, so the <em>average</em>
+        p.d. against which charge is moved is V/2.</dd>
+      <dt>Energy density</dt>
+      <dd>Energy per unit volume stored in the electric field itself — a statement that the field, not
+        the plates, is where the energy lives.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">U = ½ Q V = ½ C V² = Q² / (2C)</span>
+      <span class="fx__tag">three forms of one quantity; pick the one whose variables are fixed</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">u = ½ ε₀ E²   (vacuum)  ·  u = ½ κ ε₀ E²   (dielectric)</span><span class="fx__tag">energy per unit volume, anywhere a field exists</span></div>
+      <div class="fx"><span class="fx__eq">U = u × (A d)</span><span class="fx__tag">parallel plates: field volume = area × gap</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>U</b><span>stored energy (J)</span></div>
+      <div><b>u</b><span>energy density (J·m⁻³)</span></div>
+      <div><b>C</b><span>capacitance (F)</span></div>
+      <div><b>Q</b><span>charge on one plate (C)</span></div>
+      <div><b>V</b><span>potential difference (V)</span></div>
+      <div><b>E</b><span>field magnitude (V·m⁻¹)</span></div>
+      <div><b>A d</b><span>volume occupied by the field (m³)</span></div>
+    </div>
+  </div>
+
+  <p>
+    The three expressions are algebraically identical — substitute C = Q/V and they collapse into each
+    other — but they are <em>not</em> equally convenient. Use ½CV² when the capacitor is across a battery
+    (V fixed); use Q²/2C when it has been disconnected (Q fixed). Choosing the wrong one is how students
+    conclude that inserting a dielectric both raises and lowers the energy.
+  </p>
+  <p>
+    The factor of ½ has a physical reading. Moving the very first electron across the empty gap costs
+    nothing, because V = 0; moving the last one costs the full qV. Since V climbs linearly with Q, the
+    total work is the area under a straight line from 0 to V — a triangle, hence ½QV. Compare this with
+    W = qV for a charge crossing a <em>battery</em>, where the p.d. is held constant and there is no ½.
+  </p>
+  <p>
+    <strong>Where the energy actually is.</strong> Take the parallel-plate case and substitute:
+    U = ½CV² = ½(ε₀A/d)(Ed)² = ½ε₀E² × (Ad). The bracket is the volume between the plates, so the energy
+    per unit volume is u = ½ε₀E². This is far more than a trick: it holds for <em>any</em> electric field,
+    and it is the reason electromagnetic waves can carry energy across empty space with no charges
+    present at all.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 7 · two routes to the same energy</h4>
+    <p>For the 221 pF capacitor of Worked example 6 (A = 2.5×10⁻³ m², d = 1.0×10⁻⁴ m, V = 12 V,
+      E = 1.2×10⁵ V·m⁻¹), find the stored energy twice — from the circuit variables and from the field.</p>
+    <ol>
+      <li><strong>Route 1 — circuit.</strong> U = ½CV² = ½(2.2125×10⁻¹⁰)(12)²
+        = ½ × 2.2125×10⁻¹⁰ × 144 = <strong>1.59×10⁻⁸ J</strong>.</li>
+      <li><strong>Route 2 — field energy density.</strong> u = ½ε₀E² = ½(8.85×10⁻¹²)(1.2×10⁵)²
+        = ½(8.85×10⁻¹²)(1.44×10¹⁰) = <strong>0.0637 J·m⁻³</strong>.</li>
+      <li><strong>Multiply by the field volume.</strong> Ad = (2.5×10⁻³)(1.0×10⁻⁴) = 2.5×10⁻⁷ m³, so
+        U = 0.06372 × 2.5×10⁻⁷ = <strong>1.59×10⁻⁸ J</strong> ✓.</li>
+      <li><strong>Reality check.</strong> 16 nJ is tiny — enough to lift a 1 mg grain of sand about
+        1.6 mm. To store useful energy you need microfarads and kilovolts, which is exactly what a
+        defibrillator does (§11).</li>
+    </ol>
+    <span class="wex__ans">U = 1.59×10⁻⁸ J by both routes · u = 6.4×10⁻² J·m⁻³</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · U scales as the square</p>
+    <p>Double the voltage on a fixed capacitor and the stored energy <strong>quadruples</strong>
+      (U ∝ V²). Double the charge on a disconnected capacitor and the energy also quadruples
+      (U ∝ Q²). But double the <em>capacitance</em> and the answer depends on what is held fixed:
+      at fixed V the energy doubles, at fixed Q it halves.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Series, parallel, membranes and defibrillators</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Capacitors in parallel</dt>
+      <dd>Both plate pairs share the same two nodes, so they share the same V and their charges add —
+        equivalent to one capacitor with the combined plate area.</dd>
+      <dt>Capacitors in series</dt>
+      <dd>Connected end to end, so the same charge is induced on every capacitor and the voltages add —
+        equivalent to one capacitor with a larger effective separation.</dd>
+      <dt>Membrane specific capacitance</dt>
+      <dd>Capacitance per unit area of a cell membrane, remarkably constant across cell types at
+        c<sub>m</sub> ≈ 1 μF·cm⁻² = 1×10⁻² F·m⁻².</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Parallel:  C(eq) = C₁ + C₂ + …    Series:  1/C(eq) = 1/C₁ + 1/C₂ + …</span>
+      <span class="fx__tag">exactly the reverse of the resistor rules</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Series: Q is the same on every capacitor; V₁ + V₂ = V(total)</span><span class="fx__tag">charge is induced, not shared</span></div>
+      <div class="fx"><span class="fx__eq">Parallel: V is the same; Q₁ + Q₂ = Q(total)</span><span class="fx__tag">same two nodes</span></div>
+      <div class="fx"><span class="fx__eq">τ = R C</span><span class="fx__tag">charging/discharging time constant (s)</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>C(eq)</b><span>equivalent capacitance (F)</span></div>
+      <div><b>C₁, C₂</b><span>individual capacitances (F)</span></div>
+      <div><b>Q</b><span>charge (C)</span></div>
+      <div><b>V</b><span>potential difference (V)</span></div>
+      <div><b>R</b><span>series resistance (Ω)</span></div>
+      <div><b>τ</b><span>time constant (s)</span></div>
+      <div><b>c<sub>m</sub></b><span>specific membrane capacitance (F·m⁻²)</span></div>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Connection</th><th>Capacitors</th><th>Resistors</th><th>What is shared</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Parallel</strong></td>
+          <td class="num">C(eq) = C₁ + C₂ — always <em>larger</em> than either</td>
+          <td class="num">1/R(eq) = 1/R₁ + 1/R₂</td>
+          <td>Same V across each; charges (currents) add</td>
+        </tr>
+        <tr>
+          <td><strong>Series</strong></td>
+          <td class="num">1/C(eq) = 1/C₁ + 1/C₂ — always <em>smaller</em> than the smallest</td>
+          <td class="num">R(eq) = R₁ + R₂</td>
+          <td>Same Q (same I) through each; voltages add</td>
+        </tr>
+        <tr>
+          <td><strong>Why reversed</strong></td>
+          <td colspan="3">Because C = Q/V is a "how much per volt" quantity — it plays the role of
+            <em>conductance</em> 1/R, not resistance. Geometrically: putting capacitors in parallel is
+            like <strong>widening the plates</strong> (C ∝ A, so add), and putting them in series is like
+            <strong>thickening the gap</strong> (C ∝ 1/d, so add reciprocals).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    A quick example to fix it: 3.0 μF and 6.0 μF in <em>parallel</em> give 9.0 μF; the same pair in
+    <em>series</em> give 1/C = 1/3.0 + 1/6.0 = 1/2.0, so C = 2.0 μF — smaller than either. In series the
+    charge on each is identical, because the isolated conductor between the two capacitors must stay
+    neutral: whatever +Q appears on one side, −Q is induced on the other.
+  </p>
+
+  <div class="mnemo">
+    <h4>Memory hook</h4>
+    <p>Capacitors are upside-down resistors. <strong>Series capacitors behave like parallel
+      resistors</strong>, and vice versa — because capacitance measures charge per volt, the way
+      conductance measures current per volt.</p>
+  </div>
+
+  <h3>The cell membrane is a leaky parallel-plate capacitor</h3>
+  <p>
+    A lipid bilayer is a ~5 nm sheet of hydrocarbon — an excellent insulator — with a conducting
+    electrolyte on both sides. That is, geometrically and electrically, a parallel-plate capacitor with
+    conducting "plates" made of ionic solution. Its measured specific capacitance is close to
+    1 μF·cm⁻² in essentially every cell examined, which is a strong clue that the dielectric thickness is
+    the same everywhere: the hydrocarbon core of the bilayer. In parallel with that capacitance sit the
+    ion channels, which act as conductances; the product of membrane resistance and capacitance gives the
+    membrane time constant τ = R<sub>m</sub>C<sub>m</sub> (typically 1–20 ms), which is what sets how
+    quickly a neurone's potential can follow its synaptic input. Every equation in cable theory and every
+    voltage-clamp record rests on this one identification.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 8 · what the membrane's capacitance tells you</h4>
+    <p>Take c<sub>m</sub> = 1.0 μF·cm⁻² and a resting potential of 70 mV. (a) If the bilayer's
+      hydrocarbon core has κ ≈ 2.2, how thick is it? (b) How many monovalent ions per μm² of membrane are
+      actually separated? (c) For a spherical cell of radius 10 μm, what fraction of the intracellular
+      K⁺ is that?</p>
+    <ol>
+      <li><strong>Convert the units.</strong> 1.0 μF·cm⁻² = 1.0×10⁻⁶ F / 1.0×10⁻⁴ m² =
+        <strong>1.0×10⁻² F·m⁻²</strong>.</li>
+      <li><strong>(a) Thickness.</strong> From c<sub>m</sub> = κε₀/d,
+        d = κε₀/c<sub>m</sub> = (2.2)(8.85×10⁻¹²)/(1.0×10⁻²) = <strong>1.9×10⁻⁹ m ≈ 2 nm</strong> —
+        which is exactly the hydrophobic core, not the full ~5 nm bilayer. The headgroups are hydrated
+        and conduct; only the acyl-chain region is the dielectric.</li>
+      <li><strong>(b) Charge separated.</strong> σ = c<sub>m</sub>V = (1.0×10⁻²)(0.070) =
+        7.0×10⁻⁴ C·m⁻². Divide by e: 7.0×10⁻⁴/1.60×10⁻¹⁹ = 4.4×10¹⁵ ions·m⁻² =
+        <strong>≈ 4.4×10³ ions per μm²</strong>.</li>
+      <li><strong>(c) Fraction of the cell's K⁺.</strong> Area = 4πr² = 1.26×10⁻⁹ m², so
+        C = 1.26×10⁻¹¹ F ≈ 13 pF and Q = CV = 8.8×10⁻¹³ C ≈ 5.5×10⁶ ions. The cell volume is
+        4.19×10⁻¹⁵ m³ = 4.19×10⁻¹² L, holding 0.140 M × 4.19×10⁻¹² L × 6.02×10²³ = 3.5×10¹¹ K⁺ ions.
+        Ratio = 5.5×10⁶/3.5×10¹¹ ≈ <strong>1.6×10⁻⁵</strong>.</li>
+    </ol>
+    <span class="wex__ans">d ≈ 2 nm · ≈4.4×10³ ions·μm⁻² · only ~0.002% of intracellular K⁺ is separated</span>
+    <p style="margin-top:.7rem;font-size:.92rem;color:var(--ink-soft)">
+      Part (c) is why an action potential does not measurably change ion concentrations: the membrane
+      potential is a <em>capacitive</em> phenomenon involving a vanishing fraction of the cell's ions.
+      The Na⁺/K⁺-ATPase is restoring gradients over minutes, not rescuing each spike.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the field across a membrane is enormous</p>
+    <p>E = V/d = 0.070 V / 5.0×10⁻⁹ m ≈ <strong>1.4×10⁷ V·m⁻¹</strong> — four to five times the
+      breakdown field of air, sustained continuously by a 5 nm film. Two consequences worth knowing:
+      voltage-gated channels have charged S4 helices that can sense this field directly, and a modest
+      external pulse (a few hundred mV across the membrane) pushes it past dielectric breakdown, which is
+      the mechanism of <strong>electroporation</strong>. Using the ~2 nm dielectric core instead gives
+      ~3.6×10⁷ V·m⁻¹; either figure makes the point.</p>
+  </div>
+
+  <h3>The defibrillator</h3>
+  <div class="wex">
+    <h4>Worked example 9 · defibrillator energy, charge and power</h4>
+    <p>A defibrillator stores charge on a C = 100 μF capacitor charged to 2.5 kV, then discharges it
+      through the chest in about 5.0 ms. Find the stored energy, the charge, the average power and the
+      average current.</p>
+    <ol>
+      <li><strong>Energy.</strong> U = ½CV² = ½(1.00×10⁻⁴)(2.5×10³)² = ½(1.00×10⁻⁴)(6.25×10⁶) =
+        <strong>3.1×10² J</strong> — in the clinical range of 150–360 J for a monophasic shock.</li>
+      <li><strong>Charge.</strong> Q = CV = (1.00×10⁻⁴)(2.5×10³) = <strong>0.25 C</strong>.</li>
+      <li><strong>Average power.</strong> P = U/t = 312.5 / 5.0×10⁻³ = <strong>6.3×10⁴ W</strong>. The
+        energy is modest — that of a 1 kg book falling 32 m — but delivering it in milliseconds
+        means tens of kilowatts.</li>
+      <li><strong>Average current.</strong> I = Q/t = 0.25 / 5.0×10⁻³ = <strong>50 A</strong> — but that
+        number assumes the whole 0.25 C really leaves in 5.0 ms, which needs τ = RC ≲ 2 ms, i.e. a load of
+        roughly 20 Ω. A real chest is 50–100 Ω, so τ = RC ≈ 100 μF × 75 Ω ≈ 7.5 ms, the <em>peak</em>
+        current is only I₀ = V/R = 2.5×10³/75 ≈ 33 A, and barely half the charge has flowed by 5.0 ms.
+        That is precisely why clinical units <strong>truncate</strong> the waveform and quote
+        <em>delivered</em> energy, which is always less than the stored ½CV².</li>
+    </ol>
+    <span class="wex__ans">U ≈ 310 J stored · Q = 0.25 C · P ≈ 63 kW and I ≈ 50 A <em>if</em> the discharge completes in 5.0 ms</span>
+  </div>
+
+  <p>
+    The physics content of defibrillation is exactly the capacitor content of this chapter: a capacitor is
+    the only practical way to store a few hundred joules and then release it in milliseconds, because
+    the discharge rate is set by RC and not by the source. The <em>physiology</em> is worth stating
+    correctly, because it is commonly misdescribed. A defibrillator does not restart a stopped heart. It
+    depolarises a critical mass of myocardium simultaneously, ending the chaotic re-entrant wavefronts of
+    <strong>ventricular fibrillation or pulseless ventricular tachycardia</strong> and giving the sinoatrial
+    node a chance to resume an organised rhythm. Asystole and pulseless electrical activity are
+    <em>not</em> shockable — there is no fibrillation to stop. Modern biphasic units reverse the current
+    partway through the pulse, which achieves the same defibrillation at lower delivered energy
+    (typically 120–200 J) and less myocardial injury.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · joules are not volts</p>
+    <p>The dial on a defibrillator reads <strong>joules</strong>, an energy, set by ½CV². Doubling the
+      selected energy does <em>not</em> double the voltage — it multiplies it by √2. And a charged
+      defibrillator capacitor remains lethal after the machine is switched off; a capacitor is a store of
+      energy, not a store of current, and it holds that store until something discharges it.</p>
+  </div>
+</section>
+
+<!-- =========================== Self-test =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>
+    Answer before you look. If you get one wrong, the useful move is not to memorise the letter but to
+    return to the section that owns the idea — the explanation names it. Six of these require an actual
+    calculation; do them on paper, because the tempting distractors are precisely the results of the
+    common slips.
+  </p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-10-thermal.html"><small>Previous</small><b>← Thermal Physics and Thermodynamics</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-12-circuits.html"><small>Next</small><b>Direct-Current Circuits →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 11 · Electric Charge, Field and Potential</p>
+    <p>Represented throughout as vector fields, flux and scalar potential landscapes; constants and
+      physiological values are standard textbook approximations, quoted for magnitude and structure
+      rather than as precise citations.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "Which of the following could be the net charge on an isolated object?",
+    "options": [
+      "2.4 × 10⁻¹⁹ C",
+      "1.0 × 10⁻¹⁹ C",
+      "6.4 × 10⁻¹⁹ C",
+      "8.0 × 10⁻²⁰ C"
+    ],
+    "answer": 2,
+    "explain": "Charge is quantised: q = ne with e = 1.60 × 10⁻¹⁹ C. Only 6.4 × 10⁻¹⁹ C divides exactly, giving n = 4. The tempting distractor is 2.4 × 10⁻¹⁹ C, which looks respectable but equals 1.5e — quarks carry fractional charge, yet they are permanently confined and never appear as a free object's net charge."
+  },
+  {
+    "stem": "A positively charged rod is held near — but never touching — an isolated metal sphere on an insulating stand. While the rod is held in place the sphere is briefly earthed, the earth wire is then removed, and only afterwards is the rod taken away. The sphere is left:",
+    "options": [
+      "positively charged, since the rod was positive",
+      "negatively charged",
+      "neutral, because charge is conserved",
+      "polarised, but with zero net charge"
+    ],
+    "answer": 1,
+    "explain": "This is charging by induction, and induction always leaves the <b>opposite</b> sign. The rod pulls electrons to the near face; earthing lets electrons flow up from the ground to neutralise the positive far face, and breaking the earth connection first traps them. Option A is the conduction answer — touching would have given the same sign as the rod. Option C confuses conservation (which applies to the sphere-plus-earth system) with the sphere alone."
+  },
+  {
+    "stem": "Two small charged spheres a distance d apart repel each other with a force of 0.36 N. The charge on one sphere is tripled and the separation is doubled. The new force is:",
+    "options": [
+      "0.12 N",
+      "0.27 N",
+      "0.54 N",
+      "1.08 N"
+    ],
+    "answer": 1,
+    "explain": "F ∝ q₁q₂/r², so F → F × 3 / 2² = 0.36 × 0.75 = 0.27 N. The trap is 1.08 N, which triples the charge but forgets the separation change altogether; its cousin 0.54 N divides by 2 instead of by 2² when r doubles. Read the exponents straight off Coulomb's law: charge to the first power, distance to the inverse second."
+  },
+  {
+    "stem": "At what distance from a +2.0 nC point charge does the field magnitude equal 500 N·C⁻¹? (k = 8.99 × 10⁹ N·m²·C⁻²)",
+    "options": [
+      "0.036 m",
+      "0.072 m",
+      "0.38 m",
+      "0.19 m"
+    ],
+    "answer": 3,
+    "explain": "E = kQ/r² gives r = √(kQ/E) = √(8.99×10⁹ × 2.0×10⁻⁹ / 500) = √0.0360 = 0.19 m. The distractor 0.036 m is kQ/E without taking the square root — the single most common slip in field questions, and it is worth checking the unit of your intermediate value (m², not m) to catch it."
+  },
+  {
+    "stem": "A point charge +Q sits at the centre of an isolated, initially neutral, hollow conducting spherical shell. Which statement is correct?",
+    "options": [
+      "The inner surface carries −Q, the outer surface carries +Q, and outside the shell the field is exactly that of a point charge +Q at the centre.",
+      "The inner surface carries +Q and the outer surface carries −Q.",
+      "The shell shields the outside, so the field beyond the shell is zero.",
+      "Inside the metal of the shell the field is kQ/r², unchanged by the shell's presence."
+    ],
+    "answer": 0,
+    "explain": "A Gaussian surface drawn inside the metal must enclose zero net charge because E = 0 there, forcing −Q onto the inner surface; the neutral shell must then put +Q on the outer surface. Option C is the classic overreach: a Faraday cage shields its <b>cavity from the outside</b>, not the outside from a charge in the cavity — unless you earth the shell and drain the outer +Q away."
+  },
+  {
+    "stem": "Two identical charges +q are held a distance 2a apart. At the midpoint of the line joining them:",
+    "options": [
+      "E = 2kq/a² and V = 2kq/a",
+      "E = 0 and V = 0",
+      "E = 0 and V = 2kq/a",
+      "E = 0 and V = kq/(2a)"
+    ],
+    "answer": 2,
+    "explain": "The two field vectors are equal in magnitude and opposite in direction, so E = 0; but potential is a scalar, so the two contributions kq/a simply add to 2kq/a. Option B is the trap: a zero field never implies a zero potential. The mirror-image trap is a dipole (+q and −q, same separation 2a), where the midpoint has V = 0 but a large non-zero field, E = 2kq/a² pointing from + to −."
+  },
+  {
+    "stem": "An electron starts from rest and is accelerated through a potential difference of 250 V. Its kinetic energy on arrival is:",
+    "options": [
+      "250 J",
+      "4.0 × 10⁻¹⁷ J",
+      "1.6 × 10⁻¹⁹ J",
+      "4.0 × 10⁻¹⁴ J"
+    ],
+    "answer": 1,
+    "explain": "K = qΔV = 250 eV = 250 × 1.60×10⁻¹⁹ J = 4.0×10⁻¹⁷ J. Option A treats the electron-volt as if it were a joule — the eV is an <b>energy</b> unit equal to one elementary charge times one volt, never a voltage. Option C is just e itself, i.e. the energy for a 1 V drop."
+  },
+  {
+    "stem": "A 6.0 μF and a 3.0 μF capacitor are connected in series across a 12 V battery. The charge stored on the 3.0 μF capacitor is:",
+    "options": [
+      "108 μC",
+      "72 μC",
+      "36 μC",
+      "24 μC"
+    ],
+    "answer": 3,
+    "explain": "In series 1/C = 1/6.0 + 1/3.0 = 1/2.0, so C(eq) = 2.0 μF and Q = C(eq)V = 2.0 μF × 12 V = 24 μC — and in series <b>every</b> capacitor carries that same charge, because the isolated conductor between them must stay neutral. Option C (36 μC) comes from using 3.0 μF × 12 V, which wrongly assumes the full battery voltage sits across that one capacitor; in fact it takes 8 V and the 6.0 μF takes 4 V."
+  },
+  {
+    "stem": "A parallel-plate capacitor remains connected to its battery while a slab of dielectric constant κ = 3 is slid between the plates. Which description is correct?",
+    "options": [
+      "C, Q and the stored energy U all increase by a factor of 3, while the field E between the plates is unchanged.",
+      "C increases by 3, but Q, E and U are all unchanged.",
+      "C increases by 3 while V falls to one third, so Q is unchanged.",
+      "C, E and U all increase by a factor of 3."
+    ],
+    "answer": 0,
+    "explain": "With the battery connected V is clamped, so C = κε₀A/d triples, Q = CV triples, and U = ½CV² triples — the extra energy comes from the battery. E = V/d is fixed by the clamped voltage, so it does not change. Option C is the <b>disconnected</b> case, where Q is stranded and V, E and U each fall by κ; deciding which quantity is held fixed is the whole question."
+  },
+  {
+    "stem": "A resting cell membrane holds 70 mV across a bilayer 5.0 nm thick. The electric field inside the membrane is approximately:",
+    "options": [
+      "1.4 × 10⁴ V·m⁻¹",
+      "3.5 × 10⁻¹⁰ V·m⁻¹",
+      "1.4 × 10⁷ V·m⁻¹",
+      "1.4 × 10¹⁰ V·m⁻¹"
+    ],
+    "answer": 2,
+    "explain": "E = V/d = 0.070 V / 5.0×10⁻⁹ m = 1.4×10⁷ V·m⁻¹ — several times the breakdown field of air, sustained by a 5 nm film, which is why voltage-gated channels can sense it and why a modest extra pulse causes electroporation. Option D (1.4×10¹⁰) is the same division with the millivolts left unconverted; option B is V × d instead of V ÷ d."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

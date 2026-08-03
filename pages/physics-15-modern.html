@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 15 · Modern Physics: Quanta, Atoms and Nuclei — PostMed Notebook</title>
+<meta name="description" content="Physics note 15: blackbody radiation and Planck, the photoelectric effect, photons and Compton scattering, de Broglie waves, uncertainty, the Bohr atom, X-rays, relativity, nuclear binding energy, radioactive decay, dose and nuclear medicine — with 10 self-test questions.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 15</p>
+  <h1>Modern Physics: Quanta, Atoms and Nuclei</h1>
+  <p class="lede">
+    Classical physics assumed that energy is <em>continuous</em> — that you can always take a little
+    less. Every experiment in this chapter says the opposite: energy, angular momentum and even
+    identity come in indivisible lumps, and a lump is either absorbed whole or not at all.
+    Once you accept that single idea, the ultraviolet catastrophe, the threshold frequency, the
+    line spectrum of hydrogen, the sharp cut-off of an X-ray tube and the exponential decay of a
+    radionuclide stop being separate facts and become the same fact seen from five angles.
+    Nearly every imaging machine in a hospital is an application of this chapter.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Energy-level diagrams &amp; exponential laws</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~50 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Where classical physics broke: the blackbody</a></li>
+      <li><a href="#s2">The photoelectric effect</a></li>
+      <li><a href="#s3">The photon: energy, momentum, Compton</a></li>
+      <li><a href="#s4">Duality: de Broglie and uncertainty</a></li>
+      <li><a href="#s5">Atomic models and the Bohr hydrogen atom</a></li>
+      <li><a href="#s6">Beyond Bohr: the four quantum numbers</a></li>
+      <li><a href="#s7">X-rays: production and attenuation</a></li>
+      <li><a href="#s8">Special relativity in brief</a></li>
+      <li><a href="#s9">The nucleus: mass defect and binding energy</a></li>
+      <li><a href="#s10">Radioactive decay and the decay law</a></li>
+      <li><a href="#s11">Dose, radiotherapy and nuclear medicine</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <!-- Page-top formula sheet -->
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Photon energy</b><code>E = hf = hc/λ</code></div>
+      <div class="fsheet__item"><b>Shortcut</b><code>hc ≈ 1240 eV·nm</code></div>
+      <div class="fsheet__item"><b>Planck oscillator</b><code>E = n h f, n = 0,1,2,…</code></div>
+      <div class="fsheet__item"><b>Wien displacement</b><code>λ<sub>max</sub> T = 2.90×10⁻³ m·K</code></div>
+      <div class="fsheet__item"><b>Stefan–Boltzmann</b><code>P = ε σ A T⁴ (ε = 1 for a blackbody)</code></div>
+      <div class="fsheet__item"><b>Photoelectric</b><code>hf = φ + K<sub>max</sub></code></div>
+      <div class="fsheet__item"><b>Stopping potential</b><code>K<sub>max</sub> = e V<sub>s</sub></code></div>
+      <div class="fsheet__item"><b>Threshold</b><code>f₀ = φ/h, λ₀ = hc/φ</code></div>
+      <div class="fsheet__item"><b>Photon momentum</b><code>p = h/λ = E/c</code></div>
+      <div class="fsheet__item"><b>Compton shift</b><code>Δλ = (h/m<sub>e</sub>c)(1 − cos θ)</code></div>
+      <div class="fsheet__item"><b>Compton wavelength</b><code>h/m<sub>e</sub>c = 2.43 pm</code></div>
+      <div class="fsheet__item"><b>de Broglie</b><code>λ = h/p = h/(mv)</code></div>
+      <div class="fsheet__item"><b>Accelerated electron</b><code>λ = h/√(2meV) ≈ 1.23/√V nm</code></div>
+      <div class="fsheet__item"><b>Uncertainty (x,p)</b><code>Δx · Δp ≥ ħ/2</code></div>
+      <div class="fsheet__item"><b>Uncertainty (E,t)</b><code>ΔE · Δt ≥ ħ/2</code></div>
+      <div class="fsheet__item"><b>Bohr quantisation</b><code>L = m v r = n ħ</code></div>
+      <div class="fsheet__item"><b>Bohr radius</b><code>r<sub>n</sub> = n² a₀, a₀ = 0.0529 nm</code></div>
+      <div class="fsheet__item"><b>Hydrogen levels</b><code>E<sub>n</sub> = −13.6 eV / n²</code></div>
+      <div class="fsheet__item"><b>Hydrogen-like</b><code>E<sub>n</sub> = −13.6 Z² / n² eV</code></div>
+      <div class="fsheet__item"><b>Rydberg</b><code>1/λ = R(1/n<sub>f</sub>² − 1/n<sub>i</sub>²)</code></div>
+      <div class="fsheet__item"><b>X-ray cut-off</b><code>λ<sub>min</sub> = hc/(eV)</code></div>
+      <div class="fsheet__item"><b>Attenuation</b><code>I = I₀ e<sup>−μx</sup></code></div>
+      <div class="fsheet__item"><b>Half-value layer</b><code>HVL = ln2 / μ</code></div>
+      <div class="fsheet__item"><b>Lorentz factor</b><code>γ = 1/√(1 − v²/c²)</code></div>
+      <div class="fsheet__item"><b>Time dilation</b><code>Δt = γ Δt₀</code></div>
+      <div class="fsheet__item"><b>Length contraction</b><code>L = L₀ / γ</code></div>
+      <div class="fsheet__item"><b>Mass–energy</b><code>E = γmc², E₀ = mc²</code></div>
+      <div class="fsheet__item"><b>Unified mass unit</b><code>1 u = 931.5 MeV/c²</code></div>
+      <div class="fsheet__item"><b>Mass defect</b><code>Δm = Z m<sub>H</sub> + N m<sub>n</sub> − M<sub>atom</sub></code></div>
+      <div class="fsheet__item"><b>Binding energy</b><code>BE = Δm c²</code></div>
+      <div class="fsheet__item"><b>Nuclear radius</b><code>R = R₀ A<sup>1/3</sup>, R₀ = 1.2 fm</code></div>
+      <div class="fsheet__item"><b>Decay law</b><code>N = N₀ e<sup>−λt</sup></code></div>
+      <div class="fsheet__item"><b>Half-life</b><code>T<sub>½</sub> = ln2 / λ</code></div>
+      <div class="fsheet__item"><b>Activity</b><code>A = λN = A₀ e<sup>−λt</sup></code></div>
+      <div class="fsheet__item"><b>Curie</b><code>1 Ci = 3.7×10¹⁰ Bq</code></div>
+      <div class="fsheet__item"><b>Absorbed dose</b><code>D = E / m  (Gy = J·kg⁻¹)</code></div>
+      <div class="fsheet__item"><b>Equivalent dose</b><code>H = w<sub>R</sub> D  (Sv)</code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Where classical physics broke: the blackbody</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Blackbody</dt>
+      <dd>An idealised body that absorbs every wavelength that falls on it, and therefore emits
+          a spectrum that depends on nothing but its absolute temperature.</dd>
+      <dt>Planck's quantum hypothesis</dt>
+      <dd>The energy of an oscillator in the cavity wall is not continuous: it can only take the
+          values 0, hf, 2hf, 3hf, … so it can only exchange energy in whole quanta of size hf.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">E = n h f&nbsp;&nbsp;(n = 0, 1, 2, …)</span>
+      <span class="fx__tag">Planck 1900 — energy of a cavity oscillator is quantised</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">λ<sub>max</sub> T = b = 2.90×10⁻³ m·K</span><span class="fx__tag">Wien's displacement law; λ<sub>max</sub> is the peak of the spectral radiance vs λ curve</span></div>
+      <div class="fx"><span class="fx__eq">P = σ A T⁴</span><span class="fx__tag">Stefan–Boltzmann: total power radiated by a blackbody (emissivity 1; insert ε otherwise); σ = 5.67×10⁻⁸ W·m⁻²·K⁻⁴</span></div>
+      <div class="fx"><span class="fx__eq">I(λ) ∝ (1/λ⁵) · 1/(e<sup>hc/λk<sub>B</sub>T</sup> − 1)</span><span class="fx__tag">Planck's radiation law — quoted for its shape, not for calculation</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>E</b><span>oscillator energy (J)</span></div>
+      <div><b>h</b><span>Planck constant, 6.63×10⁻³⁴ (J·s)</span></div>
+      <div><b>f</b><span>frequency (Hz = s⁻¹)</span></div>
+      <div><b>n</b><span>quantum number (dimensionless integer)</span></div>
+      <div><b>λ<sub>max</sub></b><span>wavelength of peak emission (m)</span></div>
+      <div><b>T</b><span>absolute temperature (K)</span></div>
+      <div><b>b</b><span>Wien constant, 2.90×10⁻³ (m·K)</span></div>
+      <div><b>P</b><span>radiated power (W)</span></div>
+      <div><b>A</b><span>radiating surface area (m²)</span></div>
+      <div><b>σ</b><span>Stefan–Boltzmann constant (W·m⁻²·K⁻⁴)</span></div>
+      <div><b>k<sub>B</sub></b><span>Boltzmann constant, 1.38×10⁻²³ (J·K⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    A hot object glows, and the colour of the glow depends only on how hot it is — dull red at
+    900 K, orange at 1500 K, white at 6000 K. Classical physics could reproduce the long-wavelength
+    end of that curve and nothing else. The Rayleigh–Jeans calculation counts the standing-wave modes
+    inside a cavity and gives each one the equipartition share <span class="fi">k<sub>B</sub>T</span>
+    of energy. The number of modes grows as <span class="fi">1/λ⁴</span>, so the predicted intensity
+    grows without limit as the wavelength shortens.
+  </p>
+  <p>
+    That is the <strong>ultraviolet catastrophe</strong>: the classical theory says a warm object
+    should pour out infinite power in the ultraviolet and beyond. It does not, and the failure is not
+    a small numerical discrepancy — it is a divergence. Something in the classical assumptions is
+    structurally wrong.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 480 300" role="img" aria-label="Blackbody spectral radiance against wavelength for 4000 K, 5000 K and 5800 K, with the classical Rayleigh–Jeans curve diverging at short wavelengths and a dashed line tracking the Wien peak shift.">
+      <title>Blackbody spectra and the ultraviolet catastrophe</title>
+      <!-- visible band -->
+      <rect x="140" y="40" width="60" height="210" fill="var(--v-field)" opacity="0.10"></rect>
+      <text x="170" y="34" text-anchor="middle" font-size="9" fill="var(--ink-faint)">visible</text>
+      <!-- axes -->
+      <line x1="60" y1="40" x2="60" y2="250" stroke="var(--ink-soft)" stroke-width="1.2"></line>
+      <line x1="60" y1="250" x2="465" y2="250" stroke="var(--ink-soft)" stroke-width="1.2"></line>
+      <g stroke="var(--ink-soft)" stroke-width="1">
+        <line x1="160" y1="250" x2="160" y2="255"></line>
+        <line x1="260" y1="250" x2="260" y2="255"></line>
+        <line x1="360" y1="250" x2="360" y2="255"></line>
+        <line x1="460" y1="250" x2="460" y2="255"></line>
+      </g>
+      <g font-size="9" fill="var(--ink-faint)" text-anchor="middle">
+        <text x="160" y="267">500</text>
+        <text x="260" y="267">1000</text>
+        <text x="360" y="267">1500</text>
+        <text x="460" y="267">2000</text>
+        <text x="262" y="284" fill="var(--ink-soft)">wavelength λ / nm</text>
+      </g>
+      <text transform="rotate(-90 18 145)" x="18" y="145" text-anchor="middle" font-size="9" fill="var(--ink-soft)">spectral radiance</text>
+      <!-- Rayleigh-Jeans -->
+      <polyline points="283,20 291,50 300,78 340,157 380,196 420,216 460,228"
+                fill="none" stroke="var(--v-force)" stroke-width="2" stroke-dasharray="6 4"></polyline>
+      <text x="316" y="42" font-size="9.5" fill="var(--v-force)">Rayleigh–Jeans (classical) → ∞</text>
+      <!-- Planck curves -->
+      <polyline points="80,250 100,239 120,156 140,75 160,50 180,65 200,93 220,123 260,169 300,198 340,216 400,231 460,239"
+                fill="none" stroke="var(--v-heat)" stroke-width="2.2"></polyline>
+      <polyline points="100,248 120,225 140,185 160,160 176,155 200,162 230,180 260,197 300,214 340,226 400,236 460,241"
+                fill="none" stroke="var(--v-accel)" stroke-width="2"></polyline>
+      <polyline points="100,250 120,248 140,239 160,229 180,222 205,219 220,220 260,225 300,231 340,236 400,242 460,245"
+                fill="none" stroke="var(--v-energy)" stroke-width="2"></polyline>
+      <!-- Wien locus -->
+      <polyline points="160,50 176,155 205,219" fill="none" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="3 3"></polyline>
+      <circle cx="160" cy="50" r="3" fill="var(--v-heat)"></circle>
+      <circle cx="176" cy="155" r="3" fill="var(--v-accel)"></circle>
+      <circle cx="205" cy="219" r="3" fill="var(--v-energy)"></circle>
+      <g font-size="9.5">
+        <text x="188" y="52" fill="var(--v-heat)">5800 K</text>
+        <text x="202" y="152" fill="var(--v-accel)">5000 K</text>
+        <text x="232" y="212" fill="var(--v-energy)">4000 K</text>
+        <text x="120" y="204" fill="var(--ink-faint)">λ<tspan font-size="7" dy="2">max</tspan><tspan dy="-2"> ∝ 1/T</tspan></text>
+      </g>
+    </svg>
+    <figcaption>
+      Planck's law (solid) versus the classical Rayleigh–Jeans result (dashed red). The two agree at
+      long wavelengths and diverge completely at short ones — the ultraviolet catastrophe. Curves are
+      drawn to a common vertical scale, so the strong rise in total area with temperature (Stefan–Boltzmann,
+      P ∝ T⁴) is visible as well as the shift of the peak to shorter wavelength (Wien).
+    </figcaption>
+  </figure>
+
+  <p>
+    Planck's fix was to forbid an oscillator from holding any energy it liked. If a wall oscillator of
+    frequency <span class="fi">f</span> can only hold <span class="fi">0, hf, 2hf, …</span>, then a
+    high-frequency mode needs a whole quantum <span class="fi">hf</span> before it can be excited at all.
+    When <span class="fi">hf ≫ k<sub>B</sub>T</span> the thermal bath simply cannot afford the entry price,
+    so the short-wavelength modes stay empty. The mode counting is untouched — it is still
+    <span class="fi">1/λ⁴</span>, and multiplying it by the quantum energy <span class="fi">hc/λ</span>
+    is what produces the <span class="fi">1/λ⁵</span> prefactor of Planck's law; what is new is the
+    exponential factor <span class="fi">1/(e<sup>hc/λk<sub>B</sub>T</sup> − 1)</span>, which shuts
+    it down. The divergence disappears, and out of the same formula fall both Wien's law and Stefan's law.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 1 · Wien's law and thermal imaging</h4>
+    <p>At what wavelength does human skin at 33 °C radiate most strongly, and where does the Sun
+       (surface ≈ 5800 K) peak?</p>
+    <ol>
+      <li>Convert to kelvin — Wien's law takes <em>absolute</em> temperature only:
+          <span class="fi">T = 33 + 273 = 306 K</span>.</li>
+      <li>Skin: <span class="fi">λ<sub>max</sub> = b/T = 2.90×10⁻³ / 306 = 9.48×10⁻⁶ m ≈ 9.5 μm</span>.</li>
+      <li>Sun: <span class="fi">λ<sub>max</sub> = 2.90×10⁻³ / 5800 = 5.00×10⁻⁷ m = 500 nm</span>.</li>
+      <li>Interpretation: skin peaks in the mid-infrared, roughly twenty times longer than visible
+          light — which is why a thermal camera for fever screening is built around an 8–14 μm
+          detector and sees nothing in the visible. The Sun peaks in the green, near the middle of
+          the range our eyes evolved to use.</li>
+    </ol>
+    <span class="wex__ans">skin λ<sub>max</sub> ≈ 9.5 μm (infrared) · Sun λ<sub>max</sub> ≈ 500 nm (visible)</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · Wien's law needs kelvin, and it is inverse</p>
+    <p>Putting 33 into <span class="fi">b/T</span> instead of 306 gives 88 μm — an order of magnitude
+       wrong. And the relation is <em>inverse</em>: hotter means <em>shorter</em> λ<sub>max</sub>.
+       Students routinely write "the hotter body radiates at longer wavelength" because the total power
+       goes up; the total power (T⁴) and the peak position (1/T) move in opposite senses along the λ axis.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The photoelectric effect</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Photoelectric effect</dt>
+      <dd>The ejection of an electron from a metal surface by the absorption of a single photon.</dd>
+      <dt>Work function φ</dt>
+      <dd>The minimum energy needed to remove the least tightly bound electron from the metal to
+          just outside its surface — a property of the metal, not of the light.</dd>
+      <dt>Stopping potential V<sub>s</sub></dt>
+      <dd>The reverse bias that just reduces the photocurrent to zero, so that even the fastest
+          photoelectron cannot reach the collector.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">hf = φ + K<sub>max</sub></span>
+      <span class="fx__tag">Einstein 1905 — one photon in, one electron out; valid for f ≥ f₀</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">K<sub>max</sub> = hf − φ = e V<sub>s</sub></span><span class="fx__tag">stopping-potential measurement of K<sub>max</sub></span></div>
+      <div class="fx"><span class="fx__eq">f₀ = φ/h&nbsp;&nbsp;·&nbsp;&nbsp;λ₀ = hc/φ</span><span class="fx__tag">threshold frequency / threshold wavelength; no emission for f &lt; f₀</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>hf</b><span>photon energy (J; often quoted in eV)</span></div>
+      <div><b>φ</b><span>work function (J; usually eV)</span></div>
+      <div><b>K<sub>max</sub></b><span>maximum kinetic energy of emitted electrons (J)</span></div>
+      <div><b>V<sub>s</sub></b><span>stopping potential (V)</span></div>
+      <div><b>e</b><span>elementary charge, 1.60×10⁻¹⁹ (C)</span></div>
+      <div><b>f₀</b><span>threshold frequency (Hz)</span></div>
+      <div><b>λ₀</b><span>threshold wavelength (m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Shine light on a clean metal in vacuum, collect the electrons that come off, and measure the
+    current against a variable retarding voltage. Four results emerge, and only the first is what a
+    wave theory would predict.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Wave-theory prediction versus photoelectric observation</caption>
+      <thead>
+        <tr><th>Observation</th><th>Classical wave theory predicts</th><th>Experiment shows</th><th>Photon explanation</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Threshold frequency</b></td>
+          <td>Any frequency works if you wait long enough or turn the lamp up — energy accumulates.</td>
+          <td>Below f₀ <b>nothing</b> is emitted, at any intensity, ever.</td>
+          <td>One photon is absorbed whole. If hf &lt; φ, that single lump cannot pay the escape cost, and lumps do not add up.</td>
+        </tr>
+        <tr>
+          <td><b>Emission delay</b></td>
+          <td>For dim light, seconds to minutes are needed for an electron to soak up enough energy.</td>
+          <td>Emission begins within ~10⁻⁹ s of switching on, however dim the source.</td>
+          <td>Absorption is a single instantaneous event, not an accumulation.</td>
+        </tr>
+        <tr>
+          <td><b>Effect of intensity</b></td>
+          <td>Brighter light = larger field amplitude = faster electrons.</td>
+          <td>Brighter light gives <b>more</b> electrons per second (larger current) but <b>identical</b> K<sub>max</sub>.</td>
+          <td>Intensity = photons per second. More photons, more electrons; each electron still receives exactly hf.</td>
+        </tr>
+        <tr>
+          <td><b>Effect of frequency</b></td>
+          <td>No particular role for frequency.</td>
+          <td>K<sub>max</sub> rises linearly with f; the graph's slope is h for <b>every</b> metal.</td>
+          <td>K<sub>max</sub> = hf − φ: a straight line of slope h, shifted down by the metal's own φ.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 480 320" role="img" aria-label="Graph of maximum photoelectron kinetic energy against light frequency for two metals: two parallel straight lines of slope h, with x-intercepts at the threshold frequencies and negative y-intercepts equal to minus the work functions.">
+      <title>K_max versus frequency for two metals</title>
+      <line x1="60" y1="40" x2="60" y2="300" stroke="var(--ink-soft)" stroke-width="1.2"></line>
+      <line x1="40" y1="190" x2="465" y2="190" stroke="var(--ink-soft)" stroke-width="1.2"></line>
+      <text x="70" y="34" font-size="10" fill="var(--ink-soft)">K<tspan font-size="7.5" dy="2">max</tspan><tspan dy="-2"> (eV)</tspan></text>
+      <text x="462" y="180" text-anchor="end" font-size="10" fill="var(--ink-soft)">frequency f (Hz)</text>
+      <!-- caesium, low work function -->
+      <line x1="150" y1="190" x2="450" y2="40" stroke="var(--v-energy)" stroke-width="2.4"></line>
+      <line x1="150" y1="190" x2="60" y2="235" stroke="var(--v-energy)" stroke-width="1.6" stroke-dasharray="5 4"></line>
+      <circle cx="150" cy="190" r="3.4" fill="var(--v-energy)"></circle>
+      <circle cx="60" cy="235" r="3.4" fill="var(--v-energy)"></circle>
+      <!-- zinc, high work function -->
+      <line x1="250" y1="190" x2="450" y2="90" stroke="var(--v-field)" stroke-width="2.4"></line>
+      <line x1="250" y1="190" x2="60" y2="285" stroke="var(--v-field)" stroke-width="1.6" stroke-dasharray="5 4"></line>
+      <circle cx="250" cy="190" r="3.4" fill="var(--v-field)"></circle>
+      <circle cx="60" cy="285" r="3.4" fill="var(--v-field)"></circle>
+      <g font-size="10">
+        <text x="150" y="206" text-anchor="middle" fill="var(--v-energy)">f₀ (Cs)</text>
+        <text x="250" y="206" text-anchor="middle" fill="var(--v-field)">f₀ (Zn)</text>
+        <text x="54" y="239" text-anchor="end" fill="var(--v-energy)">−φ = −2.1 eV</text>
+        <text x="54" y="289" text-anchor="end" fill="var(--v-field)">−φ = −4.3 eV</text>
+        <text x="392" y="62" fill="var(--v-energy)">caesium</text>
+        <text x="392" y="112" fill="var(--v-field)">zinc</text>
+      </g>
+      <g font-size="9.5" fill="var(--ink-faint)">
+        <text x="300" y="150">slope = h — the same for every metal</text>
+        <text x="80" y="176">no emission at all</text>
+        <text x="80" y="308">the vertical intercept is −φ, never +φ</text>
+      </g>
+    </svg>
+    <figcaption>
+      The decisive graph. Two metals give two <em>parallel</em> lines: the gradient is Planck's constant
+      and belongs to the light, while the horizontal shift belongs to the metal. Extrapolating each line
+      back to f = 0 gives a vertical intercept of −φ. Below f₀ the line is dashed because there is no
+      emission there — the physical curve simply stops at the axis.
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <h4>Worked example 2 · Sodium under violet light</h4>
+    <p>Sodium has φ = 2.28 eV. Light of wavelength 400 nm falls on it. Find the photon energy,
+       K<sub>max</sub>, the stopping potential, and the threshold wavelength and frequency.</p>
+    <ol>
+      <li>Photon energy with the shortcut <span class="fi">hc ≈ 1240 eV·nm</span>:
+          <span class="fi">E = 1240/400 = 3.10 eV</span>.</li>
+      <li><span class="fi">K<sub>max</sub> = hf − φ = 3.10 − 2.28 = 0.82 eV</span>.</li>
+      <li>Stopping potential: <span class="fi">K<sub>max</sub> = eV<sub>s</sub></span>, and because
+          K<sub>max</sub> is already in electronvolts, <span class="fi">V<sub>s</sub> = 0.82 V</span>
+          numerically. (In joules: 0.82 × 1.60×10⁻¹⁹ = 1.31×10⁻¹⁹ J, divided by e gives the same 0.82 V.)</li>
+      <li>Threshold: <span class="fi">λ₀ = hc/φ = 1240/2.28 = 544 nm</span> — green light. Anything
+          redder than 544 nm produces no emission at all.</li>
+      <li><span class="fi">f₀ = c/λ₀ = 3.00×10⁸ / 5.44×10⁻⁷ = 5.5×10¹⁴ Hz</span>
+          (equivalently φ/h = 2.28×1.60×10⁻¹⁹ / 6.63×10⁻³⁴ = 5.5×10¹⁴ Hz).</li>
+    </ol>
+    <span class="wex__ans">E = 3.10 eV · K<sub>max</sub> = 0.82 eV · V<sub>s</sub> = 0.82 V · λ₀ = 544 nm · f₀ = 5.5×10¹⁴ Hz</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the three things a K<sub>max</sub>-vs-f graph gives you</p>
+    <p><b>Gradient = h</b> (universal). <b>x-intercept = f₀</b> (threshold). <b>y-intercept = −φ</b>
+       (negative). Examiners love asking you to determine h from two data points: take
+       <span class="fi">h = (K₂ − K₁)/(f₂ − f₁)</span> and convert eV to joules before dividing, or your
+       answer will be out by a factor of 1.6×10⁻¹⁹.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · "K<sub>max</sub>", not "K"</p>
+    <p>Only electrons released from the very surface with no collision losses emerge with
+       <span class="fi">hf − φ</span>. Electrons from deeper down lose energy on the way out, so the
+       emitted electrons have a <em>spread</em> of energies from 0 up to K<sub>max</sub>. That is why the
+       photocurrent falls off gradually as the retarding voltage is raised and only vanishes at
+       V<sub>s</sub>. Also: φ is subtracted, never added — <span class="fi">K<sub>max</sub> = hf + φ</span>
+       is the single most common sign error on this topic.</p>
+  </div>
+
+  <p>
+    <b>Why a doctor cares.</b> Every scintillation detector — the gamma camera, the PET ring, the
+    dosimeter badge reader — ends in a photomultiplier or photodiode whose first step is exactly this
+    effect: a light photon liberates one electron, which is then multiplied into a measurable pulse.
+    The threshold behaviour is also why UV-B (280–315 nm, i.e. 3.9–4.4 eV per photon) damages DNA while intense infrared
+    merely warms you: the damage depends on the energy per photon, not the energy per second.
+  </p>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>The photon: energy, momentum and the Compton effect</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Photon</dt>
+      <dd>The quantum of the electromagnetic field: a massless particle carrying energy hf and
+          momentum h/λ, always travelling at c.</dd>
+      <dt>Compton effect</dt>
+      <dd>The increase in wavelength of an X-ray or γ-ray photon after it scatters elastically off a
+          quasi-free electron, by an amount that depends only on the scattering angle.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">E = hf = hc/λ&nbsp;&nbsp;·&nbsp;&nbsp;p = h/λ = E/c</span>
+      <span class="fx__tag">photon only; p = E/c requires zero rest mass</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Δλ = λ′ − λ = (h/m<sub>e</sub>c)(1 − cos θ)</span><span class="fx__tag">Compton shift; free stationary electron</span></div>
+      <div class="fx"><span class="fx__eq">λ<sub>C</sub> = h/m<sub>e</sub>c = 2.43×10⁻¹² m</span><span class="fx__tag">Compton wavelength of the electron</span></div>
+      <div class="fx"><span class="fx__eq">hc ≈ 1240 eV·nm</span><span class="fx__tag">the single most useful shortcut on this page</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>E</b><span>photon energy (J or eV)</span></div>
+      <div><b>p</b><span>photon momentum (kg·m·s⁻¹)</span></div>
+      <div><b>λ, λ′</b><span>incident / scattered wavelength (m)</span></div>
+      <div><b>θ</b><span>photon scattering angle (rad or °)</span></div>
+      <div><b>m<sub>e</sub></b><span>electron rest mass, 9.11×10⁻³¹ (kg)</span></div>
+      <div><b>c</b><span>speed of light, 3.00×10⁸ (m·s⁻¹)</span></div>
+      <div><b>λ<sub>C</sub></b><span>Compton wavelength (m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    <b>Learn the shortcut properly.</b> With h = 6.63×10⁻³⁴ J·s, c = 3.00×10⁸ m·s⁻¹ and
+    e = 1.60×10⁻¹⁹ C, <span class="fi">hc = 1.99×10⁻²⁵ J·m = 1243 eV·nm</span>, universally rounded to
+    <strong>1240 eV·nm</strong>. So <span class="fi">E(eV) = 1240 / λ(nm)</span>, and equivalently
+    <span class="fi">E(keV) = 1240 / λ(pm)</span>. This one line converts any wavelength on the
+    electromagnetic spectrum into an energy in your head, and it is worth more marks per second of
+    revision than anything else in this note.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Photon energies across the electromagnetic spectrum</caption>
+      <thead>
+        <tr><th>Radiation</th><th class="num">λ</th><th class="num">Photon energy</th><th>What that energy is enough to do</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Microwave (oven)</td><td class="num">12 cm</td><td class="num">1.0×10⁻⁵ eV</td><td>Nudge a molecular rotation. Non-ionising by a factor of 10⁶.</td></tr>
+        <tr><td>Infrared (skin peak)</td><td class="num">9.5 μm</td><td class="num">0.13 eV</td><td>Excite a molecular vibration — i.e. deposit heat.</td></tr>
+        <tr><td>Red light</td><td class="num">700 nm</td><td class="num">1.77 eV</td><td>Isomerise retinal; run photosynthesis.</td></tr>
+        <tr><td>Violet light</td><td class="num">400 nm</td><td class="num">3.10 eV</td><td>Eject an electron from caesium or sodium.</td></tr>
+        <tr><td>UV-C (germicidal)</td><td class="num">254 nm</td><td class="num">4.88 eV</td><td>Form thymine dimers in DNA. Ionisation begins around here.</td></tr>
+        <tr><td>Diagnostic X-ray</td><td class="num">0.10 nm</td><td class="num">12.4 keV</td><td>Strip an inner-shell electron; ionise thousands of molecules along a track.</td></tr>
+        <tr><td>⁹⁹ᵐTc γ (imaging)</td><td class="num">8.9 pm</td><td class="num">140 keV</td><td>Cross the body and still be stopped by a NaI crystal.</td></tr>
+        <tr><td>Annihilation γ (PET)</td><td class="num">2.43 pm</td><td class="num">511 keV</td><td>Exactly the rest energy of an electron, m<sub>e</sub>c².</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Momentum: the harder half of the photon</h3>
+  <p>
+    A photon has no rest mass, so <span class="fi">E = pc</span> exactly, giving
+    <span class="fi">p = E/c = h/λ</span>. This is not a formality. In 1923 Compton fired X-rays at
+    graphite and found that the scattered beam contained a component of <em>longer</em> wavelength,
+    with the shift depending on angle and on nothing else — not on the incident wavelength, not on the
+    target material. A wave scattering off a charge re-radiates at the same frequency, so a wave theory
+    forbids the shift entirely.
+  </p>
+  <p>
+    Treat it instead as a billiard-ball collision between a photon and a free electron, conserving
+    relativistic energy and momentum, and out drops
+    <span class="fi">Δλ = (h/m<sub>e</sub>c)(1 − cos θ)</span>. The photon gives kinetic energy to the
+    recoiling electron, so it must lose energy, so its wavelength must grow. The shift runs from 0 at
+    θ = 0° (straight ahead, undeflected, so nothing is transferred) through 2.43 pm at 90° to a maximum
+    of 4.85 pm at 180° (backscatter).
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · why you never see the Compton shift in visible light</p>
+    <p>Δλ is an <em>absolute</em> shift of a few picometres, so what matters is the <em>fraction</em>
+       Δλ/λ. For 550 nm light at 90°, that is 2.43×10⁻³ nm / 550 nm ≈ 4×10⁻⁶ — undetectable. For a
+       0.05 nm X-ray it is 5%, easily measured. Compton needed X-rays not because the effect is
+       different there but because the fraction is.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · Compton scattering in the clinic</p>
+    <p>Above about 30 keV, Compton scattering is the <em>dominant</em> photon interaction in soft
+       tissue, and its probability depends on electron density, which barely differs between fat, muscle
+       and water. That is precisely why it carries almost no diagnostic information — Compton-scattered
+       photons arrive at the detector from the wrong direction and wash out contrast, which is why
+       anti-scatter grids exist. Photoelectric absorption, whose probability scales roughly as
+       Z³/E³, is what makes bone (Z<sub>eff</sub> ≈ 13) stand out against soft tissue
+       (Z<sub>eff</sub> ≈ 7.4), and it is why kVp is kept low when contrast matters.</p>
+    <p style="margin-top:.5rem">A PET photon of 511 keV Compton-scattered through 90° emerges at
+       <span class="fi">E′ = E / [1 + (E/m<sub>e</sub>c²)(1 − cos θ)] = 511/(1 + 1) = 256 keV</span> —
+       which is why PET scanners set an energy window around 511 keV and discard everything below it.</p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Wave–particle duality: de Broglie and uncertainty</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>de Broglie hypothesis</dt>
+      <dd>Every particle with momentum p has an associated wavelength λ = h/p; the wave–particle
+          symmetry Einstein found for light applies to matter as well.</dd>
+      <dt>Heisenberg uncertainty principle</dt>
+      <dd>A hard limit, built into the wave description of matter, on how sharply two conjugate
+          properties can simultaneously be defined — not a statement about clumsy instruments.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">λ = h/p = h/(mv)</span>
+      <span class="fx__tag">de Broglie; use relativistic p when v approaches c</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">λ = h/√(2meV) ≈ 1.23/√V&nbsp;nm</span><span class="fx__tag">electron accelerated from rest through V volts, non-relativistic</span></div>
+      <div class="fx"><span class="fx__eq">Δx · Δp<sub>x</sub> ≥ ħ/2</span><span class="fx__tag">position–momentum, same axis; ħ = h/2π = 1.055×10⁻³⁴ J·s</span></div>
+      <div class="fx"><span class="fx__eq">ΔE · Δt ≥ ħ/2</span><span class="fx__tag">energy–time; Δt is the lifetime of the state</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>λ</b><span>de Broglie wavelength (m)</span></div>
+      <div><b>p</b><span>momentum (kg·m·s⁻¹)</span></div>
+      <div><b>m</b><span>particle mass (kg)</span></div>
+      <div><b>v</b><span>particle speed (m·s⁻¹)</span></div>
+      <div><b>V</b><span>accelerating potential difference (V)</span></div>
+      <div><b>Δx</b><span>uncertainty in position (m)</span></div>
+      <div><b>Δp<sub>x</sub></b><span>uncertainty in momentum, same axis (kg·m·s⁻¹)</span></div>
+      <div><b>ΔE</b><span>uncertainty (natural width) in energy (J)</span></div>
+      <div><b>Δt</b><span>lifetime of the state (s)</span></div>
+      <div><b>ħ</b><span>reduced Planck constant (J·s)</span></div>
+    </div>
+  </div>
+
+  <p>
+    De Broglie's argument in 1924 was one of symmetry. Light, long believed to be a wave, behaves as a
+    particle when it exchanges energy. If nature is symmetric, then the electron, long believed to be a
+    particle, should behave as a wave when it propagates. The relation
+    <span class="fi">λ = h/p</span> is simply <span class="fi">p = h/λ</span> read backwards. Davisson
+    and Germer confirmed it three years later by diffracting electrons off a nickel crystal and finding
+    a Bragg pattern at exactly the predicted angles.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 3 · An electron and a baseball</h4>
+    <p>Find the de Broglie wavelength of (a) an electron accelerated from rest through 100 V, and
+       (b) a 0.145 kg baseball thrown at 40 m·s⁻¹. Comment.</p>
+    <ol>
+      <li><b>Electron.</b> Work is done on it: <span class="fi">K = eV = 1.60×10⁻¹⁹ × 100 = 1.60×10⁻¹⁷ J</span>.
+          At 100 eV the electron is thoroughly non-relativistic (100 eV ≪ 511 keV), so
+          <span class="fi">p = √(2mK) = √(2 × 9.11×10⁻³¹ × 1.60×10⁻¹⁷) = √(2.92×10⁻⁴⁷) = 5.40×10⁻²⁴ kg·m·s⁻¹</span>.</li>
+      <li><span class="fi">λ = h/p = 6.63×10⁻³⁴ / 5.40×10⁻²⁴ = 1.23×10⁻¹⁰ m = 0.123 nm</span>.
+          That is the size of an atom and roughly the spacing of planes in a crystal — hence electron
+          diffraction works.</li>
+      <li><b>Baseball.</b> <span class="fi">p = mv = 0.145 × 40 = 5.8 kg·m·s⁻¹</span>, so
+          <span class="fi">λ = 6.63×10⁻³⁴ / 5.8 = 1.1×10⁻³⁴ m</span>.</li>
+      <li>Compare: a nucleus is about 10⁻¹⁵ m across, so the baseball's wavelength is 10¹⁹ times
+          <em>smaller than a nucleus</em>. Diffraction requires an aperture comparable to λ. No such
+          aperture exists or could exist. The wave nature is not switched off for large objects —
+          it is simply pushed below any conceivable measurement.</li>
+    </ol>
+    <span class="wex__ans">electron λ = 0.123 nm (atomic scale) · baseball λ ≈ 1×10⁻³⁴ m (unobservable)</span>
+  </div>
+
+  <div class="mnemo">
+    <h4>Memory hook</h4>
+    <p>λ = h/p, and h is 6.63×10⁻³⁴. To get a wavelength of ordinary size you need a momentum of
+       extraordinary smallness. Only subatomic particles qualify.</p>
+  </div>
+
+  <h3>The payoff: the electron microscope</h3>
+  <p>
+    Any microscope's resolution is limited to roughly half a wavelength of whatever it images with.
+    Visible light at 550 nm caps a light microscope at about 200 nm — good enough for a cell, useless
+    for a ribosome or a virion. Accelerate electrons through 100 kV and
+    <span class="fi">λ ≈ 1.23/√100000 nm = 3.9 pm</span> non-relativistically (3.7 pm once the
+    relativistic correction is applied at γ ≈ 1.2). That is 10⁵ times shorter than visible light. Lens
+    aberrations, not diffraction, then become the limit, and practical instruments reach about 0.1 nm —
+    enough to see individual atomic columns, protein complexes and virus capsids. The entire discipline
+    of structural cell biology rests on λ = h/p.
+  </p>
+
+  <h3>Uncertainty</h3>
+  <p>
+    A wave with a perfectly sharp wavelength — and therefore a perfectly sharp momentum — is an
+    infinite sinusoid, which is spread over all space. To localise a particle you must superpose many
+    wavelengths, which smears its momentum. The trade-off is exact:
+    <span class="fi">Δx · Δp<sub>x</sub> ≥ ħ/2</span>. It is a property of waves, not of microscopes;
+    a perfect apparatus obeys it too.
+  </p>
+  <p>
+    <b>Estimate.</b> Confine an electron to an atom, Δx ≈ 1×10⁻¹⁰ m. Then
+    <span class="fi">Δp ≥ ħ/(2Δx) = 1.055×10⁻³⁴ / (2×10⁻¹⁰) = 5.3×10⁻²⁵ kg·m·s⁻¹</span>, so
+    <span class="fi">Δv ≈ 5.3×10⁻²⁵/9.11×10⁻³¹ ≈ 5.8×10⁵ m·s⁻¹</span> — the same order as the
+    2.2×10⁶ m·s⁻¹ that the Bohr model assigns to the ground-state electron. The uncertainty principle
+    alone tells you an atom cannot be smaller than it is: squeeze the electron in and its momentum
+    spread, and therefore its kinetic energy, blows up. That is what stops the electron falling into
+    the nucleus.
+  </p>
+  <p>
+    The <b>energy–time</b> form, <span class="fi">ΔE·Δt ≥ ħ/2</span>, says a state that lives only for
+    a time Δt cannot have a perfectly sharp energy. An excited atomic state with a lifetime of 10⁻⁸ s
+    has a natural linewidth of at least
+    <span class="fi">ΔE ≈ 1.055×10⁻³⁴/(2×10⁻⁸) = 5.3×10⁻²⁷ J ≈ 3×10⁻⁸ eV</span>. Spectral lines are
+    never infinitely thin; short-lived states give broad lines, which is how nuclear and particle
+    physicists measure lifetimes they cannot time directly.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · three ways students misuse λ = h/p</p>
+    <p><b>(1)</b> Writing <span class="fi">λ = h/(mc)</span> for a photon. A photon has no mass; use
+       <span class="fi">p = E/c</span>. <b>(2)</b> Using <span class="fi">p = mv</span> for a fast
+       electron in a linac or an electron microscope above ~100 kV, where γ matters. <b>(3)</b> Using
+       <span class="fi">E = hc/λ</span> for a <em>matter</em> wave. For a photon E = pc so E = hc/λ; for
+       an electron E = p²/2m, so the kinetic energy goes as 1/λ², not 1/λ.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Atomic models and the Bohr hydrogen atom</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Bohr model</dt>
+      <dd>A hydrogen atom in which the electron may occupy only those circular orbits whose angular
+          momentum is an integer multiple of ħ, and which radiates only when it jumps between them.</dd>
+      <dt>Ionisation energy</dt>
+      <dd>The energy needed to take the electron from its current level to n = ∞ with zero kinetic
+          energy — 13.6 eV from the ground state of hydrogen.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">E<sub>n</sub> = −13.6 eV / n²&nbsp;&nbsp;(n = 1, 2, 3, …)</span>
+      <span class="fx__tag">hydrogen only; ×Z² for any one-electron ion (He⁺, Li²⁺)</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">L = m v r = n ħ = n h/2π</span><span class="fx__tag">Bohr's quantisation postulate</span></div>
+      <div class="fx"><span class="fx__eq">r<sub>n</sub> = n² a₀,&nbsp; a₀ = 0.0529 nm</span><span class="fx__tag">allowed radii; a₀ is the Bohr radius</span></div>
+      <div class="fx"><span class="fx__eq">hf = E<sub>i</sub> − E<sub>f</sub></span><span class="fx__tag">photon emitted on a downward jump (absorbed on an upward one)</span></div>
+      <div class="fx"><span class="fx__eq">1/λ = R(1/n<sub>f</sub>² − 1/n<sub>i</sub>²),&nbsp; R = 1.097×10⁷ m⁻¹</span><span class="fx__tag">Rydberg formula; n<sub>i</sub> &gt; n<sub>f</sub> for emission</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>E<sub>n</sub></b><span>energy of level n (eV or J); negative = bound</span></div>
+      <div><b>n</b><span>principal quantum number (dimensionless integer ≥ 1)</span></div>
+      <div><b>L</b><span>orbital angular momentum (kg·m²·s⁻¹ = J·s)</span></div>
+      <div><b>r<sub>n</sub></b><span>orbit radius (m)</span></div>
+      <div><b>a₀</b><span>Bohr radius, 5.29×10⁻¹¹ (m)</span></div>
+      <div><b>R</b><span>Rydberg constant (m⁻¹)</span></div>
+      <div><b>Z</b><span>nuclear charge number (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <p>
+    <b>Thomson (1904).</b> Having discovered the electron, Thomson pictured the atom as a sphere of
+    diffuse positive charge with electrons embedded in it — the "plum pudding". It explains why atoms
+    are neutral and why they emit electrons, and nothing else.
+  </p>
+  <p>
+    <b>Rutherford (1909–11).</b> Geiger and Marsden fired α particles at a gold foil a few hundred
+    atoms thick. Almost all passed through with a deflection under 1°, as the pudding model predicts.
+    But about one in 8000 came back through more than 90°. A diffuse charge cannot do that: the
+    Coulomb force from spread-out charge is far too weak, and a light scatterer would recoil rather
+    than reflect. Rutherford's conclusion — "as incredible as if you fired a 15-inch shell at a piece
+    of tissue paper and it came back and hit you" — was that the positive charge and essentially all
+    the mass sit in a <strong>nucleus</strong> smaller than 10⁻¹⁴ m, about 10⁴ times smaller than the
+    atom, i.e. 10⁻¹² of its volume. The atom is overwhelmingly empty.
+  </p>
+  <p>
+    <b>The problem Rutherford created.</b> An orbiting electron is an accelerating charge, and
+    classical electrodynamics says an accelerating charge radiates. The electron should spiral into the
+    nucleus in about 10⁻¹¹ s, emitting a continuous spectrum on the way. Matter should not exist, and
+    the observed spectrum of hydrogen is not continuous but a set of razor-sharp lines.
+  </p>
+  <p>
+    <b>Bohr (1913).</b> Bohr fixed both problems with one postulate and one rule.
+    <em>Postulate:</em> only orbits with <span class="fi">L = nħ</span> are allowed, and in them the
+    electron does not radiate. <em>Rule:</em> radiation is emitted only when the electron jumps from
+    one allowed orbit to a lower one, with the photon carrying exactly the energy difference. Setting
+    the Coulomb force equal to the centripetal force and imposing L = nħ gives
+    <span class="fi">r<sub>n</sub> = n²a₀</span> and
+    <span class="fi">E<sub>n</sub> = −13.6/n² eV</span>, and the Rydberg formula that spectroscopists
+    had fitted empirically for thirty years drops out with the right constant.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 480 400" role="img" aria-label="Energy level diagram of hydrogen showing levels n equals 1 to 5 and the ionisation limit, with downward transition arrows grouped into the Lyman, Balmer and Paschen series.">
+      <title>Hydrogen energy levels and spectral series</title>
+      <defs>
+        <marker id="hy-ly" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 z" fill="var(--v-field)"></path>
+        </marker>
+        <marker id="hy-ba" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 z" fill="var(--v-vel)"></path>
+        </marker>
+        <marker id="hy-pa" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 z" fill="var(--v-heat)"></path>
+        </marker>
+      </defs>
+      <!-- levels -->
+      <line x1="130" y1="40" x2="420" y2="40" stroke="var(--ink-faint)" stroke-width="1.4" stroke-dasharray="6 4"></line>
+      <line x1="130" y1="52" x2="420" y2="52" stroke="var(--ink)" stroke-width="1.6"></line>
+      <line x1="130" y1="59" x2="420" y2="59" stroke="var(--ink)" stroke-width="1.6"></line>
+      <line x1="130" y1="73" x2="420" y2="73" stroke="var(--ink)" stroke-width="1.6"></line>
+      <line x1="130" y1="115" x2="420" y2="115" stroke="var(--ink)" stroke-width="1.6"></line>
+      <line x1="130" y1="340" x2="420" y2="340" stroke="var(--ink)" stroke-width="2.2"></line>
+      <g fill="var(--ink-soft)" text-anchor="end">
+        <text x="124" y="43" font-size="10">n = ∞</text>
+        <text x="124" y="54.5" font-size="8.5">n = 5</text>
+        <text x="124" y="62.5" font-size="8.5">n = 4</text>
+        <text x="124" y="76" font-size="10">n = 3</text>
+        <text x="124" y="118" font-size="10">n = 2</text>
+        <text x="124" y="344" font-size="10">n = 1</text>
+      </g>
+      <g fill="var(--ink-faint)">
+        <text x="426" y="43" font-size="9">0.00 eV</text>
+        <text x="426" y="54.5" font-size="8">−0.54</text>
+        <text x="426" y="62.5" font-size="8">−0.85</text>
+        <text x="426" y="76" font-size="9">−1.51 eV</text>
+        <text x="426" y="118" font-size="9">−3.40 eV</text>
+        <text x="426" y="344" font-size="9">−13.60 eV</text>
+      </g>
+      <!-- Lyman -->
+      <g stroke="var(--v-field)" stroke-width="1.8" marker-end="url(#hy-ly)">
+        <line x1="165" y1="115" x2="165" y2="332"></line>
+        <line x1="185" y1="73" x2="185" y2="332"></line>
+        <line x1="205" y1="59" x2="205" y2="332"></line>
+      </g>
+      <text x="185" y="362" text-anchor="middle" font-size="10" fill="var(--v-field)">Lyman → n = 1 · UV · 91–122 nm</text>
+      <!-- Balmer -->
+      <g stroke="var(--v-vel)" stroke-width="1.8" marker-end="url(#hy-ba)">
+        <line x1="265" y1="73" x2="265" y2="107"></line>
+        <line x1="285" y1="59" x2="285" y2="107"></line>
+        <line x1="305" y1="52" x2="305" y2="107"></line>
+      </g>
+      <text x="285" y="133" text-anchor="middle" font-size="10" fill="var(--v-vel)">Balmer → n = 2 · visible · 365–656 nm</text>
+      <!-- Paschen -->
+      <g stroke="var(--v-heat)" stroke-width="1.8" marker-end="url(#hy-pa)">
+        <line x1="370" y1="59" x2="370" y2="66"></line>
+        <line x1="385" y1="52" x2="385" y2="66"></line>
+      </g>
+      <text x="378" y="96" text-anchor="middle" font-size="10" fill="var(--v-heat)">Paschen → n = 3 · IR</text>
+      <text x="378" y="109" text-anchor="middle" font-size="9" fill="var(--v-heat)">821–1875 nm</text>
+      <!-- ionisation annotation -->
+      <line x1="90" y1="40" x2="90" y2="340" stroke="var(--v-energy)" stroke-width="1.4"></line>
+      <line x1="86" y1="40" x2="94" y2="40" stroke="var(--v-energy)" stroke-width="1.4"></line>
+      <line x1="86" y1="340" x2="94" y2="340" stroke="var(--v-energy)" stroke-width="1.4"></line>
+      <text transform="rotate(-90 42 190)" x="42" y="190" text-anchor="middle" font-size="10" fill="var(--v-energy)">ionisation energy 13.6 eV</text>
+      <text x="185" y="382" text-anchor="middle" font-size="9" fill="var(--ink-faint)">levels crowd towards E = 0 because E ∝ −1/n²</text>
+    </svg>
+    <figcaption>
+      Hydrogen drawn to a linear energy scale. Almost the whole diagram is the gap between n = 1 and
+      n = 2 — that single jump costs 10.2 eV, three-quarters of the entire ionisation energy — while
+      n = 3 upwards are squeezed into the top 1.5 eV. This is why Lyman lines are far in the ultraviolet
+      while Balmer lines sit in the visible: the arrows are drawn to scale <em>in energy</em>, and the
+      wavelengths quoted beside each series follow from those lengths through λ = 1240/ΔE.
+    </figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Hydrogen spectral series</caption>
+      <thead>
+        <tr><th>Series</th><th class="num">n<sub>f</sub></th><th class="num">Longest line (n<sub>f</sub>+1 → n<sub>f</sub>)</th><th class="num">Series limit (∞ → n<sub>f</sub>)</th><th>Region</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Lyman</b></td><td class="num">1</td><td class="num">10.20 eV → 121.6 nm</td><td class="num">13.60 eV → 91.2 nm</td><td>Ultraviolet — the only series seen in <em>absorption</em> by cold hydrogen</td></tr>
+        <tr><td><b>Balmer</b></td><td class="num">2</td><td class="num">1.889 eV → 656.5 nm</td><td class="num">3.40 eV → 364.7 nm</td><td>Visible — H-α red 656, H-β 486, H-γ 434, H-δ 410 nm</td></tr>
+        <tr><td><b>Paschen</b></td><td class="num">3</td><td class="num">0.661 eV → 1875 nm</td><td class="num">1.51 eV → 820.6 nm</td><td>Near infrared</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 4 · Computing the red hydrogen line</h4>
+    <p>Find the wavelength of the n = 3 → n = 2 transition in hydrogen (H-α), and check it against
+       the Rydberg formula.</p>
+    <ol>
+      <li>Energies: <span class="fi">E₃ = −13.6/9 = −1.511 eV</span>,
+          <span class="fi">E₂ = −13.6/4 = −3.400 eV</span>.</li>
+      <li>Photon energy is the <em>difference</em>, and it is positive because the atom falls:
+          <span class="fi">ΔE = E₃ − E₂ = −1.511 − (−3.400) = 1.889 eV</span>.
+          Equivalently <span class="fi">13.6(1/2² − 1/3²) = 13.6 × 5/36 = 1.889 eV</span>.</li>
+      <li><span class="fi">λ = 1240/1.889 = 656.4 nm</span> — deep red, the colour of every hydrogen
+          discharge tube and of astronomical H-α filters.</li>
+      <li>Cross-check with Rydberg:
+          <span class="fi">1/λ = 1.097×10⁷ × (1/4 − 1/9) = 1.097×10⁷ × 0.13889 = 1.524×10⁶ m⁻¹</span>,
+          so <span class="fi">λ = 6.56×10⁻⁷ m</span>. Agreed.</li>
+      <li>Same method for n = 4 → 2: <span class="fi">13.6 × 3/16 = 2.55 eV → 486 nm</span> (blue-green H-β).</li>
+    </ol>
+    <span class="wex__ans">λ(H-α) = 656 nm · λ(H-β) = 486 nm</span>
+  </div>
+
+  <h3>Emission versus absorption</h3>
+  <p>
+    An <b>emission</b> spectrum is bright lines on a dark background: excite the gas, and every
+    downward jump that occurs contributes its own line. An <b>absorption</b> spectrum is dark lines on
+    a continuous background: shine white light through cool gas and the atoms remove exactly those
+    photons whose energy matches an upward jump. The lines sit at the same wavelengths — the level
+    diagram is the same — but the population matters. Cool hydrogen has essentially all its atoms in
+    n = 1, so it can only absorb Lyman transitions; the Balmer absorption lines seen in stellar spectra
+    require the gas to be hot enough to keep a decent population in n = 2.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · levels are negative, transitions are differences</p>
+    <p>E<sub>n</sub> is negative because a bound electron has less energy than a free one at rest;
+       E = 0 is the ionised state, not the ground state. Three errors follow. <b>(1)</b> Quoting the
+       photon energy of a 3→2 jump as 1.51 eV (that is |E₃|, not the difference). <b>(2)</b> Forgetting
+       that ionisation from n = 2 costs only 3.40 eV, not 13.6 eV. <b>(3)</b> Assuming an electron with
+       10 eV of energy can excite a ground-state hydrogen atom — it cannot, because the smallest
+       available jump is 10.2 eV, so the collision is perfectly elastic. That last one is the
+       Franck–Hertz experiment in miniature.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the limits of Bohr</p>
+    <p>Bohr's model works quantitatively for <b>one-electron systems only</b>: H, He⁺, Li²⁺, with
+       <span class="fi">E<sub>n</sub> = −13.6Z²/n² eV</span> and
+       <span class="fi">r<sub>n</sub> = n²a₀/Z</span>. It fails for helium onwards (electron–electron
+       repulsion), predicts no fine structure, gives no line intensities, and assigns the ground state
+       an angular momentum of ħ when the true value is 0. It survives in exams because its energy
+       formula is right and its picture is teachable — not because it is correct.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Beyond Bohr: the quantum atom in four numbers</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Orbital</dt>
+      <dd>A solution of the Schrödinger equation for the atom; |ψ|² gives the probability density of
+          finding the electron at each point, replacing Bohr's definite orbit.</dd>
+      <dt>Pauli exclusion principle</dt>
+      <dd>No two electrons in an atom may share all four quantum numbers, which is why electrons stack
+          into shells instead of all collapsing into 1s.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">state = (n, ℓ, m<sub>ℓ</sub>, m<sub>s</sub>)</span>
+      <span class="fx__tag">four numbers fix one electron state completely</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">|L| = √(ℓ(ℓ+1)) ħ&nbsp;&nbsp;·&nbsp;&nbsp;L<sub>z</sub> = m<sub>ℓ</sub> ħ</span><span class="fx__tag">true angular momentum — note ℓ = 0 gives L = 0, unlike Bohr</span></div>
+      <div class="fx"><span class="fx__eq">electrons per shell = 2n²</span><span class="fx__tag">consequence of Pauli plus the ranges of ℓ and m<sub>ℓ</sub></span></div>
+    </div>
+    <div class="symtab">
+      <div><b>n</b><span>principal quantum number (dimensionless, ≥ 1)</span></div>
+      <div><b>ℓ</b><span>orbital angular momentum quantum number (dimensionless, 0…n−1)</span></div>
+      <div><b>m<sub>ℓ</sub></b><span>magnetic quantum number (dimensionless, −ℓ…+ℓ)</span></div>
+      <div><b>m<sub>s</sub></b><span>spin quantum number (dimensionless, ±½)</span></div>
+      <div><b>L</b><span>orbital angular momentum (J·s)</span></div>
+      <div><b>ħ</b><span>reduced Planck constant, 1.055×10⁻³⁴ (J·s)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Schrödinger's 1926 wave equation replaced Bohr's orbits with standing matter waves. The
+    quantisation is no longer postulated — it falls out of the boundary conditions, exactly as the
+    allowed frequencies of a guitar string do. Solving it for hydrogen produces the same energies,
+    <span class="fi">E<sub>n</sub> = −13.6/n² eV</span>, but a much richer description of each state,
+    labelled by four numbers.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The four quantum numbers</caption>
+      <thead>
+        <tr><th>Symbol</th><th>Name</th><th class="num">Allowed values</th><th>Physically fixes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num"><b>n</b></td><td>Principal</td><td class="num">1, 2, 3, …</td><td>Energy (in hydrogen) and the shell / mean radius. The K, L, M shells of X-ray notation are n = 1, 2, 3.</td></tr>
+        <tr><td class="num"><b>ℓ</b></td><td>Orbital / azimuthal</td><td class="num">0, 1, …, n−1</td><td>Magnitude of orbital angular momentum, and the orbital's shape: ℓ = 0 s (spherical), 1 p (dumb-bell), 2 d, 3 f.</td></tr>
+        <tr><td class="num"><b>m<sub>ℓ</sub></b></td><td>Magnetic</td><td class="num">−ℓ, …, 0, …, +ℓ</td><td>Orientation of that angular momentum in space. The 2ℓ+1 values are degenerate until a magnetic field splits them (Zeeman effect).</td></tr>
+        <tr><td class="num"><b>m<sub>s</sub></b></td><td>Spin</td><td class="num">+½ or −½</td><td>Intrinsic angular momentum of the electron. Not rotation of a ball — a genuinely quantum property with no classical analogue.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Count the states for a given n: there are n values of ℓ, then 2ℓ+1 values of m<sub>ℓ</sub>, then 2
+    of m<sub>s</sub>, giving <span class="fi">2 Σ(2ℓ+1) = 2n²</span> — the 2, 8, 18, 32 of the periodic
+    table. Chemistry is Pauli plus this counting.
+  </p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · nuclear spin is the same idea, and it is why MRI works</p>
+    <p>A proton also has spin ½, so in a magnetic field its two orientations have slightly different
+       energies. The gap is <span class="fi">ΔE = γħB</span> (here γ is the proton's gyromagnetic
+       ratio, γ/2π = 42.6 MHz·T⁻¹ — <em>not</em> the Lorentz factor of §08), which at B = 1.5 T corresponds to a
+       radio-frequency photon near 64 MHz. MRI drives transitions between these two nuclear spin states
+       — a direct, everyday application of space quantisation. The one-line summary: <em>spin plus a
+       field equals a two-level system, and a two-level system can be resonantly driven.</em></p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>X-rays: production, spectrum and attenuation</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Bremsstrahlung ("braking radiation")</dt>
+      <dd>The continuous X-ray spectrum emitted when fast electrons are decelerated by the Coulomb
+          field of target nuclei; each electron may lose any fraction of its energy, so the spectrum is
+          continuous — but it cannot lose more than all of it, which creates a sharp short-wavelength cut-off.</dd>
+      <dt>Characteristic radiation</dt>
+      <dd>Discrete X-ray lines emitted when an incident electron knocks out an inner-shell electron and
+          an outer electron falls into the vacancy; the energies are fingerprints of the target element.</dd>
+      <dt>Half-value layer (HVL)</dt>
+      <dd>The thickness of a given material that reduces the intensity of a monoenergetic beam to one half.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">λ<sub>min</sub> = hc/(eV) = 1240 / V(volts)&nbsp;nm</span>
+      <span class="fx__tag">Duane–Hunt law; depends on tube voltage only, never on the target</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">I = I₀ e<sup>−μx</sup></span><span class="fx__tag">exponential attenuation; narrow monoenergetic beam</span></div>
+      <div class="fx"><span class="fx__eq">HVL = ln2 / μ = 0.693 / μ</span><span class="fx__tag">from setting I/I₀ = ½</span></div>
+      <div class="fx"><span class="fx__eq">I/I₀ = (½)<sup>x/HVL</sup></span><span class="fx__tag">the same law counted in half-value layers</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>λ<sub>min</sub></b><span>short-wavelength cut-off (m)</span></div>
+      <div><b>V</b><span>tube accelerating voltage (V)</span></div>
+      <div><b>I, I₀</b><span>transmitted / incident intensity (W·m⁻²)</span></div>
+      <div><b>μ</b><span>linear attenuation coefficient (m⁻¹, usually cm⁻¹)</span></div>
+      <div><b>x</b><span>absorber thickness (m or cm — must match μ)</span></div>
+      <div><b>HVL</b><span>half-value layer (m or cm)</span></div>
+    </div>
+  </div>
+
+  <p>
+    An X-ray tube accelerates electrons from a hot filament through 20–150 kV onto a heavy metal
+    target (tungsten for general radiography, molybdenum for mammography). Under 1% of the beam energy
+    becomes X-rays; the rest becomes heat, which is why anodes rotate. Two production mechanisms
+    operate at once and give two overlapping spectra.
+  </p>
+  <p>
+    <b>The continuum.</b> An electron passing a nucleus is deflected and decelerated, radiating a
+    photon. The deflection can be anything from a graze to a head-on stop, so the emitted photon energy
+    can be anything from nearly zero up to a maximum. The maximum is set by energy conservation: an
+    electron that loses <em>all</em> its kinetic energy eV in a single event gives one photon of energy
+    eV, and there is nothing more available. That defines the
+    <strong>short-wavelength cut-off</strong> <span class="fi">λ<sub>min</sub> = hc/eV</span>. It is
+    the crispest quantum signature in radiology: a purely classical theory would have no cut-off at all.
+  </p>
+  <p>
+    <b>The lines.</b> If the incident electron carries more than the K-shell binding energy of the
+    target, it can eject a K electron; an L or M electron then drops into the hole and emits a photon
+    of a fixed energy — K<sub>α</sub> or K<sub>β</sub>. These sit at wavelengths fixed by the
+    <em>target element</em> and are completely unaffected by the tube voltage, provided the voltage is
+    above the K-edge at all. Tungsten's K<sub>α</sub> is 59 keV; molybdenum's is 17.5 keV, which is
+    deliberately chosen for mammography because breast tissue needs low-energy photons for soft-tissue
+    contrast.
+  </p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 480 320" role="img" aria-label="X-ray tube spectrum: a continuous bremsstrahlung hump starting abruptly at a short-wavelength cut-off, with two sharp characteristic lines superimposed, compared with a lower-voltage spectrum that is weaker, cut off at longer wavelength, and has no characteristic lines.">
+      <title>X-ray tube output spectrum</title>
+      <line x1="60" y1="35" x2="60" y2="250" stroke="var(--ink-soft)" stroke-width="1.2"></line>
+      <line x1="60" y1="250" x2="468" y2="250" stroke="var(--ink-soft)" stroke-width="1.2"></line>
+      <g stroke="var(--ink-soft)" stroke-width="1">
+        <line x1="160" y1="250" x2="160" y2="255"></line>
+        <line x1="260" y1="250" x2="260" y2="255"></line>
+        <line x1="360" y1="250" x2="360" y2="255"></line>
+        <line x1="460" y1="250" x2="460" y2="255"></line>
+      </g>
+      <g font-size="9" fill="var(--ink-faint)" text-anchor="middle">
+        <text x="160" y="267">0.05</text>
+        <text x="260" y="267">0.10</text>
+        <text x="360" y="267">0.15</text>
+        <text x="460" y="267">0.20</text>
+        <text x="264" y="284" fill="var(--ink-soft)">wavelength λ / nm</text>
+      </g>
+      <text transform="rotate(-90 18 145)" x="18" y="145" text-anchor="middle" font-size="9" fill="var(--ink-soft)">intensity</text>
+      <!-- cut-off marker -->
+      <line x1="142.6" y1="250" x2="142.6" y2="46" stroke="var(--v-force)" stroke-width="1.3" stroke-dasharray="4 4"></line>
+      <text x="148" y="44" font-size="9.5" fill="var(--v-force)">λ<tspan font-size="7" dy="2">min</tspan><tspan dy="-2"> = hc/eV — sharp cut-off</tspan></text>
+      <!-- 30 kV continuum -->
+      <polyline points="142.6,250 159,144 184,81 225,60 267,68 308,81 390,108 460,125"
+                fill="none" stroke="var(--v-field)" stroke-width="2.2"></polyline>
+      <!-- characteristic lines -->
+      <line x1="186.6" y1="78" x2="186.6" y2="48" stroke="var(--v-energy)" stroke-width="2.4"></line>
+      <line x1="202" y1="65" x2="202" y2="30" stroke="var(--v-energy)" stroke-width="2.4"></line>
+      <text x="181" y="43" text-anchor="end" font-size="9.5" fill="var(--v-energy)">K<tspan font-size="7" dy="2">β</tspan></text>
+      <text x="208" y="27" font-size="9.5" fill="var(--v-energy)">K<tspan font-size="7" dy="2">α</tspan></text>
+      <text x="230" y="27" font-size="9" fill="var(--ink-faint)">— set by the target element, not by the kV</text>
+      <!-- 15 kV continuum -->
+      <polyline points="225.4,250 258,224 308,208 391,203 460,204"
+                fill="none" stroke="var(--v-accel)" stroke-width="2" stroke-dasharray="6 4"></polyline>
+      <g font-size="9.5">
+        <text x="300" y="98" fill="var(--v-field)">30 kV — continuum + K lines</text>
+        <text x="330" y="196" fill="var(--v-accel)">15 kV — below the K-edge: no lines at all</text>
+      </g>
+      <text x="66" y="308" font-size="9" fill="var(--ink-faint)">Doubling the tube voltage halves the cut-off wavelength; it does not move the characteristic lines.</text>
+    </svg>
+    <figcaption>
+      Molybdenum target. The continuum starts abruptly at λ<sub>min</sub> = hc/eV, rises to a hump and
+      tails away; the characteristic lines are superimposed spikes whose positions depend only on the
+      target element. Drop the tube voltage below the target's K-shell binding energy (dashed) and the
+      lines vanish entirely while the cut-off moves to longer wavelength — proof that the two mechanisms
+      are independent.
+    </figcaption>
+  </figure>
+
+  <h3>Attenuation and why an X-ray image has contrast</h3>
+  <p>
+    Photons are removed from a narrow beam one at a time, and the probability of removal in a thin
+    slab is proportional to the slab's thickness. That is the definition of an exponential:
+    <span class="fi">dI = −μI dx ⇒ I = I₀e<sup>−μx</sup></span>. The coefficient μ bundles together
+    photoelectric absorption, Compton scattering and (above 1.02 MeV) pair production, and it depends
+    strongly on both photon energy and atomic number. Because the law is exponential, the intensity
+    never reaches zero — <em>there is no thickness that stops all the radiation</em>, only thicknesses
+    that make what gets through negligible.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 5 · Radiographic contrast from the attenuation law</h4>
+    <p>At about 60 keV, soft tissue has μ ≈ 0.20 cm⁻¹ and cortical bone μ ≈ 0.60 cm⁻¹ (approximate
+       textbook values). A beam crosses 10 cm of a limb. Compare the transmitted intensity through
+       pure soft tissue with that through a path of the same length made entirely of bone, and find
+       both half-value layers.</p>
+    <ol>
+      <li>Soft tissue: <span class="fi">I/I₀ = e<sup>−0.20×10</sup> = e<sup>−2.0</sup> = 0.135</span>
+          — 13.5% gets through.</li>
+      <li>Bone: <span class="fi">I/I₀ = e<sup>−0.60×10</sup> = e<sup>−6.0</sup> = 0.00248</span>
+          — 0.25% gets through.</li>
+      <li>Contrast ratio: <span class="fi">0.135 / 0.00248 = 54</span>. The bony path delivers 54 times
+          fewer photons to the film, which is the entire reason a bone shows up white on a radiograph.
+          Note how the exponential amplifies a threefold difference in μ into a 54-fold difference in signal.</li>
+      <li>Half-value layers: <span class="fi">HVL = ln2/μ</span> gives 0.693/0.20 = 3.5 cm for soft
+          tissue and 0.693/0.60 = 1.2 cm for bone.</li>
+      <li>Sanity check in HVLs: 10 cm of soft tissue is 10/3.47 = 2.88 HVL, and
+          <span class="fi">(½)<sup>2.88</sup> = 0.136</span>. Consistent.</li>
+    </ol>
+    <span class="wex__ans">soft tissue 13.5% · bone 0.25% · contrast ≈ 54× · HVL 3.5 cm vs 1.2 cm</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · μ, HVL and units</p>
+    <p><b>(1)</b> μ and x must use the same length unit; a μ in cm⁻¹ with an x in metres is off by 100.
+       <b>(2)</b> "Two half-value layers" means intensity ×¼, not zero — halving twice never reaches
+       zero. <b>(3)</b> Count <em>half-value layers</em>, not centimetres: 1 HVL of lead and 1 HVL of
+       aluminium are wildly different physical thicknesses, but each halves the beam independently, so
+       together they transmit ¼. Transmissions multiply; thicknesses in cm never add across materials. <b>(4)</b> Real tube output is <em>polyenergetic</em>, so the low-energy photons are
+       removed first and the beam "hardens" as it goes — the first HVL is smaller than the second, and
+       the strict exponential is only exact for a monoenergetic narrow beam.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the two knobs on an X-ray tube</p>
+    <p><b>kV controls quality</b> (photon energy, penetration, λ<sub>min</sub>); <b>mA·s controls
+       quantity</b> (number of photons, and hence patient dose and image noise). Increasing kV moves
+       λ<sub>min</sub> to shorter wavelength <em>and</em> raises total output steeply, but it also
+       reduces subject contrast because photoelectric absorption falls as 1/E³. The characteristic
+       line positions never move. Lead's HVL at 100 keV is only about 0.1 mm, which is why a 0.5 mm
+       lead apron is worth wearing.</p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Special relativity in brief</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Einstein's two postulates</dt>
+      <dd>(1) The laws of physics take the same form in every inertial frame. (2) The speed of light
+          in vacuum is c in every inertial frame, independent of the motion of source or observer.</dd>
+      <dt>Proper time / proper length</dt>
+      <dd>Proper time Δt₀ is measured by a single clock present at both events; proper length L₀ is
+          measured in the frame where the object is at rest. Both are the <em>smallest</em> time and the
+          <em>largest</em> length any observer measures.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">γ = 1 / √(1 − v²/c²)&nbsp;&nbsp;(γ ≥ 1)</span>
+      <span class="fx__tag">Lorentz factor; γ ≈ 1 for everyday speeds</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Δt = γ Δt₀</span><span class="fx__tag">time dilation: a moving clock runs slow</span></div>
+      <div class="fx"><span class="fx__eq">L = L₀ / γ</span><span class="fx__tag">length contraction, along the direction of motion only</span></div>
+      <div class="fx"><span class="fx__eq">E = γmc²&nbsp;·&nbsp;E₀ = mc²&nbsp;·&nbsp;K = (γ−1)mc²</span><span class="fx__tag">total, rest and kinetic energy</span></div>
+      <div class="fx"><span class="fx__eq">E² = (pc)² + (mc²)²</span><span class="fx__tag">energy–momentum relation; m = 0 gives E = pc for a photon</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>γ</b><span>Lorentz factor (dimensionless)</span></div>
+      <div><b>v</b><span>relative speed of the two frames (m·s⁻¹)</span></div>
+      <div><b>Δt₀</b><span>proper time interval (s)</span></div>
+      <div><b>Δt</b><span>dilated interval in the observer's frame (s)</span></div>
+      <div><b>L₀</b><span>proper (rest) length (m)</span></div>
+      <div><b>m</b><span>rest mass (kg)</span></div>
+      <div><b>E₀</b><span>rest energy (J)</span></div>
+      <div><b>K</b><span>relativistic kinetic energy (J)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Both postulates are innocuous-looking, and the second is devastating. If light travels at c for
+    everyone regardless of their own motion, then two observers who disagree about who is moving must
+    also disagree about how far apart events are and how long they take — because speed is distance
+    over time, and c is the fixed point. Everything else is bookkeeping in γ.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 6 · Cosmic-ray muons reaching sea level</h4>
+    <p>Muons created about 10 km up in the atmosphere have a mean lifetime of 2.2 μs at rest and
+       travel at 0.995c. Classically, how far should they get? What actually happens?</p>
+    <ol>
+      <li>Classical distance: <span class="fi">d = vt = 0.995 × 3.00×10⁸ × 2.2×10⁻⁶ = 657 m</span>.
+          Essentially none should reach the ground — yet detectors at sea level see plenty.</li>
+      <li>Lorentz factor: <span class="fi">γ = 1/√(1 − 0.995²) = 1/√(1 − 0.990025) = 1/0.0999 = 10.0</span>.</li>
+      <li>In the <em>Earth's</em> frame the muon's internal clock is dilated:
+          <span class="fi">Δt = γΔt₀ = 10.0 × 2.2 μs = 22 μs</span>, so the <em>mean</em> distance
+          travelled becomes <span class="fi">d = 0.995 × 3.00×10⁸ × 22×10⁻⁶ = 6.6 km</span>. The 10 km
+          descent is then only 10/6.6 = 1.5 dilated lifetimes, so a fraction
+          <span class="fi">e<sup>−1.5</sup> ≈ 22%</span> survive it — against the classical
+          10/0.657 = 15 lifetimes and <span class="fi">e<sup>−15</sup> ≈ 2×10⁻⁷</span>. That is the
+          difference between "none" and "plenty", and the observed sea-level flux matches.</li>
+      <li>In the <em>muon's</em> own frame nothing dilates; instead the 10 km of atmosphere is
+          contracted to <span class="fi">L = L₀/γ = 10/10.0 = 1.0 km</span>, which sweeps past in
+          <span class="fi">1.0×10³ / (0.995 × 3.00×10⁸) = 3.4 μs</span> — the same 1.5 lifetimes and the
+          same 22% survival. Two descriptions, one prediction: relativity is consistent, not paradoxical.</li>
+    </ol>
+    <span class="wex__ans">classical 0.66 km · relativistic 6.6 km (γ = 10.0) — muons do reach sea level</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · which interval is Δt₀?</p>
+    <p>Δt₀ is the interval between two events measured by a clock that is <em>present at both</em> —
+       here, the muon's own decay clock. Everyone else measures something longer. The reliable check:
+       γ ≥ 1 always, so a dilated time is always <em>bigger</em> and a contracted length is always
+       <em>smaller</em>. If your answer is a shorter time or a longer length, you have divided where you
+       should have multiplied. Also: contraction acts only along the direction of motion; transverse
+       dimensions are unchanged.</p>
+  </div>
+
+  <p>
+    <b>E = mc² and why it belongs in this chapter.</b> The rest energy is not a form of energy the
+    object "has as well" — it <em>is</em> the object, measured in energy units. Total energy is
+    <span class="fi">E = γmc²</span>; subtract the rest energy and the remainder is kinetic. The
+    electron's rest energy is <span class="fi">m<sub>e</sub>c² = 9.11×10⁻³¹ × (3.00×10⁸)² =
+    8.20×10⁻¹⁴ J = 0.512 MeV</span> with these rounded constants, 0.511 MeV with exact ones — a number
+    worth memorising because it sets the 511 keV photons of PET and the 1.022 MeV threshold for pair
+    production.
+  </p>
+  <p>
+    The immediate consequence is that a system's mass changes when its internal energy does. Bind
+    nucleons together and you release energy; the bound system must therefore weigh <em>less</em> than
+    its parts. That missing mass is the mass defect of the next section — E = mc² is not an exotic
+    aside to nuclear physics, it is the accounting identity nuclear physics is written in.
+  </p>
+  <p>
+    <b>Clinical footnote.</b> A radiotherapy linac accelerates electrons to 6 MeV, so
+    <span class="fi">γ = 1 + K/m<sub>e</sub>c² = 1 + 6/0.511 = 12.7</span> and
+    <span class="fi">v = c√(1 − 1/γ²) = 0.997c</span>. Treating those electrons with
+    <span class="fi">K = ½mv²</span> would give a speed several times c — the machine in the basement
+    of every cancer centre is a relativistic device.
+  </p>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>The nucleus: mass defect and binding energy</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Nuclide notation</dt>
+      <dd><sup>A</sup><sub>Z</sub>X: Z protons (which fixes the element), N = A − Z neutrons, A = Z + N
+          nucleons. Isotopes share Z and differ in A.</dd>
+      <dt>Mass defect Δm</dt>
+      <dd>The amount by which a nucleus is <em>lighter</em> than the sum of its separated constituents.</dd>
+      <dt>Binding energy</dt>
+      <dd>The energy released when the nucleus is assembled from free nucleons, equivalently the energy
+          needed to pull it completely apart. It is Δm c².</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">BE = Δm c²,&nbsp;&nbsp;Δm = Z m<sub>H</sub> + N m<sub>n</sub> − M<sub>atom</sub></span>
+      <span class="fx__tag">using neutral <em>atomic</em> masses, so the Z electrons cancel</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">1 u = 1.6605×10⁻²⁷ kg = 931.5 MeV/c²</span><span class="fx__tag">the conversion that makes these sums quick</span></div>
+      <div class="fx"><span class="fx__eq">R = R₀ A<sup>1/3</sup>, R₀ = 1.2 fm</span><span class="fx__tag">nuclear radius; implies constant nuclear density</span></div>
+      <div class="fx"><span class="fx__eq">BE/A peaks at ≈ 8.8 MeV near ⁵⁶Fe</span><span class="fx__tag">the master curve of nuclear energetics</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>A</b><span>mass number = nucleon number (dimensionless)</span></div>
+      <div><b>Z</b><span>atomic number = proton number (dimensionless)</span></div>
+      <div><b>N</b><span>neutron number (dimensionless)</span></div>
+      <div><b>Δm</b><span>mass defect (u or kg)</span></div>
+      <div><b>BE</b><span>binding energy (MeV or J)</span></div>
+      <div><b>m<sub>H</sub></b><span>mass of the neutral ¹H atom, 1.007825 (u)</span></div>
+      <div><b>m<sub>n</sub></b><span>neutron mass, 1.008665 (u)</span></div>
+      <div><b>M<sub>atom</sub></b><span>mass of the neutral atom of the nuclide (u)</span></div>
+      <div><b>R</b><span>nuclear radius (m; fm = 10⁻¹⁵ m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Protons in a nucleus repel each other ferociously — two protons 2 fm apart push with about 58 N,
+    which is enormous for objects of that mass. What holds them is the <strong>strong nuclear
+    force</strong>: attractive, roughly charge-independent, about a hundred times stronger than the
+    Coulomb force but with a range of only ~2 fm. Because it is short-ranged, each nucleon only binds
+    to its immediate neighbours (the binding <em>saturates</em>), while the Coulomb repulsion is
+    long-ranged and every proton pushes every other. That competition explains the entire shape of the
+    binding-energy curve, and why heavy nuclei need a neutron excess to survive at all.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 7 · The binding energy of helium-4</h4>
+    <p>Atomic masses: ¹H = 1.007825 u, neutron = 1.008665 u, ⁴He = 4.002603 u. Find the mass defect,
+       the total binding energy and the binding energy per nucleon.</p>
+    <ol>
+      <li>Constituents: Z = 2, N = 2, so
+          <span class="fi">2(1.007825) + 2(1.008665) = 2.015650 + 2.017330 = 4.032980 u</span>.</li>
+      <li><span class="fi">Δm = 4.032980 − 4.002603 = 0.030377 u</span>. The assembled nucleus is
+          0.030377/4.032980 = 0.75% lighter than its parts.</li>
+      <li><span class="fi">BE = 0.030377 × 931.5 = 28.30 MeV</span>.</li>
+      <li><span class="fi">BE/A = 28.30/4 = 7.07 MeV per nucleon</span> — exceptionally high for such a
+          light nucleus, which is why the α particle is so tightly bound that heavy nuclei emit it
+          intact rather than one nucleon at a time.</li>
+      <li>Scale check: a chemical bond is a few eV; this is 28 million eV for four particles. Nuclear
+          energies are ~10⁶ times chemical energies, and the fractional mass change is correspondingly
+          ~10⁶ times larger — 0.75% here versus about 4×10⁻¹⁰ for burning carbon, which is why chemists
+          can safely assume mass is conserved and nuclear physicists cannot.</li>
+    </ol>
+    <span class="wex__ans">Δm = 0.03038 u · BE = 28.3 MeV · BE/A = 7.07 MeV</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · atomic masses versus nuclear masses</p>
+    <p>Tables give <em>atomic</em> masses, which include the electrons. If you use m<sub>H</sub>
+       (1.007825 u, a proton plus one electron) for each proton and the neutral atomic mass for the
+       product, the Z electron masses cancel exactly and no correction is needed. Mixing the two —
+       using the bare proton mass 1.007276 u with the neutral atomic mass — introduces an error of
+       Z × 0.000549 u, which for helium is 0.0011 u ≈ 1.0 MeV, a 4% error. Pick one convention and
+       stay in it.</p>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 480 320" role="img" aria-label="Binding energy per nucleon plotted against mass number, rising steeply from hydrogen-2 through helium-4 and carbon-12 to a maximum of about 8.8 MeV at iron-56, then falling gently to about 7.6 MeV at uranium-238; fusion moves light nuclei right along the rise, fission moves heavy nuclei left towards the peak.">
+      <title>Binding energy per nucleon versus mass number</title>
+      <line x1="55" y1="40" x2="55" y2="270" stroke="var(--ink-soft)" stroke-width="1.2"></line>
+      <line x1="55" y1="270" x2="468" y2="270" stroke="var(--ink-soft)" stroke-width="1.2"></line>
+      <g stroke="var(--line)" stroke-width="1" stroke-dasharray="3 4">
+        <line x1="55" y1="222" x2="462" y2="222"></line>
+        <line x1="55" y1="174" x2="462" y2="174"></line>
+        <line x1="55" y1="126" x2="462" y2="126"></line>
+        <line x1="55" y1="78" x2="462" y2="78"></line>
+      </g>
+      <g font-size="9" fill="var(--ink-faint)" text-anchor="end">
+        <text x="50" y="225">2</text>
+        <text x="50" y="177">4</text>
+        <text x="50" y="129">6</text>
+        <text x="50" y="81">8</text>
+      </g>
+      <text transform="rotate(-90 16 150)" x="16" y="150" text-anchor="middle" font-size="9" fill="var(--ink-soft)">binding energy per nucleon / MeV</text>
+      <g stroke="var(--ink-soft)" stroke-width="1">
+        <line x1="136" y1="270" x2="136" y2="275"></line>
+        <line x1="217" y1="270" x2="217" y2="275"></line>
+        <line x1="298" y1="270" x2="298" y2="275"></line>
+        <line x1="379" y1="270" x2="379" y2="275"></line>
+        <line x1="460" y1="270" x2="460" y2="275"></line>
+      </g>
+      <g font-size="9" fill="var(--ink-faint)" text-anchor="middle">
+        <text x="136" y="287">50</text>
+        <text x="217" y="287">100</text>
+        <text x="298" y="287">150</text>
+        <text x="379" y="287">200</text>
+        <text x="460" y="287">250</text>
+        <text x="262" y="303" fill="var(--ink-soft)">mass number A</text>
+      </g>
+      <polyline points="58,243 62,100 66,135 70,115 74,86 81,78 87,77 100,67 120,65 146,59 191,61 249,66 298,72 392,81 441,88"
+                fill="none" stroke="var(--v-energy)" stroke-width="2.2"></polyline>
+      <g fill="var(--v-energy)">
+        <circle cx="58" cy="243" r="3"></circle>
+        <circle cx="62" cy="100" r="3"></circle>
+        <circle cx="74" cy="86" r="3"></circle>
+        <circle cx="146" cy="59" r="4.5" stroke="var(--ink)" stroke-width="1.2"></circle>
+        <circle cx="441" cy="88" r="3"></circle>
+      </g>
+      <line x1="64" y1="106" x2="76" y2="126" stroke="var(--ink-faint)" stroke-width="0.9"></line>
+      <g font-size="9.5" fill="var(--ink-soft)">
+        <text x="66" y="255">²H · 1.11</text>
+        <text x="78" y="132">⁴He · 7.07</text>
+        <text x="146" y="48" text-anchor="middle" fill="var(--ink)">⁵⁶Fe · 8.79 MeV — most tightly bound</text>
+        <text x="465" y="103" text-anchor="end">²³⁸U · 7.57</text>
+      </g>
+      <!-- direction arrows -->
+      <g stroke="var(--v-heat)" stroke-width="2" fill="none">
+        <path d="M70,190 L128,190"></path>
+        <path d="M122,185 L130,190 L122,195" fill="var(--v-heat)"></path>
+      </g>
+      <text x="99" y="182" text-anchor="middle" font-size="9.5" fill="var(--v-heat)">FUSION →</text>
+      <g stroke="var(--v-field)" stroke-width="2" fill="none">
+        <path d="M330,190 L200,190"></path>
+        <path d="M208,185 L200,190 L208,195" fill="var(--v-field)"></path>
+      </g>
+      <text x="270" y="182" text-anchor="middle" font-size="9.5" fill="var(--v-field)">← FISSION</text>
+      <text x="262" y="210" text-anchor="middle" font-size="9" fill="var(--ink-faint)">both move nuclei towards the peak, and both therefore release energy</text>
+    </svg>
+    <figcaption>
+      The single most informative graph in nuclear physics. Everything to the left of ⁵⁶Fe releases
+      energy by fusing; everything to the right releases energy by splitting. The curve is steep on the
+      left and shallow on the right, which is why fusion yields several times more energy per nucleon
+      than fission. The local peak at ⁴He is why α particles exist as a decay product.
+    </figcaption>
+  </figure>
+
+  <h3>Fission and fusion</h3>
+  <p>
+    Both processes obey the same rule: <em>if the products sit higher on the BE/A curve than the
+    reactants, energy is released</em>. A more tightly bound system sits <em>lower</em> in total energy,
+    so becoming more tightly bound means shedding energy — and therefore shedding mass.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Fission compared with fusion</caption>
+      <thead>
+        <tr><th></th><th>Fission</th><th>Fusion</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Typical reaction</b></td><td>²³⁵U + n → ¹⁴¹Ba + ⁹²Kr + 3n</td><td>²H + ³H → ⁴He + n</td></tr>
+        <tr><td><b>Movement on the curve</b></td><td>A ≈ 235 (7.6 MeV/nucleon) → A ≈ 100–140 (≈8.5)</td><td>A = 2, 3 (1.1, 2.8) → A = 4 (7.07)</td></tr>
+        <tr><td><b>Energy released</b></td><td class="num">≈ 235 × 0.9 ≈ 200 MeV per fission</td><td class="num">17.6 MeV per event</td></tr>
+        <tr><td><b>Per nucleon</b></td><td class="num">≈ 0.9 MeV</td><td class="num">≈ 3.5 MeV — about 4× better</td></tr>
+        <tr><td><b>What has to be overcome</b></td><td>Nothing much: a slow neutron is uncharged and simply walks in.</td><td>The Coulomb barrier between two positive nuclei — hence ~10⁸ K, or quantum tunnelling in stars.</td></tr>
+        <tr><td><b>Waste</b></td><td>Neutron-rich fission fragments, long-lived and highly radioactive.</td><td>Mostly neutron activation of the vessel; no long-lived fission products.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · why the fission estimate works</p>
+    <p>You are rarely given fragment masses. Instead: ΔBE = A × (BE/A of products − BE/A of the
+       parent) = 235 × (8.5 − 7.6) ≈ 210 MeV, quoted as "about 200 MeV per fission". Compare with the
+       ≈4 eV released per atom when carbon burns: a factor of 5×10⁷. That factor is the whole reason
+       nuclear power and radiation hazard exist.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Radioactive decay and the decay law</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Radioactive decay</dt>
+      <dd>The spontaneous transformation of an unstable nucleus, with a fixed probability per unit time
+          that is unaffected by temperature, pressure or chemical state.</dd>
+      <dt>Decay constant λ</dt>
+      <dd>The probability per second that any one nucleus decays. It is a property of the nuclide alone.</dd>
+      <dt>Activity A</dt>
+      <dd>The number of decays per second in a sample, measured in becquerels. It is not the number of
+          particles reaching a detector.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">N = N₀ e<sup>−λt</sup>&nbsp;&nbsp;·&nbsp;&nbsp;A = A₀ e<sup>−λt</sup></span>
+      <span class="fx__tag">valid for any nuclide; N and A decay with the same constant</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">A = λN</span><span class="fx__tag">activity from the number of undecayed nuclei</span></div>
+      <div class="fx"><span class="fx__eq">T<sub>½</sub> = ln2 / λ = 0.693 / λ</span><span class="fx__tag">half-life ↔ decay constant</span></div>
+      <div class="fx"><span class="fx__eq">N/N₀ = (½)<sup>t/T½</sup></span><span class="fx__tag">the quick route when t is a whole number of half-lives</span></div>
+      <div class="fx"><span class="fx__eq">1 Bq = 1 decay·s⁻¹ · 1 Ci = 3.7×10¹⁰ Bq</span><span class="fx__tag">units of activity</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>N, N₀</b><span>number of undecayed nuclei now / at t = 0 (dimensionless count)</span></div>
+      <div><b>λ</b><span>decay constant (s⁻¹, or h⁻¹, y⁻¹)</span></div>
+      <div><b>t</b><span>elapsed time (s)</span></div>
+      <div><b>T<sub>½</sub></b><span>half-life (s)</span></div>
+      <div><b>A, A₀</b><span>activity now / at t = 0 (Bq = s⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Decay is a random process with no memory. A nucleus that has survived a thousand years is exactly
+    as likely to decay in the next second as a freshly made one — there is no ageing, no build-up.
+    From that single assumption, <span class="fi">dN/dt = −λN</span>, and integration gives the
+    exponential. The half-life is not an extra fact: it is <span class="fi">ln2/λ</span>, forced.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Modes of radioactive decay</caption>
+      <thead>
+        <tr><th>Mode</th><th>Emitted</th><th class="num">ΔZ</th><th class="num">ΔA</th><th>Nuclear process</th><th>Penetration / range</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Alpha (α)</b></td><td>⁴₂He nucleus</td><td class="num">−2</td><td class="num">−4</td>
+          <td>Two protons and two neutrons leave as a bound α. Only heavy nuclei (A &gt; ~200) do it.</td>
+          <td>A few cm of air; stopped by paper or the dead layer of skin. Dangerous only if internal.</td>
+        </tr>
+        <tr>
+          <td><b>Beta-minus (β⁻)</b></td><td>e⁻ and an antineutrino ν̄<sub>e</sub></td><td class="num">+1</td><td class="num">0</td>
+          <td>n → p + e⁻ + ν̄<sub>e</sub>. The electron is created at the instant of decay; it was not orbiting.</td>
+          <td>Millimetres of tissue, a few mm of aluminium.</td>
+        </tr>
+        <tr>
+          <td><b>Beta-plus (β⁺)</b></td><td>e⁺ and a neutrino ν<sub>e</sub></td><td class="num">−1</td><td class="num">0</td>
+          <td>p → n + e⁺ + ν<sub>e</sub>, possible only inside a nucleus and only if ≥ 1.022 MeV is available.</td>
+          <td>~1 mm of tissue, then annihilation into two 511 keV photons.</td>
+        </tr>
+        <tr>
+          <td><b>Electron capture (EC)</b></td><td>ν<sub>e</sub> + characteristic X-rays</td><td class="num">−1</td><td class="num">0</td>
+          <td>p + e⁻(orbital, usually K-shell) → n + ν<sub>e</sub>. Competes with β⁺ and wins when less than 1.022 MeV is available.</td>
+          <td>Only the X-rays / Auger electrons escape.</td>
+        </tr>
+        <tr>
+          <td><b>Gamma (γ)</b></td><td>High-energy photon</td><td class="num">0</td><td class="num">0</td>
+          <td>An excited nucleus drops to a lower nuclear level. Follows α or β decay, or an isomeric transition as in ⁹⁹ᵐTc.</td>
+          <td>Exponentially attenuated; needs cm of lead. Never fully stopped.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    <b>Conservation rules, and how to use them.</b> In every decay equation, the superscripts (A) must
+    balance and the subscripts (Z, meaning total charge) must balance. That alone identifies the
+    daughter. Energy–momentum is conserved too, which is why β decay needed the neutrino: a two-body
+    decay would give the electron a single fixed energy, but the observed β spectrum is continuous, so
+    a third, nearly invisible particle must be sharing the energy. Lepton number bookkeeping is what
+    makes it an <em>anti</em>neutrino in β⁻ and a neutrino in β⁺.
+  </p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · reading a decay chain</p>
+    <p>²³⁸₉₂U →<sup>α</sup> ²³⁴₉₀Th →<sup>β⁻</sup> ²³⁴₉₁Pa →<sup>β⁻</sup> ²³⁴₉₂U. Note the pattern:
+       one α followed by two β⁻ returns you to the <em>same element</em> four mass units lighter — a
+       different isotope of the parent. Since only α changes A, and it changes it by 4, every member of
+       a decay chain has the same value of A mod 4. There are exactly four natural decay series for
+       that reason.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 8 · Technetium-99m: activity, timing and how little matter is involved</h4>
+    <p>⁹⁹ᵐTc has T<sub>½</sub> = 6.0 h. A generator is eluted at 08:00 giving 800 MBq.
+       (a) What is the activity at 17:00? (b) When does it fall to 50 MBq? (c) What mass of ⁹⁹ᵐTc is
+       present in 1.0 GBq?</p>
+    <ol>
+      <li>Decay constant: <span class="fi">λ = ln2/T<sub>½</sub> = 0.693/6.0 = 0.1155 h⁻¹</span>.</li>
+      <li>(a) t = 9.0 h, i.e. 1.5 half-lives:
+          <span class="fi">A = 800 e<sup>−0.1155×9.0</sup> = 800 e<sup>−1.040</sup> = 800 × 0.3536 = 283 MBq</span>.
+          Check with the power form: <span class="fi">800 × (½)<sup>1.5</sup> = 800/2.828 = 283 MBq</span>. Agreed.</li>
+      <li>(b) 800 → 50 MBq is a factor of 16 = 2⁴, so exactly 4 half-lives:
+          <span class="fi">t = 4 × 6.0 = 24 h</span>, i.e. 08:00 the next morning.</li>
+      <li>(c) Convert to SI: <span class="fi">λ = 0.693/(6.0 × 3600 s) = 3.21×10⁻⁵ s⁻¹</span>.
+          From <span class="fi">A = λN</span>,
+          <span class="fi">N = A/λ = 1.0×10⁹ / 3.21×10⁻⁵ = 3.12×10¹³ nuclei</span>.</li>
+      <li>Mass: <span class="fi">m = N × (99 g·mol⁻¹) / (6.02×10²³ mol⁻¹) = 3.12×10¹³ × 1.64×10⁻²² g
+          = 5.1×10⁻⁹ g ≈ 5 ng</span>. A full diagnostic dose is a few nanograms — far below any
+          pharmacological threshold, which is exactly why radiotracers can be given safely: they are
+          detected by their radiation, not by their chemistry.</li>
+    </ol>
+    <span class="wex__ans">(a) 283 MBq · (b) 24 h, at 08:00 next day · (c) ≈ 5 ng (≈3×10¹³ nuclei)</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · four things that go wrong with the decay law</p>
+    <p><b>(1)</b> The symbol λ here is the <em>decay constant</em> in s⁻¹, not a wavelength. On this
+       page it appears as both; read the units. <b>(2)</b> A half-life does not mean "all gone after
+       two half-lives" — after two, a quarter remains, and the tail is infinite. <b>(3)</b> λ and t
+       must share a unit: h⁻¹ with hours, s⁻¹ with seconds. <b>(4)</b> Activity is decays per second in
+       the <em>source</em>. A detector subtending 1% of the solid angle records 1% of it, so a count
+       rate is never an activity without a geometry and efficiency correction.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Dose, radiotherapy and nuclear medicine</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Absorbed dose D</dt>
+      <dd>The energy deposited by ionising radiation per unit mass of tissue. Unit: gray, 1 Gy = 1 J·kg⁻¹.</dd>
+      <dt>Equivalent dose H</dt>
+      <dd>Absorbed dose weighted by how biologically damaging that type of radiation is. Unit: sievert,
+          also J·kg⁻¹ dimensionally but never interchangeable with the gray.</dd>
+      <dt>Radiation weighting factor w<sub>R</sub></dt>
+      <dd>A dimensionless factor reflecting ionisation density along the track: 1 for photons and
+          electrons, 2 for protons, 20 for α particles and heavy ions, 2.5–20 for neutrons by energy.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">D = E/m&nbsp;(Gy)&nbsp;&nbsp;·&nbsp;&nbsp;H = w<sub>R</sub> D&nbsp;(Sv)</span>
+      <span class="fx__tag">D is physics; H is biology bolted onto physics</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">1 Gy = 1 J·kg⁻¹ · 1 Sv = 1 J·kg⁻¹</span><span class="fx__tag">same dimensions, different quantities — always state which</span></div>
+      <div class="fx"><span class="fx__eq">natural background ≈ 2.4 mSv per year</span><span class="fx__tag">world average; the yardstick for every dose comparison</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>D</b><span>absorbed dose (Gy = J·kg⁻¹)</span></div>
+      <div><b>E</b><span>energy deposited (J)</span></div>
+      <div><b>m</b><span>mass of irradiated tissue (kg)</span></div>
+      <div><b>H</b><span>equivalent dose (Sv)</span></div>
+      <div><b>w<sub>R</sub></b><span>radiation weighting factor (dimensionless)</span></div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 9 · Why radiation is dangerous at absurdly small energies</h4>
+    <p>An acute whole-body absorbed dose of 4 Gy of X-rays is roughly the LD₅₀ for an untreated adult.
+       (a) How much energy is that for a 70 kg person? (b) By how much would that energy warm the body
+       if it all became heat? (c) What is the equivalent dose, and what would it be if the same 4 Gy
+       were delivered by α particles?</p>
+    <ol>
+      <li>(a) <span class="fi">E = D × m = 4 × 70 = 280 J</span> — about the food energy in a
+          <em>sixtieth</em> of a gram of sugar, or the work done lifting that same body 0.4 m.</li>
+      <li>(b) Treating the body as water, c = 4186 J·kg⁻¹·K⁻¹:
+          <span class="fi">ΔT = D/c = 4 / 4186 = 9.6×10⁻⁴ K</span> — one thousandth of a degree.</li>
+      <li>Conclusion: the lethality has nothing to do with heating. It is that each ~30 eV of that
+          energy creates one ionisation, so 280 J makes on the order of 10²⁰ ionisations, placed at
+          random — including in DNA, where a double-strand break in a stem cell is not repairable by
+          averaging.</li>
+      <li>(c) X-rays: <span class="fi">H = 1 × 4 = 4 Sv</span>. The same absorbed dose from α particles:
+          <span class="fi">H = 20 × 4 = 80 Sv</span>, because an α deposits its energy over ~40 μm
+          instead of centimetres, so the ionisations are packed densely enough along one track to make
+          clustered, unrepairable damage.</li>
+    </ol>
+    <span class="wex__ans">280 J · ΔT ≈ 0.001 K · 4 Sv (X-rays) vs 80 Sv (α)</span>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Radiation quantities and typical doses</caption>
+      <thead>
+        <tr><th>Quantity</th><th>Unit</th><th>Measures</th><th>Typical value for scale</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Activity</td><td class="num">Bq (s⁻¹); 1 Ci = 3.7×10¹⁰ Bq</td><td>Decays per second <em>in the source</em></td><td>⁹⁹ᵐTc bone scan: ~700 MBq administered</td></tr>
+        <tr><td>Absorbed dose</td><td class="num">Gy = J·kg⁻¹</td><td>Energy deposited per kg <em>in the tissue</em></td><td>Radiotherapy fraction: 2 Gy to the target volume</td></tr>
+        <tr><td>Equivalent dose</td><td class="num">Sv = w<sub>R</sub> × Gy</td><td>Biological damage potential of that dose</td><td>Chest radiograph ≈ 0.02 mSv; abdominal CT ≈ 8 mSv</td></tr>
+        <tr><td>Background</td><td class="num">mSv·y⁻¹</td><td>Unavoidable exposure (radon, cosmic, ⁴⁰K in the body)</td><td>≈ 2.4 mSv·y⁻¹ world average — a chest X-ray is ~3 days of it</td></tr>
+        <tr><td>Occupational limit</td><td class="num">mSv·y⁻¹</td><td>Regulatory ceiling for radiation workers</td><td>20 mSv·y⁻¹ averaged over 5 years (ICRP)</td></tr>
+        <tr><td>Acute lethality</td><td class="num">Gy, whole body</td><td>Deterministic (threshold) effect</td><td>LD₅₀ ≈ 4 Gy untreated; &gt; 10 Gy almost always fatal</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Three applications worth understanding, not memorising</h3>
+
+  <p>
+    <b>External-beam radiotherapy.</b> A linac accelerates electrons to 4–20 MeV and slams them into a
+    tungsten target, producing high-energy bremsstrahlung. Two features of MV photons matter clinically.
+    First, they are penetrating enough to reach deep tumours without depositing most of their dose in
+    the skin: the secondary electrons they liberate travel forward before depositing energy, so the
+    dose maximum lies 1–3 cm <em>below</em> the surface ("skin sparing"). Second, the dose is delivered
+    in <strong>fractions</strong>, typically 2 Gy per day to a total of 60–70 Gy, because normal tissue
+    repairs sublethal damage between fractions better than tumour tissue does. Beams are aimed from
+    many angles so that the tumour receives the sum while each entry path receives a fraction — the
+    same superposition logic as any other field problem.
+  </p>
+
+  <p>
+    <b>Positron emission tomography.</b> PET requires a <em>β⁺</em> emitter specifically, and the reason
+    is geometric. A positron travels about a millimetre in tissue, thermalises, meets an electron and
+    annihilates. Momentum and energy conservation then force the products to be
+    <strong>two photons of 511 keV each, emitted almost exactly 180° apart</strong> — 511 keV because
+    that is m<sub>e</sub>c², and back-to-back because the pair was essentially at rest. Detect both in
+    coincidence and you know the annihilation happened somewhere on the straight line joining the two
+    detectors, with no collimator needed. That is why PET is roughly two orders of magnitude more
+    sensitive than SPECT, where a single γ leaves in an unknown direction and a lead collimator must
+    throw away almost every photon to recover it. ¹⁸F (T<sub>½</sub> = 110 min) in
+    fluorodeoxyglucose is the workhorse: long enough to synthesise, deliver and image; short enough
+    that the patient is not a source the next day.
+  </p>
+
+  <p>
+    <b>Technetium-99m.</b> About four in five diagnostic nuclear-medicine procedures use it, and every
+    property that makes it ideal is a physics property.
+  </p>
+  <ul>
+    <li><b>Pure γ, 140 keV.</b> ⁹⁹ᵐTc is a metastable <em>isomer</em>: it decays to ⁹⁹Tc by emitting a
+        single γ, with no α and essentially no β. Particulate emissions would deposit dose in the
+        patient without ever leaving the body to form an image, so their absence is a direct dose saving.</li>
+    <li><b>140 keV is the right energy.</b> Low enough to be efficiently absorbed by a thin NaI(Tl)
+        crystal and collimated by lead; high enough to escape the body without excessive attenuation.
+        At 30 keV it would never get out; at 1 MeV it would pass straight through the detector.</li>
+    <li><b>T<sub>½</sub> = 6.0 h.</b> Long enough to prepare the kit, inject, wait for biodistribution
+        and image; short enough that the activity has fallen by ~99% within 40 hours. Compare
+        worked example 8: after 24 h only 1/16 remains.</li>
+    <li><b>Generator-produced.</b> ⁹⁹Mo (T<sub>½</sub> = 66 h) decays to ⁹⁹ᵐTc and is eluted on demand,
+        so a hospital with no cyclotron still has fresh tracer every morning. Long parent, short
+        daughter — the standard trick.</li>
+  </ul>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point · the two half-lives that actually matter</p>
+    <p>The <b>physical</b> half-life T<sub>p</sub> is the nuclear one. The <b>biological</b> half-life
+       T<sub>b</sub> is how fast the body excretes the tracer. What determines patient dose is the
+       <b>effective</b> half-life, and the rates add:
+       <span class="fi">1/T<sub>eff</sub> = 1/T<sub>p</sub> + 1/T<sub>b</sub></span>, so T<sub>eff</sub>
+       is always shorter than either. It is the same reciprocal-addition structure as resistors in
+       parallel or lenses in contact — worth recognising as a pattern rather than a fifth formula.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · becquerel, gray and sievert are not the same statement</p>
+    <p>A becquerel describes the <em>source</em> (decays per second) and says nothing about who is
+       standing nearby. A gray describes the <em>energy delivered to tissue</em>. A sievert describes
+       the <em>biological significance</em> of that energy. A 700 MBq injection does not tell you the
+       dose without knowing the emitted energy, the biodistribution and the effective half-life. And
+       because Gy and Sv share the unit J·kg⁻¹, a bare "4 J·kg⁻¹" is ambiguous — always name the
+       quantity.</p>
+  </div>
+</section>
+
+<!-- =========================== Self-test =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>
+    Answer before you scroll back. When you get one wrong, the useful move is to return to the section
+    it came from and re-derive the result, not to memorise which letter was right — the exam will
+    change the numbers. Seven of these require you to compute something; keep
+    <span class="fi">hc ≈ 1240 eV·nm</span> and <span class="fi">1 u = 931.5 MeV/c²</span> to hand.
+  </p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics-14-optics.html"><small>Previous</small><b>← Geometric and Wave Optics</b></a>
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 15 · Modern Physics: Quanta, Atoms and Nuclei</p>
+    <p>Represented throughout by energy-level diagrams and exponential decay/attenuation laws; constants,
+       masses, attenuation coefficients and clinical doses are standard textbook approximations quoted
+       for magnitude and teaching, not as precise citations.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A metal has a work function of 2.00 eV. Light of wavelength 400 nm falls on it. What is the maximum kinetic energy of the emitted photoelectrons?",
+    "options": ["0.90 eV", "3.10 eV", "1.10 eV", "5.10 eV"],
+    "answer": 2,
+    "explain": "Using hc ≈ 1240 eV·nm, a 400 nm photon carries 1240/400 = 3.10 eV, and Einstein's equation gives K<sub>max</sub> = hf − φ = 3.10 − 2.00 = 1.10 eV. The tempting 3.10 eV is the <b>photon</b> energy, not the electron's — the work function is a toll paid on the way out and is always subtracted; 5.10 eV comes from adding φ instead, the single most common sign error in this topic."
+  },
+  {
+    "stem": "Monochromatic light well above the threshold frequency is shone on a photocell, and its intensity is then doubled while its frequency is held constant. What happens?",
+    "options": ["K<sub>max</sub> doubles; the photocurrent is unchanged", "Both K<sub>max</sub> and the photocurrent double", "Neither changes, because intensity is irrelevant to the photoelectric effect", "The photocurrent doubles; K<sub>max</sub> is unchanged"],
+    "answer": 3,
+    "explain": "Intensity means photons per second, so doubling it doubles the number of electrons ejected per second — the current — while each electron still absorbs exactly one photon of the same energy hf, leaving K<sub>max</sub> = hf − φ untouched. Option A is precisely the classical wave prediction (bigger amplitude, faster electrons) that this experiment killed; option C overcorrects, since intensity does control the current."
+  },
+  {
+    "stem": "A hydrogen atom makes a transition from n = 4 to n = 2. What is the wavelength of the emitted photon? (E<sub>n</sub> = −13.6 eV/n²)",
+    "options": ["486 nm", "656 nm", "365 nm", "122 nm"],
+    "answer": 0,
+    "explain": "ΔE = 13.6(1/2² − 1/4²) = 13.6 × 3/16 = 2.55 eV, so λ = 1240/2.55 = 486 nm — the blue-green H-β line of the Balmer series. 656 nm is H-α (3→2), 365 nm is the Balmer series limit (∞→2) and 122 nm is Lyman-α (2→1); all three come from using the wrong pair of levels, so always write the two energies down before subtracting."
+  },
+  {
+    "stem": "In the Geiger–Marsden experiment, roughly 1 in 8000 alpha particles was deflected through more than 90° by a thin gold foil. What does this force you to conclude?",
+    "options": ["The atom's positive charge is spread uniformly through its volume", "The positive charge and nearly all the mass are concentrated in a tiny central nucleus", "Electrons occupy quantised orbits of fixed angular momentum", "The nucleus contains electrically neutral particles as well as protons"],
+    "answer": 1,
+    "explain": "Almost all alphas passed nearly straight through, so the atom is mostly empty; the rare large-angle deflections need a target that is both highly charged (to supply the force) and heavy (so it does not simply recoil), which means a compact massive nucleus. Thomson's uniform charge distribution (option A) cannot produce a single large-angle deflection, and the experiment says nothing about quantised orbits (Bohr, 1913) or neutrons (Chadwick, 1932)."
+  },
+  {
+    "stem": "A 0.145 kg baseball is thrown at 40 m·s⁻¹. Which statement about its de Broglie wavelength is correct?",
+    "options": ["It is about 10⁻¹⁰ m, but the ball is too massive to be diffracted", "It is exactly zero, because macroscopic objects have no wave nature", "It is about 10⁻³⁴ m — far smaller than any available aperture, so diffraction is unobservable", "It is about 10⁻³⁴ m, and it is unobservable because a wavelength can never be smaller than the object itself"],
+    "answer": 2,
+    "explain": "p = mv = 0.145 × 40 = 5.8 kg·m·s⁻¹, so λ = h/p = 6.63×10⁻³⁴/5.8 ≈ 1×10⁻³⁴ m — about 10¹⁹ times smaller than a nucleus. Diffraction only appears when λ is comparable to the aperture, and no such aperture can exist; the wave nature is not switched off (option B) and there is no rule forbidding λ smaller than the object (option D) — the wavelength is simply unmeasurably small."
+  },
+  {
+    "stem": "An X-ray tube is operated at 100 kV. What is the shortest wavelength present in its output?",
+    "options": ["0.0248 nm", "0.0124 nm", "1.24 nm", "It cannot be found without knowing the target material"],
+    "answer": 1,
+    "explain": "The cut-off comes from one electron converting all of its kinetic energy eV into a single photon: λ<sub>min</sub> = hc/(eV) = 1240 eV·nm / 100 000 eV = 0.0124 nm (the Duane–Hunt law). 0.0248 nm is the value for 50 kV, and option D confuses the two mechanisms — the target element fixes where the <b>characteristic lines</b> fall, while the tube voltage alone fixes where the continuum ends."
+  },
+  {
+    "stem": "²³⁸₉₂U decays by alpha emission, and the daughter then undergoes two successive β⁻ decays. What are the mass number and atomic number of the final nuclide?",
+    "options": ["A = 234, Z = 90", "A = 230, Z = 88", "A = 238, Z = 92", "A = 234, Z = 92"],
+    "answer": 3,
+    "explain": "Alpha emission removes two protons and two neutrons (A −4, Z −2), giving ²³⁴₉₀Th; each β⁻ converts a neutron into a proton, raising Z by 1 while leaving A alone. Two of them take Z from 90 back to 92 with A still 234, so the product is ²³⁴₉₂U — a lighter isotope of the original element. Option A stops after the alpha step, and option B wrongly lets beta decay change A."
+  },
+  {
+    "stem": "A vial of ⁹⁹ᵐTc (T<sub>½</sub> = 6.0 h) has an activity of 800 MBq. What is its activity 18 hours later?",
+    "options": ["100 MBq", "133 MBq", "267 MBq", "50 MBq"],
+    "answer": 0,
+    "explain": "18 h is exactly three half-lives, so the activity falls by a factor 2³ = 8: 800/8 = 100 MBq. Decay is exponential, not linear — 267 MBq comes from dividing by 3 as though each half-life removed a third, and 50 MBq is four half-lives (24 h). When t is a whole number of half-lives, use A = A₀(½)<sup>t/T½</sup> and skip the exponential entirely."
+  },
+  {
+    "stem": "The deuteron ²H has an atomic mass of 2.014102 u; m(¹H) = 1.007825 u and m(n) = 1.008665 u. What is its binding energy? (1 u = 931.5 MeV/c²)",
+    "options": ["1.11 MeV", "8.79 MeV", "2.22 MeV", "0.00239 MeV"],
+    "answer": 2,
+    "explain": "Δm = 1.007825 + 1.008665 − 2.014102 = 0.002388 u, and BE = Δm c² = 0.002388 × 931.5 = 2.22 MeV. 1.11 MeV is the binding energy <b>per nucleon</b> (the deuteron has two), 8.79 MeV/nucleon is the peak of the curve at ⁵⁶Fe, and 0.00239 MeV is the mass defect with the 931.5 conversion forgotten."
+  },
+  {
+    "stem": "A tissue receives an absorbed dose of 20 mGy from alpha particles, for which the radiation weighting factor is w<sub>R</sub> = 20. What is the equivalent dose?",
+    "options": ["20 mSv", "0.40 Sv", "1.0 mSv", "0.40 Gy"],
+    "answer": 1,
+    "explain": "H = w<sub>R</sub> × D = 20 × 20 mGy = 400 mSv = 0.40 Sv. Option A assumes gray and sievert are numerically equal, which is true only for photons and electrons (w<sub>R</sub> = 1); option C divides instead of multiplying; option D gets the number right but the unit wrong — the gray measures deposited energy, the sievert measures its biological significance, and the whole point of w<sub>R</sub> = 20 is that a dense alpha track does twenty times more damage than the same joules spread thinly."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

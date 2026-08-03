@@ -3,7 +3,7 @@
 #               fly deploy                          (subsequent)
 
 app = "postmed-notebook"
-primary_region = "hkg"          # Hong Kong — closest Fly region to Taiwan
+primary_region = "nrt"          # Tokyo — closest active Fly region to Taiwan (hkg is deprecated)
 
 [build]
   dockerfile = "Dockerfile"

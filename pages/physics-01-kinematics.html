@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics 01 · Kinematics: Motion in One and Two Dimensions — PostMed Notebook</title>
+<meta name="description" content="Physics note 01: displacement and sign conventions, average and instantaneous velocity, acceleration, the four constant-acceleration equations, free fall, motion graphs, vectors, relative velocity, projectiles and circular motion — with 10 self-test questions.">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+/* Page-specific: typography and stroke classes for the inline SVG figures only.
+   All colour comes from the shared tokens so both themes stay legible. */
+.pk-fig text { font-family: var(--sans); font-size: 13px; fill: var(--ink-soft); }
+.pk-fig .pk-m    { font-family: var(--mono); }
+.pk-fig .pk-ink  { fill: var(--ink); }
+.pk-fig .pk-vel  { fill: var(--v-vel); }
+.pk-fig .pk-acc  { fill: var(--v-accel); }
+.pk-fig .pk-ttl  { fill: var(--ink); font-weight: 700; font-size: 13.5px; }
+.pk-fig .pk-sm   { font-size: 11.5px; }
+.pk-fig .s-axis  { stroke: var(--ink-soft); stroke-width: 1.6; fill: none; }
+.pk-fig .s-line  { stroke: var(--line); stroke-width: 1.4; fill: none; }
+.pk-fig .s-vel   { stroke: var(--v-vel);   stroke-width: 2.4; fill: none; stroke-linecap: round; }
+.pk-fig .s-acc   { stroke: var(--v-accel); stroke-width: 2.4; fill: none; stroke-linecap: round; }
+.pk-fig .s-ink   { stroke: var(--ink-soft); stroke-width: 1.4; fill: none; }
+.pk-fig .s-dash  { stroke-dasharray: 5 5; }
+.pk-fig .f-vel   { fill: var(--v-vel); }
+.pk-fig .f-acc   { fill: var(--v-accel); }
+</style>
+</head>
+<body data-subject="physics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="physics.html">Physics</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Physics · Note 01</p>
+  <h1>Kinematics: Motion in One and Two Dimensions</h1>
+  <p class="lede">
+    Kinematics has exactly one organising idea: <strong>position, velocity and acceleration are linked
+    by slope and area</strong>, and that link runs in both directions. Differentiate downward
+    (x → v → a), integrate upward (a → v → x). Every formula on this page — including all four
+    constant-acceleration equations, the whole of projectile motion, and centripetal acceleration —
+    is that one relationship applied to a particular case. Learn the relationship and the formulas
+    become consequences; learn the formulas alone and you will misuse them the first time the
+    acceleration is not constant.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Vector decomposition &amp; motion graphs</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~35 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Position, displacement, and the sign convention</a></li>
+      <li><a href="#s2">Velocity and speed: average vs instantaneous</a></li>
+      <li><a href="#s3">Acceleration — and why "deceleration" is not a separate thing</a></li>
+      <li><a href="#s4">The four constant-acceleration equations</a></li>
+      <li><a href="#s5">Free fall: the special case a = −g</a></li>
+      <li><a href="#s6">Motion graphs: slope and area are inverses</a></li>
+      <li><a href="#s7">Vectors, components and vector addition</a></li>
+      <li><a href="#s8">Relative velocity: rivers and closing speed</a></li>
+      <li><a href="#s9">Projectile motion: two independent 1-D problems</a></li>
+      <li><a href="#s10">Uniform circular motion, kinematically</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <!-- Page-top formula sheet -->
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Displacement</b><code>Δx = x₂ − x₁</code></div>
+      <div class="fsheet__item"><b>Average velocity</b><code>v̄ = Δx / Δt</code></div>
+      <div class="fsheet__item"><b>Average speed</b><code>s̄ = (path length) / Δt</code></div>
+      <div class="fsheet__item"><b>Instantaneous velocity</b><code>v = dx/dt = slope of x–t</code></div>
+      <div class="fsheet__item"><b>Average acceleration</b><code>ā = Δv/Δt</code></div>
+      <div class="fsheet__item"><b>Instantaneous acceleration</b><code>a = dv/dt = d²x/dt²</code></div>
+      <div class="fsheet__item"><b>Constant a · no x</b><code>v = v₀ + at</code></div>
+      <div class="fsheet__item"><b>Constant a · no v</b><code>Δx = v₀t + ½at²</code></div>
+      <div class="fsheet__item"><b>Constant a · no t</b><code>v² = v₀² + 2aΔx</code></div>
+      <div class="fsheet__item"><b>Constant a · no a</b><code>Δx = ½(v₀ + v)t</code></div>
+      <div class="fsheet__item"><b>Free fall (up = +)</b><code>a = −g = −9.8 m·s⁻²</code></div>
+      <div class="fsheet__item"><b>Rise of a vertical throw</b><code>h = v₀² / (2g)</code></div>
+      <div class="fsheet__item"><b>Vector magnitude</b><code>|A| = √(A<sub>x</sub>² + A<sub>y</sub>²)</code></div>
+      <div class="fsheet__item"><b>Components</b><code>A<sub>x</sub> = A cosθ, A<sub>y</sub> = A sinθ</code></div>
+      <div class="fsheet__item"><b>Vector direction</b><code>θ = arctan(A<sub>y</sub> / A<sub>x</sub>)</code></div>
+      <div class="fsheet__item"><b>Relative velocity</b><code>v<sub>A/C</sub> = v<sub>A/B</sub> + v<sub>B/C</sub></code></div>
+      <div class="fsheet__item"><b>Projectile · horizontal</b><code>x = (v₀cosθ)·t</code></div>
+      <div class="fsheet__item"><b>Projectile · vertical</b><code>y = (v₀sinθ)·t − ½gt²</code></div>
+      <div class="fsheet__item"><b>Time of flight (level)</b><code>T = 2v₀sinθ / g</code></div>
+      <div class="fsheet__item"><b>Maximum height</b><code>H = v₀²sin²θ / (2g)</code></div>
+      <div class="fsheet__item"><b>Range (level ground)</b><code>R = v₀²sin2θ / g</code></div>
+      <div class="fsheet__item"><b>Trajectory</b><code>y = x·tanθ − gx² / (2v₀²cos²θ)</code></div>
+      <div class="fsheet__item"><b>Angular speed</b><code>ω = 2π/T = 2πf</code></div>
+      <div class="fsheet__item"><b>Tangential speed</b><code>v = ωr = 2πr/T</code></div>
+      <div class="fsheet__item"><b>Centripetal acceleration</b><code>a<sub>c</sub> = v²/r = ω²r = 4π²r/T²</code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Position, displacement, and the sign convention</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Position <span class="fi">x</span></dt>
+      <dd>A signed coordinate of an object measured from a chosen origin along a chosen axis. It is a
+        label for <em>where</em>, not for <em>how far travelled</em>.</dd>
+      <dt>Displacement <span class="fi">Δ<b>x</b></span></dt>
+      <dd>The vector from the starting position to the finishing position: final minus initial. It depends
+        only on the two endpoints.</dd>
+      <dt>Distance (path length)</dt>
+      <dd>The scalar total length of the path actually traced out. It can only increase.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Δx = x<sub>final</sub> − x<sub>initial</sub></span>
+      <span class="fx__tag">always; the axis direction must be fixed first</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">distance ≥ |Δx|</span><span class="fx__tag">equality only if the motion never reverses</span></div>
+      <div class="fx"><span class="fx__eq">|Δ<b>r</b>| = √(Δx² + Δy²)</span><span class="fx__tag">two dimensions</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>x</b><span>position along the axis (m)</span></div>
+      <div><b>Δx</b><span>displacement, signed (m)</span></div>
+      <div><b>Δ<b>r</b></b><span>displacement vector in 2-D (m)</span></div>
+      <div><b>t</b><span>time (s)</span></div>
+    </div>
+  </div>
+
+  <p>
+    One-dimensional motion works because a vector along a line needs only a <strong>sign</strong> to specify
+    its direction. That is the whole trick: choose an axis, declare which way is positive, and every vector
+    quantity in the problem — displacement, velocity, acceleration, later force and momentum — collapses to a
+    signed number. Every one of them must then be read against the <em>same</em> axis. Mixing them (up-positive
+    for velocity, down-positive for gravity) is the single most common source of wrong answers in this chapter.
+  </p>
+  <p>
+    Notice what the definition of displacement excludes. It does not know about the route, the detours or the
+    time taken. Walk a 400 m lap of a running track and your displacement is <strong>zero</strong> while your
+    distance is 400 m. That asymmetry propagates: average velocity is built on displacement, average speed on
+    distance, and they are therefore genuinely different numbers, not two names for one thing.
+  </p>
+
+  <figure class="figure pk-fig">
+    <svg viewBox="0 0 660 165" role="img" aria-label="A number line from minus four to plus four metres. A teal arrow runs from minus two to plus two, labelled displacement plus four metres. An amber arrow runs from plus two back to minus three, labelled displacement minus five metres. The total distance for both legs is nine metres.">
+      <defs>
+        <marker id="pk1-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-vel"/></marker>
+        <marker id="pk1-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-acc"/></marker>
+      </defs>
+      <line x1="30" y1="92" x2="640" y2="92" class="s-axis"/>
+      <g class="s-axis">
+        <line x1="60"  y1="86" x2="60"  y2="98"/><line x1="130" y1="86" x2="130" y2="98"/>
+        <line x1="200" y1="86" x2="200" y2="98"/><line x1="270" y1="86" x2="270" y2="98"/>
+        <line x1="340" y1="80" x2="340" y2="104"/>
+        <line x1="410" y1="86" x2="410" y2="98"/><line x1="480" y1="86" x2="480" y2="98"/>
+        <line x1="550" y1="86" x2="550" y2="98"/><line x1="620" y1="86" x2="620" y2="98"/>
+      </g>
+      <g class="pk-m pk-sm" text-anchor="middle">
+        <text x="60"  y="118">−4</text><text x="130" y="118">−3</text><text x="200" y="118">−2</text>
+        <text x="270" y="118">−1</text><text x="340" y="118" class="pk-ink">0</text>
+        <text x="410" y="118">+1</text><text x="480" y="118">+2</text><text x="550" y="118">+3</text>
+        <text x="620" y="118">+4</text>
+      </g>
+      <text x="640" y="76" text-anchor="end" class="pk-sm">x (m), positive to the right →</text>
+
+      <line x1="200" y1="52" x2="480" y2="52" class="s-vel" marker-end="url(#pk1-v)"/>
+      <text x="340" y="40" text-anchor="middle" class="pk-m pk-vel">leg 1: Δx = +4 m</text>
+
+      <line x1="480" y1="136" x2="130" y2="136" class="s-acc" marker-end="url(#pk1-a)"/>
+      <text x="305" y="157" text-anchor="middle" class="pk-m pk-acc">leg 2: Δx = −5 m</text>
+      <text x="620" y="140" text-anchor="end" class="pk-sm">net Δx = −1 m · distance = 9 m</text>
+    </svg>
+    <figcaption>The sign carries the direction. Displacements add algebraically (+4 then −5 gives −1 m);
+      distances add arithmetically (4 + 5 = 9 m). The two answers disagree whenever the motion reverses.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Property</th><th>Distance / speed (scalar)</th><th>Displacement / velocity (vector)</th></tr></thead>
+      <tbody>
+        <tr><td>Depends on</td><td>The whole path</td><td>Endpoints only</td></tr>
+        <tr><td>Can it be negative?</td><td>No — always ≥ 0</td><td>Yes; the sign is the direction</td></tr>
+        <tr><td>Can it be zero after motion?</td><td>No</td><td>Yes — a closed loop</td></tr>
+        <tr><td>How two legs combine</td><td>Arithmetic sum</td><td>Vector (signed) sum</td></tr>
+        <tr><td>400 m track lap</td><td class="num">400 m · 400/t m·s⁻¹</td><td class="num">0 m · 0 m·s⁻¹</td></tr>
+        <tr><td>Reverses if you flip the axis</td><td>No</td><td>Yes — the sign flips</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the axis is a choice, and it is yours</p>
+    <p style="margin:0">
+      There is no physically correct direction for "positive". Down-positive is perfectly legal for a falling
+      object and makes <span class="fi">a = +g</span>. What is <em>not</em> legal is changing convention
+      halfway through, or writing <span class="fi">a = −9.8</span> while also writing the initial downward
+      velocity as a positive number. Write the axis on your page before you write any equation.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Velocity and speed: average vs instantaneous</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Average velocity</dt>
+      <dd>Displacement divided by the elapsed time — the single constant velocity that would have produced the
+        same net displacement in the same time.</dd>
+      <dt>Instantaneous velocity</dt>
+      <dd>The limit of the average velocity as the time interval shrinks to zero; equivalently, the slope of the
+        tangent to the position–time graph.</dd>
+      <dt>Speed</dt>
+      <dd>The magnitude of the instantaneous velocity (a scalar). <em>Average</em> speed, however, is path
+        length over time — which is <strong>not</strong> the magnitude of the average velocity.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v̄ = Δx / Δt&nbsp;&nbsp;&nbsp;&nbsp;v = lim<sub>Δt→0</sub> Δx/Δt = dx/dt</span>
+      <span class="fx__tag">definitions; valid for any motion whatsoever</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">average speed = (total path length) / Δt</span><span class="fx__tag">scalar; ≥ |v̄|</span></div>
+      <div class="fx"><span class="fx__eq">Δx = ∫ v dt</span><span class="fx__tag">the area under the v–t curve</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v̄</b><span>average velocity (m·s⁻¹)</span></div>
+      <div><b>v</b><span>instantaneous velocity (m·s⁻¹)</span></div>
+      <div><b>Δx</b><span>displacement (m)</span></div>
+      <div><b>Δt</b><span>elapsed time (s)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Average velocity is a <strong>summary</strong>; it deliberately throws information away. Two journeys with
+    identical endpoints and identical durations have identical average velocities however wildly they differed
+    in between. Instantaneous velocity is what a speedometer and a radar gun report, and it is what every
+    dynamics equation later in the course actually uses.
+  </p>
+  <p>
+    The most commonly examined consequence: <strong>average speed is not the arithmetic mean of the speeds</strong>
+    unless equal <em>times</em> are spent at each. Travel a route out at 60 km·h⁻¹ and back at 40 km·h⁻¹ and you
+    spend longer at the slow speed, so the average is dragged below 50 — it is the harmonic mean,
+    <span class="fi">2v₁v₂/(v₁+v₂) = 48 km·h⁻¹</span>. Equal distances → harmonic mean. Equal times → arithmetic mean.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 1 · displacement, distance, and the two averages</h4>
+    <p style="margin:0 0 .3rem">A jogger runs 300 m due east in 100 s, then turns and runs 100 m due west in 50 s.
+      Find the average speed and the average velocity for the whole run.</p>
+    <ol>
+      <li><b>Set the axis.</b> East positive. Leg 1: Δx₁ = +300 m. Leg 2: Δx₂ = −100 m.</li>
+      <li><b>Totals.</b> Net displacement Δx = +300 − 100 = <b>+200 m</b>. Path length = 300 + 100 = <b>400 m</b>.
+        Total time Δt = 100 + 50 = 150 s.</li>
+      <li><b>Average speed</b> = 400 m ÷ 150 s = 2.667 m·s⁻¹ ≈ 2.67 m·s⁻¹.</li>
+      <li><b>Average velocity</b> = +200 m ÷ 150 s = 1.333 m·s⁻¹ ≈ 1.33 m·s⁻¹ east.</li>
+      <li><b>Sanity check.</b> The runner reversed, so the path length exceeds |Δx| and the average speed must
+        exceed the magnitude of the average velocity. 2.67 &gt; 1.33 ✓</li>
+    </ol>
+    <span class="wex__ans">average speed 2.67 m·s⁻¹ · average velocity 1.33 m·s⁻¹ due east</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">
+      Any question containing the words "returns to the starting point" is testing the same reflex:
+      <strong>average velocity = 0, average speed ≠ 0</strong>. Read the question for which one it asks
+      for, then answer that one. Examiners write the plausible arithmetic mean into the distractor list
+      on purpose.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Acceleration — and why "deceleration" is not a separate thing</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Acceleration <span class="fi"><b>a</b></span></dt>
+      <dd>The rate of change of the <em>velocity vector</em> with time. Because velocity is a vector, an
+        acceleration exists whenever the speed changes, <strong>or</strong> the direction changes, or both.</dd>
+      <dt>Uniform acceleration</dt>
+      <dd>Acceleration that is constant in both magnitude and direction over the interval considered — the
+        only case the four equations of §04 describe.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq"><b>ā</b> = Δ<b>v</b>/Δt&nbsp;&nbsp;&nbsp;&nbsp;<b>a</b> = d<b>v</b>/dt = d²<b>x</b>/dt²</span>
+      <span class="fx__tag">average (left) and instantaneous (right); both valid for any motion</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">speeding up ⟺ <b>a</b> and <b>v</b> have the same sign</span><span class="fx__tag">1-D test</span></div>
+      <div class="fx"><span class="fx__eq">slowing down ⟺ <b>a</b> and <b>v</b> have opposite signs</span><span class="fx__tag">1-D test</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>ā</b><span>average acceleration over Δt (m·s⁻²)</span></div>
+      <div><b>a</b><span>instantaneous acceleration (m·s⁻²)</span></div>
+      <div><b>Δv</b><span>change in velocity (m·s⁻¹)</span></div>
+      <div><b>Δt</b><span>time interval (s)</span></div>
+      <div><b>g</b><span>free-fall acceleration, 9.8 m·s⁻² near the Earth's surface</span></div>
+    </div>
+  </div>
+
+  <p>
+    "Deceleration" is a description of a <em>relationship</em>, not a quantity. There is exactly one vector
+    <b>a</b>; whether the motion is speeding up or slowing down depends on how that vector sits relative to
+    <b>v</b>. A car moving in the −x direction at −20 m·s⁻¹ with acceleration <span class="fi">a = +4 m·s⁻²</span>
+    is slowing down, even though the acceleration is positive. A ball thrown upward has
+    <span class="fi">a = −9.8 m·s⁻²</span> throughout — on the way up (slowing), at the top (momentarily at rest),
+    and on the way down (speeding up). The acceleration never changes; only its relationship to the velocity does.
+  </p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Sign of v</th><th>Sign of a</th><th>What is happening</th><th>Everyday example</th></tr></thead>
+      <tbody>
+        <tr><td class="num">+</td><td class="num">+</td><td>Moving forward, speeding up</td><td>Car accelerating away from lights</td></tr>
+        <tr><td class="num">+</td><td class="num">−</td><td>Moving forward, slowing down</td><td>Car braking; ball on the way up</td></tr>
+        <tr><td class="num">−</td><td class="num">−</td><td>Moving backward, speeding up</td><td>Ball on the way down (up-positive)</td></tr>
+        <tr><td class="num">−</td><td class="num">+</td><td>Moving backward, slowing down</td><td>Car reversing, then braking</td></tr>
+        <tr><td class="num">0</td><td class="num">≠ 0</td><td>Instantaneously at rest but still accelerating</td><td>Ball at the very top of its flight</td></tr>
+        <tr><td class="num">≠ 0</td><td class="num">0</td><td>Constant velocity</td><td>Cruise control on a straight road</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · v = 0 does not imply a = 0</p>
+    <p style="margin:0">
+      At the top of a vertical throw the velocity passes through zero, but it is <em>changing</em> as fast as
+      ever — that is precisely why the ball does not hover there. If <span class="fi">a</span> were zero at
+      the apex the ball would stay at the apex forever. Velocity is the value; acceleration is the rate of
+      change of the value, and the two are logically independent at any instant.
+    </p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Memory hook</h4>
+    <p>Same signs → faster. Opposite signs → slower. Nothing else to remember, in any number of dimensions:
+      the component of <b>a</b> along <b>v</b> changes the speed, the component perpendicular to <b>v</b>
+      changes only the direction (§10).</p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>The four constant-acceleration equations</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>The kinematic equations (SUVAT)</dt>
+      <dd>Four algebraic relations among the five quantities Δx, v₀, v, a, t that hold <strong>if and only if
+        the acceleration is constant</strong> over the whole interval. Each equation omits exactly one of the
+        five — choose the one that omits the quantity you neither know nor want.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v = v₀ + at</span>
+      <span class="fx__tag">constant a · omits Δx</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Δx = v₀t + ½at²</span><span class="fx__tag">constant a · omits v</span></div>
+      <div class="fx"><span class="fx__eq">v² = v₀² + 2aΔx</span><span class="fx__tag">constant a · omits t</span></div>
+      <div class="fx"><span class="fx__eq">Δx = ½(v₀ + v)t</span><span class="fx__tag">constant a · omits a</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>Δx</b><span>displacement over the interval (m)</span></div>
+      <div><b>v₀</b><span>velocity at t = 0 (m·s⁻¹)</span></div>
+      <div><b>v</b><span>velocity at time t (m·s⁻¹)</span></div>
+      <div><b>a</b><span>constant acceleration (m·s⁻²)</span></div>
+      <div><b>t</b><span>elapsed time (s)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Do not memorise these four as four facts. They are one picture — the <strong>v–t graph of constant
+    acceleration is a straight line</strong> — read four ways.
+  </p>
+
+  <figure class="figure pk-fig">
+    <svg viewBox="0 0 660 320" role="img" aria-label="A velocity versus time graph for constant acceleration: a straight line rising from v-nought at time zero. The area beneath it is divided into a rectangle of area v-nought times t and a triangle of area one half a t squared, whose sum is the displacement. The slope of the line is the acceleration.">
+      <defs>
+        <marker id="pk2-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-soft)"/></marker>
+      </defs>
+      <polygon points="80,210 500,210 500,260 80,260" fill="var(--v-vel)" opacity="0.17"/>
+      <polygon points="80,210 500,210 500,90" fill="var(--v-accel)" opacity="0.22"/>
+
+      <line x1="80" y1="260" x2="630" y2="260" class="s-axis" marker-end="url(#pk2-i)"/>
+      <line x1="80" y1="260" x2="80"  y2="45"  class="s-axis" marker-end="url(#pk2-i)"/>
+      <text x="92" y="40" class="pk-sm">v (m·s⁻¹)</text>
+      <text x="628" y="282" text-anchor="end" class="pk-sm">t (s)</text>
+
+      <line x1="80" y1="210" x2="500" y2="90" class="s-vel"/>
+      <line x1="80"  y1="210" x2="500" y2="210" class="s-line s-dash"/>
+      <line x1="500" y1="90"  x2="500" y2="260" class="s-line s-dash"/>
+
+      <circle cx="80"  cy="210" r="4" class="f-vel"/>
+      <circle cx="500" cy="90"  r="4" class="f-vel"/>
+      <text x="70" y="215" text-anchor="end" class="pk-m pk-vel">v₀</text>
+      <text x="512" y="86" class="pk-m pk-vel">v = v₀ + at</text>
+      <text x="500" y="282" text-anchor="middle" class="pk-m">t</text>
+
+      <text x="290" y="243" text-anchor="middle" class="pk-m pk-ink">area = v₀t</text>
+      <text x="358" y="178" text-anchor="middle" class="pk-m pk-ink">area = ½at²</text>
+      <text x="250" y="132" class="pk-m pk-acc">slope = a</text>
+      <text x="628" y="58" text-anchor="end" class="pk-sm">total shaded area = Δx = v₀t + ½at²</text>
+      <text x="628" y="78" text-anchor="end" class="pk-sm">same trapezoid, read another way: Δx = ½(v₀+v)·t</text>
+    </svg>
+    <figcaption>Constant acceleration means a straight v–t line. Its <b>slope</b> is <span class="fi">a</span>,
+      giving <span class="fi">v = v₀ + at</span>. The <b>area</b> under it is the displacement; split that area
+      into a rectangle plus a triangle and you get <span class="fi">Δx = v₀t + ½at²</span>, or read it as a
+      trapezoid and you get <span class="fi">Δx = ½(v₀+v)t</span>.</figcaption>
+  </figure>
+
+  <h3>Where each one comes from</h3>
+  <ol style="font-size:.95rem">
+    <li><b>v = v₀ + at.</b> The slope of the line is Δv/Δt = a by definition, so Δv = at and
+      v = v₀ + at. This equation <em>is</em> the definition of constant acceleration, rearranged.</li>
+    <li><b>Δx = ½(v₀ + v)t.</b> The area of a trapezoid is (mean of the two parallel sides) × width. Since the
+      line is straight, the mean height <em>is</em> the average velocity, so
+      <span class="fi">v̄ = ½(v₀+v)</span> — true for constant a and <strong>for nothing else</strong>.</li>
+    <li><b>Δx = v₀t + ½at².</b> Cut the same trapezoid into the rectangle <span class="fi">v₀ × t</span>
+      and the triangle <span class="fi">½ × t × (at)</span>. Interpretation: the distance you would have gone at
+      the original speed, plus the bonus the acceleration bought you.</li>
+    <li><b>v² = v₀² + 2aΔx.</b> Eliminate t. From (1), <span class="fi">t = (v − v₀)/a</span>; substitute into (2):
+      <span class="fi">Δx = ½(v₀+v)(v−v₀)/a = (v² − v₀²)/(2a)</span>. Rearranged, that is the equation. It is the
+      one to reach for whenever the question mentions no time at all — and it is the ancestor of the
+      work–energy theorem.</li>
+  </ol>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Equation</th><th>Omits</th><th>Use it when the question…</th><th>Graph origin</th></tr></thead>
+      <tbody>
+        <tr><td class="num">v = v₀ + at</td><td class="num">Δx</td><td>gives or wants a time and speeds only</td><td>Slope of the v–t line</td></tr>
+        <tr><td class="num">Δx = v₀t + ½at²</td><td class="num">v</td><td>wants a distance from a known time</td><td>Rectangle + triangle</td></tr>
+        <tr><td class="num">v² = v₀² + 2aΔx</td><td class="num">t</td><td>never mentions time (stopping distance, max height)</td><td>Trapezoid with t eliminated</td></tr>
+        <tr><td class="num">Δx = ½(v₀ + v)t</td><td class="num">a</td><td>gives both speeds but no acceleration</td><td>Mean height × width</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 2 · stopping distance, and why speed is the dangerous variable</h4>
+    <p style="margin:0 0 .3rem">A car travels at 25 m·s⁻¹ (90 km·h⁻¹). The driver's reaction time is 0.70 s and
+      the brakes then produce a constant <span class="fi">a = −5.0 m·s⁻²</span>. Find the total stopping distance.
+      Then repeat at half the speed.</p>
+    <ol>
+      <li><b>Reaction phase</b> — no acceleration yet, so Δx = vt = 25 × 0.70 = <b>17.5 m</b>.</li>
+      <li><b>Braking phase</b> — no time is asked for, so use <span class="fi">v² = v₀² + 2aΔx</span> with v = 0:<br>
+        0 = 25² + 2(−5.0)Δx → Δx = 625 / 10 = <b>62.5 m</b>.</li>
+      <li><b>Total</b> = 17.5 + 62.5 = <b>80.0 m</b>. (Braking time, if wanted:
+        t = (0 − 25)/(−5.0) = 5.0 s.)</li>
+      <li><b>At 12.5 m·s⁻¹:</b> reaction distance halves to 8.75 m, but the braking distance is
+        156.25/10 = 15.6 m — a <strong>quarter</strong>, because Δx ∝ v₀². Total 24.4 m.</li>
+      <li><b>Read the physics.</b> Halving the speed cut the total stopping distance by a factor of 3.3, not 2.
+        The quadratic term is why speed limits near hospitals and schools are set where they are, and why
+        pedestrian injury severity climbs so steeply with impact speed.</li>
+    </ol>
+    <span class="wex__ans">80.0 m at 25 m·s⁻¹ · 24.4 m at 12.5 m·s⁻¹</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · these four equations are useless if a is not constant</p>
+    <p style="margin:0">
+      A skydiver whose air drag grows with speed, a car whose engine power (not force) is constant, a mass on a
+      spring, a charge in a non-uniform field — none of these may be fed into SUVAT. If the acceleration changes
+      during the interval, you need the graph (area under v–t) or calculus. Watch also for problems where
+      <em>a</em> is constant in each phase but different between phases: split the timeline and apply the
+      equations phase by phase, carrying the final velocity of one phase into the next as v₀.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Free fall: the special case a = −g</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Free fall</dt>
+      <dd>Motion under gravity alone, with air resistance neglected. "Falling" is a misnomer: an object thrown
+        <em>upward</em> is in free fall from the moment it leaves the hand.</dd>
+      <dt>g</dt>
+      <dd>The magnitude of the free-fall acceleration near the Earth's surface, 9.8 m·s⁻². It is a positive
+        number by definition; the direction is supplied by the sign convention, not by g itself.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">a<sub>y</sub> = −g = −9.8 m·s⁻²</span>
+      <span class="fx__tag">up chosen positive; air resistance neglected</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">v = v₀ − gt</span><span class="fx__tag">SUVAT with a = −g</span></div>
+      <div class="fx"><span class="fx__eq">y = y₀ + v₀t − ½gt²</span><span class="fx__tag">SUVAT with a = −g</span></div>
+      <div class="fx"><span class="fx__eq">v² = v₀² − 2g(y − y₀)</span><span class="fx__tag">SUVAT with a = −g</span></div>
+      <div class="fx"><span class="fx__eq">h<sub>rise</sub> = v₀²/(2g)&nbsp;&nbsp;·&nbsp;&nbsp;t<sub>up</sub> = v₀/g</span><span class="fx__tag">thrown up from the launch point</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>y</b><span>height above the origin (m)</span></div>
+      <div><b>v₀</b><span>initial vertical velocity (m·s⁻¹)</span></div>
+      <div><b>g</b><span>9.8 m·s⁻², always positive</span></div>
+      <div><b>h<sub>rise</sub></b><span>height gained above the launch point (m)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Free fall is not a new topic; it is §04 with the acceleration filled in. The one physical fact worth
+    stating is Galileo's: with air resistance neglected, <strong>the acceleration is independent of mass</strong>.
+    A feather and a hammer released together in vacuum land together. In air they do not, because drag —
+    roughly proportional to cross-sectional area — is a much larger fraction of the weight for the feather. This
+    is why "heavier things fall faster" survives as an intuition: it is a correct observation about air, and a
+    wrong one about gravity.
+  </p>
+  <p>
+    Two symmetries save time in exams. For a projectile launched and caught at the <em>same height</em>:
+    the <strong>time up equals the time down</strong>, and the <strong>speed at any given height on the way
+    up equals the speed at that height on the way down</strong> (opposite in direction). Both follow from the
+    fact that the v–t graph is a straight line crossing zero — the geometry above and below the axis is
+    a mirror image. Neither holds if the landing height differs from the launch height.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 3 · thrown upward from a cliff</h4>
+    <p style="margin:0 0 .3rem">A stone is thrown vertically upward at 15 m·s⁻¹ from the edge of a cliff 25 m
+      above the sea. Take g = 9.8 m·s⁻² and neglect air resistance. Find (a) the maximum height above the launch
+      point, (b) the time to reach the water, (c) the impact speed.</p>
+    <ol>
+      <li><b>Axis.</b> Up positive, origin at the launch point. So v₀ = +15 m·s⁻¹, a = −9.8 m·s⁻²,
+        and the sea is at y = −25 m.</li>
+      <li><b>(a) Apex.</b> At the top v = 0, and no time is asked, so
+        <span class="fi">0 = v₀² − 2g·h</span> → h = 15²/(2 × 9.8) = 225/19.6 = <b>11.5 m</b> above the launch
+        point (36.5 m above the sea). It gets there at t = 15/9.8 = 1.53 s.</li>
+      <li><b>(b) Time to the water.</b> Use <span class="fi">y = v₀t − ½gt²</span> with y = −25:<br>
+        −25 = 15t − 4.9t² → 4.9t² − 15t − 25 = 0.<br>
+        t = [15 ± √(225 + 4·4.9·25)] / (2 × 4.9) = [15 ± √715] / 9.8 = (15 + 26.74)/9.8 = <b>4.26 s</b>.
+        (The negative root is discarded: it is the time the stone <em>would</em> have left the water had the
+        parabola been extended backwards.)</li>
+      <li><b>(c) Impact speed.</b> Fastest route is the time-free equation:
+        <span class="fi">v² = 15² + 2(9.8)(25) = 225 + 490 = 715</span> → v = <b>26.7 m·s⁻¹</b> downward.
+        Cross-check with (b): v = 15 − 9.8(4.26) = −26.7 m·s⁻¹ ✓</li>
+      <li><b>Symmetry check.</b> Passing the launch height on the way down, the speed is again 15 m·s⁻¹, at
+        t = 2 × 1.53 = 3.06 s — and the remaining 25 m of fall then takes 4.26 − 3.06 = 1.20 s. ✓</li>
+    </ol>
+    <span class="wex__ans">(a) 11.5 m · (b) 4.26 s · (c) 26.7 m·s⁻¹ downward</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">
+      For a throw that lands <strong>below</strong> the launch point, the quadratic has two positive-looking
+      roots only if you make a sign slip; done correctly there is exactly one positive root. And do not use
+      "time up = time down" here — the fall is longer than the rise. That shortcut is licensed <em>only</em>
+      by equal launch and landing heights.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Motion graphs: slope and area are inverses</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Slope–area duality</dt>
+      <dd>Moving <em>down</em> the chain x → v → a is differentiation, read off a graph as a <strong>slope</strong>.
+        Moving <em>up</em> the chain a → v → x is integration, read off a graph as a <strong>signed area</strong>.
+        Every motion-graph question is one of those two operations.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v = dx/dt&nbsp;&nbsp;·&nbsp;&nbsp;a = dv/dt&nbsp;&nbsp;⟷&nbsp;&nbsp;Δv = ∫a dt&nbsp;&nbsp;·&nbsp;&nbsp;Δx = ∫v dt</span>
+      <span class="fx__tag">always valid, constant a or not</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">area below the t-axis counts as negative</span><span class="fx__tag">signed area gives displacement</span></div>
+      <div class="fx"><span class="fx__eq">∫|v| dt = distance travelled</span><span class="fx__tag">unsigned area gives path length</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>x–t</b><span>position vs time; slope in m·s⁻¹</span></div>
+      <div><b>v–t</b><span>velocity vs time; slope m·s⁻², area m</span></div>
+      <div><b>a–t</b><span>acceleration vs time; area m·s⁻¹</span></div>
+      <div><b>Δ</b><span>change in the quantity that follows</span></div>
+    </div>
+  </div>
+
+  <figure class="figure pk-fig">
+    <svg viewBox="0 0 680 315" role="img" aria-label="Three panels for an object starting from rest with constant positive acceleration. The position-time graph is an upward-curving parabola, the velocity-time graph is a straight rising line, and the acceleration-time graph is a horizontal line. An arrow left to right is labelled take the slope; an arrow right to left is labelled take the area.">
+      <defs>
+        <marker id="pk3-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-soft)"/></marker>
+        <marker id="pk3-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-acc"/></marker>
+      </defs>
+
+      <!-- panel 1: x-t -->
+      <text x="118" y="28" text-anchor="middle" class="pk-ttl">x – t</text>
+      <line x1="50" y1="200" x2="215" y2="200" class="s-axis" marker-end="url(#pk3-i)"/>
+      <line x1="50" y1="200" x2="50"  y2="45"  class="s-axis" marker-end="url(#pk3-i)"/>
+      <path d="M 50 200 Q 130 200 205 60" class="s-vel"/>
+      <text x="60" y="42" class="pk-sm">x</text>
+      <text x="212" y="222" text-anchor="end" class="pk-sm">t</text>
+      <text x="118" y="248" text-anchor="middle" class="pk-sm">parabola: Δx = ½at²</text>
+
+      <!-- panel 2: v-t -->
+      <text x="338" y="28" text-anchor="middle" class="pk-ttl">v – t</text>
+      <line x1="270" y1="200" x2="435" y2="200" class="s-axis" marker-end="url(#pk3-i)"/>
+      <line x1="270" y1="200" x2="270" y2="45"  class="s-axis" marker-end="url(#pk3-i)"/>
+      <polygon points="270,200 425,200 425,70" fill="var(--v-vel)" opacity="0.18"/>
+      <line x1="270" y1="200" x2="425" y2="70" class="s-vel"/>
+      <text x="280" y="42" class="pk-sm">v</text>
+      <text x="432" y="222" text-anchor="end" class="pk-sm">t</text>
+      <text x="338" y="248" text-anchor="middle" class="pk-sm">straight line: v = at</text>
+
+      <!-- panel 3: a-t -->
+      <text x="558" y="28" text-anchor="middle" class="pk-ttl">a – t</text>
+      <line x1="490" y1="200" x2="655" y2="200" class="s-axis" marker-end="url(#pk3-i)"/>
+      <line x1="490" y1="200" x2="490" y2="45"  class="s-axis" marker-end="url(#pk3-i)"/>
+      <polygon points="490,200 645,200 645,110" fill="var(--v-accel)" opacity="0.22"/>
+      <line x1="490" y1="110" x2="645" y2="110" class="s-acc"/>
+      <text x="500" y="42" class="pk-sm">a</text>
+      <text x="652" y="222" text-anchor="end" class="pk-sm">t</text>
+      <text x="558" y="248" text-anchor="middle" class="pk-sm">constant: a</text>
+
+      <line x1="60" y1="272" x2="630" y2="272" class="s-ink" marker-end="url(#pk3-i)"/>
+      <text x="345" y="266" text-anchor="middle" class="pk-sm pk-ink">differentiate → take the SLOPE</text>
+      <line x1="630" y1="298" x2="60" y2="298" class="s-acc" marker-end="url(#pk3-a)"/>
+      <text x="345" y="313" text-anchor="middle" class="pk-sm pk-acc">integrate ← take the AREA</text>
+    </svg>
+    <figcaption>One motion, three graphs. Going right you take slopes; going left you take areas. Note the
+      degree drops by one each time you differentiate: parabola → line → constant. If the x–t graph is a
+      parabola, the acceleration must be constant.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Graph</th><th>Slope gives</th><th>Signed area gives</th><th>Curvature / shape tells you</th></tr></thead>
+      <tbody>
+        <tr><td><b>x–t</b></td><td>Velocity (m·s⁻¹)</td><td>No standard physical meaning</td><td>Concave up → a &gt; 0; straight → a = 0; a maximum → v = 0</td></tr>
+        <tr><td><b>v–t</b></td><td>Acceleration (m·s⁻²)</td><td>Displacement Δx (m)</td><td>Crossing the axis → the motion reverses</td></tr>
+        <tr><td><b>a–t</b></td><td>Jerk (m·s⁻³, rarely asked)</td><td>Change in velocity Δv (m·s⁻¹)</td><td>A rectangle → constant-a; SUVAT is licensed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Four readings that carry most of the marks. <b>(1)</b> On an x–t graph a horizontal segment is <em>at rest</em>,
+    not "at the origin". <b>(2)</b> On an x–t graph, a peak is where the velocity is zero and reverses sign — it is
+    <em>not</em> where the object is going fastest. <b>(3)</b> On a v–t graph, a line sloping down through zero
+    means the object slowed, stopped and reversed; the area is then positive before the crossing and negative
+    after, so displacement and distance separate. <b>(4)</b> "Which graph shows an object moving backwards while
+    speeding up?" means: v below the axis and getting further from it.
+  </p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · the steepest x–t slope, not the highest x–t point</p>
+    <p style="margin:0">
+      Students routinely pick the highest point of an x–t graph as the fastest moment. Height is
+      <em>position</em>. Speed is <strong>steepness</strong>, and the sign of the slope is the direction.
+      An object at x = 200 m sitting still has a bigger position and a smaller velocity than one at
+      x = 5 m sprinting.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Vectors, components and vector addition</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Vector</dt>
+      <dd>A quantity with both magnitude and direction that adds by the parallelogram (tip-to-tail) rule.
+        Written bold here: <b>A</b>. Its magnitude is written A or |<b>A</b>|.</dd>
+      <dt>Components</dt>
+      <dd>The projections of a vector onto the chosen axes. Because the axes are perpendicular, the components
+        are <strong>independent</strong> — this is the fact that makes 2-D kinematics tractable at all.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">A<sub>x</sub> = A cosθ&nbsp;&nbsp;·&nbsp;&nbsp;A<sub>y</sub> = A sinθ</span>
+      <span class="fx__tag">θ measured from the +x axis</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">A = √(A<sub>x</sub>² + A<sub>y</sub>²)&nbsp;&nbsp;·&nbsp;&nbsp;θ = arctan(A<sub>y</sub>/A<sub>x</sub>)</span><span class="fx__tag">components → magnitude &amp; direction</span></div>
+      <div class="fx"><span class="fx__eq">(<b>A</b>+<b>B</b>)<sub>x</sub> = A<sub>x</sub>+B<sub>x</sub>&nbsp;&nbsp;·&nbsp;&nbsp;(<b>A</b>+<b>B</b>)<sub>y</sub> = A<sub>y</sub>+B<sub>y</sub></span><span class="fx__tag">add component-wise, never magnitude-wise</span></div>
+      <div class="fx"><span class="fx__eq">|<b>A</b>+<b>B</b>| = √(A² + B² + 2AB cosφ)</span><span class="fx__tag">φ = angle between <b>A</b> and <b>B</b></span></div>
+      <div class="fx"><span class="fx__eq"><b>A</b> − <b>B</b> = <b>A</b> + (−<b>B</b>)</span><span class="fx__tag">subtraction = adding the reverse</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>A</b><span>magnitude of the vector (unit of the quantity)</span></div>
+      <div><b>A<sub>x</sub></b><span>x-component, signed (same unit)</span></div>
+      <div><b>A<sub>y</sub></b><span>y-component, signed (same unit)</span></div>
+      <div><b>θ</b><span>direction angle from +x (degrees or rad)</span></div>
+      <div><b>φ</b><span>angle between two vectors (degrees or rad)</span></div>
+    </div>
+  </div>
+
+  <p>
+    Everything in two-dimensional kinematics rests on one theorem: <strong>perpendicular components do not
+    talk to each other</strong>. Adding a horizontal velocity to a falling stone changes where it lands but
+    not <em>when</em>. Choosing your axes well is therefore a real decision, not bookkeeping — on an incline,
+    tilting the axes so x runs along the slope turns a two-component problem into a one-component one.
+  </p>
+  <p>
+    Two habits prevent most errors. First, <span class="fi">cos</span> goes with the component
+    <em>adjacent</em> to the stated angle — if the angle is measured from the <em>vertical</em>, then it is the
+    vertical component that carries the cosine. Do not memorise "x gets cos". Second, when you take
+    <span class="fi">arctan</span>, check the quadrant against the signs of the components: a calculator returns
+    an angle between −90° and +90° and will happily report a north-west vector as though it pointed south-east.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 4 · adding two displacements</h4>
+    <p style="margin:0 0 .3rem">A hiker walks 5.0 km in a direction 30° north of east, then 4.0 km due north.
+      Find the resultant displacement.</p>
+    <ol>
+      <li><b>Axes.</b> +x east, +y north.</li>
+      <li><b>Components of leg 1.</b> x₁ = 5.0 cos30° = 5.0 × 0.8660 = 4.330 km;
+        y₁ = 5.0 sin30° = 5.0 × 0.5000 = 2.500 km.</li>
+      <li><b>Components of leg 2.</b> x₂ = 0; y₂ = 4.000 km.</li>
+      <li><b>Add component-wise.</b> x = 4.330 km, y = 2.500 + 4.000 = 6.500 km.</li>
+      <li><b>Magnitude.</b> R = √(4.330² + 6.500²) = √(18.75 + 42.25) = √61.0 = 7.81 km.</li>
+      <li><b>Direction.</b> θ = arctan(6.500 / 4.330) = arctan(1.501) = 56.3°; both components are positive, so
+        it is in the first quadrant — 56.3° north of east.</li>
+      <li><b>Sanity check.</b> The answer must lie between |5.0 − 4.0| = 1.0 km and 5.0 + 4.0 = 9.0 km. 7.81 ✓
+        And it must be steeper than 30° but shallower than 90°. 56.3° ✓</li>
+    </ol>
+    <span class="wex__ans">R = 7.81 km at 56.3° north of east</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · magnitudes do not add</p>
+    <p style="margin:0">
+      5.0 km + 4.0 km gives 9.0 km only if the legs are parallel. In general the resultant magnitude lies in
+      the range <span class="fi">|A − B| ≤ |<b>A</b>+<b>B</b>| ≤ A + B</span>, with the maximum at φ = 0° and
+      the minimum at φ = 180°. Any multiple-choice option outside that band can be eliminated before you
+      calculate anything.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Relative velocity: rivers and closing speed</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Relative velocity <span class="fi"><b>v</b><sub>A/B</sub></span></dt>
+      <dd>The velocity of object A as measured in the reference frame of object B — that is, what B would say
+        A is doing. Every velocity is relative to <em>something</em>; "the velocity of the boat" is meaningless
+        until you say relative to the water or relative to the bank.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq"><b>v</b><sub>A/C</sub> = <b>v</b><sub>A/B</sub> + <b>v</b><sub>B/C</sub></span>
+      <span class="fx__tag">non-relativistic (v ≪ c); inner subscripts cancel</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq"><b>v</b><sub>B/A</sub> = −<b>v</b><sub>A/B</sub></span><span class="fx__tag">swapping the frames reverses the vector</span></div>
+      <div class="fx"><span class="fx__eq">t<sub>cross</sub> = w / v<sub>boat</sub>&nbsp;·&nbsp;drift = v<sub>river</sub> · t<sub>cross</sub></span><span class="fx__tag">bow aimed straight across</span></div>
+      <div class="fx"><span class="fx__eq">sinθ = v<sub>river</sub> / v<sub>boat</sub></span><span class="fx__tag">to land directly opposite; needs v<sub>river</sub> &lt; v<sub>boat</sub></span></div>
+      <div class="fx"><span class="fx__eq">closing speed = |<b>v</b><sub>A</sub> − <b>v</b><sub>B</sub>|</span><span class="fx__tag">head-on: sum · same direction: difference</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v<sub>A/B</sub></b><span>velocity of A relative to B (m·s⁻¹)</span></div>
+      <div><b>w</b><span>width of the river (m)</span></div>
+      <div><b>v<sub>boat</sub></b><span>boat speed relative to the water (m·s⁻¹)</span></div>
+      <div><b>v<sub>river</sub></b><span>current speed relative to the bank (m·s⁻¹)</span></div>
+      <div><b>θ</b><span>heading angle upstream from the perpendicular (°)</span></div>
+    </div>
+  </div>
+
+  <p>
+    The subscript rule is the whole method: write the chain so the inner subscripts match and cancel.
+    <span class="fi"><b>v</b><sub>boat/bank</sub> = <b>v</b><sub>boat/water</sub> + <b>v</b><sub>water/bank</sub></span>.
+    Then resolve into components and treat each axis separately.
+  </p>
+  <p>
+    The physically important result for a river crossing is that <strong>the current does not affect the
+    crossing time</strong> when the bow is aimed straight across. The current is entirely along the bank, so it
+    has no component across the river; the across-river velocity is still the full boat speed, and
+    <span class="fi">t = w/v<sub>boat</sub></span>. All the current does is add a downstream drift. This is the
+    independence-of-components theorem of §07 in a different costume, and it is the same reason a bullet fired
+    horizontally and one dropped hit the ground together.
+  </p>
+  <p>
+    Closing-speed problems are simpler still. Two cars approaching head-on at 25 and 15 m·s⁻¹ close the gap at
+    <span class="fi">25 + 15 = 40 m·s⁻¹</span>; 800 m of separation therefore lasts 20 s. Two cars travelling the
+    same way at those speeds close at only 10 m·s⁻¹. Sit in one frame and the problem becomes one-dimensional
+    with a single moving object.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 5 · crossing a river, two ways</h4>
+    <p style="margin:0 0 .3rem">A river 120 m wide flows east at 1.5 m·s⁻¹. A boat can move at 2.0 m·s⁻¹
+      relative to the water. (a) If the bow is aimed due north (straight across), find the crossing time, the
+      drift and the path length over the ground. (b) What heading lands the boat directly opposite, and how long
+      does that take?</p>
+    <ol>
+      <li><b>(a) Across-axis.</b> The current is purely east, so the northward velocity is the full 2.0 m·s⁻¹:
+        t = 120 / 2.0 = <b>60 s</b>.</li>
+      <li><b>(a) Along-axis.</b> Drift = 1.5 × 60 = <b>90 m</b> downstream.</li>
+      <li><b>(a) Ground velocity.</b> √(2.0² + 1.5²) = √6.25 = 2.5 m·s⁻¹, so the path over the ground is
+        2.5 × 60 = 150 m (the 3–4–5 triangle: 90, 120, 150).</li>
+      <li><b>(b) Cancel the drift.</b> The boat must aim upstream (west of north) by θ where the westward
+        component cancels the current: 2.0 sinθ = 1.5 → sinθ = 0.750 → θ = <b>48.6°</b> west of north.</li>
+      <li><b>(b) Remaining northward speed.</b> 2.0 cos(48.6°) = 2.0 × 0.6614 = 1.323 m·s⁻¹
+        (= √(2.0² − 1.5²) = √1.75). Crossing time = 120 / 1.323 = <b>90.7 s</b>.</li>
+      <li><b>Read the physics.</b> Steering to land opposite costs 51 % more time, because part of the boat's
+        capability is spent fighting the current instead of crossing. If the current exceeded 2.0 m·s⁻¹ no
+        heading could land the boat opposite at all — but it could still reach the far bank, just further
+        downstream.</li>
+    </ol>
+    <span class="wex__ans">(a) 60 s, 90 m drift, 150 m path · (b) 48.6° upstream, 90.7 s</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">
+      Distinguish the two river questions by their target. <strong>"Minimum time"</strong> → aim straight
+      across and accept the drift. <strong>"Land directly opposite" / "minimum drift"</strong> → aim upstream
+      at <span class="fi">sinθ = v<sub>river</sub>/v<sub>boat</sub></span> and accept the longer time. They
+      are different optimisations and cannot both be satisfied.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Projectile motion: two independent 1-D problems</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Projectile</dt>
+      <dd>An object moving under gravity alone after launch, with air resistance neglected. Its horizontal
+        acceleration is zero and its vertical acceleration is −g at every instant, including the apex.</dd>
+      <dt>Independence of the axes</dt>
+      <dd>Because gravity is purely vertical, the horizontal and vertical motions share only the clock. Solve
+        them as two separate one-dimensional problems and use <strong>t as the bridge</strong> between them.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">x = (v₀cosθ)t&nbsp;&nbsp;&nbsp;&nbsp;y = (v₀sinθ)t − ½gt²</span>
+      <span class="fx__tag">launch at origin; up positive; no air resistance</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">v<sub>x</sub> = v₀cosθ (constant)&nbsp;·&nbsp;v<sub>y</sub> = v₀sinθ − gt</span><span class="fx__tag">velocity components at time t</span></div>
+      <div class="fx"><span class="fx__eq">T = 2v₀sinθ / g</span><span class="fx__tag">time of flight, level ground only</span></div>
+      <div class="fx"><span class="fx__eq">H = v₀²sin²θ / (2g)</span><span class="fx__tag">maximum height above the launch point</span></div>
+      <div class="fx"><span class="fx__eq">R = v₀²sin2θ / g</span><span class="fx__tag">range, level ground only</span></div>
+      <div class="fx"><span class="fx__eq">y = x tanθ − gx² / (2v₀²cos²θ)</span><span class="fx__tag">trajectory: a parabola in x</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v₀</b><span>launch speed (m·s⁻¹)</span></div>
+      <div><b>θ</b><span>launch angle above the horizontal (°)</span></div>
+      <div><b>v<sub>x</sub></b><span>horizontal velocity, constant (m·s⁻¹)</span></div>
+      <div><b>v<sub>y</sub></b><span>vertical velocity (m·s⁻¹)</span></div>
+      <div><b>T</b><span>total time of flight (s)</span></div>
+      <div><b>H</b><span>maximum height (m)</span></div>
+      <div><b>R</b><span>horizontal range (m)</span></div>
+      <div><b>g</b><span>9.8 m·s⁻²</span></div>
+    </div>
+  </div>
+
+  <p>
+    Nothing in projectile motion is new. The horizontal axis is §04 with <span class="fi">a = 0</span>; the
+    vertical axis is §05. What makes the topic feel hard is deciding which axis a piece of given information
+    belongs to. Sort the data into two columns before you write a single equation.
+  </p>
+
+  <figure class="figure pk-fig">
+    <svg viewBox="0 0 680 340" role="img" aria-label="A parabolic projectile trajectory. At launch the velocity is shown split into a horizontal and a vertical component; at the apex only the horizontal component remains; at landing the vertical component has returned with equal magnitude but downward. Amber arrows below the path show that the acceleration is g downward everywhere. The maximum height H and the range R are marked.">
+      <defs>
+        <marker id="pk4-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-vel"/></marker>
+        <marker id="pk4-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-acc"/></marker>
+        <marker id="pk4-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-soft)"/></marker>
+      </defs>
+
+      <line x1="20" y1="250" x2="665" y2="250" class="s-axis"/>
+      <path d="M 60 250 Q 310 -50 560 250" class="s-vel"/>
+
+      <!-- launch -->
+      <circle cx="60" cy="250" r="4.5" class="f-vel"/>
+      <line x1="60" y1="250" x2="128" y2="250" class="s-vel" marker-end="url(#pk4-v)"/>
+      <line x1="60" y1="250" x2="60"  y2="168" class="s-vel" marker-end="url(#pk4-v)"/>
+      <line x1="60" y1="250" x2="128" y2="168" class="s-line s-dash" stroke-width="2"/>
+      <text x="72"  y="267" class="pk-m pk-vel pk-sm">v₀cosθ</text>
+      <text x="54"  y="196" text-anchor="end" class="pk-m pk-vel pk-sm">v₀sinθ</text>
+      <text x="134" y="162" class="pk-m pk-sm">v₀</text>
+      <text x="96"  y="242" class="pk-m pk-sm">θ</text>
+
+      <!-- apex -->
+      <circle cx="310" cy="100" r="4.5" class="f-vel"/>
+      <line x1="310" y1="100" x2="382" y2="100" class="s-vel" marker-end="url(#pk4-v)"/>
+      <text x="318" y="88" class="pk-m pk-vel pk-sm">v = v₀cosθ only · v<tspan dy="2">y</tspan><tspan dy="-2"> = 0</tspan></text>
+      <line x1="310" y1="104" x2="310" y2="250" class="s-line s-dash"/>
+      <text x="288" y="180" text-anchor="end" class="pk-m pk-sm">H</text>
+
+      <!-- landing -->
+      <circle cx="560" cy="250" r="4.5" class="f-vel"/>
+      <line x1="560" y1="250" x2="628" y2="250" class="s-vel" marker-end="url(#pk4-v)"/>
+      <line x1="560" y1="250" x2="560" y2="332" class="s-vel" marker-end="url(#pk4-v)"/>
+      <line x1="560" y1="250" x2="628" y2="332" class="s-line s-dash" stroke-width="2"/>
+      <text x="572" y="300" class="pk-m pk-vel pk-sm">−v₀sinθ</text>
+      <text x="640" y="242" text-anchor="end" class="pk-m pk-vel pk-sm">v₀cosθ</text>
+
+      <!-- range -->
+      <line x1="60" y1="274" x2="556" y2="274" class="s-ink" marker-start="url(#pk4-i)" marker-end="url(#pk4-i)"/>
+      <text x="300" y="292" text-anchor="middle" class="pk-m pk-sm">R = v₀²sin2θ / g</text>
+
+      <!-- gravity -->
+      <g class="s-acc">
+        <line x1="185" y1="152" x2="185" y2="196" marker-end="url(#pk4-a)"/>
+        <line x1="310" y1="116" x2="310" y2="160" marker-end="url(#pk4-a)"/>
+        <line x1="435" y1="152" x2="435" y2="196" marker-end="url(#pk4-a)"/>
+      </g>
+      <text x="452" y="130" class="pk-m pk-acc pk-sm">a = (0, −g) everywhere</text>
+      <text x="665" y="36" text-anchor="end" class="pk-sm">horizontal: a = 0, v<tspan dy="2">x</tspan><tspan dy="-2"> constant</tspan></text>
+      <text x="665" y="56" text-anchor="end" class="pk-sm">vertical: free fall, a = −g</text>
+    </svg>
+    <figcaption>The horizontal arrow never changes length; the vertical one shrinks to zero at the apex and
+      regrows downward, symmetrically. The trajectory is a parabola because y is quadratic in t while x is
+      linear in t, so y is quadratic in x.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Quantity</th><th>Horizontal axis (x)</th><th>Vertical axis (y)</th></tr></thead>
+      <tbody>
+        <tr><td>Acceleration</td><td class="num">0</td><td class="num">−g = −9.8 m·s⁻²</td></tr>
+        <tr><td>Initial velocity</td><td class="num">v₀cosθ</td><td class="num">v₀sinθ</td></tr>
+        <tr><td>Velocity at time t</td><td class="num">v₀cosθ (unchanged)</td><td class="num">v₀sinθ − gt</td></tr>
+        <tr><td>Position at time t</td><td class="num">(v₀cosθ)t</td><td class="num">(v₀sinθ)t − ½gt²</td></tr>
+        <tr><td>At the apex</td><td>Unchanged and non-zero</td><td class="num">v<sub>y</sub> = 0, a still −g</td></tr>
+        <tr><td>Governs</td><td>Range, and only the range</td><td>Time of flight and maximum height</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why 45° maximises the range</h3>
+  <p>
+    On level ground the range is <span class="fi">R = v₀² sin2θ / g</span>. Everything except
+    <span class="fi">sin2θ</span> is fixed, and <span class="fi">sin</span> peaks at 1 when its argument is
+    90°, i.e. when <strong>θ = 45°</strong>. The causal story matters more than the algebra: the range is
+    (horizontal speed) × (time of flight) = <span class="fi">v₀cosθ × 2v₀sinθ/g</span>. A shallow launch gives
+    plenty of horizontal speed but almost no hang time; a steep launch gives lots of hang time but little
+    horizontal speed. 45° is the balance point of that trade-off. It also follows immediately that
+    <strong>complementary angles give equal ranges</strong> — 30° and 60° land in the same place, one with a
+    flat fast trajectory and one with a high slow one, because sin60° = sin120°.
+  </p>
+  <p>
+    Two conditions on that result. It assumes <em>level</em> ground: launching from a height, the optimum angle
+    is less than 45° (extra hang time is already provided by the drop, so it pays to buy horizontal speed
+    instead). And it assumes no air resistance: real thrown objects optimise nearer 35–40°.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 6 · a full projectile, level ground</h4>
+    <p style="margin:0 0 .3rem">A ball is kicked from level ground at 20 m·s⁻¹, 30° above the horizontal.
+      Take g = 9.8 m·s⁻² and neglect air resistance. Find the time of flight, the maximum height, the range,
+      and the velocity 1.0 s after launch.</p>
+    <ol>
+      <li><b>Split the launch velocity.</b> v<sub>x</sub> = 20 cos30° = 20 × 0.8660 = 17.32 m·s⁻¹ (constant);
+        v<sub>y0</sub> = 20 sin30° = 20 × 0.5000 = 10.00 m·s⁻¹.</li>
+      <li><b>Time of flight.</b> Vertical only. The ball returns to y = 0, and by symmetry the time up equals
+        the time down: t<sub>up</sub> = 10.00/9.8 = 1.020 s, so T = <b>2.04 s</b>.</li>
+      <li><b>Maximum height.</b> Vertical only, no time needed:
+        H = v<sub>y0</sub>²/(2g) = 100/19.6 = <b>5.10 m</b>.</li>
+      <li><b>Range.</b> Horizontal only, using T as the bridge: R = 17.32 × 2.041 = <b>35.4 m</b>.
+        Check against the formula: R = 20² sin60° / 9.8 = 400 × 0.8660 / 9.8 = 346.4/9.8 = 35.35 m ✓</li>
+      <li><b>Velocity at t = 1.0 s.</b> v<sub>x</sub> = 17.32 m·s⁻¹ still;
+        v<sub>y</sub> = 10.00 − 9.8(1.0) = +0.20 m·s⁻¹ (just short of the apex).
+        Speed = √(17.32² + 0.20²) = √(299.98 + 0.04) = 17.32 m·s⁻¹, at 0.7° above the horizontal.</li>
+      <li><b>Sanity check.</b> A 60° launch at the same speed would give the same 35.4 m range but
+        H = 400 × 0.75/19.6 = 15.3 m and T = 3.53 s — same landing spot, three times the height.</li>
+    </ol>
+    <span class="wex__ans">T = 2.04 s · H = 5.10 m · R = 35.4 m · v(1.0 s) = 17.3 m·s⁻¹ nearly horizontal</span>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · T = 2v₀sinθ/g and R = v₀²sin2θ/g are not general</p>
+    <p style="margin:0">
+      Both assume the projectile lands at the launch height. Fire from a cliff, into a valley, or onto a
+      raised platform and neither applies. In those cases go back to
+      <span class="fi">y = (v₀sinθ)t − ½gt²</span>, set y to the (negative) landing height, solve the
+      quadratic for t, and only then multiply by v<sub>x</sub>. Also note that a projectile launched
+      <em>horizontally</em> has θ = 0, so v<sub>y0</sub> = 0 and the fall time is simply
+      <span class="fi">t = √(2h/g)</span> — independent of how fast it was thrown.
+    </p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Memory hook</h4>
+    <p>Vertical decides <em>when</em>; horizontal decides <em>where</em>. Time is the only thing the two
+      axes are allowed to share.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Uniform circular motion, kinematically</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Uniform circular motion</dt>
+      <dd>Motion on a circular path at constant <em>speed</em>. The velocity is nonetheless changing at every
+        instant, because its direction changes continuously — so the acceleration is not zero.</dd>
+      <dt>Centripetal acceleration <span class="fi">a<sub>c</sub></span></dt>
+      <dd>The acceleration of a body in uniform circular motion: constant in magnitude, always directed toward
+        the centre, always perpendicular to the velocity. "Centripetal" names a <em>direction</em>, not a new
+        kind of acceleration.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">a<sub>c</sub> = v²/r = ω²r</span>
+      <span class="fx__tag">uniform circular motion; directed toward the centre</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">ω = 2π/T = 2πf&nbsp;&nbsp;·&nbsp;&nbsp;v = ωr</span><span class="fx__tag">angular ↔ linear</span></div>
+      <div class="fx"><span class="fx__eq">a<sub>c</sub> = 4π²r/T²</span><span class="fx__tag">when the period is given</span></div>
+      <div class="fx"><span class="fx__eq">a<sub>tan</sub> = dv/dt = 0</span><span class="fx__tag">uniform case only; non-uniform adds a tangential component</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>v</b><span>tangential speed (m·s⁻¹)</span></div>
+      <div><b>r</b><span>radius of the circular path (m)</span></div>
+      <div><b>ω</b><span>angular speed (rad·s⁻¹)</span></div>
+      <div><b>T</b><span>period, time for one revolution (s)</span></div>
+      <div><b>f</b><span>frequency, revolutions per second (Hz)</span></div>
+      <div><b>a<sub>c</sub></b><span>centripetal acceleration (m·s⁻²)</span></div>
+    </div>
+  </div>
+
+  <p>
+    This is the clearest test of whether you believe that velocity is a vector. The speedometer reads constant,
+    so speed is constant; but the velocity vector is swinging round through 360° every period, so
+    <span class="fi">Δ<b>v</b> ≠ 0</span> and therefore <span class="fi"><b>a</b> ≠ 0</span>. Since the speed
+    does not change, the acceleration can have no component along <b>v</b> (§03) — so it must be entirely
+    perpendicular, which on a circle means pointing at the centre.
+  </p>
+
+  <figure class="figure pk-fig">
+    <svg viewBox="0 0 680 320" role="img" aria-label="Left: an object on a circular path with teal velocity arrows drawn tangent at three positions and amber acceleration arrows drawn from each position toward the centre. Right: the velocity vectors at two nearby instants drawn tail to tail, with the change in velocity joining their tips and pointing toward the centre of the circle.">
+      <defs>
+        <marker id="pk5-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-vel"/></marker>
+        <marker id="pk5-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-acc"/></marker>
+      </defs>
+
+      <circle cx="170" cy="160" r="95" class="s-line s-dash"/>
+      <circle cx="170" cy="160" r="3.5" fill="var(--ink-soft)"/>
+      <text x="170" y="150" text-anchor="middle" class="pk-sm">centre</text>
+
+      <!-- point at 60 degrees -->
+      <circle cx="217.5" cy="77.7" r="4.5" class="f-vel"/>
+      <line x1="217.5" y1="77.7" x2="156.9" y2="42.7" class="s-vel" marker-end="url(#pk5-v)"/>
+      <line x1="217.5" y1="77.7" x2="190"   y2="125.3" class="s-acc" marker-end="url(#pk5-a)"/>
+      <text x="140" y="34" text-anchor="end" class="pk-m pk-vel pk-sm">v</text>
+      <text x="200" y="140" class="pk-m pk-acc pk-sm">a</text>
+
+      <!-- point at 0 degrees -->
+      <circle cx="265" cy="160" r="4.5" class="f-vel"/>
+      <line x1="265" y1="160" x2="265" y2="90"  class="s-vel" marker-end="url(#pk5-v)"/>
+      <line x1="265" y1="160" x2="210" y2="160" class="s-acc" marker-end="url(#pk5-a)"/>
+      <text x="272" y="86" class="pk-m pk-vel pk-sm">v</text>
+
+      <!-- point at 180 degrees -->
+      <circle cx="75" cy="160" r="4.5" class="f-vel"/>
+      <line x1="75"  y1="160" x2="75"  y2="230" class="s-vel" marker-end="url(#pk5-v)"/>
+      <line x1="75"  y1="160" x2="130" y2="160" class="s-acc" marker-end="url(#pk5-a)"/>
+      <text x="66" y="238" text-anchor="end" class="pk-m pk-vel pk-sm">v</text>
+
+      <text x="170" y="290" text-anchor="middle" class="pk-sm">speed constant · direction always changing</text>
+      <text x="170" y="308" text-anchor="middle" class="pk-sm pk-acc">a ⟂ v at every instant</text>
+
+      <line x1="355" y1="30" x2="355" y2="300" class="s-line s-dash"/>
+
+      <text x="430" y="60" class="pk-ttl">Why it points inward</text>
+      <text x="430" y="82" class="pk-sm">Draw the velocity a moment before and a moment</text>
+      <text x="430" y="100" class="pk-sm">after, tail to tail. Their tips are joined by Δv:</text>
+
+      <circle cx="430" cy="150" r="3.5" fill="var(--ink-soft)"/>
+      <line x1="430" y1="150" x2="550" y2="118" class="s-vel" marker-end="url(#pk5-v)"/>
+      <line x1="430" y1="150" x2="550" y2="182" class="s-vel" marker-end="url(#pk5-v)"/>
+      <line x1="552" y1="182" x2="552" y2="118" class="s-acc" marker-end="url(#pk5-a)"/>
+      <text x="496" y="112" text-anchor="middle" class="pk-m pk-vel pk-sm">v₂</text>
+      <text x="496" y="200" text-anchor="middle" class="pk-m pk-vel pk-sm">v₁</text>
+      <text x="562" y="155" class="pk-m pk-acc pk-sm">Δv</text>
+
+      <text x="430" y="235" class="pk-sm">|v₁| = |v₂| = v, so Δv is perpendicular to them</text>
+      <text x="430" y="253" class="pk-sm">in the limit — i.e. it points at the centre.</text>
+      <text x="430" y="278" class="pk-m pk-sm">|Δv|/v = |Δs|/r = vΔt/r  →  a = |Δv|/Δt = v²/r</text>
+    </svg>
+    <figcaption>Similar triangles give the result. The triangle formed by v₁, v₂ and Δv is geometrically
+      similar to the triangle formed by the two radii and the arc, so |Δv|/v = |Δs|/r. Dividing by Δt and
+      letting Δt → 0 gives a<sub>c</sub> = v²/r, directed toward the centre.</figcaption>
+  </figure>
+
+  <p>
+    The two forms of the formula are not interchangeable in practice. Use <span class="fi">a<sub>c</sub> = v²/r</span>
+    when the <em>linear</em> speed is fixed — a car on a bend, blood in an aortic arch. Use
+    <span class="fi">a<sub>c</sub> = ω²r</span> when the <em>angular</em> speed is fixed — anything rigid and
+    spinning, where every point shares ω but the rim moves faster than the hub. Note the opposite dependence on
+    r: at fixed v, a larger radius means gentler acceleration; at fixed ω, a larger radius means fiercer
+    acceleration. That is exactly why a centrifuge is built with the longest rotor arm the machine can spin.
+  </p>
+
+  <div class="wex">
+    <h4>Worked example 7 · a clinical centrifuge</h4>
+    <p style="margin:0 0 .3rem">A benchtop centrifuge separates plasma from packed cells. The sample sits at a
+      radius of 8.0 cm and the rotor turns at 3000 revolutions per minute. Find the tangential speed, the
+      centripetal acceleration, and express that acceleration in multiples of g.</p>
+    <ol>
+      <li><b>Convert to SI.</b> r = 0.080 m. f = 3000 / 60 = 50 rev·s⁻¹ = 50 Hz.</li>
+      <li><b>Angular speed.</b> ω = 2πf = 2π(50) = 100π = 314.2 rad·s⁻¹.</li>
+      <li><b>Tangential speed.</b> v = ωr = 314.2 × 0.080 = 25.1 m·s⁻¹.</li>
+      <li><b>Centripetal acceleration.</b> ω is the fixed quantity, so use
+        a<sub>c</sub> = ω²r = (314.2)² × 0.080 = 98 700 × 0.080 = 7.90 × 10³ m·s⁻².<br>
+        Cross-check with v²/r = 25.1² / 0.080 = 630 / 0.080 = 7.9 × 10³ m·s⁻² ✓</li>
+      <li><b>In units of g.</b> 7.90 × 10³ / 9.8 = <b>≈ 8.1 × 10² g</b> — about 806 times gravity, which is why
+        a few minutes of spinning does what hours of settling could not.</li>
+      <li><b>Read the physics.</b> Sedimentation rate scales with the effective acceleration, so this is the
+        quantity clinical protocols specify (as "relative centrifugal force", RCF, in units of g) rather than
+        rpm — rpm alone is meaningless without the rotor radius.</li>
+    </ol>
+    <span class="wex__ans">v = 25.1 m·s⁻¹ · a<sub>c</sub> = 7.9 × 10³ m·s⁻² ≈ 806 g toward the axis</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">
+      Three things are examined again and again. <b>(1)</b> Constant speed with nonzero acceleration is not a
+      contradiction — direction is half of a vector. <b>(2)</b> The acceleration is <em>toward</em> the centre;
+      there is no outward acceleration. <b>(3)</b> Nothing here needs Newton's laws: <span class="fi">a<sub>c</sub></span>
+      is a kinematic fact about circular paths. The force that supplies it — friction, tension, gravity, the
+      normal force — is the subject of note 02, and "centripetal force" is a job description, never an extra
+      force to add to a free-body diagram.
+    </p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Trap · degrees, revolutions and radians</p>
+    <p style="margin:0">
+      <span class="fi">v = ωr</span> and <span class="fi">a<sub>c</sub> = ω²r</span> are true <strong>only if
+      ω is in rad·s⁻¹</strong>. Revolutions per minute must be multiplied by 2π/60. Forgetting the 2π
+      under-reports the acceleration by a factor of about 39. Likewise, the vestibular semicircular canals
+      respond to <em>angular</em> acceleration (rad·s⁻²), not to a<sub>c</sub> — which is why you can be
+      spun at constant ω and, after a few seconds, feel nothing at all.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== Quiz =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 11</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>Answer before you look. When you get one wrong, do not memorise the letter — go back to the section it
+    came from and re-derive it, because the exam will re-dress the same idea in different numbers. Roughly
+    half of these are calculational; the rest are the sign and vector traps that cost most marks.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="physics.html"><small>Index</small><b>All physics notes</b></a>
+  <a href="physics-02-newton-dynamics.html"><small>Next</small><b>Newton’s Laws, Forces and Friction →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Physics 01 · Kinematics: Motion in One and Two Dimensions</p>
+    <p>Built on vector decomposition and motion graphs; g is taken as 9.8 m·s⁻² and all worked values are
+      standard textbook approximations, quoted for magnitude and method rather than as precise citations.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A car drives 120 km due east at an average of 60 km·h⁻¹, then returns along the same road at an average of 40 km·h⁻¹. For the complete round trip, the average speed and the average velocity are:",
+    "options": [
+      "average speed 50 km·h⁻¹, average velocity 50 km·h⁻¹ east",
+      "average speed 48 km·h⁻¹, average velocity 0",
+      "average speed 48 km·h⁻¹, average velocity 48 km·h⁻¹ east",
+      "average speed 50 km·h⁻¹, average velocity 0"
+    ],
+    "answer": 1,
+    "explain": "The outward leg takes 2.0 h and the return 3.0 h, so 240 km in 5.0 h gives an average speed of 48 km·h⁻¹ — the harmonic mean, because more time is spent at the slower speed. The tempting 50 km·h⁻¹ is the arithmetic mean, which is only correct for equal <b>times</b>, not equal distances. The car ends where it started, so the displacement and hence the average velocity are exactly zero."
+  },
+  {
+    "stem": "A ball is thrown vertically upward. At the instant it reaches its highest point:",
+    "options": [
+      "both its velocity and its acceleration are zero",
+      "its velocity is zero and its acceleration is 9.8 m·s⁻² directed upward",
+      "its velocity is 9.8 m·s⁻¹ downward and its acceleration is zero",
+      "its velocity is zero and its acceleration is 9.8 m·s⁻² directed downward"
+    ],
+    "answer": 3,
+    "explain": "Gravity acts throughout the flight, so the acceleration is 9.8 m·s⁻² downward at every instant, including the apex; only the velocity passes through zero there. Option A is the classic error — if the acceleration really were zero the ball would hover at the top instead of falling back. Velocity is a value and acceleration is its rate of change, so one may be zero while the other is not."
+  },
+  {
+    "stem": "A train starts from rest and accelerates uniformly at 0.60 m·s⁻² for 40 s. How far does it travel in that time?",
+    "options": [
+      "480 m",
+      "960 m",
+      "24 m",
+      "1200 m"
+    ],
+    "answer": 0,
+    "explain": "With v₀ = 0, Δx = ½at² = ½ × 0.60 × 40² = ½ × 0.60 × 1600 = 480 m. The distractor 960 m is what you get by forgetting the factor ½ (or by multiplying the <b>final</b> velocity 24 m·s⁻¹ by 40 s, which over-counts because the train was slower than that for the whole trip). 24 m confuses the final velocity, 24 m·s⁻¹, with a distance."
+  },
+  {
+    "stem": "A car braking at a fixed rate stops in 20 m from 40 km·h⁻¹. Starting from 80 km·h⁻¹ with the same braking, its stopping distance becomes:",
+    "options": [
+      "28 m",
+      "40 m",
+      "80 m",
+      "160 m"
+    ],
+    "answer": 2,
+    "explain": "Use the time-free equation: 0 = v₀² + 2aΔx gives Δx = v₀²/(2|a|), so the braking distance scales with the <b>square</b> of the initial speed. Doubling the speed therefore quadruples the distance: 4 × 20 m = 80 m. Choosing 40 m assumes a linear relationship, which is the intuition that makes speeding so much more dangerous than drivers expect."
+  },
+  {
+    "stem": "A stone is thrown horizontally at 20 m·s⁻¹ from a cliff 44.1 m high. Neglecting air resistance and taking g = 9.8 m·s⁻², how far from the base of the cliff does it land?",
+    "options": [
+      "30 m",
+      "60 m",
+      "90 m",
+      "It cannot be determined without the launch angle"
+    ],
+    "answer": 1,
+    "explain": "The vertical motion alone fixes the time: h = ½gt² gives t = √(2 × 44.1 / 9.8) = √9.0 = 3.0 s. The horizontal velocity is unaccelerated, so x = 20 × 3.0 = 60 m. Option D misses the point of the question — \"horizontally\" <i>is</i> the launch angle (θ = 0), and the two axes are independent, so the horizontal speed never affects the fall time."
+  },
+  {
+    "stem": "From the same height and at the same instant, ball A is released from rest while ball B is fired horizontally at 30 m·s⁻¹. Ignoring air resistance:",
+    "options": [
+      "A lands first, because it travels the shorter path",
+      "B lands first, because it is moving faster",
+      "they land at the same instant, because the vertical motion is independent of the horizontal motion",
+      "the answer depends on the masses of the two balls"
+    ],
+    "answer": 2,
+    "explain": "Gravity is purely vertical, so it produces the same vertical velocity history in both balls; the horizontal velocity of B contributes nothing to the vertical problem and both satisfy y = ½gt². Options A and B both smuggle in the idea that path length or total speed controls the fall time, which it does not. Mass is irrelevant too, since free-fall acceleration is independent of mass."
+  },
+  {
+    "stem": "A river 90 m wide flows at 4.0 m·s⁻¹. A boat that moves at 3.0 m·s⁻¹ relative to the water points its bow straight across. How long does the crossing take, and how far downstream does it land?",
+    "options": [
+      "30 s, landing 120 m downstream",
+      "18 s, landing 72 m downstream",
+      "30 s, landing 90 m downstream",
+      "it cannot cross at all, because the current is faster than the boat"
+    ],
+    "answer": 0,
+    "explain": "The current is entirely parallel to the bank, so it has no component across the river: the across-river speed is the full 3.0 m·s⁻¹ and t = 90/3.0 = 30 s. In that time the current sweeps the boat 4.0 × 30 = 120 m downstream. Option D confuses two different questions — a boat slower than the current can still reach the far bank, it simply cannot land directly opposite."
+  },
+  {
+    "stem": "A centrifuge rotor of radius 10 cm spins at 20 revolutions per second. The centripetal acceleration at the rim is closest to:",
+    "options": [
+      "40 m·s⁻²",
+      "126 m·s⁻²",
+      "790 m·s⁻²",
+      "1.6 × 10³ m·s⁻²"
+    ],
+    "answer": 3,
+    "explain": "Convert to radians first: ω = 2πf = 2π(20) = 125.7 rad·s⁻¹, so a = ω²r = (125.7)² × 0.10 ≈ 1.58 × 10³ m·s⁻². The distractor 40 m·s⁻² is what you get by feeding 20 rev·s⁻¹ straight into ω²r without converting to rad·s⁻¹ (20² × 0.10 = 40); 126 m·s⁻² is ω itself, not ω²r. Dropping the 2π under-reports the answer by a factor of about 39, which is the single most common slip in rotational problems."
+  },
+  {
+    "stem": "A v–t graph is a straight line running from +6.0 m·s⁻¹ at t = 0 to −6.0 m·s⁻¹ at t = 6.0 s. Over those six seconds, the object's displacement and the distance it travelled are:",
+    "options": [
+      "0 m and 0 m — it never really moved",
+      "0 m and 18 m",
+      "18 m and 18 m",
+      "−36 m and 36 m"
+    ],
+    "answer": 1,
+    "explain": "Displacement is the <b>signed</b> area under a v–t graph: a triangle of +9 m in the first 3 s and one of −9 m in the last 3 s, summing to zero — the object returned to its starting point. Distance is the unsigned area, 9 + 9 = 18 m. Option A confuses zero displacement with no motion, which is the same error as saying a runner who completes a lap did not move."
+  },
+  {
+    "stem": "The four constant-acceleration (SUVAT) equations may NOT legitimately be applied to which of the following?",
+    "options": [
+      "a ball in free fall near the Earth's surface, with air resistance neglected",
+      "a car braking uniformly from 30 m·s⁻¹ to rest",
+      "a skydiver falling through air whose drag force grows with speed",
+      "a puck decelerating uniformly on ice under a constant friction force"
+    ],
+    "answer": 2,
+    "explain": "SUVAT is derived from a straight-line v–t graph and is valid only while the acceleration is constant in magnitude <b>and</b> direction. A skydiver's drag rises as the speed rises, so the net force and therefore the acceleration fall continuously towards zero at terminal velocity — the v–t graph is a curve, and only graphical or calculus methods apply. The other three all have constant net force over the interval described, so their v–t graphs are straight."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
