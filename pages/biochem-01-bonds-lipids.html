@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biochem 01 · Bonds, Functional Groups &amp; the Hydrophobic Effect — PostMed Notebook</title>
+<meta name="description" content="Biochemistry note 01: an interactive energy ruler for covalent and noncovalent bonds, the functional groups of biochemistry ranked by polarity, water and hydrogen bonding, the entropy-driven hydrophobic effect, amphipathic self-assembly, lipid classification and membrane fluidity — with 10 self-test questions.">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+/* ===== Page-specific visuals: energy ruler / polarity spectrum /
+         thermodynamic bars / aggregate diagrams / melting-point chart ===== */
+
+/* 1. Energy ruler ------------------------------------------------------ */
+.ruler { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+         padding:1.15rem 1.25rem 1rem; box-shadow:var(--shadow); }
+.ruler__axis { position:relative; height:1.5rem; margin-left:11.5rem; border-bottom:1px solid var(--line); }
+.ruler__tick { position:absolute; bottom:0; transform:translateX(-50%); font-family:var(--mono);
+               font-size:.7rem; color:var(--ink-faint); white-space:nowrap; }
+.ruler__tick::after { content:''; position:absolute; left:50%; bottom:-1px; width:1px; height:.4rem;
+                      background:var(--line); }
+.ruler__row { position:relative; display:flex; align-items:center; gap:.6rem; padding:.2rem 0;
+              width:100%; border:0; background:none; font:inherit; color:inherit; cursor:pointer;
+              text-align:left; border-radius:8px; }
+.ruler__row:hover, .ruler__row[aria-expanded="true"] { background:color-mix(in srgb, var(--accent) 8%, transparent); }
+.ruler__label { flex:none; width:11.5rem; font-size:.83rem; line-height:1.35; padding-right:.5rem; }
+.ruler__label small { display:block; color:var(--ink-faint); font-size:.72rem; }
+.ruler__track { position:relative; flex:1; height:1.55rem; }
+.ruler__track::before { content:''; position:absolute; inset:50% 0 auto; height:1px;
+                        background:var(--line-soft); }
+.ruler__bar { position:absolute; top:50%; transform:translateY(-50%); height:.72rem;
+              border-radius:999px; min-width:.72rem; opacity:.9; }
+.ruler__val { position:absolute; top:50%; transform:translateY(-50%); font-family:var(--mono);
+              font-size:.7rem; color:var(--ink-faint); white-space:nowrap; }
+.ruler__rt { position:absolute; top:0; bottom:0; width:0; border-left:2px dashed var(--accent-2); }
+.ruler__rt span { position:absolute; top:-1.25rem; left:.3rem; font-size:.7rem; color:var(--accent-2);
+                  white-space:nowrap; font-family:var(--mono); }
+.ruler__detail { margin-top:.9rem; padding:.85rem 1rem; border-radius:var(--radius-sm);
+                 background:var(--line-soft); border:1px solid var(--line); font-size:.92rem; }
+.ruler__detail h4 { margin:0 0 .3rem; }
+.ruler__detail p:last-child { margin-bottom:0; }
+@media (max-width: 46rem) {
+  .ruler__axis { margin-left:0; }
+  .ruler__row { flex-direction:column; align-items:stretch; gap:.15rem; padding:.45rem .3rem; }
+  .ruler__label { width:auto; padding:0; }
+}
+
+/* 2. Functional-group polarity spectrum -------------------------------- */
+.fg { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+      padding:1.15rem 1.25rem; box-shadow:var(--shadow); }
+.fg__gradient { height:8px; border-radius:999px; margin-bottom:.35rem;
+  background:linear-gradient(90deg, var(--accent) 0%, var(--accent-3) 34%, var(--ionic) 68%, var(--hydrophobic) 100%); }
+.fg__ends { display:flex; justify-content:space-between; font-size:.75rem; color:var(--ink-faint);
+            margin-bottom:1rem; letter-spacing:.03em; }
+.fg__bands { display:grid; gap:.75rem; grid-template-columns:repeat(4, minmax(0,1fr)); }
+@media (max-width:56rem){ .fg__bands { grid-template-columns:repeat(2, minmax(0,1fr)); } }
+@media (max-width:30rem){ .fg__bands { grid-template-columns:1fr; } }
+.fg__band { border:1px solid var(--line); border-radius:var(--radius-sm); padding:.6rem .55rem;
+            background:var(--paper); }
+.fg__band h4 { font-size:.78rem; letter-spacing:.04em; margin:0 0 .1rem; }
+.fg__band p { font-size:.72rem; color:var(--ink-faint); margin:0 0 .5rem; line-height:1.4; }
+.fg__list { display:flex; flex-direction:column; gap:.3rem; }
+.fg__chip { font:inherit; font-size:.83rem; text-align:left; cursor:pointer; width:100%;
+            border:1px solid var(--line); background:var(--card); color:var(--ink);
+            border-radius:7px; padding:.32rem .55rem; line-height:1.35; }
+.fg__chip small { display:block; font-family:var(--mono); font-size:.7rem; color:var(--ink-faint); }
+.fg__chip:hover { border-color:var(--accent); }
+.fg__chip[aria-pressed="true"] { border-color:var(--accent); background:var(--accent-wash);
+                                  box-shadow:inset 3px 0 0 var(--accent); }
+.fg__detail { margin-top:1rem; padding:1rem 1.1rem; border-radius:var(--radius-sm);
+              background:var(--line-soft); border:1px solid var(--line); }
+.fg__detail h4 { margin:0 0 .1rem; font-size:1.02rem; }
+.fg__detail .fg__formula { font-family:var(--mono); font-size:.85rem; color:var(--accent); margin:0 0 .6rem; }
+.fg__facts { display:grid; gap:.45rem .9rem; grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
+             margin:0 0 .7rem; font-size:.85rem; }
+.fg__facts div { border-left:2px solid var(--line); padding-left:.55rem; }
+.fg__facts dt { font-size:.7rem; letter-spacing:.06em; font-weight:600; color:var(--ink-faint); }
+.fg__facts dd { margin:0; }
+.fg__detail p { font-size:.9rem; margin:0; color:var(--ink-soft); }
+.fg__detail p + p { margin-top:.5rem; }
+
+/* 3. Thermodynamic stacked bars ---------------------------------------- */
+.thermo { display:grid; gap:1rem; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); align-items:start; }
+@media (max-width:46rem){ .thermo { grid-template-columns:1fr; } }
+.thermo__controls label { display:block; font-size:.85rem; font-weight:600; margin:.85rem 0 .25rem; }
+.thermo__controls input[type=range] { width:100%; accent-color:var(--accent); }
+.chips { display:flex; flex-wrap:wrap; gap:.4rem; }
+.chip { font:inherit; font-size:.82rem; padding:.3rem .7rem; border-radius:999px; cursor:pointer;
+        border:1px solid var(--line); background:var(--paper); color:var(--ink-soft); }
+.chip[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; }
+.tbar { margin:.55rem 0 0; }
+.tbar__label { display:flex; justify-content:space-between; font-size:.82rem; margin-bottom:.15rem; }
+.tbar__label b { font-family:var(--mono); font-weight:600; }
+.tbar__track { position:relative; height:1.35rem; background:var(--line-soft); border-radius:7px;
+               border:1px solid var(--line); overflow:hidden; }
+.tbar__zero { position:absolute; top:0; bottom:0; width:1px; background:var(--ink-faint); z-index:2; }
+.tbar__fill { position:absolute; top:0; bottom:0; border-radius:4px; transition:left .2s, width .2s; }
+.thermo__verdict { margin-top:.9rem; padding:.75rem .9rem; border-radius:var(--radius-sm);
+                   border:1px solid var(--line); background:var(--line-soft); font-size:.9rem; }
+
+/* 4. Fatty-acid melting-point chart ------------------------------------ */
+.mp { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+      padding:1.15rem 1.25rem; box-shadow:var(--shadow); }
+.mp__row { display:flex; align-items:center; gap:.6rem; padding:.22rem 0; font-size:.85rem; }
+.mp__name { flex:none; width:12rem; line-height:1.3; }
+.mp__name small { display:block; color:var(--ink-faint); font-family:var(--mono); font-size:.72rem; }
+.mp__track { position:relative; flex:1; height:1.3rem; }
+.mp__zero { position:absolute; top:-.1rem; bottom:-.1rem; width:1px; background:var(--ink-faint); opacity:.6; }
+.mp__bar { position:absolute; top:50%; transform:translateY(-50%); height:.7rem; border-radius:4px; }
+.mp__v { position:absolute; top:50%; transform:translateY(-50%); font-family:var(--mono); font-size:.72rem;
+         color:var(--ink-faint); white-space:nowrap; }
+.mp__body { position:absolute; top:0; bottom:0; width:0; border-left:2px dashed var(--accent-2); }
+.mp__body span { position:absolute; top:-1.1rem; left:.25rem; font-size:.7rem; font-family:var(--mono);
+                 color:var(--accent-2); white-space:nowrap; }
+@media (max-width:46rem){
+  .mp__row { flex-direction:column; align-items:stretch; gap:.1rem; padding:.4rem 0; }
+  .mp__name { width:auto; }
+}
+
+/* 5. Aggregate switcher ------------------------------------------------- */
+.agg { display:grid; gap:1rem; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center; }
+@media (max-width:46rem){ .agg { grid-template-columns:1fr; } }
+.agg svg { width:100%; height:auto; display:block; background:var(--line-soft);
+           border:1px solid var(--line); border-radius:var(--radius-sm); }
+
+/* 6. Shape → structure triptych ---------------------------------------- */
+.shape { text-align:center; }
+.shape svg { width:100%; max-width:8rem; height:auto; margin:0 auto .4rem; display:block; }
+.shape h4 { margin-bottom:.15rem; }
+.shape p { font-size:.86rem; color:var(--ink-soft); margin:0; }
+
+/* 7. Mnemonic card ------------------------------------------------------ */
+.mnemo { border:1px solid var(--line); border-left:4px solid var(--accent-3);
+         border-radius:0 var(--radius-sm) var(--radius-sm) 0; background:var(--card); padding:.8rem 1rem; }
+.mnemo h4 { margin:0 0 .2rem; font-size:.92rem; }
+.mnemo p { margin:0; font-size:.88rem; color:var(--ink-soft); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="../index.html">Contents</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Note 01</p>
+  <h1>Bonds, Functional Groups &amp; the Hydrophobic Effect</h1>
+  <p class="lede">
+    The first chapter of biochemistry is not a chapter to memorise — it is a chapter about
+    <strong>energy scale</strong>. Put "how many kJ/mol is one bond worth" and "how much thermal
+    energy is available at body temperature" on the same ruler, and why proteins fold, why membranes
+    assemble themselves, and why denaturants work all become consequences rather than facts.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Representation: interactive scales &amp; data-viz</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~30 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">One ruler for every bond</a></li>
+      <li><a href="#s2">Functional groups: the alphabet</a></li>
+      <li><a href="#s3">Covalent bonds: the scaffold</a></li>
+      <li><a href="#s4">The four noncovalent interactions</a></li>
+      <li><a href="#s5">Water and its hydrogen-bond network</a></li>
+      <li><a href="#s6">The hydrophobic effect is entropy-driven</a></li>
+      <li><a href="#s7">Amphipathic molecules and their aggregates</a></li>
+      <li><a href="#s8">The lipid map</a></li>
+      <li><a href="#s9">Saturation → melting point → fluidity</a></li>
+      <li><a href="#s10">What breaks what</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>One ruler for every bond</h2>
+  <p>
+    Set the reference point first: <strong>thermal energy at body temperature is RT ≈ 2.6 kJ/mol</strong>
+    (R = 8.314 J·mol⁻¹·K⁻¹, T = 310 K). Any interaction of that magnitude will be knocked apart by random
+    thermal motion if it stands alone. To matter biologically, it has to come in numbers — which is exactly
+    how noncovalent forces operate in living systems.
+  </p>
+  <p>Click any row below to expand the notes for that interaction. The axis is logarithmic; note that covalent
+     bonds and noncovalent interactions differ by roughly two orders of magnitude.</p>
+
+  <div class="ruler" id="ruler">
+    <div class="ruler__axis" id="ruler-axis"></div>
+    <div id="ruler-rows"></div>
+    <div class="ruler__detail" id="ruler-detail">
+      <h4>The big picture first</h4>
+      <p>Covalent bonds sit at <b>200–900 kJ/mol</b>. Every noncovalent interaction is squeezed into
+        <b>0.4–40 kJ/mol</b>. The consequence: covalent bonds <strong>do not break spontaneously</strong>
+        under physiological conditions — they need an enzyme or harsh chemistry — whereas noncovalent
+        interactions are <strong>forming and breaking constantly</strong>. Reversibility, recognition and
+        regulation all live in that lower band.</p>
+    </div>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">
+      "A single van der Waals contact ≈ RT" is the comparison most often turned into a concept question.
+      It also explains why the high affinity of an antibody–antigen or enzyme–substrate pair never comes
+      from one strong interaction, but from the <strong>additive effect of dozens of weak ones</strong>
+      (cooperativity / avidity) — and therefore why <strong>shape complementarity</strong> is the origin
+      of specificity.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Functional groups: the alphabet of biochemistry</h2>
+  <p>
+    Every biomolecule is a hydrocarbon skeleton decorated with a small set of <strong>functional groups</strong>.
+    Those groups decide three things that this whole page depends on:
+    <strong>(1) polarity</strong> — will it dissolve in water; <strong>(2) ionisation</strong> — does it carry
+    charge at pH 7.4; and <strong>(3) reactivity</strong> — which condensation reaction it can undergo, and
+    therefore which covalent bond it can form.
+  </p>
+  <p>Click a group to see its properties. The bands run from <strong>hydrophilic on the left</strong> to
+     <strong>hydrophobic on the right</strong>.</p>
+
+  <div class="fg" id="fg">
+    <div class="fg__gradient" aria-hidden="true"></div>
+    <div class="fg__ends"><span>← STRONGLY HYDROPHILIC</span><span>STRONGLY HYDROPHOBIC →</span></div>
+    <div class="fg__bands" id="fg-bands"></div>
+    <div class="fg__detail" id="fg-detail"></div>
+  </div>
+
+  <h3 style="margin-top:2rem">The rule that generates the whole table</h3>
+  <p>
+    Solubility in water tracks one thing: <strong>can the group participate in the water hydrogen-bond
+    network, or does it interrupt it?</strong> That gives a strict ordering:
+  </p>
+  <div class="callout">
+    <p style="margin:0">
+      <b>charged (ion–dipole)</b> &gt; <b>polar, H-bond donor <em>and</em> acceptor</b> (–OH, –NH) &gt;
+      <b>polar, acceptor only</b> (C=O, –O–) &gt; <b>weakly polar</b> (–SH, aromatic π) &gt;
+      <b>nonpolar</b> (–CH₃, –CH₂–, phenyl)
+    </p>
+  </div>
+
+  <h3>Which two groups make which bond</h3>
+  <p>Nearly every biological polymer is built by <strong>condensation</strong> (losing one H₂O) and taken apart
+     by <strong>hydrolysis</strong>. Memorise the pairings, not the products.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Group A</th><th>Group B</th><th>Bond formed</th><th>Where you meet it</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Carboxyl –COOH</td><td>Amino –NH₂</td><td><b>Amide / peptide</b></td><td>Protein backbone; ceramide</td></tr>
+        <tr><td>Carboxyl –COOH</td><td>Hydroxyl –OH</td><td><b>Ester</b></td><td>Triacylglycerol, phospholipids, waxes</td></tr>
+        <tr><td>Carboxyl –COOH</td><td>Thiol –SH</td><td><b>Thioester</b> (high energy)</td><td>Acetyl-CoA, acyl-CoA</td></tr>
+        <tr><td>Anomeric –OH</td><td>Hydroxyl –OH</td><td><b>Glycosidic</b></td><td>Disaccharides, starch, glycogen</td></tr>
+        <tr><td>Phosphate</td><td>Hydroxyl –OH ×2</td><td><b>Phosphodiester</b></td><td>DNA / RNA backbone</td></tr>
+        <tr><td>Thiol –SH</td><td>Thiol –SH</td><td><b>Disulfide</b> (oxidation, <em>not</em> condensation)</td><td>Extracellular / secreted proteins</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid grid--2" style="margin-top:1rem">
+    <div class="callout callout--warn" style="margin:0">
+      <p class="callout__title">The classic trap</p>
+      <p style="margin:0">An <b>amide</b> (–CONH₂, and the peptide bond itself) is <strong>polar but never
+        ionises</strong> at physiological pH — the lone pair on nitrogen is delocalised into the carbonyl.
+        So Asn and Gln are polar-neutral, while Asp and Glu (carboxyl) are negatively charged. Questions
+        love to put "amide" among carboxyl / phosphate / guanidinium and ask which one carries no charge.</p>
+    </div>
+    <div class="callout callout--exam" style="margin:0">
+      <p class="callout__title">Carbon oxidation state → energy content</p>
+      <p style="margin:0">Alkane (–CH₃) → alcohol (–OH) → aldehyde (–CHO) → carboxylic acid (–COOH) → CO₂.
+        Moving right is <strong>oxidation</strong>. The more <b>reduced</b> a molecule is (more C–H bonds),
+        the more energy its complete oxidation releases — which is why fat yields ≈ 9 kcal/g against
+        ≈ 4 kcal/g for carbohydrate and protein.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Covalent bonds: the scaffold</h2>
+  <p>There are only a handful of covalent bonds worth memorising in biochemistry, and most of them are made
+     by condensation and broken by a hydrolase. Learn them as a triple — <em>how it forms / where it appears /
+     what cleaves it</em>.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead>
+        <tr><th>Bond</th><th>How it forms</th><th>Found in</th><th>Broken by</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Peptide</b></td><td>Condensation (–COOH + –NH₂)</td><td>Protein backbone</td><td>Proteases / peptidases</td></tr>
+        <tr><td><b>Glycosidic</b></td><td>Condensation (anomeric –OH)</td><td>Disaccharides, starch, glycogen, glycoproteins</td><td>Amylase, glycosidases</td></tr>
+        <tr><td><b>Ester</b></td><td>Condensation (glycerol –OH + fatty acid –COOH)</td><td>Triacylglycerol, phospholipid backbone</td><td>Lipases, phospholipases</td></tr>
+        <tr><td><b>Phosphodiester</b></td><td>Condensation (3′-OH + 5′-phosphate)</td><td>DNA / RNA backbone</td><td>Nucleases</td></tr>
+        <tr><td><b>Amide</b></td><td>Condensation (sphingosine –NH₂ + fatty acid)</td><td>Ceramide — the core of every sphingolipid</td><td>Ceramidase</td></tr>
+        <tr><td><b>Disulfide</b></td><td><b>Oxidation</b> of two Cys –SH</td><td>Tertiary / quaternary structure, mostly <b>secreted</b> proteins</td><td>Reducing agents: β-mercaptoethanol, DTT</td></tr>
+        <tr><td><b>Thioester</b></td><td>Fatty acid + CoA-SH (ATP-dependent)</td><td>Acetyl-CoA, acyl-CoA</td><td>High-energy bond; hydrolysis drives reactions</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Three properties of the peptide bond you will be asked about</h3>
+  <div class="grid grid--3" style="margin:1rem 0 0">
+    <div class="card">
+      <h4>① Partial double-bond character</h4>
+      <p style="font-size:.9rem;margin:0">Resonance shortens C–N to ≈ 1.32 Å, between a single and a double bond
+        — roughly 40 % double-bond character.</p>
+    </div>
+    <div class="card">
+      <h4>② No free rotation → planar</h4>
+      <p style="font-size:.9rem;margin:0">Six atoms lie in one plane. Only φ (N–Cα) and ψ (Cα–C) can rotate —
+        which is precisely what the Ramachandran plot maps.</p>
+    </div>
+    <div class="card">
+      <h4>③ Almost always <em>trans</em></h4>
+      <p style="font-size:.9rem;margin:0">The trans configuration avoids side-chain clash. The one common
+        exception is the <b>X–Pro</b> bond, where cis becomes appreciable.</p>
+    </div>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Easily confused</p>
+    <p style="margin:0">A disulfide is formed by <strong>oxidation</strong>, not condensation. That is why it
+      appears in the oxidising environment of the <strong>ER lumen and the extracellular space</strong>;
+      the cytosol is reducing (high glutathione), so stable cytosolic disulfides are rare.</p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>The four noncovalent interactions</h2>
+  <p>All four are weak and reversible, but each has a <strong>different distance dependence and a different
+     sensitivity to its environment</strong> — and that is usually what the question is really testing.</p>
+
+  <div class="grid grid--2" style="margin-top:1.1rem">
+
+    <div class="card" style="border-top:3px solid var(--ionic)">
+      <p class="eyebrow" style="color:var(--ionic)">① Ionic interaction / salt bridge</p>
+      <p style="margin:0 0 .6rem"><code>F ∝ q₁q₂ / (ε·r²)</code> — the slowest fall-off with distance, so it is
+        the <strong>longest-range</strong> of the four.</p>
+      <ul style="margin:0;padding-left:1.1rem;font-size:.92rem">
+        <li>Dielectric constant ε: water ≈ 78.5, protein hydrophobic core ≈ 4 → a <strong>buried salt bridge is
+          far stronger</strong> than a surface-exposed one.</li>
+        <li>Weakened by <strong>high salt</strong> (charge screening) and by <strong>pH change</strong>
+          (side chains lose their charge).</li>
+        <li>Examples: the salt bridges stabilising the T state of haemoglobin; ion-exchange chromatography.</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-top:3px solid var(--hbond)">
+      <p class="eyebrow" style="color:var(--hbond)">② Hydrogen bond</p>
+      <p style="margin:0 0 .6rem">D–H···A, where D and A must be <strong>N, O or F</strong> — in biology, N and O.
+        Length ≈ 2.6–3.5 Å.</p>
+      <ul style="margin:0;padding-left:1.1rem;font-size:.92rem">
+        <li><strong>Directional</strong>: strongest when D–H···A approaches 180°, which is what makes it a
+          source of <strong>specificity</strong>.</li>
+        <li>One water molecule can take part in up to <strong>four</strong> H-bonds (2 donated, 2 accepted).</li>
+        <li>Examples: α-helix (i to i+4), β-sheet, base pairing (A=T two, G≡C three → higher GC% raises T<sub>m</sub>).</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-top:3px solid var(--vdw)">
+      <p class="eyebrow" style="color:var(--vdw)">③ Van der Waals forces</p>
+      <p style="margin:0 0 .6rem">Three flavours: dipole–dipole (Keesom), dipole–induced dipole (Debye) and
+        <strong>London dispersion</strong> (instantaneous dipoles — present between all atoms).</p>
+      <ul style="margin:0;padding-left:1.1rem;font-size:.92rem">
+        <li>Attraction ∝ 1/r⁶, repulsion ∝ 1/r¹² (Lennard-Jones) → the <strong>steepest</strong> distance
+          dependence, effective only at very close range.</li>
+        <li>Optimal separation = the <strong>van der Waals contact distance</strong> (sum of the two vdW radii);
+          <strong>closer than that and it becomes repulsive</strong>.</li>
+        <li>One contact ≈ RT, so it wins by number — the physical basis of lock-and-key shape complementarity.</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-top:3px solid var(--hydrophobic)">
+      <p class="eyebrow" style="color:var(--hydrophobic)">④ The hydrophobic effect</p>
+      <p style="margin:0 0 .6rem">Strictly speaking <strong>not a force at all</strong> — it is the result of
+        water squeezing nonpolar groups together so that it can keep its own hydrogen-bond network.</p>
+      <ul style="margin:0;padding-left:1.1rem;font-size:.92rem">
+        <li>Driven by <strong>entropy</strong>, not enthalpy → see §06.</li>
+        <li>Together with van der Waals forces it is the <strong>dominant driver of protein folding</strong>.</li>
+        <li>Weakened by detergents (SDS), organic solvents, and — counter-intuitively — <strong>cooling</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Property</th><th>Ionic</th><th>Hydrogen bond</th><th>Van der Waals</th><th>Hydrophobic effect</th></tr></thead>
+      <tbody>
+        <tr><td>Typical energy (kJ/mol)</td><td class="num">8–40</td><td class="num">4–30</td><td class="num">0.4–4</td><td class="num">≈3 per –CH₂–</td></tr>
+        <tr><td>Distance dependence</td><td class="num">1/r²</td><td>short, directional</td><td class="num">1/r⁶</td><td>no simple distance law</td></tr>
+        <tr><td>Directional?</td><td>No</td><td><b>Yes</b></td><td>No</td><td>No</td></tr>
+        <tr><td>Weakened by</td><td>High salt, pH change</td><td>Heat, urea, GuHCl</td><td>Heat, unfolding</td><td>SDS, organic solvent, <b>cold</b></td></tr>
+        <tr><td>Thermodynamic driver</td><td>Enthalpy</td><td>Enthalpy</td><td>Enthalpy</td><td><b>Entropy</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Water and its hydrogen-bond network</h2>
+  <p>Water is not the background, it is the protagonist. Every "anomalous" property of water follows from a
+     single fact: <strong>one molecule can make up to four hydrogen bonds</strong>.</p>
+
+  <div class="grid grid--2" style="align-items:center;margin-top:1rem">
+    <svg viewBox="0 0 300 220" role="img"
+         aria-label="A central water molecule making four tetrahedral hydrogen bonds: two donated through its hydrogens and two accepted through its lone pairs"
+         style="background:var(--line-soft);border:1px solid var(--line);border-radius:var(--radius-sm)">
+      <g stroke="var(--hbond)" stroke-width="2" stroke-dasharray="4 4" opacity=".85">
+        <line x1="150" y1="110" x2="70"  y2="45"/>
+        <line x1="150" y1="110" x2="230" y2="45"/>
+        <line x1="150" y1="110" x2="70"  y2="180"/>
+        <line x1="150" y1="110" x2="230" y2="180"/>
+      </g>
+      <text x="98" y="70" font-family="var(--mono)" font-size="10" fill="var(--ink-faint)">H-bond ≈ 2.8 Å</text>
+      <g>
+        <circle cx="150" cy="110" r="20" fill="var(--accent)" opacity=".9"/>
+        <text x="150" y="115" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">O</text>
+        <circle cx="132" cy="132" r="11" fill="var(--ink-faint)"/>
+        <text x="132" y="136" text-anchor="middle" font-size="10" fill="var(--card)">H</text>
+        <circle cx="168" cy="132" r="11" fill="var(--ink-faint)"/>
+        <text x="168" y="136" text-anchor="middle" font-size="10" fill="var(--card)">H</text>
+        <text x="150" y="86" text-anchor="middle" font-size="10" fill="var(--ink-soft)">δ⁻  2 lone pairs → acceptor ×2</text>
+        <text x="150" y="162" text-anchor="middle" font-size="10" fill="var(--ink-soft)">δ⁺  2 hydrogens → donor ×2</text>
+      </g>
+      <g fill="var(--ink-faint)" opacity=".65">
+        <circle cx="70"  cy="45"  r="13"/><circle cx="230" cy="45"  r="13"/>
+        <circle cx="70"  cy="180" r="13"/><circle cx="230" cy="180" r="13"/>
+      </g>
+      <g font-size="9" fill="var(--card)" text-anchor="middle" font-weight="600">
+        <text x="70" y="49">H₂O</text><text x="230" y="49">H₂O</text>
+        <text x="70" y="184">H₂O</text><text x="230" y="184">H₂O</text>
+      </g>
+    </svg>
+
+    <div>
+      <h3 style="margin-top:0">Everything that follows from four H-bonds</h3>
+      <ul style="margin:0;padding-left:1.15rem;font-size:.94rem">
+        <li><b>High boiling point, heat of vaporisation and specific heat</b> — breaking the network costs
+          energy, which is what buffers body temperature.</li>
+        <li><b>High surface tension</b> — hence the need for pulmonary surfactant in the alveoli.</li>
+        <li><b>Ice floats</b> — crystallising locks each molecule into an open tetrahedron of four H-bonds,
+          lowering the density.</li>
+        <li><b>High dielectric constant (ε ≈ 78.5)</b> — electrostatic attraction between ions is cut by
+          almost 80-fold, so salts dissolve and salt bridges are weak in water.</li>
+        <li><b>Autoionisation</b> — K<sub>w</sub> = 10⁻¹⁴, so pH + pOH = 14.</li>
+      </ul>
+      <div class="mnemo" style="margin-top:.9rem">
+        <h4>One line to remember</h4>
+        <p>An intramolecular hydrogen bond in water is close to a <strong>zero-sum trade</strong> — it must
+          first compete with water. Hydrogen bonds mainly buy <strong>directionality and specificity</strong>;
+          the bulk of the stability comes from the hydrophobic effect.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>The hydrophobic effect is entropy-driven</h2>
+  <p>
+    Drop a nonpolar molecule into water. Water cannot hydrogen-bond to it, so it arranges a highly ordered
+    <strong>clathrate cage</strong> of water around it. The <em>number</em> of hydrogen bonds is not actually
+    reduced — so ΔH can even be negative (exothermic!) — but the <strong>freedom of those water molecules
+    collapses, so ΔS is negative</strong>.
+  </p>
+  <p>Test it with <code>ΔG = ΔH − TΔS</code>. Drag the temperature and watch the two terms compete:</p>
+
+  <div class="card">
+    <div class="thermo">
+      <div class="thermo__controls">
+        <p style="font-size:.85rem;font-weight:600;margin:0 0 .35rem">Solute (transferred from a nonpolar solvent into water)</p>
+        <div class="chips" id="thermo-chips"></div>
+
+        <label for="thermo-T">Temperature　<span id="thermo-Tval" style="font-family:var(--mono);font-weight:400">25 °C (298 K)</span></label>
+        <input type="range" id="thermo-T" min="0" max="100" step="1" value="25">
+
+        <p style="font-size:.8rem;color:var(--ink-faint);margin:.6rem 0 0">
+          ΔH and ΔS are standard textbook approximations at 25 °C, held constant with temperature. Real systems
+          have a large ΔC<sub>p</sub>; this model is here to show the <em>qualitative</em> dominance of the
+          entropy term, not to give exact numbers.
+        </p>
+      </div>
+
+      <div>
+        <div class="tbar">
+          <div class="tbar__label"><span>ΔH (enthalpy term)</span><b id="v-dh">—</b></div>
+          <div class="tbar__track"><div class="tbar__zero" id="z1"></div><div class="tbar__fill" id="b-dh" style="background:var(--accent-3)"></div></div>
+        </div>
+        <div class="tbar">
+          <div class="tbar__label"><span>−TΔS (entropy term)</span><b id="v-tds">—</b></div>
+          <div class="tbar__track"><div class="tbar__zero" id="z2"></div><div class="tbar__fill" id="b-tds" style="background:var(--accent-2)"></div></div>
+        </div>
+        <div class="tbar">
+          <div class="tbar__label"><span><b style="font-weight:700">ΔG = ΔH − TΔS</b></span><b id="v-dg">—</b></div>
+          <div class="tbar__track"><div class="tbar__zero" id="z3"></div><div class="tbar__fill" id="b-dg"></div></div>
+        </div>
+        <p style="font-size:.75rem;color:var(--ink-faint);margin:.4rem 0 0;text-align:right">
+          ← favourable (negative)　│　unfavourable (positive) →　　scale ±30 kJ/mol
+        </p>
+        <div class="thermo__verdict" id="thermo-verdict"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p class="callout__title">Three things to read off this figure</p>
+    <ol style="margin:0;padding-left:1.2rem">
+      <li>Dissolving methane or ethane in water is actually <strong>exothermic (ΔH &lt; 0)</strong> and still
+        does not happen — proof that entropy, not enthalpy, is in charge.</li>
+      <li><strong>Burying</strong> a nonpolar group is simply the reverse process: the ordered cage is released,
+        ΔS<sub>water</sub> rises sharply, ΔG goes negative, and it happens spontaneously.</li>
+      <li>Lower the temperature and the −TΔS penalty shrinks → the hydrophobic effect weakens. This is the
+        origin of <strong>cold denaturation</strong>.</li>
+    </ol>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The most common wrong statement</p>
+    <p style="margin:0">"Oil molecules attract each other strongly, so they clump together." <strong>No.</strong>
+      Oil molecules only have weak van der Waals attraction for each other; the real driver is
+      <strong>water recovering its own disorder</strong>. When a question asks what drives hydrophobic
+      interaction, the answer is <strong>an increase in entropy</strong>.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Amphipathic molecules and their aggregates</h2>
+  <p>
+    <strong>Amphipathic</strong> (amphiphilic) means one molecule carries both a hydrophilic head and a
+    hydrophobic tail. Put it in water above its <strong>critical micelle concentration (CMC)</strong> and it
+    aggregates spontaneously. Note that word — this is <strong>self-assembly</strong>; no energy input is
+    required, because the driving force is the entropy gain of the hydrophobic effect.
+  </p>
+
+  <div class="card" style="margin-top:1rem">
+    <div class="chips" style="margin-bottom:.9rem" id="agg-chips">
+      <button class="chip" type="button" data-agg="micelle" aria-pressed="true">Micelle</button>
+      <button class="chip" type="button" data-agg="bilayer" aria-pressed="false">Bilayer</button>
+      <button class="chip" type="button" data-agg="liposome" aria-pressed="false">Liposome</button>
+    </div>
+    <div class="agg">
+      <svg id="agg-svg" viewBox="0 0 320 240" role="img" aria-labelledby="agg-title"><title id="agg-title">Aggregate diagram</title></svg>
+      <div id="agg-text"></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">Molecular shape dictates the geometry</h3>
+  <p>This is the shortcut for the exam: <strong>compare the cross-sectional area of the head with that of the tails.</strong></p>
+  <div class="grid grid--3" style="margin-top:1rem">
+    <div class="card shape">
+      <svg viewBox="0 0 80 80" aria-hidden="true">
+        <polygon points="40,8 68,72 12,72" transform="rotate(180 40 40)" fill="var(--accent)" opacity=".22" stroke="var(--accent)" stroke-width="2"/>
+      </svg>
+      <h4>Inverted cone</h4>
+      <p><b>Big head, small tail</b> (single tail)<br>Lysophospholipids, fatty acid salts, SDS and other detergents<br>→ <b>spherical micelle</b> (positive curvature)</p>
+    </div>
+    <div class="card shape">
+      <svg viewBox="0 0 80 80" aria-hidden="true">
+        <rect x="20" y="8" width="40" height="64" rx="3" fill="var(--accent-3)" opacity=".22" stroke="var(--accent-3)" stroke-width="2"/>
+      </svg>
+      <h4>Cylinder</h4>
+      <p><b>Head ≈ tails</b> (two tails)<br>PC (lecithin), PS, sphingomyelin<br>→ <b>planar bilayer</b> (zero curvature)</p>
+    </div>
+    <div class="card shape">
+      <svg viewBox="0 0 80 80" aria-hidden="true">
+        <polygon points="40,8 68,72 12,72" fill="var(--accent-2)" opacity=".22" stroke="var(--accent-2)" stroke-width="2"/>
+      </svg>
+      <h4>Cone</h4>
+      <p><b>Small head, bulky tails</b><br>PE, cardiolipin<br>→ favours <b>negative curvature</b> (H<sub>II</sub> phase); involved in fusion and budding</p>
+    </div>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Exam point</p>
+    <p style="margin:0">
+      Both are amphipathic, but <strong>single-tailed fatty acids and detergents form micelles</strong> while
+      <strong>two-tailed phospholipids form bilayers</strong>. This is also why bile salts emulsify fat: they are
+      <strong>facial</strong> amphipaths — hydrophilic on one face, hydrophobic on the other — and their job is
+      to break large fat droplets into micelles, increasing the surface area available to pancreatic lipase.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>The lipid map</h2>
+  <p>The only thing all lipids share is <strong>insolubility in water and solubility in organic solvents</strong>
+     — it is a classification by <em>solubility</em>, not by structure, which is why the structures underneath
+     vary so wildly. Splitting them by <strong>saponifiable vs non-saponifiable</strong> is the cleanest cut.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Class</th><th>Member</th><th>Structural key</th><th>Hydrophilic / hydrophobic character</th></tr></thead>
+      <tbody>
+        <tr>
+          <td rowspan="2"><b>Simple lipids</b><br><small style="color:var(--ink-faint)">saponifiable</small></td>
+          <td>Triacylglycerol (TAG)</td><td>Glycerol + 3 fatty acids (ester bonds)</td>
+          <td><b>Entirely hydrophobic</b> — no charged head → storage form, packed into lipid droplets</td>
+        </tr>
+        <tr><td>Waxes</td><td>Long-chain alcohol + long-chain fatty acid</td><td>Entirely hydrophobic → waterproofing and protection</td></tr>
+
+        <tr>
+          <td rowspan="3"><b>Complex lipids</b><br><small style="color:var(--ink-faint)">saponifiable</small></td>
+          <td>Glycerophospholipids<br><small>PC, PE, PS, PI, cardiolipin</small></td>
+          <td>Glycerol + 2 fatty acids + phosphate + head group</td>
+          <td><b>Amphipathic</b> → the structural backbone of membranes</td>
+        </tr>
+        <tr>
+          <td>Sphingolipids<br><small>sphingomyelin</small></td>
+          <td><b>Sphingosine</b> + fatty acid (amide bond) = ceramide, then phosphocholine</td>
+          <td>Amphipathic; the only lipid that is <b>both a phospholipid and a sphingolipid</b></td>
+        </tr>
+        <tr>
+          <td>Glycolipids<br><small>cerebroside (1 sugar), ganglioside (oligosaccharide with sialic acid)</small></td>
+          <td>Ceramide + sugar (<b>no phosphate</b>)</td>
+          <td>Amphipathic; found only in the <b>outer leaflet</b> — cell recognition</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3"><b>Derived lipids</b><br><small style="color:var(--ink-faint)">non-saponifiable</small></td>
+          <td>Steroids<br><small>cholesterol and derivatives</small></td>
+          <td>Four fused rings (sterane) + 3-OH + side chain</td>
+          <td><b>Weakly amphipathic</b>: only the 3-OH is polar → sits within the bilayer and tunes fluidity</td>
+        </tr>
+        <tr><td>Eicosanoids<br><small>PG, TX, LT</small></td><td>Derived from arachidonic acid (20:4)</td><td>Local signalling molecules</td></tr>
+        <tr><td>Fat-soluble vitamins <b>A D E K</b></td><td>Isoprenoid derivatives</td><td>Hydrophobic → need bile salts and chylomicrons for absorption; can accumulate to toxicity</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid grid--2" style="margin-top:.5rem">
+    <div class="mnemo"><h4>Three membrane lipid families</h4>
+      <p>Glycerophospholipids, sphingolipids, cholesterol. Eukaryotic membranes carry all three;
+        <strong>bacteria have no cholesterol</strong> (hopanoids play the equivalent role).</p></div>
+    <div class="mnemo"><h4>Membrane asymmetry</h4>
+      <p>Outer leaflet: PC, sphingomyelin, glycolipids. Inner leaflet: PE, PS, PI.
+        <strong>PS flipping outward</strong> is the "eat me" signal of apoptosis and the surface that initiates coagulation.</p></div>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Saturation → melting point → membrane fluidity</h2>
+  <p>A fatty acid has only two variables: <strong>chain length</strong> and <strong>number (and geometry) of
+     double bonds</strong>. Through "how tightly can they stack", those two set the melting point — and the
+     melting point sets membrane fluidity.</p>
+
+  <div class="mp" style="margin:1.25rem 0">
+    <p style="font-size:.85rem;color:var(--ink-soft);margin:0 0 1.4rem">
+      Melting points of common fatty acids (°C). The dashed line is body temperature, 37 °C — anything to its
+      <b>right</b> is solid at body temperature, anything to its <b>left</b> is liquid.
+    </p>
+    <div id="mp-rows"></div>
+    <p style="font-size:.8rem;color:var(--ink-faint);margin:1rem 0 0">
+      Look at the 18-carbon series: 18:0 → 18:1 → 18:2 → 18:3. Every additional <b>cis</b> double bond drops the
+      melting point by a large step, at constant chain length.
+    </p>
+  </div>
+
+  <div class="grid grid--2">
+    <div class="card">
+      <h3 style="margin-top:0">Why a <em>cis</em> double bond matters so much</h3>
+      <svg viewBox="0 0 260 110" role="img"
+           aria-label="Saturated chains are straight and stack tightly; a cis double bond introduces a kink of about thirty degrees that prevents close packing"
+           style="background:var(--line-soft);border:1px solid var(--line);border-radius:var(--radius-sm);margin-bottom:.7rem">
+        <g stroke="var(--covalent)" stroke-width="3" fill="none" stroke-linecap="round">
+          <polyline points="20,25 35,35 50,25 65,35 80,25 95,35 110,25"/>
+          <polyline points="20,50 35,60 50,50 65,60 80,50 95,60 110,50"/>
+          <polyline points="20,75 35,85 50,75 65,85 80,75 95,85 110,75"/>
+        </g>
+        <text x="65" y="102" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">Saturated: straight, tight packing, many vdW contacts → high T</text>
+        <g stroke="var(--accent)" stroke-width="3" fill="none" stroke-linecap="round">
+          <polyline points="150,25 165,35 180,25 195,40 185,55 195,68"/>
+          <polyline points="215,25 228,35 240,25 250,40 240,55 250,68"/>
+        </g>
+        <circle cx="195" cy="40" r="4" fill="none" stroke="var(--accent-2)" stroke-width="2"/>
+        <text x="205" y="90" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">cis double bond → ≈30° kink</text>
+        <text x="205" y="101" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">loose packing, fewer vdW → low T</text>
+      </svg>
+      <p style="font-size:.92rem;margin:0">
+        <b>Trans</b> fatty acids (from partial hydrogenation) are geometrically almost straight, so they
+        <strong>behave like saturated fat</strong> — high melting point, tight packing — while also raising
+        LDL and lowering HDL, which is why they are judged more harshly than saturated fat.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">Cholesterol: a bidirectional fluidity buffer</h3>
+      <p style="font-size:.94rem">Its rigid ring system slots between the phospholipid tails with the 3-OH
+        aligned to the head groups. The effect depends on which side of T<sub>m</sub> you are on:</p>
+      <div class="table-scroll" style="margin:.5rem 0 0">
+        <table class="data" style="min-width:0">
+          <thead><tr><th>Condition</th><th>What cholesterol does</th></tr></thead>
+          <tbody>
+            <tr><td>T &gt; T<sub>m</sub> (membrane fluid)</td><td>Restrains acyl-chain motion → <b>decreases</b> fluidity</td></tr>
+            <tr><td>T &lt; T<sub>m</sub> (membrane gel-like)</td><td>Wedges in and blocks ordered crystalline packing → <b>increases</b> fluidity</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.92rem;margin:.8rem 0 0">
+        Net result: cholesterol keeps the membrane <strong>neither too fluid nor too rigid</strong>, and lowers
+        permeability to small molecules and ions. With sphingomyelin it also concentrates into
+        <strong>lipid rafts</strong>.
+      </p>
+    </div>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Membrane fluidity — everything in one place</p>
+    <ul style="margin:0;padding-left:1.2rem">
+      <li><b>↑ fluidity</b>: higher temperature, more <b>cis</b> unsaturation, shorter chains, cholesterol
+        <em>below</em> T<sub>m</sub>.</li>
+      <li><b>↓ fluidity</b>: lower temperature, more saturation, longer chains, cholesterol <em>above</em>
+        T<sub>m</sub>, high sphingomyelin content.</li>
+      <li>Lipids diffuse <strong>laterally very fast</strong>, but <strong>flip-flop is extremely slow</strong>
+        and needs flippase / floppase / scramblase — usually at the cost of ATP.</li>
+    </ul>
+  </div>
+
+  <div class="mnemo" style="margin-top:1rem">
+    <h4>Essential fatty acids</h4>
+    <p>Humans lack Δ12 and Δ15 desaturases and cannot introduce double bonds beyond C9, so
+      <strong>linoleic acid (18:2, ω-6)</strong> and <strong>α-linolenic acid (18:3, ω-3)</strong> must come from
+      the diet. Arachidonic acid (20:4, ω-6) can be made from linoleic acid, so it is only
+      <em>conditionally</em> essential.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>What breaks what</h2>
+  <p>The standard way to answer a denaturation question — map each interaction directly onto the thing that
+     destroys it. <strong>Denaturation destroys noncovalent interactions and disulfides; the peptide bond
+     (primary structure) is untouched.</strong></p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Interaction</th><th>Broken by</th><th>Mechanism in one line</th></tr></thead>
+      <tbody>
+        <tr><td>Hydrogen bonds</td><td>Heat, <b>urea</b>, <b>guanidinium HCl</b></td><td>Supplies competing H-bond partners and adds thermal motion</td></tr>
+        <tr><td>Ionic / salt bridges</td><td>Extremes of pH, high salt</td><td>Neutralises side-chain charge or screens it with counter-ions</td></tr>
+        <tr><td>Hydrophobic interactions</td><td><b>SDS</b>, Triton X-100, organic solvents, cold</td><td>Detergents coat the nonpolar surface; cold weakens the entropic driving force</td></tr>
+        <tr><td>Van der Waals</td><td>Heat, anything that loosens the conformation</td><td>Falls to zero as soon as distance increases (1/r⁶)</td></tr>
+        <tr><td><b>Disulfide bonds</b></td><td><b>β-mercaptoethanol, DTT</b> (reduction); performic acid (oxidation)</td><td>Covalent — needs a redox reaction, heat alone will not do it</td></tr>
+        <tr><td>Peptide bonds</td><td>Strong acid/base at high temperature, proteases</td><td>Ordinary denaturing conditions <b>do not</b> cleave them</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <p class="callout__title">Tying it together: why SDS-PAGE needs two reagents</p>
+    <p style="margin:0"><b>SDS</b> destroys the hydrophobic core and coats the protein with negative charge in
+      proportion to its length; <b>β-ME or DTT</b> reduces disulfides so that subunits separate. Leave either
+      one out and the band you measure is not the true subunit mass. This question ties §03, §04 and §10
+      together and is a very typical integration item.</p>
+  </div>
+</section>
+
+<!-- =========================== Quiz =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 11</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>Each answer is explained immediately. If you miss one, go back to the section it came from rather than
+     memorising the letter.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:3rem">
+  <a class="btn" href="../index.html">← Back to contents</a>
+  <a class="btn" href="#main">↑ Top of page</a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry 01 · Bonds, functional groups and the hydrophobic effect</p>
+    <p>Representation used on this page: interactive energy ruler, polarity spectrum, thermodynamic decomposition
+       bars and data visualisation. Numerical values are standard textbook approximations, used to build a sense
+       of magnitude rather than for precise citation.</p>
+  </div>
+</footer>
+
+<!-- =========================== Question bank =========================== -->
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "Which of the following is a <b>covalent</b> bond?",
+    "options": ["A salt bridge", "A disulfide bond", "A hydrogen bond", "London dispersion force"],
+    "answer": 1,
+    "explain": "A disulfide forms by <b>oxidation</b> of two cysteine –SH groups into an S–S covalent bond of roughly 214 kJ/mol, and requires a reducing agent (β-ME, DTT) to break. The other three are noncovalent interactions in the 0.4–40 kJ/mol range."
+  },
+  {
+    "stem": "Which functional group is <b>polar but carries no charge</b> at pH 7.4?",
+    "options": ["Carboxyl (–COOH)", "Amide (–CONH₂)", "Phosphate", "Guanidinium"],
+    "answer": 1,
+    "explain": "In an amide the nitrogen lone pair is delocalised into the carbonyl, so it is neither appreciably basic nor acidic — it <b>never ionises</b> at physiological pH. That is why Asn and Gln are polar-neutral while Asp and Glu (carboxylate, pK<sub>a</sub> ≈ 4) are negative, and Arg (guanidinium, pK<sub>a</sub> ≈ 12.5) and phosphate are charged."
+  },
+  {
+    "stem": "Which group can act as <b>both</b> a hydrogen-bond donor and a hydrogen-bond acceptor?",
+    "options": ["Ketone carbonyl (C=O)", "Hydroxyl (–OH)", "Methyl (–CH₃)", "Ether (–O–)"],
+    "answer": 1,
+    "explain": "A hydroxyl has an O–H to donate <b>and</b> lone pairs on oxygen to accept, which is why –OH groups are so strongly hydrating (sugars, Ser, Thr, Tyr). A carbonyl or ether oxygen has lone pairs but no O–H, so it is an <b>acceptor only</b>. A methyl group is nonpolar and does neither."
+  },
+  {
+    "stem": "Which pair of functional groups condenses to form an <b>ester</b> bond?",
+    "options": ["Carboxyl + amino", "Carboxyl + hydroxyl", "Carboxyl + thiol", "Two thiols"],
+    "answer": 1,
+    "explain": "Carboxyl + hydroxyl → <b>ester</b> (glycerol plus fatty acids in a triacylglycerol). Carboxyl + amino → amide/peptide; carboxyl + thiol → thioester (acyl-CoA, a high-energy bond); two thiols → disulfide, which is an <b>oxidation</b>, not a condensation."
+  },
+  {
+    "stem": "What is the principal thermodynamic driving force behind the hydrophobic effect?",
+    "options": ["Strong electrostatic attraction between nonpolar molecules", "Exothermic hydrogen bonding between nonpolar molecules", "The <b>entropy gain</b> of water released from ordered clathrate cages", "Formation of new covalent bonds, sharply lowering enthalpy"],
+    "answer": 2,
+    "explain": "A nonpolar solute forces water into a highly ordered clathrate shell. Burying the nonpolar group releases those water molecules, ΔS<sub>water</sub> rises steeply and −TΔS becomes a large negative term, so ΔG is negative. Methane dissolving in water is actually <b>exothermic</b> (ΔH &lt; 0) yet still does not dissolve — the clearest evidence that <b>entropy, not enthalpy, is in charge</b>."
+  },
+  {
+    "stem": "Which statement about noncovalent interactions is <b>FALSE</b>?",
+    "options": ["Ionic interactions fall off as 1/r² and are the longest-range of the noncovalent interactions", "A buried salt bridge is stronger than a surface-exposed one because the local dielectric constant is much lower", "Van der Waals forces are strongly directional and are the main source of specificity in molecular recognition", "A single van der Waals contact is comparable in energy to RT at body temperature"],
+    "answer": 2,
+    "explain": "Van der Waals forces have <b>no directionality</b> — the directional interaction is the hydrogen bond. Van der Waals forces contribute through sheer number plus shape complementarity. The other three are correct: F ∝ q₁q₂/(ε·r²); ε ≈ 4 in the protein core versus ≈ 78.5 in water, so buried salt bridges are much stronger; and one vdW contact (0.4–4 kJ/mol) is on the order of RT ≈ 2.6 kJ/mol at 37 °C."
+  },
+  {
+    "stem": "Rank these 18-carbon fatty acids by melting point, <b>highest first</b>.",
+    "options": ["18:0 &gt; 18:1 (Δ9 cis) &gt; 18:2 &gt; 18:3", "18:3 &gt; 18:2 &gt; 18:1 &gt; 18:0", "18:1 &gt; 18:0 &gt; 18:3 &gt; 18:2", "All four are similar, because the chain length is the same"],
+    "answer": 0,
+    "explain": "At constant chain length, <b>each additional cis double bond adds a ≈30° kink</b>, loosening the packing, reducing van der Waals contact and lowering the melting point. Measured values are roughly stearic 70 °C, oleic 13 °C, linoleic −5 °C, α-linolenic −11 °C."
+  },
+  {
+    "stem": "Which statement about cholesterol's effect on membrane fluidity is correct?",
+    "options": ["It increases fluidity at every temperature", "It decreases fluidity at every temperature", "Above T<sub>m</sub> it decreases fluidity; below T<sub>m</sub> it increases fluidity", "It only affects permeability, not fluidity"],
+    "answer": 2,
+    "explain": "Cholesterol is a <b>bidirectional fluidity buffer</b>. Above the phase-transition temperature its rigid ring system restrains acyl-chain motion and lowers fluidity; below T<sub>m</sub> it wedges between phospholipids and prevents ordered crystalline packing, raising fluidity. It also reduces permeability to small molecules and ions."
+  },
+  {
+    "stem": "Which amphipathic molecule is most likely to self-assemble into a <b>spherical micelle</b> rather than a planar bilayer?",
+    "options": ["Phosphatidylcholine (PC)", "Sphingomyelin", "Sodium dodecyl sulfate (SDS) and similar single-tailed detergents", "Phosphatidylethanolamine (PE)"],
+    "answer": 2,
+    "explain": "Aggregate geometry follows <b>molecular shape</b>. Single-tailed, big-head 'inverted cone' molecules (SDS, fatty acid salts, lysophospholipids) favour positive curvature → micelles. Two-tailed 'cylindrical' lipids (PC, sphingomyelin) → planar bilayers. Small-head, bulky-tail 'cones' (PE, cardiolipin) favour negative curvature and the H<sub>II</sub> phase."
+  },
+  {
+    "stem": "A tetrameric protein containing interchain disulfides is analysed by SDS-PAGE with SDS but <b>without</b> β-mercaptoethanol. What is the most likely result?",
+    "options": ["A band at the correct single-subunit molecular weight", "A band larger than one subunit, because the subunits are still joined by disulfides", "No protein enters the gel, because the peptide bonds were not cleaved", "Correct molecular weight but the bands run in the opposite direction"],
+    "answer": 1,
+    "explain": "SDS disrupts hydrophobic interactions and confers a uniform negative charge density, but as a detergent it <b>cannot reduce covalent disulfides</b>. β-ME or DTT is required to cleave S–S so the subunits separate. Peptide bonds are unaffected throughout — denaturation acts only on noncovalent interactions and disulfides."
+  }
+]
+</script>
+
+<script src="../assets/js/site.js"></script>
+<script>
+/* ================= Interactive: bond-energy ruler ================= */
+(function () {
+  var MIN = 0.3, MAX = 1000;
+  var lo = Math.log10(MIN), span = Math.log10(MAX) - lo;
+  var pos = function (v) { return (Math.log10(v) - lo) / span * 100; };
+
+  var BONDS = [
+    { name:'Van der Waals', en:'London / dipole', min:0.4, max:4, color:'var(--vdw)',
+      detail:'<h4>Van der Waals · 0.4–4 kJ/mol</h4><p>Covers Keesom (dipole–dipole), Debye (dipole–induced dipole) and London dispersion forces. <b>A single contact is essentially equal to RT at body temperature (2.6 kJ/mol)</b>, so one van der Waals contact is knocked apart by thermal motion almost immediately. Its significance comes from <em>number</em>: two complementary surfaces can form dozens of contacts at once, which is the physical basis of molecular recognition. Attraction goes as 1/r⁶ and repulsion as 1/r¹², so it is extremely short-range and turns repulsive if the atoms come too close.</p>' },
+    { name:'Hydrophobic effect', en:'per –CH₂– buried', min:2, max:4, color:'var(--hydrophobic)',
+      detail:'<h4>Hydrophobic effect · ≈3 kJ/mol per –CH₂–</h4><p>Usually quantified as the free energy gained per methylene group buried away from water. One unit is small, but a C16 fatty acid tail has more than a dozen — so the cumulative effect is enormous. This is the main energy source for membrane self-assembly and protein folding. Remember that it is <b>entropy-driven</b> and is not an attractive force between the nonpolar groups themselves.</p>' },
+    { name:'Hydrogen bond', en:'D–H···A', min:4, max:30, color:'var(--hbond)',
+      detail:'<h4>Hydrogen bond · 4–30 kJ/mol</h4><p>D–H···A, where D and A are N or O in biological systems. It is the <b>only noncovalent interaction with pronounced directionality</b> — the closer to linear, the stronger. In aqueous solution an intramolecular hydrogen bond must compete with water, so its net contribution is far below the tabulated value. What hydrogen bonds really buy is <b>specificity and geometry</b>; the bulk of stability comes from the hydrophobic effect.</p>' },
+    { name:'Ionic / salt bridge', en:'in water', min:8, max:40, color:'var(--ionic)',
+      detail:'<h4>Ionic interaction / salt bridge · ≈8–40 kJ/mol in water</h4><p>F ∝ q₁q₂/(ε·r²), the <b>longest-range</b> of the noncovalent interactions. The critical variable is the dielectric constant: 78.5 in water, about 4 in a protein core, so a <b>buried salt bridge is dramatically stronger</b> (the same charge pair in vacuum would be worth hundreds of kJ/mol). High salt screens the charges and extremes of pH remove them — either will break it.</p>' },
+    { name:'Disulfide S–S', en:'covalent', min:214, max:214, color:'var(--covalent)',
+      detail:'<h4>Disulfide bond · ≈214 kJ/mol</h4><p>The <b>weakest</b> of the common covalent bonds, which is exactly why cells can use it as a redox-tunable covalent switch. It is still more than five times stronger than the strongest noncovalent interaction, so heat will not break it — reduction with β-ME or DTT is required.</p>' },
+    { name:'C–C', en:'covalent', min:348, max:348, color:'var(--covalent)',
+      detail:'<h4>C–C single bond · ≈348 kJ/mol</h4><p>The basis of every carbon skeleton. It sits about two orders of magnitude above the noncovalent interactions, which is why covalent frameworks never fall apart spontaneously under physiological conditions and must be dismantled enzymatically.</p>' },
+    { name:'C–H', en:'covalent', min:414, max:414, color:'var(--covalent)',
+      detail:'<h4>C–H bond · ≈414 kJ/mol</h4><p>C–H bonds are where reducing power is stored. This is why fat — highly reduced, with a high proportion of C–H — yields about 9 kcal/g, against roughly 4 kcal/g for carbohydrate and protein.</p>' },
+    { name:'O–H', en:'covalent', min:463, max:463, color:'var(--covalent)',
+      detail:'<h4>O–H bond · ≈463 kJ/mol</h4><p>Useful as a control: the O–H covalent bond <b>inside</b> a water molecule is 463 kJ/mol, while the hydrogen bond <b>between</b> two water molecules is about 20. A factor of more than twenty — the quantitative justification for saying "a hydrogen bond is an interaction, not a bond".</p>' },
+    { name:'C=O', en:'covalent', min:799, max:799, color:'var(--covalent)',
+      detail:'<h4>C=O double bond · ≈799 kJ/mol</h4><p>One of the most stable bonds in biochemistry. The two C=O bonds in CO₂ are exceptionally stable, which is why complete oxidation to CO₂ releases the most energy — and correspondingly why carbon fixation has to be paid for.</p>' }
+  ];
+
+  var axis = document.getElementById('ruler-axis');
+  [0.3, 1, 10, 100, 1000].forEach(function (t) {
+    var el = document.createElement('span');
+    el.className = 'ruler__tick';
+    el.style.left = pos(t) + '%';
+    el.textContent = t < 1 ? '' : t;
+    axis.appendChild(el);
+  });
+  var unit = document.createElement('span');
+  unit.className = 'ruler__tick';
+  unit.style.cssText = 'left:100%;transform:translateX(-100%);top:-1.1rem';
+  unit.textContent = 'kJ/mol';
+  axis.appendChild(unit);
+
+  var rows = document.getElementById('ruler-rows');
+  var detail = document.getElementById('ruler-detail');
+  var buttons = [];
+
+  BONDS.forEach(function (b) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ruler__row';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'ruler-detail');
+
+    var l = pos(b.min), w = Math.max(pos(b.max) - l, 1.2);
+    var label = b.min === b.max ? String(b.min) : b.min + '–' + b.max;
+    /* keep the numeric label inside the track: flip it to the left of the bar near the right edge */
+    var valStyle = (l + w) > 74
+      ? 'right:' + (100 - l).toFixed(2) + '%;padding-right:.4rem'
+      : 'left:' + (l + w).toFixed(2) + '%;padding-left:.4rem';
+
+    btn.innerHTML =
+      '<span class="ruler__label">' + b.name + '<small>' + b.en + '</small></span>' +
+      '<span class="ruler__track">' +
+        '<span class="ruler__bar" style="left:' + l + '%;width:' + w + '%;background:' + b.color + '"></span>' +
+        '<span class="ruler__val" style="' + valStyle + '">' + label + '</span>' +
+      '</span>';
+
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (o) { o.setAttribute('aria-expanded', 'false'); });
+      btn.setAttribute('aria-expanded', 'true');
+      detail.innerHTML = b.detail;
+    });
+
+    rows.appendChild(btn);
+    buttons.push(btn);
+  });
+
+  /* RT ≈ 2.6 kJ/mol reference line (wide layouts only — the narrow layout stacks the labels) */
+  if (window.matchMedia('(min-width: 46.01rem)').matches) {
+    rows.style.position = 'relative';
+    var rt = document.createElement('div');
+    rt.className = 'ruler__rt';
+    /* the track starts at 11.5rem (label width) + 0.6rem (flex gap) */
+    rt.style.left = 'calc(12.1rem + (100% - 12.1rem) * ' + (pos(2.6) / 100).toFixed(4) + ')';
+    rt.style.top = '1.3rem';
+    rt.innerHTML = '<span>RT ≈ 2.6 (thermal energy at 37 °C)</span>';
+    rows.appendChild(rt);
+  }
+})();
+
+/* ================= Interactive: functional-group spectrum ================= */
+(function () {
+  var BANDS = [
+    { title:'Charged at pH 7.4', note:'Ion–dipole with water. The most hydrophilic groups there are.', groups:[
+      { name:'Carboxyl → carboxylate', formula:'–COOH → –COO⁻', pka:'≈2–5', hb:'Acceptor (strong); donor when protonated',
+        found:'Asp, Glu, C-terminus, fatty acids',
+        notes:'<p>Deprotonated and therefore <b>negative</b> at physiological pH. Condenses with an amino group to give a peptide bond, with a hydroxyl to give an ester, and with a thiol to give a high-energy thioester.</p><p>Because the pK<sub>a</sub> is far below 7.4, essentially 100 % is in the –COO⁻ form in the cell.</p>' },
+      { name:'Phosphate', formula:'–OPO₃²⁻', pka:'pK₁ ≈ 2, pK₂ ≈ 6.8', hb:'Strong acceptor',
+        found:'ATP, DNA/RNA backbone, phospholipid head groups, phosphoproteins',
+        notes:'<p>Carries one to two negative charges at pH 7.4 — the highest charge density in biochemistry, so it is intensely hydrophilic and cannot cross a membrane unaided.</p><p>Its second pK<sub>a</sub> is close to 7, which is why the phosphate system is a physiological buffer, and why <b>phosphorylation</b> is such an effective regulatory switch: it adds two negative charges in one step.</p>' },
+      { name:'Amino → ammonium', formula:'–NH₂ → –NH₃⁺', pka:'≈9–10.5', hb:'Donor (×3 when protonated)',
+        found:'Lys side chain, N-terminus, sphingosine',
+        notes:'<p>Protonated and therefore <b>positive</b> at physiological pH, because its pK<sub>a</sub> is well above 7.4. Condenses with a carboxyl to give an amide/peptide bond.</p><p>Contrast with the amide: once nitrogen is bonded to a carbonyl, it loses its basicity entirely.</p>' },
+      { name:'Guanidinium', formula:'–NH–C(NH₂)₂⁺', pka:'≈12.5', hb:'Donor (×5)',
+        found:'Arg side chain',
+        notes:'<p>The most basic group in proteins — <b>positively charged at essentially any physiological pH</b>, so Arg is effectively always charged.</p><p>Its planar, resonance-delocalised charge lets it form bidentate hydrogen bonds and stack against phosphates, which is why Arg is so common in nucleic-acid-binding sites.</p>' }
+    ]},
+    { title:'Polar, uncharged', note:'Fully hydrogen-bonding but neutral at pH 7.4.', groups:[
+      { name:'Hydroxyl', formula:'–OH', pka:'≈13–15 (alcohol); 10.1 for Tyr phenol', hb:'<b>Donor and acceptor</b>',
+        found:'Ser, Thr, Tyr; every sugar; glycerol; cholesterol 3-OH',
+        notes:'<p>The workhorse polar group: it both donates and accepts hydrogen bonds, which is what makes sugars so extraordinarily water-soluble.</p><p>Ser, Thr and Tyr hydroxyls are the <b>phosphorylation sites</b> of eukaryotic signalling. In cholesterol the single 3-OH is the only polar feature — enough to orient the molecule in the bilayer, not enough to make it soluble.</p>' },
+      { name:'Amide', formula:'–CO–NH₂ / –CO–NH–', pka:'does not ionise', hb:'Donor (N–H) and acceptor (C=O)',
+        found:'Asn, Gln, and the peptide bond itself',
+        notes:'<p><b>The classic exam trap.</b> The nitrogen lone pair is delocalised into the carbonyl, so an amide is polar but <b>never carries a charge</b> at physiological pH — it is neither acid nor base.</p><p>That same delocalisation gives the peptide bond its partial double-bond character, its planarity, and its inability to rotate.</p>' },
+      { name:'Carbonyl (aldehyde / ketone)', formula:'–CHO / &gt;C=O', pka:'—', hb:'Acceptor only',
+        found:'Aldoses vs ketoses; pyruvate; ketone bodies',
+        notes:'<p>Polar, but with no O–H it can only <b>accept</b> hydrogen bonds, so it hydrates less strongly than a hydroxyl.</p><p>An aldehyde sits one oxidation step above an alcohol and one below a carboxylic acid. The <b>anomeric (hemiacetal) carbon</b> of a sugar is a masked aldehyde — the origin of reducing-sugar behaviour, and the atom that forms glycosidic bonds.</p>' },
+      { name:'Imidazole', formula:'His side chain', pka:'≈6.0', hb:'Donor and acceptor',
+        found:'His',
+        notes:'<p>The <b>only side chain with a pK<sub>a</sub> near physiological pH</b>, so it is partly protonated at pH 7.4 and can gain or lose a proton without any change in conditions.</p><p>That is why His is the standard acid–base catalyst in enzyme active sites, the main protein buffer in blood, and a frequent metal-coordinating ligand.</p>' }
+    ]},
+    { title:'Weakly polar', note:'Some polarity, but poor hydrogen-bond partners.', groups:[
+      { name:'Thiol / sulfhydryl', formula:'–SH', pka:'≈8.3', hb:'Weak donor',
+        found:'Cys; coenzyme A',
+        notes:'<p>Sulfur is much less electronegative than oxygen, so –SH is far <b>less polar than –OH</b> and a poor hydrogen bonder — Cys behaves as a fairly hydrophobic residue.</p><p>Its real importance is redox: two thiols oxidise to a <b>disulfide</b>, and the thiolate is a strong nucleophile, which is why Cys is so often the catalytic residue and the site of thioester formation in CoA.</p>' },
+      { name:'Ester', formula:'–CO–O–', pka:'—', hb:'Acceptor only',
+        found:'Triacylglycerols, phospholipid backbone, waxes',
+        notes:'<p>Polar bonds, but no donor and largely buried between two hydrocarbon regions, so an ester adds very little water solubility — a triacylglycerol with three of them is still <b>completely hydrophobic</b>.</p><p>Cleaved by lipases; saponification with alkali is the definition of a "saponifiable" lipid.</p>' },
+      { name:'Ether', formula:'–O–', pka:'—', hb:'Acceptor only',
+        found:'Glycosidic linkages, ring oxygen of sugars, plasmalogens',
+        notes:'<p>Weakly polar and chemically stable. Notably more resistant than an ester, which is one reason ether-linked lipids (plasmalogens, archaeal membranes) tolerate harsher conditions.</p>' },
+      { name:'Aromatic ring', formula:'phenyl / indole / imidazole π', pka:'—', hb:'π-system: stacking and cation–π',
+        found:'Phe, Tyr, Trp; nucleotide bases',
+        notes:'<p>Largely hydrophobic, but the delocalised π cloud allows <b>π–π stacking</b> and <b>cation–π</b> interactions — the forces that stack DNA bases and that let aromatic cages bind choline and ammonium groups.</p><p>Aromatic residues absorb at 280 nm (Trp &gt; Tyr &gt; Phe), which is how protein concentration is routinely measured.</p>' }
+    ]},
+    { title:'Nonpolar', note:'Cannot hydrogen-bond; forces water into ordered cages.', groups:[
+      { name:'Methyl', formula:'–CH₃', pka:'—', hb:'None',
+        found:'Ala; the terminal carbon of every fatty acid; methylated DNA and histones',
+        notes:'<p>Small and completely nonpolar. As a <b>covalent modification</b> it is chemically inert but biologically loud: DNA and histone methylation are the core of epigenetic regulation precisely because a methyl group changes surface chemistry without changing charge.</p>' },
+      { name:'Methylene chain', formula:'–(CH₂)ₙ–', pka:'—', hb:'None',
+        found:'Fatty acid tails, Val/Leu/Ile side chains',
+        notes:'<p>The engine of the hydrophobic effect: roughly <b>3 kJ/mol per –CH₂– buried</b>. A C16 tail therefore contributes tens of kJ/mol — enough to drive membrane self-assembly on its own.</p><p>It is also the most reduced carbon environment, hence the high energy yield of fat.</p>' },
+      { name:'Phenyl / alkyl side chain', formula:'–C₆H₅, –CH(CH₃)₂', pka:'—', hb:'None',
+        found:'Phe, Val, Leu, Ile, Met',
+        notes:'<p>These are the residues that end up in the <b>protein core</b>. Their burial, together with van der Waals packing, is what protein folding is mostly paying for.</p><p>In a membrane protein the same residues face the lipid instead — which is exactly what a hydropathy plot detects when it predicts transmembrane helices.</p>' }
+    ]}
+  ];
+
+  var bandsHost = document.getElementById('fg-bands');
+  var detailHost = document.getElementById('fg-detail');
+  var allChips = [];
+
+  function showGroup(g, chip) {
+    allChips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+    chip.setAttribute('aria-pressed', 'true');
+    detailHost.innerHTML =
+      '<h4>' + g.name + '</h4>' +
+      '<p class="fg__formula">' + g.formula + '</p>' +
+      '<dl class="fg__facts">' +
+        '<div><dt>pK<sub>a</sub></dt><dd>' + g.pka + '</dd></div>' +
+        '<div><dt>H-bonding</dt><dd>' + g.hb + '</dd></div>' +
+        '<div><dt>Found in</dt><dd>' + g.found + '</dd></div>' +
+      '</dl>' + g.notes;
+  }
+
+  BANDS.forEach(function (band) {
+    var el = document.createElement('div');
+    el.className = 'fg__band';
+    el.innerHTML = '<h4>' + band.title + '</h4><p>' + band.note + '</p>';
+    var list = document.createElement('div');
+    list.className = 'fg__list';
+    band.groups.forEach(function (g) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'fg__chip';
+      chip.setAttribute('aria-pressed', 'false');
+      chip.innerHTML = g.name.replace(/ → .*/, '') + '<small>' + g.formula + '</small>';
+      chip.addEventListener('click', function () { showGroup(g, chip); });
+      list.appendChild(chip);
+      allChips.push(chip);
+    });
+    el.appendChild(list);
+    bandsHost.appendChild(el);
+  });
+
+  showGroup(BANDS[1].groups[1], allChips[5]);   /* open on the amide — the highest-yield item */
+})();
+
+/* ================= Interactive: hydrophobic-effect thermodynamics ================= */
+(function () {
+  /* ΔH in kJ/mol, ΔS in J/(mol·K): textbook approximations at 25 °C for transfer
+     from a nonpolar solvent into water. */
+  var SOLUTES = [
+    { name:'Methane CH₄',  dH:-11.7, dS:-87.9 },
+    { name:'Ethane C₂H₆',  dH:-9.2,  dS:-85.9 },
+    { name:'Benzene C₆H₆', dH:2.1,   dS:-57.4 },
+    { name:'Toluene C₇H₈', dH:1.7,   dS:-70.1 }
+  ];
+  var SCALE = 30;
+  var cur = SOLUTES[0];
+
+  var chips = document.getElementById('thermo-chips');
+  var slider = document.getElementById('thermo-T');
+  var tval = document.getElementById('thermo-Tval');
+  var verdict = document.getElementById('thermo-verdict');
+
+  SOLUTES.forEach(function (s, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = s.name;
+    b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+    b.addEventListener('click', function () {
+      cur = s;
+      chips.querySelectorAll('.chip').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      render();
+    });
+    chips.appendChild(b);
+  });
+
+  function setBar(barId, valId, value, color) {
+    var bar = document.getElementById(barId);
+    var v = Math.max(-SCALE, Math.min(SCALE, value));
+    var w = Math.abs(v) / SCALE * 50;
+    bar.style.left = (v < 0 ? 50 - w : 50) + '%';
+    bar.style.width = w + '%';
+    if (color) bar.style.background = color;
+    document.getElementById(valId).textContent =
+      (value >= 0 ? '+' : '−') + Math.abs(value).toFixed(1) + ' kJ/mol';
+  }
+
+  function render() {
+    var Tc = Number(slider.value), Tk = Tc + 273.15;
+    tval.textContent = Tc + ' °C (' + Tk.toFixed(0) + ' K)';
+
+    var dH = cur.dH;
+    var mTdS = -Tk * cur.dS / 1000;   /* −TΔS in kJ/mol */
+    var dG = dH + mTdS;
+
+    ['z1', 'z2', 'z3'].forEach(function (id) { document.getElementById(id).style.left = '50%'; });
+    setBar('b-dh',  'v-dh',  dH);
+    setBar('b-tds', 'v-tds', mTdS);
+    setBar('b-dg',  'v-dg',  dG, dG > 0 ? 'var(--bad)' : 'var(--ok)');
+
+    var msg;
+    if (dG > 0) {
+      msg = '<b>ΔG &gt; 0 → does not dissolve in water.</b> The enthalpy term is ' +
+            (dH < 0 ? 'in fact <b>exothermic, i.e. favourable</b>' : 'slightly unfavourable') +
+            ', but the entropy penalty −TΔS = +' + mTdS.toFixed(1) + ' kJ/mol overwhelms it.' +
+            '<br>Read it in reverse: <b>burying</b> that nonpolar group away from water gives ΔG = −' +
+            dG.toFixed(1) + ' kJ/mol and happens spontaneously. That is the hydrophobic effect.';
+    } else {
+      msg = '<b>ΔG ≤ 0.</b> The temperature is now low enough that the entropy penalty no longer prevents ' +
+            'dissolution — the hydrophobic effect really does weaken in the cold, which is the physical ' +
+            'origin of <b>cold denaturation</b>. (Real systems are more complex because of ΔC<sub>p</sub>; ' +
+            'this is a linear approximation.)';
+    }
+    verdict.innerHTML = msg;
+  }
+
+  slider.addEventListener('input', render);
+  render();
+})();
+
+/* ================= Interactive: aggregate switcher ================= */
+(function () {
+  var svg = document.getElementById('agg-svg');
+  var text = document.getElementById('agg-text');
+  var chips = document.getElementById('agg-chips');
+  var HEAD = 'var(--accent)', TAIL = 'var(--ink-faint)', WATER = 'var(--accent-3)';
+
+  function lipid(cx, cy, angle, len, twoTails) {
+    var rad = angle * Math.PI / 180;
+    var dx = Math.cos(rad), dy = Math.sin(rad);
+    var tx = cx + dx * len, ty = cy + dy * len;
+    var px = -dy * 2.2, py = dx * 2.2;
+    var tails = twoTails
+      ? '<line x1="' + (cx + px) + '" y1="' + (cy + py) + '" x2="' + (tx + px) + '" y2="' + (ty + py) + '"/>' +
+        '<line x1="' + (cx - px) + '" y1="' + (cy - py) + '" x2="' + (tx - px) + '" y2="' + (ty - py) + '"/>'
+      : '<line x1="' + cx + '" y1="' + cy + '" x2="' + tx + '" y2="' + ty + '"/>';
+    return '<g stroke="' + TAIL + '" stroke-width="1.6" stroke-linecap="round">' + tails + '</g>' +
+           '<circle cx="' + cx + '" cy="' + cy + '" r="4.2" fill="' + HEAD + '"/>';
+  }
+
+  function ring(cx, cy, r, n, len, twoTails, outward) {
+    var s = '';
+    for (var i = 0; i < n; i++) {
+      var a = i * 360 / n, rad = a * Math.PI / 180;
+      s += lipid(cx + Math.cos(rad) * r, cy + Math.sin(rad) * r, outward ? a + 180 : a, len, twoTails);
+    }
+    return s;
+  }
+
+  function waterDots() {
+    var s = '<g fill="' + WATER + '" opacity=".18">';
+    [[20,20],[60,34],[110,16],[210,22],[268,38],[300,18],[16,120],[300,120],
+     [28,206],[80,222],[150,228],[230,214],[290,200],[250,60],[54,180],[262,160]]
+      .forEach(function (p) { s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="3.2"/>'; });
+    return s + '</g><text x="8" y="14" font-size="9" fill="' + WATER + '" opacity=".75">water</text>';
+  }
+
+  var VIEWS = {
+    micelle: {
+      draw: function () {
+        return waterDots() +
+          '<circle cx="160" cy="120" r="42" fill="var(--hydrophobic)" opacity=".12"/>' +
+          ring(160, 120, 62, 22, 26, false, true) +
+          '<text x="160" y="122" text-anchor="middle" font-size="10" fill="var(--ink-soft)">hydrophobic core</text>' +
+          '<text x="160" y="135" text-anchor="middle" font-size="9" fill="var(--ink-faint)">water excluded</text>';
+      },
+      html: '<h3 style="margin-top:0">Micelle</h3>' +
+        '<p style="font-size:.94rem">A sphere a few nanometres across, formed by <b>single-tailed</b> amphipaths ' +
+        '(fatty acid salts, SDS, lysophospholipids, bile salts) above the <b>CMC</b>. All tails point inward, all ' +
+        'heads outward, and the centre <b>excludes water completely</b>.</p>' +
+        '<ul style="font-size:.92rem;padding-left:1.15rem;margin:0">' +
+        '<li>Physiological role: bile salts emulsify dietary fat into micelles, expanding the interface available to pancreatic lipase.</li>' +
+        '<li>Below the CMC only monomers exist — <b>the CMC is the threshold concentration for self-assembly</b>.</li>' +
+        '<li>Driving force: the hydrophobic effect (entropy). No ATP required.</li></ul>'
+    },
+    bilayer: {
+      draw: function () {
+        var s = waterDots() + '<rect x="0" y="96" width="320" height="48" fill="var(--hydrophobic)" opacity=".1"/>';
+        for (var x = 18; x < 320; x += 21) {
+          s += lipid(x, 96, 90, 24, true);
+          s += lipid(x, 144, -90, 24, true);
+        }
+        return s +
+          '<text x="160" y="86" text-anchor="middle" font-size="9" fill="var(--ink-soft)">polar head groups — extracellular face</text>' +
+          '<text x="160" y="158" text-anchor="middle" font-size="9" fill="var(--ink-soft)">polar head groups — cytosolic face</text>' +
+          '<text x="160" y="123" text-anchor="middle" font-size="9" fill="var(--ink-faint)">hydrophobic interior ≈3 nm</text>';
+      },
+      html: '<h3 style="margin-top:0">Bilayer</h3>' +
+        '<p style="font-size:.94rem">Two-tailed phospholipids (PC, PS, sphingomyelin) are cylindrical and cannot pack ' +
+        'into a sphere, so they form two back-to-back leaflets with a hydrophobic interior about <b>3 nm</b> thick.</p>' +
+        '<ul style="font-size:.92rem;padding-left:1.15rem;margin:0">' +
+        '<li>That interior is a <b>natural barrier to ions and polar molecules</b> — hence channels and transporters.</li>' +
+        '<li>Lipids diffuse <b>laterally very fast</b> (microns per second) but <b>flip-flop extremely slowly</b>, requiring flippase / floppase / scramblase.</li>' +
+        '<li>The two leaflets differ in composition: outer PC, SM, glycolipids; inner PE, PS, PI.</li></ul>'
+    },
+    liposome: {
+      draw: function () {
+        return waterDots() +
+          '<circle cx="160" cy="120" r="52" fill="var(--accent-3)" opacity=".12"/>' +
+          ring(160, 120, 88, 30, 20, true, false) +
+          ring(160, 120, 60, 22, 20, true, true) +
+          '<text x="160" y="118" text-anchor="middle" font-size="10" fill="var(--ink-soft)">internal aqueous space</text>' +
+          '<text x="160" y="131" text-anchor="middle" font-size="9" fill="var(--ink-faint)">can carry a drug payload</text>';
+      },
+      html: '<h3 style="margin-top:0">Liposome / vesicle</h3>' +
+        '<p style="font-size:.94rem">To eliminate the exposed hydrophobic edge, a bilayer closes on itself into a shell. ' +
+        '<b>It therefore has two aqueous compartments, inside and outside</b> — the key difference from a micelle.</p>' +
+        '<ul style="font-size:.92rem;padding-left:1.15rem;margin:0">' +
+        '<li>Hydrophilic drugs ride in the <b>internal aqueous space</b>; hydrophobic drugs sit <b>inside the bilayer</b>.</li>' +
+        '<li>The basis of lipid nanoparticles (LNPs) used for mRNA vaccines and many drug carriers.</li>' +
+        '<li>Intracellular vesicle traffic — endosomes, synaptic vesicles — runs on the same physics.</li></ul>'
+    }
+  };
+
+  function show(key) {
+    svg.innerHTML = '<title>' + key + '</title>' + VIEWS[key].draw();
+    text.innerHTML = VIEWS[key].html;
+    chips.querySelectorAll('.chip').forEach(function (c) {
+      c.setAttribute('aria-pressed', c.dataset.agg === key ? 'true' : 'false');
+    });
+  }
+
+  chips.addEventListener('click', function (e) {
+    var c = e.target.closest('.chip');
+    if (c) show(c.dataset.agg);
+  });
+  show('micelle');
+})();
+
+/* ================= Interactive: fatty-acid melting points ================= */
+(function () {
+  var FA = [
+    { n:'Lauric acid',        c:'12:0',                    mp:44,  sat:true },
+    { n:'Myristic acid',      c:'14:0',                    mp:54,  sat:true },
+    { n:'Palmitic acid',      c:'16:0',                    mp:63,  sat:true },
+    { n:'Stearic acid',       c:'18:0',                    mp:70,  sat:true },
+    { n:'Oleic acid',         c:'18:1 (ω-9)',              mp:13,  sat:false },
+    { n:'Linoleic acid',      c:'18:2 (ω-6) · essential',  mp:-5,  sat:false },
+    { n:'α-Linolenic acid',   c:'18:3 (ω-3) · essential',  mp:-11, sat:false },
+    { n:'Arachidonic acid',   c:'20:4 (ω-6)',              mp:-49, sat:false }
+  ];
+  var LO = -60, HI = 80;
+  var p = function (v) { return (v - LO) / (HI - LO) * 100; };
+
+  var host = document.getElementById('mp-rows');
+  FA.forEach(function (f, i) {
+    var row = document.createElement('div');
+    row.className = 'mp__row';
+    var zero = p(0), val = p(f.mp);
+    var left = Math.min(zero, val), width = Math.max(Math.abs(val - zero), 0.8);
+    var right = left + width;
+    /* keep the value label inside the plot area */
+    var vStyle = right > 82
+      ? 'right:' + (100 - left).toFixed(2) + '%;padding-right:.4rem'
+      : 'left:' + right.toFixed(2) + '%;padding-left:.4rem';
+    row.innerHTML =
+      '<span class="mp__name">' + f.n + '<small>' + f.c + '</small></span>' +
+      '<span class="mp__track">' +
+        '<span class="mp__zero" style="left:' + zero + '%"></span>' +
+        '<span class="mp__body" style="left:' + p(37) + '%">' + (i === 0 ? '<span>37 °C body temp</span>' : '') + '</span>' +
+        '<span class="mp__bar" style="left:' + left + '%;width:' + width + '%;background:' +
+          (f.sat ? 'var(--covalent)' : 'var(--accent)') + '"></span>' +
+        '<span class="mp__v" style="' + vStyle + '">' + f.mp + ' °C</span>' +
+      '</span>';
+    host.appendChild(row);
+  });
+})();
+</script>
+</body>
+</html>
