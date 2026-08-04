@@ -35,6 +35,10 @@
     <nav>
       <a href="physics.html">Physics</a>
       <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -79,9 +83,28 @@
     </ol>
   </nav>
 
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — §01–03: position, velocity and acceleration are three links in one
+          chain, and along a straight line a plus or minus sign is the whole of what "direction" means.
+          §06 draws that same chain as pictures — slopes going down it, areas coming back up. Nothing
+          later in the note is really new once those two ideas are in place.</li>
+      <li><b>Then be able to do</b> — §04: pick the constant-acceleration equation that leaves out the
+          quantity you neither know nor want, and use it. Then §05 (free fall), §07 (splitting a vector
+          into two perpendicular components) and §09 (projectiles), which are that same skill applied.
+          These four sections carry most of the calculational marks.</li>
+      <li><b>Leave for a second pass</b> — §08 (relative velocity: rivers and closing speed) and §10
+          (circular motion) stand on their own and can wait, as can the two derivation blocks —
+          "Where each one comes from" in §04 and "Why 45° maximises the range" in §09.</li>
+    </ol>
+  </div>
+
   <!-- Page-top formula sheet -->
   <section class="fsheet card">
-    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <details class="disc disc--sheet">
+      <summary>Formula sheet<span class="disc__count">25 formulas</span></summary>
+      <div class="disc__body">
     <div class="fsheet__grid">
       <div class="fsheet__item"><b>Displacement</b><code>Δx = x₂ − x₁</code></div>
       <div class="fsheet__item"><b>Average velocity</b><code>v̄ = Δx / Δt</code></div>
@@ -101,14 +124,16 @@
       <div class="fsheet__item"><b>Relative velocity</b><code>v<sub>A/C</sub> = v<sub>A/B</sub> + v<sub>B/C</sub></code></div>
       <div class="fsheet__item"><b>Projectile · horizontal</b><code>x = (v₀cosθ)·t</code></div>
       <div class="fsheet__item"><b>Projectile · vertical</b><code>y = (v₀sinθ)·t − ½gt²</code></div>
-      <div class="fsheet__item"><b>Time of flight (level)</b><code>T = 2v₀sinθ / g</code></div>
-      <div class="fsheet__item"><b>Maximum height</b><code>H = v₀²sin²θ / (2g)</code></div>
-      <div class="fsheet__item"><b>Range (level ground)</b><code>R = v₀²sin2θ / g</code></div>
-      <div class="fsheet__item"><b>Trajectory</b><code>y = x·tanθ − gx² / (2v₀²cos²θ)</code></div>
+      <div class="fsheet__item"><b>Time of flight (level)</b><code>T = (2v₀sinθ) / g</code></div>
+      <div class="fsheet__item"><b>Maximum height</b><code>H = (v₀²sin²θ) / (2g)</code></div>
+      <div class="fsheet__item"><b>Range (level ground)</b><code>R = (v₀²sin2θ) / g</code></div>
+      <div class="fsheet__item"><b>Trajectory</b><code>y = x·tanθ − (gx²) / (2v₀²cos²θ)</code></div>
       <div class="fsheet__item"><b>Angular speed</b><code>ω = 2π/T = 2πf</code></div>
       <div class="fsheet__item"><b>Tangential speed</b><code>v = ωr = 2πr/T</code></div>
       <div class="fsheet__item"><b>Centripetal acceleration</b><code>a<sub>c</sub> = v²/r = ω²r = 4π²r/T²</code></div>
     </div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -117,32 +142,46 @@
   <span class="section__num">§ 01</span>
   <h2>Position, displacement, and the sign convention</h2>
 
+  <p class="idea"><b>The idea</b>Physics has to answer two different questions about a moving thing, and
+    it is easy to mistake them for one. The first is where it ended up compared with where it began; the
+    second is how much ground it covered getting there. Walk one lap of a running track and you have
+    covered a lot of ground but you are standing exactly where you started, so the two answers are not
+    even close. This section sets up the bookkeeping that keeps them apart — and it starts with a
+    decision you have to make yourself, before any sums: which way along your line counts as forward.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Position <span class="fi">x</span></dt>
       <dd>A signed coordinate of an object measured from a chosen origin along a chosen axis. It is a
         label for <em>where</em>, not for <em>how far travelled</em>.</dd>
-      <dt>Displacement <span class="fi">Δ<b>x</b></span></dt>
-      <dd>The vector from the starting position to the finishing position: final minus initial. It depends
-        only on the two endpoints.</dd>
-      <dt>Distance (path length)</dt>
-      <dd>The scalar total length of the path actually traced out. It can only increase.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">Δx = x<sub>final</sub> − x<sub>initial</sub></span>
       <span class="fx__tag">always; the axis direction must be fixed first</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">distance ≥ |Δx|</span><span class="fx__tag">equality only if the motion never reverses</span></div>
-      <div class="fx"><span class="fx__eq">|Δ<b>r</b>| = √(Δx² + Δy²)</span><span class="fx__tag">two dimensions</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>x</b><span>position along the axis (m)</span></div>
-      <div><b>Δx</b><span>displacement, signed (m)</span></div>
-      <div><b>Δ<b>r</b></b><span>displacement vector in 2-D (m)</span></div>
-      <div><b>t</b><span>time (s)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Displacement <span class="fi">Δ<b>x</b></span></dt>
+          <dd>The vector from the starting position to the finishing position: final minus initial. It depends
+            only on the two endpoints.</dd>
+          <dt>Distance (path length)</dt>
+          <dd>The scalar total length of the path actually traced out. It can only increase.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">distance ≥ |Δx|</span><span class="fx__tag">equality only if the motion never reverses</span></div>
+          <div class="fx"><span class="fx__eq">|Δ<b>r</b>| = <span class="msq" role="img" aria-label="square root of delta x squared plus delta y squared"><span>Δx² + Δy²</span></span></span><span class="fx__tag">two dimensions</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>x</b><span>position along the axis (m)</span></div>
+          <div><b>Δx</b><span>displacement, signed (m)</span></div>
+          <div><b>Δ<b>r</b></b><span>displacement vector in 2-D (m)</span></div>
+          <div><b>t</b><span>time (s)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -192,19 +231,24 @@
       distances add arithmetically (4 + 5 = 9 m). The two answers disagree whenever the motion reverses.</figcaption>
   </figure>
 
-  <div class="table-scroll">
-    <table class="data">
-      <thead><tr><th>Property</th><th>Distance / speed (scalar)</th><th>Displacement / velocity (vector)</th></tr></thead>
-      <tbody>
-        <tr><td>Depends on</td><td>The whole path</td><td>Endpoints only</td></tr>
-        <tr><td>Can it be negative?</td><td>No — always ≥ 0</td><td>Yes; the sign is the direction</td></tr>
-        <tr><td>Can it be zero after motion?</td><td>No</td><td>Yes — a closed loop</td></tr>
-        <tr><td>How two legs combine</td><td>Arithmetic sum</td><td>Vector (signed) sum</td></tr>
-        <tr><td>400 m track lap</td><td class="num">400 m · 400/t m·s⁻¹</td><td class="num">0 m · 0 m·s⁻¹</td></tr>
-        <tr><td>Reverses if you flip the axis</td><td>No</td><td>Yes — the sign flips</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <details class="disc disc--deep">
+    <summary>Go deeper · scalar and vector, property by property</summary>
+    <div class="disc__body">
+      <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Property</th><th>Distance / speed (scalar)</th><th>Displacement / velocity (vector)</th></tr></thead>
+          <tbody>
+            <tr><td>Depends on</td><td>The whole path</td><td>Endpoints only</td></tr>
+            <tr><td>Can it be negative?</td><td>No — always ≥ 0</td><td>Yes; the sign is the direction</td></tr>
+            <tr><td>Can it be zero after motion?</td><td>No</td><td>Yes — a closed loop</td></tr>
+            <tr><td>How two legs combine</td><td>Arithmetic sum</td><td>Vector (signed) sum</td></tr>
+            <tr><td>400 m track lap</td><td class="num">400 m · 400/t m·s⁻¹</td><td class="num">0 m · 0 m·s⁻¹</td></tr>
+            <tr><td>Reverses if you flip the axis</td><td>No</td><td>Yes — the sign flips</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · the axis is a choice, and it is yours</p>
@@ -222,33 +266,47 @@
   <span class="section__num">§ 02</span>
   <h2>Velocity and speed: average vs instantaneous</h2>
 
+  <p class="idea"><b>The idea</b>There are two honest answers to "how fast was it going", and they are
+    answers to different questions. One is the whole-journey summary: this much progress in this much
+    time, which deliberately forgets everything that happened in between. The other is what a
+    speedometer shows at one moment. A car that crawls through town and then flies down the motorway
+    has a single unremarkable summary number and a very eventful moment-by-moment story, and swapping
+    one for the other is where most of the marks in this section are lost.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Average velocity</dt>
       <dd>Displacement divided by the elapsed time — the single constant velocity that would have produced the
         same net displacement in the same time.</dd>
-      <dt>Instantaneous velocity</dt>
-      <dd>The limit of the average velocity as the time interval shrinks to zero; equivalently, the slope of the
-        tangent to the position–time graph.</dd>
-      <dt>Speed</dt>
-      <dd>The magnitude of the instantaneous velocity (a scalar). <em>Average</em> speed, however, is path
-        length over time — which is <strong>not</strong> the magnitude of the average velocity.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">v̄ = Δx / Δt&nbsp;&nbsp;&nbsp;&nbsp;v = lim<sub>Δt→0</sub> Δx/Δt = dx/dt</span>
       <span class="fx__tag">definitions; valid for any motion whatsoever</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">average speed = (total path length) / Δt</span><span class="fx__tag">scalar; ≥ |v̄|</span></div>
-      <div class="fx"><span class="fx__eq">Δx = ∫ v dt</span><span class="fx__tag">the area under the v–t curve</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>v̄</b><span>average velocity (m·s⁻¹)</span></div>
-      <div><b>v</b><span>instantaneous velocity (m·s⁻¹)</span></div>
-      <div><b>Δx</b><span>displacement (m)</span></div>
-      <div><b>Δt</b><span>elapsed time (s)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Instantaneous velocity</dt>
+          <dd>The limit of the average velocity as the time interval shrinks to zero; equivalently, the slope of the
+            tangent to the position–time graph.</dd>
+          <dt>Speed</dt>
+          <dd>The magnitude of the instantaneous velocity (a scalar). <em>Average</em> speed, however, is path
+            length over time — which is <strong>not</strong> the magnitude of the average velocity.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">average speed = <span class="mf" role="img" aria-label="total path length over delta t"><span>total path length</span><span>Δt</span></span></span><span class="fx__tag">scalar; ≥ |v̄|</span></div>
+          <div class="fx"><span class="fx__eq">Δx = ∫ v dt</span><span class="fx__tag">the area under the v–t curve</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>v̄</b><span>average velocity (m·s⁻¹)</span></div>
+          <div><b>v</b><span>instantaneous velocity (m·s⁻¹)</span></div>
+          <div><b>Δx</b><span>displacement (m)</span></div>
+          <div><b>Δt</b><span>elapsed time (s)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -264,8 +322,9 @@
     <span class="fi">2v₁v₂/(v₁+v₂) = 48 km·h⁻¹</span>. Equal distances → harmonic mean. Equal times → arithmetic mean.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 1 · displacement, distance, and the two averages</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 1 · displacement, distance, and the two averages</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A jogger runs 300 m due east in 100 s, then turns and runs 100 m due west in 50 s.
       Find the average speed and the average velocity for the whole run.</p>
     <ol>
@@ -278,7 +337,8 @@
         exceed the magnitude of the average velocity. 2.67 &gt; 1.33 ✓</li>
     </ol>
     <span class="wex__ans">average speed 2.67 m·s⁻¹ · average velocity 1.33 m·s⁻¹ due east</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point</p>
@@ -296,31 +356,45 @@
   <span class="section__num">§ 03</span>
   <h2>Acceleration — and why "deceleration" is not a separate thing</h2>
 
+  <p class="idea"><b>The idea</b>Acceleration is not how fast something is going; it is how quickly its
+    going is <em>changing</em>. That distinction does real work. Because going somewhere involves a
+    direction as well as an amount, a car taking a bend at a steady speed is accelerating too. And there
+    is no separate thing called slowing down: there is one change, and whether the object gets faster or
+    slower depends only on whether that change pushes the same way it is already travelling or against
+    it. Get comfortable with that and half the sign errors in this chapter disappear.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Acceleration <span class="fi"><b>a</b></span></dt>
       <dd>The rate of change of the <em>velocity vector</em> with time. Because velocity is a vector, an
         acceleration exists whenever the speed changes, <strong>or</strong> the direction changes, or both.</dd>
-      <dt>Uniform acceleration</dt>
-      <dd>Acceleration that is constant in both magnitude and direction over the interval considered — the
-        only case the four equations of §04 describe.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq"><b>ā</b> = Δ<b>v</b>/Δt&nbsp;&nbsp;&nbsp;&nbsp;<b>a</b> = d<b>v</b>/dt = d²<b>x</b>/dt²</span>
       <span class="fx__tag">average (left) and instantaneous (right); both valid for any motion</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">speeding up ⟺ <b>a</b> and <b>v</b> have the same sign</span><span class="fx__tag">1-D test</span></div>
-      <div class="fx"><span class="fx__eq">slowing down ⟺ <b>a</b> and <b>v</b> have opposite signs</span><span class="fx__tag">1-D test</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>ā</b><span>average acceleration over Δt (m·s⁻²)</span></div>
-      <div><b>a</b><span>instantaneous acceleration (m·s⁻²)</span></div>
-      <div><b>Δv</b><span>change in velocity (m·s⁻¹)</span></div>
-      <div><b>Δt</b><span>time interval (s)</span></div>
-      <div><b>g</b><span>free-fall acceleration, 9.8 m·s⁻² near the Earth's surface</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Uniform acceleration</dt>
+          <dd>Acceleration that is constant in both magnitude and direction over the interval considered — the
+            only case the four equations of §04 describe.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">speeding up ⟺ <b>a</b> and <b>v</b> have the same sign</span><span class="fx__tag">1-D test</span></div>
+          <div class="fx"><span class="fx__eq">slowing down ⟺ <b>a</b> and <b>v</b> have opposite signs</span><span class="fx__tag">1-D test</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>ā</b><span>average acceleration over Δt (m·s⁻²)</span></div>
+          <div><b>a</b><span>instantaneous acceleration (m·s⁻²)</span></div>
+          <div><b>Δv</b><span>change in velocity (m·s⁻¹)</span></div>
+          <div><b>Δt</b><span>time interval (s)</span></div>
+          <div><b>g</b><span>free-fall acceleration, 9.8 m·s⁻² near the Earth's surface</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -332,19 +406,24 @@
     and on the way down (speeding up). The acceleration never changes; only its relationship to the velocity does.
   </p>
 
-  <div class="table-scroll">
-    <table class="data">
-      <thead><tr><th>Sign of v</th><th>Sign of a</th><th>What is happening</th><th>Everyday example</th></tr></thead>
-      <tbody>
-        <tr><td class="num">+</td><td class="num">+</td><td>Moving forward, speeding up</td><td>Car accelerating away from lights</td></tr>
-        <tr><td class="num">+</td><td class="num">−</td><td>Moving forward, slowing down</td><td>Car braking; ball on the way up</td></tr>
-        <tr><td class="num">−</td><td class="num">−</td><td>Moving backward, speeding up</td><td>Ball on the way down (up-positive)</td></tr>
-        <tr><td class="num">−</td><td class="num">+</td><td>Moving backward, slowing down</td><td>Car reversing, then braking</td></tr>
-        <tr><td class="num">0</td><td class="num">≠ 0</td><td>Instantaneously at rest but still accelerating</td><td>Ball at the very top of its flight</td></tr>
-        <tr><td class="num">≠ 0</td><td class="num">0</td><td>Constant velocity</td><td>Cruise control on a straight road</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <details class="disc disc--deep">
+    <summary>Go deeper · all six combinations of velocity sign and acceleration sign</summary>
+    <div class="disc__body">
+      <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Sign of v</th><th>Sign of a</th><th>What is happening</th><th>Everyday example</th></tr></thead>
+          <tbody>
+            <tr><td class="num">+</td><td class="num">+</td><td>Moving forward, speeding up</td><td>Car accelerating away from lights</td></tr>
+            <tr><td class="num">+</td><td class="num">−</td><td>Moving forward, slowing down</td><td>Car braking; ball on the way up</td></tr>
+            <tr><td class="num">−</td><td class="num">−</td><td>Moving backward, speeding up</td><td>Ball on the way down (up-positive)</td></tr>
+            <tr><td class="num">−</td><td class="num">+</td><td>Moving backward, slowing down</td><td>Car reversing, then braking</td></tr>
+            <tr><td class="num">0</td><td class="num">≠ 0</td><td>Instantaneously at rest but still accelerating</td><td>Ball at the very top of its flight</td></tr>
+            <tr><td class="num">≠ 0</td><td class="num">0</td><td>Constant velocity</td><td>Cruise control on a straight road</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · v = 0 does not imply a = 0</p>
@@ -369,6 +448,14 @@
   <span class="section__num">§ 04</span>
   <h2>The four constant-acceleration equations</h2>
 
+  <p class="idea"><b>The idea</b>When the rate of change stays steady, you never have to follow a journey
+    moment by moment — the whole thing can be written down in one line. Five things describe such a
+    journey: how far it went, how fast it was at the start, how fast at the end, how strongly it was
+    changing, and how long it lasted. Know any three of them and the remaining two are already decided.
+    The four equations below are simply the four useful ways of saying that, each one arranged so a
+    different quantity drops out, and the skill is picking the one that leaves out whatever you neither
+    know nor need.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -381,18 +468,23 @@
       <span class="fx__eq">v = v₀ + at</span>
       <span class="fx__tag">constant a · omits Δx</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">Δx = v₀t + ½at²</span><span class="fx__tag">constant a · omits v</span></div>
-      <div class="fx"><span class="fx__eq">v² = v₀² + 2aΔx</span><span class="fx__tag">constant a · omits t</span></div>
-      <div class="fx"><span class="fx__eq">Δx = ½(v₀ + v)t</span><span class="fx__tag">constant a · omits a</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>Δx</b><span>displacement over the interval (m)</span></div>
-      <div><b>v₀</b><span>velocity at t = 0 (m·s⁻¹)</span></div>
-      <div><b>v</b><span>velocity at time t (m·s⁻¹)</span></div>
-      <div><b>a</b><span>constant acceleration (m·s⁻²)</span></div>
-      <div><b>t</b><span>elapsed time (s)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Δx = v₀t + ½at²</span><span class="fx__tag">constant a · omits v</span></div>
+          <div class="fx"><span class="fx__eq">v² = v₀² + 2aΔx</span><span class="fx__tag">constant a · omits t</span></div>
+          <div class="fx"><span class="fx__eq">Δx = ½(v₀ + v)t</span><span class="fx__tag">constant a · omits a</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Δx</b><span>displacement over the interval (m)</span></div>
+          <div><b>v₀</b><span>velocity at t = 0 (m·s⁻¹)</span></div>
+          <div><b>v</b><span>velocity at time t (m·s⁻¹)</span></div>
+          <div><b>a</b><span>constant acceleration (m·s⁻²)</span></div>
+          <div><b>t</b><span>elapsed time (s)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -435,21 +527,26 @@
       trapezoid and you get <span class="fi">Δx = ½(v₀+v)t</span>.</figcaption>
   </figure>
 
-  <h3>Where each one comes from</h3>
-  <ol style="font-size:.95rem">
-    <li><b>v = v₀ + at.</b> The slope of the line is Δv/Δt = a by definition, so Δv = at and
-      v = v₀ + at. This equation <em>is</em> the definition of constant acceleration, rearranged.</li>
-    <li><b>Δx = ½(v₀ + v)t.</b> The area of a trapezoid is (mean of the two parallel sides) × width. Since the
-      line is straight, the mean height <em>is</em> the average velocity, so
-      <span class="fi">v̄ = ½(v₀+v)</span> — true for constant a and <strong>for nothing else</strong>.</li>
-    <li><b>Δx = v₀t + ½at².</b> Cut the same trapezoid into the rectangle <span class="fi">v₀ × t</span>
-      and the triangle <span class="fi">½ × t × (at)</span>. Interpretation: the distance you would have gone at
-      the original speed, plus the bonus the acceleration bought you.</li>
-    <li><b>v² = v₀² + 2aΔx.</b> Eliminate t. From (1), <span class="fi">t = (v − v₀)/a</span>; substitute into (2):
-      <span class="fi">Δx = ½(v₀+v)(v−v₀)/a = (v² − v₀²)/(2a)</span>. Rearranged, that is the equation. It is the
-      one to reach for whenever the question mentions no time at all — and it is the ancestor of the
-      work–energy theorem.</li>
-  </ol>
+  <details class="disc disc--deep">
+    <summary>Go deeper · deriving all four equations from that one graph</summary>
+    <div class="disc__body">
+      <h3>Where each one comes from</h3>
+      <ol style="font-size:.95rem">
+        <li><b>v = v₀ + at.</b> The slope of the line is Δv/Δt = a by definition, so Δv = at and
+          v = v₀ + at. This equation <em>is</em> the definition of constant acceleration, rearranged.</li>
+        <li><b>Δx = ½(v₀ + v)t.</b> The area of a trapezoid is (mean of the two parallel sides) × width. Since the
+          line is straight, the mean height <em>is</em> the average velocity, so
+          <span class="fi">v̄ = ½(v₀+v)</span> — true for constant a and <strong>for nothing else</strong>.</li>
+        <li><b>Δx = v₀t + ½at².</b> Cut the same trapezoid into the rectangle <span class="fi">v₀ × t</span>
+          and the triangle <span class="fi">½ × t × (at)</span>. Interpretation: the distance you would have gone at
+          the original speed, plus the bonus the acceleration bought you.</li>
+        <li><b>v² = v₀² + 2aΔx.</b> Eliminate t. From (1), <span class="fi">t = (v − v₀)/a</span>; substitute into (2):
+          <span class="fi">Δx = ½(v₀+v)(v−v₀)/a = (v² − v₀²)/(2a)</span>. Rearranged, that is the equation. It is the
+          one to reach for whenever the question mentions no time at all — and it is the ancestor of the
+          work–energy theorem.</li>
+      </ol>
+    </div>
+  </details>
 
   <div class="table-scroll">
     <table class="data">
@@ -463,8 +560,9 @@
     </table>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 2 · stopping distance, and why speed is the dangerous variable</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 2 · stopping distance, and why speed is the dangerous variable</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A car travels at 25 m·s⁻¹ (90 km·h⁻¹). The driver's reaction time is 0.70 s and
       the brakes then produce a constant <span class="fi">a = −5.0 m·s⁻²</span>. Find the total stopping distance.
       Then repeat at half the speed.</p>
@@ -481,7 +579,8 @@
         pedestrian injury severity climbs so steeply with impact speed.</li>
     </ol>
     <span class="wex__ans">80.0 m at 25 m·s⁻¹ · 24.4 m at 12.5 m·s⁻¹</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · these four equations are useless if a is not constant</p>
@@ -500,32 +599,47 @@
   <span class="section__num">§ 05</span>
   <h2>Free fall: the special case a = −g</h2>
 
+  <p class="idea"><b>The idea</b>Take the air out of the picture and gravity turns out to be remarkably
+    even-handed: it changes the motion of everything at the same steady rate, whatever the object is and
+    however heavy it is. A feather really does keep up with a hammer once there is no air to hold it
+    back. And "falling" is the wrong word for what this section covers — a ball you throw upward is
+    under exactly the same influence on the way up, at the top, and on the way down, so it counts from
+    the moment it leaves your hand. Nothing new has to be learned here; it is the previous section with
+    one number filled in.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Free fall</dt>
       <dd>Motion under gravity alone, with air resistance neglected. "Falling" is a misnomer: an object thrown
         <em>upward</em> is in free fall from the moment it leaves the hand.</dd>
-      <dt>g</dt>
-      <dd>The magnitude of the free-fall acceleration near the Earth's surface, 9.8 m·s⁻². It is a positive
-        number by definition; the direction is supplied by the sign convention, not by g itself.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">a<sub>y</sub> = −g = −9.8 m·s⁻²</span>
       <span class="fx__tag">up chosen positive; air resistance neglected</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">v = v₀ − gt</span><span class="fx__tag">SUVAT with a = −g</span></div>
-      <div class="fx"><span class="fx__eq">y = y₀ + v₀t − ½gt²</span><span class="fx__tag">SUVAT with a = −g</span></div>
-      <div class="fx"><span class="fx__eq">v² = v₀² − 2g(y − y₀)</span><span class="fx__tag">SUVAT with a = −g</span></div>
-      <div class="fx"><span class="fx__eq">h<sub>rise</sub> = v₀²/(2g)&nbsp;&nbsp;·&nbsp;&nbsp;t<sub>up</sub> = v₀/g</span><span class="fx__tag">thrown up from the launch point</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>y</b><span>height above the origin (m)</span></div>
-      <div><b>v₀</b><span>initial vertical velocity (m·s⁻¹)</span></div>
-      <div><b>g</b><span>9.8 m·s⁻², always positive</span></div>
-      <div><b>h<sub>rise</sub></b><span>height gained above the launch point (m)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>g</dt>
+          <dd>The magnitude of the free-fall acceleration near the Earth's surface, 9.8 m·s⁻². It is a positive
+            number by definition; the direction is supplied by the sign convention, not by g itself.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">v = v₀ − gt</span><span class="fx__tag">SUVAT with a = −g</span></div>
+          <div class="fx"><span class="fx__eq">y = y₀ + v₀t − ½gt²</span><span class="fx__tag">SUVAT with a = −g</span></div>
+          <div class="fx"><span class="fx__eq">v² = v₀² − 2g(y − y₀)</span><span class="fx__tag">SUVAT with a = −g</span></div>
+          <div class="fx"><span class="fx__eq">h<sub>rise</sub> = <span class="mf" role="img" aria-label="v nought squared over two g"><span>v₀²</span><span>2g</span></span>&nbsp;&nbsp;·&nbsp;&nbsp;t<sub>up</sub> = v₀/g</span><span class="fx__tag">thrown up from the launch point</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>y</b><span>height above the origin (m)</span></div>
+          <div><b>v₀</b><span>initial vertical velocity (m·s⁻¹)</span></div>
+          <div><b>g</b><span>9.8 m·s⁻², always positive</span></div>
+          <div><b>h<sub>rise</sub></b><span>height gained above the launch point (m)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -544,8 +658,9 @@
     a mirror image. Neither holds if the landing height differs from the launch height.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 3 · thrown upward from a cliff</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 3 · thrown upward from a cliff</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A stone is thrown vertically upward at 15 m·s⁻¹ from the edge of a cliff 25 m
       above the sea. Take g = 9.8 m·s⁻² and neglect air resistance. Find (a) the maximum height above the launch
       point, (b) the time to reach the water, (c) the impact speed.</p>
@@ -567,7 +682,8 @@
         t = 2 × 1.53 = 3.06 s — and the remaining 25 m of fall then takes 4.26 − 3.06 = 1.20 s. ✓</li>
     </ol>
     <span class="wex__ans">(a) 11.5 m · (b) 4.26 s · (c) 26.7 m·s⁻¹ downward</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point</p>
@@ -585,6 +701,13 @@
   <span class="section__num">§ 06</span>
   <h2>Motion graphs: slope and area are inverses</h2>
 
+  <p class="idea"><b>The idea</b>Where something is, how fast it is going, and how quickly that is
+    changing are three pictures of one journey, and each picture can be recovered from the one next to
+    it. Move one way along the chain and you are asking how steeply a line tilts. Move back the other
+    way and you are asking how much space is trapped underneath it. Those are the only two moves there
+    are, so once you can tell which one a question wants, reading motion graphs stops being a separate
+    skill and becomes the same skill you already have.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -597,16 +720,21 @@
       <span class="fx__eq">v = dx/dt&nbsp;&nbsp;·&nbsp;&nbsp;a = dv/dt&nbsp;&nbsp;⟷&nbsp;&nbsp;Δv = ∫a dt&nbsp;&nbsp;·&nbsp;&nbsp;Δx = ∫v dt</span>
       <span class="fx__tag">always valid, constant a or not</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">area below the t-axis counts as negative</span><span class="fx__tag">signed area gives displacement</span></div>
-      <div class="fx"><span class="fx__eq">∫|v| dt = distance travelled</span><span class="fx__tag">unsigned area gives path length</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>x–t</b><span>position vs time; slope in m·s⁻¹</span></div>
-      <div><b>v–t</b><span>velocity vs time; slope m·s⁻², area m</span></div>
-      <div><b>a–t</b><span>acceleration vs time; area m·s⁻¹</span></div>
-      <div><b>Δ</b><span>change in the quantity that follows</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">area below the t-axis counts as negative</span><span class="fx__tag">signed area gives displacement</span></div>
+          <div class="fx"><span class="fx__eq">∫|v| dt = distance travelled</span><span class="fx__tag">unsigned area gives path length</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>x–t</b><span>position vs time; slope in m·s⁻¹</span></div>
+          <div><b>v–t</b><span>velocity vs time; slope m·s⁻², area m</span></div>
+          <div><b>a–t</b><span>acceleration vs time; area m·s⁻¹</span></div>
+          <div><b>Δ</b><span>change in the quantity that follows</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <figure class="figure pk-fig">
@@ -691,33 +819,47 @@
   <span class="section__num">§ 07</span>
   <h2>Vectors, components and vector addition</h2>
 
+  <p class="idea"><b>The idea</b>Anything that points somewhere can be broken into two pieces at right
+    angles to each other — how much of it goes across, and how much of it goes up. The reason this is
+    worth doing is that the two pieces never interfere: whatever is happening sideways has no say in
+    what is happening vertically, and the other way round. That single fact is what lets a genuinely
+    two-dimensional problem be taken apart into two separate, much easier one-dimensional problems, and
+    it is why the next three sections are easier than they look.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Vector</dt>
       <dd>A quantity with both magnitude and direction that adds by the parallelogram (tip-to-tail) rule.
         Written bold here: <b>A</b>. Its magnitude is written A or |<b>A</b>|.</dd>
-      <dt>Components</dt>
-      <dd>The projections of a vector onto the chosen axes. Because the axes are perpendicular, the components
-        are <strong>independent</strong> — this is the fact that makes 2-D kinematics tractable at all.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">A<sub>x</sub> = A cosθ&nbsp;&nbsp;·&nbsp;&nbsp;A<sub>y</sub> = A sinθ</span>
       <span class="fx__tag">θ measured from the +x axis</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">A = √(A<sub>x</sub>² + A<sub>y</sub>²)&nbsp;&nbsp;·&nbsp;&nbsp;θ = arctan(A<sub>y</sub>/A<sub>x</sub>)</span><span class="fx__tag">components → magnitude &amp; direction</span></div>
-      <div class="fx"><span class="fx__eq">(<b>A</b>+<b>B</b>)<sub>x</sub> = A<sub>x</sub>+B<sub>x</sub>&nbsp;&nbsp;·&nbsp;&nbsp;(<b>A</b>+<b>B</b>)<sub>y</sub> = A<sub>y</sub>+B<sub>y</sub></span><span class="fx__tag">add component-wise, never magnitude-wise</span></div>
-      <div class="fx"><span class="fx__eq">|<b>A</b>+<b>B</b>| = √(A² + B² + 2AB cosφ)</span><span class="fx__tag">φ = angle between <b>A</b> and <b>B</b></span></div>
-      <div class="fx"><span class="fx__eq"><b>A</b> − <b>B</b> = <b>A</b> + (−<b>B</b>)</span><span class="fx__tag">subtraction = adding the reverse</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>A</b><span>magnitude of the vector (unit of the quantity)</span></div>
-      <div><b>A<sub>x</sub></b><span>x-component, signed (same unit)</span></div>
-      <div><b>A<sub>y</sub></b><span>y-component, signed (same unit)</span></div>
-      <div><b>θ</b><span>direction angle from +x (degrees or rad)</span></div>
-      <div><b>φ</b><span>angle between two vectors (degrees or rad)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Components</dt>
+          <dd>The projections of a vector onto the chosen axes. Because the axes are perpendicular, the components
+            are <strong>independent</strong> — this is the fact that makes 2-D kinematics tractable at all.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">A = <span class="msq" role="img" aria-label="square root of A x squared plus A y squared"><span>A<sub>x</sub>² + A<sub>y</sub>²</span></span>&nbsp;&nbsp;·&nbsp;&nbsp;θ = arctan(A<sub>y</sub>/A<sub>x</sub>)</span><span class="fx__tag">components → magnitude &amp; direction</span></div>
+          <div class="fx"><span class="fx__eq">(<b>A</b>+<b>B</b>)<sub>x</sub> = A<sub>x</sub>+B<sub>x</sub>&nbsp;&nbsp;·&nbsp;&nbsp;(<b>A</b>+<b>B</b>)<sub>y</sub> = A<sub>y</sub>+B<sub>y</sub></span><span class="fx__tag">add component-wise, never magnitude-wise</span></div>
+          <div class="fx"><span class="fx__eq">|<b>A</b>+<b>B</b>| = <span class="msq" role="img" aria-label="square root of A squared plus B squared plus two A B cosine phi"><span>A² + B² + 2AB cosφ</span></span></span><span class="fx__tag">φ = angle between <b>A</b> and <b>B</b></span></div>
+          <div class="fx"><span class="fx__eq"><b>A</b> − <b>B</b> = <b>A</b> + (−<b>B</b>)</span><span class="fx__tag">subtraction = adding the reverse</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>A</b><span>magnitude of the vector (unit of the quantity)</span></div>
+          <div><b>A<sub>x</sub></b><span>x-component, signed (same unit)</span></div>
+          <div><b>A<sub>y</sub></b><span>y-component, signed (same unit)</span></div>
+          <div><b>θ</b><span>direction angle from +x (degrees or rad)</span></div>
+          <div><b>φ</b><span>angle between two vectors (degrees or rad)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -734,8 +876,9 @@
     an angle between −90° and +90° and will happily report a north-west vector as though it pointed south-east.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 4 · adding two displacements</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 4 · adding two displacements</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A hiker walks 5.0 km in a direction 30° north of east, then 4.0 km due north.
       Find the resultant displacement.</p>
     <ol>
@@ -751,7 +894,8 @@
         And it must be steeper than 30° but shallower than 90°. 56.3° ✓</li>
     </ol>
     <span class="wex__ans">R = 7.81 km at 56.3° north of east</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · magnitudes do not add</p>
@@ -769,6 +913,13 @@
   <span class="section__num">§ 08</span>
   <h2>Relative velocity: rivers and closing speed</h2>
 
+  <p class="idea"><b>The idea</b>How fast something is moving is never an absolute fact — it is always
+    how fast it is moving compared with something else. Someone walking down the aisle of a moving train
+    is strolling as far as the other passengers are concerned and hurtling along as far as a person on
+    the platform is concerned, and neither of them is wrong. This section is about choosing that point
+    of view deliberately, because picking the right one turns an awkward question — a boat pushed
+    sideways by a current, two cars racing toward each other — into an ordinary one.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -781,19 +932,24 @@
       <span class="fx__eq"><b>v</b><sub>A/C</sub> = <b>v</b><sub>A/B</sub> + <b>v</b><sub>B/C</sub></span>
       <span class="fx__tag">non-relativistic (v ≪ c); inner subscripts cancel</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq"><b>v</b><sub>B/A</sub> = −<b>v</b><sub>A/B</sub></span><span class="fx__tag">swapping the frames reverses the vector</span></div>
-      <div class="fx"><span class="fx__eq">t<sub>cross</sub> = w / v<sub>boat</sub>&nbsp;·&nbsp;drift = v<sub>river</sub> · t<sub>cross</sub></span><span class="fx__tag">bow aimed straight across</span></div>
-      <div class="fx"><span class="fx__eq">sinθ = v<sub>river</sub> / v<sub>boat</sub></span><span class="fx__tag">to land directly opposite; needs v<sub>river</sub> &lt; v<sub>boat</sub></span></div>
-      <div class="fx"><span class="fx__eq">closing speed = |<b>v</b><sub>A</sub> − <b>v</b><sub>B</sub>|</span><span class="fx__tag">head-on: sum · same direction: difference</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>v<sub>A/B</sub></b><span>velocity of A relative to B (m·s⁻¹)</span></div>
-      <div><b>w</b><span>width of the river (m)</span></div>
-      <div><b>v<sub>boat</sub></b><span>boat speed relative to the water (m·s⁻¹)</span></div>
-      <div><b>v<sub>river</sub></b><span>current speed relative to the bank (m·s⁻¹)</span></div>
-      <div><b>θ</b><span>heading angle upstream from the perpendicular (°)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq"><b>v</b><sub>B/A</sub> = −<b>v</b><sub>A/B</sub></span><span class="fx__tag">swapping the frames reverses the vector</span></div>
+          <div class="fx"><span class="fx__eq">t<sub>cross</sub> = w / v<sub>boat</sub>&nbsp;·&nbsp;drift = v<sub>river</sub> · t<sub>cross</sub></span><span class="fx__tag">bow aimed straight across</span></div>
+          <div class="fx"><span class="fx__eq">sinθ = v<sub>river</sub> / v<sub>boat</sub></span><span class="fx__tag">to land directly opposite; needs v<sub>river</sub> &lt; v<sub>boat</sub></span></div>
+          <div class="fx"><span class="fx__eq">closing speed = |<b>v</b><sub>A</sub> − <b>v</b><sub>B</sub>|</span><span class="fx__tag">head-on: sum · same direction: difference</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>v<sub>A/B</sub></b><span>velocity of A relative to B (m·s⁻¹)</span></div>
+          <div><b>w</b><span>width of the river (m)</span></div>
+          <div><b>v<sub>boat</sub></b><span>boat speed relative to the water (m·s⁻¹)</span></div>
+          <div><b>v<sub>river</sub></b><span>current speed relative to the bank (m·s⁻¹)</span></div>
+          <div><b>θ</b><span>heading angle upstream from the perpendicular (°)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -816,8 +972,9 @@
     with a single moving object.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 5 · crossing a river, two ways</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 5 · crossing a river, two ways</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A river 120 m wide flows east at 1.5 m·s⁻¹. A boat can move at 2.0 m·s⁻¹
       relative to the water. (a) If the bow is aimed due north (straight across), find the crossing time, the
       drift and the path length over the ground. (b) What heading lands the boat directly opposite, and how long
@@ -838,7 +995,9 @@
         downstream.</li>
     </ol>
     <span class="wex__ans">(a) 60 s, 90 m drift, 150 m path · (b) 48.6° upstream, 90.7 s</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point</p>
@@ -856,28 +1015,37 @@
   <span class="section__num">§ 09</span>
   <h2>Projectile motion: two independent 1-D problems</h2>
 
+  <p class="idea"><b>The idea</b>Throw something and it is doing two completely separate things at the
+    same time. Sideways it simply keeps going at whatever rate it left your hand, because once it is in
+    the air nothing is pushing it along or holding it back. Up and down, it behaves exactly as it would
+    if you had thrown it straight up and let it drop back — gravity takes no notice of the fact that it
+    is also travelling sideways. Slide a coin off the edge of a table at the same moment you drop
+    another one beside it and the two hit the floor together, which is this whole section in a single
+    demonstration: the only thing the sideways story and the up-and-down story share is the clock.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Projectile</dt>
+    <dl class="def"><dt>Projectile</dt>
       <dd>An object moving under gravity alone after launch, with air resistance neglected. Its horizontal
-        acceleration is zero and its vertical acceleration is −g at every instant, including the apex.</dd>
-      <dt>Independence of the axes</dt>
-      <dd>Because gravity is purely vertical, the horizontal and vertical motions share only the clock. Solve
-        them as two separate one-dimensional problems and use <strong>t as the bridge</strong> between them.</dd>
-    </dl>
+        acceleration is zero and its vertical acceleration is −g at every instant, including the apex.</dd></dl>
     <div class="fx fx--hero">
       <span class="fx__eq">x = (v₀cosθ)t&nbsp;&nbsp;&nbsp;&nbsp;y = (v₀sinθ)t − ½gt²</span>
       <span class="fx__tag">launch at origin; up positive; no air resistance</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Independence of the axes</dt>
+      <dd>Because gravity is purely vertical, the horizontal and vertical motions share only the clock. Solve
+        them as two separate one-dimensional problems and use <strong>t as the bridge</strong> between them.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">v<sub>x</sub> = v₀cosθ (constant)&nbsp;·&nbsp;v<sub>y</sub> = v₀sinθ − gt</span><span class="fx__tag">velocity components at time t</span></div>
-      <div class="fx"><span class="fx__eq">T = 2v₀sinθ / g</span><span class="fx__tag">time of flight, level ground only</span></div>
-      <div class="fx"><span class="fx__eq">H = v₀²sin²θ / (2g)</span><span class="fx__tag">maximum height above the launch point</span></div>
-      <div class="fx"><span class="fx__eq">R = v₀²sin2θ / g</span><span class="fx__tag">range, level ground only</span></div>
-      <div class="fx"><span class="fx__eq">y = x tanθ − gx² / (2v₀²cos²θ)</span><span class="fx__tag">trajectory: a parabola in x</span></div>
+      <div class="fx"><span class="fx__eq">T = <span class="mf" role="img" aria-label="two v nought sine theta over g"><span>2v₀sinθ</span><span>g</span></span></span><span class="fx__tag">time of flight, level ground only</span></div>
+      <div class="fx"><span class="fx__eq">H = <span class="mf" role="img" aria-label="v nought squared sine squared theta over two g"><span>v₀²sin²θ</span><span>2g</span></span></span><span class="fx__tag">maximum height above the launch point</span></div>
+      <div class="fx"><span class="fx__eq">R = <span class="mf" role="img" aria-label="v nought squared sine of two theta over g"><span>v₀²sin2θ</span><span>g</span></span></span><span class="fx__tag">range, level ground only</span></div>
+      <div class="fx"><span class="fx__eq">y = x tanθ − <span class="mf" role="img" aria-label="g x squared over two v nought squared cosine squared theta"><span>gx²</span><span>2v₀²cos²θ</span></span></span><span class="fx__tag">trajectory: a parabola in x</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>v₀</b><span>launch speed (m·s⁻¹)</span></div>
       <div><b>θ</b><span>launch angle above the horizontal (°)</span></div>
       <div><b>v<sub>x</sub></b><span>horizontal velocity, constant (m·s⁻¹)</span></div>
@@ -887,6 +1055,8 @@
       <div><b>R</b><span>horizontal range (m)</span></div>
       <div><b>g</b><span>9.8 m·s⁻²</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -981,8 +1151,9 @@
     instead). And it assumes no air resistance: real thrown objects optimise nearer 35–40°.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 6 · a full projectile, level ground</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 6 · a full projectile, level ground</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A ball is kicked from level ground at 20 m·s⁻¹, 30° above the horizontal.
       Take g = 9.8 m·s⁻² and neglect air resistance. Find the time of flight, the maximum height, the range,
       and the velocity 1.0 s after launch.</p>
@@ -1002,7 +1173,9 @@
         H = 400 × 0.75/19.6 = 15.3 m and T = 3.53 s — same landing spot, three times the height.</li>
     </ol>
     <span class="wex__ans">T = 2.04 s · H = 5.10 m · R = 35.4 m · v(1.0 s) = 17.3 m·s⁻¹ nearly horizontal</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · T = 2v₀sinθ/g and R = v₀²sin2θ/g are not general</p>
@@ -1028,27 +1201,37 @@
   <span class="section__num">§ 10</span>
   <h2>Uniform circular motion, kinematically</h2>
 
+  <p class="idea"><b>The idea</b>Going round a bend at a perfectly steady speed still counts as changing
+    how you are moving, because the direction you are heading in is every bit as much a part of it as the
+    number on the speedometer. That needle can sit rock-still all the way round a roundabout while you are
+    pressed hard against the door, and being pressed against the door is the giveaway that something is
+    being changed after all. What is changing is direction, and at every single moment the change is
+    aimed straight at the centre of the circle — not forward along the path, and certainly not outward.
+    All this section does is work out how big that inward change is, from nothing more than the shape of
+    a circle and ideas you already have.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Uniform circular motion</dt>
+    <dl class="def"><dt>Uniform circular motion</dt>
       <dd>Motion on a circular path at constant <em>speed</em>. The velocity is nonetheless changing at every
-        instant, because its direction changes continuously — so the acceleration is not zero.</dd>
-      <dt>Centripetal acceleration <span class="fi">a<sub>c</sub></span></dt>
-      <dd>The acceleration of a body in uniform circular motion: constant in magnitude, always directed toward
-        the centre, always perpendicular to the velocity. "Centripetal" names a <em>direction</em>, not a new
-        kind of acceleration.</dd>
-    </dl>
+        instant, because its direction changes continuously — so the acceleration is not zero.</dd></dl>
     <div class="fx fx--hero">
       <span class="fx__eq">a<sub>c</sub> = v²/r = ω²r</span>
       <span class="fx__tag">uniform circular motion; directed toward the centre</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Centripetal acceleration <span class="fi">a<sub>c</sub></span></dt>
+      <dd>The acceleration of a body in uniform circular motion: constant in magnitude, always directed toward
+        the centre, always perpendicular to the velocity. "Centripetal" names a <em>direction</em>, not a new
+        kind of acceleration.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">ω = 2π/T = 2πf&nbsp;&nbsp;·&nbsp;&nbsp;v = ωr</span><span class="fx__tag">angular ↔ linear</span></div>
-      <div class="fx"><span class="fx__eq">a<sub>c</sub> = 4π²r/T²</span><span class="fx__tag">when the period is given</span></div>
+      <div class="fx"><span class="fx__eq">a<sub>c</sub> = <span class="mf" role="img" aria-label="four pi squared r over T squared"><span>4π²r</span><span>T²</span></span></span><span class="fx__tag">when the period is given</span></div>
       <div class="fx"><span class="fx__eq">a<sub>tan</sub> = dv/dt = 0</span><span class="fx__tag">uniform case only; non-uniform adds a tangential component</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>v</b><span>tangential speed (m·s⁻¹)</span></div>
       <div><b>r</b><span>radius of the circular path (m)</span></div>
       <div><b>ω</b><span>angular speed (rad·s⁻¹)</span></div>
@@ -1056,6 +1239,8 @@
       <div><b>f</b><span>frequency, revolutions per second (Hz)</span></div>
       <div><b>a<sub>c</sub></b><span>centripetal acceleration (m·s⁻²)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1131,8 +1316,9 @@
     acceleration. That is exactly why a centrifuge is built with the longest rotor arm the machine can spin.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 7 · a clinical centrifuge</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 7 · a clinical centrifuge</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A benchtop centrifuge separates plasma from packed cells. The sample sits at a
       radius of 8.0 cm and the rotor turns at 3000 revolutions per minute. Find the tangential speed, the
       centripetal acceleration, and express that acceleration in multiples of g.</p>
@@ -1150,7 +1336,9 @@
         rpm — rpm alone is meaningless without the rotor radius.</li>
     </ol>
     <span class="wex__ans">v = 25.1 m·s⁻¹ · a<sub>c</sub> = 7.9 × 10³ m·s⁻² ≈ 806 g toward the axis</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point</p>

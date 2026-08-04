@@ -16,6 +16,10 @@
     <nav>
       <a href="physics.html">Physics</a>
       <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -59,8 +63,29 @@
     </ol>
   </nav>
 
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — §01–02 (temperature is simply the one thing two touching objects
+        end up sharing, and kelvin is the scale whose zero really means zero) and §04 (heat, internal
+        energy and temperature are three different things). Nearly every later confusion on this page
+        is one of those three words being used loosely.</li>
+      <li><b>Then be able to do</b> — §05 (energy to warm something, energy to melt or boil it, then
+        balancing the books in a calorimeter), §06 (rate of heat loss by conduction and by radiation),
+        §07 (arithmetic with PV = nRT), §09 (the first law across the four standard processes) and
+        §11 (Carnot efficiency and coefficient of performance). Those five carry the calculations an
+        exam actually sets.</li>
+      <li><b>Leave for a second pass</b> — §03 (thermal expansion; self-contained, and nothing later
+        depends on it), §08 (the kinetic-theory derivation of pressure) and §10 (the microscopic,
+        counting picture of entropy). Come back to them once the first law and the second law feel
+        solid.</li>
+    </ol>
+  </div>
+
   <section class="fsheet card">
-    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <details class="disc disc--sheet">
+      <summary>Formula sheet<span class="disc__count">35 formulas</span></summary>
+      <div class="disc__body">
     <div class="fsheet__grid">
       <div class="fsheet__item"><b>Zeroth law</b><code>A ≡ C and B ≡ C ⟹ A ≡ B</code></div>
       <div class="fsheet__item"><b>Kelvin scale</b><code>T/K = θ/°C + 273.15</code></div>
@@ -70,7 +95,7 @@
       <div class="fsheet__item"><b>Sensible heat</b><code>Q = m c ΔT</code></div>
       <div class="fsheet__item"><b>Latent heat</b><code>Q = m L</code></div>
       <div class="fsheet__item"><b>Calorimetry</b><code>Σ Q = 0 (isolated)</code></div>
-      <div class="fsheet__item"><b>Conduction</b><code>H = k A ΔT / L</code></div>
+      <div class="fsheet__item"><b>Conduction</b><code>H = (k A ΔT) / L</code></div>
       <div class="fsheet__item"><b>Thermal resistance</b><code>R<sub>th</sub> = L / (k A)</code></div>
       <div class="fsheet__item"><b>Convection</b><code>H = h A ΔT</code></div>
       <div class="fsheet__item"><b>Radiation</b><code>P = ε σ A T⁴</code></div>
@@ -80,7 +105,7 @@
       <div class="fsheet__item"><b>Ideal gas (molecules)</b><code>P V = N k<sub>B</sub> T</code></div>
       <div class="fsheet__item"><b>Gas constants</b><code>R = N<sub>A</sub> k<sub>B</sub></code></div>
       <div class="fsheet__item"><b>Kinetic pressure</b><code>P = ⅓ (N/V) m v<sub>rms</sub>²</code></div>
-      <div class="fsheet__item"><b>Mean translational KE</b><code>½ m v<sub>rms</sub>² = 3/2 k<sub>B</sub> T</code></div>
+      <div class="fsheet__item"><b>Mean translational KE</b><code>½ m v<sub>rms</sub>² = (3/2) k<sub>B</sub> T</code></div>
       <div class="fsheet__item"><b>rms speed</b><code>v<sub>rms</sub> = √(3RT/M)</code></div>
       <div class="fsheet__item"><b>Equipartition</b><code>U = (f/2) n R T</code></div>
       <div class="fsheet__item"><b>First law</b><code>ΔU = Q − W<sub>by</sub></code></div>
@@ -98,6 +123,8 @@
       <div class="fsheet__item"><b>Refrigerator COP</b><code>Q<sub>c</sub>/W ≤ T<sub>c</sub>/(T<sub>h</sub> − T<sub>c</sub>)</code></div>
       <div class="fsheet__item"><b>Heat-pump COP</b><code>Q<sub>h</sub>/W ≤ T<sub>h</sub>/(T<sub>h</sub> − T<sub>c</sub>)</code></div>
     </div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -116,12 +143,29 @@
   <span class="section__num">§ 01</span>
   <h2>Temperature, equilibrium and the zeroth law</h2>
 
+  <p class="idea"><b>The idea</b>
+    Put two objects together and leave them alone. After a while nothing between them changes any
+    more — that settled state is what this subject means by equilibrium. Temperature is invented as
+    the one number that has to match once two objects have settled, which is why temperature, and
+    nothing else, tells you which way energy will move between them. It is also why a thermometer
+    works at all: you let it settle against the patient, and then you read the thermometer instead of
+    the patient.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Thermal contact</dt>
       <dd>Two systems are in thermal contact when energy can pass between them by microscopic
         collisions rather than by macroscopic work.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">T<sub>A</sub> = T<sub>C</sub> and T<sub>B</sub> = T<sub>C</sub> ⟹ T<sub>A</sub> = T<sub>B</sub></span>
+      <span class="fx__tag">always; this is what makes a thermometer meaningful</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+    <dl class="def">
       <dt>Thermal equilibrium</dt>
       <dd>The state in which two systems in thermal contact exchange <em>no net</em> energy. Individual
         molecules still trade energy across the boundary; the traffic is simply balanced.</dd>
@@ -132,10 +176,6 @@
       <dd>Thermal equilibrium is transitive: if A is in equilibrium with C, and B is in equilibrium
         with C, then A is in equilibrium with B.</dd>
     </dl>
-    <div class="fx fx--hero">
-      <span class="fx__eq">T<sub>A</sub> = T<sub>C</sub> and T<sub>B</sub> = T<sub>C</sub> ⟹ T<sub>A</sub> = T<sub>B</sub></span>
-      <span class="fx__tag">always; this is what makes a thermometer meaningful</span>
-    </div>
     <div class="fx-grid">
       <div class="fx"><span class="fx__eq">net Q flows from high T to low T</span><span class="fx__tag">spontaneous direction; never the reverse without work</span></div>
     </div>
@@ -144,6 +184,8 @@
       <div><b>θ</b><span>temperature on a relative scale (°C or °F)</span></div>
       <div><b>Q</b><span>heat — energy transferred because of a ΔT (J)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -181,12 +223,29 @@
   <span class="section__num">§ 02</span>
   <h2>Scales, and what absolute zero means</h2>
 
+  <p class="idea"><b>The idea</b>
+    Celsius and Fahrenheit both put their zero somewhere convenient rather than somewhere meaningful,
+    so a reading on either one is really a distance from an arbitrary mark. Gases point at a genuine
+    floor instead: cool the same gas further and further and its push on the walls fades away, and
+    every gas — whatever it is made of — runs out of push at the same point. Counting from that floor
+    gives the kelvin scale, and it is the only scale on which saying one temperature is "twice"
+    another means anything at all.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Celsius scale</dt>
       <dd>A relative scale with 0 °C and 100 °C fixed near the ice point and steam point of water at
         1 atm; the degree size is defined to equal the kelvin.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">T/K = θ/°C + 273.15</span>
+      <span class="fx__tag">exact by definition of the Celsius scale</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+    <dl class="def">
       <dt>Kelvin (thermodynamic) scale</dt>
       <dd>The SI absolute scale. Its zero is the temperature at which the pressure of an ideal gas at
         fixed volume extrapolates to zero — a point every gas agrees on, whatever it is made of.</dd>
@@ -194,13 +253,9 @@
       <dd>0 K = −273.15 °C: the state of minimum possible internal energy. Not "no motion" — quantum
         zero-point motion survives — but no <em>thermally extractable</em> energy left.</dd>
     </dl>
-    <div class="fx fx--hero">
-      <span class="fx__eq">T/K = θ/°C + 273.15</span>
-      <span class="fx__tag">exact by definition of the Celsius scale</span>
-    </div>
     <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">θ<sub>F</sub> = (9/5) θ<sub>C</sub> + 32</span><span class="fx__tag">Celsius → Fahrenheit</span></div>
-      <div class="fx"><span class="fx__eq">θ<sub>C</sub> = (5/9)(θ<sub>F</sub> − 32)</span><span class="fx__tag">Fahrenheit → Celsius</span></div>
+      <div class="fx"><span class="fx__eq">θ<sub>F</sub> = <span class="mf" role="img" aria-label="nine over five"><span>9</span><span>5</span></span> θ<sub>C</sub> + 32</span><span class="fx__tag">Celsius → Fahrenheit</span></div>
+      <div class="fx"><span class="fx__eq">θ<sub>C</sub> = <span class="mf" role="img" aria-label="five over nine"><span>5</span><span>9</span></span>(θ<sub>F</sub> − 32)</span><span class="fx__tag">Fahrenheit → Celsius</span></div>
       <div class="fx"><span class="fx__eq">ΔT: 1 K = 1 °C = 1.8 °F</span><span class="fx__tag">intervals, not readings — no +273 and no +32</span></div>
     </div>
     <div class="symtab">
@@ -209,6 +264,8 @@
       <div><b>θ<sub>F</sub></b><span>Fahrenheit reading (°F)</span></div>
       <div><b>ΔT</b><span>temperature interval (K, numerically = °C)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -270,6 +327,14 @@
   <span class="section__num">§ 03</span>
   <h2>Thermal expansion — and where water breaks the rule</h2>
 
+  <p class="idea"><b>The idea</b>
+    Warm almost anything and it gets very slightly bigger, because atoms that are jiggling harder sit
+    a little further apart on average. The change is tiny — a fraction of a millimetre per metre — but
+    bridges, rails, fillings and lab glassware are long enough, or brittle enough, for it to matter,
+    and an object that is prevented from growing pushes back with enormous force instead. Water near
+    its freezing point is the famous exception: those last few degrees of cooling make it swell rather
+    than shrink, which is why ice floats and why a lake never freezes solid from the bottom up.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -277,15 +342,20 @@
       <dd>The change in a body's dimensions caused by a change in temperature, arising because the
         interatomic potential is <em>asymmetric</em>: atoms vibrating harder spend more time far apart
         than close together, so the mean separation grows.</dd>
-      <dt>Coefficient of linear expansion α</dt>
-      <dd>The fractional change in length per unit temperature change.</dd>
-      <dt>Coefficient of volume expansion β</dt>
-      <dd>The fractional change in volume per unit temperature change; for an isotropic solid β ≈ 3α.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">ΔL = α L₀ ΔT</span>
       <span class="fx__tag">α roughly constant over a modest ΔT; small strains only</span>
     </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+    <dl class="def">
+      <dt>Coefficient of linear expansion α</dt>
+      <dd>The fractional change in length per unit temperature change.</dd>
+      <dt>Coefficient of volume expansion β</dt>
+      <dd>The fractional change in volume per unit temperature change; for an isotropic solid β ≈ 3α.</dd>
+    </dl>
     <div class="fx-grid">
       <div class="fx"><span class="fx__eq">ΔA = 2α A₀ ΔT</span><span class="fx__tag">isotropic solid, area</span></div>
       <div class="fx"><span class="fx__eq">ΔV = β V₀ ΔT,  β ≈ 3α</span><span class="fx__tag">isotropic solid or a liquid (β measured directly)</span></div>
@@ -300,8 +370,13 @@
       <div><b>Y</b><span>Young's modulus (Pa)</span></div>
       <div><b>σ</b><span>thermal stress (Pa)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · why β ≈ 3α for a solid, derived from a cube</summary>
+    <div class="disc__body">
   <p>
     <strong>Where β ≈ 3α comes from.</strong> A cube of side <span class="fi">L₀</span> has volume
     <span class="fi">L₀³</span>. After heating, each side is <span class="fi">L₀(1 + αΔT)</span>, so
@@ -313,6 +388,8 @@
     a liquid has no lattice whose every edge scales together, so its β is measured directly, and for
     a gas β comes straight from the equation of state as 1/T.
   </p>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · holes get bigger</p>
@@ -345,8 +422,9 @@
     </table>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 1 · expansion joints on a steel bridge</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 1 · expansion joints on a steel bridge</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A continuous steel span is 300 m long. Local temperatures run from
       −5 °C in winter to +40 °C in summer. How much room must the expansion joints allow?</p>
     <ol>
@@ -358,7 +436,8 @@
         strength of structural steel. Bridges buckle for exactly this reason.</li>
     </ol>
     <span class="wex__ans">ΔL ≈ 0.16 m (16 cm) of travel per 300 m span</span>
-  </div>
+    </div>
+  </details>
 
   <h3>Water's anomaly, and why it matters biologically</h3>
   <p>
@@ -391,6 +470,14 @@
   <span class="section__num">§ 04</span>
   <h2>Heat, internal energy, temperature: three different things</h2>
 
+  <p class="idea"><b>The idea</b>
+    Ordinary speech treats these three words as near-synonyms, and this subject does not. Internal
+    energy is the energy already stored inside something, and a large cool object can hold far more of
+    it than a small hot one. Heat is not a stored thing at all — it is the name for energy while it is
+    on the move from a warmer place to a cooler one, and once it arrives it stops being heat. And
+    temperature is neither of those: it is an average per molecule, so it decides only which direction
+    energy travels, never how much of it there is.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -398,6 +485,15 @@
       <dd>The total kinetic plus potential energy of a body's microscopic constituents, measured in
         the frame where the body as a whole is at rest. It is a <strong>state function</strong>: it
         depends only on the current state, never on how the state was reached.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ΔU = Q − W<sub>by</sub></span>
+      <span class="fx__tag">the first law; sign convention fixed in §9</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+    <dl class="def">
       <dt>Heat Q</dt>
       <dd>Energy transferred between systems <em>because of a temperature difference</em>. Heat is a
         process, not a substance — it exists only while it is crossing a boundary. A body contains
@@ -409,13 +505,9 @@
       <dd>A measure of the <em>average</em> translational kinetic energy per molecule; an intensive
         property, independent of how much stuff there is.</dd>
     </dl>
-    <div class="fx fx--hero">
-      <span class="fx__eq">ΔU = Q − W<sub>by</sub></span>
-      <span class="fx__tag">the first law; sign convention fixed in §9</span>
-    </div>
     <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">U = (3/2) n R T</span><span class="fx__tag">ideal monatomic gas — depends on T alone</span></div>
-      <div class="fx"><span class="fx__eq">⟨½ m v²⟩ = (3/2) k<sub>B</sub> T</span><span class="fx__tag">per molecule, translational only</span></div>
+      <div class="fx"><span class="fx__eq">U = <span class="mf" role="img" aria-label="three over two"><span>3</span><span>2</span></span> n R T</span><span class="fx__tag">ideal monatomic gas — depends on T alone</span></div>
+      <div class="fx"><span class="fx__eq">⟨½ m v²⟩ = <span class="mf" role="img" aria-label="three over two"><span>3</span><span>2</span></span> k<sub>B</sub> T</span><span class="fx__tag">per molecule, translational only</span></div>
     </div>
     <div class="symtab">
       <div><b>U</b><span>internal energy (J) — state function</span></div>
@@ -425,6 +517,8 @@
       <div><b>R</b><span>gas constant, 8.31 J·mol⁻¹·K⁻¹</span></div>
       <div><b>k<sub>B</sub></b><span>Boltzmann constant, 1.38×10⁻²³ J·K⁻¹</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -481,12 +575,29 @@
   <span class="section__num">§ 05</span>
   <h2>Specific heat, latent heat, calorimetry</h2>
 
+  <p class="idea"><b>The idea</b>
+    Pour energy steadily into a substance and watch a thermometer. Sometimes the reading climbs, and
+    how quickly depends on what the substance is — water is stubborn, metals give in almost at once.
+    Sometimes the reading refuses to move at all, and that is a melt or a boil in progress: the energy
+    is being spent prising molecules apart rather than making them move faster. Changing state costs
+    far more than changing temperature, which is why a pan takes so long to boil dry, and why sweat is
+    such an effective way for a body to shed heat.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Specific heat capacity c</dt>
       <dd>The energy required to raise the temperature of one kilogram of a substance by one kelvin,
         with no phase change.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Q = m c ΔT</span>
+      <span class="fx__tag">no phase change; c roughly constant over the range</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+    <dl class="def">
       <dt>Molar heat capacity C</dt>
       <dd>The same quantity per mole rather than per kilogram; for gases it must be labelled with the
         constraint (C<sub>V</sub> or C<sub>p</sub>, §9), because a gas free to expand spends some of
@@ -498,10 +609,6 @@
       <dt>Calorimetry</dt>
       <dd>Energy bookkeeping in a thermally isolated container: what one part loses, the others gain.</dd>
     </dl>
-    <div class="fx fx--hero">
-      <span class="fx__eq">Q = m c ΔT</span>
-      <span class="fx__tag">no phase change; c roughly constant over the range</span>
-    </div>
     <div class="fx-grid">
       <div class="fx"><span class="fx__eq">Q = m L</span><span class="fx__tag">phase change only; T constant throughout</span></div>
       <div class="fx"><span class="fx__eq">Q = n C ΔT</span><span class="fx__tag">molar form; specify C<sub>V</sub> or C<sub>p</sub> for gases</span></div>
@@ -516,6 +623,8 @@
       <div><b>L</b><span>latent heat (J·kg⁻¹)</span></div>
       <div><b>ΔT</b><span>temperature change (K)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -612,8 +721,9 @@
     </table>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 2 · calorimetry with a phase change</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 2 · calorimetry with a phase change</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">25 g of ice at −15 °C is dropped into 200 g of water at 30 °C in a
       calorimeter of negligible heat capacity. Find the final temperature.
       (c<sub>ice</sub> = 2090, c<sub>water</sub> = 4180 J·kg⁻¹·K⁻¹, L<sub>f</sub> = 3.34×10⁵ J·kg⁻¹.)</p>
@@ -629,7 +739,8 @@
       <li>Setting them equal: 940.5 T<sub>f</sub> = 15 946 ⟹ T<sub>f</sub> = 16.955 °C.</li>
     </ol>
     <span class="wex__ans">T<sub>f</sub> ≈ 17.0 °C</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · the calorimetry three-step</p>
@@ -654,8 +765,9 @@
       vasoconstriction are, in engineering terms, a variable-flow-rate liquid cooling loop.</li>
   </ul>
 
-  <div class="wex">
-    <h4>Worked example 3 · sweating as the only remaining exit</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 3 · sweating as the only remaining exit</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A cyclist working hard produces about 1000 W of waste heat. The air is
       at 35 °C, so radiation and convection cannot help. How fast must sweat evaporate to hold core
       temperature steady, and what happens if it cannot?
@@ -671,7 +783,8 @@
         3 / 4.12×10⁻³ ≈ 730 s ≈ 12 minutes.</li>
     </ol>
     <span class="wex__ans">≈1.5 L·h⁻¹ of sweat; otherwise +0.25 °C per minute, heat stroke in ~12 min</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · sweat must <em>evaporate</em></p>
@@ -689,12 +802,29 @@
   <span class="section__num">§ 06</span>
   <h2>Conduction, convection, radiation</h2>
 
+  <p class="idea"><b>The idea</b>
+    Energy leaves a warm object by exactly three routes, and most of this section is learning to spot
+    which one you are looking at. It can be passed along from molecule to molecule through solid
+    material, it can be carried away bodily by air or water that flows past and takes the energy with
+    it, or it can simply be beamed off as invisible light, which needs no material in between at all.
+    Why a wool jumper keeps you warm, why a vacuum flask has a silvered wall, and how a resting body
+    sheds its hundred watts are all questions of which of the three routes is open, and how wide.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Conduction</dt>
       <dd>Energy transfer through a material by molecular collisions and (in metals) by free
         electrons, with no bulk movement of matter.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">H = <span class="mf" role="img" aria-label="k times A times delta T, all over L"><span>k A ΔT</span><span>L</span></span></span>
+      <span class="fx__tag">Fourier's law; steady state, uniform slab</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+    <dl class="def">
       <dt>Convection</dt>
       <dd>Energy transfer by the bulk flow of a heated fluid; natural if driven by buoyancy, forced if
         driven by a pump, fan or heart.</dd>
@@ -706,12 +836,8 @@
         temperature; 0 ≤ e ≤ 1, and by Kirchhoff's law it equals the surface's absorptivity at the
         same wavelength.</dd>
     </dl>
-    <div class="fx fx--hero">
-      <span class="fx__eq">H = k A ΔT / L</span>
-      <span class="fx__tag">Fourier's law; steady state, uniform slab</span>
-    </div>
     <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">R<sub>th</sub> = L/(kA);  H = ΔT/ΣR<sub>th</sub></span><span class="fx__tag">layers in series — resistances add, like resistors</span></div>
+      <div class="fx"><span class="fx__eq">R<sub>th</sub> = <span class="mf" role="img" aria-label="L over k times A"><span>L</span><span>k A</span></span>;  H = <span class="mf" role="img" aria-label="delta T over the sum of the thermal resistances"><span>ΔT</span><span>Σ R<sub>th</sub></span></span></span><span class="fx__tag">layers in series — resistances add, like resistors</span></div>
       <div class="fx"><span class="fx__eq">H = h A ΔT</span><span class="fx__tag">convection / Newton's law of cooling; h is empirical</span></div>
       <div class="fx"><span class="fx__eq">P = ε σ A T⁴</span><span class="fx__tag">Stefan–Boltzmann; T in kelvin, always</span></div>
       <div class="fx"><span class="fx__eq">P<sub>net</sub> = ε σ A (T⁴ − T<sub>s</sub>⁴)</span><span class="fx__tag">exchange with surroundings at T<sub>s</sub></span></div>
@@ -729,6 +855,8 @@
       <div><b>T<sub>s</sub></b><span>temperature of the surroundings (K)</span></div>
       <div><b>λ<sub>max</sub></b><span>wavelength of peak emission (m)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -781,8 +909,9 @@
     produces a surprisingly large net flow.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 4 · net radiative loss from a resting person</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 4 · net radiative loss from a resting person</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">Skin at 33 °C, exposed area 1.8 m², emissivity 0.97 in the infrared,
       room walls at 20 °C. Find the net radiated power. (σ = 5.67×10⁻⁸ W·m⁻²·K⁻⁴.)</p>
     <ol>
@@ -796,7 +925,8 @@
         with a large surface-to-volume ratio, loses heat dangerously fast.</li>
     </ol>
     <span class="wex__ans">P<sub>net</sub> ≈ 1.4×10² W outward</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · (T⁴ − T<sub>s</sub>⁴) ≠ (T − T<sub>s</sub>)⁴</p>
@@ -833,6 +963,14 @@
   <span class="section__num">§ 07</span>
   <h2>The ideal gas law</h2>
 
+  <p class="idea"><b>The idea</b>
+    A gas is mostly empty space with molecules flying about inside it, and that simplicity is a gift:
+    one single relationship covers every gas there is. Squeeze it into less room and it pushes back
+    harder; warm it and it pushes harder still, or expands if you let it; add more gas and the same
+    again. The relationship does not care whether the gas is helium or the air in a patient's lungs.
+    And in a mixture each gas behaves as though the others were not there, which is what lets you talk
+    about the oxygen in a breath separately from the nitrogen and the water vapour beside it.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -840,6 +978,15 @@
       <dd>A gas whose molecules occupy negligible volume and exert no forces on one another except
         during brief elastic collisions. Real gases approach this at low density and at temperatures
         well above their condensation point.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">P V = n R T = N k<sub>B</sub> T</span>
+      <span class="fx__tag">dilute gas; T in kelvin; P absolute, not gauge</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+    <dl class="def">
       <dt>Equation of state</dt>
       <dd>The relation that ties P, V and T together for a given amount of substance. For an ideal
         gas it takes one of two equivalent forms — per mole, or per molecule.</dd>
@@ -847,14 +994,10 @@
       <dd>In a mixture of non-reacting ideal gases, each component exerts the pressure it would exert
         alone, and the total is their sum.</dd>
     </dl>
-    <div class="fx fx--hero">
-      <span class="fx__eq">P V = n R T = N k<sub>B</sub> T</span>
-      <span class="fx__tag">dilute gas; T in kelvin; P absolute, not gauge</span>
-    </div>
     <div class="fx-grid">
       <div class="fx"><span class="fx__eq">R = N<sub>A</sub> k<sub>B</sub> = (6.02×10²³)(1.38×10⁻²³) = 8.31 J·mol⁻¹·K⁻¹</span><span class="fx__tag">the two constants are the same constant, per mole vs per molecule</span></div>
-      <div class="fx"><span class="fx__eq">P₁V₁/T₁ = P₂V₂/T₂</span><span class="fx__tag">combined gas law; fixed amount of gas</span></div>
-      <div class="fx"><span class="fx__eq">ρ = P M / (R T)</span><span class="fx__tag">density form; M is molar mass in kg·mol⁻¹</span></div>
+      <div class="fx"><span class="fx__eq"><span class="mf" role="img" aria-label="P one times V one, over T one"><span>P₁V₁</span><span>T₁</span></span> = <span class="mf" role="img" aria-label="P two times V two, over T two"><span>P₂V₂</span><span>T₂</span></span></span><span class="fx__tag">combined gas law; fixed amount of gas</span></div>
+      <div class="fx"><span class="fx__eq">ρ = <span class="mf" role="img" aria-label="P times M, over R times T"><span>P M</span><span>R T</span></span></span><span class="fx__tag">density form; M is molar mass in kg·mol⁻¹</span></div>
       <div class="fx"><span class="fx__eq">P<sub>total</sub> = Σ P<sub>i</sub>,  P<sub>i</sub> = x<sub>i</sub> P<sub>total</sub></span><span class="fx__tag">Dalton; x<sub>i</sub> is the mole fraction</span></div>
     </div>
     <div class="symtab">
@@ -869,6 +1012,8 @@
       <div><b>M</b><span>molar mass (kg·mol⁻¹)</span></div>
       <div><b>ρ</b><span>density (kg·m⁻³)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -906,6 +1051,9 @@
       clinical work, and it is why the physics and physiology papers can ask the same question.</p>
   </div>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · where the ideal gas law fails, and van der Waals' patch</summary>
+    <div class="disc__body">
   <p>
     <strong>Where the ideal gas law fails.</strong> Two assumptions break first. At high pressure the
     molecules' own volume is no longer negligible, so the real volume exceeds the ideal prediction; near
@@ -916,6 +1064,8 @@
     includes every gas in a respiratory or anaesthetic question — the ideal law is good to a per cent
     or so.
   </p>
+    </div>
+  </details>
 </section>
 
 <!-- =========================== 8 =========================== -->
@@ -923,35 +1073,44 @@
   <span class="section__num">§ 08</span>
   <h2>Kinetic theory: what temperature really measures</h2>
 
+  <p class="idea"><b>The idea</b>
+    Nothing pushes on the walls of a container of gas except molecules striking them, and the push
+    feels steady only because the strikes arrive in unimaginable numbers. Work that push out from
+    ordinary mechanics, then set the result beside the gas law of the previous section, and something
+    remarkable drops out: temperature is nothing but the average energy of motion of a single
+    molecule. That is why any two gases at the same temperature carry the same average energy per
+    molecule, and why the heavier one has to move more slowly to do it. The molecules do not all
+    travel at one speed either — there is a broad spread of them, and the small fast minority at the
+    far end of that spread is what decides how quickly things react, denature or escape.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Kinetic theory of gases</dt>
+    <dl class="def"><dt>Kinetic theory of gases</dt>
       <dd>The model that derives the macroscopic gas laws from Newtonian mechanics applied to a large
-        number of small, randomly moving molecules colliding elastically with the walls and each other.</dd>
-      <dt>Root-mean-square speed</dt>
-      <dd>The square root of the mean of the squared molecular speeds — the speed that reproduces the
-        correct average kinetic energy, and therefore the one that appears in every energy formula.</dd>
-      <dt>Maxwell–Boltzmann distribution</dt>
-      <dd>The equilibrium distribution of molecular speeds: zero at v = 0, rising as v², cut off by the
-        exponential factor e<sup>−mv²/2k<sub>B</sub>T</sup>, with a long high-speed tail.</dd>
-      <dt>Equipartition theorem</dt>
-      <dd>At equilibrium every independent quadratic degree of freedom carries an average energy of
-        ½k<sub>B</sub>T per molecule (½RT per mole).</dd>
-    </dl>
+        number of small, randomly moving molecules colliding elastically with the walls and each other.</dd></dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">½ m v<sub>rms</sub>² = (3/2) k<sub>B</sub> T</span>
+      <span class="fx__eq">½ m v<sub>rms</sub>² = <span class="mf" role="img" aria-label="three over two"><span>3</span><span>2</span></span> k<sub>B</sub> T</span>
       <span class="fx__tag">ideal gas; translational kinetic energy only</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Root-mean-square speed</dt>
+      <dd>The square root of the mean of the squared molecular speeds — the speed that reproduces the
+        correct average kinetic energy, and therefore the one that appears in every energy formula.</dd><dt>Maxwell–Boltzmann distribution</dt>
+      <dd>The equilibrium distribution of molecular speeds: zero at v = 0, rising as v², cut off by the
+        exponential factor e<sup>−mv²/2k<sub>B</sub>T</sup>, with a long high-speed tail.</dd><dt>Equipartition theorem</dt>
+      <dd>At equilibrium every independent quadratic degree of freedom carries an average energy of
+        ½k<sub>B</sub>T per molecule (½RT per mole).</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">P = ⅓ (N/V) m v<sub>rms</sub>²</span><span class="fx__tag">pressure from wall collisions</span></div>
       <div class="fx"><span class="fx__eq">P V = ⅔ N ⟨½mv²⟩</span><span class="fx__tag">same statement, rearranged — compare PV = Nk<sub>B</sub>T</span></div>
-      <div class="fx"><span class="fx__eq">v<sub>rms</sub> = √(3k<sub>B</sub>T/m) = √(3RT/M)</span><span class="fx__tag">m per molecule, M per mole — same answer</span></div>
+      <div class="fx"><span class="fx__eq">v<sub>rms</sub> = <span class="msq" role="img" aria-label="square root of three k sub B T over m"><span><span class="mf" role="img" aria-label="three k sub B T over m"><span>3k<sub>B</sub>T</span><span>m</span></span></span></span> = <span class="msq" role="img" aria-label="square root of three R T over M"><span><span class="mf" role="img" aria-label="three R T over M"><span>3RT</span><span>M</span></span></span></span></span><span class="fx__tag">m per molecule, M per mole — same answer</span></div>
       <div class="fx"><span class="fx__eq">v<sub>p</sub> : v̄ : v<sub>rms</sub> = 1 : 1.128 : 1.225</span><span class="fx__tag">most probable : mean : rms, always in this order</span></div>
-      <div class="fx"><span class="fx__eq">U = (f/2) n R T</span><span class="fx__tag">equipartition; f = active degrees of freedom</span></div>
+      <div class="fx"><span class="fx__eq">U = <span class="mf" role="img" aria-label="f over two"><span>f</span><span>2</span></span> n R T</span><span class="fx__tag">equipartition; f = active degrees of freedom</span></div>
       <div class="fx"><span class="fx__eq">rate<sub>effusion</sub> ∝ 1/√M</span><span class="fx__tag">Graham's law — same T, so same KE</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>v<sub>rms</sub></b><span>root-mean-square molecular speed (m·s⁻¹)</span></div>
       <div><b>v<sub>p</sub>, v̄</b><span>most probable and mean speed (m·s⁻¹)</span></div>
       <div><b>m</b><span>mass of one molecule (kg)</span></div>
@@ -960,6 +1119,8 @@
       <div><b>f</b><span>degrees of freedom per molecule (dimensionless)</span></div>
       <div><b>U</b><span>internal energy (J)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <h3>Where the pressure formula comes from</h3>
@@ -971,7 +1132,7 @@
     molecule = <span class="fi">(2mv<sub>x</sub>)(v<sub>x</sub>/2L) = mv<sub>x</sub>²/L</span>. Sum over
     N molecules and divide by the wall area L²:
   </p>
-  <div class="fx"><span class="fx__eq">P = N m ⟨v<sub>x</sub>²⟩ / L³ = (N/V) m ⟨v<sub>x</sub>²⟩</span><span class="fx__tag">V = L³</span></div>
+  <div class="fx"><span class="fx__eq">P = <span class="mf" role="img" aria-label="N times m times the mean of v sub x squared, all over L cubed"><span>N m ⟨v<sub>x</sub>²⟩</span><span>L³</span></span> = (N/V) m ⟨v<sub>x</sub>²⟩</span><span class="fx__tag">V = L³</span></div>
   <p>
     Nothing distinguishes x, y and z in a random gas, so
     <span class="fi">⟨v<sub>x</sub>²⟩ = ⟨v²⟩/3</span>, giving
@@ -1032,8 +1193,9 @@
     </figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 5 · molecular speeds in air</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 5 · molecular speeds in air</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">At 27 °C, find v<sub>rms</sub> for N₂ (M = 28.0 g·mol⁻¹) and for O₂
       (M = 32.0 g·mol⁻¹), and compare their average translational kinetic energies.
       (R = 8.31 J·mol⁻¹·K⁻¹, k<sub>B</sub> = 1.38×10⁻²³ J·K⁻¹.)</p>
@@ -1049,7 +1211,9 @@
         moves more slowly to carry it.</li>
     </ol>
     <span class="wex__ans">v<sub>rms</sub>(N₂) ≈ 517 m·s⁻¹, v<sub>rms</sub>(O₂) ≈ 483 m·s⁻¹, ⟨KE⟩ = 6.21×10⁻²¹ J each</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · what v<sub>rms</sub> does and does not depend on</p>
@@ -1113,28 +1277,37 @@
   <span class="section__num">§ 09</span>
   <h2>The first law and the four standard processes</h2>
 
+  <p class="idea"><b>The idea</b>
+    A gas holds a store of energy inside it, and only two things can change that store: warming or
+    cooling it, and letting it push something or be pushed by something. Everything in this section
+    is the bookkeeping of that one sentence — what went in as warming, what came back out as pushing,
+    and what the store has left afterwards. The four named processes are simply the four convenient
+    ways of pinning one quantity down while the rest move: hold the temperature still, hold the
+    pressure still, hold the volume still, or seal the gas off so that no warmth can enter or leave
+    at all. Each choice makes one entry in the ledger vanish, which is why these problems collapse to
+    a line or two once you have worked out which of the four you are looking at.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>First law of thermodynamics</dt>
+    <dl class="def"><dt>First law of thermodynamics</dt>
       <dd>Conservation of energy, written for a system that can exchange energy both as heat and as
-        work: the change in internal energy equals the heat put in minus the work the system does.</dd>
-      <dt>Sign convention used on this page</dt>
-      <dd><strong>Q &gt; 0 means heat flows INTO the system. W &gt; 0 means work is done BY the system
-        on its surroundings.</strong> Every formula below uses this convention and only this one.</dd>
-      <dt>Quasi-static process</dt>
-      <dd>A change slow enough that the system passes through a continuous sequence of equilibrium
-        states, so P and T are defined throughout and the process can be drawn as a curve on a PV
-        diagram.</dd>
-      <dt>Molar heat capacities</dt>
-      <dd>C<sub>V</sub> is the heat per mole per kelvin at constant volume (all of it goes into U);
-        C<sub>p</sub> is the same at constant pressure (some of it leaves again as expansion work).</dd>
-    </dl>
+        work: the change in internal energy equals the heat put in minus the work the system does.</dd></dl>
     <div class="fx fx--hero">
       <span class="fx__eq">ΔU = Q − W<sub>by</sub></span>
       <span class="fx__tag">always true; Q in &gt; 0, work done by the system &gt; 0</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Sign convention used on this page</dt>
+      <dd><strong>Q &gt; 0 means heat flows INTO the system. W &gt; 0 means work is done BY the system
+        on its surroundings.</strong> Every formula below uses this convention and only this one.</dd><dt>Quasi-static process</dt>
+      <dd>A change slow enough that the system passes through a continuous sequence of equilibrium
+        states, so P and T are defined throughout and the process can be drawn as a curve on a PV
+        diagram.</dd><dt>Molar heat capacities</dt>
+      <dd>C<sub>V</sub> is the heat per mole per kelvin at constant volume (all of it goes into U);
+        C<sub>p</sub> is the same at constant pressure (some of it leaves again as expansion work).</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">W = ∫ P dV = area under the PV curve</span><span class="fx__tag">quasi-static only</span></div>
       <div class="fx"><span class="fx__eq">ΔU = n C<sub>V</sub> ΔT</span><span class="fx__tag">ideal gas — true for <em>every</em> process, not just isochoric</span></div>
       <div class="fx"><span class="fx__eq">C<sub>p</sub> − C<sub>V</sub> = R</span><span class="fx__tag">Mayer relation; ideal gas, per mole</span></div>
@@ -1142,7 +1315,7 @@
       <div class="fx"><span class="fx__eq">γ = C<sub>p</sub>/C<sub>V</sub></span><span class="fx__tag">1.67 monatomic, 1.40 diatomic, ≈1.33 non-linear polyatomic</span></div>
       <div class="fx"><span class="fx__eq">cyclic process ⟹ ΔU = 0 ⟹ Q<sub>net</sub> = W<sub>net</sub></span><span class="fx__tag">the engine equation of §11</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>ΔU</b><span>change in internal energy (J)</span></div>
       <div><b>Q</b><span>heat added to the system (J)</span></div>
       <div><b>W</b><span>work done <em>by</em> the system (J)</span></div>
@@ -1150,6 +1323,8 @@
       <div><b>C<sub>p</sub></b><span>molar heat capacity at constant pressure (J·mol⁻¹·K⁻¹)</span></div>
       <div><b>γ</b><span>adiabatic index (dimensionless)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <div class="callout callout--warn">
@@ -1285,8 +1460,9 @@
       most first-law problems into one line.</p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 6 · isothermal expansion</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 6 · isothermal expansion</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">2.0 mol of an ideal gas expands isothermally and reversibly at 300 K
       from 10.0 L to 30.0 L. Find W, Q and ΔU, and the entropy change of the gas.</p>
     <ol>
@@ -1302,10 +1478,13 @@
         J·K⁻¹ and ΔS<sub>universe</sub> = 0. That zero is the signature of a reversible process.</li>
     </ol>
     <span class="wex__ans">W = Q = +5.48 kJ, ΔU = 0, ΔS<sub>gas</sub> = +18.3 J·K⁻¹</span>
-  </div>
+  
+    </div>
+  </details>
 
-  <div class="wex">
-    <h4>Worked example 7 · adiabatic compression, and why a diesel needs no spark plug</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 7 · adiabatic compression, and why a diesel needs no spark plug</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">Air (γ = 1.40) at 1.00 atm and 300 K is compressed rapidly to 1/18 of
       its volume. Find the final temperature and pressure.</p>
     <ol>
@@ -1320,7 +1499,9 @@
         (W<sub>by</sub> &lt; 0 ⇒ ΔU &gt; 0), not from any heat supplied.</li>
     </ol>
     <span class="wex__ans">T₂ ≈ 953 K (680 °C), P₂ ≈ 57 atm — with Q = 0 throughout</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · adiabatic is not isothermal</p>
@@ -1346,40 +1527,52 @@
   <span class="section__num">§ 10</span>
   <h2>The second law and entropy</h2>
 
+  <p class="idea"><b>The idea</b>
+    Counting the energy tells you nothing about which way anything will go. A cup of coffee that
+    warmed itself up while the kitchen cooled a fraction of a degree would balance the books
+    perfectly, and it never happens; this section is where the missing direction comes from. Entropy
+    is the quantity invented to keep score of that direction — it is allowed to fall in one place
+    provided it rises by more somewhere else, so that added up over everything involved it only ever
+    goes up. And the reason turns out to be counting rather than physics: for a great many particles
+    the scattered, mixed, evened-out arrangements outnumber the tidy ones so overwhelmingly that a
+    system wandering blindly among the possibilities open to it is essentially never found in a tidy
+    one.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Second law — Kelvin–Planck statement</dt>
+    <dl class="def"><dt>Second law — Kelvin–Planck statement</dt>
       <dd>No cyclic process can take heat from a single reservoir and convert it entirely into work.
-        Some heat must always be rejected to a colder reservoir.</dd>
-      <dt>Second law — Clausius statement</dt>
-      <dd>No cyclic process can transfer heat from a colder body to a hotter one with no other effect.
-        Moving heat "uphill" always costs work.</dd>
-      <dt>Entropy S</dt>
-      <dd>A state function whose change, for a reversible process, is the heat absorbed divided by the
-        absolute temperature at which it is absorbed. Unit J·K⁻¹.</dd>
-      <dt>Boltzmann's statistical entropy</dt>
-      <dd>The same quantity read microscopically: a measure of the number of microscopic arrangements
-        Ω consistent with the macroscopic state.</dd>
-    </dl>
+        Some heat must always be rejected to a colder reservoir.</dd></dl>
     <div class="fx fx--hero">
       <span class="fx__eq">ΔS<sub>universe</sub> = ΔS<sub>system</sub> + ΔS<sub>surroundings</sub> ≥ 0</span>
       <span class="fx__tag">= 0 only for a reversible process; &gt; 0 for every real one</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Second law — Clausius statement</dt>
+      <dd>No cyclic process can transfer heat from a colder body to a hotter one with no other effect.
+        Moving heat "uphill" always costs work.</dd><dt>Entropy S</dt>
+      <dd>A state function whose change, for a reversible process, is the heat absorbed divided by the
+        absolute temperature at which it is absorbed. Unit J·K⁻¹.</dd><dt>Boltzmann's statistical entropy</dt>
+      <dd>The same quantity read microscopically: a measure of the number of microscopic arrangements
+        Ω consistent with the macroscopic state.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">ΔS = ∫ dQ<sub>rev</sub> / T</span><span class="fx__tag">use a reversible path even if the real one was not</span></div>
       <div class="fx"><span class="fx__eq">ΔS = Q/T</span><span class="fx__tag">isothermal transfer — phase change, or a big reservoir</span></div>
       <div class="fx"><span class="fx__eq">ΔS = n R ln(V₂/V₁)</span><span class="fx__tag">ideal gas, isothermal</span></div>
       <div class="fx"><span class="fx__eq">ΔS = n C<sub>V</sub> ln(T₂/T₁)</span><span class="fx__tag">ideal gas, constant volume</span></div>
       <div class="fx"><span class="fx__eq">S = k<sub>B</sub> ln Ω</span><span class="fx__tag">Boltzmann; Ω = number of microstates</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>S</b><span>entropy (J·K⁻¹)</span></div>
       <div><b>Q<sub>rev</sub></b><span>heat along a reversible path (J)</span></div>
       <div><b>T</b><span>absolute temperature at which heat crosses (K)</span></div>
       <div><b>Ω</b><span>number of accessible microstates (dimensionless)</span></div>
       <div><b>k<sub>B</sub></b><span>Boltzmann constant, 1.38×10⁻²³ J·K⁻¹</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1471,38 +1664,46 @@
   <span class="section__num">§ 11</span>
   <h2>Engines, Carnot, refrigerators — and why you are legal</h2>
 
+  <p class="idea"><b>The idea</b>
+    Any machine that turns warmth into useful movement has to throw part of it away — not through bad
+    design, but because the previous section forbids the alternative. How much the very best
+    conceivable machine could keep depends on nothing whatever except the two temperatures it works
+    between, so what you are really being paid for is the size of the gap between the hot side and
+    the cold one. Run the same machine backwards and it becomes a fridge or a household heater: it
+    drags warmth from the cold side up to the warm one, and charges you for the lift. The section
+    ends with a living body, which looks at first sight like a standing violation of everything here
+    and turns out on inspection to be the clearest illustration of it.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Heat engine</dt>
+    <dl class="def"><dt>Heat engine</dt>
       <dd>A device that operates in a cycle, absorbing Q<sub>h</sub> from a hot reservoir, delivering
         work W, and rejecting Q<sub>c</sub> to a cold reservoir. Because it is cyclic, ΔU = 0 and
-        therefore W = Q<sub>h</sub> − Q<sub>c</sub> exactly.</dd>
-      <dt>Thermal efficiency e</dt>
-      <dd>What you want divided by what you pay for: work out over heat in.</dd>
-      <dt>Carnot cycle</dt>
-      <dd>Two reversible isotherms joined by two reversible adiabats. It is the only cycle in which
-        heat is exchanged with the reservoirs at <em>no</em> temperature difference, so no entropy is
-        generated.</dd>
-      <dt>Carnot's theorem</dt>
-      <dd>No engine working between two given reservoirs can be more efficient than a reversible one,
-        and all reversible engines between the same two reservoirs have the same efficiency — whatever
-        their working substance.</dd>
-      <dt>Coefficient of performance</dt>
-      <dd>The same "want over pay" ratio for a reversed engine: heat removed from the cold space per
-        unit work for a refrigerator, heat delivered to the warm space per unit work for a heat pump.</dd>
-    </dl>
+        therefore W = Q<sub>h</sub> − Q<sub>c</sub> exactly.</dd></dl>
     <div class="fx fx--hero">
       <span class="fx__eq">e = W/Q<sub>h</sub> = 1 − Q<sub>c</sub>/Q<sub>h</sub> ≤ 1 − T<sub>c</sub>/T<sub>h</sub></span>
       <span class="fx__tag">equality only for a reversible (Carnot) cycle; T in kelvin</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Thermal efficiency e</dt>
+      <dd>What you want divided by what you pay for: work out over heat in.</dd><dt>Carnot cycle</dt>
+      <dd>Two reversible isotherms joined by two reversible adiabats. It is the only cycle in which
+        heat is exchanged with the reservoirs at <em>no</em> temperature difference, so no entropy is
+        generated.</dd><dt>Carnot's theorem</dt>
+      <dd>No engine working between two given reservoirs can be more efficient than a reversible one,
+        and all reversible engines between the same two reservoirs have the same efficiency — whatever
+        their working substance.</dd><dt>Coefficient of performance</dt>
+      <dd>The same "want over pay" ratio for a reversed engine: heat removed from the cold space per
+        unit work for a refrigerator, heat delivered to the warm space per unit work for a heat pump.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">W = Q<sub>h</sub> − Q<sub>c</sub></span><span class="fx__tag">cyclic ⟹ ΔU = 0</span></div>
-      <div class="fx"><span class="fx__eq">COP<sub>fridge</sub> = Q<sub>c</sub>/W ≤ T<sub>c</sub>/(T<sub>h</sub> − T<sub>c</sub>)</span><span class="fx__tag">cooling: you are paid in Q<sub>c</sub></span></div>
-      <div class="fx"><span class="fx__eq">COP<sub>heat pump</sub> = Q<sub>h</sub>/W ≤ T<sub>h</sub>/(T<sub>h</sub> − T<sub>c</sub>)</span><span class="fx__tag">heating: you are paid in Q<sub>h</sub></span></div>
+      <div class="fx"><span class="fx__eq">COP<sub>fridge</sub> = Q<sub>c</sub>/W ≤ <span class="mf" role="img" aria-label="T sub c over T sub h minus T sub c"><span>T<sub>c</sub></span><span>T<sub>h</sub> − T<sub>c</sub></span></span></span><span class="fx__tag">cooling: you are paid in Q<sub>c</sub></span></div>
+      <div class="fx"><span class="fx__eq">COP<sub>heat pump</sub> = Q<sub>h</sub>/W ≤ <span class="mf" role="img" aria-label="T sub h over T sub h minus T sub c"><span>T<sub>h</sub></span><span>T<sub>h</sub> − T<sub>c</sub></span></span></span><span class="fx__tag">heating: you are paid in Q<sub>h</sub></span></div>
       <div class="fx"><span class="fx__eq">COP<sub>heat pump</sub> = COP<sub>fridge</sub> + 1</span><span class="fx__tag">because Q<sub>h</sub> = Q<sub>c</sub> + W</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>Q<sub>h</sub></b><span>heat drawn from the hot reservoir per cycle (J)</span></div>
       <div><b>Q<sub>c</sub></b><span>heat rejected to the cold reservoir per cycle (J)</span></div>
       <div><b>W</b><span>net work per cycle (J)</span></div>
@@ -1510,6 +1711,8 @@
       <div><b>e</b><span>thermal efficiency (dimensionless, 0–1)</span></div>
       <div><b>COP</b><span>coefficient of performance (dimensionless, can exceed 1)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <figure class="figure">
@@ -1576,8 +1779,9 @@
     </figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 8 · a real power plant against its Carnot ceiling</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 8 · a real power plant against its Carnot ceiling</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A steam plant takes heat at 540 °C and rejects it to a condenser at
       40 °C. It delivers 800 MW of electrical power at a real thermal efficiency of 42 %. Find the
       Carnot ceiling, the rate at which it burns fuel energy, and the waste-heat load on the river.</p>
@@ -1594,10 +1798,13 @@
         reason.</li>
     </ol>
     <span class="wex__ans">e<sub>Carnot</sub> = 61.5 %, Q̇<sub>h</sub> = 1.9×10³ MW, Q̇<sub>c</sub> = 1.1×10³ MW</span>
-  </div>
+  
+    </div>
+  </details>
 
-  <div class="wex">
-    <h4>Worked example 9 · a refrigerator and the same machine as a heat pump</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 9 · a refrigerator and the same machine as a heat pump</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem">A refrigerator keeps its interior at 4 °C in a 25 °C kitchen. Find the
       best possible COP. Then take the same machine, put the cold coil outdoors at 5 °C and the hot
       coil indoors at 22 °C, and find the best possible heating COP.</p>
@@ -1617,7 +1824,9 @@
         An electric bar heater has "COP" exactly 1. Nothing here violates conservation.</li>
     </ol>
     <span class="wex__ans">COP<sub>fridge,max</sub> = 13.2; COP<sub>heat pump,max</sub> = 17.4</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · the Carnot formula eats kelvin only</p>

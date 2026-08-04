@@ -22,6 +22,10 @@
     <nav>
       <a href="physics.html">Physics</a>
       <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -66,42 +70,65 @@
     </ol>
   </nav>
 
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — §01–02 (a magnetic field ignores anything standing still, and the
+        push it gives a moving charge comes out sideways, so it can steer but never speed anything up)
+        and §08 (a voltage appears only while the amount of field threading a loop is <em>changing</em>).
+        Those two ideas carry the whole note; §03 and §09 are their immediate consequences.</li>
+      <li><b>Then be able to do</b> — §03 radius, period and frequency of a particle circling in a field;
+        §05 force on a current-carrying wire and between two parallel wires; §06 torque on a coil;
+        §07 field of a straight wire, a loop and a solenoid; §08–09 the size of an induced EMF and the
+        direction it runs; §11 transformer turns ratio and current ratio. Those seven are what the exam
+        actually asks you to compute.</li>
+      <li><b>Leave for a second pass</b> — §04 (the velocity selector, mass spectrometer and cyclotron
+        are three applications of §03 rather than new physics), §10 beyond the one sentence "a coil
+        resists any change in its own current", and the MRI and TMS material closing §11. All of it is
+        worth having; none of it is needed to follow anything else.</li>
+    </ol>
+  </div>
+
   <section class="fsheet card">
-    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
-    <div class="fsheet__grid">
-      <div class="fsheet__item"><b>Force on a charge</b><code>F = |q| v B sin θ</code></div>
-      <div class="fsheet__item"><b>Vector form</b><code>F = q v × B</code></div>
-      <div class="fsheet__item"><b>No monopoles</b><code>∮ B · dA = 0</code></div>
-      <div class="fsheet__item"><b>Field unit</b><code>1 T = 1 N·A⁻¹·m⁻¹ = 10⁴ G</code></div>
-      <div class="fsheet__item"><b>Orbit radius</b><code>r = mv / (|q|B)</code></div>
-      <div class="fsheet__item"><b>Cyclotron period</b><code>T = 2πm / (|q|B)</code></div>
-      <div class="fsheet__item"><b>Cyclotron frequency</b><code>f = |q|B / (2πm)</code></div>
-      <div class="fsheet__item"><b>Helical pitch</b><code>p = v∥ · 2πm/(|q|B)</code></div>
-      <div class="fsheet__item"><b>Velocity selector</b><code>v = E / B</code></div>
-      <div class="fsheet__item"><b>Mass spectrometer</b><code>m = qBB′r / E</code></div>
-      <div class="fsheet__item"><b>Cyclotron energy</b><code>K = q²B²R² / (2m)</code></div>
-      <div class="fsheet__item"><b>Force on a wire</b><code>F = B I L sin θ</code></div>
-      <div class="fsheet__item"><b>Parallel wires</b><code>F/L = μ₀I₁I₂ / (2πd)</code></div>
-      <div class="fsheet__item"><b>Magnetic moment</b><code>μ = N I A</code></div>
-      <div class="fsheet__item"><b>Torque on a loop</b><code>τ = μB sin θ = NIAB sin θ</code></div>
-      <div class="fsheet__item"><b>Dipole energy</b><code>U = −μB cos θ</code></div>
-      <div class="fsheet__item"><b>Straight wire</b><code>B = μ₀I / (2πr)</code></div>
-      <div class="fsheet__item"><b>Centre of a loop</b><code>B = μ₀NI / (2R)</code></div>
-      <div class="fsheet__item"><b>Long solenoid</b><code>B = μ₀ n I</code></div>
-      <div class="fsheet__item"><b>Ampère's law</b><code>∮ B · dl = μ₀ I_enc</code></div>
-      <div class="fsheet__item"><b>Magnetic flux</b><code>Φ_B = B A cos θ</code></div>
-      <div class="fsheet__item"><b>Faraday's law</b><code>ε = −N ΔΦ_B / Δt</code></div>
-      <div class="fsheet__item"><b>Motional EMF</b><code>ε = B L v</code></div>
-      <div class="fsheet__item"><b>Retarding force</b><code>F = B²L²v / R</code></div>
-      <div class="fsheet__item"><b>Self-inductance</b><code>ε = −L ΔI/Δt ; L = NΦ_B/I</code></div>
-      <div class="fsheet__item"><b>Solenoid inductance</b><code>L = μ₀N²A / ℓ</code></div>
-      <div class="fsheet__item"><b>LR time constant</b><code>τ = L / R</code></div>
-      <div class="fsheet__item"><b>Stored energy</b><code>U = ½ L I²</code></div>
-      <div class="fsheet__item"><b>Energy density</b><code>u = B² / (2μ₀)</code></div>
-      <div class="fsheet__item"><b>Transformer</b><code>V_s/V_p = N_s/N_p</code></div>
-      <div class="fsheet__item"><b>Ideal currents</b><code>I_s/I_p = N_p/N_s</code></div>
-      <div class="fsheet__item"><b>Larmor frequency</b><code>f = γB / (2π)</code></div>
-    </div>
+    <details class="disc disc--sheet">
+      <summary>Formula sheet<span class="disc__count">32 formulas</span></summary>
+      <div class="disc__body">
+        <div class="fsheet__grid">
+          <div class="fsheet__item"><b>Force on a charge</b><code>F = |q| v B sin θ</code></div>
+          <div class="fsheet__item"><b>Vector form</b><code>F = q v × B</code></div>
+          <div class="fsheet__item"><b>No monopoles</b><code>∮ B · dA = 0</code></div>
+          <div class="fsheet__item"><b>Field unit</b><code>1 T = 1 N·A⁻¹·m⁻¹ = 10⁴ G</code></div>
+          <div class="fsheet__item"><b>Orbit radius</b><code>r = mv / (|q|B)</code></div>
+          <div class="fsheet__item"><b>Cyclotron period</b><code>T = 2πm / (|q|B)</code></div>
+          <div class="fsheet__item"><b>Cyclotron frequency</b><code>f = |q|B / (2πm)</code></div>
+          <div class="fsheet__item"><b>Helical pitch</b><code>p = v∥ · 2πm/(|q|B)</code></div>
+          <div class="fsheet__item"><b>Velocity selector</b><code>v = E / B</code></div>
+          <div class="fsheet__item"><b>Mass spectrometer</b><code>m = (q B B′ r) / E</code></div>
+          <div class="fsheet__item"><b>Cyclotron energy</b><code>K = q²B²R² / (2m)</code></div>
+          <div class="fsheet__item"><b>Force on a wire</b><code>F = B I L sin θ</code></div>
+          <div class="fsheet__item"><b>Parallel wires</b><code>F/L = μ₀I₁I₂ / (2πd)</code></div>
+          <div class="fsheet__item"><b>Magnetic moment</b><code>μ = N I A</code></div>
+          <div class="fsheet__item"><b>Torque on a loop</b><code>τ = μB sin θ = NIAB sin θ</code></div>
+          <div class="fsheet__item"><b>Dipole energy</b><code>U = −μB cos θ</code></div>
+          <div class="fsheet__item"><b>Straight wire</b><code>B = μ₀I / (2πr)</code></div>
+          <div class="fsheet__item"><b>Centre of a loop</b><code>B = μ₀NI / (2R)</code></div>
+          <div class="fsheet__item"><b>Long solenoid</b><code>B = μ₀ n I</code></div>
+          <div class="fsheet__item"><b>Ampère's law</b><code>∮ B · dl = μ₀ I_enc</code></div>
+          <div class="fsheet__item"><b>Magnetic flux</b><code>Φ_B = B A cos θ</code></div>
+          <div class="fsheet__item"><b>Faraday's law</b><code>ε = −N (ΔΦ_B / Δt)</code></div>
+          <div class="fsheet__item"><b>Motional EMF</b><code>ε = B L v</code></div>
+          <div class="fsheet__item"><b>Retarding force</b><code>F = B²L²v / R</code></div>
+          <div class="fsheet__item"><b>Self-inductance</b><code>ε = −L (ΔI/Δt) ; L = (NΦ_B)/I</code></div>
+          <div class="fsheet__item"><b>Solenoid inductance</b><code>L = μ₀N²A / ℓ</code></div>
+          <div class="fsheet__item"><b>LR time constant</b><code>τ = L / R</code></div>
+          <div class="fsheet__item"><b>Stored energy</b><code>U = ½ L I²</code></div>
+          <div class="fsheet__item"><b>Energy density</b><code>u = B² / (2μ₀)</code></div>
+          <div class="fsheet__item"><b>Transformer</b><code>V_s/V_p = N_s/N_p</code></div>
+          <div class="fsheet__item"><b>Ideal currents</b><code>I_s/I_p = N_p/N_s</code></div>
+          <div class="fsheet__item"><b>Larmor frequency</b><code>f = γB / (2π)</code></div>
+        </div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -120,32 +147,47 @@
   <span class="section__num">§ 01</span>
   <h2>The magnetic field and the missing monopole</h2>
 
+  <p class="idea"><b>The idea</b>A magnet has no equivalent of a lone electric charge. You can hold a single
+    positive charge on its own, but nobody has ever found a lone north pole: cut a magnet anywhere you like
+    and both halves come away with two ends again, all the way down to a single atom. The reason is that
+    magnetism is made by charge going round in circles, and a circle always has two faces. This section
+    also settles how the strength of a magnetic field is measured in the first place — not by what it does
+    to something sitting still, which is nothing at all, but by the hardest push it can give something
+    moving through it.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Magnetic field <b>B</b></dt>
       <dd>A vector field defined by the force it exerts on <em>moving</em> charge. Unlike the electric
           field it has no source charge of its own: it is defined operationally, through the force law.</dd>
-      <dt>Tesla (T)</dt>
-      <dd>The SI unit of magnetic field: the field in which a charge of 1 C moving at 1 m·s⁻¹
-          perpendicular to the field feels a force of 1 N.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">B = F<sub>max</sub> / (|q| v)</span>
+      <span class="fx__eq">B = <span class="mf" role="img" aria-label="F maximum, over the magnitude of q times v"><span>F<sub>max</sub></span><span>|q| v</span></span></span>
       <span class="fx__tag">operational definition; F<sub>max</sub> is the force when <b>v</b> ⟂ <b>B</b></span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">∮ <b>B</b> · d<b>A</b> = 0</span><span class="fx__tag">Gauss's law for magnetism — over any closed surface, always</span></div>
-      <div class="fx"><span class="fx__eq">1 T = 1 N·A⁻¹·m⁻¹ = 1 kg·s⁻²·A⁻¹ = 10⁴ G</span><span class="fx__tag">the gauss is a CGS unit, still used clinically</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>B</b><span>magnetic field magnitude (T)</span></div>
-      <div><b>F<sub>max</sub></b><span>largest force the field can exert on the charge (N)</span></div>
-      <div><b>q</b><span>charge (C)</span></div>
-      <div><b>v</b><span>speed (m·s⁻¹)</span></div>
-      <div><b>dA</b><span>outward area element of a closed surface (m²)</span></div>
-      <div><b>G</b><span>gauss, 1 G = 10⁻⁴ T (not SI)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Tesla (T)</dt>
+          <dd>The SI unit of magnetic field: the field in which a charge of 1 C moving at 1 m·s⁻¹
+              perpendicular to the field feels a force of 1 N.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">∮ <b>B</b> · d<b>A</b> = 0</span><span class="fx__tag">Gauss's law for magnetism — over any closed surface, always</span></div>
+          <div class="fx"><span class="fx__eq">1 T = 1 N·A⁻¹·m⁻¹ = 1 kg·s⁻²·A⁻¹ = 10⁴ G</span><span class="fx__tag">the gauss is a CGS unit, still used clinically</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>B</b><span>magnetic field magnitude (T)</span></div>
+          <div><b>F<sub>max</sub></b><span>largest force the field can exert on the charge (N)</span></div>
+          <div><b>q</b><span>charge (C)</span></div>
+          <div><b>v</b><span>speed (m·s⁻¹)</span></div>
+          <div><b>dA</b><span>outward area element of a closed surface (m²)</span></div>
+          <div><b>G</b><span>gauss, 1 G = 10⁻⁴ T (not SI)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -175,6 +217,9 @@
     </p>
   </div>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · how big is a tesla? Field strengths from a brain wave to a magnetar</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <caption class="sr-only">Typical magnetic field magnitudes across ten orders of magnitude</caption>
@@ -201,12 +246,21 @@
     that this is a strong laboratory field, ten thousand times the Earth's; when a clinical paper says
     "residual field of 5 G", that is the 0.5 mT line beyond which pacemakers are considered at risk.
   </p>
+    </div>
+  </details>
 </section>
 
 <!-- =========================== §02 =========================== -->
 <section class="section" id="s2">
   <span class="section__num">§ 02</span>
   <h2>The force on a moving charge</h2>
+
+  <p class="idea"><b>The idea</b>A magnetic field does nothing at all to a charge that is standing still.
+    Set the same charge moving and it feels a push — but the push comes out <em>sideways</em>, at right
+    angles both to the way the charge is travelling and to the field itself. Because the push is always
+    sideways, it can turn the particle but can never make it go faster or slower, any more than the string
+    on a whirling stone can speed the stone up. That one restriction settles a surprising number of
+    questions before you calculate anything.</p>
 
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
@@ -220,20 +274,25 @@
       <span class="fx__eq">F = |q| v B sin θ</span>
       <span class="fx__tag">θ = angle between <b>v</b> and <b>B</b>; the force law itself is exact at any speed — the non-relativistic assumption enters later, in r = mv/(|q|B)</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq"><b>F</b> = q <b>v</b> × <b>B</b></span><span class="fx__tag">full vector form; sign of q sets the direction</span></div>
-      <div class="fx"><span class="fx__eq"><b>F</b> = q(<b>E</b> + <b>v</b> × <b>B</b>)</span><span class="fx__tag">complete Lorentz force, electric + magnetic</span></div>
-      <div class="fx"><span class="fx__eq">W = ∫ <b>F</b> · d<b>l</b> = 0 &nbsp;⟹&nbsp; Δ(½mv²) = 0</span><span class="fx__tag">magnetic force alone; speed cannot change</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>F</b><span>magnetic force (N)</span></div>
-      <div><b>q</b><span>charge, with sign (C)</span></div>
-      <div><b>v</b><span>velocity (m·s⁻¹)</span></div>
-      <div><b>B</b><span>magnetic field (T)</span></div>
-      <div><b>θ</b><span>angle between <b>v</b> and <b>B</b> (° or rad)</span></div>
-      <div><b>E</b><span>electric field (V·m⁻¹ = N·C⁻¹)</span></div>
-      <div><b>W</b><span>work done by the magnetic force (J)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq"><b>F</b> = q <b>v</b> × <b>B</b></span><span class="fx__tag">full vector form; sign of q sets the direction</span></div>
+          <div class="fx"><span class="fx__eq"><b>F</b> = q(<b>E</b> + <b>v</b> × <b>B</b>)</span><span class="fx__tag">complete Lorentz force, electric + magnetic</span></div>
+          <div class="fx"><span class="fx__eq">W = ∫ <b>F</b> · d<b>l</b> = 0 &nbsp;⟹&nbsp; Δ(½mv²) = 0</span><span class="fx__tag">magnetic force alone; speed cannot change</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>F</b><span>magnetic force (N)</span></div>
+          <div><b>q</b><span>charge, with sign (C)</span></div>
+          <div><b>v</b><span>velocity (m·s⁻¹)</span></div>
+          <div><b>B</b><span>magnetic field (T)</span></div>
+          <div><b>θ</b><span>angle between <b>v</b> and <b>B</b> (° or rad)</span></div>
+          <div><b>E</b><span>electric field (V·m⁻¹ = N·C⁻¹)</span></div>
+          <div><b>W</b><span>work done by the magnetic force (J)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -322,6 +381,9 @@
     </p>
   </div>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · electric force and magnetic force compared, line by line</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <caption class="sr-only">Electric versus magnetic force compared</caption>
@@ -342,9 +404,12 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
 
-  <div class="wex">
-    <h4>Worked example 1 · How big is a magnetic force, really?</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 1 · How big is a magnetic force, really?</summary>
+    <div class="disc__body">
     <p>
       A proton (q = +1.60×10⁻¹⁹ C, m = 1.67×10⁻²⁷ kg) moves at 2.0×10⁶ m·s⁻¹ at 30° to a uniform
       0.50 T field. Find the magnetic force, and compare it with the proton's weight.
@@ -362,7 +427,8 @@
       That ratio is the reason gravity is silently dropped in every charged-particle problem in this
       chapter. It is not laziness; it is twelve orders of magnitude.
     </p>
-  </div>
+    </div>
+  </details>
 </section>
 
 <!-- =========================== §03 =========================== -->
@@ -370,37 +436,51 @@
   <span class="section__num">§ 03</span>
   <h2>Circular and helical motion in a uniform field</h2>
 
+  <p class="idea"><b>The idea</b>A sideways push that never lets up bends a moving particle round into a
+    circle. The striking part is the timing. A faster particle sweeps out a wider circle, but it takes
+    exactly as long to get round as a slow one, because the extra distance and the extra speed cancel
+    each other out — so every particle of a given kind laps at the same rate, whatever its energy. If the
+    particle is not moving squarely across the field, the part of its motion that runs along the field is
+    simply left alone and carries on unchanged, which stretches the circle out into a corkscrew.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Cyclotron motion</dt>
       <dd>The uniform circular motion executed by a charged particle whose velocity is perpendicular to
           a uniform magnetic field, with the magnetic force supplying the entire centripetal force.</dd>
-      <dt>Cyclotron frequency</dt>
-      <dd>The number of revolutions per second of that motion — a property of the particle and the
-          field only, independent of how fast the particle is going.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">|q|vB = mv²/r &nbsp;⟹&nbsp; r = mv / (|q|B) = p / (|q|B)</span>
+      <span class="fx__eq">|q|vB = <span class="mf" role="img" aria-label="m v squared, over r"><span>mv²</span><span>r</span></span> &nbsp;⟹&nbsp; r = <span class="mf" role="img" aria-label="m v, over the magnitude of q times B"><span>mv</span><span>|q|B</span></span> = <span class="mf" role="img" aria-label="p, over the magnitude of q times B"><span>p</span><span>|q|B</span></span></span>
       <span class="fx__tag">uniform <b>B</b>, <b>v</b> ⟂ <b>B</b>, non-relativistic</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">T = 2πr/v = 2πm / (|q|B)</span><span class="fx__tag">period — v and r cancel</span></div>
-      <div class="fx"><span class="fx__eq">f = |q|B / (2πm) &nbsp;·&nbsp; ω = |q|B / m</span><span class="fx__tag">cyclotron frequency and angular frequency</span></div>
-      <div class="fx"><span class="fx__eq">r = m v sin θ / (|q|B) &nbsp;·&nbsp; pitch = v cos θ · T</span><span class="fx__tag">helix, when <b>v</b> is at angle θ to <b>B</b></span></div>
-    </div>
-    <div class="symtab">
-      <div><b>r</b><span>orbit radius (m)</span></div>
-      <div><b>m</b><span>particle mass (kg)</span></div>
-      <div><b>v</b><span>speed (m·s⁻¹)</span></div>
-      <div><b>p</b><span>momentum mv (kg·m·s⁻¹)</span></div>
-      <div><b>q</b><span>charge magnitude (C)</span></div>
-      <div><b>B</b><span>magnetic field (T)</span></div>
-      <div><b>T</b><span>period of one revolution (s)</span></div>
-      <div><b>f</b><span>cyclotron frequency (Hz)</span></div>
-      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
-      <div><b>pitch</b><span>advance along <b>B</b> per turn (m)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Cyclotron frequency</dt>
+          <dd>The number of revolutions per second of that motion — a property of the particle and the
+              field only, independent of how fast the particle is going.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">T = <span class="mf" role="img" aria-label="two pi r, over v"><span>2πr</span><span>v</span></span> = <span class="mf" role="img" aria-label="two pi m, over the magnitude of q times B"><span>2πm</span><span>|q|B</span></span></span><span class="fx__tag">period — v and r cancel</span></div>
+          <div class="fx"><span class="fx__eq">f = <span class="mf" role="img" aria-label="the magnitude of q times B, over two pi m"><span>|q|B</span><span>2πm</span></span> &nbsp;·&nbsp; ω = <span class="mf" role="img" aria-label="the magnitude of q times B, over m"><span>|q|B</span><span>m</span></span></span><span class="fx__tag">cyclotron frequency and angular frequency</span></div>
+          <div class="fx"><span class="fx__eq">r = <span class="mf" role="img" aria-label="m v sine theta, over the magnitude of q times B"><span>m v sin θ</span><span>|q|B</span></span> &nbsp;·&nbsp; pitch = v cos θ · T</span><span class="fx__tag">helix, when <b>v</b> is at angle θ to <b>B</b></span></div>
+        </div>
+        <div class="symtab">
+          <div><b>r</b><span>orbit radius (m)</span></div>
+          <div><b>m</b><span>particle mass (kg)</span></div>
+          <div><b>v</b><span>speed (m·s⁻¹)</span></div>
+          <div><b>p</b><span>momentum mv (kg·m·s⁻¹)</span></div>
+          <div><b>q</b><span>charge magnitude (C)</span></div>
+          <div><b>B</b><span>magnetic field (T)</span></div>
+          <div><b>T</b><span>period of one revolution (s)</span></div>
+          <div><b>f</b><span>cyclotron frequency (Hz)</span></div>
+          <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+          <div><b>pitch</b><span>advance along <b>B</b> per turn (m)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -444,8 +524,9 @@
     solar wind spiral down Earth's field lines this way, which is why aurorae appear at the poles.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 2 · Electron in a millitesla field: radius, frequency, and the helix</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 2 · Electron in a millitesla field: radius, frequency, and the helix</summary>
+    <div class="disc__body">
     <p>
       An electron (m = 9.11×10⁻³¹ kg, |q| = 1.60×10⁻¹⁹ C) moves at 3.0×10⁶ m·s⁻¹ in a uniform
       1.0 mT field. Find (a) the radius and cyclotron frequency if <b>v</b> ⟂ <b>B</b>, and (b) the
@@ -466,7 +547,8 @@
           Note the frequency is <em>unchanged</em> — only the radius shrank.</li>
     </ol>
     <p class="wex__ans">(a) r ≈ 1.7 cm, f ≈ 28 MHz &nbsp;·&nbsp; (b) r ≈ 1.5 cm, pitch ≈ 5.4 cm</p>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · "the field slows it down"</p>
@@ -484,38 +566,53 @@
   <span class="section__num">§ 04</span>
   <h2>Velocity selector, mass spectrometer, cyclotron</h2>
 
+  <p class="idea"><b>The idea</b>Three machines, and all three are built out of the two sections you have
+    just read rather than out of anything new. The first sets an electric push, which does not care how
+    fast a particle is going, against a magnetic push, which does — so only particles travelling at one
+    particular speed sail straight through. The second then bends that speed-sorted beam and lets the size
+    of the curve report how heavy each particle is, which is how you tell one isotope from another. The
+    third exploits the constant lap time: give the particle a small shove every time it comes past, in
+    step, hundreds of times over, and it leaves moving enormously faster than it arrived.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Velocity selector (Wien filter)</dt>
       <dd>A region with perpendicular electric and magnetic fields arranged so that the electric and
           magnetic forces cancel for exactly one speed; only particles at that speed pass undeflected.</dd>
-      <dt>Mass spectrometer</dt>
-      <dd>An instrument that fixes the speed of an ion beam, then bends it in a known magnetic field so
-          that the radius of the arc reports the mass-to-charge ratio.</dd>
-      <dt>Cyclotron</dt>
-      <dd>An accelerator that uses a uniform magnetic field to return particles repeatedly to the same
-          accelerating gap, exploiting the speed-independence of the cyclotron period.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">qE = qvB &nbsp;⟹&nbsp; v = E / B</span>
       <span class="fx__tag">velocity selector; independent of q and m</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">m = q B′ r / v = q B B′ r / E</span><span class="fx__tag">mass spectrometer; B′ is the analyser field</span></div>
-      <div class="fx"><span class="fx__eq">f<sub>osc</sub> = qB / (2πm)</span><span class="fx__tag">cyclotron dee frequency — fixed, from §03</span></div>
-      <div class="fx"><span class="fx__eq">K<sub>max</sub> = q²B²R² / (2m)</span><span class="fx__tag">exit energy; R = dee radius, non-relativistic</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>E</b><span>electric field in the selector (V·m⁻¹)</span></div>
-      <div><b>B</b><span>selector magnetic field (T)</span></div>
-      <div><b>B′</b><span>analyser magnetic field (T)</span></div>
-      <div><b>v</b><span>selected speed (m·s⁻¹)</span></div>
-      <div><b>r</b><span>radius in the analyser (m)</span></div>
-      <div><b>R</b><span>radius of the cyclotron dees (m)</span></div>
-      <div><b>K<sub>max</sub></b><span>kinetic energy at extraction (J)</span></div>
-      <div><b>f<sub>osc</sub></b><span>frequency of the accelerating voltage (Hz)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Mass spectrometer</dt>
+          <dd>An instrument that fixes the speed of an ion beam, then bends it in a known magnetic field so
+              that the radius of the arc reports the mass-to-charge ratio.</dd>
+          <dt>Cyclotron</dt>
+          <dd>An accelerator that uses a uniform magnetic field to return particles repeatedly to the same
+              accelerating gap, exploiting the speed-independence of the cyclotron period.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">m = <span class="mf" role="img" aria-label="q B prime r, over v"><span>q B′ r</span><span>v</span></span> = <span class="mf" role="img" aria-label="q B B prime r, over E"><span>q B B′ r</span><span>E</span></span></span><span class="fx__tag">mass spectrometer; B′ is the analyser field</span></div>
+          <div class="fx"><span class="fx__eq">f<sub>osc</sub> = <span class="mf" role="img" aria-label="q B, over two pi m"><span>qB</span><span>2πm</span></span></span><span class="fx__tag">cyclotron dee frequency — fixed, from §03</span></div>
+          <div class="fx"><span class="fx__eq">K<sub>max</sub> = <span class="mf" role="img" aria-label="q squared B squared R squared, over two m"><span>q²B²R²</span><span>2m</span></span></span><span class="fx__tag">exit energy; R = dee radius, non-relativistic</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>E</b><span>electric field in the selector (V·m⁻¹)</span></div>
+          <div><b>B</b><span>selector magnetic field (T)</span></div>
+          <div><b>B′</b><span>analyser magnetic field (T)</span></div>
+          <div><b>v</b><span>selected speed (m·s⁻¹)</span></div>
+          <div><b>r</b><span>radius in the analyser (m)</span></div>
+          <div><b>R</b><span>radius of the cyclotron dees (m)</span></div>
+          <div><b>K<sub>max</sub></b><span>kinetic energy at extraction (J)</span></div>
+          <div><b>f<sub>osc</sub></b><span>frequency of the accelerating voltage (Hz)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -536,8 +633,9 @@
     <span class="fi">2Δr</span> apart.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 3 · Separating the neon isotopes</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 3 · Separating the neon isotopes</summary>
+    <div class="disc__body">
     <p>
       A velocity selector uses E = 3.0×10⁵ V·m⁻¹ crossed with B = 0.15 T. The beam then enters an
       analyser field B′ = 0.50 T. Singly ionised ²⁰Ne⁺ and ²²Ne⁺ (1 u = 1.66×10⁻²⁷ kg,
@@ -555,7 +653,8 @@
           <span class="fi">2(r₂ − r₁) = 2(0.913 − 0.830) = 0.166 m</span>.</li>
     </ol>
     <p class="wex__ans">Landing points ≈ 17 cm apart (r₁ = 0.83 m, r₂ = 0.91 m)</p>
-  </div>
+    </div>
+  </details>
 
   <h3>The cyclotron, and where it stops working</h3>
   <p>
@@ -569,8 +668,9 @@
     <span class="fi">K = ½mv² = q²B²R²/(2m)</span>.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 4 · A proton cyclotron</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 4 · A proton cyclotron</summary>
+    <div class="disc__body">
     <p>
       A cyclotron for protons has B = 1.5 T and dee radius R = 0.50 m
       (m = 1.67×10⁻²⁷ kg, q = 1.60×10⁻¹⁹ C). Find the oscillator frequency and the extraction energy.
@@ -592,7 +692,8 @@
       you must sweep the frequency (synchrocyclotron) or ramp the field (synchrotron). Medical cyclotrons
       that make ¹⁸F for PET run at 10–18 MeV, comfortably inside the classical regime.
     </p>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · which field does the accelerating?</p>
@@ -610,36 +711,53 @@
   <span class="section__num">§ 05</span>
   <h2>Forces on currents, parallel wires, and the ampere</h2>
 
+  <p class="idea"><b>The idea</b>A current is nothing but charge on the move, so a wire carrying one feels
+    exactly the sideways push of §02 — except that the push is now shared out along the whole wire and
+    ends up shoving the metal itself. Lay two wires side by side and each one sits in the field the other
+    makes, so each feels its neighbour. The result is the opposite of what you learn to expect from static
+    charge: wires whose currents run the same way pull together, and wires whose currents run opposite
+    ways push apart. That attraction is so reliable it was once used to define the unit of current.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Force on a current-carrying conductor</dt>
       <dd>The sum of the magnetic forces on all the drifting charge carriers in the wire, transmitted to
           the lattice as a single force on the conductor itself.</dd>
-      <dt>Force between parallel currents</dt>
-      <dd>Each wire sits in the field of the other, so each feels a force; the pair attract when the
-          currents run the same way and repel when they run opposite ways.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">F = B I L sin θ</span>
       <span class="fx__tag">straight segment of length L in a uniform field; θ between the wire and <b>B</b></span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq"><b>F</b> = I <b>L</b> × <b>B</b></span><span class="fx__tag">vector form; <b>L</b> points along the conventional current</span></div>
-      <div class="fx"><span class="fx__eq">F / L = μ₀ I₁ I₂ / (2π d)</span><span class="fx__tag">two long parallel straight wires, separation d ≪ length</span></div>
-      <div class="fx"><span class="fx__eq">F<sub>net</sub> = 0 on any closed loop in a uniform field</span><span class="fx__tag">the pieces cancel — but the torque need not (§06)</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>F</b><span>force on the conductor (N)</span></div>
-      <div><b>I</b><span>current (A)</span></div>
-      <div><b>L</b><span>length of conductor in the field (m)</span></div>
-      <div><b>B</b><span>external magnetic field (T)</span></div>
-      <div><b>θ</b><span>angle between the wire and <b>B</b> (° or rad)</span></div>
-      <div><b>d</b><span>separation of the two wires (m)</span></div>
-      <div><b>μ₀</b><span>permeability of free space, 4π×10⁻⁷ T·m·A⁻¹</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Force between parallel currents</dt>
+          <dd>Each wire sits in the field of the other, so each feels a force; the pair attract when the
+              currents run the same way and repel when they run opposite ways.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq"><b>F</b> = I <b>L</b> × <b>B</b></span><span class="fx__tag">vector form; <b>L</b> points along the conventional current</span></div>
+          <div class="fx"><span class="fx__eq">F / L = <span class="mf" role="img" aria-label="mu nought I one I two, over two pi d"><span>μ₀ I₁ I₂</span><span>2π d</span></span></span><span class="fx__tag">two long parallel straight wires, separation d ≪ length</span></div>
+          <div class="fx"><span class="fx__eq">F<sub>net</sub> = 0 on any closed loop in a uniform field</span><span class="fx__tag">the pieces cancel — but the torque need not (§06)</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>F</b><span>force on the conductor (N)</span></div>
+          <div><b>I</b><span>current (A)</span></div>
+          <div><b>L</b><span>length of conductor in the field (m)</span></div>
+          <div><b>B</b><span>external magnetic field (T)</span></div>
+          <div><b>θ</b><span>angle between the wire and <b>B</b> (° or rad)</span></div>
+          <div><b>d</b><span>separation of the two wires (m)</span></div>
+          <div><b>μ₀</b><span>permeability of free space, 4π×10⁻⁷ T·m·A⁻¹</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · where F = BIL comes from — adding up the force on every carrier</summary>
+    <div class="disc__body">
   <p>
     The wire formula is not a new law — it is the charge formula added up. Let the wire have
     cross-section A, carrier density n, and carrier charge q drifting at
@@ -650,6 +768,8 @@
     <span class="fi">F = BIL</span>. The carriers are pushed sideways, pile up against the lattice, and
     drag the whole wire with them — which is also the origin of the Hall effect.
   </p>
+    </div>
+  </details>
 
   <h3>Parallel wires and the definition of the ampere</h3>
   <p>
@@ -675,8 +795,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 5 · Force between two parallel feeders</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 5 · Force between two parallel feeders</summary>
+    <div class="disc__body">
     <p>
       Two long parallel wires 8.0 cm apart carry 12 A and 5.0 A in the <em>same</em> direction.
       Find the force per metre, and the total force on a 1.5 m length. Attractive or repulsive?
@@ -695,7 +816,8 @@
       kilonewtons per metre. That is why busbars are bolted down, and the same I² pinch is what crushes
       the plasma column in a fusion Z-pinch.
     </p>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · a closed loop in a uniform field feels no net force</p>
@@ -714,35 +836,49 @@
   <span class="section__num">§ 06</span>
   <h2>Torque on a current loop: motors and galvanometers</h2>
 
+  <p class="idea"><b>The idea</b>Put a loop of current in a magnetic field and opposite sides of the loop
+    get pushed opposite ways. The loop therefore does not go anywhere — it twists. Left alone it would
+    behave like a compass needle: swing round until it lines up with the field, and stop. The trick behind
+    every electric motor is to reverse the current at exactly the moment it lines up, so the twist never
+    runs out and the loop keeps turning. A moving-needle meter uses the same twisting effect held back by
+    a spring, so how far the needle swings tells you how much current is passing.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Magnetic dipole moment <b>μ</b></dt>
       <dd>A vector describing a current loop as a whole: magnitude = (turns) × (current) × (area), and
           direction along the loop's normal, given by curling the right hand along the current.</dd>
-      <dt>Torque on a loop</dt>
-      <dd>The turning effect a uniform field exerts on a magnetic dipole; it is zero when the moment is
-          aligned with the field and maximum when the moment is perpendicular to it.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">τ = N I A B sin θ = μ B sin θ</span>
       <span class="fx__tag">θ is between <b>μ</b> (the loop <em>normal</em>) and <b>B</b>; uniform field</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">μ = N I A</span><span class="fx__tag">any flat loop, any shape</span></div>
-      <div class="fx"><span class="fx__eq"><b>τ</b> = <b>μ</b> × <b>B</b></span><span class="fx__tag">vector form; torque tries to align <b>μ</b> with <b>B</b></span></div>
-      <div class="fx"><span class="fx__eq">U = −<b>μ</b>·<b>B</b> = −μB cos θ</span><span class="fx__tag">energy: minimum aligned, maximum anti-aligned</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>τ</b><span>torque (N·m)</span></div>
-      <div><b>μ</b><span>magnetic dipole moment (A·m²)</span></div>
-      <div><b>N</b><span>number of turns (dimensionless)</span></div>
-      <div><b>I</b><span>current (A)</span></div>
-      <div><b>A</b><span>area enclosed by one turn (m²)</span></div>
-      <div><b>B</b><span>uniform external field (T)</span></div>
-      <div><b>θ</b><span>angle between <b>μ</b> and <b>B</b> (° or rad)</span></div>
-      <div><b>U</b><span>orientation potential energy (J)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Torque on a loop</dt>
+          <dd>The turning effect a uniform field exerts on a magnetic dipole; it is zero when the moment is
+              aligned with the field and maximum when the moment is perpendicular to it.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">μ = N I A</span><span class="fx__tag">any flat loop, any shape</span></div>
+          <div class="fx"><span class="fx__eq"><b>τ</b> = <b>μ</b> × <b>B</b></span><span class="fx__tag">vector form; torque tries to align <b>μ</b> with <b>B</b></span></div>
+          <div class="fx"><span class="fx__eq">U = −<b>μ</b>·<b>B</b> = −μB cos θ</span><span class="fx__tag">energy: minimum aligned, maximum anti-aligned</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>τ</b><span>torque (N·m)</span></div>
+          <div><b>μ</b><span>magnetic dipole moment (A·m²)</span></div>
+          <div><b>N</b><span>number of turns (dimensionless)</span></div>
+          <div><b>I</b><span>current (A)</span></div>
+          <div><b>A</b><span>area enclosed by one turn (m²)</span></div>
+          <div><b>B</b><span>uniform external field (T)</span></div>
+          <div><b>θ</b><span>angle between <b>μ</b> and <b>B</b> (° or rad)</span></div>
+          <div><b>U</b><span>orientation potential energy (J)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -766,8 +902,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 6 · Torque and energy of a coil</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 6 · Torque and energy of a coil</summary>
+    <div class="disc__body">
     <p>
       A 50-turn rectangular coil measuring 4.0 cm × 3.0 cm carries 0.60 A in a uniform 0.25 T field.
       Its normal makes 60° with the field. Find μ, the torque, the maximum possible torque, and the
@@ -782,7 +919,8 @@
       <li><span class="fi">U = −μB cos60° = −9.0×10⁻³ × 0.500 = −4.5×10⁻³ J</span>.</li>
     </ol>
     <p class="wex__ans">μ = 3.6×10⁻² A·m² · τ = 7.8×10⁻³ N·m · τ<sub>max</sub> = 9.0×10⁻³ N·m · U = −4.5 mJ</p>
-  </div>
+    </div>
+  </details>
 
   <h3>Why a motor needs a commutator</h3>
   <p>
@@ -820,6 +958,14 @@
   <span class="section__num">§ 07</span>
   <h2>Fields made by currents · Ampère's law</h2>
 
+  <p class="idea"><b>The idea</b>Everything so far has asked what a magnetic field does to a current. This
+    section asks the reverse question — where the field came from in the first place. The answer is that
+    every current carries its own magnetic field with it, wrapped around the wire in rings. Bend the wire
+    into a circle and all those rings crowd through the middle together; wind it into a coil a thousand
+    times and the inside becomes a strong, even field. That is how every magnet in a laboratory is built,
+    and there is a shortcut that lets you work out the strength directly whenever the arrangement is
+    symmetrical enough.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -827,31 +973,38 @@
       <dd>For steady currents, the line integral of <b>B</b> once around any closed path equals μ₀ times
           the net current threading that path — a statement that current is the circulating source of
           the magnetic field.</dd>
-      <dt>Right-hand grip rule</dt>
-      <dd>Point the right thumb along the conventional current; the curled fingers give the sense in
-          which the field lines encircle it.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">∮ <b>B</b> · d<b>l</b> = μ₀ I<sub>enc</sub></span>
       <span class="fx__tag">any closed loop; steady currents (no changing <b>E</b>)</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">B = μ₀ I / (2π r)</span><span class="fx__tag">long straight wire, distance r from the axis</span></div>
-      <div class="fx"><span class="fx__eq">B = μ₀ N I / (2R)</span><span class="fx__tag">centre of a circular coil of N turns, radius R</span></div>
-      <div class="fx"><span class="fx__eq">B = μ₀ n I, &nbsp; n = N/ℓ</span><span class="fx__tag">deep inside a long solenoid; ~0 outside</span></div>
-      <div class="fx"><span class="fx__eq">B = μ₀ N I / (2π r)</span><span class="fx__tag">inside a toroid, at radius r from its axis</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>B</b><span>magnetic field (T)</span></div>
-      <div><b>dl</b><span>element of the closed path (m)</span></div>
-      <div><b>I<sub>enc</sub></b><span>net current threading the loop (A)</span></div>
-      <div><b>r</b><span>perpendicular distance from the wire / toroid axis (m)</span></div>
-      <div><b>R</b><span>coil radius (m)</span></div>
-      <div><b>N</b><span>number of turns (dimensionless)</span></div>
-      <div><b>n</b><span>turns per unit length (m⁻¹)</span></div>
-      <div><b>ℓ</b><span>solenoid length (m)</span></div>
-      <div><b>μ₀</b><span>4π×10⁻⁷ T·m·A⁻¹</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Right-hand grip rule</dt>
+          <dd>Point the right thumb along the conventional current; the curled fingers give the sense in
+              which the field lines encircle it.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">B = <span class="mf" role="img" aria-label="mu nought I, over two pi r"><span>μ₀ I</span><span>2π r</span></span></span><span class="fx__tag">long straight wire, distance r from the axis</span></div>
+          <div class="fx"><span class="fx__eq">B = <span class="mf" role="img" aria-label="mu nought N I, over two R"><span>μ₀ N I</span><span>2R</span></span></span><span class="fx__tag">centre of a circular coil of N turns, radius R</span></div>
+          <div class="fx"><span class="fx__eq">B = μ₀ n I, &nbsp; n = N/ℓ</span><span class="fx__tag">deep inside a long solenoid; ~0 outside</span></div>
+          <div class="fx"><span class="fx__eq">B = <span class="mf" role="img" aria-label="mu nought N I, over two pi r"><span>μ₀ N I</span><span>2π r</span></span></span><span class="fx__tag">inside a toroid, at radius r from its axis</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>B</b><span>magnetic field (T)</span></div>
+          <div><b>dl</b><span>element of the closed path (m)</span></div>
+          <div><b>I<sub>enc</sub></b><span>net current threading the loop (A)</span></div>
+          <div><b>r</b><span>perpendicular distance from the wire / toroid axis (m)</span></div>
+          <div><b>R</b><span>coil radius (m)</span></div>
+          <div><b>N</b><span>number of turns (dimensionless)</span></div>
+          <div><b>n</b><span>turns per unit length (m⁻¹)</span></div>
+          <div><b>ℓ</b><span>solenoid length (m)</span></div>
+          <div><b>μ₀</b><span>4π×10⁻⁷ T·m·A⁻¹</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -886,6 +1039,9 @@
     produced which formula is itself an exam-worthy distinction.
   </p>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · seven standard geometries, and which law produced each formula</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <caption class="sr-only">Standard current geometries, their fields, and how each is derived</caption>
@@ -903,9 +1059,12 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
 
-  <div class="wex">
-    <h4>Worked example 7 · Wire, loop, solenoid — same current, three fields</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 7 · Wire, loop, solenoid — same current, three fields</summary>
+    <div class="disc__body">
     <p>
       A current of 10 A flows in the first two arrangements. Find (a) the field 5.0 cm from a long
       straight wire, (b) the field at the centre of a single circular loop of radius 5.0 cm, and (c) the
@@ -931,7 +1090,8 @@
       thousands) or a superconducting winding carrying hundreds of amperes with no resistive heating —
       which is what a scanner actually uses.
     </p>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · scaling questions are free marks</p>
@@ -950,36 +1110,50 @@
   <span class="section__num">§ 08</span>
   <h2>Magnetic flux and Faraday's law</h2>
 
+  <p class="idea"><b>The idea</b>Think about how much of a magnetic field actually passes <em>through</em> a
+    loop of wire — not how strong the field is, but how much of it threads the hole. That quantity is what
+    the rest of the note is about. The discovery that made electricity practical is this: a steady amount
+    does nothing whatsoever, so a coil parked inside the strongest magnet ever built reads zero volts
+    forever. A voltage appears only while the amount is <em>changing</em>, and the faster it changes the
+    bigger the voltage. That is why generators have to spin.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Magnetic flux Φ<sub>B</sub></dt>
       <dd>The amount of magnetic field passing through a surface: field strength × the area presented
           perpendicular to it. Picture it as the number of field lines threading a loop.</dd>
-      <dt>Faraday's law of induction</dt>
-      <dd>An EMF is induced in a circuit whenever the magnetic flux through it changes, and the EMF is
-          proportional to the <em>rate</em> of that change — not to the flux itself.</dd>
-      <dt>Weber (Wb)</dt>
-      <dd>The SI unit of magnetic flux; 1 Wb = 1 T·m², and 1 V = 1 Wb·s⁻¹.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">ε = −N ΔΦ<sub>B</sub> / Δt</span>
       <span class="fx__tag">average EMF; instantaneous form ε = −N dΦ<sub>B</sub>/dt</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">Φ<sub>B</sub> = B A cos θ = <b>B</b> · <b>A</b></span><span class="fx__tag">uniform field; θ between <b>B</b> and the area <em>normal</em></span></div>
-      <div class="fx"><span class="fx__eq">ΔΦ<sub>B</sub> from ΔB, ΔA or Δθ</span><span class="fx__tag">the only three handles there are</span></div>
-      <div class="fx"><span class="fx__eq">1 Wb = 1 T·m² &nbsp;·&nbsp; 1 V = 1 Wb·s⁻¹</span><span class="fx__tag">unit bookkeeping</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>Φ<sub>B</sub></b><span>magnetic flux (Wb)</span></div>
-      <div><b>B</b><span>magnetic field (T)</span></div>
-      <div><b>A</b><span>area of the loop (m²)</span></div>
-      <div><b>θ</b><span>angle between <b>B</b> and the loop normal (° or rad)</span></div>
-      <div><b>ε</b><span>induced EMF (V)</span></div>
-      <div><b>N</b><span>number of turns linking the flux (dimensionless)</span></div>
-      <div><b>Δt</b><span>time interval (s)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Faraday's law of induction</dt>
+          <dd>An EMF is induced in a circuit whenever the magnetic flux through it changes, and the EMF is
+              proportional to the <em>rate</em> of that change — not to the flux itself.</dd>
+          <dt>Weber (Wb)</dt>
+          <dd>The SI unit of magnetic flux; 1 Wb = 1 T·m², and 1 V = 1 Wb·s⁻¹.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Φ<sub>B</sub> = B A cos θ = <b>B</b> · <b>A</b></span><span class="fx__tag">uniform field; θ between <b>B</b> and the area <em>normal</em></span></div>
+          <div class="fx"><span class="fx__eq">ΔΦ<sub>B</sub> from ΔB, ΔA or Δθ</span><span class="fx__tag">the only three handles there are</span></div>
+          <div class="fx"><span class="fx__eq">1 Wb = 1 T·m² &nbsp;·&nbsp; 1 V = 1 Wb·s⁻¹</span><span class="fx__tag">unit bookkeeping</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Φ<sub>B</sub></b><span>magnetic flux (Wb)</span></div>
+          <div><b>B</b><span>magnetic field (T)</span></div>
+          <div><b>A</b><span>area of the loop (m²)</span></div>
+          <div><b>θ</b><span>angle between <b>B</b> and the loop normal (° or rad)</span></div>
+          <div><b>ε</b><span>induced EMF (V)</span></div>
+          <div><b>N</b><span>number of turns linking the flux (dimensionless)</span></div>
+          <div><b>Δt</b><span>time interval (s)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1047,35 +1221,49 @@
   <span class="section__num">§ 09</span>
   <h2>Lenz's law and motional EMF</h2>
 
+  <p class="idea"><b>The idea</b>When a changing field drives a current, that current makes a field of its
+    own — and it always arranges itself to fight whatever you did to cause it. Push a magnet toward a metal
+    ring and the ring pushes back; pull it away and the ring tries to hold on. This is not an extra rule
+    of nature bolted on for tidiness, it is energy conservation in disguise: if the ring helped you along
+    instead of resisting, you could get electricity out of a single nudge and never stop. So generating
+    electricity always costs work, and the work you put in is exactly what comes out the other end.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Lenz's law</dt>
       <dd>The induced current flows in whichever direction makes its own magnetic field oppose the
           <em>change</em> in flux that produced it. It is the minus sign in Faraday's law, spelled out.</dd>
-      <dt>Motional EMF</dt>
-      <dd>The EMF that appears across a conductor moving through a magnetic field, because the magnetic
-          force pushes its free carriers toward one end.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">ε = B L v</span>
       <span class="fx__tag">rod of length L moving at v, with <b>B</b>, <b>L</b> and <b>v</b> mutually perpendicular</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">I = BLv / R</span><span class="fx__tag">if the rod closes a circuit of total resistance R</span></div>
-      <div class="fx"><span class="fx__eq">F<sub>mag</sub> = BIL = B²L²v / R</span><span class="fx__tag">retarding force on the rod — always opposes v</span></div>
-      <div class="fx"><span class="fx__eq">P<sub>mech</sub> = F v = B²L²v² / R = I²R</span><span class="fx__tag">energy audit: work in = heat out</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>ε</b><span>induced EMF (V)</span></div>
-      <div><b>B</b><span>magnetic field (T)</span></div>
-      <div><b>L</b><span>length of the rod in the field (m)</span></div>
-      <div><b>v</b><span>speed of the rod (m·s⁻¹)</span></div>
-      <div><b>I</b><span>induced current (A)</span></div>
-      <div><b>R</b><span>total circuit resistance (Ω)</span></div>
-      <div><b>F<sub>mag</sub></b><span>magnetic force on the current-carrying rod (N)</span></div>
-      <div><b>P</b><span>power, mechanical in = electrical out (W)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Motional EMF</dt>
+          <dd>The EMF that appears across a conductor moving through a magnetic field, because the magnetic
+              force pushes its free carriers toward one end.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">I = <span class="mf" role="img" aria-label="B L v, over R"><span>BLv</span><span>R</span></span></span><span class="fx__tag">if the rod closes a circuit of total resistance R</span></div>
+          <div class="fx"><span class="fx__eq">F<sub>mag</sub> = BIL = <span class="mf" role="img" aria-label="B squared L squared v, over R"><span>B²L²v</span><span>R</span></span></span><span class="fx__tag">retarding force on the rod — always opposes v</span></div>
+          <div class="fx"><span class="fx__eq">P<sub>mech</sub> = F v = <span class="mf" role="img" aria-label="B squared L squared v squared, over R"><span>B²L²v²</span><span>R</span></span> = I²R</span><span class="fx__tag">energy audit: work in = heat out</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>ε</b><span>induced EMF (V)</span></div>
+          <div><b>B</b><span>magnetic field (T)</span></div>
+          <div><b>L</b><span>length of the rod in the field (m)</span></div>
+          <div><b>v</b><span>speed of the rod (m·s⁻¹)</span></div>
+          <div><b>I</b><span>induced current (A)</span></div>
+          <div><b>R</b><span>total circuit resistance (Ω)</span></div>
+          <div><b>F<sub>mag</sub></b><span>magnetic force on the current-carrying rod (N)</span></div>
+          <div><b>P</b><span>power, mechanical in = electrical out (W)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <h3>Why the minus sign has to be there</h3>
@@ -1152,6 +1340,9 @@
     runs the opposite way round to the primary current, and only during the switching transient.
   </p>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · motional EMF derived twice — from the carriers, and from Faraday's law</summary>
+    <div class="disc__body">
   <h3>Motional EMF, derived twice</h3>
   <p>
     <strong>Route 1 — force on the carriers.</strong> A rod of length L moves at speed v across a field
@@ -1167,6 +1358,8 @@
     <span class="fi">Φ = BLx</span>. Then <span class="fi">|ε| = dΦ/dt = BL dx/dt = BLv</span>. Same
     answer, from a completely different starting point — which is the reason to trust it.
   </p>
+    </div>
+  </details>
 
   <figure class="figure pfig">
     <svg viewBox="0 0 660 300" role="img" aria-label="A conducting rod slides to the right on rails in a field into the page. The induced current runs up the rod, left along the top rail, down through the resistor and back along the bottom rail. The magnetic force on the rod points left, opposing its motion.">
@@ -1220,8 +1413,9 @@
     </figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 8 · The full energy audit of a sliding rod</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 8 · The full energy audit of a sliding rod</summary>
+    <div class="disc__body">
     <p>
       A rod of length 0.30 m slides on frictionless rails at a constant 2.0 m·s⁻¹, perpendicular to a
       uniform 0.40 T field. The circuit's total resistance is 0.50 Ω. Find the EMF, the current, the
@@ -1237,7 +1431,8 @@
           They agree exactly — as Lenz's law requires.</li>
     </ol>
     <p class="wex__ans">ε = 0.24 V · I = 0.48 A · F = 0.058 N · P = 0.115 W in and out</p>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · "opposes the flux" vs "opposes the change in flux"</p>
@@ -1255,43 +1450,58 @@
   <span class="section__num">§ 10</span>
   <h2>Eddy currents, self-inductance and magnetic energy</h2>
 
+  <p class="idea"><b>The idea</b>Nothing in the last section required a neat loop of wire. Change the field
+    through a solid lump of metal and currents swirl about inside it, dragging on whatever caused the
+    change — which is how some trains brake without anything touching, and how a hob heats a pan through
+    cold glass. A coil does the same thing to itself: its own changing current fights its own change, so
+    a coil behaves in a circuit rather as mass behaves in mechanics, resisting any attempt to alter how
+    fast things are moving. Building the field up takes work, and that work does not sit in the metal —
+    it sits in the field, waiting to be handed back.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Eddy currents</dt>
       <dd>Closed loops of induced current circulating inside a <em>bulk</em> conductor when the flux
           through it changes; they obey Lenz's law and therefore oppose whatever caused them.</dd>
-      <dt>Self-inductance L</dt>
-      <dd>The property of a circuit that measures how much flux linkage its own current creates, and so
-          how strongly it opposes any change in that current.</dd>
-      <dt>Henry (H)</dt>
-      <dd>The SI unit of inductance: 1 H = 1 Wb·A⁻¹ = 1 V·s·A⁻¹. A 1 H coil produces 1 V of back-EMF
-          when its current changes at 1 A·s⁻¹.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">ε = −L ΔI / Δt &nbsp;·&nbsp; L = N Φ<sub>B</sub> / I</span>
+      <span class="fx__eq">ε = −L ΔI / Δt &nbsp;·&nbsp; L = <span class="mf" role="img" aria-label="N times phi sub B, over I"><span>N Φ<sub>B</sub></span><span>I</span></span></span>
       <span class="fx__tag">definition of L; the minus sign is Lenz's law again</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">L = μ₀ N² A / ℓ = μ₀ n² A ℓ</span><span class="fx__tag">long air-cored solenoid; note the N²</span></div>
-      <div class="fx"><span class="fx__eq">I(t) = (V/R)(1 − e<sup>−t/τ</sup>), &nbsp; τ = L/R</span><span class="fx__tag">LR growth after closing the switch on a source of EMF V</span></div>
-      <div class="fx"><span class="fx__eq">I(t) = I₀ e<sup>−t/τ</sup></span><span class="fx__tag">LR decay through a closed loop</span></div>
-      <div class="fx"><span class="fx__eq">U = ½ L I² &nbsp;·&nbsp; u = B² / (2μ₀)</span><span class="fx__tag">energy stored, and energy per unit volume of field</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>L</b><span>self-inductance (H)</span></div>
-      <div><b>ε</b><span>back-EMF (V)</span></div>
-      <div><b>I</b><span>current (A)</span></div>
-      <div><b>Φ<sub>B</sub></b><span>flux through one turn (Wb)</span></div>
-      <div><b>N</b><span>number of turns (dimensionless)</span></div>
-      <div><b>A</b><span>cross-sectional area (m²)</span></div>
-      <div><b>ℓ</b><span>solenoid length (m)</span></div>
-      <div><b>τ</b><span>time constant L/R (s)</span></div>
-      <div><b>R</b><span>circuit resistance (Ω)</span></div>
-      <div><b>V</b><span>EMF of the source driving the LR circuit (V)</span></div>
-      <div><b>U</b><span>energy stored in the field (J)</span></div>
-      <div><b>u</b><span>magnetic energy density (J·m⁻³)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Self-inductance L</dt>
+          <dd>The property of a circuit that measures how much flux linkage its own current creates, and so
+              how strongly it opposes any change in that current.</dd>
+          <dt>Henry (H)</dt>
+          <dd>The SI unit of inductance: 1 H = 1 Wb·A⁻¹ = 1 V·s·A⁻¹. A 1 H coil produces 1 V of back-EMF
+              when its current changes at 1 A·s⁻¹.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">L = <span class="mf" role="img" aria-label="mu nought N squared A, over the length ell"><span>μ₀ N² A</span><span>ℓ</span></span> = μ₀ n² A ℓ</span><span class="fx__tag">long air-cored solenoid; note the N²</span></div>
+          <div class="fx"><span class="fx__eq">I(t) = (V/R)(1 − e<sup>−t/τ</sup>), &nbsp; τ = L/R</span><span class="fx__tag">LR growth after closing the switch on a source of EMF V</span></div>
+          <div class="fx"><span class="fx__eq">I(t) = I₀ e<sup>−t/τ</sup></span><span class="fx__tag">LR decay through a closed loop</span></div>
+          <div class="fx"><span class="fx__eq">U = ½ L I² &nbsp;·&nbsp; u = <span class="mf" role="img" aria-label="B squared, over two mu nought"><span>B²</span><span>2μ₀</span></span></span><span class="fx__tag">energy stored, and energy per unit volume of field</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>L</b><span>self-inductance (H)</span></div>
+          <div><b>ε</b><span>back-EMF (V)</span></div>
+          <div><b>I</b><span>current (A)</span></div>
+          <div><b>Φ<sub>B</sub></b><span>flux through one turn (Wb)</span></div>
+          <div><b>N</b><span>number of turns (dimensionless)</span></div>
+          <div><b>A</b><span>cross-sectional area (m²)</span></div>
+          <div><b>ℓ</b><span>solenoid length (m)</span></div>
+          <div><b>τ</b><span>time constant L/R (s)</span></div>
+          <div><b>R</b><span>circuit resistance (Ω)</span></div>
+          <div><b>V</b><span>EMF of the source driving the LR circuit (V)</span></div>
+          <div><b>U</b><span>energy stored in the field (J)</span></div>
+          <div><b>u</b><span>magnetic energy density (J·m⁻³)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <h3>Eddy currents: induction in a solid block</h3>
@@ -1354,8 +1564,9 @@
     energy — the idea that eventually makes electromagnetic waves (note 14) possible.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 9 · Inductance, stored energy, and where it lives</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 9 · Inductance, stored energy, and where it lives</summary>
+    <div class="disc__body">
     <p>
       A solenoid of 500 turns is wound over a length of 0.25 m with cross-sectional area 4.0 cm².
       It carries 2.0 A and is in series with a 5.0 Ω resistor. Find L, the stored energy, and the LR
@@ -1383,13 +1594,23 @@
       a magnet quench (sudden loss of superconductivity, dumping that energy as heat into the helium) is
       a violent event rather than an inconvenience.
     </p>
-  </div>
+    </div>
+  </details>
 </section>
 
 <!-- =========================== §11 =========================== -->
 <section class="section" id="s11">
   <span class="section__num">§ 11</span>
   <h2>Transformers, AC transmission, and induction in medicine</h2>
+
+  <p class="idea"><b>The idea</b>Wind two separate coils onto the same iron ring and the changing field
+    made by one reaches straight into the other, handing power across with no electrical connection at
+    all. Give the two coils different numbers of turns and the voltage comes out changed in the same
+    proportion — which is why electricity is sent across the country at enormous voltage and tiny current,
+    since it is the current, not the voltage, that wastes energy heating the cables. The same handover
+    happens in a hospital: a scanner listens for the faint voltage that spinning atomic nuclei induce in a
+    coil, and a stimulating coil held against the scalp induces enough voltage inside the head to make
+    nerves fire, without anything touching the brain.</p>
 
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
@@ -1398,30 +1619,37 @@
       <dd>Two coils sharing a common magnetic core, so that an alternating current in the primary
           produces an alternating flux that induces an EMF in the secondary; the voltage ratio is set by
           the turns ratio.</dd>
-      <dt>Larmor (resonance) frequency</dt>
-      <dd>The frequency at which a magnetic moment precesses about an applied field — the frequency at
-          which it will absorb and re-emit radio energy.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">V<sub>s</sub> / V<sub>p</sub> = N<sub>s</sub> / N<sub>p</sub></span>
       <span class="fx__tag">ideal transformer: all flux linked, no losses, AC only</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">V<sub>p</sub>I<sub>p</sub> = V<sub>s</sub>I<sub>s</sub> &nbsp;⟹&nbsp; I<sub>s</sub>/I<sub>p</sub> = N<sub>p</sub>/N<sub>s</sub></span><span class="fx__tag">ideal (100% efficient); step up volts ⟹ step down amps</span></div>
-      <div class="fx"><span class="fx__eq">P<sub>loss</sub> = I²R<sub>line</sub> = (P/V)² R<sub>line</sub></span><span class="fx__tag">transmission loss at delivered power P and line voltage V</span></div>
-      <div class="fx"><span class="fx__eq">f = γB / (2π) = 42.58 MHz·T⁻¹ × B</span><span class="fx__tag">¹H Larmor frequency (MRI)</span></div>
-      <div class="fx"><span class="fx__eq">ε<sub>induced</sub> ∝ dB/dt</span><span class="fx__tag">TMS and MRI gradient switching</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>V<sub>p</sub>, V<sub>s</sub></b><span>primary / secondary RMS voltage (V)</span></div>
-      <div><b>N<sub>p</sub>, N<sub>s</sub></b><span>primary / secondary turns (dimensionless)</span></div>
-      <div><b>I<sub>p</sub>, I<sub>s</sub></b><span>primary / secondary current (A)</span></div>
-      <div><b>P</b><span>power delivered (W)</span></div>
-      <div><b>R<sub>line</sub></b><span>total resistance of the transmission line (Ω)</span></div>
-      <div><b>γ</b><span>gyromagnetic ratio (rad·s⁻¹·T⁻¹)</span></div>
-      <div><b>f</b><span>resonance frequency (Hz)</span></div>
-      <div><b>dB/dt</b><span>rate of change of field (T·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Larmor (resonance) frequency</dt>
+          <dd>The frequency at which a magnetic moment precesses about an applied field — the frequency at
+              which it will absorb and re-emit radio energy.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">V<sub>p</sub>I<sub>p</sub> = V<sub>s</sub>I<sub>s</sub> &nbsp;⟹&nbsp; I<sub>s</sub>/I<sub>p</sub> = N<sub>p</sub>/N<sub>s</sub></span><span class="fx__tag">ideal (100% efficient); step up volts ⟹ step down amps</span></div>
+          <div class="fx"><span class="fx__eq">P<sub>loss</sub> = I²R<sub>line</sub> = (P/V)² R<sub>line</sub></span><span class="fx__tag">transmission loss at delivered power P and line voltage V</span></div>
+          <div class="fx"><span class="fx__eq">f = <span class="mf" role="img" aria-label="gamma times B, over two pi"><span>γB</span><span>2π</span></span> = 42.58 MHz·T⁻¹ × B</span><span class="fx__tag">¹H Larmor frequency (MRI)</span></div>
+          <div class="fx"><span class="fx__eq">ε<sub>induced</sub> ∝ dB/dt</span><span class="fx__tag">TMS and MRI gradient switching</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>V<sub>p</sub>, V<sub>s</sub></b><span>primary / secondary RMS voltage (V)</span></div>
+          <div><b>N<sub>p</sub>, N<sub>s</sub></b><span>primary / secondary turns (dimensionless)</span></div>
+          <div><b>I<sub>p</sub>, I<sub>s</sub></b><span>primary / secondary current (A)</span></div>
+          <div><b>P</b><span>power delivered (W)</span></div>
+          <div><b>R<sub>line</sub></b><span>total resistance of the transmission line (Ω)</span></div>
+          <div><b>γ</b><span>gyromagnetic ratio (rad·s⁻¹·T⁻¹)</span></div>
+          <div><b>f</b><span>resonance frequency (Hz)</span></div>
+          <div><b>dB/dt</b><span>rate of change of field (T·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1447,8 +1675,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 10 · Why the grid runs at high voltage</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 10 · Why the grid runs at high voltage</summary>
+    <div class="disc__body">
     <p>
       100 kW must be delivered along a line of total resistance 0.50 Ω. Compare the resistive loss if it
       is sent at 250 V with the loss if a transformer steps it up to 25 kV. Then find the turns ratio
@@ -1469,7 +1698,8 @@
           <span class="fi">I<sub>p</sub> = (240 × 2.0)/25 000 = 480/25 000 = 0.019 A</span>.</li>
     </ol>
     <p class="wex__ans">80 kW lost at 250 V vs 8.0 W at 25 kV · ratio ≈ 104 : 1 · I<sub>p</sub> = 19 mA</p>
-  </div>
+    </div>
+  </details>
 
   <h3>Magnetic resonance imaging</h3>
   <p>

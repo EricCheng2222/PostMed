@@ -16,6 +16,10 @@
     <nav>
       <a href="physics.html">Physics</a>
       <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -58,9 +62,27 @@
     </ol>
   </nav>
 
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§01–02</b>: momentum is a <em>vector</em>, and a force acting for a
+        length of time is what changes it. Everything else on this page is bookkeeping built on those two
+        sentences, so do not move on until both feel obvious.</li>
+      <li><b>Then be able to do</b> — <b>§03</b> peak force when a stop is stretched out; <b>§04–05</b>
+        before-and-after momentum sums and how much kinetic energy a sticky collision loses;
+        <b>§08</b> resolving a collision into components; <b>§10</b> the two-stage bullet-and-block.
+        These five are where the marks are.</li>
+      <li><b>Leave for a second pass</b> — <b>§06</b> beyond the three mass-ratio pictures, <b>§07</b>'s
+        restitution algebra and material tables, and <b>§09</b>'s continuous-body integrals. Useful, but
+        nothing earlier depends on them.</li>
+    </ol>
+  </div>
+
   <!-- Page-top formula sheet -->
   <section class="fsheet card">
-    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <details class="disc disc--sheet">
+      <summary>Formula sheet<span class="disc__count">23 formulas</span></summary>
+      <div class="disc__body">
     <div class="fsheet__grid">
       <div class="fsheet__item"><b>Linear momentum</b><code><b>p</b> = m<b>v</b></code></div>
       <div class="fsheet__item"><b>Newton II, general form</b><code><b>F</b><sub>net</sub> = d<b>p</b>/dt, <b>F</b><sub>avg</sub> = Δ<b>p</b>/Δt</code></div>
@@ -77,7 +99,7 @@
       <div class="fsheet__item"><b>1-D elastic, body 1</b><code>v₁′ = [(m₁−m₂)v₁ + 2m₂v₂]/(m₁+m₂)</code></div>
       <div class="fsheet__item"><b>1-D elastic, body 2</b><code>v₂′ = [(m₂−m₁)v₂ + 2m₁v₁]/(m₁+m₂)</code></div>
       <div class="fsheet__item"><b>Elastic relative-velocity rule</b><code>v₁ − v₂ = −(v₁′ − v₂′)</code></div>
-      <div class="fsheet__item"><b>Elastic energy transfer, target at rest</b><code>K₂′/K₁ = 4m₁m₂/(m₁+m₂)²</code></div>
+      <div class="fsheet__item"><b>Elastic energy transfer, target at rest</b><code>K₂′/K₁ = (4m₁m₂)/(m₁+m₂)²</code></div>
       <div class="fsheet__item"><b>Coefficient of restitution</b><code>e = |v₂′ − v₁′| / |v₁ − v₂|</code></div>
       <div class="fsheet__item"><b>Bounce test</b><code>e = √(h′/h), h<sub>n</sub> = h₀e<sup>2n</sup></code></div>
       <div class="fsheet__item"><b>Centre of mass, discrete</b><code><b>r</b><sub>cm</sub> = (1/M)Σm<sub>i</sub><b>r</b><sub>i</sub></code></div>
@@ -86,6 +108,8 @@
       <div class="fsheet__item"><b>Ballistic pendulum</b><code>v = ((m + M)/m)√(2gh)</code></div>
       <div class="fsheet__item"><b>Swing height from angle</b><code>h = L(1 − cos θ)</code></div>
     </div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -94,49 +118,69 @@
   <span class="section__num">§ 01</span>
   <h2>Momentum: the vector that survives</h2>
 
+  <p class="idea"><b>The idea</b>Everything that moves carries a certain amount of motion, and how much
+    it carries depends on two things: how heavy it is and how fast it is going — plus, crucially, which
+    way it is going. That directional quantity has a remarkable property: when things crash into each
+    other, the total is the same afterwards as it was before, so you can work out what happened without
+    knowing anything about the violence in between. It is not the same currency as energy, and confusing
+    the two is the most expensive habit in this chapter: a rifle and its bullet carry equal and opposite
+    amounts of motion, and only one of them is dangerous.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Linear momentum</dt>
       <dd>The product of a body's mass and its velocity — a vector quantity that measures
         "how much motion" the body carries, pointing along the velocity.</dd>
-      <dt>Total momentum of a system</dt>
-      <dd>The vector sum of the individual momenta, added component by component — never by adding speeds.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq"><b>p</b> = m<b>v</b></span>
       <span class="fx__tag">definition; valid always (non-relativistic)</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq"><b>F</b><sub>net</sub> = d<b>p</b>/dt &nbsp;·&nbsp; <b>F</b><sub>avg</sub> = Δ<b>p</b>/Δt</span><span class="fx__tag">Newton II in its original form; <b>p</b> is that of a fixed set of matter</span></div>
-      <div class="fx"><span class="fx__eq"><b>F</b><sub>net</sub> = m<b>a</b></span><span class="fx__tag">special case: constant mass</span></div>
-      <div class="fx"><span class="fx__eq"><b>P</b> = Σ m<sub>i</sub><b>v</b><sub>i</sub></span><span class="fx__tag">system momentum</span></div>
-      <div class="fx"><span class="fx__eq">K = p²/(2m) &nbsp;⟺&nbsp; p = √(2mK)</span><span class="fx__tag">links the two "amount of motion" scalars</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>p</b><span>linear momentum (kg·m·s⁻¹, equivalently N·s)</span></div>
-      <div><b>m</b><span>mass (kg)</span></div>
-      <div><b>v</b><span>velocity (m·s⁻¹)</span></div>
-      <div><b>F</b><span>force (N = kg·m·s⁻²)</span></div>
-      <div><b>t</b><span>time (s)</span></div>
-      <div><b>K</b><span>kinetic energy (J)</span></div>
-      <div><b>P</b><span>total system momentum (kg·m·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Total momentum of a system</dt>
+          <dd>The vector sum of the individual momenta, added component by component — never by adding speeds.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq"><b>F</b><sub>net</sub> = d<b>p</b>/dt &nbsp;·&nbsp; <b>F</b><sub>avg</sub> = Δ<b>p</b>/Δt</span><span class="fx__tag">Newton II in its original form; <b>p</b> is that of a fixed set of matter</span></div>
+          <div class="fx"><span class="fx__eq"><b>F</b><sub>net</sub> = m<b>a</b></span><span class="fx__tag">special case: constant mass</span></div>
+          <div class="fx"><span class="fx__eq"><b>P</b> = Σ m<sub>i</sub><b>v</b><sub>i</sub></span><span class="fx__tag">system momentum</span></div>
+          <div class="fx"><span class="fx__eq">K = <span class="mf" role="img" aria-label="p squared over 2 m"><span>p²</span><span>2m</span></span> &nbsp;⟺&nbsp; p = <span class="msq" role="img" aria-label="square root of 2 m K"><span>2mK</span></span></span><span class="fx__tag">links the two "amount of motion" scalars</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>p</b><span>linear momentum (kg·m·s⁻¹, equivalently N·s)</span></div>
+          <div><b>m</b><span>mass (kg)</span></div>
+          <div><b>v</b><span>velocity (m·s⁻¹)</span></div>
+          <div><b>F</b><span>force (N = kg·m·s⁻²)</span></div>
+          <div><b>t</b><span>time (s)</span></div>
+          <div><b>K</b><span>kinetic energy (J)</span></div>
+          <div><b>P</b><span>total system momentum (kg·m·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p><strong>Notation on this page:</strong> bold symbols are vectors (<b>p</b>, <b>v</b>, <b>F</b>);
      plain symbols are magnitudes or <em>signed</em> one-dimensional components. In every 1-D problem,
      pick a positive direction on the page before you write anything down and never change it.</p>
 
-  <p>Newton did not write <span class="fi">F = ma</span>. He wrote that the change of motion is
-     proportional to the impressed force — that is, <span class="fi">F = dp/dt</span>. The two agree
-     whenever the mass is constant, but the momentum form is the general one. It is what you reach for
-     with a rocket burning fuel or a raindrop growing as it falls — provided you draw the system to
-     include every piece of matter involved, exhaust and captured droplets alike, so that no mass crosses
-     the boundary; naively differentiating m<b>v</b> for a body that is gaining or shedding mass is a
-     classic way to get a wrong answer. And the same equation survives into relativity untouched, with
-     <b>p</b> = γm<b>v</b> in place of m<b>v</b>. Treat <span class="fi">F = ma</span> as the special
-     case, not the definition.</p>
+  <details class="disc disc--deep">
+    <summary>Go deeper · why Newton wrote F = dp/dt, and where F = ma stops working</summary>
+    <div class="disc__body">
+      <p>Newton did not write <span class="fi">F = ma</span>. He wrote that the change of motion is
+         proportional to the impressed force — that is, <span class="fi">F = dp/dt</span>. The two agree
+         whenever the mass is constant, but the momentum form is the general one. It is what you reach for
+         with a rocket burning fuel or a raindrop growing as it falls — provided you draw the system to
+         include every piece of matter involved, exhaust and captured droplets alike, so that no mass crosses
+         the boundary; naively differentiating m<b>v</b> for a body that is gaining or shedding mass is a
+         classic way to get a wrong answer. And the same equation survives into relativity untouched, with
+         <b>p</b> = γm<b>v</b> in place of m<b>v</b>. Treat <span class="fi">F = ma</span> as the special
+         case, not the definition.</p>
+    </div>
+  </details>
 
   <p>The practical reason momentum earns a chapter of its own is that <strong>it lets you skip the
      force entirely</strong>. A car crash lasts about 100 ms and the force during it is a complicated,
@@ -195,31 +239,44 @@
   <span class="section__num">§ 02</span>
   <h2>Impulse and the impulse–momentum theorem</h2>
 
+  <p class="idea"><b>The idea</b>A push only changes how something is moving if it lasts. A gentle shove
+    kept up for a long time and a violent blow lasting a thousandth of a second can produce exactly the
+    same change of motion, because what counts is the strength of the push multiplied by how long it goes
+    on for. That product has its own name, and this whole section is one sentence: the total push-times-time
+    delivered to a body equals the change in the amount of motion it carries.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Impulse</dt>
       <dd>The time-integral of a force — a vector whose direction is the direction of the (average)
         force, measuring "how much push, for how long".</dd>
-      <dt>Impulse–momentum theorem</dt>
-      <dd>The net impulse delivered to a body equals the change in its momentum. It is not a new law:
-        it is Newton's second law integrated over time.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq"><b>J</b><sub>net</sub> = ∫<b>F</b><sub>net</sub> dt = Δ<b>p</b> = m<b>v</b><sub>f</sub> − m<b>v</b><sub>i</sub></span>
       <span class="fx__tag">always true; no restriction on how F varies (last step assumes constant m)</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq"><b>J</b> = <b>F</b><sub>avg</sub> Δt</span><span class="fx__tag">definition of the average force over the interval</span></div>
-      <div class="fx"><span class="fx__eq">∫<b>F</b><sub>net</sub>·d<b>r</b> = ΔK</span><span class="fx__tag">the companion theorem: <em>net</em> force through <em>distance</em></span></div>
-    </div>
-    <div class="symtab">
-      <div><b>J</b><span>impulse (N·s = kg·m·s⁻¹)</span></div>
-      <div><b>F<sub>avg</sub></b><span>time-averaged force over Δt (N)</span></div>
-      <div><b>Δt</b><span>duration of the interaction (s)</span></div>
-      <div><b>v<sub>i</sub>, v<sub>f</sub></b><span>initial and final velocity (m·s⁻¹)</span></div>
-      <div><b>Δp</b><span>change in momentum (kg·m·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Impulse–momentum theorem</dt>
+          <dd>The net impulse delivered to a body equals the change in its momentum. It is not a new law:
+            it is Newton's second law integrated over time.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq"><b>J</b> = <b>F</b><sub>avg</sub> Δt</span><span class="fx__tag">definition of the average force over the interval</span></div>
+          <div class="fx"><span class="fx__eq">∫<b>F</b><sub>net</sub>·d<b>r</b> = ΔK</span><span class="fx__tag">the companion theorem: <em>net</em> force through <em>distance</em></span></div>
+        </div>
+        <div class="symtab">
+          <div><b>J</b><span>impulse (N·s = kg·m·s⁻¹)</span></div>
+          <div><b>F<sub>avg</sub></b><span>time-averaged force over Δt (N)</span></div>
+          <div><b>Δt</b><span>duration of the interaction (s)</span></div>
+          <div><b>v<sub>i</sub>, v<sub>f</sub></b><span>initial and final velocity (m·s⁻¹)</span></div>
+          <div><b>Δp</b><span>change in momentum (kg·m·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>The derivation is one line, and it is worth doing once so the theorem stops feeling like a
@@ -244,22 +301,24 @@
      receives an impulse pointing away from the wall, even though it was moving toward it for half of
      the contact.</p>
 
-  <div class="wex">
-    <h4>Worked example 1 — catching versus bouncing</h4>
-    <p>A 0.145 kg baseball reaches a wall at 40 m·s⁻¹. Compare the impulse the wall (or a glove)
-      delivers if (a) the ball is caught and stops, and (b) the ball rebounds elastically at 40 m·s⁻¹.</p>
-    <ol>
-      <li>Choose <em>away from the wall</em> as positive, so v<sub>i</sub> = −40 m·s⁻¹ in both cases.</li>
-      <li>(a) Caught: v<sub>f</sub> = 0, so J = m(v<sub>f</sub> − v<sub>i</sub>) = 0.145 × (0 + 40) = 5.8 N·s.</li>
-      <li>(b) Rebounds: v<sub>f</sub> = +40 m·s⁻¹, so J = 0.145 × (40 + 40) = 11.6 N·s.</li>
-      <li>The impulse is exactly <b>doubled</b>: the wall must first destroy the incoming momentum and
-        then create an equal amount in the opposite direction.</li>
-    </ol>
-    <p class="wex__ans">J<sub>catch</sub> = 5.8 N·s &nbsp;·&nbsp; J<sub>bounce</sub> = 11.6 N·s (2×)</p>
-    <p style="margin:.6rem 0 0;font-size:.9rem;color:var(--ink-soft)">This is why a bouncy projectile is
-      more destructive than one that embeds, and why a rubber-headed mallet transmits a bigger kick to a
-      chisel than a lump of putty of the same mass and speed.</p>
-  </div>
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — catching versus bouncing</summary>
+    <div class="disc__body">
+      <p>A 0.145 kg baseball reaches a wall at 40 m·s⁻¹. Compare the impulse the wall (or a glove)
+        delivers if (a) the ball is caught and stops, and (b) the ball rebounds elastically at 40 m·s⁻¹.</p>
+      <ol>
+        <li>Choose <em>away from the wall</em> as positive, so v<sub>i</sub> = −40 m·s⁻¹ in both cases.</li>
+        <li>(a) Caught: v<sub>f</sub> = 0, so J = m(v<sub>f</sub> − v<sub>i</sub>) = 0.145 × (0 + 40) = 5.8 N·s.</li>
+        <li>(b) Rebounds: v<sub>f</sub> = +40 m·s⁻¹, so J = 0.145 × (40 + 40) = 11.6 N·s.</li>
+        <li>The impulse is exactly <b>doubled</b>: the wall must first destroy the incoming momentum and
+          then create an equal amount in the opposite direction.</li>
+      </ol>
+      <p class="wex__ans">J<sub>catch</sub> = 5.8 N·s &nbsp;·&nbsp; J<sub>bounce</sub> = 11.6 N·s (2×)</p>
+      <p style="margin:.6rem 0 0;font-size:.9rem;color:var(--ink-soft)">This is why a bouncy projectile is
+        more destructive than one that embeds, and why a rubber-headed mallet transmits a bigger kick to a
+        chisel than a lump of putty of the same mass and speed.</p>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Read the question for "net"</p>
@@ -276,32 +335,46 @@
   <span class="section__num">§ 03</span>
   <h2>Area under F–t: why stretching Δt saves you</h2>
 
+  <p class="idea"><b>The idea</b>If you are moving and you are going to end up stopped, the total amount
+    of push you have to absorb is settled in advance by how heavy you are and how fast you were going. No
+    seat belt, airbag or helmet can make it smaller. What safety equipment changes is <em>how long the
+    stopping takes</em> — and since the total is fixed, spreading it over more time means less force at
+    any one instant. That matters because it is the hardest instant, not the total, that breaks ribs and
+    tears blood vessels.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Impulse as an area</dt>
       <dd>On a graph of force against time, the impulse is the signed area between the curve and the
         time axis. Area below the axis counts as negative.</dd>
-      <dt>Average force</dt>
-      <dd>The constant force that would enclose the same area over the same interval — a definition,
-        not an approximation.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">J = area under the F–t curve = F<sub>avg</sub> Δt = Δp</span>
       <span class="fx__tag">always; the shape of the pulse does not matter</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">F<sub>avg</sub> = Δp/Δt</span><span class="fx__tag">Δp is fixed by the situation; Δt is what engineering changes</span></div>
-      <div class="fx"><span class="fx__eq">F<sub>peak</sub> = 2 F<sub>avg</sub></span><span class="fx__tag">triangular pulse (rise then fall)</span></div>
-      <div class="fx"><span class="fx__eq">F<sub>peak</sub> = (π/2) F<sub>avg</sub> ≈ 1.57 F<sub>avg</sub></span><span class="fx__tag">half-sine pulse — a good model of a real crash</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>J</b><span>impulse = area under F–t (N·s)</span></div>
-      <div><b>F<sub>peak</sub></b><span>maximum instantaneous force (N)</span></div>
-      <div><b>F<sub>avg</sub></b><span>time-averaged force (N)</span></div>
-      <div><b>Δt</b><span>contact / crash duration (s)</span></div>
-      <div><b>Δp</b><span>momentum that must be shed (kg·m·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Average force</dt>
+          <dd>The constant force that would enclose the same area over the same interval — a definition,
+            not an approximation.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">F<sub>avg</sub> = Δp/Δt</span><span class="fx__tag">Δp is fixed by the situation; Δt is what engineering changes</span></div>
+          <div class="fx"><span class="fx__eq">F<sub>peak</sub> = 2 F<sub>avg</sub></span><span class="fx__tag">triangular pulse (rise then fall)</span></div>
+          <div class="fx"><span class="fx__eq">F<sub>peak</sub> = <span class="mf" role="img" aria-label="pi over 2"><span>π</span><span>2</span></span> F<sub>avg</sub> ≈ 1.57 F<sub>avg</sub></span><span class="fx__tag">half-sine pulse — a good model of a real crash</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>J</b><span>impulse = area under F–t (N·s)</span></div>
+          <div><b>F<sub>peak</sub></b><span>maximum instantaneous force (N)</span></div>
+          <div><b>F<sub>avg</sub></b><span>time-averaged force (N)</span></div>
+          <div><b>Δt</b><span>contact / crash duration (s)</span></div>
+          <div><b>Δp</b><span>momentum that must be shed (kg·m·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Here is the entire logic of crash protection in two sentences. <strong>The impulse is fixed.</strong>
@@ -359,43 +432,47 @@
       crash pulse peaks nearer 1.57F<sub>avg</sub>.)</figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 2 — peak force from a triangular pulse</h4>
-    <p>A 0.058 kg tennis ball arrives at the racket at 25 m·s⁻¹ and is returned at 35 m·s⁻¹ along the
-      same line. The contact force rises from zero to a peak and falls back to zero over a total of
-      5.0 ms; model it as a triangle. Find F<sub>avg</sub> and F<sub>peak</sub>.</p>
-    <ol>
-      <li>Positive = direction of the return. v<sub>i</sub> = −25 m·s⁻¹, v<sub>f</sub> = +35 m·s⁻¹.</li>
-      <li>Δp = 0.058 × (35 + 25) = 0.058 × 60 = <b>3.48 kg·m·s⁻¹</b>, so J = 3.48 N·s.</li>
-      <li>F<sub>avg</sub> = J/Δt = 3.48 / 5.0×10⁻³ = <b>696 N</b>.</li>
-      <li>Triangle: J = ½ Δt F<sub>peak</sub> ⟹ F<sub>peak</sub> = 2J/Δt = 2 × 696 = <b>1392 N ≈ 1.4 kN</b>.</li>
-      <li>Sanity check on ignoring gravity: the ball's weight is 0.058 × 9.8 = 0.57 N, so gravity's
-        impulse over 5.0 ms is 2.8×10⁻³ N·s — 0.08 % of the contact impulse. Safely dropped.</li>
-    </ol>
-    <p class="wex__ans">F<sub>avg</sub> = 6.96×10² N &nbsp;·&nbsp; F<sub>peak</sub> ≈ 1.39×10³ N ≈ 2400 × the ball's weight</p>
-  </div>
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — peak force from a triangular pulse</summary>
+    <div class="disc__body">
+      <p>A 0.058 kg tennis ball arrives at the racket at 25 m·s⁻¹ and is returned at 35 m·s⁻¹ along the
+        same line. The contact force rises from zero to a peak and falls back to zero over a total of
+        5.0 ms; model it as a triangle. Find F<sub>avg</sub> and F<sub>peak</sub>.</p>
+      <ol>
+        <li>Positive = direction of the return. v<sub>i</sub> = −25 m·s⁻¹, v<sub>f</sub> = +35 m·s⁻¹.</li>
+        <li>Δp = 0.058 × (35 + 25) = 0.058 × 60 = <b>3.48 kg·m·s⁻¹</b>, so J = 3.48 N·s.</li>
+        <li>F<sub>avg</sub> = J/Δt = 3.48 / 5.0×10⁻³ = <b>696 N</b>.</li>
+        <li>Triangle: J = ½ Δt F<sub>peak</sub> ⟹ F<sub>peak</sub> = 2J/Δt = 2 × 696 = <b>1392 N ≈ 1.4 kN</b>.</li>
+        <li>Sanity check on ignoring gravity: the ball's weight is 0.058 × 9.8 = 0.57 N, so gravity's
+          impulse over 5.0 ms is 2.8×10⁻³ N·s — 0.08 % of the contact impulse. Safely dropped.</li>
+      </ol>
+      <p class="wex__ans">F<sub>avg</sub> = 6.96×10² N &nbsp;·&nbsp; F<sub>peak</sub> ≈ 1.39×10³ N ≈ 2400 × the ball's weight</p>
+    </div>
+  </details>
 
-  <div class="wex">
-    <h4>Worked example 3 — what the airbag actually buys you</h4>
-    <p>A 70 kg driver in a car travelling at 15 m·s⁻¹ (54 km·h⁻¹) is brought to rest by a frontal
-      impact. Compare (a) an unrestrained stop against the steering column, Δt ≈ 30 ms, with
-      (b) a restrained stop with belt, airbag and crumple zone, Δt ≈ 200 ms.</p>
-    <ol>
-      <li>The momentum to be shed is the same in both cases:
-        |Δp| = 70 × 15 = <b>1050 kg·m·s⁻¹</b>.</li>
-      <li>(a) F<sub>avg</sub> = 1050 / 0.030 = <b>3.5×10⁴ N = 35 kN</b>.
-        As an acceleration, a = F/m = 500 m·s⁻² = <b>51 g</b>.</li>
-      <li>(b) F<sub>avg</sub> = 1050 / 0.200 = <b>5.25×10³ N = 5.25 kN</b>,
-        i.e. a = 75 m·s⁻² = <b>7.7 g</b>.</li>
-      <li>The ratio is exactly the ratio of the durations, 200/30 = 6.7. Note what the restraint system
-        did <em>not</em> change: the same Δp of 1050 kg·m·s⁻¹ and the same ½(70)(15²) = 7.9 kJ of kinetic
-        energy have to be disposed of either way. Only the timing — and therefore the peak force — is
-        negotiable.</li>
-      <li>Real crash pulses are closer to half-sine than triangular, so the instantaneous peak is about
-        1.57 × these averages: roughly 55 kN unrestrained against 8 kN restrained.</li>
-    </ol>
-    <p class="wex__ans">F<sub>avg</sub>: 35 kN (≈51 g) → 5.25 kN (≈7.7 g) — a 6.7-fold cut in force for the same Δp</p>
-  </div>
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — what the airbag actually buys you</summary>
+    <div class="disc__body">
+      <p>A 70 kg driver in a car travelling at 15 m·s⁻¹ (54 km·h⁻¹) is brought to rest by a frontal
+        impact. Compare (a) an unrestrained stop against the steering column, Δt ≈ 30 ms, with
+        (b) a restrained stop with belt, airbag and crumple zone, Δt ≈ 200 ms.</p>
+      <ol>
+        <li>The momentum to be shed is the same in both cases:
+          |Δp| = 70 × 15 = <b>1050 kg·m·s⁻¹</b>.</li>
+        <li>(a) F<sub>avg</sub> = 1050 / 0.030 = <b>3.5×10⁴ N = 35 kN</b>.
+          As an acceleration, a = F/m = 500 m·s⁻² = <b>51 g</b>.</li>
+        <li>(b) F<sub>avg</sub> = 1050 / 0.200 = <b>5.25×10³ N = 5.25 kN</b>,
+          i.e. a = 75 m·s⁻² = <b>7.7 g</b>.</li>
+        <li>The ratio is exactly the ratio of the durations, 200/30 = 6.7. Note what the restraint system
+          did <em>not</em> change: the same Δp of 1050 kg·m·s⁻¹ and the same ½(70)(15²) = 7.9 kJ of kinetic
+          energy have to be disposed of either way. Only the timing — and therefore the peak force — is
+          negotiable.</li>
+        <li>Real crash pulses are closer to half-sine than triangular, so the instantaneous peak is about
+          1.57 × these averages: roughly 55 kN unrestrained against 8 kN restrained.</li>
+      </ol>
+      <p class="wex__ans">F<sub>avg</sub>: 35 kN (≈51 g) → 5.25 kN (≈7.7 g) — a 6.7-fold cut in force for the same Δp</p>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">The airbag does <em>not</em> "absorb the momentum"</p>
@@ -430,6 +507,14 @@
   <span class="section__num">§ 04</span>
   <h2>Conservation of momentum, and what "isolated" requires</h2>
 
+  <p class="idea"><b>The idea</b>Whenever two things push on each other, each push is matched by an equal
+    push the other way, lasting exactly as long. Between the two of them, then, nothing is gained and
+    nothing is lost — the total amount of motion is the same after the interaction as before, however
+    violent or messy it was. The whole catch is in the words "between the two of them": you have to decide
+    first which objects you are counting, because only pushes arriving from outside that chosen group can
+    change the total. Choosing that group well, so the force you could never calculate ends up inside it,
+    is the real skill of this section.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -437,24 +522,31 @@
       <dd>If the net external force on a system is zero, the total momentum vector of that system does
         not change with time — no matter how violent, complicated or dissipative the internal
         interactions are.</dd>
-      <dt>Isolated system</dt>
-      <dd>A collection of bodies chosen so that every force you care about acts <em>between members</em>
-        of the collection; only forces from outside the boundary can change <b>P</b>.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">Σ<b>F</b><sub>ext</sub> = 0 ⟹ <b>P</b> = Σ m<sub>i</sub><b>v</b><sub>i</sub> = constant</span>
       <span class="fx__tag">exact statement; a vector equation</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">Σ m<sub>i</sub>v<sub>ix</sub> (before) = Σ m<sub>i</sub>v<sub>ix</sub> (after)</span><span class="fx__tag">each axis independently</span></div>
-      <div class="fx"><span class="fx__eq"><b>F</b><sub>AB</sub> = −<b>F</b><sub>BA</sub> ⟹ <b>J</b><sub>AB</sub> = −<b>J</b><sub>BA</sub></span><span class="fx__tag">why internal forces cancel: Newton III, integrated</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>P</b><span>total momentum of the system (kg·m·s⁻¹)</span></div>
-      <div><b>F<sub>ext</sub></b><span>force from outside the system boundary (N)</span></div>
-      <div><b>J<sub>AB</sub></b><span>impulse of A on B (N·s)</span></div>
-      <div><b>v<sub>ix</sub></b><span>x-component of body i's velocity, signed (m·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Isolated system</dt>
+          <dd>A collection of bodies chosen so that every force you care about acts <em>between members</em>
+            of the collection; only forces from outside the boundary can change <b>P</b>.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Σ m<sub>i</sub>v<sub>ix</sub> (before) = Σ m<sub>i</sub>v<sub>ix</sub> (after)</span><span class="fx__tag">each axis independently</span></div>
+          <div class="fx"><span class="fx__eq"><b>F</b><sub>AB</sub> = −<b>F</b><sub>BA</sub> ⟹ <b>J</b><sub>AB</sub> = −<b>J</b><sub>BA</sub></span><span class="fx__tag">why internal forces cancel: Newton III, integrated</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>P</b><span>total momentum of the system (kg·m·s⁻¹)</span></div>
+          <div><b>F<sub>ext</sub></b><span>force from outside the system boundary (N)</span></div>
+          <div><b>J<sub>AB</sub></b><span>impulse of A on B (N·s)</span></div>
+          <div><b>v<sub>ix</sub></b><span>x-component of body i's velocity, signed (m·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>The proof is Newton's third law with a time integral wrapped around it. Inside the system every
@@ -485,11 +577,16 @@
     </div>
   </div>
 
-  <p>Grade ② deserves a number, because "the collision is short" is usually asserted and never checked.
-     Take a 1500 kg car in a 0.10 s impact. Tyre friction is external: its impulse is roughly
-     μMgΔt ≈ 0.8 × 1500 × 9.8 × 0.10 ≈ 1.2×10³ N·s. The internal impulse in the crash is of order
-     mΔv ≈ 1500 × 10 = 1.5×10⁴ N·s. Friction contributes under 10 %, so momentum conservation is good to
-     roughly that accuracy — which is precisely why accident reconstruction from skid marks works at all.</p>
+  <details class="disc disc--deep">
+    <summary>Go deeper · putting a number on "the collision is short"</summary>
+    <div class="disc__body">
+      <p>Grade ② deserves a number, because "the collision is short" is usually asserted and never checked.
+         Take a 1500 kg car in a 0.10 s impact. Tyre friction is external: its impulse is roughly
+         μMgΔt ≈ 0.8 × 1500 × 9.8 × 0.10 ≈ 1.2×10³ N·s. The internal impulse in the crash is of order
+         mΔv ≈ 1500 × 10 = 1.5×10⁴ N·s. Friction contributes under 10 %, so momentum conservation is good to
+         roughly that accuracy — which is precisely why accident reconstruction from skid marks works at all.</p>
+    </div>
+  </details>
 
   <p>Grade ③ is where careless students lose marks. These are the standard cases:</p>
 
@@ -509,23 +606,25 @@
     </table>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 4 — recoil, and why equal momenta do not mean equal energies</h4>
-    <p>A 4.0 kg rifle fires a 0.020 kg bullet at 700 m·s⁻¹. The system (rifle + bullet) starts at rest
-      and the propellant force is internal. Find the recoil speed and compare the kinetic energies.</p>
-    <ol>
-      <li>Take the firing direction as positive. Before: P = 0. After: P must still be 0.</li>
-      <li>0 = m<sub>b</sub>v<sub>b</sub> + m<sub>r</sub>v<sub>r</sub> ⟹
-        v<sub>r</sub> = −(0.020 × 700)/4.0 = −14/4.0 = <b>−3.5 m·s⁻¹</b> (backwards).</li>
-      <li>K<sub>bullet</sub> = ½ × 0.020 × 700² = <b>4900 J</b>;
-        K<sub>rifle</sub> = ½ × 4.0 × 3.5² = <b>24.5 J</b>.</li>
-      <li>Ratio = 200 = m<sub>rifle</sub>/m<sub>bullet</sub>, exactly as K = p²/(2m) predicts for equal
-        momentum magnitudes.</li>
-      <li>Momentum is conserved; kinetic energy is emphatically <em>not</em> — 4925 J appeared from the
-        propellant's chemical energy.</li>
-    </ol>
-    <p class="wex__ans">v<sub>recoil</sub> = 3.5 m·s⁻¹ backwards · K<sub>bullet</sub>/K<sub>rifle</sub> = 200</p>
-  </div>
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — recoil, and why equal momenta do not mean equal energies</summary>
+    <div class="disc__body">
+      <p>A 4.0 kg rifle fires a 0.020 kg bullet at 700 m·s⁻¹. The system (rifle + bullet) starts at rest
+        and the propellant force is internal. Find the recoil speed and compare the kinetic energies.</p>
+      <ol>
+        <li>Take the firing direction as positive. Before: P = 0. After: P must still be 0.</li>
+        <li>0 = m<sub>b</sub>v<sub>b</sub> + m<sub>r</sub>v<sub>r</sub> ⟹
+          v<sub>r</sub> = −(0.020 × 700)/4.0 = −14/4.0 = <b>−3.5 m·s⁻¹</b> (backwards).</li>
+        <li>K<sub>bullet</sub> = ½ × 0.020 × 700² = <b>4900 J</b>;
+          K<sub>rifle</sub> = ½ × 4.0 × 3.5² = <b>24.5 J</b>.</li>
+        <li>Ratio = 200 = m<sub>rifle</sub>/m<sub>bullet</sub>, exactly as K = p²/(2m) predicts for equal
+          momentum magnitudes.</li>
+        <li>Momentum is conserved; kinetic energy is emphatically <em>not</em> — 4925 J appeared from the
+          propellant's chemical energy.</li>
+      </ol>
+      <p class="wex__ans">v<sub>recoil</sub> = 3.5 m·s⁻¹ backwards · K<sub>bullet</sub>/K<sub>rifle</sub> = 200</p>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">"Momentum is always conserved" is false as stated</p>
@@ -550,39 +649,53 @@
   <span class="section__num">§ 05</span>
   <h2>Elastic, inelastic, perfectly inelastic</h2>
 
+  <p class="idea"><b>The idea</b>Every collision keeps the total amount of motion of the bodies involved —
+    that part never varies. What separates one collision from another is what happens to the <em>energy</em>.
+    A few interactions hand all of it back, most turn some of it into heat, sound and bent metal, and the
+    messiest kind leaves the bodies stuck together and travelling as one lump. That last kind wastes the
+    most energy any collision can waste — but never all of it, because the wreckage still has to keep
+    moving in the direction the motion originally pointed.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Collision</dt>
       <dd>A brief interaction in which the internal impulse greatly exceeds any external impulse, so the
         total momentum of the colliding bodies is (to excellent approximation) unchanged.</dd>
-      <dt>Elastic collision</dt>
-      <dd>One in which the total kinetic energy after equals the total kinetic energy before.</dd>
-      <dt>Inelastic collision</dt>
-      <dd>One in which some kinetic energy is converted into internal energy — heat, sound, permanent
-        deformation.</dd>
-      <dt>Perfectly inelastic collision</dt>
-      <dd>One in which the bodies move off with a <em>common</em> velocity; this is the maximum kinetic
-        energy loss that momentum conservation permits.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">Σ<b>p</b> conserved in <em>every</em> collision · ΣK conserved <em>only</em> if elastic</span>
       <span class="fx__tag">the one sentence to carry into the exam</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">v′ = (m₁v₁ + m₂v₂)/(m₁ + m₂)</span><span class="fx__tag">perfectly inelastic, 1-D</span></div>
-      <div class="fx"><span class="fx__eq">ΔK = −½ μ (v₁ − v₂)², &nbsp; μ = m₁m₂/(m₁+m₂)</span><span class="fx__tag">energy lost, perfectly inelastic, any masses</span></div>
-      <div class="fx"><span class="fx__eq">|ΔK|/K<sub>i</sub> = m₂/(m₁ + m₂)</span><span class="fx__tag">special case: target m₂ initially at rest</span></div>
-      <div class="fx"><span class="fx__eq">K<sub>total</sub> = ½Mv<sub>cm</sub>² + K<sub>rel</sub></span><span class="fx__tag">only K<sub>rel</sub> can ever be destroyed</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>v′</b><span>common final velocity (m·s⁻¹)</span></div>
-      <div><b>μ</b><span>reduced mass m₁m₂/(m₁+m₂) (kg)</span></div>
-      <div><b>M</b><span>total mass m₁ + m₂ (kg)</span></div>
-      <div><b>v<sub>cm</sub></b><span>velocity of the centre of mass (m·s⁻¹)</span></div>
-      <div><b>K<sub>rel</sub></b><span>kinetic energy of relative motion (J)</span></div>
-      <div><b>ΔK</b><span>change in kinetic energy, negative for a loss (J)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Elastic collision</dt>
+          <dd>One in which the total kinetic energy after equals the total kinetic energy before.</dd>
+          <dt>Inelastic collision</dt>
+          <dd>One in which some kinetic energy is converted into internal energy — heat, sound, permanent
+            deformation.</dd>
+          <dt>Perfectly inelastic collision</dt>
+          <dd>One in which the bodies move off with a <em>common</em> velocity; this is the maximum kinetic
+            energy loss that momentum conservation permits.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">v′ = <span class="mf" role="img" aria-label="m one v one plus m two v two, all over m one plus m two"><span>m₁v₁ + m₂v₂</span><span>m₁ + m₂</span></span></span><span class="fx__tag">perfectly inelastic, 1-D</span></div>
+          <div class="fx"><span class="fx__eq">ΔK = −½ μ (v₁ − v₂)², &nbsp; μ = <span class="mf" role="img" aria-label="m one times m two, all over m one plus m two"><span>m₁m₂</span><span>m₁ + m₂</span></span></span><span class="fx__tag">energy lost, perfectly inelastic, any masses</span></div>
+          <div class="fx"><span class="fx__eq">|ΔK|/K<sub>i</sub> = <span class="mf" role="img" aria-label="m two over m one plus m two"><span>m₂</span><span>m₁ + m₂</span></span></span><span class="fx__tag">special case: target m₂ initially at rest</span></div>
+          <div class="fx"><span class="fx__eq">K<sub>total</sub> = ½Mv<sub>cm</sub>² + K<sub>rel</sub></span><span class="fx__tag">only K<sub>rel</sub> can ever be destroyed</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>v′</b><span>common final velocity (m·s⁻¹)</span></div>
+          <div><b>μ</b><span>reduced mass m₁m₂/(m₁+m₂) (kg)</span></div>
+          <div><b>M</b><span>total mass m₁ + m₂ (kg)</span></div>
+          <div><b>v<sub>cm</sub></b><span>velocity of the centre of mass (m·s⁻¹)</span></div>
+          <div><b>K<sub>rel</sub></b><span>kinetic energy of relative motion (J)</span></div>
+          <div><b>ΔK</b><span>change in kinetic energy, negative for a loss (J)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Every collision conserves momentum. The taxonomy is entirely about what happens to the
@@ -627,21 +740,23 @@
     </table>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 5 — coupling railway wagons</h4>
-    <p>A 12 000 kg wagon rolling at 3.0 m·s⁻¹ couples to an 8000 kg wagon at rest on the same track.
-      Find the common speed and the energy dissipated.</p>
-    <ol>
-      <li>Momentum (perfectly inelastic): v′ = (12 000 × 3.0 + 0)/(20 000) = 36 000/20 000 =
-        <b>1.8 m·s⁻¹</b>.</li>
-      <li>K<sub>i</sub> = ½ × 12 000 × 3.0² = <b>54.0 kJ</b>.</li>
-      <li>K<sub>f</sub> = ½ × 20 000 × 1.8² = ½ × 20 000 × 3.24 = <b>32.4 kJ</b>.</li>
-      <li>Dissipated: 54.0 − 32.4 = <b>21.6 kJ</b>, i.e. 40 % of the initial kinetic energy.</li>
-      <li>Cross-check with the reduced mass: μ = (12 000 × 8000)/20 000 = 4800 kg, so
-        |ΔK| = ½ × 4800 × 3.0² = 21.6 kJ ✓. And 40 % = m₂/(m₁+m₂) = 8000/20 000 ✓.</li>
-    </ol>
-    <p class="wex__ans">v′ = 1.8 m·s⁻¹ · 21.6 kJ lost (40 % of K<sub>i</sub>) to couplers, heat and sound</p>
-  </div>
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — coupling railway wagons</summary>
+    <div class="disc__body">
+      <p>A 12 000 kg wagon rolling at 3.0 m·s⁻¹ couples to an 8000 kg wagon at rest on the same track.
+        Find the common speed and the energy dissipated.</p>
+      <ol>
+        <li>Momentum (perfectly inelastic): v′ = (12 000 × 3.0 + 0)/(20 000) = 36 000/20 000 =
+          <b>1.8 m·s⁻¹</b>.</li>
+        <li>K<sub>i</sub> = ½ × 12 000 × 3.0² = <b>54.0 kJ</b>.</li>
+        <li>K<sub>f</sub> = ½ × 20 000 × 1.8² = ½ × 20 000 × 3.24 = <b>32.4 kJ</b>.</li>
+        <li>Dissipated: 54.0 − 32.4 = <b>21.6 kJ</b>, i.e. 40 % of the initial kinetic energy.</li>
+        <li>Cross-check with the reduced mass: μ = (12 000 × 8000)/20 000 = 4800 kg, so
+          |ΔK| = ½ × 4800 × 3.0² = 21.6 kJ ✓. And 40 % = m₂/(m₁+m₂) = 8000/20 000 ✓.</li>
+      </ol>
+      <p class="wex__ans">v′ = 1.8 m·s⁻¹ · 21.6 kJ lost (40 % of K<sub>i</sub>) to couplers, heat and sound</p>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">"Perfectly inelastic" ≠ "all the kinetic energy is lost"</p>
@@ -667,33 +782,43 @@
   <span class="section__num">§ 06</span>
   <h2>One-dimensional elastic collisions and their three limits</h2>
 
+  <p class="idea"><b>The idea</b>When two bodies meet head-on along a single line and none of the motion
+    is wasted, the outcome is settled in advance — there is nothing left for the collision to decide. The
+    tidiest way to see it is that the two separate exactly as fast as they closed on each other, which is
+    a much friendlier statement than it sounds and does all the work. Everything after that is governed by
+    one thing only, the ratio of the two masses: evenly matched, light meeting heavy, or heavy meeting
+    light. Learn those three pictures and every intermediate case is somewhere between them.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>1-D elastic collision</dt>
+    <dl class="def"><dt>1-D elastic collision</dt>
       <dd>A head-on collision along a single line in which both total momentum and total kinetic energy
-        are unchanged. Two conservation equations, two unknowns — the outcome is fully determined.</dd>
-      <dt>Relative-velocity rule</dt>
-      <dd>In an elastic collision the speed at which the bodies separate equals the speed at which they
-        approached. This linear statement replaces the quadratic energy equation.</dd>
-    </dl>
+        are unchanged. Two conservation equations, two unknowns — the outcome is fully determined.</dd></dl>
     <div class="fx fx--hero">
       <span class="fx__eq">v₁ − v₂ = −(v₁′ − v₂′)</span>
       <span class="fx__tag">elastic, 1-D; approach speed = separation speed</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">v₁′ = [(m₁ − m₂)v₁ + 2m₂v₂]/(m₁ + m₂)</span><span class="fx__tag">general 1-D elastic result</span></div>
-      <div class="fx"><span class="fx__eq">v₂′ = [(m₂ − m₁)v₂ + 2m₁v₁]/(m₁ + m₂)</span><span class="fx__tag">general 1-D elastic result</span></div>
-      <div class="fx"><span class="fx__eq">v₁′ = ((m₁−m₂)/(m₁+m₂))v₁ &nbsp;·&nbsp; v₂′ = (2m₁/(m₁+m₂))v₁</span><span class="fx__tag">target at rest: v₂ = 0</span></div>
-      <div class="fx"><span class="fx__eq">K₂′/K₁ = 4m₁m₂/(m₁ + m₂)²</span><span class="fx__tag">fraction of energy transferred, target at rest</span></div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Relative-velocity rule</dt>
+      <dd>In an elastic collision the speed at which the bodies separate equals the speed at which they
+        approached. This linear statement replaces the quadratic energy equation.</dd></dl>
+        <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">v₁′ = <span class="mf" role="img" aria-label="open bracket m one minus m two close bracket times v one, plus two m two v two, all over m one plus m two"><span>(m₁ − m₂)v₁ + 2m₂v₂</span><span>m₁ + m₂</span></span></span><span class="fx__tag">general 1-D elastic result</span></div>
+      <div class="fx"><span class="fx__eq">v₂′ = <span class="mf" role="img" aria-label="open bracket m two minus m one close bracket times v two, plus two m one v one, all over m one plus m two"><span>(m₂ − m₁)v₂ + 2m₁v₁</span><span>m₁ + m₂</span></span></span><span class="fx__tag">general 1-D elastic result</span></div>
+      <div class="fx"><span class="fx__eq">v₁′ = <span class="mf" role="img" aria-label="m one minus m two, all over m one plus m two"><span>m₁ − m₂</span><span>m₁ + m₂</span></span> v₁ &nbsp;·&nbsp; v₂′ = <span class="mf" role="img" aria-label="two m one, all over m one plus m two"><span>2m₁</span><span>m₁ + m₂</span></span> v₁</span><span class="fx__tag">target at rest: v₂ = 0</span></div>
+      <div class="fx"><span class="fx__eq">K₂′/K₁ = <span class="mf" role="img" aria-label="four m one m two, all over the square of m one plus m two"><span>4m₁m₂</span><span>(m₁ + m₂)²</span></span></span><span class="fx__tag">fraction of energy transferred, target at rest</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>m₁, m₂</b><span>masses of projectile and target (kg)</span></div>
       <div><b>v₁, v₂</b><span>signed velocities before (m·s⁻¹)</span></div>
       <div><b>v₁′, v₂′</b><span>signed velocities after (m·s⁻¹)</span></div>
       <div><b>K₁</b><span>projectile's initial kinetic energy (J)</span></div>
       <div><b>K₂′</b><span>target's final kinetic energy (J)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>Do not memorise the two big fractions. Derive them the way that takes ten seconds and never goes
@@ -796,8 +921,9 @@
     </table>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 6 — a 3 : 1 head-on elastic collision</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 6 — a 3 : 1 head-on elastic collision</summary>
+    <div class="disc__body">
     <p>A 0.30 kg glider on a frictionless air track moves at 4.0 m·s⁻¹ and collides elastically with a
       stationary 0.10 kg glider. Find both final velocities and verify both conservation laws.</p>
     <ol>
@@ -810,7 +936,9 @@
       <li>Energy transferred: 1.80/2.40 = 75 %, matching 4m₁m₂/(m₁+m₂)² = 4(0.30)(0.10)/0.16 = 0.75 ✓</li>
     </ol>
     <p class="wex__ans">v₁′ = +2.0 m·s⁻¹, v₂′ = +6.0 m·s⁻¹ · 75 % of the kinetic energy handed over</p>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">"2v" is a limit, not an identity</p>
@@ -836,30 +964,40 @@
   <span class="section__num">§ 07</span>
   <h2>The coefficient of restitution</h2>
 
+  <p class="idea"><b>The idea</b>Bounciness can be boiled down to a single number. Compare how fast two
+    things come apart with how fast they came together, and that one ratio places the collision somewhere
+    on the scale from a lump of putty that simply stays where it lands to a pair of ball bearings that give
+    everything back. Two warnings come with it. It belongs to the <em>pair</em> of surfaces rather than to
+    one ball — the liveliest ball in the world is dead on sand — and because it compares speeds and not
+    heights, reading it straight off how high something rebounded is the slip almost everyone makes first.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Coefficient of restitution, e</dt>
+    <dl class="def"><dt>Coefficient of restitution, e</dt>
       <dd>The ratio of the relative speed of separation to the relative speed of approach, measured
         along the line of impact. A dimensionless number that grades a collision on the scale from
-        perfectly inelastic to elastic.</dd>
-    </dl>
+        perfectly inelastic to elastic.</dd></dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">e = |v₂′ − v₁′| / |v₁ − v₂|</span>
+      <span class="fx__eq">e = <span class="mf" role="img" aria-label="the size of v two prime minus v one prime, all over the size of v one minus v two"><span>|v₂′ − v₁′|</span><span>|v₁ − v₂|</span></span></span>
       <span class="fx__tag">along the common normal at contact</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">e = 1 elastic · 0 &lt; e &lt; 1 inelastic · e = 0 perfectly inelastic · e &gt; 1 explosive</span><span class="fx__tag">the whole taxonomy in one parameter</span></div>
       <div class="fx"><span class="fx__eq">e = v<sub>up</sub>/v<sub>down</sub> = √(h′/h)</span><span class="fx__tag">drop test onto a massive fixed floor</span></div>
       <div class="fx"><span class="fx__eq">h<sub>n</sub> = h₀ e<sup>2n</sup></span><span class="fx__tag">height after n bounces</span></div>
       <div class="fx"><span class="fx__eq">K′/K = e²</span><span class="fx__tag">fraction of KE retained per bounce off a fixed floor (in general e² is the ratio for the <em>relative</em> motion)</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>e</b><span>coefficient of restitution (dimensionless)</span></div>
       <div><b>h, h′</b><span>drop and rebound height (m)</span></div>
       <div><b>v<sub>down</sub>, v<sub>up</sub></b><span>impact and rebound speed (m·s⁻¹)</span></div>
       <div><b>n</b><span>number of bounces (dimensionless)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>The coefficient of restitution is what turns the qualitative words of §5 into a number you can put
@@ -896,8 +1034,9 @@
     </table>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 7 — a bounce test</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 7 — a bounce test</summary>
+    <div class="disc__body">
     <p>A ball released from rest at 1.20 m above a hard floor rebounds to 0.75 m. Find e, the fraction
       of kinetic energy retained, and the height of the second bounce.</p>
     <ol>
@@ -913,7 +1052,9 @@
         of thing.</li>
     </ol>
     <p class="wex__ans">e = 0.79 · 62.5 % of K retained per bounce · second bounce ≈ 0.47 m</p>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">e is a speed ratio, e² is an energy ratio</p>
@@ -938,28 +1079,39 @@
   <span class="section__num">§ 08</span>
   <h2>Two-dimensional collisions by components</h2>
 
+  <p class="idea"><b>The idea</b>When things hit each other off-centre instead of squarely, no new
+    physics arrives — the same conservation holds separately along each of two directions at right angles,
+    so one awkward problem on a flat surface becomes two ordinary straight-line problems worked side by
+    side. What does change is the bookkeeping. Two directions give you two statements, and a glancing
+    collision leaves more unknowns than that, so the question has to hand you one further fact: usually an
+    angle, or the news that the two ended up travelling as one. Split into directions first, deal with each
+    direction entirely on its own, and only put the answer back together at the very end.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Two-dimensional collision</dt>
+    <dl class="def"><dt>Two-dimensional collision</dt>
       <dd>A collision in which the velocities are not collinear. Because momentum is a vector equation,
         it splits into one independent scalar equation per axis — a 2-D collision is two 1-D momentum
-        problems solved simultaneously.</dd>
-    </dl>
+        problems solved simultaneously.</dd></dl>
     <div class="fx fx--hero">
       <span class="fx__eq">Σp<sub>x</sub>(before) = Σp<sub>x</sub>(after) &nbsp;and&nbsp; Σp<sub>y</sub>(before) = Σp<sub>y</sub>(after)</span>
       <span class="fx__tag">two independent equations; always true if isolated</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">|<b>P</b>| = √(P<sub>x</sub>² + P<sub>y</sub>²), &nbsp; tan θ = P<sub>y</sub>/P<sub>x</sub></span><span class="fx__tag">recombine components at the end, never before</span></div>
       <div class="fx"><span class="fx__eq">ΣK(before) = ΣK(after)</span><span class="fx__tag">one extra <em>scalar</em> equation — elastic only</span></div>
       <div class="fx"><span class="fx__eq"><b>v</b>₁′ ⟂ <b>v</b>₂′</span><span class="fx__tag">equal masses, elastic, target at rest, glancing</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>P<sub>x</sub>, P<sub>y</sub></b><span>components of total momentum (kg·m·s⁻¹)</span></div>
       <div><b>θ</b><span>direction of the total momentum, measured from +x (rad or °)</span></div>
       <div><b>v₁′, v₂′</b><span>final velocity vectors (m·s⁻¹)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>Start by counting equations, because that tells you what a 2-D problem can and cannot ask.
@@ -985,8 +1137,9 @@
       it excludes the exactly head-on case, where one final velocity is zero and no angle is defined.</p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 8 — reconstructing an intersection collision</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 8 — reconstructing an intersection collision</summary>
+    <div class="disc__body">
     <p>A 1200 kg car travelling due east at 20 m·s⁻¹ collides with an 1800 kg van travelling due north
       at 15 m·s⁻¹. The wreckage locks together. Find the velocity of the wreck immediately after impact
       and the energy dissipated.</p>
@@ -1006,7 +1159,9 @@
     <p style="margin:.6rem 0 0;font-size:.9rem;color:var(--ink-soft)">Investigators run this backwards:
       the direction of the post-impact skid marks fixes θ, and θ plus the two masses is enough to test a
       driver's claimed speed. That single 48° is the whole forensic content of the problem.</p>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">You cannot add speeds, and the angle is not the mass ratio</p>
@@ -1022,26 +1177,35 @@
   <span class="section__num">§ 09</span>
   <h2>Centre of mass and the CM theorem</h2>
 
+  <p class="idea"><b>The idea</b>Any collection of matter, however sprawling and however many pieces it
+    has been broken into, has one special point that stands in for the whole thing. Push the collection
+    from outside and that point moves exactly as a single lump of the same total mass would. Do whatever
+    you like from within — explode, wriggle, collide, fly apart — and the point ignores all of it
+    completely, because every internal push comes with its equal and opposite twin. That is why the pieces
+    of a burst firework spread out around a path that carries on as though nothing had happened, and why
+    standing upright is really the business of keeping one invisible point above your feet.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Centre of mass</dt>
+    <dl class="def"><dt>Centre of mass</dt>
       <dd>The mass-weighted average position of a system of particles — the unique point that responds
-        to external forces as though the entire mass were concentrated there.</dd>
-      <dt>Centre-of-mass theorem</dt>
-      <dd>The centre of mass accelerates as if all the external forces acted on a single particle of
-        mass M placed at that point. Internal forces can never move it.</dd>
-    </dl>
+        to external forces as though the entire mass were concentrated there.</dd></dl>
     <div class="fx fx--hero">
       <span class="fx__eq"><b>r</b><sub>cm</sub> = (1/M) Σ m<sub>i</sub><b>r</b><sub>i</sub>, &nbsp; M = Σ m<sub>i</sub></span>
       <span class="fx__tag">discrete bodies</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Centre-of-mass theorem</dt>
+      <dd>The centre of mass accelerates as if all the external forces acted on a single particle of
+        mass M placed at that point. Internal forces can never move it.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq"><b>r</b><sub>cm</sub> = (1/M) ∫ <b>r</b> dm</span><span class="fx__tag">continuous body; dm = ρ dV (or λ dx, σ dA)</span></div>
       <div class="fx"><span class="fx__eq"><b>P</b> = M<b>v</b><sub>cm</sub></span><span class="fx__tag">total momentum ≡ mass × CM velocity</span></div>
       <div class="fx"><span class="fx__eq">M<b>a</b><sub>cm</sub> = Σ<b>F</b><sub>ext</sub></span><span class="fx__tag">the CM theorem — Newton II for a system</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>r<sub>cm</sub></b><span>position of the centre of mass (m)</span></div>
       <div><b>m<sub>i</sub>, r<sub>i</sub></b><span>mass (kg) and position (m) of particle i</span></div>
       <div><b>M</b><span>total mass of the system (kg)</span></div>
@@ -1049,6 +1213,8 @@
       <div><b>v<sub>cm</sub></b><span>centre-of-mass velocity (m·s⁻¹)</span></div>
       <div><b>a<sub>cm</sub></b><span>centre-of-mass acceleration (m·s⁻²)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>The theorem is the definition differentiated twice. From M<b>r</b><sub>cm</sub> = Σm<sub>i</sub><b>r</b><sub>i</sub>
@@ -1064,8 +1230,9 @@
      standard non-obvious results worth remembering are a uniform triangular plate (one third of the
      height from the base) and a uniform solid cone (one quarter of the height from the base).</p>
 
-  <div class="wex">
-    <h4>Worked example 9 — centre of mass of three particles</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 9 — centre of mass of three particles</summary>
+    <div class="disc__body">
     <p>Masses of 2.0 kg, 3.0 kg and 5.0 kg sit at (0, 0), (4.0, 0) and (0, 6.0) metres. Locate the
       centre of mass.</p>
     <ol>
@@ -1076,7 +1243,9 @@
         inside the body, as a ring, a boomerang or a horseshoe shows.</li>
     </ol>
     <p class="wex__ans"><b>r</b><sub>cm</sub> = (1.2, 3.0) m</p>
-  </div>
+  
+    </div>
+  </details>
 
   <p>The same calculation applied to the Earth–Moon system (m<sub>E</sub> = 5.97×10²⁴ kg,
      m<sub>M</sub> = 7.35×10²² kg, separation 3.84×10⁸ m) puts the barycentre at
@@ -1137,8 +1306,9 @@
       fragments at 122 m and 367 m.</figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 10 — the exploding projectile</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 10 — the exploding projectile</summary>
+    <div class="disc__body">
     <p>A shell is fired at 50 m·s⁻¹ at 37° above the horizontal (take sin 37° = 0.60, cos 37° = 0.80).
       At the top of its flight it bursts into two equal fragments; one of them is momentarily at rest and
       drops vertically. Where does the other land? Ignore air resistance; g = 9.8 m·s⁻².</p>
@@ -1157,7 +1327,9 @@
         The explosive added 1600m joules — momentum conserved, kinetic energy created.</li>
     </ol>
     <p class="wex__ans">Fragment B lands 367 m from the launch point (fragment A at 122 m, CM at 245 m)</p>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Centre of mass vs centre of gravity</p>
@@ -1185,28 +1357,37 @@
   <span class="section__num">§ 10</span>
   <h2>The ballistic pendulum: momentum first, energy second</h2>
 
+  <p class="idea"><b>The idea</b>Some problems have to be cut in two before they can be solved, because
+    the physics changes character partway through. A bullet burying itself in a hanging block is the
+    classic one: the burial is brief and violent and throws away almost all the energy, while the swing
+    that follows is slow and smooth and throws away none. So you carry the first half across on the rule
+    that survives a violent impact, then carry the second half across on the rule that survives a gentle
+    glide, and the measured height at the end tells you how fast the bullet was going. Running one rule
+    straight through from start to finish is the tempting shortcut, and it is wrong by a wide margin.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Ballistic pendulum</dt>
+    <dl class="def"><dt>Ballistic pendulum</dt>
       <dd>A block of mass M hanging on a light string or rods, into which a projectile of mass m embeds;
-        measuring how high the block subsequently swings gives the projectile's speed.</dd>
-      <dt>Why it needs two stages</dt>
-      <dd>The capture is a perfectly inelastic collision — momentum survives, kinetic energy does not.
-        The swing is a smooth, non-dissipative motion under gravity — mechanical energy survives,
-        momentum does not.</dd>
-    </dl>
+        measuring how high the block subsequently swings gives the projectile's speed.</dd></dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">v = ((m + M)/m) √(2gh)</span>
+      <span class="fx__eq">v = <span class="mf" role="img" aria-label="m plus capital M, all over m"><span>m + M</span><span>m</span></span> √(2gh)</span>
       <span class="fx__tag">the combined result; h measured from the block's initial level</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Why it needs two stages</dt>
+      <dd>The capture is a perfectly inelastic collision — momentum survives, kinetic energy does not.
+        The swing is a smooth, non-dissipative motion under gravity — mechanical energy survives,
+        momentum does not.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">Stage 1: m v = (m + M) V</span><span class="fx__tag">momentum conserved (Δt ≈ 1 ms); KE is <em>not</em></span></div>
       <div class="fx"><span class="fx__eq">Stage 2: ½(m + M)V² = (m + M)gh ⟹ V = √(2gh)</span><span class="fx__tag">mechanical energy conserved; momentum is <em>not</em></span></div>
       <div class="fx"><span class="fx__eq">h = L(1 − cos θ)</span><span class="fx__tag">if you are given the swing angle instead of the height</span></div>
-      <div class="fx"><span class="fx__eq">K<sub>after</sub>/K<sub>before</sub> = m/(m + M)</span><span class="fx__tag">fraction of the bullet's KE surviving stage 1</span></div>
+      <div class="fx"><span class="fx__eq">K<sub>after</sub>/K<sub>before</sub> = <span class="mf" role="img" aria-label="m over m plus capital M"><span>m</span><span>m + M</span></span></span><span class="fx__tag">fraction of the bullet's KE surviving stage 1</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>m</b><span>projectile mass (kg)</span></div>
       <div><b>M</b><span>block mass (kg)</span></div>
       <div><b>v</b><span>projectile speed before impact (m·s⁻¹)</span></div>
@@ -1216,6 +1397,8 @@
       <div><b>θ</b><span>maximum swing angle from the vertical (rad or °)</span></div>
       <div><b>g</b><span>gravitational field strength, 9.8 m·s⁻²</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>This is the canonical two-stage problem, and the reason it appears in every syllabus is that it
@@ -1284,8 +1467,9 @@
       perpendicular to the velocity so it does zero work. Mechanical energy is therefore conserved.</li>
   </ul>
 
-  <div class="wex">
-    <h4>Worked example 11 — measuring a bullet's speed, and the error that ruins it</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 11 — measuring a bullet's speed, and the error that ruins it</summary>
+    <div class="disc__body">
     <p>A 10.0 g bullet embeds in a 2.00 kg block hanging from long light strings. The block rises
       0.150 m. Find the bullet's speed, then compute what you would have got by (wrongly) equating the
       bullet's kinetic energy to the final potential energy. Take g = 9.8 m·s⁻².</p>
@@ -1304,7 +1488,9 @@
         a club cricket delivery. The error is not a rounding slip; it is a wrong physical assumption.</li>
     </ol>
     <p class="wex__ans">v ≈ 3.45×10² m·s⁻¹ &nbsp;·&nbsp; wrong method gives 24.3 m·s⁻¹, low by ×14.2</p>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">The single most common error in this chapter</p>

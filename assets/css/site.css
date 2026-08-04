@@ -175,7 +175,7 @@ img, svg { max-width: 100%; }
 }
 .topbar__inner {
   max-width: var(--maxw); margin: 0 auto; padding: .6rem 1.25rem;
-  display: flex; align-items: center; gap: 1rem;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
 }
 .brand {
   display: flex; align-items: center; gap: .6rem;
@@ -424,6 +424,34 @@ table.data td.num { font-family: var(--mono); font-size: .86rem; white-space: no
 /* Inline formula inside prose. */
 .fi { font-family: var(--mono); font-size: .89em; white-space: nowrap; }
 
+/* --- Math display primitives ------------------------------------------------
+   A linear "a / b" is ambiguous the moment either side is compound. These
+   render a real two-level fraction and a radical with an overbar, in CSS only.
+   Authoring:
+     <span class="mf" role="img" aria-label="a over b"><span>a</span><span>b</span></span>
+     <span class="msq" role="img" aria-label="square root of a"><span>a</span></span>
+   role="img" + aria-label keeps the spoken form linear and unambiguous.
+   -------------------------------------------------------------------------- */
+.mf {
+  display: inline-grid; vertical-align: middle; text-align: center;
+  margin: 0 .24em; line-height: 1.28;
+}
+.mf > span { padding: 0 .38em; }
+.mf > span:first-child { border-bottom: 1.4px solid currentColor; padding-bottom: .1em; }
+.mf > span:last-child  { padding-top: .12em; }
+.mf .mf { font-size: .92em; }          /* nested fractions step down */
+
+.msq { display: inline-block; white-space: nowrap; }
+.msq::before { content: '√'; }
+.msq > span {
+  display: inline-block; border-top: 1.3px solid currentColor;
+  padding: .1em .22em 0 .14em; margin-left: -.04em;
+}
+
+/* Display formulas need a little more room once they can be two levels tall. */
+.fx__eq { line-height: 1.5; }
+.fx:has(.mf) { padding-top: .8rem; padding-bottom: .8rem; }
+
 /* Symbol key. */
 .symtab {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
@@ -585,10 +613,93 @@ table.data td.num { font-family: var(--mono); font-size: .86rem; white-space: no
 .pager a small { display: block; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
 .pager a b { font-weight: 600; color: var(--accent); }
 
-/* ---------- 11. Print ----------------------------------------------------- */
+/* ---------- 11. Reading pace: Learn vs Reference --------------------------
+   A note carries the same material either way. In Learn the page opens with
+   the idea and the core formula and everything else is one click away; in
+   Reference every disclosure is open, which is the revision view.
+   Disclosures are authored CLOSED, so no-JS readers get a usable page and
+   switching to Reference only ever reveals — it never collapses under you.
+   -------------------------------------------------------------------------- */
+.pace {
+  display: inline-flex; flex: none; gap: 2px; padding: 2px;
+  border: 1px solid var(--line); background: var(--card); border-radius: 999px;
+}
+.pace button {
+  font: inherit; font-size: .78rem; font-weight: 600; cursor: pointer;
+  border: 0; background: none; color: var(--ink-faint);
+  padding: .22rem .7rem; border-radius: 999px; white-space: nowrap;
+}
+.pace button:hover { color: var(--ink); }
+.pace button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+@media (max-width: 30rem) { .pace button { padding: .22rem .5rem; font-size: .74rem; } }
+
+/* The plain-language opener that every section starts with. */
+.idea {
+  margin: 0 0 1.35rem; padding: .05rem 0 .05rem .95rem;
+  border-left: 3px solid var(--accent);
+  font-size: 1.02rem; line-height: 1.7; color: var(--ink);
+}
+.idea b {
+  display: block; margin-bottom: .1rem;
+  font-size: .72rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Disclosure. */
+.disc {
+  margin: 1rem 0; background: var(--card);
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+}
+.disc > summary {
+  display: flex; align-items: center; gap: .55rem; cursor: pointer;
+  padding: .6rem .9rem; border-radius: var(--radius-sm);
+  font-size: .9rem; font-weight: 600; color: var(--ink-soft); list-style: none;
+}
+.disc > summary::-webkit-details-marker { display: none; }
+.disc > summary::marker { content: ''; }
+.disc > summary::before {
+  content: '▸'; flex: none; color: var(--accent);
+  transition: transform .15s; transform-origin: 50% 50%;
+}
+.disc[open] > summary::before { transform: rotate(90deg); }
+.disc > summary:hover { color: var(--ink); background: var(--line-soft); }
+.disc[open] > summary { border-bottom: 1px solid var(--line-soft); }
+.disc__body { padding: .9rem 1rem 1rem; }
+.disc__body > :first-child { margin-top: 0; }
+.disc__body > :last-child { margin-bottom: 0; }
+.disc__count { margin-left: auto; font-family: var(--mono); font-size: .74rem; color: var(--ink-faint); }
+
+/* Inside a defbox the disclosure should read as part of the panel. */
+.defbox .disc { margin: .85rem 0 0; background: var(--paper); }
+
+/* A worked example keeps its amber identity when collapsed. */
+.disc--wex { border-left: 4px solid var(--accent-2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.disc--wex > summary::before { color: var(--accent-2); }
+.disc--deep > summary::before { content: '⌄'; }
+.disc--sheet { margin: 1.5rem 0 0; }
+
+/* Per-note orientation, shown only while learning. */
+.ladder { margin: 1.5rem 0 0; border: 1px dashed var(--accent); background: var(--accent-wash);
+          border-radius: var(--radius); padding: 1rem 1.2rem; }
+.ladder__label {
+  margin: 0 0 .5rem; font-size: .72rem; font-weight: 700; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--accent);
+}
+.ladder ol { margin: 0; padding-left: 1.2rem; }
+.ladder li { margin: .3rem 0; font-size: .93rem; color: var(--ink-soft); }
+.ladder li b { color: var(--ink); }
+
+[data-pace="reference"] [data-pace-only="learn"] { display: none; }
+[data-pace="learn"] [data-pace-only="reference"] { display: none; }
+
+/* ---------- 12. Print ----------------------------------------------------- */
 @media print {
-  .topbar, .theme-toggle, .site-footer, .quiz__bar { display: none !important; }
+  .topbar, .theme-toggle, .pace, .site-footer, .quiz__bar { display: none !important; }
   body { background: #fff; color: #000; font-size: 11pt; }
   .card, .q { box-shadow: none; break-inside: avoid; }
   .q__exp[hidden] { display: block !important; }
+  /* Print the whole note regardless of reading pace. */
+  .disc > *:not(summary) { display: block !important; }
+  .disc { break-inside: avoid; }
+  [data-pace-only] { display: block !important; }
 }

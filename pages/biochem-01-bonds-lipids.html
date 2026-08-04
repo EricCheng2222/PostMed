@@ -144,6 +144,10 @@
     <nav>
       <a href="biochemistry.html">Biochemistry</a>
       <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -184,12 +188,36 @@
       <li><a href="#quiz">Self-test · 10 questions</a></li>
     </ol>
   </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§01</b> (one energy scale, on which the permanent bonds sit about a
+        hundred times above the temporary ones) and <b>§05–§06</b> (water is the active party: it is water
+        recovering its own freedom that pushes greasy things together, not any attraction between them).
+        Those three sections generate almost everything else on the page.</li>
+      <li><b>Then be able to do</b> — <b>§02–§03</b>: say which two functional groups condense to give which
+        bond, and which enzyme cleaves it. <b>§04</b> and <b>§10</b>: match each noncovalent interaction to
+        its distance behaviour, its directionality and the thing that destroys it. <b>§09</b>: rank fatty
+        acids by melting point from chain length and the number of <em>cis</em> double bonds, then read that
+        straight across into membrane fluidity.</li>
+      <li><b>Leave for a second pass</b> — the full lipid catalogue in <b>§08</b> (it lands far better once
+        you meet each lipid in context), the individual group cards in <b>§02</b> beyond carboxyl, amino,
+        hydroxyl and phosphate, and the peptide-bond geometry in <b>§03</b>.</li>
+    </ol>
+  </div>
 </div>
 
 <!-- =========================== 1 =========================== -->
 <section class="section" id="s1">
   <span class="section__num">§ 01</span>
   <h2>One ruler for every bond</h2>
+  <p class="idea"><b>The idea</b>No bond is strong or weak on its own — it is only strong or weak compared
+    with the constant random jostling that warmth gives every molecule in your body. Line every kind of
+    bond up against that jostling on a single scale and the whole subject sorts itself into two families:
+    a small number of permanent joins that hold a molecule together for its lifetime, and a large number of
+    flimsy attractions that are made and broken thousands of times a second. Everything a cell does that
+    looks like recognising, responding or changing its mind happens in that flimsy lower band.</p>
   <p>
     Set the reference point first: <strong>thermal energy at body temperature is RT ≈ 2.6 kJ/mol</strong>
     (R = 8.314 J·mol⁻¹·K⁻¹, T = 310 K). Any interaction of that magnitude will be knocked apart by random
@@ -228,6 +256,11 @@
 <section class="section" id="s2">
   <span class="section__num">§ 02</span>
   <h2>Functional groups: the alphabet of biochemistry</h2>
+  <p class="idea"><b>The idea</b>Most of a biological molecule is a dull chain of carbon and hydrogen. The
+    interesting behaviour comes from a small handful of atom clusters bolted onto that chain, and there are
+    only about a dozen of them worth knowing. Each cluster answers three questions about its molecule: will
+    it mix with water, does it carry an electrical charge inside the body, and what can it be joined to.
+    Learn the clusters and you can predict how a molecule behaves without ever having seen it before.</p>
   <p>
     Every biomolecule is a hydrocarbon skeleton decorated with a small set of <strong>functional groups</strong>.
     Those groups decide three things that this whole page depends on:
@@ -300,6 +333,12 @@
 <section class="section" id="s3">
   <span class="section__num">§ 03</span>
   <h2>Covalent bonds: the scaffold</h2>
+  <p class="idea"><b>The idea</b>These are the permanent joins — the ones that turn a pile of small units
+    into a protein, a starch grain or a strand of DNA, and that stay put unless the cell deliberately
+    dismantles them. Nearly all of them are made in the same way: two pieces are stitched together and a
+    single molecule of water is squeezed out at the join. To take them apart the cell puts that water back,
+    using a dedicated tool for each type of join. So the thing to learn is not the structures but the
+    pairings: which two attachments meet, what join they make, and what undoes it.</p>
   <p>There are only a handful of covalent bonds worth memorising in biochemistry, and most of them are made
      by condensation and broken by a hydrolase. Learn them as a triple — <em>how it forms / where it appears /
      what cleaves it</em>.</p>
@@ -321,24 +360,29 @@
     </table>
   </div>
 
-  <h3>Three properties of the peptide bond you will be asked about</h3>
-  <div class="grid grid--3" style="margin:1rem 0 0">
-    <div class="card">
-      <h4>① Partial double-bond character</h4>
-      <p style="font-size:.9rem;margin:0">Resonance shortens C–N to ≈ 1.32 Å, between a single and a double bond
-        — roughly 40 % double-bond character.</p>
+  <details class="disc disc--deep">
+    <summary>Go deeper · Peptide-bond geometry: partial double bond, planarity, trans preference</summary>
+    <div class="disc__body">
+      <h3>Three properties of the peptide bond you will be asked about</h3>
+      <div class="grid grid--3" style="margin:1rem 0 0">
+        <div class="card">
+          <h4>① Partial double-bond character</h4>
+          <p style="font-size:.9rem;margin:0">Resonance shortens C–N to ≈ 1.32 Å, between a single and a double bond
+            — roughly 40 % double-bond character.</p>
+        </div>
+        <div class="card">
+          <h4>② No free rotation → planar</h4>
+          <p style="font-size:.9rem;margin:0">Six atoms lie in one plane. Only φ (N–Cα) and ψ (Cα–C) can rotate —
+            which is precisely what the Ramachandran plot maps.</p>
+        </div>
+        <div class="card">
+          <h4>③ Almost always <em>trans</em></h4>
+          <p style="font-size:.9rem;margin:0">The trans configuration avoids side-chain clash. The one common
+            exception is the <b>X–Pro</b> bond, where cis becomes appreciable.</p>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <h4>② No free rotation → planar</h4>
-      <p style="font-size:.9rem;margin:0">Six atoms lie in one plane. Only φ (N–Cα) and ψ (Cα–C) can rotate —
-        which is precisely what the Ramachandran plot maps.</p>
-    </div>
-    <div class="card">
-      <h4>③ Almost always <em>trans</em></h4>
-      <p style="font-size:.9rem;margin:0">The trans configuration avoids side-chain clash. The one common
-        exception is the <b>X–Pro</b> bond, where cis becomes appreciable.</p>
-    </div>
-  </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Easily confused</p>
@@ -352,6 +396,12 @@
 <section class="section" id="s4">
   <span class="section__num">§ 04</span>
   <h2>The four noncovalent interactions</h2>
+  <p class="idea"><b>The idea</b>These are the temporary attractions. Any one of them is too feeble to
+    survive the jostling of body heat, so none of them matters alone — they matter because there are
+    hundreds of them at once, and two surfaces that fit each other closely can make far more of them than
+    two surfaces that do not. What separates the four is reach and fussiness: how far away they can still
+    pull, and whether they care about the angle they are approached from. Those two differences are what
+    most questions are actually testing.</p>
   <p>All four are weak and reversible, but each has a <strong>different distance dependence and a different
      sensitivity to its environment</strong> — and that is usually what the question is really testing.</p>
 
@@ -407,24 +457,35 @@
     </div>
   </div>
 
-  <div class="table-scroll">
-    <table class="data">
-      <thead><tr><th>Property</th><th>Ionic</th><th>Hydrogen bond</th><th>Van der Waals</th><th>Hydrophobic effect</th></tr></thead>
-      <tbody>
-        <tr><td>Typical energy (kJ/mol)</td><td class="num">8–40</td><td class="num">4–30</td><td class="num">0.4–4</td><td class="num">≈3 per –CH₂–</td></tr>
-        <tr><td>Distance dependence</td><td class="num">1/r²</td><td>short, directional</td><td class="num">1/r⁶</td><td>no simple distance law</td></tr>
-        <tr><td>Directional?</td><td>No</td><td><b>Yes</b></td><td>No</td><td>No</td></tr>
-        <tr><td>Weakened by</td><td>High salt, pH change</td><td>Heat, urea, GuHCl</td><td>Heat, unfolding</td><td>SDS, organic solvent, <b>cold</b></td></tr>
-        <tr><td>Thermodynamic driver</td><td>Enthalpy</td><td>Enthalpy</td><td>Enthalpy</td><td><b>Entropy</b></td></tr>
-      </tbody>
-    </table>
-  </div>
+  <details class="disc disc--deep">
+    <summary>Go deeper · All four interactions side by side: energy, distance law, directionality, driver</summary>
+    <div class="disc__body">
+      <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Property</th><th>Ionic</th><th>Hydrogen bond</th><th>Van der Waals</th><th>Hydrophobic effect</th></tr></thead>
+          <tbody>
+            <tr><td>Typical energy (kJ/mol)</td><td class="num">8–40</td><td class="num">4–30</td><td class="num">0.4–4</td><td class="num">≈3 per –CH₂–</td></tr>
+            <tr><td>Distance dependence</td><td class="num">1/r²</td><td>short, directional</td><td class="num">1/r⁶</td><td>no simple distance law</td></tr>
+            <tr><td>Directional?</td><td>No</td><td><b>Yes</b></td><td>No</td><td>No</td></tr>
+            <tr><td>Weakened by</td><td>High salt, pH change</td><td>Heat, urea, GuHCl</td><td>Heat, unfolding</td><td>SDS, organic solvent, <b>cold</b></td></tr>
+            <tr><td>Thermodynamic driver</td><td>Enthalpy</td><td>Enthalpy</td><td>Enthalpy</td><td><b>Entropy</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
 </section>
 
 <!-- =========================== 5 =========================== -->
 <section class="section" id="s5">
   <span class="section__num">§ 05</span>
   <h2>Water and its hydrogen-bond network</h2>
+  <p class="idea"><b>The idea</b>Water is not a neutral backdrop that biology happens in front of; it is a
+    participant with strong preferences of its own. Each water molecule can hold on to as many as four
+    neighbours at once, so liquid water is a constantly rearranging web rather than a crowd of separate
+    particles. Almost every odd thing about it — that it takes so much warming to heat up, that ice floats
+    instead of sinking, that it pulls salts apart so easily — comes straight out of that one fact, and so
+    does most of what the rest of this page describes.</p>
   <p>Water is not the background, it is the protagonist. Every "anomalous" property of water follows from a
      single fact: <strong>one molecule can make up to four hydrogen bonds</strong>.</p>
 
@@ -485,6 +546,13 @@
 <section class="section" id="s6">
   <span class="section__num">§ 06</span>
   <h2>The hydrophobic effect is entropy-driven</h2>
+  <p class="idea"><b>The idea</b>Oil and water do not separate because the oil likes itself. They separate
+    because the water is being forced to be tidy. Water cannot hold on to a greasy molecule, so it has to
+    arrange itself into a neat cage around it, and neat arrangements are exactly what a liquid resists.
+    Push the greasy pieces together and less cage is needed, so the trapped water is set free again — and
+    it is that recovered freedom, not any pull between the greasy pieces, that drives the whole thing. This
+    is the single most misunderstood idea on the page, and it is the reason proteins fold and membranes
+    build themselves.</p>
   <p>
     Drop a nonpolar molecule into water. Water cannot hydrogen-bond to it, so it arranges a highly ordered
     <strong>clathrate cage</strong> of water around it. The <em>number</em> of hydrogen bonds is not actually
@@ -555,6 +623,12 @@
 <section class="section" id="s7">
   <span class="section__num">§ 07</span>
   <h2>Amphipathic molecules and their aggregates</h2>
+  <p class="idea"><b>The idea</b>Some molecules have a split personality: one end is content in water and
+    the other end is not. Put enough of them into water and they sort themselves out with no help and no
+    energy supplied — the water-avoiding ends bury themselves together in the middle, the water-loving ends
+    face outwards. Which structure they settle into — a solid ball, a flat sheet, or a hollow bag with
+    water on both sides — is decided by something as simple as whether the molecule is wider at the top or
+    at the bottom. This is how every membrane in your body assembles itself.</p>
   <p>
     <strong>Amphipathic</strong> (amphiphilic) means one molecule carries both a hydrophilic head and a
     hydrophobic tail. Put it in water above its <strong>critical micelle concentration (CMC)</strong> and it
@@ -615,6 +689,12 @@
 <section class="section" id="s8">
   <span class="section__num">§ 08</span>
   <h2>The lipid map</h2>
+  <p class="idea"><b>The idea</b>"Lipid" is not really a family of related structures, it is a shopping
+    category: anything greasy enough to refuse to dissolve in water gets filed under the name. That is why
+    cooking fat, the building blocks of membranes, cholesterol and a few vitamins all share one word while
+    looking nothing like one another. Two questions cut the pile into usable groups: does the molecule
+    contain the kind of join that soap-making can split, and does it carry a water-friendly end big enough
+    to make it sit at a boundary rather than hide in the middle of a droplet?</p>
   <p>The only thing all lipids share is <strong>insolubility in water and solubility in organic solvents</strong>
      — it is a classification by <em>solubility</em>, not by structure, which is why the structures underneath
      vary so wildly. Splitting them by <strong>saponifiable vs non-saponifiable</strong> is the cleanest cut.</p>
@@ -673,6 +753,13 @@
 <section class="section" id="s9">
   <span class="section__num">§ 09</span>
   <h2>Saturation → melting point → membrane fluidity</h2>
+  <p class="idea"><b>The idea</b>The greasy tails of a fat are long, floppy chains. Straight chains stack
+    against one another like pencils in a box, and it takes a lot of warmth to shake them loose, so the fat
+    is a solid at room temperature — butter. Put a permanent bend in the middle of the chain and the neat
+    stacking fails, the chains slide past each other easily, and the very same kind of fat is a liquid —
+    olive oil. A cell membrane is built from those same chains, so the same rule decides whether the
+    membrane behaves more like oil or more like wax, and a membrane that is too stiff or too runny stops
+    working.</p>
   <p>A fatty acid has only two variables: <strong>chain length</strong> and <strong>number (and geometry) of
      double bonds</strong>. Through "how tightly can they stack", those two set the melting point — and the
      melting point sets membrane fluidity.</p>
@@ -749,19 +836,30 @@
     </ul>
   </div>
 
-  <div class="mnemo" style="margin-top:1rem">
-    <h4>Essential fatty acids</h4>
-    <p>Humans lack Δ12 and Δ15 desaturases and cannot introduce double bonds beyond C9, so
-      <strong>linoleic acid (18:2, ω-6)</strong> and <strong>α-linolenic acid (18:3, ω-3)</strong> must come from
-      the diet. Arachidonic acid (20:4, ω-6) can be made from linoleic acid, so it is only
-      <em>conditionally</em> essential.</p>
-  </div>
+  <details class="disc disc--deep">
+    <summary>Go deeper · Essential fatty acids: why ω-6 and ω-3 must come from the diet</summary>
+    <div class="disc__body">
+      <div class="mnemo" style="margin-top:1rem">
+        <h4>Essential fatty acids</h4>
+        <p>Humans lack Δ12 and Δ15 desaturases and cannot introduce double bonds beyond C9, so
+          <strong>linoleic acid (18:2, ω-6)</strong> and <strong>α-linolenic acid (18:3, ω-3)</strong> must come from
+          the diet. Arachidonic acid (20:4, ω-6) can be made from linoleic acid, so it is only
+          <em>conditionally</em> essential.</p>
+      </div>
+    </div>
+  </details>
 </section>
 
 <!-- =========================== 10 =========================== -->
 <section class="section" id="s10">
   <span class="section__num">§ 10</span>
   <h2>What breaks what</h2>
+  <p class="idea"><b>The idea</b>Every attraction described on this page has one particular weakness, so a
+    question about wrecking a protein is really a matching exercise: pair each attraction with the thing
+    that undoes it. Warmth and rival molecules break up the flimsy attractions; making the surroundings
+    more acidic or more alkaline switches off the electrically charged ones; soap-like molecules get in
+    among the greasy core and prise it open. The permanent joins of the chain itself survive all of it —
+    which is why a boiled egg is ruined but not chopped into pieces.</p>
   <p>The standard way to answer a denaturation question — map each interaction directly onto the thing that
      destroys it. <strong>Denaturation destroys noncovalent interactions and disulfides; the peptide bond
      (primary structure) is untouched.</strong></p>
@@ -780,19 +878,28 @@
     </table>
   </div>
 
-  <div class="callout">
-    <p class="callout__title">Tying it together: why SDS-PAGE needs two reagents</p>
-    <p style="margin:0"><b>SDS</b> destroys the hydrophobic core and coats the protein with negative charge in
-      proportion to its length; <b>β-ME or DTT</b> reduces disulfides so that subunits separate. Leave either
-      one out and the band you measure is not the true subunit mass. This question ties §03, §04 and §10
-      together and is a very typical integration item.</p>
-  </div>
+  <details class="disc disc--deep">
+    <summary>Go deeper · Worked application: why SDS-PAGE needs both SDS and a reducing agent</summary>
+    <div class="disc__body">
+      <div class="callout">
+        <p class="callout__title">Tying it together: why SDS-PAGE needs two reagents</p>
+        <p style="margin:0"><b>SDS</b> destroys the hydrophobic core and coats the protein with negative charge in
+          proportion to its length; <b>β-ME or DTT</b> reduces disulfides so that subunits separate. Leave either
+          one out and the band you measure is not the true subunit mass. This question ties §03, §04 and §10
+          together and is a very typical integration item.</p>
+      </div>
+    </div>
+  </details>
 </section>
 
 <!-- =========================== Quiz =========================== -->
 <section class="section" id="quiz">
   <span class="section__num">§ 11</span>
   <h2>Self-test · 10 questions</h2>
+  <p class="idea"><b>The idea</b>These questions are part of the reading, not an exam at the end of it.
+    Dragging an answer out of your own head — even a wrong one — leaves a far deeper mark than reading the
+    same sentence for a third time. The wrong options below are the mistakes people genuinely make, so
+    being caught out by one of them teaches you more than a lucky correct guess.</p>
   <p>Each answer is explained immediately. If you miss one, go back to the section it came from rather than
      memorising the letter.</p>
   <div class="quiz" data-quiz></div>

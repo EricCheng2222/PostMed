@@ -16,6 +16,10 @@
     <nav>
       <a href="physics.html">Physics</a>
       <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -56,8 +60,31 @@
     </ol>
   </nav>
 
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — §01 and §02. A spring pushes back harder the further you pull it,
+        and the push is always aimed back at the resting position. §02 turns that into the single test
+        that defines this whole chapter, and shows that the rhythm of the motion is fixed by the
+        hardware alone, never by how hard you set it going. If §02 lands, the rest of the page is that
+        one sentence wearing different costumes; if it does not, nothing after it will stick.</li>
+      <li><b>Then be able to do</b> — §04 (moving between period, frequency and angular frequency
+        while keeping the factor of 2π straight), §05 (a mass on a spring: ω, T, f, maximum speed and
+        maximum acceleration), §06 (pendulum length, period, and what a different g does to a clock),
+        the speed-at-a-given-displacement formula at the end of §03, and §08 (how the energy splits at
+        a given displacement). Those five carry almost every calculation an exam will set on this
+        topic.</li>
+      <li><b>Leave for a second pass</b> — §07, which extends the pendulum to any rigid body and to a
+        twisting wire without introducing a new principle, and §09, which re-derives the §03 results
+        geometrically rather than adding anything new. §10 and §11 are the clinically important
+        sections and are worth the effort, but they read far more easily once §01–§08 feel solid.</li>
+    </ol>
+  </div>
+
   <section class="fsheet card">
-    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <details class="disc disc--sheet">
+      <summary>Formula sheet<span class="disc__count">24 formulas</span></summary>
+      <div class="disc__body">
     <div class="fsheet__grid">
       <div class="fsheet__item"><b>Hooke's law</b><code>F = -kx</code></div>
       <div class="fsheet__item"><b>Elastic PE</b><code>U = ½kx²</code></div>
@@ -73,17 +100,19 @@
       <div class="fsheet__item"><b>Springs combined</b><code>k∥ = k₁+k₂ · 1/k = 1/k₁+1/k₂</code></div>
       <div class="fsheet__item"><b>Simple pendulum</b><code>T = 2π√(L/g)</code></div>
       <div class="fsheet__item"><b>Large amplitude</b><code>T = T₀[1 + ¼sin²(θ₀/2) + …]</code></div>
-      <div class="fsheet__item"><b>Physical pendulum</b><code>T = 2π√(I/mgd)</code></div>
+      <div class="fsheet__item"><b>Physical pendulum</b><code>T = 2π√(I/(mgd))</code></div>
       <div class="fsheet__item"><b>Torsional</b><code>T = 2π√(I/κ)</code></div>
       <div class="fsheet__item"><b>Total energy</b><code>E = ½kA² = ½mω²A²</code></div>
       <div class="fsheet__item"><b>Kinetic at x</b><code>K = ½k(A² - x²)</code></div>
       <div class="fsheet__item"><b>Damped motion</b><code>m·a + b·v + kx = 0</code></div>
-      <div class="fsheet__item"><b>Damped frequency</b><code>ω_d = √(ω₀² - b²/4m²)</code></div>
+      <div class="fsheet__item"><b>Damped frequency</b><code>ω_d = √(ω₀² - b²/(4m²))</code></div>
       <div class="fsheet__item"><b>Critical damping</b><code>b_c = 2√(mk) = 2mω₀</code></div>
       <div class="fsheet__item"><b>Driven amplitude</b><code>A = (F₀/m)/√((ω₀²-ω²)² + (bω/m)²)</code></div>
-      <div class="fsheet__item"><b>Amplitude resonance</b><code>ω_r = √(ω₀² - b²/2m²)</code></div>
+      <div class="fsheet__item"><b>Amplitude resonance</b><code>ω_r = √(ω₀² - b²/(2m²))</code></div>
       <div class="fsheet__item"><b>Quality factor</b><code>Q = ω₀m/b = ω₀/Δω = f₀/Δf</code></div>
     </div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -92,33 +121,45 @@
   <span class="section__num">§ 01</span>
   <h2>Hooke's law and the restoring force</h2>
 
+  <p class="idea"><b>The idea</b>Stretch or squash something springy and it pushes back — and it pushes back
+    harder the further you move it. Because that push is always aimed at the resting position, letting go does
+    not end the story: the object is hauled back, overshoots, is hauled back again, and keeps going. Everything
+    else on this page is a consequence of that one habit, so it is worth meeting it slowly.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Restoring force</dt>
       <dd>A force that always points back towards a fixed equilibrium position, and whose magnitude grows
           with the displacement away from it.</dd>
-      <dt>Hooke's law</dt>
-      <dd>The statement that for an ideal spring the restoring force is <em>directly proportional</em> to the
-          displacement from equilibrium.</dd>
-      <dt>Spring constant k</dt>
-      <dd>The force needed per unit extension — a property of the object, not of the motion.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq"><b>F</b> = -k<b>x</b></span>
       <span class="fx__tag">ideal spring, inside the elastic limit</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">U = ½kx²</span><span class="fx__tag">elastic PE stored; x from natural length</span></div>
-      <div class="fx"><span class="fx__eq">k∥ = k₁ + k₂</span><span class="fx__tag">springs in parallel (side by side)</span></div>
-      <div class="fx"><span class="fx__eq">1/k = 1/k₁ + 1/k₂</span><span class="fx__tag">springs in series (end to end)</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>F</b><span>restoring force (N)</span></div>
-      <div><b>k</b><span>spring constant / stiffness (N·m⁻¹)</span></div>
-      <div><b>x</b><span>displacement from equilibrium (m)</span></div>
-      <div><b>U</b><span>elastic potential energy (J)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Hooke's law</dt>
+          <dd>The statement that for an ideal spring the restoring force is <em>directly proportional</em> to the
+              displacement from equilibrium.</dd>
+          <dt>Spring constant k</dt>
+          <dd>The force needed per unit extension — a property of the object, not of the motion.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">U = ½kx²</span><span class="fx__tag">elastic PE stored; x from natural length</span></div>
+          <div class="fx"><span class="fx__eq">k∥ = k₁ + k₂</span><span class="fx__tag">springs in parallel (side by side)</span></div>
+          <div class="fx"><span class="fx__eq">1/k = 1/k₁ + 1/k₂</span><span class="fx__tag">springs in series (end to end)</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>F</b><span>restoring force (N)</span></div>
+          <div><b>k</b><span>spring constant / stiffness (N·m⁻¹)</span></div>
+          <div><b>x</b><span>displacement from equilibrium (m)</span></div>
+          <div><b>U</b><span>elastic potential energy (J)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>The minus sign carries the entire physics. It says the force is always aimed at the equilibrium point,
@@ -170,32 +211,45 @@
   <span class="section__num">§ 02</span>
   <h2>The one condition: a = -ω²x</h2>
 
+  <p class="idea"><b>The idea</b>There is one exact test for the kind of back-and-forth motion this note is
+    about: the further the object has strayed from its resting place, the harder it is hauled back — and in
+    strict step, so twice as far means twice the pull. Anything that passes that test settles into a rhythm
+    fixed entirely by how the system is built, not by how hard you set it going. A big shove and a gentle nudge
+    on the same swing take the same time to come back, and that is why oscillators make good clocks.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Simple harmonic motion (SHM)</dt>
       <dd>Motion in which the acceleration is proportional to the displacement from a fixed equilibrium point
           and is directed towards it.</dd>
-      <dt>Angular frequency ω</dt>
-      <dd>The positive constant whose square is that proportionality constant; equivalently, the rate at which
-          the phase of the motion advances.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">a = -ω²x  ⟺  d²x/dt² + ω²x = 0</span>
       <span class="fx__tag">the definition — everything else follows</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">ω = √(k_eff / m_eff)</span><span class="fx__tag">"stiffness over inertia", in whatever coordinate you are using</span></div>
-      <div class="fx"><span class="fx__eq">k_eff = (d²U/dx²) at the minimum</span><span class="fx__tag">why every stable equilibrium oscillates harmonically for small displacements</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>a</b><span>acceleration (m·s⁻²)</span></div>
-      <div><b>x</b><span>displacement from equilibrium (m)</span></div>
-      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
-      <div><b>k_eff</b><span>effective stiffness (N·m⁻¹)</span></div>
-      <div><b>m_eff</b><span>effective inertia (kg)</span></div>
-      <div><b>U</b><span>potential energy (J)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Angular frequency ω</dt>
+          <dd>The positive constant whose square is that proportionality constant; equivalently, the rate at which
+              the phase of the motion advances.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">ω = <span class="msq" role="img" aria-label="square root of k effective over m effective"><span><span class="mf" role="img" aria-label="k effective over m effective"><span>k_eff</span><span>m_eff</span></span></span></span></span><span class="fx__tag">"stiffness over inertia", in whatever coordinate you are using</span></div>
+          <div class="fx"><span class="fx__eq">k_eff = (d²U/dx²) at the minimum</span><span class="fx__tag">why every stable equilibrium oscillates harmonically for small displacements</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>a</b><span>acceleration (m·s⁻²)</span></div>
+          <div><b>x</b><span>displacement from equilibrium (m)</span></div>
+          <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+          <div><b>k_eff</b><span>effective stiffness (N·m⁻¹)</span></div>
+          <div><b>m_eff</b><span>effective inertia (kg)</span></div>
+          <div><b>U</b><span>potential energy (J)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Combine Newton's second law with Hooke's law and the mass cancels out of the force but not out of the
@@ -217,8 +271,9 @@
   <p>You never need to solve a differential equation. Steps 1 and 2 are where the marks are, and step 2 is
      usually where a small-angle or small-displacement approximation is smuggled in.</p>
 
-  <div class="wex">
-    <h4>Worked example 1 — reading ω straight off the equation of motion</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — reading ω straight off the equation of motion</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">A 0.30 kg body moves along x with acceleration
        <span class="fi">a = -64x</span> (SI units). Find the period, and the maximum speed if the amplitude is
        3.0 cm.</p>
@@ -230,7 +285,8 @@
       <li>(If you did want k: <span class="fi">k = mω² = 0.30 × 64 = 19.2 N·m⁻¹</span>.)</li>
     </ol>
     <span class="wex__ans">T = 0.785 s · v_max = 0.24 m·s⁻¹</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">The single most expensive trap in this chapter</p>
@@ -257,33 +313,46 @@
   <span class="section__num">§ 03</span>
   <h2>x(t), v(t), a(t) and their phases</h2>
 
+  <p class="idea"><b>The idea</b>Follow an oscillator through one full round trip and three quantities take
+    turns being large: how far it is from the middle, how fast it is moving, and how hard it is being hauled
+    back. They never peak together. At the ends of the swing it is momentarily still yet pulled hardest; racing
+    through the middle it feels no pull at all. This section is about that staggered timing and how to read it
+    straight off a graph.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Amplitude A</dt>
       <dd>The maximum magnitude of the displacement from equilibrium — half the total range of the motion.</dd>
-      <dt>Phase (ωt + φ)</dt>
-      <dd>The angle that fixes where in the cycle the oscillator currently is.</dd>
-      <dt>Phase constant φ</dt>
-      <dd>The value of the phase at t = 0; it encodes how the motion was started, nothing else.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">x(t) = A cos(ωt + φ)</span>
       <span class="fx__tag">general solution of a = -ω²x</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">v(t) = -ωA sin(ωt + φ)</span><span class="fx__tag">amplitude ωA</span></div>
-      <div class="fx"><span class="fx__eq">a(t) = -ω²A cos(ωt + φ) = -ω²x</span><span class="fx__tag">amplitude ω²A</span></div>
-      <div class="fx"><span class="fx__eq">v = ±ω√(A² - x²)</span><span class="fx__tag">speed at a given displacement, time eliminated</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>A</b><span>amplitude (m)</span></div>
-      <div><b>φ</b><span>phase constant (rad)</span></div>
-      <div><b>t</b><span>time (s)</span></div>
-      <div><b>v</b><span>velocity (m·s⁻¹)</span></div>
-      <div><b>a</b><span>acceleration (m·s⁻²)</span></div>
-      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Phase (ωt + φ)</dt>
+          <dd>The angle that fixes where in the cycle the oscillator currently is.</dd>
+          <dt>Phase constant φ</dt>
+          <dd>The value of the phase at t = 0; it encodes how the motion was started, nothing else.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">v(t) = -ωA sin(ωt + φ)</span><span class="fx__tag">amplitude ωA</span></div>
+          <div class="fx"><span class="fx__eq">a(t) = -ω²A cos(ωt + φ) = -ω²x</span><span class="fx__tag">amplitude ω²A</span></div>
+          <div class="fx"><span class="fx__eq">v = ±ω<span class="msq" role="img" aria-label="square root of A squared minus x squared"><span>A² - x²</span></span></span><span class="fx__tag">speed at a given displacement, time eliminated</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>A</b><span>amplitude (m)</span></div>
+          <div><b>φ</b><span>phase constant (rad)</span></div>
+          <div><b>t</b><span>time (s)</span></div>
+          <div><b>v</b><span>velocity (m·s⁻¹)</span></div>
+          <div><b>a</b><span>acceleration (m·s⁻²)</span></div>
+          <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Differentiating a cosine twice returns a cosine with a minus sign and a factor ω² — which is precisely the
@@ -382,29 +451,42 @@
   <span class="section__num">§ 04</span>
   <h2>Angular frequency, period, frequency</h2>
 
+  <p class="idea"><b>The idea</b>There are three ways of saying how fast something repeats: how long one full
+    round trip takes, how many round trips happen each second, and how quickly the motion sweeps round if you
+    picture it as a turning wheel. All three describe the same rhythm, and converting between them is nothing
+    but arithmetic. The section exists because the last two differ by a fixed factor of a little over six, and
+    quietly using one where the other belongs is the most expensive slip in the chapter.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Period T</dt>
       <dd>The time for one complete cycle — the shortest time after which both position and velocity repeat.</dd>
-      <dt>Frequency f</dt>
-      <dd>The number of complete cycles per second.</dd>
-      <dt>Angular frequency ω</dt>
-      <dd>The rate at which the phase angle advances, in radians per second.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">ω = 2πf = 2π/T</span>
+      <span class="fx__eq">ω = 2πf = <span class="mf" role="img" aria-label="2 pi over T"><span>2π</span><span>T</span></span></span>
       <span class="fx__tag">always true, for any periodic motion</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">f = 1/T</span><span class="fx__tag">definition of frequency</span></div>
-      <div class="fx"><span class="fx__eq">T = 2π/ω = 2π√(m/k)</span><span class="fx__tag">for a mass–spring system</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>T</b><span>period (s)</span></div>
-      <div><b>f</b><span>frequency (Hz = s⁻¹, cycles per second)</span></div>
-      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Frequency f</dt>
+          <dd>The number of complete cycles per second.</dd>
+          <dt>Angular frequency ω</dt>
+          <dd>The rate at which the phase angle advances, in radians per second.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">f = 1/T</span><span class="fx__tag">definition of frequency</span></div>
+          <div class="fx"><span class="fx__eq">T = <span class="mf" role="img" aria-label="2 pi over omega"><span>2π</span><span>ω</span></span> = 2π<span class="msq" role="img" aria-label="square root of m over k"><span><span class="mf" role="img" aria-label="m over k"><span>m</span><span>k</span></span></span></span></span><span class="fx__tag">for a mass–spring system</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>T</b><span>period (s)</span></div>
+          <div><b>f</b><span>frequency (Hz = s⁻¹, cycles per second)</span></div>
+          <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>ω and f describe the same thing in different currency: f counts <em>cycles</em>, ω counts
@@ -438,6 +520,12 @@
   <span class="section__num">§ 05</span>
   <h2>The mass–spring oscillator</h2>
 
+  <p class="idea"><b>The idea</b>Hang a weight on a spring, set it going, and the rate at which it bobs is
+    settled by exactly two things: how stiff the spring is and how heavy the weight is. Stiffer is quicker,
+    heavier is slower, and nothing else gets a vote — not how far you pulled it, and, more surprisingly, not
+    gravity. The same spring and weight bob at precisely the same rate lying flat on a bench, hanging in a
+    lift, or standing on the Moon.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -446,22 +534,27 @@
           of a spring.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">T = 2π√(m/k)</span>
+      <span class="fx__eq">T = 2π<span class="msq" role="img" aria-label="square root of m over k"><span><span class="mf" role="img" aria-label="m over k"><span>m</span><span>k</span></span></span></span></span>
       <span class="fx__tag">independent of amplitude and of g</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">ω = √(k/m)   f = (1/2π)√(k/m)</span><span class="fx__tag">same content, three currencies</span></div>
-      <div class="fx"><span class="fx__eq">d = mg/k  ⟹  T = 2π√(d/g)</span><span class="fx__tag">vertical spring, d = static extension</span></div>
-      <div class="fx"><span class="fx__eq">T = 2π√((m + m_s/3)/k)</span><span class="fx__tag">correction for a spring of mass m_s</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>m</b><span>oscillating mass (kg)</span></div>
-      <div><b>k</b><span>spring constant (N·m⁻¹)</span></div>
-      <div><b>T</b><span>period (s)</span></div>
-      <div><b>d</b><span>static extension under the weight (m)</span></div>
-      <div><b>g</b><span>gravitational field strength (m·s⁻²)</span></div>
-      <div><b>m_s</b><span>mass of the spring itself (kg)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">ω = <span class="msq" role="img" aria-label="square root of k over m"><span><span class="mf" role="img" aria-label="k over m"><span>k</span><span>m</span></span></span></span>   f = <span class="mf" role="img" aria-label="1 over 2 pi"><span>1</span><span>2π</span></span><span class="msq" role="img" aria-label="square root of k over m"><span><span class="mf" role="img" aria-label="k over m"><span>k</span><span>m</span></span></span></span></span><span class="fx__tag">same content, three currencies</span></div>
+          <div class="fx"><span class="fx__eq">d = <span class="mf" role="img" aria-label="m g over k"><span>mg</span><span>k</span></span>  ⟹  T = 2π<span class="msq" role="img" aria-label="square root of d over g"><span><span class="mf" role="img" aria-label="d over g"><span>d</span><span>g</span></span></span></span></span><span class="fx__tag">vertical spring, d = static extension</span></div>
+          <div class="fx"><span class="fx__eq">T = 2π<span class="msq" role="img" aria-label="square root of, m plus m sub s over 3, all over k"><span><span class="mf" role="img" aria-label="m plus m sub s over 3, all over k"><span>m + m_s/3</span><span>k</span></span></span></span></span><span class="fx__tag">correction for a spring of mass m_s</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>m</b><span>oscillating mass (kg)</span></div>
+          <div><b>k</b><span>spring constant (N·m⁻¹)</span></div>
+          <div><b>T</b><span>period (s)</span></div>
+          <div><b>d</b><span>static extension under the weight (m)</span></div>
+          <div><b>g</b><span>gravitational field strength (m·s⁻²)</span></div>
+          <div><b>m_s</b><span>mass of the spring itself (kg)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>The derivation is one line — <span class="fi">ma = -kx ⟹ ω² = k/m</span> — but the shape of the answer
@@ -478,8 +571,9 @@
      gravity and whose period therefore scales as 1/√g. <strong>The spring is blind to gravity; the pendulum
      is blind to mass.</strong> Those two blindnesses are the most reliably examined facts in the chapter.</p>
 
-  <div class="wex">
-    <h4>Worked example 2 — a full kinematic profile</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — a full kinematic profile</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">A 0.25 kg block on a frictionless surface is attached to a
        spring of k = 40 N·m⁻¹, pulled 8.0 cm from equilibrium and released. Find ω, T, f, the maximum speed,
        the maximum acceleration, and the speed as it passes x = 4.0 cm.</p>
@@ -495,10 +589,12 @@
           <span class="fi">√3/2 = 86.6 %</span> of v_max, and 0.866 × 1.012 = 0.876 ✓.</li>
     </ol>
     <span class="wex__ans">ω = 12.6 rad·s⁻¹ · T = 0.497 s · f = 2.01 Hz · v_max = 1.01 m·s⁻¹ · a_max = 12.8 m·s⁻² · v(A/2) = 0.876 m·s⁻¹</span>
-  </div>
+    </div>
+  </details>
 
-  <div class="wex">
-    <h4>Worked example 3 — getting k from a static measurement</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — getting k from a static measurement</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">A 0.60 kg mass hung on a spring stretches it by 12 cm. It is
        then pulled down a little and released. Find k and the period. (g = 9.8 m·s⁻²)</p>
     <ol>
@@ -512,7 +608,8 @@
           disappeared from this version, because a heavier mass stretches the spring proportionally more.</li>
     </ol>
     <span class="wex__ans">k = 49 N·m⁻¹ · T = 0.695 s</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Ratio questions</p>
@@ -536,34 +633,47 @@
   <span class="section__num">§ 06</span>
   <h2>The simple pendulum and small angles</h2>
 
+  <p class="idea"><b>The idea</b>A weight on a string swings at a rate set by just two things: the length of
+    the string and the strength of gravity where you are standing. How heavy the weight is makes no difference
+    at all — a light bob and a heavy one on identical strings keep perfect time with each other. There is a
+    catch, and most of this section is about it: the tidy rule only holds while the swings stay small, so it
+    is worth knowing how small "small" has to be and what it costs when you cheat.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Simple pendulum</dt>
       <dd>An idealised point mass on a massless, inextensible string, swinging under gravity about a fixed
           pivot.</dd>
-      <dt>Small-angle approximation</dt>
-      <dd>The replacement of sin θ by θ (θ in radians), legitimate because sin θ = θ - θ³/6 + … so the leading
-          error is only θ²/6.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">T = 2π√(L/g)</span>
+      <span class="fx__eq">T = 2π<span class="msq" role="img" aria-label="square root of L over g"><span><span class="mf" role="img" aria-label="L over g"><span>L</span><span>g</span></span></span></span></span>
       <span class="fx__tag">small angles only, θ₀ ≲ 10°</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">τ = -mgL sin θ ≈ -mgLθ</span><span class="fx__tag">restoring torque; the ≈ is the whole approximation</span></div>
-      <div class="fx"><span class="fx__eq">α = -(g/L)θ  ⟹  ω = √(g/L)</span><span class="fx__tag">using I = mL²; m cancels</span></div>
-      <div class="fx"><span class="fx__eq">T = T₀[1 + ¼sin²(θ₀/2) + (9/64)sin⁴(θ₀/2) + …]</span><span class="fx__tag">exact series; T₀ = 2π√(L/g)</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>L</b><span>pivot to centre of the bob (m)</span></div>
-      <div><b>g</b><span>gravitational field strength (m·s⁻²)</span></div>
-      <div><b>θ</b><span>angular displacement (rad)</span></div>
-      <div><b>θ₀</b><span>angular amplitude (rad, quoted in °)</span></div>
-      <div><b>τ</b><span>restoring torque (N·m)</span></div>
-      <div><b>I</b><span>moment of inertia about the pivot (kg·m²)</span></div>
-      <div><b>α</b><span>angular acceleration (rad·s⁻²)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Small-angle approximation</dt>
+          <dd>The replacement of sin θ by θ (θ in radians), legitimate because sin θ = θ - θ³/6 + … so the leading
+              error is only θ²/6.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">τ = -mgL sin θ ≈ -mgLθ</span><span class="fx__tag">restoring torque; the ≈ is the whole approximation</span></div>
+          <div class="fx"><span class="fx__eq">α = -(g/L)θ  ⟹  ω = <span class="msq" role="img" aria-label="square root of g over L"><span><span class="mf" role="img" aria-label="g over L"><span>g</span><span>L</span></span></span></span></span><span class="fx__tag">using I = mL²; m cancels</span></div>
+          <div class="fx"><span class="fx__eq">T = T₀[1 + ¼sin²(θ₀/2) + (9/64)sin⁴(θ₀/2) + …]</span><span class="fx__tag">exact series; T₀ = 2π√(L/g)</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>L</b><span>pivot to centre of the bob (m)</span></div>
+          <div><b>g</b><span>gravitational field strength (m·s⁻²)</span></div>
+          <div><b>θ</b><span>angular displacement (rad)</span></div>
+          <div><b>θ₀</b><span>angular amplitude (rad, quoted in °)</span></div>
+          <div><b>τ</b><span>restoring torque (N·m)</span></div>
+          <div><b>I</b><span>moment of inertia about the pivot (kg·m²)</span></div>
+          <div><b>α</b><span>angular acceleration (rad·s⁻²)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Resolve the weight at angle θ: the component along the string is balanced by the tension, and the
@@ -584,6 +694,9 @@
      comes from the spring — it has no idea how much mass is attached — so there is nothing for the inertia to
      cancel against and <span class="fi">T ∝ √m</span> survives.</p>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · what the small-angle approximation actually costs, degree by degree</summary>
+    <div class="disc__body">
   <h3>How much does sin θ ≈ θ actually cost?</h3>
   <p>Two different errors are in play and confusing them is a standard trap. The error in the
      <strong>force</strong> is large and grows fast; the error in the <strong>period</strong> is much smaller.
@@ -614,6 +727,8 @@
      0.0019 × 86 400 s ≈ 165 s, nearly three minutes, a day — which is why real pendulum clocks are kept to a
      degree or two.) At <strong>30°</strong> the force error has grown to 4.7 % but the period is
      still only 1.7 % out. Quoting 4.7 % as the period error is a classic wrong answer.</p>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Which way does the error go?</p>
@@ -624,8 +739,9 @@
       getting its size right.</p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 4 — the seconds pendulum, and correcting a slow clock</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — the seconds pendulum, and correcting a slow clock</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">(a) How long is a pendulum whose period is 2.00 s?
        (b) Such a clock is found to lose 60 s per day. By how much must the bob be raised? (g = 9.8 m·s⁻²)</p>
     <ol>
@@ -643,7 +759,8 @@
           <strong>shortened</strong> by about 1.4 mm — i.e. raise the bob.</li>
     </ol>
     <span class="wex__ans">L = 0.993 m · shorten by ≈ 1.4 mm</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">What is examined here</p>
@@ -669,35 +786,48 @@
   <span class="section__num">§ 07</span>
   <h2>Physical and torsional pendulums</h2>
 
+  <p class="idea"><b>The idea</b>Real swinging things are rarely a neat weight on a light string — they are
+    rods, legs, hanging signs, or a disc twisting on a wire. The same reasoning still applies, but now you have
+    to allow for the fact that the object's material is spread out rather than gathered at one point. Bunch
+    that material close to the pivot and the thing swings faster; fling it out towards the far end and it
+    swings more slowly.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Physical (compound) pendulum</dt>
       <dd>Any rigid body free to swing under gravity about a horizontal axis that does not pass through its
           centre of mass.</dd>
-      <dt>Torsional oscillator</dt>
-      <dd>A body suspended on a wire or fibre that supplies a restoring torque proportional to the angle of
-          twist.</dd>
-      <dt>Equivalent simple length</dt>
-      <dd>The length of the simple pendulum that would have the same period as a given physical pendulum.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">T = 2π√(I / mgd)</span>
+      <span class="fx__eq">T = 2π<span class="msq" role="img" aria-label="square root of I over m g d"><span><span class="mf" role="img" aria-label="I over m g d"><span>I</span><span>mgd</span></span></span></span></span>
       <span class="fx__tag">physical pendulum, small angles</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">L_eq = I/(md)</span><span class="fx__tag">equivalent simple pendulum length</span></div>
-      <div class="fx"><span class="fx__eq">uniform rod about one end: T = 2π√(2L/3g)</span><span class="fx__tag">I = ⅓mL², d = L/2</span></div>
-      <div class="fx"><span class="fx__eq">τ = -κθ  ⟹  T = 2π√(I/κ)</span><span class="fx__tag">torsional; no small-angle restriction</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>I</b><span>moment of inertia about the pivot (kg·m²)</span></div>
-      <div><b>d</b><span>pivot to centre of mass (m)</span></div>
-      <div><b>m</b><span>mass of the body (kg)</span></div>
-      <div><b>κ</b><span>torsion constant (N·m·rad⁻¹)</span></div>
-      <div><b>θ</b><span>angular displacement (rad)</span></div>
-      <div><b>L_eq</b><span>equivalent simple length (m)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Torsional oscillator</dt>
+          <dd>A body suspended on a wire or fibre that supplies a restoring torque proportional to the angle of
+              twist.</dd>
+          <dt>Equivalent simple length</dt>
+          <dd>The length of the simple pendulum that would have the same period as a given physical pendulum.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">L_eq = <span class="mf" role="img" aria-label="I over m d"><span>I</span><span>md</span></span></span><span class="fx__tag">equivalent simple pendulum length</span></div>
+          <div class="fx"><span class="fx__eq">uniform rod about one end: T = 2π<span class="msq" role="img" aria-label="square root of 2 L over 3 g"><span><span class="mf" role="img" aria-label="2 L over 3 g"><span>2L</span><span>3g</span></span></span></span></span><span class="fx__tag">I = ⅓mL², d = L/2</span></div>
+          <div class="fx"><span class="fx__eq">τ = -κθ  ⟹  T = 2π<span class="msq" role="img" aria-label="square root of I over kappa"><span><span class="mf" role="img" aria-label="I over kappa"><span>I</span><span>κ</span></span></span></span></span><span class="fx__tag">torsional; no small-angle restriction</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>I</b><span>moment of inertia about the pivot (kg·m²)</span></div>
+          <div><b>d</b><span>pivot to centre of mass (m)</span></div>
+          <div><b>m</b><span>mass of the body (kg)</span></div>
+          <div><b>κ</b><span>torsion constant (N·m·rad⁻¹)</span></div>
+          <div><b>θ</b><span>angular displacement (rad)</span></div>
+          <div><b>L_eq</b><span>equivalent simple length (m)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>The recipe from §02 works unchanged, just in angular variables. Tilt the body by θ: its weight acts at the
@@ -711,8 +841,9 @@
      <em>not</em> cancel is <strong>how the mass is distributed</strong>: spreading it inwards reduces I more
      than it reduces d, so the body swings faster. That is the whole content of the formula.</p>
 
-  <div class="wex">
-    <h4>Worked example 5 — a swinging rod, and a twisting disc</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — a swinging rod, and a twisting disc</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">(a) A uniform rod of length 1.00 m hangs from a pivot at one
        end and swings through a small angle. Find its period and compare it with a simple pendulum of the same
        length. (b) A disc of mass 0.40 kg and radius 5.0 cm hangs from a wire of torsion constant
@@ -731,7 +862,8 @@
       <li><span class="fi">T = 2π√(I/κ) = 2π√(5.0 × 10⁻⁴ / 0.020) = 2π√0.025 = 2π × 0.1581 = 0.993 s</span>.</li>
     </ol>
     <span class="wex__ans">rod: T = 1.64 s (vs 2.01 s) · disc: T = 0.993 s</span>
-  </div>
+    </div>
+  </details>
 
   <div class="table-scroll">
     <table class="data">
@@ -774,6 +906,12 @@
   <span class="section__num">§ 08</span>
   <h2>Energy in SHM</h2>
 
+  <p class="idea"><b>The idea</b>An oscillator holds one fixed quantity of energy and passes it back and forth
+    between two pockets. At the ends of the swing every bit of it is stored in the stretch; racing through the
+    middle every bit of it is in the motion; anywhere in between the two pockets share it. As long as nothing
+    rubs, the total never changes — which makes energy the quickest way to answer "how fast is it going here?"
+    without thinking about time at all.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -785,19 +923,24 @@
       <span class="fx__eq">E = ½kA² = ½mω²A²</span>
       <span class="fx__tag">undamped SHM; note E ∝ A²</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">U(x) = ½kx²</span><span class="fx__tag">maximum at the turning points</span></div>
-      <div class="fx"><span class="fx__eq">K(x) = ½k(A² - x²) = ½mω²(A² - x²)</span><span class="fx__tag">maximum at the centre</span></div>
-      <div class="fx"><span class="fx__eq">K + U = E = constant</span><span class="fx__tag">no damping, no driving</span></div>
-      <div class="fx"><span class="fx__eq">⟨K⟩ = ⟨U⟩ = E/2</span><span class="fx__tag">time averages over a whole cycle</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>E</b><span>total mechanical energy (J)</span></div>
-      <div><b>U</b><span>potential energy (J)</span></div>
-      <div><b>K</b><span>kinetic energy (J)</span></div>
-      <div><b>A</b><span>amplitude (m)</span></div>
-      <div><b>k</b><span>spring constant (N·m⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">U(x) = ½kx²</span><span class="fx__tag">maximum at the turning points</span></div>
+          <div class="fx"><span class="fx__eq">K(x) = ½k(A² - x²) = ½mω²(A² - x²)</span><span class="fx__tag">maximum at the centre</span></div>
+          <div class="fx"><span class="fx__eq">K + U = E = constant</span><span class="fx__tag">no damping, no driving</span></div>
+          <div class="fx"><span class="fx__eq">⟨K⟩ = ⟨U⟩ = E/2</span><span class="fx__tag">time averages over a whole cycle</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>E</b><span>total mechanical energy (J)</span></div>
+          <div><b>U</b><span>potential energy (J)</span></div>
+          <div><b>K</b><span>kinetic energy (J)</span></div>
+          <div><b>A</b><span>amplitude (m)</span></div>
+          <div><b>k</b><span>spring constant (N·m⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Evaluate the total energy at the easiest point in the cycle. At a turning point the oscillator is
@@ -847,8 +990,9 @@
       split evenly at 71 % of the amplitude, not at half of it.</figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 6 — where the energy is</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 6 — where the energy is</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">Take the oscillator of Worked example 2: m = 0.25 kg,
        k = 40 N·m⁻¹, A = 8.0 cm. Find the total energy; the kinetic and potential energies at x = 4.0 cm; and
        the displacement at which they are equal.</p>
@@ -865,7 +1009,8 @@
           <span class="fi">0.064 J</span> and the speed is <span class="fi">v_max/√2 = 0.716 m·s⁻¹</span>.</li>
     </ol>
     <span class="wex__ans">E = 0.128 J · at 4.0 cm: U = 0.032 J, K = 0.096 J · K = U at x = 5.7 cm</span>
-  </div>
+    </div>
+  </details>
 
   <h3>Two consequences worth carrying forward</h3>
   <p><strong>Energy goes as amplitude squared.</strong> Double the amplitude and the energy is four times
@@ -902,6 +1047,12 @@
   <span class="section__num">§ 09</span>
   <h2>SHM as the shadow of circular motion</h2>
 
+  <p class="idea"><b>The idea</b>Shine a light sideways at a ball going steadily round a circle and watch the
+    shadow it throws on the wall. The shadow slides back and forth, dawdling at the two edges and racing
+    through the middle — and it moves in exactly the same way as a bobbing spring or a swinging pendulum. That
+    is not a loose comparison but a precise match, and it lets you settle awkward timing questions by thinking
+    about a turning wheel instead of doing any algebra.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -913,16 +1064,21 @@
       <span class="fx__eq">x = A cos θ,  θ = ωt + φ</span>
       <span class="fx__tag">projection of uniform circular motion of radius A</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">speed on the circle = ωA  ⟹  v_x = -ωA sin θ</span><span class="fx__tag">tangential velocity, projected</span></div>
-      <div class="fx"><span class="fx__eq">a_c = ω²A  ⟹  a_x = -ω²A cos θ = -ω²x</span><span class="fx__tag">centripetal acceleration, projected</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>A</b><span>circle radius = SHM amplitude (m)</span></div>
-      <div><b>θ</b><span>phase angle (rad)</span></div>
-      <div><b>ω</b><span>angular speed of the reference point (rad·s⁻¹)</span></div>
-      <div><b>a_c</b><span>centripetal acceleration (m·s⁻²)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">speed on the circle = ωA  ⟹  v_x = -ωA sin θ</span><span class="fx__tag">tangential velocity, projected</span></div>
+          <div class="fx"><span class="fx__eq">a_c = ω²A  ⟹  a_x = -ω²A cos θ = -ω²x</span><span class="fx__tag">centripetal acceleration, projected</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>A</b><span>circle radius = SHM amplitude (m)</span></div>
+          <div><b>θ</b><span>phase angle (rad)</span></div>
+          <div><b>ω</b><span>angular speed of the reference point (rad·s⁻¹)</span></div>
+          <div><b>a_c</b><span>centripetal acceleration (m·s⁻²)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Take a point going round a circle of radius A at constant angular speed ω and shine a light from the side.
@@ -1013,35 +1169,49 @@
   <span class="section__num">§ 10</span>
   <h2>Damping: the three regimes</h2>
 
+  <p class="idea"><b>The idea</b>Real oscillators rub, push air and stir fluid, so they lose energy and die
+    away instead of going on for ever. How much resistance there is changes the character of the motion
+    completely: a little, and the thing wobbles for a while before settling; a lot, and it never wobbles at
+    all but sags slowly back into place. Between those two lies a sweet spot that arrives back at rest as
+    quickly as possible without ever going past it — exactly what you want from a measuring needle, a car
+    suspension or a door closer.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Damping</dt>
       <dd>A resistive force proportional to velocity that continuously removes mechanical energy from the
           oscillator.</dd>
-      <dt>Damping ratio ζ</dt>
-      <dd>The damping constant expressed as a fraction of the value that just prevents oscillation.</dd>
-      <dt>Critical damping</dt>
-      <dd>The smallest amount of damping for which the system returns to equilibrium without overshooting it.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">m(d²x/dt²) + b(dx/dt) + kx = 0</span>
       <span class="fx__tag">linear damping, no driving force</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">x(t) = A₀ e^(-bt/2m) cos(ω_d t + φ)</span><span class="fx__tag">underdamped only</span></div>
-      <div class="fx"><span class="fx__eq">ω_d = √(ω₀² - b²/4m²) &lt; ω₀</span><span class="fx__tag">damping always slows the oscillation</span></div>
-      <div class="fx"><span class="fx__eq">b_c = 2√(mk) = 2mω₀,  ζ = b/b_c</span><span class="fx__tag">critical damping constant</span></div>
-      <div class="fx"><span class="fx__eq">E(t) = E₀ e^(-bt/m)</span><span class="fx__tag">energy decays twice as fast as amplitude</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>b</b><span>damping constant (N·s·m⁻¹ = kg·s⁻¹)</span></div>
-      <div><b>ω₀</b><span>undamped natural angular frequency, √(k/m) (rad·s⁻¹)</span></div>
-      <div><b>ω_d</b><span>damped angular frequency (rad·s⁻¹)</span></div>
-      <div><b>ζ</b><span>damping ratio (dimensionless)</span></div>
-      <div><b>A₀</b><span>initial amplitude (m)</span></div>
-      <div><b>E₀</b><span>initial energy (J)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Damping ratio ζ</dt>
+          <dd>The damping constant expressed as a fraction of the value that just prevents oscillation.</dd>
+          <dt>Critical damping</dt>
+          <dd>The smallest amount of damping for which the system returns to equilibrium without overshooting it.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">x(t) = A₀ e^(-bt/2m) cos(ω_d t + φ)</span><span class="fx__tag">underdamped only</span></div>
+          <div class="fx"><span class="fx__eq">ω_d = <span class="msq" role="img" aria-label="square root of omega zero squared minus b squared over 4 m squared"><span>ω₀² - <span class="mf" role="img" aria-label="b squared over 4 m squared"><span>b²</span><span>4m²</span></span></span></span> &lt; ω₀</span><span class="fx__tag">damping always slows the oscillation</span></div>
+          <div class="fx"><span class="fx__eq">b_c = 2√(mk) = 2mω₀,  ζ = b/b_c</span><span class="fx__tag">critical damping constant</span></div>
+          <div class="fx"><span class="fx__eq">E(t) = E₀ e^(-bt/m)</span><span class="fx__tag">energy decays twice as fast as amplitude</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>b</b><span>damping constant (N·s·m⁻¹ = kg·s⁻¹)</span></div>
+          <div><b>ω₀</b><span>undamped natural angular frequency, √(k/m) (rad·s⁻¹)</span></div>
+          <div><b>ω_d</b><span>damped angular frequency (rad·s⁻¹)</span></div>
+          <div><b>ζ</b><span>damping ratio (dimensionless)</span></div>
+          <div><b>A₀</b><span>initial amplitude (m)</span></div>
+          <div><b>E₀</b><span>initial energy (J)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>A drag force <span class="fi">-bv</span> is the simplest thing that can remove energy without changing
@@ -1106,6 +1276,9 @@
     </table>
   </div>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · why a galvanometer or balance pointer wants exactly critical damping</summary>
+    <div class="disc__body">
   <h3>Why an instrument wants exactly critical damping</h3>
   <p>Consider a moving-coil galvanometer, or the pointer of an analytical balance. You want the needle to go to
      its reading and <strong>stop</strong>, as fast as possible, so the operator can take the value and move on.
@@ -1116,6 +1289,8 @@
      soonest without ever passing it — which is why galvanometers are built with a specific coil resistance and
      why "critical damping resistance" appears on their specification sheets. The same argument settles car
      shock absorbers, self-closing doors, and the levelling of a lift.</p>
+    </div>
+  </details>
 
   <div class="mnemo">
     <h4>The clinical version: the arterial line</h4>
@@ -1146,37 +1321,51 @@
   <span class="section__num">§ 11</span>
   <h2>Driving, resonance and Q</h2>
 
+  <p class="idea"><b>The idea</b>Stop leaving the oscillator alone and start pushing it rhythmically, and it
+    ends up moving at whatever rhythm you impose — not at the one it would have chosen. What its own preferred
+    rhythm decides is how <em>big</em> the response is. Push at the rate the thing already likes and tiny
+    repeated shoves pile up into an enormous motion, which is how a child on a swing gets high on almost no
+    effort. This section is about how tall and how narrow that sweet spot is, and about the single number that
+    describes both.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Driven (forced) oscillation</dt>
       <dd>Oscillation sustained by an external periodic force; in the steady state the system oscillates at
           the <em>driving</em> frequency, not its own.</dd>
-      <dt>Resonance</dt>
-      <dd>The large response that occurs when the driving frequency is close to the system's natural
-          frequency.</dd>
-      <dt>Quality factor Q</dt>
-      <dd>A dimensionless measure of how lightly damped an oscillator is: how many radians of oscillation it
-          takes to lose its energy, and equivalently how sharp its resonance is.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">A(ω) = (F₀/m) / √((ω₀² - ω²)² + (bω/m)²)</span>
+      <span class="fx__eq">A(ω) = <span class="mf" role="img" aria-label="F sub zero over m, all over the square root of, open bracket omega zero squared minus omega squared close bracket squared, plus open bracket b omega over m close bracket squared"><span><span class="mf" role="img" aria-label="F sub zero over m"><span>F₀</span><span>m</span></span></span><span><span class="msq" role="img" aria-label="square root of, open bracket omega zero squared minus omega squared close bracket squared, plus open bracket b omega over m close bracket squared"><span>(ω₀² - ω²)² + (<span class="mf" role="img" aria-label="b omega over m"><span>bω</span><span>m</span></span>)²</span></span></span></span></span>
       <span class="fx__tag">steady-state amplitude of a driven damped oscillator</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">ω_r = √(ω₀² - b²/2m²) &lt; ω₀</span><span class="fx__tag">where the amplitude peaks</span></div>
-      <div class="fx"><span class="fx__eq">Q = ω₀m/b = ω₀/Δω = f₀/Δf</span><span class="fx__tag">Δω = full width at half power</span></div>
-      <div class="fx"><span class="fx__eq">A(ω₀) = Q·F₀/k</span><span class="fx__tag">Q times the static deflection</span></div>
-      <div class="fx"><span class="fx__eq">|ΔE|/E per cycle = 2π/Q</span><span class="fx__tag">fractional energy lost per cycle</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>F₀</b><span>amplitude of the driving force (N)</span></div>
-      <div><b>ω</b><span>driving angular frequency (rad·s⁻¹)</span></div>
-      <div><b>ω₀</b><span>natural angular frequency (rad·s⁻¹)</span></div>
-      <div><b>ω_r</b><span>amplitude-resonance frequency (rad·s⁻¹)</span></div>
-      <div><b>Q</b><span>quality factor (dimensionless)</span></div>
-      <div><b>Δω, Δf</b><span>resonance width, FWHM (rad·s⁻¹, Hz)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Resonance</dt>
+          <dd>The large response that occurs when the driving frequency is close to the system's natural
+              frequency.</dd>
+          <dt>Quality factor Q</dt>
+          <dd>A dimensionless measure of how lightly damped an oscillator is: how many radians of oscillation it
+              takes to lose its energy, and equivalently how sharp its resonance is.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">ω_r = <span class="msq" role="img" aria-label="square root of omega zero squared minus b squared over 2 m squared"><span>ω₀² - <span class="mf" role="img" aria-label="b squared over 2 m squared"><span>b²</span><span>2m²</span></span></span></span> &lt; ω₀</span><span class="fx__tag">where the amplitude peaks</span></div>
+          <div class="fx"><span class="fx__eq">Q = <span class="mf" role="img" aria-label="omega zero m over b"><span>ω₀m</span><span>b</span></span> = <span class="mf" role="img" aria-label="omega zero over delta omega"><span>ω₀</span><span>Δω</span></span> = <span class="mf" role="img" aria-label="f sub zero over delta f"><span>f₀</span><span>Δf</span></span></span><span class="fx__tag">Δω = full width at half power</span></div>
+          <div class="fx"><span class="fx__eq">A(ω₀) = Q·F₀/k</span><span class="fx__tag">Q times the static deflection</span></div>
+          <div class="fx"><span class="fx__eq"><span class="mf" role="img" aria-label="modulus of delta E, over E"><span>|ΔE|</span><span>E</span></span> per cycle = <span class="mf" role="img" aria-label="2 pi over Q"><span>2π</span><span>Q</span></span></span><span class="fx__tag">fractional energy lost per cycle</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>F₀</b><span>amplitude of the driving force (N)</span></div>
+          <div><b>ω</b><span>driving angular frequency (rad·s⁻¹)</span></div>
+          <div><b>ω₀</b><span>natural angular frequency (rad·s⁻¹)</span></div>
+          <div><b>ω_r</b><span>amplitude-resonance frequency (rad·s⁻¹)</span></div>
+          <div><b>Q</b><span>quality factor (dimensionless)</span></div>
+          <div><b>Δω, Δf</b><span>resonance width, FWHM (rad·s⁻¹, Hz)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Start a driven oscillator and two things happen at once: a transient at the system's own damped frequency,
@@ -1237,8 +1426,9 @@
      amplitude falls to 1/e after about Q/π cycles). They are the same number because they all measure the same
      thing: how many oscillations the system gets through before the damping has taken its energy.</p>
 
-  <div class="wex">
-    <h4>Worked example 7 — Q from a decay, and the bandwidth it implies</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 7 — Q from a decay, and the bandwidth it implies</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">A tuning fork sounds at 440 Hz. After it is struck, its
        amplitude falls to 1/e of its initial value in 2.0 s. Find Q, the number of oscillations in that time,
        the fractional energy lost per cycle, and the width of its resonance.</p>
@@ -1254,8 +1444,12 @@
           a driver even one hertz off tune — the physical basis of using one as a frequency standard.</li>
     </ol>
     <span class="wex__ans">Q ≈ 2.8 × 10³ · 880 cycles · 0.23 % of E lost per cycle · Δf ≈ 0.16 Hz</span>
-  </div>
+    </div>
+  </details>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · Q across real systems, from a car suspension to an MRI scanner</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <thead>
@@ -1279,6 +1473,8 @@
      backing layer is bonded on to lower Q on purpose. Short pulse, broad bandwidth, sharp axial resolution.
      Sensitivity and resolution trade against each other through Q, and that trade-off is entirely this
      section's physics.</p>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Where exactly is the peak?</p>
@@ -1307,6 +1503,12 @@
 <section class="section" id="quiz">
   <span class="section__num">§ 12</span>
   <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>Answering is part of the reading, not a test tacked on at the end. Hauling an
+    answer out of your own head — even a wrong one — leaves a far deeper groove than reading the same paragraph
+    a third time. The tempting wrong options below are built out of the slips people genuinely make, so being
+    caught by one of them teaches you more than sailing through.</p>
+
   <p>Four options each, mixed difficulty. When you get one wrong, do not memorise the letter — go back to the
      section it came from and re-derive the answer, because these questions are variations on the same handful
      of ideas and the exam will vary them again.</p>

@@ -16,6 +16,10 @@
     <nav>
       <a href="physics.html">Physics</a>
       <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -58,8 +62,27 @@
     </ol>
   </nav>
 
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — §01 and §03: a wave moves energy and timing, never the stuff it
+          travels through; and the medium fixes the speed while the source fixes the frequency, so the
+          wavelength is left to do as it is told. Almost everything later is those two sentences under
+          a new constraint.</li>
+      <li><b>Then be able to do</b> — read every quantity off a wave function (§02); get a speed from
+          tension and density (§04); use intensity and the inverse-square law (§05); find the
+          harmonics of a string and of the two kinds of pipe (§07–§08); do decibel arithmetic (§09);
+          apply the Doppler formula and get the signs right (§10).</li>
+      <li><b>Leave for a second pass</b> — the interference conditions when the sources are wired out
+          of phase (§06), the sonic boom (§10), and the whole of medical ultrasound (§11). §11 is the
+          payoff rather than the foundation: it reads much better once §03, §05 and §10 are solid.</li>
+    </ol>
+  </div>
+
   <section class="fsheet card">
-    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <details class="disc disc--sheet">
+      <summary>Formula sheet<span class="disc__count">32 formulas</span></summary>
+      <div class="disc__body">
     <div class="fsheet__grid">
       <div class="fsheet__item"><b>Wave relation</b><code>v = f λ = λ / T</code></div>
       <div class="fsheet__item"><b>Wave number</b><code>k = 2π / λ</code></div>
@@ -80,9 +103,9 @@
       <div class="fsheet__item"><b>Constructive</b><code>Δr = n λ</code></div>
       <div class="fsheet__item"><b>Destructive</b><code>Δr = (n + ½) λ</code></div>
       <div class="fsheet__item"><b>Phase from path</b><code>Δφ = 2π Δr / λ</code></div>
-      <div class="fsheet__item"><b>String harmonics</b><code>f<sub>n</sub> = n v / 2L, n = 1,2,3…</code></div>
-      <div class="fsheet__item"><b>Open-open pipe</b><code>f<sub>n</sub> = n v / 2L, n = 1,2,3…</code></div>
-      <div class="fsheet__item"><b>Open-closed pipe</b><code>f<sub>n</sub> = n v / 4L, n = 1,3,5…</code></div>
+      <div class="fsheet__item"><b>String harmonics</b><code>f<sub>n</sub> = n v / (2L), n = 1,2,3…</code></div>
+      <div class="fsheet__item"><b>Open-open pipe</b><code>f<sub>n</sub> = n v / (2L), n = 1,2,3…</code></div>
+      <div class="fsheet__item"><b>Open-closed pipe</b><code>f<sub>n</sub> = n v / (4L), n = 1,3,5…</code></div>
       <div class="fsheet__item"><b>Node spacing</b><code>Δx = λ / 2</code></div>
       <div class="fsheet__item"><b>Sound level</b><code>β = 10 log₁₀(I / I₀)</code></div>
       <div class="fsheet__item"><b>Reference intensity</b><code>I₀ = 1.0×10⁻¹² W·m⁻²</code></div>
@@ -94,6 +117,8 @@
       <div class="fsheet__item"><b>Echo depth</b><code>d = c t / 2</code></div>
       <div class="fsheet__item"><b>Doppler echo shift</b><code>Δf = 2 f₀ v cos θ / c</code></div>
     </div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -102,33 +127,47 @@
   <span class="section__num">§ 01</span>
   <h2>What a wave is, and what actually travels</h2>
 
+  <p class="idea"><b>The idea</b>Drop a pebble into a pond and something is obviously moving outwards.
+    It is not the water. Every part of the pond simply bobs about the spot it already occupied and
+    nudges its neighbour into doing the same a moment later, so what actually crosses the pond is the
+    bobbing itself — a disturbance, and the energy needed to keep it going. Once you accept that the
+    stuff stays put, the only real question left is which way each bit of it moves: sideways to the
+    direction the disturbance is heading, or back and forth along it.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Mechanical wave</dt>
       <dd>A self-propagating disturbance of a medium that carries energy and momentum through the
         medium while each piece of the medium only oscillates about its own equilibrium position.</dd>
-      <dt>Transverse wave</dt>
-      <dd>A wave in which the displacement of the medium is perpendicular to the direction the wave
-        travels.</dd>
-      <dt>Longitudinal wave</dt>
-      <dd>A wave in which the displacement of the medium is parallel to the direction the wave
-        travels — a moving pattern of compressions and rarefactions.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">y(x, t) = f(x − vt)</span>
       <span class="fx__tag">any shape that keeps its form and slides at speed v in +x</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">y(x, t) = f(x + vt)</span><span class="fx__tag">same shape travelling in −x</span></div>
-      <div class="fx"><span class="fx__eq">v = √(restoring stiffness / inertia)</span><span class="fx__tag">the shape of every mechanical wave-speed formula</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>y</b><span>displacement of the medium from equilibrium (m)</span></div>
-      <div><b>x</b><span>position along the direction of travel (m)</span></div>
-      <div><b>t</b><span>time (s)</span></div>
-      <div><b>v</b><span>wave (phase) speed — speed of the pattern, not of the matter (m·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Transverse wave</dt>
+          <dd>A wave in which the displacement of the medium is perpendicular to the direction the wave
+            travels.</dd>
+          <dt>Longitudinal wave</dt>
+          <dd>A wave in which the displacement of the medium is parallel to the direction the wave
+            travels — a moving pattern of compressions and rarefactions.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">y(x, t) = f(x + vt)</span><span class="fx__tag">same shape travelling in −x</span></div>
+          <div class="fx"><span class="fx__eq">v = <span class="msq" role="img" aria-label="square root of restoring stiffness over inertia"><span><span class="mf" role="img" aria-label="restoring stiffness over inertia"><span>restoring stiffness</span><span>inertia</span></span></span></span></span><span class="fx__tag">the shape of every mechanical wave-speed formula</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>y</b><span>displacement of the medium from equilibrium (m)</span></div>
+          <div><b>x</b><span>position along the direction of travel (m)</span></div>
+          <div><b>t</b><span>time (s)</span></div>
+          <div><b>v</b><span>wave (phase) speed — speed of the pattern, not of the matter (m·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -264,37 +303,51 @@
   <span class="section__num">§ 02</span>
   <h2>The vocabulary and the travelling-wave function</h2>
 
+  <p class="idea"><b>The idea</b>A repeating wave is the same shape happening over and over, so there
+    are only two ways to measure it: how far apart the repeats are laid out in space, and how long
+    apart they arrive in time. This section names those two repeats, plus the size of the swing, and
+    then packs all three into a single expression that tells you where the medium is at any place and
+    any moment. Keep one distinction alive while you read it: the pattern sweeps along fast, while
+    any one speck of the medium only shuffles slowly to and fro on the spot.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Amplitude A</dt>
       <dd>The maximum displacement from equilibrium — a <em>half</em>-swing, not a peak-to-peak
         distance.</dd>
-      <dt>Wavelength λ / period T</dt>
-      <dd>The repeat distance of the wave in space, and its repeat interval in time.</dd>
-      <dt>Wave number k / angular frequency ω</dt>
-      <dd>The same two repeats expressed as radians of phase: radians per metre and radians per second.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">y(x, t) = A sin(kx − ωt + φ)</span>
       <span class="fx__tag">sinusoidal wave travelling in +x</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">k = 2π / λ &nbsp;·&nbsp; ω = 2πf = 2π / T</span><span class="fx__tag">definitions</span></div>
-      <div class="fx"><span class="fx__eq">v = ω / k = f λ</span><span class="fx__tag">phase speed of the pattern</span></div>
-      <div class="fx"><span class="fx__eq">v<sub>y</sub> = −Aω cos(kx − ωt + φ) &nbsp;→&nbsp; v<sub>y,max</sub> = ωA</span><span class="fx__tag">speed of one particle of the medium</span></div>
-      <div class="fx"><span class="fx__eq">a<sub>y,max</sub> = ω²A</span><span class="fx__tag">each particle is a simple harmonic oscillator</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>A</b><span>amplitude (m)</span></div>
-      <div><b>λ</b><span>wavelength (m)</span></div>
-      <div><b>T</b><span>period (s)</span></div>
-      <div><b>f</b><span>frequency (Hz = s⁻¹)</span></div>
-      <div><b>k</b><span>wave number (rad·m⁻¹)</span></div>
-      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
-      <div><b>φ</b><span>phase constant, sets the shape at t = 0 (rad)</span></div>
-      <div><b>v<sub>y</sub></b><span>transverse velocity of a point of the medium (m·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Wavelength λ / period T</dt>
+          <dd>The repeat distance of the wave in space, and its repeat interval in time.</dd>
+          <dt>Wave number k / angular frequency ω</dt>
+          <dd>The same two repeats expressed as radians of phase: radians per metre and radians per second.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">k = <span class="mf" role="img" aria-label="two pi over lambda"><span>2π</span><span>λ</span></span> &nbsp;·&nbsp; ω = 2πf = <span class="mf" role="img" aria-label="two pi over the period T"><span>2π</span><span>T</span></span></span><span class="fx__tag">definitions</span></div>
+          <div class="fx"><span class="fx__eq">v = ω / k = f λ</span><span class="fx__tag">phase speed of the pattern</span></div>
+          <div class="fx"><span class="fx__eq">v<sub>y</sub> = −Aω cos(kx − ωt + φ) &nbsp;→&nbsp; v<sub>y,max</sub> = ωA</span><span class="fx__tag">speed of one particle of the medium</span></div>
+          <div class="fx"><span class="fx__eq">a<sub>y,max</sub> = ω²A</span><span class="fx__tag">each particle is a simple harmonic oscillator</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>A</b><span>amplitude (m)</span></div>
+          <div><b>λ</b><span>wavelength (m)</span></div>
+          <div><b>T</b><span>period (s)</span></div>
+          <div><b>f</b><span>frequency (Hz = s⁻¹)</span></div>
+          <div><b>k</b><span>wave number (rad·m⁻¹)</span></div>
+          <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+          <div><b>φ</b><span>phase constant, sets the shape at t = 0 (rad)</span></div>
+          <div><b>v<sub>y</sub></b><span>transverse velocity of a point of the medium (m·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -331,8 +384,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 1 · reading everything off a wave function</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 1 · reading everything off a wave function</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">A transverse wave on a long cord is
       <span class="fi">y(x, t) = 0.020 sin(6.0x − 300t)</span>, with x and y in metres, t in seconds.
       Find A, λ, f, T, the wave speed and direction, and the maximum transverse speed of a point on
@@ -348,13 +402,23 @@
         than the wave speed. (a<sub>y,max</sub> = ω²A = 9.0×10⁴ × 0.020 = 1.8×10³ m·s⁻².)</li>
     </ol>
     <span class="wex__ans">A = 2.0 cm · λ = 1.05 m · f = 47.7 Hz · v = 50 m·s⁻¹ (+x) · v<sub>y,max</sub> = 6.0 m·s⁻¹</span>
-  </div>
+  
+    </div>
+  </details>
 </section>
 
 <!-- =========================== 3 =========================== -->
 <section class="section" id="s3">
   <span class="section__num">§ 03</span>
   <h2>v = fλ: who sets what</h2>
+
+  <p class="idea"><b>The idea</b>Three numbers describe any repeating wave — how fast it goes, how
+    often it repeats, and how long one repeat is — but they are not equal partners. Whatever the wave
+    is travelling through decides the speed, and the wave gets no say in it. Whatever is doing the
+    shaking decides how often, and nothing further down the line can change that count. The length of
+    one repeat is then simply whatever those two leave over. Getting that pecking order straight is
+    the single most useful thing on this page: strings, pipes, echoes and scanners all follow from
+    it.</p>
 
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
@@ -368,17 +432,22 @@
       <span class="fx__eq">v = f λ = λ / T</span>
       <span class="fx__tag">all waves, all media, no conditions</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">v = v(medium)</span><span class="fx__tag">stiffness and inertia only</span></div>
-      <div class="fx"><span class="fx__eq">f = f(source)</span><span class="fx__tag">conserved across a boundary</span></div>
-      <div class="fx"><span class="fx__eq">λ = v / f</span><span class="fx__tag">the dependent variable — it obeys the other two</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>v</b><span>wave speed (m·s⁻¹)</span></div>
-      <div><b>f</b><span>frequency (Hz)</span></div>
-      <div><b>λ</b><span>wavelength (m)</span></div>
-      <div><b>T</b><span>period (s)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Related formulas, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">v = v(medium)</span><span class="fx__tag">stiffness and inertia only</span></div>
+          <div class="fx"><span class="fx__eq">f = f(source)</span><span class="fx__tag">conserved across a boundary</span></div>
+          <div class="fx"><span class="fx__eq">λ = v / f</span><span class="fx__tag">the dependent variable — it obeys the other two</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>v</b><span>wave speed (m·s⁻¹)</span></div>
+          <div><b>f</b><span>frequency (Hz)</span></div>
+          <div><b>λ</b><span>wavelength (m)</span></div>
+          <div><b>T</b><span>period (s)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -418,8 +487,9 @@
       told.</p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 2 · one ultrasound pulse, three wavelengths</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 2 · one ultrasound pulse, three wavelengths</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">A transducer emits a 2.5 MHz pulse. Speeds: fat 1450 m·s⁻¹, average
       soft tissue 1540 m·s⁻¹, cortical bone 4080 m·s⁻¹. Find the wavelength in each, and state the
       frequency in bone.</p>
@@ -432,7 +502,9 @@
         change it.</li>
     </ol>
     <span class="wex__ans">λ = 0.580 / 0.616 / 1.63 mm · f = 2.5 MHz everywhere</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · "the wave slows down, so the pitch drops"</p>
@@ -449,6 +521,14 @@
   <span class="section__num">§ 04</span>
   <h2>Wave speed comes from the medium</h2>
 
+  <p class="idea"><b>The idea</b>Every speed formula in this section is one idea wearing different
+    clothes: a disturbance travels quickly through something springy and slowly through something
+    heavy. Tighten a guitar string and a flick races along it; hang weight on the string and the same
+    flick crawls. That is also why the surprising cases are surprising — steel is thousands of times
+    heavier than air, yet sound goes fifteen times faster in it, because steel is springier by far
+    more than it is heavier. Heaviness only decides the contest between materials of similar
+    springiness.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -457,26 +537,31 @@
         restoring stiffness divided by an inertia. Stiffer returns faster; heavier responds slower.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">v = √(F<sub>T</sub> / μ)</span>
+      <span class="fx__eq">v = <span class="msq" role="img" aria-label="square root of the tension F sub T over mu"><span><span class="mf" role="img" aria-label="tension F sub T over mu"><span>F<sub>T</sub></span><span>μ</span></span></span></span></span>
       <span class="fx__tag">small-amplitude transverse wave on a uniform, perfectly flexible string</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">v = √(B / ρ)</span><span class="fx__tag">longitudinal wave in a fluid (gas or liquid)</span></div>
-      <div class="fx"><span class="fx__eq">v = √(Y / ρ)</span><span class="fx__tag">longitudinal wave along a thin solid rod</span></div>
-      <div class="fx"><span class="fx__eq">v = √(γRT / M)</span><span class="fx__tag">ideal gas; T is absolute temperature</span></div>
-      <div class="fx"><span class="fx__eq">μ = m / L</span><span class="fx__tag">linear mass density of the string</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>F<sub>T</sub></b><span>tension in the string (N)</span></div>
-      <div><b>μ</b><span>linear mass density, mass per unit length (kg·m⁻¹)</span></div>
-      <div><b>B</b><span>bulk modulus, resistance to compression (Pa)</span></div>
-      <div><b>Y</b><span>Young's modulus (Pa)</span></div>
-      <div><b>ρ</b><span>density (kg·m⁻³)</span></div>
-      <div><b>γ</b><span>adiabatic index (1.40 for air, 1.67 for a monatomic gas) — dimensionless</span></div>
-      <div><b>R</b><span>gas constant, 8.31 J·mol⁻¹·K⁻¹</span></div>
-      <div><b>M</b><span>molar mass (kg·mol⁻¹)</span></div>
-      <div><b>T</b><span>absolute temperature (K)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Related formulas, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">v = <span class="msq" role="img" aria-label="square root of B over rho"><span><span class="mf" role="img" aria-label="B over rho"><span>B</span><span>ρ</span></span></span></span></span><span class="fx__tag">longitudinal wave in a fluid (gas or liquid)</span></div>
+          <div class="fx"><span class="fx__eq">v = <span class="msq" role="img" aria-label="square root of Y over rho"><span><span class="mf" role="img" aria-label="Y over rho"><span>Y</span><span>ρ</span></span></span></span></span><span class="fx__tag">longitudinal wave along a thin solid rod</span></div>
+          <div class="fx"><span class="fx__eq">v = <span class="msq" role="img" aria-label="square root of gamma R T over M"><span><span class="mf" role="img" aria-label="gamma R T over M"><span>γRT</span><span>M</span></span></span></span></span><span class="fx__tag">ideal gas; T is absolute temperature</span></div>
+          <div class="fx"><span class="fx__eq">μ = m / L</span><span class="fx__tag">linear mass density of the string</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>F<sub>T</sub></b><span>tension in the string (N)</span></div>
+          <div><b>μ</b><span>linear mass density, mass per unit length (kg·m⁻¹)</span></div>
+          <div><b>B</b><span>bulk modulus, resistance to compression (Pa)</span></div>
+          <div><b>Y</b><span>Young's modulus (Pa)</span></div>
+          <div><b>ρ</b><span>density (kg·m⁻³)</span></div>
+          <div><b>γ</b><span>adiabatic index (1.40 for air, 1.67 for a monatomic gas) — dimensionless</span></div>
+          <div><b>R</b><span>gas constant, 8.31 J·mol⁻¹·K⁻¹</span></div>
+          <div><b>M</b><span>molar mass (kg·mol⁻¹)</span></div>
+          <div><b>T</b><span>absolute temperature (K)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <div class="callout callout--warn">
@@ -504,6 +589,9 @@
     materials of similar stiffness.
   </p>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · reference table: the speed of sound in twelve media, from lung to steel</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <thead>
@@ -525,6 +613,8 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · why helium changes your voice</p>
@@ -540,8 +630,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 3 · speed on a string, and how it scales</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 3 · speed on a string, and how it scales</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">A string of length 0.640 m and mass 1.60 g is stretched to a tension
       of 80.0 N. (a) Find μ and the wave speed. (b) What tension would double the speed?</p>
     <ol>
@@ -552,7 +643,9 @@
         = 357.8 m·s⁻¹ = 2 × 178.9 ✓</li>
     </ol>
     <span class="wex__ans">μ = 2.50×10⁻³ kg·m⁻¹ · v = 178.9 m·s⁻¹ · 320 N to double v</span>
-  </div>
+  
+    </div>
+  </details>
 </section>
 
 <!-- =========================== 5 =========================== -->
@@ -560,35 +653,49 @@
   <span class="section__num">§ 05</span>
   <h2>Energy, intensity and the inverse-square law</h2>
 
+  <p class="idea"><b>The idea</b>A wave carries energy, and what you actually notice — how loud, how
+    bright — is how much of that energy lands each second on each patch of whatever is receiving it.
+    Walk away from a small source and nothing has been lost or absorbed; the same energy per second
+    is just being shared out over an ever larger sphere, so each patch is handed a smaller share.
+    Two things make a wave carry more energy in the first place: bigger swings and faster swings, and
+    each of them counts twice over, so doubling the size of the swing delivers four times as much.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Intensity</dt>
       <dd>The wave power crossing unit area held perpendicular to the direction of travel — how much
         energy per second lands on each square metre.</dd>
-      <dt>Inverse-square law</dt>
-      <dd>For a point source radiating equally in all directions into a lossless medium, intensity
-        falls as 1/r² purely because the same power is spread over the growing surface of a sphere.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">I = P / (4πr²)</span>
+      <span class="fx__eq">I = <span class="mf" role="img" aria-label="P over four pi r squared"><span>P</span><span>4πr²</span></span></span>
       <span class="fx__tag">isotropic point source, no absorption</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">I₁ r₁² = I₂ r₂²</span><span class="fx__tag">ratio form — avoids ever needing P</span></div>
-      <div class="fx"><span class="fx__eq">I = 2π² ρ v f² A² ∝ A² f²</span><span class="fx__tag">sinusoidal wave; A is displacement amplitude</span></div>
-      <div class="fx"><span class="fx__eq">P = ½ μ v ω² A²</span><span class="fx__tag">average power of a <em>sinusoidal</em> wave on a string</span></div>
-      <div class="fx"><span class="fx__eq">A ∝ 1 / r</span><span class="fx__tag">amplitude of a spherical wave (since I ∝ A²)</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>I</b><span>intensity (W·m⁻²)</span></div>
-      <div><b>P</b><span>power radiated or transported (W)</span></div>
-      <div><b>r</b><span>distance from the source (m)</span></div>
-      <div><b>A</b><span>displacement amplitude (m)</span></div>
-      <div><b>ρ</b><span>density of the medium (kg·m⁻³)</span></div>
-      <div><b>μ</b><span>linear mass density of the string (kg·m⁻¹)</span></div>
-      <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Inverse-square law</dt>
+          <dd>For a point source radiating equally in all directions into a lossless medium, intensity
+            falls as 1/r² purely because the same power is spread over the growing surface of a sphere.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">I₁ r₁² = I₂ r₂²</span><span class="fx__tag">ratio form — avoids ever needing P</span></div>
+          <div class="fx"><span class="fx__eq">I = 2π² ρ v f² A² ∝ A² f²</span><span class="fx__tag">sinusoidal wave; A is displacement amplitude</span></div>
+          <div class="fx"><span class="fx__eq">P = ½ μ v ω² A²</span><span class="fx__tag">average power of a <em>sinusoidal</em> wave on a string</span></div>
+          <div class="fx"><span class="fx__eq">A ∝ 1 / r</span><span class="fx__tag">amplitude of a spherical wave (since I ∝ A²)</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>I</b><span>intensity (W·m⁻²)</span></div>
+          <div><b>P</b><span>power radiated or transported (W)</span></div>
+          <div><b>r</b><span>distance from the source (m)</span></div>
+          <div><b>A</b><span>displacement amplitude (m)</span></div>
+          <div><b>ρ</b><span>density of the medium (kg·m⁻³)</span></div>
+          <div><b>μ</b><span>linear mass density of the string (kg·m⁻¹)</span></div>
+          <div><b>ω</b><span>angular frequency (rad·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -608,8 +715,9 @@
     exponential loss on top.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 4 · a point source in open air</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 4 · a point source in open air</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">A small loudspeaker radiates 0.80 W of acoustic power uniformly in all
       directions. (a) What is the intensity 2.0 m away? (b) At what distance has the intensity fallen
       to 1.0×10⁻³ W·m⁻²?</p>
@@ -621,7 +729,9 @@
         intensity: 1.59×10⁻² / 16 = 9.9×10⁻⁴ W·m⁻² ✓</li>
     </ol>
     <span class="wex__ans">I(2.0 m) = 1.59×10⁻² W·m⁻² · r = 8.0 m for 1.0×10⁻³ W·m⁻²</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · four times the distance is not a quarter of the intensity</p>
@@ -638,32 +748,47 @@
   <span class="section__num">§ 06</span>
   <h2>Superposition and interference</h2>
 
+  <p class="idea"><b>The idea</b>When two waves reach the same spot at the same moment, the medium
+    just does both things at once and adds them together — and afterwards each wave carries on as if
+    nothing had happened, which is why two conversations can cross a room without turning to mush.
+    The interesting case is two sources shaking in step but sitting at different distances from you.
+    One wave then has further to travel, so it arrives a little behind the other, and everything
+    depends on how far behind: land crest on crest and the sound is loud, land crest on trough and
+    the two cancel and you hear almost nothing.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Superposition principle</dt>
       <dd>Where two waves overlap, the displacement of the medium is the algebraic sum of what each
         wave would produce alone; afterwards each wave continues unchanged.</dd>
-      <dt>Interference</dt>
-      <dd>The steady pattern of reinforcement and cancellation produced when waves of the same
-        frequency meet with a fixed phase relationship.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">y<sub>total</sub> = y₁ + y₂</span>
       <span class="fx__tag">valid while amplitudes are small enough for the medium to stay linear</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">Δφ = 2π Δr / λ</span><span class="fx__tag">phase difference produced by a path difference</span></div>
-      <div class="fx"><span class="fx__eq">Δr = n λ &nbsp;→&nbsp; constructive</span><span class="fx__tag">sources in phase; n = 0, 1, 2, …</span></div>
-      <div class="fx"><span class="fx__eq">Δr = (n + ½) λ &nbsp;→&nbsp; destructive</span><span class="fx__tag">sources in phase; n = 0, 1, 2, …</span></div>
-      <div class="fx"><span class="fx__eq">A<sub>max</sub> = A₁ + A₂ &nbsp;·&nbsp; A<sub>min</sub> = |A₁ − A₂|</span><span class="fx__tag">amplitudes add, intensities do not</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>Δr</b><span>path difference from the two sources to the point (m)</span></div>
-      <div><b>Δφ</b><span>phase difference at that point (rad)</span></div>
-      <div><b>n</b><span>an integer (dimensionless)</span></div>
-      <div><b>λ</b><span>wavelength in the medium (m)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Interference</dt>
+          <dd>The steady pattern of reinforcement and cancellation produced when waves of the same
+            frequency meet with a fixed phase relationship.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Δφ = <span class="mf" role="img" aria-label="two pi times delta r over lambda"><span>2π Δr</span><span>λ</span></span></span><span class="fx__tag">phase difference produced by a path difference</span></div>
+          <div class="fx"><span class="fx__eq">Δr = n λ &nbsp;→&nbsp; constructive</span><span class="fx__tag">sources in phase; n = 0, 1, 2, …</span></div>
+          <div class="fx"><span class="fx__eq">Δr = (n + ½) λ &nbsp;→&nbsp; destructive</span><span class="fx__tag">sources in phase; n = 0, 1, 2, …</span></div>
+          <div class="fx"><span class="fx__eq">A<sub>max</sub> = A₁ + A₂ &nbsp;·&nbsp; A<sub>min</sub> = |A₁ − A₂|</span><span class="fx__tag">amplitudes add, intensities do not</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Δr</b><span>path difference from the two sources to the point (m)</span></div>
+          <div><b>Δφ</b><span>phase difference at that point (rad)</span></div>
+          <div><b>n</b><span>an integer (dimensionless)</span></div>
+          <div><b>λ</b><span>wavelength in the medium (m)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -693,8 +818,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 5 · two loudspeakers</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 5 · two loudspeakers</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">Two speakers driven in phase from one amplifier emit a pure 686 Hz
       tone; v = 343 m·s⁻¹. A listener stands 4.00 m from one speaker and 5.25 m from the other.
       (a) What do they hear? (b) What is the lowest frequency that would instead give a maximum at
@@ -709,7 +835,9 @@
       <li>The lowest non-zero case is n = 1: <b>f = 274.4 Hz</b> (λ = 1.25 m).</li>
     </ol>
     <span class="wex__ans">Δr = 2.5λ → destructive · lowest constructive frequency = 274.4 Hz</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · intensities do not simply add</p>
@@ -729,6 +857,14 @@
   <span class="section__num">§ 07</span>
   <h2>Reflection and standing waves on a string</h2>
 
+  <p class="idea"><b>The idea</b>Tie a rope down at both ends, shake one end, and whatever you send
+    along it comes straight back at you. The returning wave then overlaps the one still going out,
+    and at most shaking rates the result is an incoherent mess. At a few special rates the two fit
+    together exactly and the rope settles into a pattern that no longer travels anywhere: certain
+    points sit perfectly still while the points between them swing as hard as they can. Those special
+    rates are the only notes the rope can hold, and they are set by its length, its tightness and its
+    weight — which is the entire physics of a guitar.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -736,28 +872,35 @@
       <dd>The interference pattern of two identical waves travelling in opposite directions: the
         pattern no longer moves, and every point oscillates in place with a fixed amplitude that
         depends on where it is.</dd>
-      <dt>Node / antinode</dt>
-      <dd>A node is a point that never moves; an antinode is a point that swings with maximum
-        amplitude. Adjacent nodes are λ/2 apart, and a node and its neighbouring antinode are λ/4
-        apart.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">f<sub>n</sub> = n v / (2L),&nbsp; n = 1, 2, 3, …</span>
+      <span class="fx__eq">f<sub>n</sub> = <span class="mf" role="img" aria-label="n times v over two L"><span>n v</span><span>2L</span></span>,&nbsp; n = 1, 2, 3, …</span>
       <span class="fx__tag">string fixed at both ends — all harmonics present</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">λ<sub>n</sub> = 2L / n</span><span class="fx__tag">an integer number of half-wavelengths must fit</span></div>
-      <div class="fx"><span class="fx__eq">f₁ = (1/2L) √(F<sub>T</sub>/μ)</span><span class="fx__tag">fundamental, combining §04 and §07</span></div>
-      <div class="fx"><span class="fx__eq">y = 2A sin(kx) cos(ωt)</span><span class="fx__tag">standing wave: space and time factorise</span></div>
-      <div class="fx"><span class="fx__eq">f<sub>n</sub> = n f₁</span><span class="fx__tag">harmonic series</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>n</b><span>harmonic number (dimensionless)</span></div>
-      <div><b>L</b><span>length of the vibrating segment (m)</span></div>
-      <div><b>v</b><span>wave speed on the string (m·s⁻¹)</span></div>
-      <div><b>f<sub>n</sub></b><span>frequency of the n-th harmonic (Hz)</span></div>
-      <div><b>λ<sub>n</sub></b><span>wavelength of the n-th harmonic (m)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Node / antinode</dt>
+          <dd>A node is a point that never moves; an antinode is a point that swings with maximum
+            amplitude. Adjacent nodes are λ/2 apart, and a node and its neighbouring antinode are λ/4
+            apart.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">λ<sub>n</sub> = <span class="mf" role="img" aria-label="two L over n"><span>2L</span><span>n</span></span></span><span class="fx__tag">an integer number of half-wavelengths must fit</span></div>
+          <div class="fx"><span class="fx__eq">f₁ = <span class="mf" role="img" aria-label="one over two L"><span>1</span><span>2L</span></span><span class="msq" role="img" aria-label="square root of the tension F sub T over mu"><span><span class="mf" role="img" aria-label="tension F sub T over mu"><span>F<sub>T</sub></span><span>μ</span></span></span></span></span><span class="fx__tag">fundamental, combining §04 and §07</span></div>
+          <div class="fx"><span class="fx__eq">y = 2A sin(kx) cos(ωt)</span><span class="fx__tag">standing wave: space and time factorise</span></div>
+          <div class="fx"><span class="fx__eq">f<sub>n</sub> = n f₁</span><span class="fx__tag">harmonic series</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>n</b><span>harmonic number (dimensionless)</span></div>
+          <div><b>L</b><span>length of the vibrating segment (m)</span></div>
+          <div><b>v</b><span>wave speed on the string (m·s⁻¹)</span></div>
+          <div><b>f<sub>n</sub></b><span>frequency of the n-th harmonic (Hz)</span></div>
+          <div><b>λ<sub>n</sub></b><span>wavelength of the n-th harmonic (m)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <h3>Reflection: the phase flip is the key</h3>
@@ -836,8 +979,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 6 · tuning the string of Worked example 3</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 6 · tuning the string of Worked example 3</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">The same string: L = 0.640 m, μ = 2.50×10⁻³ kg·m⁻¹,
       F<sub>T</sub> = 80.0 N, so v = 178.9 m·s⁻¹. (a) Find f₁ and f₃. (b) What tension raises the
       fundamental to 147.0 Hz?</p>
@@ -850,13 +994,22 @@
         f₁′ = 188.2 / 1.280 = 147.0 Hz ✓</li>
     </ol>
     <span class="wex__ans">f₁ = 139.8 Hz · f₃ = 419.3 Hz · tension needed = 88.5 N</span>
-  </div>
+  
+    </div>
+  </details>
 </section>
 
 <!-- =========================== 8 =========================== -->
 <section class="section" id="s8">
   <span class="section__num">§ 08</span>
   <h2>Air columns: open-open vs open-closed</h2>
+
+  <p class="idea"><b>The idea</b>A tube of air behaves exactly like the rope of the previous section:
+    only a few patterns fit inside it, and those few are the notes it will sound. What decides which
+    patterns fit is what the air is allowed to do at each end — free to slosh in and out where the
+    tube is open, held still where it is stopped by a wall. Cap one end of a tube and you change the
+    rules enough to drop its note by an octave and to silence half of the higher notes above it,
+    which is most of the difference between a flute and a clarinet.</p>
 
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
@@ -868,20 +1021,25 @@
         correction of about 0.6 × the tube radius.</dd>
     </dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">open-open: f<sub>n</sub> = n v / (2L),&nbsp; n = 1, 2, 3, …</span>
+      <span class="fx__eq">open-open: f<sub>n</sub> = <span class="mf" role="img" aria-label="n times v over two L"><span>n v</span><span>2L</span></span>,&nbsp; n = 1, 2, 3, …</span>
       <span class="fx__tag">both ends open — every harmonic</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">open-closed: f<sub>n</sub> = n v / (4L),&nbsp; n = 1, 3, 5, …</span><span class="fx__tag">one end closed — odd harmonics only</span></div>
-      <div class="fx"><span class="fx__eq">λ₁ = 2L (open-open) &nbsp;·&nbsp; λ₁ = 4L (open-closed)</span><span class="fx__tag">fundamental wavelengths</span></div>
-      <div class="fx"><span class="fx__eq">f₁(closed) = ½ f₁(open)</span><span class="fx__tag">same length → one octave lower</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>L</b><span>length of the air column (m)</span></div>
-      <div><b>v</b><span>speed of sound in the gas filling the tube (m·s⁻¹)</span></div>
-      <div><b>n</b><span>harmonic number — note the restricted set for a closed pipe (dimensionless)</span></div>
-      <div><b>f<sub>n</sub></b><span>resonant frequency (Hz)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Related formulas, symbols and units</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">open-closed: f<sub>n</sub> = <span class="mf" role="img" aria-label="n times v over four L"><span>n v</span><span>4L</span></span>,&nbsp; n = 1, 3, 5, …</span><span class="fx__tag">one end closed — odd harmonics only</span></div>
+          <div class="fx"><span class="fx__eq">λ₁ = 2L (open-open) &nbsp;·&nbsp; λ₁ = 4L (open-closed)</span><span class="fx__tag">fundamental wavelengths</span></div>
+          <div class="fx"><span class="fx__eq">f₁(closed) = ½ f₁(open)</span><span class="fx__tag">same length → one octave lower</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>L</b><span>length of the air column (m)</span></div>
+          <div><b>v</b><span>speed of sound in the gas filling the tube (m·s⁻¹)</span></div>
+          <div><b>n</b><span>harmonic number — note the restricted set for a closed pipe (dimensionless)</span></div>
+          <div><b>f<sub>n</sub></b><span>resonant frequency (Hz)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1007,8 +1165,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 7 · the same tube, two ways</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 7 · the same tube, two ways</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">A 0.250 m tube is filled with air at 20 °C (v = 343 m·s⁻¹).
       (a) List its three lowest resonances when one end is closed. (b) Repeat with both ends open.
       (c) You measure resonances at 343, 1029 and 1715 Hz — which configuration is it?</p>
@@ -1022,7 +1181,9 @@
         sounds exactly one octave <em>lower</em> than the open-open pipe of the same length.</li>
     </ol>
     <span class="wex__ans">closed: 343, 1029, 1715 Hz · open: 686, 1372, 2058 Hz · the data are open-closed</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · your ear canal is a stopped pipe</p>
@@ -1043,6 +1204,14 @@
   <span class="section__num">§ 09</span>
   <h2>Sound as a pressure wave; the decibel</h2>
 
+  <p class="idea"><b>The idea</b>There are two equally good ways to describe a sound: as air shuffling
+    back and forth, or as the squeeze at each point rising and falling. They are one and the same
+    wave seen from different angles, and the surprise is that they do not line up — the places where
+    the air moves most are the places where the squeeze changes least. The rest of the section deals
+    with a practical nuisance. The quietest sound you can hear and the loudest you can bear differ by
+    a factor of about a million million, so loudness is quoted on a squashed scale in which equal
+    steps up the scale mean equal <em>multiplications</em> of the energy arriving.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
@@ -1050,31 +1219,38 @@
       <dd>A longitudinal wave in a compressible medium, describable either as a displacement wave
         <span class="fi">s(x,t)</span> or as the pressure fluctuation <span class="fi">Δp(x,t)</span>
         about ambient — the two are 90° out of phase.</dd>
-      <dt>Sound intensity level β</dt>
-      <dd>A logarithmic measure of intensity relative to a fixed reference, expressed in decibels.
-        It is a <em>ratio</em>, so it has no physical dimensions.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">β = 10 log₁₀ (I / I₀),&nbsp; I₀ = 1.0×10⁻¹² W·m⁻²</span>
       <span class="fx__tag">I₀ = threshold of hearing at 1 kHz</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">β₂ − β₁ = 10 log₁₀ (I₂ / I₁)</span><span class="fx__tag">the form you should actually use</span></div>
-      <div class="fx"><span class="fx__eq">β<sub>N</sub> = β₁ + 10 log₁₀ N</span><span class="fx__tag">N identical <em>incoherent</em> sources</span></div>
-      <div class="fx"><span class="fx__eq">Δp<sub>max</sub> = ρ v ω s<sub>max</sub></span><span class="fx__tag">pressure amplitude from displacement amplitude</span></div>
-      <div class="fx"><span class="fx__eq">I = Δp<sub>max</sub>² / (2 ρ v)</span><span class="fx__tag">intensity from pressure amplitude</span></div>
-      <div class="fx"><span class="fx__eq">v ≈ 331 + 0.60 T<sub>C</sub> &nbsp;·&nbsp; v ∝ √T<sub>abs</sub></span><span class="fx__tag">air; linear form good to about ±30 °C</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>β</b><span>sound intensity level (dB — a ratio, dimensionless)</span></div>
-      <div><b>I</b><span>intensity (W·m⁻²)</span></div>
-      <div><b>I₀</b><span>reference intensity, 1.0×10⁻¹² W·m⁻²</span></div>
-      <div><b>Δp<sub>max</sub></b><span>pressure amplitude (Pa)</span></div>
-      <div><b>s<sub>max</sub></b><span>displacement amplitude of the air (m)</span></div>
-      <div><b>ρv</b><span>acoustic impedance of the medium (kg·m⁻²·s⁻¹, "rayl")</span></div>
-      <div><b>T<sub>C</sub></b><span>temperature in degrees Celsius (°C)</span></div>
-      <div><b>T<sub>abs</sub></b><span>absolute temperature (K)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Sound intensity level β</dt>
+          <dd>A logarithmic measure of intensity relative to a fixed reference, expressed in decibels.
+            It is a <em>ratio</em>, so it has no physical dimensions.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">β₂ − β₁ = 10 log₁₀ (I₂ / I₁)</span><span class="fx__tag">the form you should actually use</span></div>
+          <div class="fx"><span class="fx__eq">β<sub>N</sub> = β₁ + 10 log₁₀ N</span><span class="fx__tag">N identical <em>incoherent</em> sources</span></div>
+          <div class="fx"><span class="fx__eq">Δp<sub>max</sub> = ρ v ω s<sub>max</sub></span><span class="fx__tag">pressure amplitude from displacement amplitude</span></div>
+          <div class="fx"><span class="fx__eq">I = <span class="mf" role="img" aria-label="delta p max squared over two rho v"><span>Δp<sub>max</sub>²</span><span>2 ρ v</span></span></span><span class="fx__tag">intensity from pressure amplitude</span></div>
+          <div class="fx"><span class="fx__eq">v ≈ 331 + 0.60 T<sub>C</sub> &nbsp;·&nbsp; v ∝ √T<sub>abs</sub></span><span class="fx__tag">air; linear form good to about ±30 °C</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>β</b><span>sound intensity level (dB — a ratio, dimensionless)</span></div>
+          <div><b>I</b><span>intensity (W·m⁻²)</span></div>
+          <div><b>I₀</b><span>reference intensity, 1.0×10⁻¹² W·m⁻²</span></div>
+          <div><b>Δp<sub>max</sub></b><span>pressure amplitude (Pa)</span></div>
+          <div><b>s<sub>max</sub></b><span>displacement amplitude of the air (m)</span></div>
+          <div><b>ρv</b><span>acoustic impedance of the medium (kg·m⁻²·s⁻¹, "rayl")</span></div>
+          <div><b>T<sub>C</sub></b><span>temperature in degrees Celsius (°C)</span></div>
+          <div><b>T<sub>abs</sub></b><span>absolute temperature (K)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <h3>Displacement and pressure are the same wave, a quarter wavelength apart</h3>
@@ -1166,8 +1342,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 8 · from watts to decibels</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 8 · from watts to decibels</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">Use the 0.80 W point source of Worked example 4. (a) Find β at 2.0 m
       and at 8.0 m. (b) Four such sources are placed together, running independently. Find β at 2.0 m.</p>
     <ol>
@@ -1182,7 +1359,9 @@
         the power buys 6 dB — a little under twice the perceived loudness.</li>
     </ol>
     <span class="wex__ans">102.0 dB at 2.0 m · 90.0 dB at 8.0 m · 108.0 dB for four sources</span>
-  </div>
+  
+    </div>
+  </details>
 </section>
 
 <!-- =========================== 10 =========================== -->
@@ -1190,27 +1369,37 @@
   <span class="section__num">§ 10</span>
   <h2>Beats, Doppler and the sonic boom</h2>
 
+  <p class="idea"><b>The idea</b>Sound two notes that are almost, but not quite, the same and you do
+    not hear two pitches — you hear one that swells and fades, over and over. That throbbing is the
+    two waves taking turns to help and to cancel each other, and the nearer the notes are the slower
+    it goes, which is how a piano is tuned by ear. The rest of the section is about motion: if the
+    thing making the sound or the person hearing it is moving, the note that arrives is not the note
+    that was sent, because the journey crowds the arriving waves together or strings them out. Push
+    that crowding to its limit — travel faster than the sound itself — and there is nothing left to
+    crowd: everything the source has ever emitted piles up into a single wall of pressure.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Beats</dt>
+    <dl class="def"><dt>Beats</dt>
       <dd>The slow rise and fall in loudness heard when two waves of slightly different frequency
-        superpose at the same place. The beat frequency is the difference of the two frequencies.</dd>
-      <dt>Doppler effect</dt>
-      <dd>The change in <em>observed</em> frequency caused by motion of the source or the observer
-        relative to the medium. The source's emitted frequency never changes.</dd>
-    </dl>
+        superpose at the same place. The beat frequency is the difference of the two frequencies.</dd></dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">f′ = f · (v + v<sub>O</sub>) / (v − v<sub>S</sub>)</span>
+      <span class="fx__eq">f′ = f · <span class="mf" role="img" aria-label="v plus v sub O over v minus v sub S"><span>v + v<sub>O</sub></span><span>v − v<sub>S</sub></span></span></span>
       <span class="fx__tag">v<sub>O</sub>, v<sub>S</sub> counted positive <b>towards</b> the other party; still medium, motion along the line joining them, v<sub>S</sub> &lt; v</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Doppler effect</dt>
+      <dd>The change in <em>observed</em> frequency caused by motion of the source or the observer
+        relative to the medium. The source's emitted frequency never changes.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">f<sub>beat</sub> = |f₁ − f₂|</span><span class="fx__tag">two tones at one point; perceived pitch is the mean</span></div>
-      <div class="fx"><span class="fx__eq">λ′ = (v − v<sub>S</sub>) / f</span><span class="fx__tag">a moving source really does compress λ in the medium</span></div>
+      <div class="fx"><span class="fx__eq">λ′ = <span class="mf" role="img" aria-label="v minus v sub S over f"><span>v − v<sub>S</sub></span><span>f</span></span></span><span class="fx__tag">a moving source really does compress λ in the medium</span></div>
       <div class="fx"><span class="fx__eq">f′ ≈ f (1 ± u/v)</span><span class="fx__tag">low-speed limit; source and observer agree to first order</span></div>
       <div class="fx"><span class="fx__eq">sin θ = v / v<sub>S</sub></span><span class="fx__tag">Mach cone half-angle, valid only when v<sub>S</sub> &gt; v</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>f</b><span>frequency emitted by the source (Hz)</span></div>
       <div><b>f′</b><span>frequency received by the observer (Hz)</span></div>
       <div><b>v</b><span>speed of sound in the medium (m·s⁻¹)</span></div>
@@ -1218,6 +1407,8 @@
       <div><b>v<sub>S</sub></b><span>source's speed, <b>+</b> if moving towards the observer (m·s⁻¹)</span></div>
       <div><b>θ</b><span>half-angle of the shock cone (rad or °)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <h3>Beats</h3>
@@ -1247,7 +1438,7 @@
     fix the signs. Write
   </p>
   <div class="fx">
-    <span class="fx__eq">f′ = f (v + v<sub>O</sub>) / (v − v<sub>S</sub>)</span>
+    <span class="fx__eq">f′ = f <span class="mf" role="img" aria-label="v plus v sub O over v minus v sub S"><span>v + v<sub>O</sub></span><span>v − v<sub>S</sub></span></span></span>
     <span class="fx__tag">count both speeds positive when that party is closing the gap</span>
   </div>
   <p>
@@ -1340,8 +1531,9 @@
     </figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 9 · an ambulance, and why the two cases differ</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 9 · an ambulance, and why the two cases differ</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">A siren emits 800 Hz; v = 343 m·s⁻¹. (a) What does a stationary
       bystander hear as the ambulance approaches at 30.0 m·s⁻¹, and after it has passed? (b) Instead,
       the ambulance is parked and the bystander drives towards it at 30.0 m·s⁻¹. What now?</p>
@@ -1359,7 +1551,9 @@
         discrepancy is 0.8 %, of order (30/343)² = 0.76 % ✓</li>
     </ol>
     <span class="wex__ans">approach 876.7 Hz · recede 735.7 Hz · moving observer 870.0 Hz</span>
-  </div>
+  
+    </div>
+  </details>
 
   <h3>The sonic boom in one paragraph</h3>
   <p>
@@ -1379,29 +1573,40 @@
   <span class="section__num">§ 11</span>
   <h2>Medical ultrasound: what every formula on this page is for</h2>
 
+  <p class="idea"><b>The idea</b>A scanner does nothing more exotic than shout into the body and
+    listen. The sound goes in from the probe, travels until it reaches a boundary between two
+    different tissues, and part of it bounces back; the machine times how long each echo took to
+    return, and from that alone it knows how deep the boundary lies and how brightly to draw it.
+    Everything clinical then follows from a single tension: short, rapid pulses show the finest
+    detail but are swallowed up before they get far, so choosing a probe is really choosing how deep
+    you are willing to see. And because an echo from something that is moving comes back at a shifted
+    pitch, the same machine can measure flowing blood — but only the part of the flow heading
+    towards or away from the probe ever shows up at all.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Diagnostic ultrasound</dt>
+    <dl class="def"><dt>Diagnostic ultrasound</dt>
       <dd>Pulse-echo imaging with longitudinal sound above 20 kHz — clinically 2–15 MHz — in which
         depth is inferred from echo delay and brightness from the strength of reflection at
-        impedance boundaries.</dd>
-      <dt>Doppler ultrasound</dt>
-      <dd>Measurement of blood velocity from the frequency shift of sound scattered by moving red
-        cells. The shift is doubled because the cell acts first as a moving observer, then as a
-        moving source.</dd>
-    </dl>
+        impedance boundaries.</dd></dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">Δf = 2 f₀ v cos θ / c</span>
+      <span class="fx__eq">Δf = <span class="mf" role="img" aria-label="two f zero v cos theta over c"><span>2 f₀ v cos θ</span><span>c</span></span></span>
       <span class="fx__tag">Doppler shift from blood moving at v; requires v ≪ c</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">d = c t / 2</span><span class="fx__tag">depth from round-trip echo time; c assumed 1540 m·s⁻¹</span></div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Doppler ultrasound</dt>
+      <dd>Measurement of blood velocity from the frequency shift of sound scattered by moving red
+        cells. The shift is doubled because the cell acts first as a moving observer, then as a
+        moving source.</dd></dl>
+        <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">d = <span class="mf" role="img" aria-label="c t over two"><span>c t</span><span>2</span></span></span><span class="fx__tag">depth from round-trip echo time; c assumed 1540 m·s⁻¹</span></div>
       <div class="fx"><span class="fx__eq">λ = c / f₀</span><span class="fx__tag">axial resolution is a small multiple of λ</span></div>
       <div class="fx"><span class="fx__eq">Z = ρ c</span><span class="fx__tag">acoustic impedance; mismatch decides echo strength</span></div>
       <div class="fx"><span class="fx__eq">attenuation ≈ 0.5 dB · cm⁻¹ · MHz⁻¹</span><span class="fx__tag">soft tissue rule of thumb, per cm of travel</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>Δf</b><span>Doppler frequency shift (Hz)</span></div>
       <div><b>f₀</b><span>transmitted frequency (Hz)</span></div>
       <div><b>v</b><span>blood (scatterer) speed (m·s⁻¹)</span></div>
@@ -1411,6 +1616,8 @@
       <div><b>d</b><span>depth of the reflector (m)</span></div>
       <div><b>Z</b><span>acoustic impedance (kg·m⁻²·s⁻¹)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1482,8 +1689,9 @@
     </p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 10 · a carotid Doppler study</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 10 · a carotid Doppler study</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 0">A 5.0 MHz probe insonates the carotid at θ = 60° to the flow;
       c = 1540 m·s⁻¹. (a) Peak systolic blood speed is 0.50 m·s⁻¹ — find the Doppler shift.
       (b) An echo from a vessel wall returns 130 μs after transmission — how deep is it?
@@ -1498,7 +1706,9 @@
         about 0.6 mm long, so axial resolution is roughly <b>0.3 mm</b> — half the pulse length.</li>
     </ol>
     <span class="wex__ans">Δf = 1.6 kHz · depth = 10.0 cm · λ = 0.308 mm → ≈ 0.3 mm axial resolution</span>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="mnemo">
     <h4>The chapter in one line</h4>

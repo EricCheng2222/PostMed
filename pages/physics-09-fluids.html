@@ -16,6 +16,10 @@
     <nav>
       <a href="physics.html">Physics</a>
       <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -61,9 +65,27 @@
     </ol>
   </nav>
 
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — §01–§03: a fluid at rest presses on you according to how deep you are and
+          nothing else, and that push is the same in every direction. Add §05, which is the same fact applied
+          to an object's shape, and you already have the whole static half of the note.</li>
+      <li><b>Then be able to do</b> — the pressure-unit conversions in §02 (mmHg ↔ Pa is the one that is
+          actually examined), the depth calculations of §03–§04, the speed-through-a-narrowing calculation of
+          §06–§07, and above all the fourth-power flow calculation of §08. Those five are the arithmetic an
+          exam will ask for.</li>
+      <li><b>Leave for a second pass</b> — §09 (the Reynolds number), the capillarity half of §10, and §11
+          (settling and the ESR). Each is a self-contained application that lands much better once §07 and
+          §08 are secure; the surfactant story in §10 is worth reading early even if the rest of §10 waits.</li>
+    </ol>
+  </div>
+
   <!-- Page-top formula sheet -->
   <section class="fsheet card">
-    <p class="eyebrow" style="margin-bottom:.5rem">Formula sheet · everything on this page</p>
+    <details class="disc disc--sheet">
+      <summary>Formula sheet<span class="disc__count">30 formulas</span></summary>
+      <div class="disc__body">
     <div class="fsheet__grid">
       <div class="fsheet__item"><b>Density</b><code>ρ = m / V</code></div>
       <div class="fsheet__item"><b>Specific gravity</b><code>SG = ρ / ρ<sub>water</sub></code></div>
@@ -81,7 +103,7 @@
       <div class="fsheet__item"><b>Venturi</b><code>p₁ − p₂ = ½ρ(v₂² − v₁²)</code></div>
       <div class="fsheet__item"><b>Torricelli efflux</b><code>v = √(2gh)</code></div>
       <div class="fsheet__item"><b>Viscous shear stress</b><code>F/A = η (Δv/Δy)</code></div>
-      <div class="fsheet__item"><b>Laminar profile</b><code>v(r) = (Δp/4ηL)(R² − r²), v̄ = ½v<sub>max</sub></code></div>
+      <div class="fsheet__item"><b>Laminar profile</b><code>v(r) = (Δp/(4ηL))(R² − r²), v̄ = ½v<sub>max</sub></code></div>
       <div class="fsheet__item"><b>Pitot / stagnation</b><code>p<sub>stag</sub> − p<sub>stat</sub> = ½ρv²</code></div>
       <div class="fsheet__item"><b>Poiseuille's law</b><code>Q = πΔp r⁴ / (8ηL)</code></div>
       <div class="fsheet__item"><b>Flow resistance</b><code>R = 8ηL / (πr⁴), Δp = QR</code></div>
@@ -94,8 +116,10 @@
       <div class="fsheet__item"><b>Wall tension</b><code>T = Δp·r (tube), Δp·r/2 (sphere)</code></div>
       <div class="fsheet__item"><b>Capillary rise</b><code>h = 2γ cos θ / (ρ g r)</code></div>
       <div class="fsheet__item"><b>Stokes drag</b><code>F<sub>d</sub> = 6πηrv</code></div>
-      <div class="fsheet__item"><b>Terminal velocity</b><code>v<sub>t</sub> = 2r²(ρ<sub>s</sub>−ρ<sub>f</sub>)g / 9η</code></div>
+      <div class="fsheet__item"><b>Terminal velocity</b><code>v<sub>t</sub> = 2r²(ρ<sub>s</sub>−ρ<sub>f</sub>)g / (9η)</code></div>
     </div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -104,29 +128,43 @@
   <span class="section__num">§ 01</span>
   <h2>Density and specific gravity</h2>
 
+  <p class="idea"><b>The idea</b>Some things feel heavy for their size and others feel light. Density is that
+    everyday comparison made exact: how much material is packed into a given amount of room. It matters here
+    because gravity pulls on how much material there is, while pipes, containers and bodies are described by
+    how much room they take up — density is the exchange rate between the two, and almost every result on
+    this page needs it. Specific gravity is the same comparison made against water, so that "twice as heavy
+    as water" or "a tenth as heavy" becomes a single plain number.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Density (ρ)</dt>
       <dd>The mass contained in unit volume of a substance — an intensive property, independent of how
         much of the substance you have.</dd>
-      <dt>Specific gravity (relative density)</dt>
-      <dd>The ratio of a substance's density to the density of water at 4 °C. A pure number with no unit.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">ρ = m / V</span>
       <span class="fx__tag">uniform substance; for a mixture ρ is the volume-weighted mean</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">SG = ρ / ρ<sub>water</sub>&nbsp;&nbsp;(ρ<sub>water</sub> = 1.000 × 10³ kg·m⁻³)</span><span class="fx__tag">dimensionless; water at 4 °C is the reference</span></div>
-      <div class="fx"><span class="fx__eq">1 g·cm⁻³ = 1 × 10³ kg·m⁻³ = 1 kg·L⁻¹</span><span class="fx__tag">the conversion students get wrong most often</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>ρ</b><span>density (kg·m⁻³)</span></div>
-      <div><b>m</b><span>mass (kg)</span></div>
-      <div><b>V</b><span>volume (m³)</span></div>
-      <div><b>SG</b><span>specific gravity (dimensionless)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Specific gravity (relative density)</dt>
+          <dd>The ratio of a substance's density to the density of water at 4 °C. A pure number with no unit.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">SG = ρ / ρ<sub>water</sub>&nbsp;&nbsp;(ρ<sub>water</sub> = 1.000 × 10³ kg·m⁻³)</span><span class="fx__tag">dimensionless; water at 4 °C is the reference</span></div>
+          <div class="fx"><span class="fx__eq">1 g·cm⁻³ = 1 × 10³ kg·m⁻³ = 1 kg·L⁻¹</span><span class="fx__tag">the conversion students get wrong most often</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>ρ</b><span>density (kg·m⁻³)</span></div>
+          <div><b>m</b><span>mass (kg)</span></div>
+          <div><b>V</b><span>volume (m³)</span></div>
+          <div><b>SG</b><span>specific gravity (dimensionless)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -142,6 +180,9 @@
     which is itself an application of Archimedes' principle (§5).
   </p>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · a table of densities, from air to mercury</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <thead><tr><th>Substance</th><th>ρ / kg·m⁻³</th><th>SG</th><th>Why it matters here</th></tr></thead>
@@ -159,6 +200,8 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
 
   <p>
     A quick sanity check you should be able to do in your head: a 5.0 L blood volume at
@@ -179,30 +222,46 @@
   <span class="section__num">§ 02</span>
   <h2>Pressure, its units, and Pascal's principle</h2>
 
+  <p class="idea"><b>The idea</b>Pressure is not how hard something pushes, but how hard it pushes for each
+    bit of surface it pushes on. The same shove concentrated on a pinpoint bites; spread over a whole palm it
+    is barely noticed. A liquid that is sealed in has a further property worth pausing on: squeeze it
+    anywhere and every part of it, and every part of its container, feels that extra squeeze immediately and
+    in full. Press gently on a small piston and the same pressure, acting over a much larger piston
+    somewhere else, becomes a force large enough to lift a car — which is the entire idea behind a garage
+    jack. The rest of the section is bookkeeping about the many different units people use to quote a
+    pressure.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Pressure (p)</dt>
       <dd>The magnitude of the force exerted perpendicular to a surface, per unit area of that surface.
         Pressure is a <b>scalar</b>; the force it produces is a vector, always normal to the surface.</dd>
-      <dt>Pascal's principle</dt>
-      <dd>A pressure change applied anywhere to an enclosed incompressible fluid is transmitted undiminished
-        to every point in the fluid and to the walls of the container.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">p = F<sub>⟂</sub> / A&nbsp;&nbsp;&nbsp;[1 Pa = 1 N·m⁻²]</span>
       <span class="fx__tag">force must be the component perpendicular to A</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">F₁ / A₁ = F₂ / A₂&nbsp;&nbsp;⟹&nbsp;&nbsp;F₂ = F₁ (A₂/A₁)</span><span class="fx__tag">hydraulic lift: enclosed, incompressible, same height</span></div>
-      <div class="fx"><span class="fx__eq">A₁ d₁ = A₂ d₂&nbsp;&nbsp;⟹&nbsp;&nbsp;F₁ d₁ = F₂ d₂</span><span class="fx__tag">volume conservation ⟹ work is <em>not</em> multiplied</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>p</b><span>pressure (Pa = N·m⁻²)</span></div>
-      <div><b>F<sub>⟂</sub></b><span>normal force (N)</span></div>
-      <div><b>A</b><span>area (m²)</span></div>
-      <div><b>d</b><span>piston displacement (m)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Pascal's principle</dt>
+          <dd>A pressure change applied anywhere to an enclosed incompressible fluid is transmitted undiminished
+            to every point in the fluid and to the walls of the container.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">F₁ / A₁ = F₂ / A₂&nbsp;&nbsp;⟹&nbsp;&nbsp;F₂ = F₁ (A₂/A₁)</span><span class="fx__tag">hydraulic lift: enclosed, incompressible, same height</span></div>
+          <div class="fx"><span class="fx__eq">A₁ d₁ = A₂ d₂&nbsp;&nbsp;⟹&nbsp;&nbsp;F₁ d₁ = F₂ d₂</span><span class="fx__tag">volume conservation ⟹ work is <em>not</em> multiplied</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>p</b><span>pressure (Pa = N·m⁻²)</span></div>
+          <div><b>F<sub>⟂</sub></b><span>normal force (N)</span></div>
+          <div><b>A</b><span>area (m²)</span></div>
+          <div><b>d</b><span>piston displacement (m)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -212,6 +271,9 @@
     enclosed fluid anywhere and the whole fluid registers the increase equally.
   </p>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · every pressure unit you will meet, and where it comes from</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <thead><tr><th>Unit</th><th>In pascals</th><th>Where you meet it</th></tr></thead>
@@ -226,6 +288,8 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · the conversion chain to memorise</p>
@@ -252,8 +316,9 @@
     is zero. This is why <em>gauge</em> pressure (§4), not absolute pressure, is the clinically useful quantity.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 1 · Hydraulic lift</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 1 · Hydraulic lift</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 .3rem">A garage lift has an input piston of radius 2.0 cm and an output piston
       of radius 16 cm, connected by enclosed oil. A 1200 kg car sits on the output piston. Find (a) the force
       needed on the input piston, (b) the gauge pressure in the oil, (c) how far the input piston must move
@@ -275,7 +340,8 @@
         Identical — as they must be.</li>
     </ol>
     <p class="wex__ans">F₁ = 1.8 × 10² N · p = 1.46 × 10⁵ Pa · d₁ = 6.4 m · W = 1176 J both sides</p>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · the hydraulic lift multiplies force, never energy</p>
@@ -291,32 +357,46 @@
   <span class="section__num">§ 03</span>
   <h2>Hydrostatic pressure and the hydrostatic paradox</h2>
 
+  <p class="idea"><b>The idea</b>Go deeper under water and the squeeze on you grows, simply because there is
+    more water stacked overhead. The surprising part is how little else counts: only how far down you are.
+    Not the shape of the container, not how wide it is, not how many litres it holds — a thin pipe of water
+    and a whole lake press just as hard at the same depth. That single fact is why a dam is built thick at
+    the bottom and thin at the top, why your ears hurt at the deep end of a pool, and why a drip bag is hung
+    high above the patient rather than beside them.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Hydrostatic pressure</dt>
       <dd>The pressure at a point in a fluid at rest, equal to the pressure at the free surface plus the
         weight per unit area of the fluid column vertically above that point.</dd>
-      <dt>Hydrostatic paradox</dt>
-      <dd>The observation that the pressure — and therefore the force — on the base of a vessel is fixed by
-        the depth and the base area alone, and is independent of the shape of the vessel and of the total
-        weight of fluid it holds.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">p = p₀ + ρ g h</span>
       <span class="fx__tag">fluid at rest, uniform ρ, h measured vertically downward from the free surface</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">Δp = ρ g Δh</span><span class="fx__tag">pressure difference between any two depths in one connected fluid</span></div>
-      <div class="fx"><span class="fx__eq">p(A) = p(B) if A and B are at the same height</span><span class="fx__tag">only if A and B are joined by a continuous path through the <em>same</em> fluid</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>p</b><span>absolute pressure at depth h (Pa)</span></div>
-      <div><b>p₀</b><span>pressure at the free surface, usually p<sub>atm</sub> (Pa)</span></div>
-      <div><b>ρ</b><span>fluid density (kg·m⁻³)</span></div>
-      <div><b>g</b><span>gravitational field strength, 9.8 (m·s⁻²)</span></div>
-      <div><b>h</b><span><b>vertical</b> depth below the surface (m)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Hydrostatic paradox</dt>
+          <dd>The observation that the pressure — and therefore the force — on the base of a vessel is fixed by
+            the depth and the base area alone, and is independent of the shape of the vessel and of the total
+            weight of fluid it holds.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Δp = ρ g Δh</span><span class="fx__tag">pressure difference between any two depths in one connected fluid</span></div>
+          <div class="fx"><span class="fx__eq">p(A) = p(B) if A and B are at the same height</span><span class="fx__tag">only if A and B are joined by a continuous path through the <em>same</em> fluid</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>p</b><span>absolute pressure at depth h (Pa)</span></div>
+          <div><b>p₀</b><span>pressure at the free surface, usually p<sub>atm</sub> (Pa)</span></div>
+          <div><b>ρ</b><span>fluid density (kg·m⁻³)</span></div>
+          <div><b>g</b><span>gravitational field strength, 9.8 (m·s⁻²)</span></div>
+          <div><b>h</b><span><b>vertical</b> depth below the surface (m)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -395,8 +475,9 @@
     </figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 2 · A cone and a cylinder that disagree by a factor of three</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 2 · A cone and a cylinder that disagree by a factor of three</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 .3rem">Two open vessels stand on a bench. Both have a flat circular base of area
       A = 0.010 m² and both are filled with water (ρ = 1000 kg·m⁻³) to a depth h = 0.30 m. Vessel A is a
       straight cylinder; vessel B is a cone standing on its base, tapering to a point at the water surface.
@@ -414,7 +495,8 @@
         reaction to the weight and the base force balances exactly.</li>
     </ol>
     <p class="wex__ans">p = 2940 Pa and F = 29.4 N in both · water weight 29.4 N vs 9.8 N</p>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · three ways ρgh goes wrong</p>
@@ -442,35 +524,50 @@
   <span class="section__num">§ 04</span>
   <h2>Gauge vs absolute: manometer, barometer, blood pressure</h2>
 
+  <p class="idea"><b>The idea</b>Every pressure reading has to be counted from somewhere, and hospital
+    instruments count from the air in the room rather than from nothing at all. So a reading of zero means
+    "the same as the air around us", and a reading below zero is not impossible or mysterious — it just means
+    slightly less than the surrounding air, the way a straw does when you suck on it. The second half of the
+    section is the reminder that a standing body is itself a tall column of liquid: blood down at the ankles
+    is under far more pressure than blood up in the head, purely because of the height between them, which is
+    why the arm has to be level with the heart when a cuff reading is taken.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Absolute pressure</dt>
       <dd>Pressure measured from a true vacuum as zero. It can never be negative.</dd>
-      <dt>Gauge pressure</dt>
-      <dd>Pressure measured from the local atmospheric pressure as zero — the excess over atmosphere. It is
-        negative whenever the pressure is sub-atmospheric (a "suction").</dd>
-      <dt>Manometer / barometer</dt>
-      <dd>A manometer reads a pressure <em>difference</em> as the height of a liquid column it can support; a
-        barometer is a manometer whose reference side is an evacuated space, so it reads absolute pressure.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">p<sub>abs</sub> = p<sub>atm</sub> + p<sub>gauge</sub></span>
       <span class="fx__tag">always true; every clinical pressure is quoted as gauge</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">p<sub>atm</sub> = ρ<sub>Hg</sub> g h&nbsp;&nbsp;⟹&nbsp;&nbsp;h = 0.760 m</span><span class="fx__tag">Torricelli barometer, vacuum above the mercury</span></div>
-      <div class="fx"><span class="fx__eq">p<sub>gauge</sub> = ρ g Δh</span><span class="fx__tag">open-tube manometer, Δh = height difference between the two limbs</span></div>
-      <div class="fx"><span class="fx__eq">MAP ≈ DBP + ⅓ (SBP − DBP)</span><span class="fx__tag">empirical; valid at normal resting heart rates only</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>p<sub>abs</sub></b><span>absolute pressure (Pa)</span></div>
-      <div><b>p<sub>gauge</sub></b><span>gauge pressure (Pa; often quoted in mmHg)</span></div>
-      <div><b>ρ<sub>Hg</sub></b><span>density of mercury, 1.36 × 10⁴ (kg·m⁻³)</span></div>
-      <div><b>Δh</b><span>height difference between manometer limbs (m)</span></div>
-      <div><b>SBP / DBP</b><span>systolic / diastolic pressure (mmHg)</span></div>
-      <div><b>MAP</b><span>mean arterial pressure (mmHg)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Gauge pressure</dt>
+          <dd>Pressure measured from the local atmospheric pressure as zero — the excess over atmosphere. It is
+            negative whenever the pressure is sub-atmospheric (a "suction").</dd>
+          <dt>Manometer / barometer</dt>
+          <dd>A manometer reads a pressure <em>difference</em> as the height of a liquid column it can support; a
+            barometer is a manometer whose reference side is an evacuated space, so it reads absolute pressure.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">p<sub>atm</sub> = ρ<sub>Hg</sub> g h&nbsp;&nbsp;⟹&nbsp;&nbsp;h = 0.760 m</span><span class="fx__tag">Torricelli barometer, vacuum above the mercury</span></div>
+          <div class="fx"><span class="fx__eq">p<sub>gauge</sub> = ρ g Δh</span><span class="fx__tag">open-tube manometer, Δh = height difference between the two limbs</span></div>
+          <div class="fx"><span class="fx__eq">MAP ≈ DBP + ⅓ (SBP − DBP)</span><span class="fx__tag">empirical; valid at normal resting heart rates only</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>p<sub>abs</sub></b><span>absolute pressure (Pa)</span></div>
+          <div><b>p<sub>gauge</sub></b><span>gauge pressure (Pa; often quoted in mmHg)</span></div>
+          <div><b>ρ<sub>Hg</sub></b><span>density of mercury, 1.36 × 10⁴ (kg·m⁻³)</span></div>
+          <div><b>Δh</b><span>height difference between manometer limbs (m)</span></div>
+          <div><b>SBP / DBP</b><span>systolic / diastolic pressure (mmHg)</span></div>
+          <div><b>MAP</b><span>mean arterial pressure (mmHg)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -517,8 +614,9 @@
     level and the hydrostatic term vanishes. Stand up and it reappears with a vengeance.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 3 · Arterial pressure at the head and at the feet</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 3 · Arterial pressure at the head and at the feet</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 .3rem">A standing adult has MAP = 93 mmHg measured at heart level. The brain
       (mid-cerebral level) is 40 cm above the heart and the feet are 130 cm below it. Blood density is
       1060 kg·m⁻³. Find MAP at the head and at the feet.</p>
@@ -538,7 +636,8 @@
         dependent oedema and varicose veins are ρgh problems.</li>
     </ol>
     <p class="wex__ans">MAP ≈ 62 mmHg at the head, ≈ 194 mmHg at the feet (heart-level MAP 93 mmHg)</p>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--warn">
     <p class="callout__title">Trap · gravity does not make the heart work harder in a closed loop</p>
@@ -560,29 +659,45 @@
   <span class="section__num">§ 05</span>
   <h2>Archimedes' principle and flotation</h2>
 
+  <p class="idea"><b>The idea</b>Put something into water and the water pushes back up on it, which is why a
+    heavy stone feels lighter once it is under the surface. The size of that upward push is not mysterious:
+    it equals the weight of the water the object shoved out of the way to make room for itself. So anything
+    that can shove aside more than its own weight before it is fully under will float, and anything that
+    cannot will sink. Nothing new is needed to explain the push — water lower down presses harder than water
+    higher up, so the upward press on an object's underside beats the downward press on its top. This is why
+    a steel ship floats, why you feel weightless in a pool, and why the brain, sitting in its own fluid, is
+    not crushed by its own weight.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Buoyant force (F<sub>B</sub>)</dt>
       <dd>The net upward force a fluid exerts on a body immersed in it, equal in magnitude to the weight of
         the fluid the body displaces, and acting through the centre of the displaced volume.</dd>
-      <dt>Apparent weight</dt>
-      <dd>The reading of a scale supporting a submerged body: its true weight minus the buoyant force.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">F<sub>B</sub> = ρ<sub>fluid</sub> V<sub>displaced</sub> g</span>
       <span class="fx__tag">fluid at rest; V is the <em>submerged</em> volume, not the total volume</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">V<sub>sub</sub> / V<sub>total</sub> = ρ<sub>object</sub> / ρ<sub>fluid</sub></span><span class="fx__tag">freely floating body, in equilibrium, ρ<sub>obj</sub> &lt; ρ<sub>fluid</sub></span></div>
-      <div class="fx"><span class="fx__eq">W<sub>apparent</sub> = W − F<sub>B</sub> = (ρ<sub>obj</sub> − ρ<sub>fluid</sub>) V g</span><span class="fx__tag">fully submerged body</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>F<sub>B</sub></b><span>buoyant force (N)</span></div>
-      <div><b>ρ<sub>fluid</sub></b><span>density of the fluid (kg·m⁻³)</span></div>
-      <div><b>V<sub>sub</sub></b><span>submerged volume of the body (m³)</span></div>
-      <div><b>W</b><span>true weight, mg (N)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Apparent weight</dt>
+          <dd>The reading of a scale supporting a submerged body: its true weight minus the buoyant force.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">V<sub>sub</sub> / V<sub>total</sub> = ρ<sub>object</sub> / ρ<sub>fluid</sub></span><span class="fx__tag">freely floating body, in equilibrium, ρ<sub>obj</sub> &lt; ρ<sub>fluid</sub></span></div>
+          <div class="fx"><span class="fx__eq">W<sub>apparent</sub> = W − F<sub>B</sub> = (ρ<sub>obj</sub> − ρ<sub>fluid</sub>) V g</span><span class="fx__tag">fully submerged body</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>F<sub>B</sub></b><span>buoyant force (N)</span></div>
+          <div><b>ρ<sub>fluid</sub></b><span>density of the fluid (kg·m⁻³)</span></div>
+          <div><b>V<sub>sub</sub></b><span>submerged volume of the body (m³)</span></div>
+          <div><b>W</b><span>true weight, mg (N)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -609,8 +724,9 @@
     surface — the iceberg cliché, now a one-line calculation.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 4 · Body density by hydrostatic weighing</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 4 · Body density by hydrostatic weighing</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 .3rem">A 70.0 kg subject is fully submerged in fresh water (ρ = 1000 kg·m⁻³)
       after a maximal expiration, and the underwater scale reads an apparent weight of 30.0 N. Neglecting
       residual lung gas, find the subject's volume and mean body density.</p>
@@ -625,7 +741,8 @@
         This is the reference method that DEXA and bio-impedance are validated against.</li>
     </ol>
     <p class="wex__ans">V = 66.9 L · ρ<sub>body</sub> ≈ 1.05 × 10³ kg·m⁻³</p>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · buoyancy in the body</p>
@@ -658,31 +775,46 @@
   <span class="section__num">§ 06</span>
   <h2>Continuity: the equation that conserves volume</h2>
 
+  <p class="idea"><b>The idea</b>Liquid has to go somewhere. If a tube is not leaking and is not filling up,
+    then whatever goes in each second must come out each second — so wherever the tube is narrow the liquid
+    has to hurry through, and wherever it is wide it can dawdle. Squeezing the end of a garden hose is the
+    everyday demonstration. This is pure bookkeeping rather than a law about forces, but stating it carefully
+    pays off twice: it explains why blood races through a narrowed artery, and why blood crawls through the
+    capillaries, which are individually tiny but so numerous side by side that together they are the widest
+    part of the whole circulation.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Volumetric flow rate (Q)</dt>
       <dd>The volume of fluid passing a given cross-section per unit time.</dd>
-      <dt>Equation of continuity</dt>
-      <dd>The statement that, for steady flow of an incompressible fluid through a tube with no leaks or
-        sources, the volumetric flow rate is the same at every cross-section.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">A₁ v₁ = A₂ v₂ = Q</span>
       <span class="fx__tag">steady, incompressible, no branching losses; v is the <em>mean</em> speed over A</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">Q = A v = πr² v&nbsp;&nbsp;&nbsp;[m³·s⁻¹]</span><span class="fx__tag">circular cross-section</span></div>
-      <div class="fx"><span class="fx__eq">ρ₁A₁v₁ = ρ₂A₂v₂</span><span class="fx__tag">general (compressible) form — mass, not volume, is conserved</span></div>
-      <div class="fx"><span class="fx__eq">v ∝ 1/A ∝ 1/r²</span><span class="fx__tag">halve the radius ⟹ quadruple the speed</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>Q</b><span>volumetric flow rate (m³·s⁻¹)</span></div>
-      <div><b>A</b><span>cross-sectional area (m²)</span></div>
-      <div><b>v</b><span>mean flow speed (m·s⁻¹)</span></div>
-      <div><b>r</b><span>internal radius (m)</span></div>
-      <div><b>ρ</b><span>fluid density (kg·m⁻³)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Equation of continuity</dt>
+          <dd>The statement that, for steady flow of an incompressible fluid through a tube with no leaks or
+            sources, the volumetric flow rate is the same at every cross-section.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Q = A v = πr² v&nbsp;&nbsp;&nbsp;[m³·s⁻¹]</span><span class="fx__tag">circular cross-section</span></div>
+          <div class="fx"><span class="fx__eq">ρ₁A₁v₁ = ρ₂A₂v₂</span><span class="fx__tag">general (compressible) form — mass, not volume, is conserved</span></div>
+          <div class="fx"><span class="fx__eq">v ∝ 1/A ∝ 1/r²</span><span class="fx__tag">halve the radius ⟹ quadruple the speed</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Q</b><span>volumetric flow rate (m³·s⁻¹)</span></div>
+          <div><b>A</b><span>cross-sectional area (m²)</span></div>
+          <div><b>v</b><span>mean flow speed (m·s⁻¹)</span></div>
+          <div><b>r</b><span>internal radius (m)</span></div>
+          <div><b>ρ</b><span>fluid density (kg·m⁻³)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -740,33 +872,48 @@
   <span class="section__num">§ 07</span>
   <h2>Bernoulli's equation — and what it does not explain</h2>
 
+  <p class="idea"><b>The idea</b>A moving fluid carries a fixed budget of energy, and it can hold that energy
+    either as pressure or as speed. Spend on one and there is less of the other. So where a fluid is forced
+    to run fast — through a narrow throat, out of a nozzle — its sideways push on the walls actually drops,
+    and when it slows down again in the wide part beyond, most of that push comes back. This is the idea
+    behind a scan that turns the measured speed of a jet through a heart valve into the pressure the heart
+    must be generating. What it deliberately leaves out is friction, so it can never explain a steady,
+    permanent loss of pressure along a pipe — that is the next section's job.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Bernoulli's equation</dt>
       <dd>A statement of energy conservation per unit volume for an ideal fluid: along a streamline, the sum
         of static pressure, kinetic energy density and gravitational potential energy density is constant.</dd>
-      <dt>Venturi effect</dt>
-      <dd>The fall in static pressure that accompanies the rise in speed where a streamtube narrows.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">p + ½ρv² + ρgy = constant</span>
       <span class="fx__tag">steady · incompressible · non-viscous · along one streamline</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">p₁ + ½ρv₁² + ρgy₁ = p₂ + ½ρv₂² + ρgy₂</span><span class="fx__tag">two points on the same streamline</span></div>
-      <div class="fx"><span class="fx__eq">p₁ − p₂ = ½ρ(v₂² − v₁²)</span><span class="fx__tag">horizontal tube (y₁ = y₂): the Venturi meter</span></div>
-      <div class="fx"><span class="fx__eq">v = √(2gh)</span><span class="fx__tag">Torricelli: efflux from a small hole a depth h below a wide free surface</span></div>
-      <div class="fx"><span class="fx__eq">p<sub>stagnation</sub> − p<sub>static</sub> = ½ρv²</span><span class="fx__tag">Pitot tube; gives v = √(2Δp/ρ)</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>p</b><span>static pressure (Pa = J·m⁻³)</span></div>
-      <div><b>½ρv²</b><span>dynamic pressure — kinetic energy per unit volume (Pa)</span></div>
-      <div><b>ρgy</b><span>potential energy per unit volume (Pa)</span></div>
-      <div><b>v</b><span>flow speed on the streamline (m·s⁻¹)</span></div>
-      <div><b>y</b><span>height above an arbitrary datum (m)</span></div>
-      <div><b>ρ</b><span>fluid density (kg·m⁻³)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Venturi effect</dt>
+          <dd>The fall in static pressure that accompanies the rise in speed where a streamtube narrows.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">p₁ + ½ρv₁² + ρgy₁ = p₂ + ½ρv₂² + ρgy₂</span><span class="fx__tag">two points on the same streamline</span></div>
+          <div class="fx"><span class="fx__eq">p₁ − p₂ = ½ρ(v₂² − v₁²)</span><span class="fx__tag">horizontal tube (y₁ = y₂): the Venturi meter</span></div>
+          <div class="fx"><span class="fx__eq">v = <span class="msq" role="img" aria-label="square root of 2 g h"><span>2gh</span></span></span><span class="fx__tag">Torricelli: efflux from a small hole a depth h below a wide free surface</span></div>
+          <div class="fx"><span class="fx__eq">p<sub>stagnation</sub> − p<sub>static</sub> = ½ρv²</span><span class="fx__tag">Pitot tube; gives v = √(2Δp/ρ)</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>p</b><span>static pressure (Pa = J·m⁻³)</span></div>
+          <div><b>½ρv²</b><span>dynamic pressure — kinetic energy per unit volume (Pa)</span></div>
+          <div><b>ρgy</b><span>potential energy per unit volume (Pa)</span></div>
+          <div><b>v</b><span>flow speed on the streamline (m·s⁻¹)</span></div>
+          <div><b>y</b><span>height above an arbitrary datum (m)</span></div>
+          <div><b>ρ</b><span>fluid density (kg·m⁻³)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -854,8 +1001,9 @@
     </figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 5 · Speed and pressure through an arterial stenosis</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 5 · Speed and pressure through an arterial stenosis</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 .3rem">Blood (ρ = 1060 kg·m⁻³) flows at a mean 0.30 m·s⁻¹ through an artery of
       internal radius 5.0 mm. An atheromatous plaque reduces the radius to 2.5 mm over a short segment. Treat
       the segment as horizontal and, for this estimate, non-viscous. Find the speed and the static pressure
@@ -876,7 +1024,9 @@
         m·s⁻¹) converts a Doppler jet velocity into a valve gradient.</li>
     </ol>
     <p class="wex__ans">v₂ = 1.20 m·s⁻¹ · Δp ≈ 715 Pa ≈ 5.4 mmHg fall in the throat</p>
-  </div>
+  
+    </div>
+  </details>
 
   <h3>Aneurysm and stenosis, done correctly</h3>
   <p>
@@ -959,31 +1109,39 @@
   <span class="section__num">§ 08</span>
   <h2>Viscosity, Poiseuille's law and vascular resistance</h2>
 
+  <p class="idea"><b>The idea</b>Real liquids are sticky. Water drags on itself, and blood much more so, which
+    means the layer of fluid touching the wall of a tube does not move at all and every layer further in has
+    to slide past a slower neighbour. Keeping liquid moving along a tube therefore costs a steady push, and
+    that push is spent for good — it goes to heat, and it is exactly what the last section deliberately left
+    out. What makes this worth learning properly is how savagely the cost depends on the width of the tube:
+    narrowing a tube a little does not reduce the flow a little, it guts it. That one fact is why a thin ring
+    of muscle around a small vessel is enough to decide where the body sends its blood.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Coefficient of viscosity (η)</dt>
+    <dl class="def"><dt>Coefficient of viscosity (η)</dt>
       <dd>The constant of proportionality between the shear stress applied to a fluid and the resulting
-        velocity gradient — the fluid's resistance to being sheared.</dd>
-      <dt>Laminar flow</dt>
-      <dd>Flow in which the fluid moves in parallel layers (streamlines) that do not mix, each layer sliding
-        over its neighbour; in a cylindrical tube this gives a parabolic velocity profile.</dd>
-      <dt>Poiseuille's law</dt>
-      <dd>The volumetric flow rate produced by a given pressure difference in steady laminar flow of a
-        Newtonian fluid through a rigid cylindrical tube.</dd>
-    </dl>
+        velocity gradient — the fluid's resistance to being sheared.</dd></dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">Q = π Δp r⁴ / (8 η L)</span>
+      <span class="fx__eq">Q = <span class="mf" role="img" aria-label="pi times delta p times r to the fourth, all over 8 eta L"><span>π Δp r⁴</span><span>8 η L</span></span></span>
       <span class="fx__tag">steady · laminar · Newtonian · rigid cylindrical tube · fully developed flow</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Laminar flow</dt>
+      <dd>Flow in which the fluid moves in parallel layers (streamlines) that do not mix, each layer sliding
+        over its neighbour; in a cylindrical tube this gives a parabolic velocity profile.</dd><dt>Poiseuille's law</dt>
+      <dd>The volumetric flow rate produced by a given pressure difference in steady laminar flow of a
+        Newtonian fluid through a rigid cylindrical tube.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">F/A = η (Δv/Δy)</span><span class="fx__tag">definition of η; Newtonian fluid = η independent of shear rate</span></div>
-      <div class="fx"><span class="fx__eq">v(r) = (Δp / 4ηL)(R² − r²)</span><span class="fx__tag">parabolic profile; v = 0 at the wall (no-slip), maximum on the axis</span></div>
+      <div class="fx"><span class="fx__eq">v(r) = (<span class="mf" role="img" aria-label="delta p over 4 eta L"><span>Δp</span><span>4ηL</span></span>)(R² − r²)</span><span class="fx__tag">parabolic profile; v = 0 at the wall (no-slip), maximum on the axis</span></div>
       <div class="fx"><span class="fx__eq">v<sub>mean</sub> = ½ v<sub>max</sub></span><span class="fx__tag">exact for a fully developed parabolic profile</span></div>
-      <div class="fx"><span class="fx__eq">R = 8ηL / (πr⁴)&nbsp;&nbsp;so&nbsp;&nbsp;Δp = Q R</span><span class="fx__tag">the fluid analogue of Ohm's law, V = IR</span></div>
+      <div class="fx"><span class="fx__eq">R = <span class="mf" role="img" aria-label="8 eta L over pi r to the fourth"><span>8ηL</span><span>πr⁴</span></span>&nbsp;&nbsp;so&nbsp;&nbsp;Δp = Q R</span><span class="fx__tag">the fluid analogue of Ohm's law, V = IR</span></div>
       <div class="fx"><span class="fx__eq">R<sub>series</sub> = R₁ + R₂ + …&nbsp;&nbsp;;&nbsp;&nbsp;1/R<sub>parallel</sub> = 1/R₁ + 1/R₂ + …</span><span class="fx__tag">series share Q; parallel share Δp</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>η</b><span>dynamic viscosity (Pa·s = N·s·m⁻²; 1 poise = 0.1 Pa·s)</span></div>
       <div><b>Q</b><span>volumetric flow rate (m³·s⁻¹)</span></div>
       <div><b>Δp</b><span>pressure difference along the tube (Pa)</span></div>
@@ -991,6 +1149,8 @@
       <div><b>L</b><span>tube length (m)</span></div>
       <div><b>R (resistance)</b><span>hydraulic resistance (Pa·s·m⁻³)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1088,8 +1248,9 @@
     therefore a very good model, not an exact one — but every qualitative conclusion below survives.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 6 · Poiseuille's law, and what the fourth power really costs</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 6 · Poiseuille's law, and what the fourth power really costs</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 .3rem">A small artery is 10.0 cm long with internal radius 1.00 mm and carries
       blood of viscosity 3.5 × 10⁻³ Pa·s under a pressure difference of 10.0 mmHg.
       (a) Find the flow rate. (b) Smooth-muscle tone reduces the radius by 10%, to 0.90 mm, with Δp unchanged
@@ -1113,7 +1274,9 @@
         <span class="fi">(0.5)⁴ = 1/16 = 6.3%</span>; and r → 2r gives <b>16×</b> the flow.</li>
     </ol>
     <p class="wex__ans">Q = 1.50 mL·s⁻¹ → 0.98 mL·s⁻¹ after a 10% narrowing · Δp must rise to 15.2 mmHg</p>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · why the arterioles, and not the capillaries, control blood flow</p>
@@ -1183,26 +1346,35 @@
   <span class="section__num">§ 09</span>
   <h2>The Reynolds number and turbulence</h2>
 
+  <p class="idea"><b>The idea</b>Flow comes in two kinds. Either the liquid slides along in orderly layers,
+    quietly and cheaply, or it breaks up into a churning, swirling mess that makes noise and wastes energy.
+    Which one you get is a contest between the liquid's tendency to keep barrelling forward once it is moving
+    and its stickiness, which smooths small disturbances away before they can grow. This section builds one
+    plain number that scores that contest — no units, just a number — so that a garden hose, a wind tunnel and
+    an aorta can all be judged on the same scale. It earns its place in medicine because the messy kind of
+    flow is audible: every murmur and bruit you will ever listen to is a flow that has lost the contest.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Reynolds number (Re)</dt>
+    <dl class="def"><dt>Reynolds number (Re)</dt>
       <dd>The dimensionless ratio of inertial to viscous forces in a flow; it predicts whether a given flow
-        will remain laminar or break down into turbulence.</dd>
-      <dt>Turbulent flow</dt>
-      <dd>Flow in which the velocity at a point fluctuates chaotically, with eddies transporting momentum
-        across the streamlines; it dissipates far more energy than laminar flow at the same flow rate.</dd>
-    </dl>
+        will remain laminar or break down into turbulence.</dd></dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">Re = ρ v D / η</span>
+      <span class="fx__eq">Re = <span class="mf" role="img" aria-label="rho times v times D, all over eta"><span>ρ v D</span><span>η</span></span></span>
       <span class="fx__tag">D is the <b>diameter</b> (2r) and v the mean speed; dimensionless</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">Re = 4ρQ / (π η D)</span><span class="fx__tag">same thing rewritten for fixed volumetric flow: Re ∝ 1/D</span></div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Turbulent flow</dt>
+      <dd>Flow in which the velocity at a point fluctuates chaotically, with eddies transporting momentum
+        across the streamlines; it dissipates far more energy than laminar flow at the same flow rate.</dd></dl>
+        <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Re = <span class="mf" role="img" aria-label="4 rho Q over pi eta D"><span>4ρQ</span><span>π η D</span></span></span><span class="fx__tag">same thing rewritten for fixed volumetric flow: Re ∝ 1/D</span></div>
       <div class="fx"><span class="fx__eq">Re &lt; 2000 laminar · 2000–3000 transitional · &gt; 3000 turbulent</span><span class="fx__tag">straight smooth rigid tube; branches and plaques lower the threshold</span></div>
       <div class="fx"><span class="fx__eq">turbulent: Q ∝ √Δp&nbsp;&nbsp;(instead of Q ∝ Δp)</span><span class="fx__tag">approximate; the cost of turbulence in driving pressure</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>Re</b><span>Reynolds number (dimensionless)</span></div>
       <div><b>ρ</b><span>fluid density (kg·m⁻³)</span></div>
       <div><b>v</b><span>mean flow speed (m·s⁻¹)</span></div>
@@ -1210,6 +1382,8 @@
       <div><b>η</b><span>dynamic viscosity (Pa·s)</span></div>
       <div><b>Q</b><span>volumetric flow rate (m³·s⁻¹)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1220,8 +1394,9 @@
     and the flow becomes turbulent.
   </p>
 
-  <div class="wex">
-    <h4>Worked example 7 · Is aortic blood flow laminar?</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 7 · Is aortic blood flow laminar?</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 .3rem">Aorta: D = 2.0 cm, blood ρ = 1060 kg·m⁻³, η = 3.5 × 10⁻³ Pa·s, cardiac
       output 5.0 L·min⁻¹. Evaluate Re (a) at the mean velocity, (b) at a peak systolic velocity of
       1.0 m·s⁻¹, (c) in a patient with severe anaemia whose blood viscosity has fallen to
@@ -1242,7 +1417,9 @@
         aortic one — capillary flow could not become turbulent under any circumstances.</li>
     </ol>
     <p class="wex__ans">Re ≈ 1.6 × 10³ (mean) · 6.1 × 10³ (peak systole) · 4.2 × 10³ (anaemia)</p>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="table-scroll">
     <table class="data">
@@ -1295,28 +1472,38 @@
   <span class="section__num">§ 10</span>
   <h2>Surface tension, Laplace's law and the alveolus</h2>
 
+  <p class="idea"><b>The idea</b>The surface of a liquid behaves like a stretched skin. A molecule down in the
+    body of the liquid is tugged in every direction at once, but a molecule at the surface has nothing above
+    it, so the surface is pulled taut and is forever trying to shrink to the smallest area it can. Curve that
+    skin around a pocket of air and it squeezes inward on whatever it encloses — and the tighter the curve,
+    the harder the squeeze, so a small pocket is squeezed harder than a large one. That is a real problem for
+    a lung, which is a few hundred million wet air pockets of assorted sizes all joined to the same pipework:
+    left to itself, every small one would empty into its larger neighbour and shut. Everything in this
+    section is either that fact, or the body's very neat answer to it.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Surface tension (γ)</dt>
+    <dl class="def"><dt>Surface tension (γ)</dt>
       <dd>The force per unit length acting along any line drawn in a liquid surface, tending to contract it;
-        equivalently, the free energy required to create unit area of new surface.</dd>
-      <dt>Laplace's law</dt>
-      <dd>The relation between the pressure difference across a curved liquid surface (or the tension in a
-        thin curved wall) and its radius of curvature.</dd>
-    </dl>
+        equivalently, the free energy required to create unit area of new surface.</dd></dl>
     <div class="fx fx--hero">
-      <span class="fx__eq">Δp = 2γ / r</span>
+      <span class="fx__eq">Δp = <span class="mf" role="img" aria-label="2 gamma over r"><span>2γ</span><span>r</span></span></span>
       <span class="fx__tag">sphere with <b>one</b> air–liquid interface: droplet, alveolus, liquid-lined cavity</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Laplace's law</dt>
+      <dd>The relation between the pressure difference across a curved liquid surface (or the tension in a
+        thin curved wall) and its radius of curvature.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">γ = F / L = E / A&nbsp;&nbsp;&nbsp;[N·m⁻¹ = J·m⁻²]</span><span class="fx__tag">two equivalent definitions</span></div>
-      <div class="fx"><span class="fx__eq">Δp = 4γ / r</span><span class="fx__tag">soap bubble in air — <b>two</b> surfaces, inner and outer</span></div>
+      <div class="fx"><span class="fx__eq">Δp = <span class="mf" role="img" aria-label="4 gamma over r"><span>4γ</span><span>r</span></span></span><span class="fx__tag">soap bubble in air — <b>two</b> surfaces, inner and outer</span></div>
       <div class="fx"><span class="fx__eq">Δp = γ / r</span><span class="fx__tag">long cylinder with one surface (a liquid-lined airway)</span></div>
-      <div class="fx"><span class="fx__eq">T = Δp · r (tube)&nbsp;&nbsp;;&nbsp;&nbsp;T = Δp · r / 2 (sphere)</span><span class="fx__tag">wall-tension form for thin-walled vessels; σ = T/t</span></div>
-      <div class="fx"><span class="fx__eq">h = 2γ cos θ / (ρ g r)</span><span class="fx__tag">capillary rise in a narrow tube; θ is the contact angle</span></div>
+      <div class="fx"><span class="fx__eq">T = Δp · r (tube)&nbsp;&nbsp;;&nbsp;&nbsp;T = <span class="mf" role="img" aria-label="delta p times r, all over 2"><span>Δp · r</span><span>2</span></span> (sphere)</span><span class="fx__tag">wall-tension form for thin-walled vessels; σ = T/t</span></div>
+      <div class="fx"><span class="fx__eq">h = <span class="mf" role="img" aria-label="2 gamma cos theta over rho g r"><span>2γ cos θ</span><span>ρ g r</span></span></span><span class="fx__tag">capillary rise in a narrow tube; θ is the contact angle</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>γ</b><span>surface tension (N·m⁻¹ = J·m⁻²)</span></div>
       <div><b>Δp</b><span>pressure inside minus pressure outside (Pa)</span></div>
       <div><b>r</b><span>radius of curvature (m)</span></div>
@@ -1326,6 +1513,8 @@
       <div><b>θ</b><span>contact angle liquid–solid (degrees)</span></div>
       <div><b>h</b><span>capillary rise, negative for depression (m)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1408,8 +1597,9 @@
     </figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 8 · The alveolus, with and without surfactant</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 8 · The alveolus, with and without surfactant</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 .3rem">(a) An alveolus of radius 100 μm lined with plain water-like fluid,
       γ = 0.070 N·m⁻¹. Find the collapsing pressure. (b) Repeat with surfactant present,
       γ = 0.010 N·m⁻¹. (c) Two alveoli of radii 50 μm and 150 μm share an airway. Show that a constant
@@ -1431,7 +1621,9 @@
         emptying, no atelectasis.</li>
     </ol>
     <p class="wex__ans">1400 Pa bare → 200 Pa with surfactant · 2000 vs 667 Pa unstable → 400 vs 400 Pa stable</p>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · what pulmonary surfactant actually does</p>
@@ -1466,7 +1658,7 @@
     pulls the liquid up, and it rises until the weight of the raised column balances the vertical component
     of the surface force:
   </p>
-  <div class="fx"><span class="fx__eq">γ (2πr) cos θ = ρ g (πr²) h&nbsp;&nbsp;⟹&nbsp;&nbsp;h = 2γ cos θ / (ρ g r)</span><span class="fx__tag">narrow tube, θ measured through the liquid</span></div>
+  <div class="fx"><span class="fx__eq">γ (2πr) cos θ = ρ g (πr²) h&nbsp;&nbsp;⟹&nbsp;&nbsp;h = <span class="mf" role="img" aria-label="2 gamma cos theta over rho g r"><span>2γ cos θ</span><span>ρ g r</span></span></span><span class="fx__tag">narrow tube, θ measured through the liquid</span></div>
   <p>
     Rise goes as <b>1/r</b>: the narrower the tube, the higher the climb. Water (γ = 0.073 N·m⁻¹, θ ≈ 0 on
     clean glass) in a tube of radius 0.20 mm rises
@@ -1496,26 +1688,37 @@
   <span class="section__num">§ 11</span>
   <h2>Stokes' law, terminal velocity and the ESR</h2>
 
+  <p class="idea"><b>The idea</b>Drop something small through a liquid and it does not keep speeding up. The
+    liquid holds it back harder the faster it goes, so within a moment that holding-back — together with the
+    upward push any immersed object already gets — exactly balances its weight, and from then on it simply
+    drifts downward at one steady speed. How fast that steady drift is depends above all on how big the
+    object is, and far more sharply than you would guess: stick several small particles together and the
+    clump sinks much faster than any of them managed alone. That is the entire content of a common blood
+    test, in which a tube of blood stands upright for an hour and someone measures how far the red cells have
+    sunk — they sink faster when inflammation makes them clump, which is why the number is informative even
+    though it points to no disease in particular.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
-    <dl class="def">
-      <dt>Stokes' law</dt>
+    <dl class="def"><dt>Stokes' law</dt>
       <dd>The viscous drag force on a small sphere moving slowly through a fluid, proportional to the
-        sphere's radius and to its speed.</dd>
-      <dt>Terminal velocity (v<sub>t</sub>)</dt>
-      <dd>The constant velocity a body reaches when the drag plus buoyancy exactly balance its weight, so the
-        net force — and therefore the acceleration — is zero.</dd>
-    </dl>
+        sphere's radius and to its speed.</dd></dl>
     <div class="fx fx--hero">
       <span class="fx__eq">F<sub>d</sub> = 6 π η r v</span>
       <span class="fx__tag">rigid sphere · laminar (creeping) flow · Re ≲ 1 · unbounded fluid</span>
     </div>
-    <div class="fx-grid">
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def"><dt>Terminal velocity (v<sub>t</sub>)</dt>
+      <dd>The constant velocity a body reaches when the drag plus buoyancy exactly balance its weight, so the
+        net force — and therefore the acceleration — is zero.</dd></dl>
+        <div class="fx-grid">
       <div class="fx"><span class="fx__eq">ρ<sub>s</sub>Vg = ρ<sub>f</sub>Vg + 6πηr v<sub>t</sub></span><span class="fx__tag">force balance at terminal velocity, V = ⁴⁄₃πr³</span></div>
-      <div class="fx"><span class="fx__eq">v<sub>t</sub> = 2 r² (ρ<sub>s</sub> − ρ<sub>f</sub>) g / (9 η)</span><span class="fx__tag">note r², not r; negative v<sub>t</sub> means the particle rises</span></div>
+      <div class="fx"><span class="fx__eq">v<sub>t</sub> = <span class="mf" role="img" aria-label="2 r squared times rho s minus rho f, times g, all over 9 eta"><span>2 r² (ρ<sub>s</sub> − ρ<sub>f</sub>) g</span><span>9 η</span></span></span><span class="fx__tag">note r², not r; negative v<sub>t</sub> means the particle rises</span></div>
       <div class="fx"><span class="fx__eq">replace g by ω²R for a centrifuge</span><span class="fx__tag">relative centrifugal field; ω in rad·s⁻¹, R the rotor radius</span></div>
     </div>
-    <div class="symtab">
+        <div class="symtab">
       <div><b>F<sub>d</sub></b><span>viscous drag force (N)</span></div>
       <div><b>η</b><span>viscosity of the suspending fluid (Pa·s)</span></div>
       <div><b>r</b><span>radius of the sphere (m)</span></div>
@@ -1524,6 +1727,8 @@
       <div><b>ρ<sub>f</sub></b><span>density of the fluid (kg·m⁻³)</span></div>
       <div><b>ω</b><span>angular velocity of the rotor (rad·s⁻¹)</span></div>
     </div>
+      </div>
+    </details>
   </div>
 
   <p>
@@ -1572,8 +1777,9 @@
     </figcaption>
   </figure>
 
-  <div class="wex">
-    <h4>Worked example 9 · The erythrocyte sedimentation rate from first principles</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 9 · The erythrocyte sedimentation rate from first principles</summary>
+    <div class="disc__body">
     <p style="margin:.2rem 0 .3rem">Model a red cell as a sphere of equivalent radius 2.8 μm and density
       1100 kg·m⁻³, settling in plasma of density 1025 kg·m⁻³ and viscosity 1.5 × 10⁻³ Pa·s — the
       room-temperature value, because a Westergren tube stands on the bench at ≈ 20 °C, not at the
@@ -1598,7 +1804,9 @@
         what the ESR is really measuring.</li>
     </ol>
     <p class="wex__ans">v<sub>t</sub> = 8.5 × 10⁻⁷ m·s⁻¹ ≈ 3.1 mm·h⁻¹ · Re ≈ 3 × 10⁻⁶ ⟹ Stokes valid</p>
-  </div>
+  
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Exam point · reading an ESR as a physics problem</p>

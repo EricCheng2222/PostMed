@@ -35,6 +35,54 @@
     btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   });
 
+  /* ---------- Reading pace: Learn vs Reference ------------------------
+     Disclosures are authored closed, so switching to Reference only ever
+     reveals. That means a no-JS reader still gets a working page, and the
+     switch never collapses something out from under you mid-read.
+  --------------------------------------------------------------------- */
+  var PKEY = 'postmed-pace';
+
+  function currentPace() {
+    try {
+      var p = localStorage.getItem(PKEY);
+      if (p === 'learn' || p === 'reference') return p;
+    } catch (e) { /* private mode */ }
+    return 'learn';
+  }
+
+  function applyPace(p, openDiscs) {
+    document.documentElement.setAttribute('data-pace', p);
+
+    if (openDiscs !== false) {
+      var discs = document.querySelectorAll('details.disc');
+      Array.prototype.forEach.call(discs, function (d) {
+        if (p === 'reference') d.setAttribute('open', '');
+        else d.removeAttribute('open');
+      });
+    }
+
+    var btns = document.querySelectorAll('[data-pace-set]');
+    Array.prototype.forEach.call(btns, function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-pace-set') === p ? 'true' : 'false');
+    });
+  }
+
+  /* Set the attribute immediately so [data-pace-only] blocks never flash. */
+  document.documentElement.setAttribute('data-pace', currentPace());
+
+  document.addEventListener('click', function (ev) {
+    var btn = ev.target.closest && ev.target.closest('[data-pace-set]');
+    if (!btn) return;
+    var p = btn.getAttribute('data-pace-set');
+    if (p !== 'learn' && p !== 'reference') return;
+    applyPace(p);
+    try { localStorage.setItem(PKEY, p); } catch (e) { /* ignore */ }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    applyPace(currentPace());
+  });
+
   /* ---------- Quiz engine --------------------------------------------
      Usage:
        <section class="quiz" data-quiz></section>

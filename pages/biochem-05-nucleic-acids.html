@@ -133,6 +133,10 @@
     <nav>
       <a href="biochemistry.html">Biochemistry</a>
       <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -178,8 +182,34 @@
     </ol>
   </nav>
 
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§01–§02</b>: the repeating unit is three separate pieces, and joining
+        the units up leaves the two ends of the chain chemically different, so a chain has a direction. Then
+        <b>§03</b>: the two chains face each other with a big ring always opposite a small one, which puts the
+        message on the inside of the helix and the charge on the outside. Those three sections generate almost
+        everything else here — including why <b>§07</b> has to have a lagging strand at all.</li>
+      <li><b>Then be able to do</b> — <b>§03</b>: complete a strand, average the two to get the composition of
+        the duplex, and pick the melting-temperature formula that matches the length you were given.
+        <b>§08–§09</b>: turn a template or a coding strand into mRNA and then into a peptide, base by base with
+        the table in §09, stopping <em>at</em> the stop codon rather than counting it. <b>§10</b>: label a given
+        change as silent, missense, nonsense or frameshift, and as a transition or a transversion. <b>§04</b>
+        carries one short calculation worth practising — linking number from superhelical density.</li>
+      <li><b>Leave for a second pass</b> — <b>§05</b> in its entirety; chromatin is a topic of its own and it
+        reads far better once replication and transcription are secure. Every long reference table folded away
+        behind a "Go deeper" line is lookup material rather than reading: the purine-versus-pyrimidine
+        comparison in §01, the cast of RNAs in §06, the polymerase list in §07, the ribosome-targeting
+        antibiotics in §09. And most of <b>§11</b> is a methods chapter whose every trick is an application of
+        §§02–03, so it keeps — though the PCR and qPCR arithmetic itself is quick and worth doing whenever you
+        get to it.</li>
+    </ol>
+  </div>
+
   <section class="fsheet card">
-    <p class="eyebrow" style="margin-bottom:.5rem">Quick sheet · everything on this page</p>
+    <details class="disc disc--sheet">
+      <summary>Formula sheet<span class="disc__count">28 formulas</span></summary>
+      <div class="disc__body">
     <div class="fsheet__grid">
       <div class="fsheet__item"><b>Chargaff</b><code>%A = %T · %G = %C</code></div>
       <div class="fsheet__item"><b>Hydrogen bonds</b><code>A = T (2) · G ≡ C (3)</code></div>
@@ -210,6 +240,8 @@
       <div class="fsheet__item"><b>Human genome</b><code>3.1 × 10⁹ bp · ≈20 000 coding genes</code></div>
       <div class="fsheet__item"><b>DNA per diploid cell</b><code>≈2.1 m stretched out</code></div>
     </div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -218,36 +250,49 @@
   <span class="section__num">§ 01</span>
   <h2>The nucleotide</h2>
 
+  <p class="idea"><b>The idea</b>Everything on this page is built out of one repeating unit, and that unit has three pieces: a flat ring that
+     carries the message, a sugar that the ring is bolted onto, and a phosphate that will become the joint to the
+     next unit along. The three pieces have completely separate jobs. Almost every rule later in the note turns out
+     to be a rule about the sugar or the phosphate rather than about the message-carrying ring, so the first habit
+     worth building is simply naming which of the three a question is actually about.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>Nucleoside</dt>
       <dd>A nitrogenous base joined to a pentose sugar by an <strong>N-glycosidic bond</strong> — N9 of a purine
           or N1 of a pyrimidine to C1′ of the sugar.</dd>
-      <dt>Nucleotide</dt>
-      <dd>A nucleoside carrying one or more phosphate groups esterified to a sugar hydroxyl — the 5′-OH unless
-          stated otherwise. A nucleotide is the monomer; a nucleoside cannot be polymerised.</dd>
-      <dt>Purine / pyrimidine</dt>
-      <dd>Purines (A, G) are bicyclic — a pyrimidine ring fused to an imidazole ring. Pyrimidines (C, T, U) are
-          monocyclic. The size difference is what makes a constant-width helix possible.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">nucleotide = base + pentose + phosphate</span>
       <span class="fx__tag">drop the phosphate and you have a nucleoside; drop the sugar too and you have a base</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">purine (A, G) → N9–C1′ · pyrimidine (C, U, T) → N1–C1′</span><span class="fx__tag">which ring nitrogen carries the sugar</span></div>
-      <div class="fx"><span class="fx__eq">ΔG°′ hydrolysis: phosphoester ≈ −14 · phosphoanhydride ≈ −30.5 kJ·mol⁻¹</span><span class="fx__tag">why ATP's β- and γ-phosphates are "high energy" and the backbone's are not</span></div>
-      <div class="fx"><span class="fx__eq">ribose C2′–OH  ⇌  2′-deoxyribose C2′–H</span><span class="fx__tag">one atom; it decides RNA vs DNA and everything that follows</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>C1′–C5′</b><span>sugar carbons; primes distinguish them from base ring atoms</span></div>
-      <div><b>N9 / N1</b><span>glycosidic attachment nitrogen (purine / pyrimidine)</span></div>
-      <div><b>P<sub>i</sub></b><span>inorganic phosphate</span></div>
-      <div><b>PP<sub>i</sub></b><span>pyrophosphate, released by every polymerase</span></div>
-      <div><b>dNTP</b><span>deoxynucleoside triphosphate — the DNA monomer</span></div>
-      <div><b>ΔG°′</b><span>standard free-energy change at pH 7 (kJ·mol⁻¹)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Nucleotide</dt>
+          <dd>A nucleoside carrying one or more phosphate groups esterified to a sugar hydroxyl — the 5′-OH unless
+              stated otherwise. A nucleotide is the monomer; a nucleoside cannot be polymerised.</dd>
+          <dt>Purine / pyrimidine</dt>
+          <dd>Purines (A, G) are bicyclic — a pyrimidine ring fused to an imidazole ring. Pyrimidines (C, T, U) are
+              monocyclic. The size difference is what makes a constant-width helix possible.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">purine (A, G) → N9–C1′ · pyrimidine (C, U, T) → N1–C1′</span><span class="fx__tag">which ring nitrogen carries the sugar</span></div>
+          <div class="fx"><span class="fx__eq">ΔG°′ hydrolysis: phosphoester ≈ −14 · phosphoanhydride ≈ −30.5 kJ·mol⁻¹</span><span class="fx__tag">why ATP's β- and γ-phosphates are "high energy" and the backbone's are not</span></div>
+          <div class="fx"><span class="fx__eq">ribose C2′–OH  ⇌  2′-deoxyribose C2′–H</span><span class="fx__tag">one atom; it decides RNA vs DNA and everything that follows</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>C1′–C5′</b><span>sugar carbons; primes distinguish them from base ring atoms</span></div>
+          <div><b>N9 / N1</b><span>glycosidic attachment nitrogen (purine / pyrimidine)</span></div>
+          <div><b>P<sub>i</sub></b><span>inorganic phosphate</span></div>
+          <div><b>PP<sub>i</sub></b><span>pyrophosphate, released by every polymerase</span></div>
+          <div><b>dNTP</b><span>deoxynucleoside triphosphate — the DNA monomer</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change at pH 7 (kJ·mol⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Start with the numbering, because it is the source of most avoidable confusion. The base ring atoms are
@@ -307,6 +352,9 @@
       be extended), and the 2′ position — the single atom that separates DNA from RNA.</figcaption>
   </figure>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · purine versus pyrimidine, from how each ring is built to why gout exists</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <caption class="sr-only">Purines compared with pyrimidines</caption>
@@ -322,6 +370,8 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
 
   <div class="mnemo">
     <h4>Which are which</h4>
@@ -368,33 +418,47 @@
   <span class="section__num">§ 02</span>
   <h2>The backbone, and why chains have polarity</h2>
 
+  <p class="idea"><b>The idea</b>Join the units into a chain and something surprising falls out: the two ends of the finished chain are not the
+     same as each other. One end still has a spare phosphate hanging off it, the other a spare hook on the sugar. So
+     a chain has a front and a back, the way a written sentence does — read it the other way round and you have a
+     different sentence, not the same one backwards. That single lopsidedness is why the machinery that builds these
+     chains can only work in one direction, and it quietly explains a long list of facts that otherwise look like
+     things you just have to memorise.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>Phosphodiester bond</dt>
       <dd>One phosphate esterified to <em>two</em> sugars at once: the 3′-OH of one nucleotide and the 5′-OH of
           the next. Two ester linkages on one phosphorus — hence "di-ester".</dd>
-      <dt>Chain polarity</dt>
-      <dd>The consequence: one end of the chain has a free 5′-phosphate, the other a free 3′-OH. The two ends
-          are chemically different, so the chain has a direction. By universal convention sequences are written
-          <strong>5′→3′, left to right</strong>.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">5′-P — sugar — 3′-O — P — 5′-sugar — 3′-OH</span>
       <span class="fx__tag">phosphate bridges 3′ of one residue to 5′ of the next</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">(NMP)<sub>n</sub> + NTP → (NMP)<sub>n+1</sub> + PP<sub>i</sub></span><span class="fx__tag">the 3′-OH attacks the α-phosphate of the incoming nucleotide</span></div>
-      <div class="fx"><span class="fx__eq">PP<sub>i</sub> + H₂O → 2 P<sub>i</sub>   (ΔG°′ ≈ −19 kJ·mol⁻¹)</span><span class="fx__tag">pyrophosphatase pulls the reaction forward</span></div>
-      <div class="fx"><span class="fx__eq">backbone pK<sub>a</sub> ≈ 1 → one negative charge per residue at any physiological pH</span><span class="fx__tag">nucleic acids are polyanions, always</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>NMP</b><span>nucleoside monophosphate residue in the chain</span></div>
-      <div><b>NTP</b><span>nucleoside triphosphate — the incoming monomer</span></div>
-      <div><b>5′ end</b><span>free phosphate; the "beginning" by convention</span></div>
-      <div><b>3′ end</b><span>free hydroxyl; the growing end</span></div>
-      <div><b>n</b><span>chain length (nucleotides)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Chain polarity</dt>
+          <dd>The consequence: one end of the chain has a free 5′-phosphate, the other a free 3′-OH. The two ends
+              are chemically different, so the chain has a direction. By universal convention sequences are written
+              <strong>5′→3′, left to right</strong>.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">(NMP)<sub>n</sub> + NTP → (NMP)<sub>n+1</sub> + PP<sub>i</sub></span><span class="fx__tag">the 3′-OH attacks the α-phosphate of the incoming nucleotide</span></div>
+          <div class="fx"><span class="fx__eq">PP<sub>i</sub> + H₂O → 2 P<sub>i</sub>   (ΔG°′ ≈ −19 kJ·mol⁻¹)</span><span class="fx__tag">pyrophosphatase pulls the reaction forward</span></div>
+          <div class="fx"><span class="fx__eq">backbone pK<sub>a</sub> ≈ 1 → one negative charge per residue at any physiological pH</span><span class="fx__tag">nucleic acids are polyanions, always</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>NMP</b><span>nucleoside monophosphate residue in the chain</span></div>
+          <div><b>NTP</b><span>nucleoside triphosphate — the incoming monomer</span></div>
+          <div><b>5′ end</b><span>free phosphate; the "beginning" by convention</span></div>
+          <div><b>3′ end</b><span>free hydroxyl; the growing end</span></div>
+          <div><b>n</b><span>chain length (nucleotides)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <h3>Why synthesis can only run 5′→3′</h3>
@@ -454,37 +518,51 @@
   <span class="section__num">§ 03</span>
   <h2>Base pairing, stacking and T<sub>m</sub></h2>
 
+  <p class="idea"><b>The idea</b>Two chains lie face to face because the rings sticking out of one fit the rings sticking out of the other in
+     only one way, and always with a big ring opposite a small one — so every rung of the ladder is the same width
+     and the whole helix keeps a constant thickness whatever the message says. What actually holds the two chains
+     shut, though, is less that fitting-together than the fact that the flat rings pile up on one another like a
+     stack of coins, tucked out of the way of the surrounding water. Heat the solution enough and the stack comes
+     apart — at a temperature you can predict from what the chain is made of and what it is sitting in.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>Complementarity</dt>
       <dd>Adenine pairs with thymine (uracil in RNA) through two hydrogen bonds; guanine pairs with cytosine
           through three. A purine always faces a pyrimidine, so every rung of the ladder is the same width.</dd>
-      <dt>Chargaff's rules</dt>
-      <dd>In any double-stranded DNA, %A = %T and %G = %C — therefore total purine = total pyrimidine. The
-          ratio (A+T)/(G+C) varies between species; the equalities do not.</dd>
-      <dt>Melting temperature T<sub>m</sub></dt>
-      <dd>The temperature at which half the duplex has separated into single strands, read as the midpoint of
-          the rise in A₂₆₀.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">A = T  (2 H-bonds)   ·   G ≡ C  (3 H-bonds)</span>
       <span class="fx__tag">the equals and triple-bar signs are the standard shorthand for the count</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">%A = %T · %G = %C · (A+G) = (C+T)</span><span class="fx__tag">Chargaff — true only for a duplex, never for one strand</span></div>
-      <div class="fx"><span class="fx__eq">T<sub>m</sub> = 81.5 + 16.6 log₁₀[Na⁺] + 0.41(%GC) − 600/N</span><span class="fx__tag">duplexes longer than ≈50 bp</span></div>
-      <div class="fx"><span class="fx__eq">T<sub>m</sub> ≈ 2(A+T) + 4(G+C)   °C</span><span class="fx__tag">Wallace rule, short primers of ≈14–25 nt</span></div>
-      <div class="fx"><span class="fx__eq">B-DNA: 10.5 bp/turn · 3.4 Å rise · 2.0 nm diameter</span><span class="fx__tag">solution values; the classic fibre model uses 10 bp/turn</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>T<sub>m</sub></b><span>melting temperature (°C)</span></div>
-      <div><b>%GC</b><span>guanine + cytosine as a percentage of all bases</span></div>
-      <div><b>N</b><span>duplex length (bp)</span></div>
-      <div><b>[Na⁺]</b><span>monovalent salt concentration (mol·L⁻¹)</span></div>
-      <div><b>A₂₆₀</b><span>absorbance at 260 nm — the bases' absorption maximum</span></div>
-      <div><b>rise</b><span>axial distance per base pair (3.4 Å = 0.34 nm)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Chargaff's rules</dt>
+          <dd>In any double-stranded DNA, %A = %T and %G = %C — therefore total purine = total pyrimidine. The
+              ratio (A+T)/(G+C) varies between species; the equalities do not.</dd>
+          <dt>Melting temperature T<sub>m</sub></dt>
+          <dd>The temperature at which half the duplex has separated into single strands, read as the midpoint of
+              the rise in A₂₆₀.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">%A = %T · %G = %C · (A+G) = (C+T)</span><span class="fx__tag">Chargaff — true only for a duplex, never for one strand</span></div>
+          <div class="fx"><span class="fx__eq">T<sub>m</sub> = 81.5 + 16.6 log₁₀[Na⁺] + 0.41(%GC) − <span class="mf" role="img" aria-label="600 over N"><span>600</span><span>N</span></span></span><span class="fx__tag">duplexes longer than ≈50 bp</span></div>
+          <div class="fx"><span class="fx__eq">T<sub>m</sub> ≈ 2(A+T) + 4(G+C)   °C</span><span class="fx__tag">Wallace rule, short primers of ≈14–25 nt</span></div>
+          <div class="fx"><span class="fx__eq">B-DNA: 10.5 bp/turn · 3.4 Å rise · 2.0 nm diameter</span><span class="fx__tag">solution values; the classic fibre model uses 10 bp/turn</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>T<sub>m</sub></b><span>melting temperature (°C)</span></div>
+          <div><b>%GC</b><span>guanine + cytosine as a percentage of all bases</span></div>
+          <div><b>N</b><span>duplex length (bp)</span></div>
+          <div><b>[Na⁺]</b><span>monovalent salt concentration (mol·L⁻¹)</span></div>
+          <div><b>A₂₆₀</b><span>absorbance at 260 nm — the bases' absorption maximum</span></div>
+          <div><b>rise</b><span>axial distance per base pair (3.4 Å = 0.34 nm)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Watson–Crick geometry is constrained, not chosen. A purine paired with a purine would be too wide; two
@@ -612,7 +690,7 @@
   <h4>Try it: GC content → T<sub>m</sub></h4>
   <p>The formula below applies to duplexes longer than about 50 bp in 0.05 M Na⁺. Move the sliders and watch
      which term does the work.</p>
-  <div class="fx"><span class="fx__eq">T<sub>m</sub> = 81.5 + 16.6 log₁₀[Na⁺] + 0.41(%GC) − 600/N</span><span class="fx__tag">at [Na⁺] = 0.05 M the first two terms are a constant 59.9 °C</span></div>
+  <div class="fx"><span class="fx__eq">T<sub>m</sub> = 81.5 + 16.6 log₁₀[Na⁺] + 0.41(%GC) − <span class="mf" role="img" aria-label="600 over N"><span>600</span><span>N</span></span></span><span class="fx__tag">at [Na⁺] = 0.05 M the first two terms are a constant 59.9 °C</span></div>
   <div class="card nu-tm">
     <div>
       <label for="tmGc">GC content <output id="tmGcOut" for="tmGc">50 %</output></label>
@@ -635,8 +713,9 @@
     </div>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 1 — a Chargaff deduction</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — a Chargaff deduction</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">One strand of a double-stranded DNA molecule contains 32 % A,
       28 % T and 18 % G. What is the guanine content of the <em>duplex</em>, and its overall GC content?</p>
     <ol>
@@ -653,10 +732,12 @@
           for any duplex, which is why that ratio is never a useful discriminator.</li>
     </ol>
     <span class="wex__ans">duplex G = 20 % · GC = 40 % · (A+T)/(G+C) = 1.50</span>
-  </div>
+    </div>
+  </details>
 
-  <div class="wex">
-    <h4>Worked example 2 — two T<sub>m</sub> estimates, and why they disagree</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — two T<sub>m</sub> estimates, and why they disagree</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">(a) A 500 bp PCR product is 58 % GC, in 0.05 M Na⁺. Estimate
       T<sub>m</sub>. (b) A 20-mer primer, 5′-GCTAGCTTGACCTAGGACTT-3′, will be used to amplify it. Estimate the
       primer's T<sub>m</sub> and a sensible annealing temperature.</p>
@@ -674,7 +755,8 @@
           quoting the wrong one is a classic lost mark.</li>
     </ol>
     <span class="wex__ans">(a) T<sub>m</sub> ≈ 82.5 °C · (b) primer T<sub>m</sub> ≈ 60 °C, anneal ≈55 °C</span>
-  </div>
+    </div>
+  </details>
 </section>
 
 <!-- =========================== 4 =========================== -->
@@ -682,36 +764,50 @@
   <span class="section__num">§ 04</span>
   <h2>A, B, Z and DNA topology</h2>
 
+  <p class="idea"><b>The idea</b>A long twisted ladder does not simply sit there. It can be wound tighter or looser than it would like to be, and
+     if its ends are joined into a loop, or pinned down, that surplus winding has nowhere to escape to — so the whole
+     molecule writhes and coils around itself, exactly like an over-twisted telephone cord. Cells deliberately keep
+     their DNA a little under-wound, which leaves it primed to spring open wherever something needs to read it.
+     Anything travelling along the helix makes the winding worse in front of itself, so there is a family of enzymes
+     whose entire job is to cut the strands, let the strain out, and seal them up again.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>Linking number Lk</dt>
       <dd>The number of times one strand of a <em>closed</em> circular duplex crosses the other. It is a
           topological invariant: it cannot change unless a strand is broken.</dd>
-      <dt>Twist and writhe</dt>
-      <dd>Twist (Tw) is the winding of the two strands about the helix axis; writhe (Wr) is the coiling of the
-          axis itself in space. Their sum is fixed.</dd>
-      <dt>Supercoiling</dt>
-      <dd>Any deviation of Lk from its relaxed value. Underwinding (negative supercoiling) is the physiological
-          state in essentially every organism.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">Lk = Tw + Wr</span>
       <span class="fx__tag">Lk is fixed for an intact circle; Tw and Wr trade off freely</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">Lk₀ = N / 10.5</span><span class="fx__tag">linking number of the relaxed circle, N base pairs</span></div>
-      <div class="fx"><span class="fx__eq">σ = ΔLk / Lk₀ = (Lk − Lk₀) / Lk₀ ≈ −0.05 to −0.07 in vivo</span><span class="fx__tag">superhelical density — negative means underwound</span></div>
-      <div class="fx"><span class="fx__eq">topo I: ΔLk = ±1, no ATP  ·  topo II: ΔLk = ±2, ATP required</span><span class="fx__tag">one strand cut versus two</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>Lk</b><span>linking number (integer, dimensionless)</span></div>
-      <div><b>Lk₀</b><span>linking number of the relaxed molecule</span></div>
-      <div><b>Tw</b><span>twist — helical turns of the strands</span></div>
-      <div><b>Wr</b><span>writhe — supercoils of the axis</span></div>
-      <div><b>σ</b><span>superhelical density (dimensionless)</span></div>
-      <div><b>N</b><span>length of the circle (bp)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Twist and writhe</dt>
+          <dd>Twist (Tw) is the winding of the two strands about the helix axis; writhe (Wr) is the coiling of the
+              axis itself in space. Their sum is fixed.</dd>
+          <dt>Supercoiling</dt>
+          <dd>Any deviation of Lk from its relaxed value. Underwinding (negative supercoiling) is the physiological
+              state in essentially every organism.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Lk₀ = <span class="mf" role="img" aria-label="N over 10.5"><span>N</span><span>10.5</span></span></span><span class="fx__tag">linking number of the relaxed circle, N base pairs</span></div>
+          <div class="fx"><span class="fx__eq">σ = <span class="mf" role="img" aria-label="delta L k over L k zero"><span>ΔLk</span><span>Lk₀</span></span> = <span class="mf" role="img" aria-label="L k minus L k zero, all over L k zero"><span>Lk − Lk₀</span><span>Lk₀</span></span> ≈ −0.05 to −0.07 in vivo</span><span class="fx__tag">superhelical density — negative means underwound</span></div>
+          <div class="fx"><span class="fx__eq">topo I: ΔLk = ±1, no ATP  ·  topo II: ΔLk = ±2, ATP required</span><span class="fx__tag">one strand cut versus two</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Lk</b><span>linking number (integer, dimensionless)</span></div>
+          <div><b>Lk₀</b><span>linking number of the relaxed molecule</span></div>
+          <div><b>Tw</b><span>twist — helical turns of the strands</span></div>
+          <div><b>Wr</b><span>writhe — supercoils of the axis</span></div>
+          <div><b>σ</b><span>superhelical density (dimensionless)</span></div>
+          <div><b>N</b><span>length of the circle (bp)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <div class="table-scroll">
@@ -772,8 +868,9 @@
       therapy-related secondary leukaemias seen after etoposide.</p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 3 — the linking number of a plasmid</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — the linking number of a plasmid</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">A closed circular plasmid is 5250 bp and is isolated at a
       superhelical density σ = −0.06. Find Lk₀, ΔLk and Lk. How many catalytic events would topoisomerase I
       need to relax it, and how many would topoisomerase II need?</p>
@@ -789,12 +886,19 @@
           2 → <strong>15 events</strong>, each costing ATP.</li>
     </ol>
     <span class="wex__ans">Lk₀ = 500 · ΔLk = −30 · Lk = 470 · topo I 30 events, topo II 15 events</span>
-  </div>
+    </div>
+  </details>
 </section>
 <!-- =========================== 5 =========================== -->
 <section class="section" id="s5">
   <span class="section__num">§ 05</span>
   <h2>Chromatin and packaging</h2>
+
+  <p class="idea"><b>The idea</b>Around two metres of thread has to fit inside a container far smaller than a full stop, and still be readable
+     page by page rather than all at once. The answer is to wind the thread onto protein spools, stack the spools,
+     and then fold the stacks, each step shortening what is left. The part that matters is that this is not merely
+     tidying up: how tightly a stretch is wound decides whether anything can get at it, so the packing doubles as the
+     cell's coarsest on-off control over its own genes.</p>
 
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
@@ -802,29 +906,36 @@
       <dt>Nucleosome</dt>
       <dd>The repeating unit of chromatin: 147 bp of DNA wrapped in about 1.65 left-handed superhelical turns
           around a histone octamer.</dd>
-      <dt>Histone octamer</dt>
-      <dd>Two copies each of H2A, H2B, H3 and H4. H1 is <em>not</em> part of the core — it binds the linker DNA
-          where it enters and leaves, clamping the wrap and enabling the next level of folding.</dd>
-      <dt>Packing ratio</dt>
-      <dd>The factor by which the linear length of DNA is reduced at a given level of organisation.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">147 bp · ≈1.65 turns · (H2A·H2B·H3·H4)₂</span>
       <span class="fx__tag">the three numbers that get asked</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">nucleosome repeat ≈ 200 bp = 147 core + ≈53 linker</span><span class="fx__tag">linker ranges 20–80 bp by species and cell type</span></div>
-      <div class="fx"><span class="fx__eq">length = N × 0.34 nm</span><span class="fx__tag">converting base pairs to metres of B-DNA</span></div>
-      <div class="fx"><span class="fx__eq">packing ratio ≈ 10⁴ at metaphase</span><span class="fx__tag">from ≈7× (10 nm fibre) through ≈40× (30 nm fibre)</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>N</b><span>number of base pairs</span></div>
-      <div><b>0.34 nm</b><span>rise per base pair in B-DNA</span></div>
-      <div><b>H1</b><span>linker histone, one per nucleosome</span></div>
-      <div><b>HAT / HDAC</b><span>histone acetyltransferase / deacetylase</span></div>
-      <div><b>DNMT</b><span>DNA methyltransferase</span></div>
-      <div><b>5mC</b><span>5-methylcytosine</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Histone octamer</dt>
+          <dd>Two copies each of H2A, H2B, H3 and H4. H1 is <em>not</em> part of the core — it binds the linker DNA
+              where it enters and leaves, clamping the wrap and enabling the next level of folding.</dd>
+          <dt>Packing ratio</dt>
+          <dd>The factor by which the linear length of DNA is reduced at a given level of organisation.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">nucleosome repeat ≈ 200 bp = 147 core + ≈53 linker</span><span class="fx__tag">linker ranges 20–80 bp by species and cell type</span></div>
+          <div class="fx"><span class="fx__eq">length = N × 0.34 nm</span><span class="fx__tag">converting base pairs to metres of B-DNA</span></div>
+          <div class="fx"><span class="fx__eq">packing ratio ≈ 10⁴ at metaphase</span><span class="fx__tag">from ≈7× (10 nm fibre) through ≈40× (30 nm fibre)</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>N</b><span>number of base pairs</span></div>
+          <div><b>0.34 nm</b><span>rise per base pair in B-DNA</span></div>
+          <div><b>H1</b><span>linker histone, one per nucleosome</span></div>
+          <div><b>HAT / HDAC</b><span>histone acetyltransferase / deacetylase</span></div>
+          <div><b>DNMT</b><span>DNA methyltransferase</span></div>
+          <div><b>5mC</b><span>5-methylcytosine</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Do the arithmetic once and the problem becomes concrete. A diploid human cell holds
@@ -832,6 +943,9 @@
      micrometres across — and be selectively readable while it is in there. Packaging is therefore not storage;
      it is the primary layer of gene regulation.</p>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · the six levels of packaging and the packing ratio each one buys</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <caption class="sr-only">Levels of chromatin packaging</caption>
@@ -846,6 +960,8 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
 
   <p>Why histones can do this at all is §&nbsp;02's polyanion argument in reverse: the core histones are about
      20 % lysine and arginine, so at physiological pH they carry a large net positive charge that neutralises
@@ -892,32 +1008,45 @@
   <span class="section__num">§ 06</span>
   <h2>RNA, and the price of the 2′-OH</h2>
 
+  <p class="idea"><b>The idea</b>RNA is the same kind of chain with one extra oxygen atom on every sugar, and one of the four letters swapped for
+     a near-identical cousin. That sounds like a detail and is not. The extra oxygen makes the chain chemically
+     restless, so RNA falls apart in hours where DNA lasts for years — but the same restlessness is what lets RNA
+     fold into working shapes and even behave like an enzyme. It reads as a deliberate trade: keep the permanent
+     archive in the stable material, and make the disposable working copies out of the reactive one.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>RNA</dt>
       <dd>A nucleic acid built on ribose, using uracil in place of thymine, and synthesised as a single strand.
           Three differences from DNA — and each one <em>causes</em> something.</dd>
-      <dt>Ribozyme</dt>
-      <dd>An RNA molecule with catalytic activity. Their existence is why the RNA-world hypothesis is taken
-          seriously: RNA is the only known molecule that both carries information and catalyses reactions.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">2′-OH · U instead of T · single-stranded</span>
       <span class="fx__tag">three differences — learn the consequence of each, not the list</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">2′-O⁻ attacks the adjacent phosphate → 2′,3′-cyclic phosphate → chain cleaved</span><span class="fx__tag">why RNA is destroyed by alkali and DNA is not</span></div>
-      <div class="fx"><span class="fx__eq">C → U by spontaneous deamination (≈100–500 events per cell per day)</span><span class="fx__tag">why DNA pays for the methyl group that makes T</span></div>
-      <div class="fx"><span class="fx__eq">A₂₆₀/A₂₈₀ ≈ 1.8 (DNA) · ≈2.0 (RNA)</span><span class="fx__tag">purity check in the laboratory</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>2′-OH</b><span>ribose hydroxyl absent from DNA</span></div>
-      <div><b>U</b><span>uracil = thymine without the 5-methyl group</span></div>
-      <div><b>T</b><span>thymine = 5-methyluracil</span></div>
-      <div><b>hnRNA</b><span>heterogeneous nuclear RNA = unprocessed pre-mRNA</span></div>
-      <div><b>snRNP</b><span>small nuclear ribonucleoprotein (spliceosome subunit)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Ribozyme</dt>
+          <dd>An RNA molecule with catalytic activity. Their existence is why the RNA-world hypothesis is taken
+              seriously: RNA is the only known molecule that both carries information and catalyses reactions.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">2′-O⁻ attacks the adjacent phosphate → 2′,3′-cyclic phosphate → chain cleaved</span><span class="fx__tag">why RNA is destroyed by alkali and DNA is not</span></div>
+          <div class="fx"><span class="fx__eq">C → U by spontaneous deamination (≈100–500 events per cell per day)</span><span class="fx__tag">why DNA pays for the methyl group that makes T</span></div>
+          <div class="fx"><span class="fx__eq">A₂₆₀/A₂₈₀ ≈ 1.8 (DNA) · ≈2.0 (RNA)</span><span class="fx__tag">purity check in the laboratory</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>2′-OH</b><span>ribose hydroxyl absent from DNA</span></div>
+          <div><b>U</b><span>uracil = thymine without the 5-methyl group</span></div>
+          <div><b>T</b><span>thymine = 5-methyluracil</span></div>
+          <div><b>hnRNA</b><span>heterogeneous nuclear RNA = unprocessed pre-mRNA</span></div>
+          <div><b>snRNP</b><span>small nuclear ribonucleoprotein (spliceosome subunit)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <h3>Difference 1: the 2′-OH — catalysis, instability, and A-form</h3>
@@ -974,6 +1103,9 @@
      <em>sequence-determined</em> three-dimensional structure. That is what makes tRNA a machine, rRNA a
      scaffold and a catalyst, and riboswitches possible.</p>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · the full cast of RNAs, from mRNA to piRNA</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <caption class="sr-only">The RNA cast</caption>
@@ -990,6 +1122,8 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">tRNA details that are actually asked</p>
@@ -1008,35 +1142,48 @@
   <span class="section__num">§ 07</span>
   <h2>DNA replication</h2>
 
+  <p class="idea"><b>The idea</b>Copying works by pulling the two chains apart and building a fresh partner against each one, so every copy ends
+     up half old and half new. The awkward part is that the builder can only work in one direction, while the two
+     chains it is copying point opposite ways. One new chain can therefore be laid down in a single continuous run;
+     the other has to be made backwards, in short pieces that are stitched together afterwards. Almost every protein
+     at the copying fork is there either to make that clumsy arrangement work or to check the result for mistakes.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>Semiconservative replication</dt>
       <dd>Each daughter duplex contains one parental strand and one newly synthesised strand. Demonstrated by
           Meselson and Stahl in 1958 using ¹⁵N labelling and caesium chloride density-gradient centrifugation.</dd>
-      <dt>Replication fork</dt>
-      <dd>The Y-shaped junction where the parental duplex is being unwound and both new strands are being made.
-          Eukaryotic origins fire bidirectionally, so each origin makes two forks.</dd>
-      <dt>Proofreading</dt>
-      <dd>The 3′→5′ exonuclease activity built into replicative polymerases, which removes a just-incorporated
-          mismatched nucleotide before synthesis continues.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">both new strands grow 5′ → 3′, always</span>
       <span class="fx__tag">the constraint from §&nbsp;02 that forces the lagging strand to exist</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">base pairing 10⁻⁵ → proofreading 10⁻⁷ → mismatch repair 10⁻⁹</span><span class="fx__tag">error per base pair after each layer of checking</span></div>
-      <div class="fx"><span class="fx__eq">t = N / (2 × rate)</span><span class="fx__tag">time for one bidirectional origin to copy a circular genome</span></div>
-      <div class="fx"><span class="fx__eq">telomere repeat (human) = 5′-TTAGGG-3′</span><span class="fx__tag">extended by telomerase, an RNA-dependent DNA polymerase</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>N</b><span>genome size (bp)</span></div>
-      <div><b>rate</b><span>fork speed (bp·s⁻¹): ≈1000 in <em>E. coli</em>, ≈50 in human</span></div>
-      <div><b>Okazaki fragment</b><span>1000–2000 nt in bacteria, 100–200 nt in eukaryotes</span></div>
-      <div><b>SSB / RPA</b><span>single-strand binding protein (bacterial / eukaryotic)</span></div>
-      <div><b>ori</b><span>origin of replication</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Replication fork</dt>
+          <dd>The Y-shaped junction where the parental duplex is being unwound and both new strands are being made.
+              Eukaryotic origins fire bidirectionally, so each origin makes two forks.</dd>
+          <dt>Proofreading</dt>
+          <dd>The 3′→5′ exonuclease activity built into replicative polymerases, which removes a just-incorporated
+              mismatched nucleotide before synthesis continues.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">base pairing 10⁻⁵ → proofreading 10⁻⁷ → mismatch repair 10⁻⁹</span><span class="fx__tag">error per base pair after each layer of checking</span></div>
+          <div class="fx"><span class="fx__eq">t = <span class="mf" role="img" aria-label="N over 2 times rate"><span>N</span><span>2 × rate</span></span></span><span class="fx__tag">time for one bidirectional origin to copy a circular genome</span></div>
+          <div class="fx"><span class="fx__eq">telomere repeat (human) = 5′-TTAGGG-3′</span><span class="fx__tag">extended by telomerase, an RNA-dependent DNA polymerase</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>N</b><span>genome size (bp)</span></div>
+          <div><b>rate</b><span>fork speed (bp·s⁻¹): ≈1000 in <em>E. coli</em>, ≈50 in human</span></div>
+          <div><b>Okazaki fragment</b><span>1000–2000 nt in bacteria, 100–200 nt in eukaryotes</span></div>
+          <div><b>SSB / RPA</b><span>single-strand binding protein (bacterial / eukaryotic)</span></div>
+          <div><b>ori</b><span>origin of replication</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <h3>Meselson–Stahl, read as an experiment rather than a fact</h3>
@@ -1113,6 +1260,9 @@
       (<em>E. coli</em>).</figcaption>
   </figure>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · every DNA polymerase and the job it does</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <caption class="sr-only">DNA polymerases</caption>
@@ -1130,6 +1280,8 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
 
   <h3>Fidelity, in three layers</h3>
   <p>Base pairing alone is worth about one error in 10⁴–10⁵ — hydrogen-bond geometry plus the polymerase's own
@@ -1149,8 +1301,9 @@
      Loss-of-function mutations cause dyskeratosis congenita and some aplastic anaemias and pulmonary fibroses —
      tissues with high turnover fail first, which is the prediction the model makes.</p>
 
-  <div class="wex">
-    <h4>Worked example 4 — how long does a bacterium take to copy itself?</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — how long does a bacterium take to copy itself?</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">The <em>E. coli</em> chromosome is 4.6 × 10⁶ bp, circular, with a
       single origin that fires bidirectionally. Each fork moves at about 1000 bp·s⁻¹. How long does one round of
       replication take, and how does that square with a 20-minute doubling time?</p>
@@ -1166,7 +1319,8 @@
           Eukaryotes therefore fire tens of thousands of origins, which is precisely why they need them.</li>
     </ol>
     <span class="wex__ans">≈2300 s ≈ 38 min per round · overlapping rounds explain a 20 min doubling time</span>
-  </div>
+    </div>
+  </details>
 </section>
 
 <!-- =========================== 8 =========================== -->
@@ -1174,37 +1328,50 @@
   <span class="section__num">§ 08</span>
   <h2>Transcription and RNA processing</h2>
 
+  <p class="idea"><b>The idea</b>To use a gene, the cell does not read the archive directly — it makes a short working copy of just that stretch.
+     Only one of the two chains is actually read, which means the copy comes out looking like the other one; that is
+     why so many questions here are really questions about which of the two you were handed. In cells like ours the
+     fresh copy is then edited before it is allowed out to be used: a protective cap goes on the front, a tail on the
+     back, and whole stretches from the middle are cut out and thrown away.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>Template (antisense, non-coding) strand</dt>
       <dd>The strand the polymerase actually reads, 3′→5′. The RNA is complementary and antiparallel to it.</dd>
-      <dt>Coding (sense) strand</dt>
-      <dd>The other strand. It is <em>not</em> read by anything — but the mRNA sequence is identical to it,
-          with U in place of T. This is why sequences in databases and exam questions are usually quoted as the
-          coding strand.</dd>
-      <dt>Promoter</dt>
-      <dd>The DNA element upstream of the start site that positions the polymerase. Eukaryotic core promoters
-          often carry a TATA box at about −25 to −30; bacterial promoters carry −10 (TATAAT) and −35 (TTGACA)
-          elements recognised by a σ factor.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">mRNA = coding strand, with U for T</span>
       <span class="fx__tag">the one line that resolves most exam questions on this topic</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">template 3′-TAC-5′ → mRNA 5′-AUG-3′ → coding 5′-ATG-3′</span><span class="fx__tag">the start codon in all three representations</span></div>
-      <div class="fx"><span class="fx__eq">exon–GU … A … AG–exon</span><span class="fx__tag">GU–AG rule: donor, branch point, acceptor</span></div>
-      <div class="fx"><span class="fx__eq">polyadenylation signal 5′-AAUAAA-3′ → cleave, then add ≈200 A</span><span class="fx__tag">the tail is not templated</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>+1</b><span>the transcription start site</span></div>
-      <div><b>−25</b><span>25 bp upstream of +1 (negative = upstream)</span></div>
-      <div><b>hnRNA</b><span>pre-mRNA, before processing</span></div>
-      <div><b>m⁷G</b><span>7-methylguanosine cap</span></div>
-      <div><b>σ</b><span>bacterial sigma factor — promoter recognition subunit</span></div>
-      <div><b>snRNP</b><span>spliceosome subunit (U1, U2, U4, U5, U6)</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Coding (sense) strand</dt>
+          <dd>The other strand. It is <em>not</em> read by anything — but the mRNA sequence is identical to it,
+              with U in place of T. This is why sequences in databases and exam questions are usually quoted as the
+              coding strand.</dd>
+          <dt>Promoter</dt>
+          <dd>The DNA element upstream of the start site that positions the polymerase. Eukaryotic core promoters
+              often carry a TATA box at about −25 to −30; bacterial promoters carry −10 (TATAAT) and −35 (TTGACA)
+              elements recognised by a σ factor.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">template 3′-TAC-5′ → mRNA 5′-AUG-3′ → coding 5′-ATG-3′</span><span class="fx__tag">the start codon in all three representations</span></div>
+          <div class="fx"><span class="fx__eq">exon–GU … A … AG–exon</span><span class="fx__tag">GU–AG rule: donor, branch point, acceptor</span></div>
+          <div class="fx"><span class="fx__eq">polyadenylation signal 5′-AAUAAA-3′ → cleave, then add ≈200 A</span><span class="fx__tag">the tail is not templated</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>+1</b><span>the transcription start site</span></div>
+          <div><b>−25</b><span>25 bp upstream of +1 (negative = upstream)</span></div>
+          <div><b>hnRNA</b><span>pre-mRNA, before processing</span></div>
+          <div><b>m⁷G</b><span>7-methylguanosine cap</span></div>
+          <div><b>σ</b><span>bacterial sigma factor — promoter recognition subunit</span></div>
+          <div><b>snRNP</b><span>spliceosome subunit (U1, U2, U4, U5, U6)</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <div class="callout callout--warn">
@@ -1219,8 +1386,9 @@
       confident and is completely wrong.</p>
   </div>
 
-  <div class="wex">
-    <h4>Worked example 5 — template → mRNA → peptide, done base by base</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — template → mRNA → peptide, done base by base</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">A short gene has the template strand
       <span class="fi">3′-TAC GGA TTC AAC CTA ACT-5′</span>. Give the coding strand, the mRNA and the peptide.
       Then delete the fourth base of the mRNA and translate again.</p>
@@ -1250,7 +1418,8 @@
           Ser–stop: a one-residue peptide and a completely wrong answer.</li>
     </ol>
     <span class="wex__ans">Met–Pro–Lys–Leu–Asp (5 residues) · after the deletion: Met–Leu–Ser–Trp–Ile…</span>
-  </div>
+    </div>
+  </details>
 
   <div class="table-scroll">
     <table class="data">
@@ -1396,36 +1565,49 @@
   <span class="section__num">§ 09</span>
   <h2>The genetic code and translation</h2>
 
+  <p class="idea"><b>The idea</b>The message is read three letters at a time, and each group of three names one building block of a protein.
+     There are far more possible groups than there are blocks to name, so most blocks answer to several names — and
+     that spare capacity works as a safety margin, because it means a great many single-letter typos change nothing
+     at all. Where the reading starts is decided once, at the beginning, and never checked again, so anything that
+     shifts the starting point along by one or two letters turns everything after it into nonsense.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>Codon</dt>
       <dd>Three consecutive mRNA nucleotides, read 5′→3′, specifying one amino acid or a stop.</dd>
-      <dt>Reading frame</dt>
-      <dd>Which of the three possible groupings of the sequence into triplets is used. The frame is set once, by
-          the initiator AUG, and never re-negotiated — which is why an indel that is not a multiple of three is
-          so destructive.</dd>
-      <dt>Degeneracy</dt>
-      <dd>Most amino acids are specified by more than one codon. The code is degenerate but never
-          <strong>ambiguous</strong>: one codon means exactly one thing.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">4³ = 64 codons = 61 sense + 3 stop  →  20 amino acids</span>
       <span class="fx__tag">4² = 16 &lt; 20, so triplets are the smallest workable code</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">start: AUG (Met) · stop: UAA, UAG, UGA</span><span class="fx__tag">"U Are Away · U Are Gone · U Go Away"</span></div>
-      <div class="fx"><span class="fx__eq">anticodon (5′→3′) = reverse complement of the codon</span><span class="fx__tag">codon 5′-AUG-3′ pairs with anticodon 5′-CAU-3′</span></div>
-      <div class="fx"><span class="fx__eq">≈4 high-energy phosphates per peptide bond</span><span class="fx__tag">2 for aminoacylation, 1 for delivery, 1 for translocation</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>codon</b><span>mRNA triplet, always quoted 5′→3′</span></div>
-      <div><b>anticodon</b><span>the complementary tRNA triplet, also quoted 5′→3′</span></div>
-      <div><b>wobble</b><span>the third codon position / first anticodon position</span></div>
-      <div><b>A / P / E</b><span>ribosomal aminoacyl, peptidyl and exit sites</span></div>
-      <div><b>S</b><span>Svedberg unit — a sedimentation coefficient, not a mass</span></div>
-      <div><b>~P</b><span>high-energy phosphate bond equivalent</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Reading frame</dt>
+          <dd>Which of the three possible groupings of the sequence into triplets is used. The frame is set once, by
+              the initiator AUG, and never re-negotiated — which is why an indel that is not a multiple of three is
+              so destructive.</dd>
+          <dt>Degeneracy</dt>
+          <dd>Most amino acids are specified by more than one codon. The code is degenerate but never
+              <strong>ambiguous</strong>: one codon means exactly one thing.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">start: AUG (Met) · stop: UAA, UAG, UGA</span><span class="fx__tag">"U Are Away · U Are Gone · U Go Away"</span></div>
+          <div class="fx"><span class="fx__eq">anticodon (5′→3′) = reverse complement of the codon</span><span class="fx__tag">codon 5′-AUG-3′ pairs with anticodon 5′-CAU-3′</span></div>
+          <div class="fx"><span class="fx__eq">≈4 high-energy phosphates per peptide bond</span><span class="fx__tag">2 for aminoacylation, 1 for delivery, 1 for translocation</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>codon</b><span>mRNA triplet, always quoted 5′→3′</span></div>
+          <div><b>anticodon</b><span>the complementary tRNA triplet, also quoted 5′→3′</span></div>
+          <div><b>wobble</b><span>the third codon position / first anticodon position</span></div>
+          <div><b>A / P / E</b><span>ribosomal aminoacyl, peptidyl and exit sites</span></div>
+          <div><b>S</b><span>Svedberg unit — a sedimentation coefficient, not a mass</span></div>
+          <div><b>~P</b><span>high-energy phosphate bond equivalent</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <p>Five properties, and each one is a claim you should be able to defend. The code is
@@ -1649,6 +1831,9 @@
         synthesis is the most expensive thing most cells do.</li>
   </ol>
 
+  <details class="disc disc--deep">
+    <summary>Go deeper · the antibiotics and toxins that exploit ribosome differences</summary>
+    <div class="disc__body">
   <div class="table-scroll">
     <table class="data">
       <caption class="sr-only">Antibiotics and toxins that exploit ribosome differences</caption>
@@ -1665,6 +1850,8 @@
       </tbody>
     </table>
   </div>
+    </div>
+  </details>
   <div class="mnemo">
     <h4>"Buy AT 30, CCEL at 50"</h4>
     <p><strong>A</strong>minoglycosides and <strong>T</strong>etracyclines hit the <strong>30S</strong>;
@@ -1686,36 +1873,49 @@
   <span class="section__num">§ 10</span>
   <h2>Mutation and repair</h2>
 
+  <p class="idea"><b>The idea</b>Damage to the message is constant and unavoidable, so the interesting question is never whether errors happen
+     but which ones survive. Some changes swap one letter for another and may cost nothing at all; others shift where
+     the reading falls and wreck everything after them. Against this the cell keeps several repair crews, each
+     trained on a different kind of damage — and the inherited illnesses in this section are, one for one, the story
+     of what goes wrong when a particular crew is missing.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>Point mutation</dt>
       <dd>A change of a single base pair. Classified by its effect on the protein: silent, missense, nonsense.</dd>
-      <dt>Frameshift</dt>
-      <dd>An insertion or deletion of a number of bases that is <em>not</em> a multiple of three, which shifts
-          the reading frame for every codon downstream.</dd>
-      <dt>Transition / transversion</dt>
-      <dd>Transition = purine↔purine or pyrimidine↔pyrimidine (A↔G, C↔T). Transversion = purine↔pyrimidine.
-          There are twice as many possible transversions, yet transitions are the more common — chiefly because
-          5-methylcytosine deaminates to thymine.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">indel ÷ 3 has a remainder → frameshift</span>
       <span class="fx__tag">a 3 bp deletion removes one residue; a 1 bp deletion destroys the protein</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">transition: A ↔ G, C ↔ T · transversion: purine ↔ pyrimidine</span><span class="fx__tag">"transItions stay wIthin the ring class"</span></div>
-      <div class="fx"><span class="fx__eq">5-methyl-C → T (deamination) · C → U (deamination) · A → hypoxanthine</span><span class="fx__tag">the three spontaneous deaminations that matter</span></div>
-      <div class="fx"><span class="fx__eq">≈69 % of third-position changes are silent</span><span class="fx__tag">from §&nbsp;09 — the code absorbs errors</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>indel</b><span>insertion or deletion</span></div>
-      <div><b>NMD</b><span>nonsense-mediated decay — degrades transcripts with a premature stop</span></div>
-      <div><b>MMR</b><span>mismatch repair</span></div>
-      <div><b>BER / NER</b><span>base / nucleotide excision repair</span></div>
-      <div><b>HR / NHEJ</b><span>homologous recombination / non-homologous end joining</span></div>
-      <div><b>MSI</b><span>microsatellite instability</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Frameshift</dt>
+          <dd>An insertion or deletion of a number of bases that is <em>not</em> a multiple of three, which shifts
+              the reading frame for every codon downstream.</dd>
+          <dt>Transition / transversion</dt>
+          <dd>Transition = purine↔purine or pyrimidine↔pyrimidine (A↔G, C↔T). Transversion = purine↔pyrimidine.
+              There are twice as many possible transversions, yet transitions are the more common — chiefly because
+              5-methylcytosine deaminates to thymine.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">transition: A ↔ G, C ↔ T · transversion: purine ↔ pyrimidine</span><span class="fx__tag">"transItions stay wIthin the ring class"</span></div>
+          <div class="fx"><span class="fx__eq">5-methyl-C → T (deamination) · C → U (deamination) · A → hypoxanthine</span><span class="fx__tag">the three spontaneous deaminations that matter</span></div>
+          <div class="fx"><span class="fx__eq">≈69 % of third-position changes are silent</span><span class="fx__tag">from §&nbsp;09 — the code absorbs errors</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>indel</b><span>insertion or deletion</span></div>
+          <div><b>NMD</b><span>nonsense-mediated decay — degrades transcripts with a premature stop</span></div>
+          <div><b>MMR</b><span>mismatch repair</span></div>
+          <div><b>BER / NER</b><span>base / nucleotide excision repair</span></div>
+          <div><b>HR / NHEJ</b><span>homologous recombination / non-homologous end joining</span></div>
+          <div><b>MSI</b><span>microsatellite instability</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <h3>Classifying a point mutation</h3>
@@ -1737,8 +1937,9 @@
         frameshift garbles them and truncates as well.</li>
   </ul>
 
-  <div class="wex">
-    <h4>Worked example 6 — classify four changes in one message</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 6 — classify four changes in one message</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">Take the mRNA from worked example 5:
       <span class="fi">5′-AUG CCU AAG UUG GAU UGA-3′</span> → Met–Pro–Lys–Leu–Asp. Classify each of the
       following, using the table in §&nbsp;09.</p>
@@ -1758,7 +1959,8 @@
           the worst of the four, despite being the smallest chemical change.</li>
     </ol>
     <span class="wex__ans">silent (transition) · non-conservative missense (transversion) · nonsense · frameshift</span>
-  </div>
+    </div>
+  </details>
 
   <div class="callout callout--exam">
     <p class="callout__title">Sickle cell, read off the codon table</p>
@@ -1814,36 +2016,49 @@
   <span class="section__num">§ 11</span>
   <h2>Reading nucleic acids in the laboratory</h2>
 
+  <p class="idea"><b>The idea</b>Nothing in this section is new chemistry. Every method here is one of the facts you have already met, turned
+     into a tool. Because the two chains come apart when heated and find each other again when cooled, you can make a
+     chosen stretch copy itself over and over until there is enough of it to see. Because a chain can only grow from
+     one particular end, blocking that end at random points tells you the order of the letters. Read each method as
+     an application rather than a recipe and there is very little left to memorise.</p>
+
   <div class="defbox">
     <p class="defbox__label">Definition &amp; formula</p>
     <dl class="def">
       <dt>PCR</dt>
       <dd>Exponential in-vitro amplification of a defined DNA segment by repeated cycles of denaturation, primer
           annealing and extension by a thermostable polymerase.</dd>
-      <dt>Sanger (dideoxy) sequencing</dt>
-      <dd>Chain-termination sequencing: a low concentration of dideoxynucleotides, which lack the 3′-OH, ends a
-          growing chain at random, generating a ladder of every possible length.</dd>
-      <dt>Restriction endonuclease</dt>
-      <dd>A bacterial enzyme that cuts double-stranded DNA at a specific, usually palindromic, recognition site;
-          the host protects its own genome by methylating that site.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">N = N₀ × 2ⁿ</span>
       <span class="fx__tag">n cycles of PCR at perfect efficiency</span>
     </div>
-    <div class="fx-grid">
-      <div class="fx"><span class="fx__eq">N = N₀ × (1 + E)ⁿ</span><span class="fx__tag">with efficiency E; E = 1 is the ideal doubling</span></div>
-      <div class="fx"><span class="fx__eq">ΔC<sub>t</sub> = 1 → 2-fold · ΔC<sub>t</sub> = 3.32 → 10-fold</span><span class="fx__tag">log₂10 = 3.32 — the qPCR conversion</span></div>
-      <div class="fx"><span class="fx__eq">94–98 °C denature → 50–65 °C anneal → 72 °C extend</span><span class="fx__tag">anneal ≈5 °C below the primer T<sub>m</sub> from §&nbsp;03</span></div>
-    </div>
-    <div class="symtab">
-      <div><b>n</b><span>number of cycles</span></div>
-      <div><b>E</b><span>amplification efficiency (0–1)</span></div>
-      <div><b>C<sub>t</sub></b><span>threshold cycle — the cycle at which signal crosses a set level</span></div>
-      <div><b>ddNTP</b><span>dideoxynucleotide — no 3′-OH, so it terminates the chain</span></div>
-      <div><b>cDNA</b><span>DNA copied from RNA by reverse transcriptase — intronless</span></div>
-      <div><b>PAM</b><span>protospacer-adjacent motif, 5′-NGG-3′ for SpCas9</span></div>
-    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Sanger (dideoxy) sequencing</dt>
+          <dd>Chain-termination sequencing: a low concentration of dideoxynucleotides, which lack the 3′-OH, ends a
+              growing chain at random, generating a ladder of every possible length.</dd>
+          <dt>Restriction endonuclease</dt>
+          <dd>A bacterial enzyme that cuts double-stranded DNA at a specific, usually palindromic, recognition site;
+              the host protects its own genome by methylating that site.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">N = N₀ × (1 + E)ⁿ</span><span class="fx__tag">with efficiency E; E = 1 is the ideal doubling</span></div>
+          <div class="fx"><span class="fx__eq">ΔC<sub>t</sub> = 1 → 2-fold · ΔC<sub>t</sub> = 3.32 → 10-fold</span><span class="fx__tag">log₂10 = 3.32 — the qPCR conversion</span></div>
+          <div class="fx"><span class="fx__eq">94–98 °C denature → 50–65 °C anneal → 72 °C extend</span><span class="fx__tag">anneal ≈5 °C below the primer T<sub>m</sub> from §&nbsp;03</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>n</b><span>number of cycles</span></div>
+          <div><b>E</b><span>amplification efficiency (0–1)</span></div>
+          <div><b>C<sub>t</sub></b><span>threshold cycle — the cycle at which signal crosses a set level</span></div>
+          <div><b>ddNTP</b><span>dideoxynucleotide — no 3′-OH, so it terminates the chain</span></div>
+          <div><b>cDNA</b><span>DNA copied from RNA by reverse transcriptase — intronless</span></div>
+          <div><b>PAM</b><span>protospacer-adjacent motif, 5′-NGG-3′ for SpCas9</span></div>
+        </div>
+      </div>
+    </details>
   </div>
 
   <h3>PCR</h3>
@@ -1870,8 +2085,9 @@
         begin with.</li>
   </ul>
 
-  <div class="wex">
-    <h4>Worked example 7 — PCR yield, and the qPCR conversion</h4>
+  <details class="disc disc--wex">
+    <summary>Worked example 7 — PCR yield, and the qPCR conversion</summary>
+    <div class="disc__body">
     <p style="margin:0 0 .3rem;font-size:.92rem">(a) Starting from a single template molecule, how many copies
       exist after 30 cycles at perfect efficiency, and how many at 90 % efficiency? (b) In a qPCR experiment a
       treated sample has C<sub>t</sub> = 22.4 and the control C<sub>t</sub> = 25.7. By what factor does the
@@ -1892,7 +2108,8 @@
           <em>more</em> starting material.</li>
     </ol>
     <span class="wex__ans">(a) 1.07 × 10⁹ ideal · 2.3 × 10⁸ at E = 0.9 · (b) ≈10-fold higher</span>
-  </div>
+    </div>
+  </details>
 
   <h3>Sequencing</h3>
   <p><strong>Sanger</strong> works because a ddNTP has no 3′-OH: once one is incorporated, §&nbsp;02's mechanism
@@ -1962,6 +2179,11 @@
 <section class="section" id="quiz">
   <span class="section__num">§ 12</span>
   <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>These questions are part of the reading, not a test bolted onto the end of it. Dragging an answer out of your
+     own head, even a wrong one, fixes it far more firmly than reading the same paragraph for a third time. The wrong
+     options here are the mistakes people genuinely make, so being caught out by one of them is worth more to you
+     than a lucky guess.</p>
   <p>Three of these need you to actually work a sequence out with the table in §&nbsp;09 — do that rather than
      recognising the answer, because that is what the exam will require. Two are conceptual traps that are widely
      answered wrongly. Every explanation says why the right answer is right <em>and</em> why the tempting wrong
