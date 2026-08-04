@@ -15,7 +15,7 @@ Subjects are split onto their own shelves. The home page is a subject directory.
 | Subject | Shelf | Notes | Questions |
 |---------|-------|-------|-----------|
 | Physics | [pages/physics.html](pages/physics.html) | 15 · complete | 150 |
-| Biochemistry | [pages/biochemistry.html](pages/biochemistry.html) | 1 · in progress | 10 |
+| Biochemistry | [pages/biochemistry.html](pages/biochemistry.html) | 2 · in progress | 20 |
 
 ### Physics — a full freshman course in fifteen notes
 
@@ -46,9 +46,11 @@ half-life and technetium-99m.
 | # | Note | Primary representation |
 |---|------|------------------------|
 | 01 | [Bonds, functional groups & the hydrophobic effect](pages/biochem-01-bonds-lipids.html) | Interactive energy ruler · polarity spectrum · thermodynamic decomposition bars |
+| 05 | [Nucleic acids: DNA, RNA and the central dogma](pages/biochem-05-nucleic-acids.html) | Interactive genetic code table · sequence walkthroughs · central dogma map |
 
-Planned: amino acids & protein structure (decision tree), enzyme kinetics (parameter simulator),
-glycolysis/TCA (pathway map), plus chemistry, physiology and the informatics-track subjects.
+Planned (02–04): amino acids & protein structure (decision tree), enzyme kinetics (parameter
+simulator), glycolysis/TCA (pathway map) — plus chemistry, physiology and the informatics-track
+subjects.
 
 ## Running it locally
 

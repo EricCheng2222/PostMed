@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biochem 05 · Nucleic Acids: DNA, RNA and the Central Dogma — PostMed Notebook</title>
+<meta name="description" content="Biochemistry note 05: nucleotides, chain polarity, base pairing and stacking, DNA topology and chromatin, replication, transcription, an interactive 64-codon table, mutation, repair and laboratory methods.">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+/* ===== Page-specific: interactive genetic code table + Tm slider ===== */
+
+/* 1. Genetic code table ------------------------------------------------ */
+.nu-code { background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+           padding:1.1rem 1.15rem 1.15rem; box-shadow:var(--shadow); }
+.nu-code__scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:.25rem; }
+.nu-code__grid { display:grid; grid-template-columns:1.6rem repeat(4, minmax(0,1fr));
+                 gap:.28rem; min-width:31rem; }
+.nu-code__corner { display:grid; place-items:center; font-size:.58rem; line-height:1.15;
+                   color:var(--ink-faint); text-align:center; }
+.nu-code__corner small { font-size:1em; }
+.nu-code__hcol { text-align:center; font-family:var(--mono); font-weight:700; font-size:.86rem;
+                 color:var(--accent); letter-spacing:.05em; }
+.nu-code__hrow { display:grid; place-items:center; font-family:var(--mono); font-weight:700;
+                 font-size:.95rem; color:var(--accent); }
+.nu-blk { display:grid; gap:2px; padding:2px; background:var(--line-soft);
+          border:1px solid var(--line); border-radius:var(--radius-sm); }
+
+.nu-cd { display:flex; align-items:baseline; justify-content:space-between; gap:.3rem;
+         width:100%; font:inherit; cursor:pointer; text-align:left; padding:.16rem .3rem .18rem;
+         border-radius:5px; position:relative;
+         background:color-mix(in srgb, var(--nu-c) 13%, var(--card));
+         border:1px solid color-mix(in srgb, var(--nu-c) 30%, var(--line));
+         border-left:3px solid var(--nu-c);
+         transition:background .12s, border-color .12s, opacity .12s; }
+.nu-cd__x { font-family:var(--mono); font-size:.76rem; color:var(--ink); letter-spacing:.01em; }
+.nu-cd__y { font-size:.7rem; font-weight:700; color:var(--nu-c); white-space:nowrap; }
+.nu-cd:hover { background:color-mix(in srgb, var(--nu-c) 30%, var(--card)); }
+.nu-cd[data-start] { outline:1.5px dashed var(--accent-2); outline-offset:-3px; }
+.nu-cd[aria-pressed="true"] { background:color-mix(in srgb, var(--nu-c) 38%, var(--card));
+         border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); z-index:2; }
+.nu-cd[aria-pressed="true"] .nu-cd__x { font-weight:700; }
+.nu-cd--syn { background:color-mix(in srgb, var(--nu-c) 26%, var(--card));
+              border-color:color-mix(in srgb, var(--nu-c) 65%, var(--line)); }
+.nu-code--focus .nu-cd:not(.nu-cd--syn):not([aria-pressed="true"]) { opacity:.26; }
+
+.nu-cd--np { --nu-c:var(--hydrophobic); }
+.nu-cd--po { --nu-c:var(--hbond); }
+.nu-cd--ac { --nu-c:var(--bad); }
+.nu-cd--ba { --nu-c:var(--vdw); }
+.nu-cd--st { --nu-c:var(--ink-faint); }
+
+.nu-key { display:flex; flex-wrap:wrap; gap:.35rem .9rem; margin:.85rem 0 0; font-size:.78rem;
+          color:var(--ink-soft); }
+.nu-key span { display:inline-flex; align-items:center; gap:.35rem; }
+.nu-key i { width:.85rem; height:.85rem; border-radius:3px; display:inline-block;
+            background:color-mix(in srgb, var(--nu-c) 55%, var(--card));
+            border:1px solid var(--nu-c); }
+.nu-key .nu-k-np { --nu-c:var(--hydrophobic); } .nu-key .nu-k-po { --nu-c:var(--hbond); }
+.nu-key .nu-k-ac { --nu-c:var(--bad); }         .nu-key .nu-k-ba { --nu-c:var(--vdw); }
+.nu-key .nu-k-st { --nu-c:var(--ink-faint); }
+.nu-key .nu-k-start i { background:none; border:1.5px dashed var(--accent-2); }
+
+.nu-code__ctrls { display:flex; flex-wrap:wrap; align-items:center; gap:.6rem 1rem;
+                  margin:.9rem 0 0; padding-top:.8rem; border-top:1px solid var(--line-soft); }
+.nu-code__ctrls[hidden] { display:none; }
+.nu-sw { display:inline-flex; align-items:center; gap:.45rem; font-size:.85rem;
+         color:var(--ink-soft); cursor:pointer; }
+.nu-sw input { accent-color:var(--accent); width:1rem; height:1rem; }
+
+.nu-panel { margin-top:.9rem; border:1px solid var(--line);
+            border-left:4px solid var(--nu-c, var(--accent)); border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+            background:var(--line-soft); padding:.85rem 1rem; }
+.nu-panel--np { --nu-c:var(--hydrophobic); } .nu-panel--po { --nu-c:var(--hbond); }
+.nu-panel--ac { --nu-c:var(--bad); }         .nu-panel--ba { --nu-c:var(--vdw); }
+.nu-panel--st { --nu-c:var(--ink-faint); }
+.nu-panel__top { display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem .8rem; margin-bottom:.6rem; }
+.nu-panel__codon { font-family:var(--mono); font-size:1.25rem; font-weight:700; color:var(--ink); }
+.nu-panel__aa { font-size:1rem; font-weight:700; color:var(--nu-c, var(--accent)); }
+.nu-panel__facts { display:grid; gap:.4rem .9rem;
+                   grid-template-columns:repeat(auto-fit, minmax(12.5rem,1fr)); margin:0 0 .6rem; }
+.nu-panel__facts div { border-left:2px solid var(--line); padding-left:.55rem; }
+.nu-panel__facts b { display:block; font-size:.66rem; letter-spacing:.07em; text-transform:uppercase;
+                     color:var(--ink-faint); font-weight:700; }
+.nu-panel__facts span { font-size:.87rem; color:var(--ink); font-family:var(--mono); }
+.nu-panel__facts span.pl { font-family:var(--sans); }
+.nu-panel p { margin:0; font-size:.88rem; color:var(--ink-soft); }
+.nu-panel p + p { margin-top:.45rem; }
+@media (max-width:34rem){ .nu-code { padding:.85rem .8rem 1rem; } }
+
+/* 2. Tm slider --------------------------------------------------------- */
+.nu-tm { display:grid; gap:1.1rem; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+         align-items:center; }
+@media (max-width:46rem){ .nu-tm { grid-template-columns:1fr; } }
+.nu-tm label { display:flex; justify-content:space-between; align-items:baseline; gap:.5rem;
+               font-size:.85rem; font-weight:600; margin:.2rem 0 .2rem; }
+.nu-tm label output { font-family:var(--mono); font-weight:700; color:var(--accent); font-size:.88rem; }
+.nu-tm input[type=range] { width:100%; accent-color:var(--accent); margin:0 0 .7rem; }
+.nu-tm__val { font-family:var(--mono); font-size:2.5rem; font-weight:700; line-height:1;
+              color:var(--accent); margin:0 0 .2rem; }
+.nu-tm__val small { font-size:1rem; color:var(--ink-faint); font-weight:400; }
+.nu-tm__scale { position:relative; height:2.4rem; margin-top:.9rem; }
+.nu-tm__track { position:absolute; top:.65rem; left:0; right:0; height:9px; border-radius:999px;
+                border:1px solid var(--line);
+                background:linear-gradient(90deg, var(--hbond), var(--accent-2), var(--bad)); }
+.nu-tm__mark { position:absolute; top:.1rem; width:2px; height:1.6rem; background:var(--ink);
+               transform:translateX(-1px); transition:left .12s; }
+.nu-tm__mark::after { content:''; position:absolute; top:-.32rem; left:-4px; width:10px; height:10px;
+                      border-radius:50%; background:var(--ink); }
+.nu-tm__ref { position:absolute; top:.35rem; width:0; border-left:2px dotted var(--ink-faint); height:1.1rem; }
+.nu-tm__ref b { position:absolute; top:1.15rem; left:-1.4rem; width:2.8rem; text-align:center;
+                font-size:.62rem; font-weight:600; color:var(--ink-faint); font-family:var(--sans); }
+.nu-tm__ends { display:flex; justify-content:space-between; font-family:var(--mono);
+               font-size:.68rem; color:var(--ink-faint); margin-top:1.35rem; }
+.nu-tm__terms { font-family:var(--mono); font-size:.74rem; color:var(--ink-soft); margin:.7rem 0 0;
+                line-height:1.6; }
+
+/* 3. Small helpers ------------------------------------------------------ */
+.nu-seq { font-family:var(--mono); font-size:.9rem; letter-spacing:.06em; white-space:nowrap; }
+.nu-seq b { color:var(--accent); font-weight:700; }
+.nu-seq i { color:var(--bad); font-style:normal; font-weight:700; }
+.nu-lad { display:grid; gap:.15rem; margin:.7rem 0; overflow-x:auto; }
+.nu-lad div { display:flex; gap:.55rem; align-items:baseline; font-size:.85rem; white-space:nowrap; }
+.nu-lad div > b { flex:none; width:9.5rem; font-size:.72rem; font-weight:700; color:var(--ink-faint);
+                  text-transform:uppercase; letter-spacing:.05em; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biochemistry.html">Biochemistry</a>
+      <a href="#quiz">Self-test</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Note 05</p>
+  <h1>Nucleic Acids: DNA, RNA and the Central Dogma</h1>
+  <p class="lede">
+    One property organises this whole note: a nucleic acid chain is <strong>directional</strong>. The two ends
+    of the polymer are chemically different, so a sequence read one way is not the sequence read the other way.
+    Every rule that follows — why synthesis is always 5′→3′, why the strands are antiparallel, why a lagging
+    strand has to exist, why there is a reading frame at all, why a deletion of one base is catastrophic and a
+    deletion of three is survivable — is a consequence of that single asymmetry. Add the second structural fact,
+    that the <em>information</em> sits on the inside of the helix while the <em>charge</em> sits on the outside,
+    and replication, transcription, translation and the drugs that interrupt them stop being lists.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Interactive genetic code table</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~45 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">The nucleotide</a></li>
+      <li><a href="#s2">The backbone and why chains have polarity</a></li>
+      <li><a href="#s3">Base pairing, stacking and T<sub>m</sub></a></li>
+      <li><a href="#s4">A, B, Z and DNA topology</a></li>
+      <li><a href="#s5">Chromatin and packaging</a></li>
+      <li><a href="#s6">RNA and the price of the 2′-OH</a></li>
+      <li><a href="#s7">DNA replication</a></li>
+      <li><a href="#s8">Transcription and RNA processing</a></li>
+      <li><a href="#s9">The genetic code and translation</a></li>
+      <li><a href="#s10">Mutation and repair</a></li>
+      <li><a href="#s11">Reading nucleic acids in the laboratory</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <section class="fsheet card">
+    <p class="eyebrow" style="margin-bottom:.5rem">Quick sheet · everything on this page</p>
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Chargaff</b><code>%A = %T · %G = %C</code></div>
+      <div class="fsheet__item"><b>Hydrogen bonds</b><code>A = T (2) · G ≡ C (3)</code></div>
+      <div class="fsheet__item"><b>B-DNA</b><code>10.5 bp/turn · 3.4 Å rise · 2 nm wide</code></div>
+      <div class="fsheet__item"><b>B-DNA pitch</b><code>10.5 × 3.4 Å ≈ 3.6 nm</code></div>
+      <div class="fsheet__item"><b>Grooves</b><code>major ≈22 Å · minor ≈12 Å</code></div>
+      <div class="fsheet__item"><b>Chain polarity</b><code>5′-phosphate → 3′-OH</code></div>
+      <div class="fsheet__item"><b>Synthesis direction</b><code>always 5′ → 3′</code></div>
+      <div class="fsheet__item"><b>T<sub>m</sub>, long duplex</b><code>81.5 + 16.6 log[Na⁺] + 0.41(%GC) − 600/N</code></div>
+      <div class="fsheet__item"><b>T<sub>m</sub>, short primer</b><code>2(A+T) + 4(G+C)</code></div>
+      <div class="fsheet__item"><b>Hyperchromic shift</b><code>A₂₆₀ rises ≈ 40 %</code></div>
+      <div class="fsheet__item"><b>A₂₆₀ = 1.0</b><code>dsDNA 50 · ssDNA 33 · RNA 40 µg/mL</code></div>
+      <div class="fsheet__item"><b>Nucleosome</b><code>147 bp · ≈1.65 turns</code></div>
+      <div class="fsheet__item"><b>Histone core</b><code>(H2A·H2B·H3·H4)₂ + H1 linker</code></div>
+      <div class="fsheet__item"><b>Topology</b><code>Lk = Tw + Wr · Lk₀ = N / 10.5</code></div>
+      <div class="fsheet__item"><b>Superhelical density</b><code>σ = ΔLk / Lk₀ ≈ −0.06</code></div>
+      <div class="fsheet__item"><b>Topoisomerases</b><code>I: ΔLk = ±1, no ATP · II: ΔLk = ±2, ATP</code></div>
+      <div class="fsheet__item"><b>RNA vs DNA</b><code>2′-OH · U for T · single-stranded</code></div>
+      <div class="fsheet__item"><b>Codon capacity</b><code>4³ = 64 = 61 sense + 3 stop</code></div>
+      <div class="fsheet__item"><b>Start / stop</b><code>AUG · UAA UAG UGA</code></div>
+      <div class="fsheet__item"><b>Coding strand rule</b><code>mRNA = coding strand, U for T</code></div>
+      <div class="fsheet__item"><b>Splice sites</b><code>GU … A … AG</code></div>
+      <div class="fsheet__item"><b>Ribosomes</b><code>70S = 50S + 30S · 80S = 60S + 40S</code></div>
+      <div class="fsheet__item"><b>Translation cost</b><code>4 ~P per peptide bond</code></div>
+      <div class="fsheet__item"><b>Replication fidelity</b><code>10⁻⁵ → 10⁻⁷ → 10⁻⁹</code></div>
+      <div class="fsheet__item"><b>PCR yield</b><code>N = N₀ × 2ⁿ · 2³⁰ ≈ 1.07 × 10⁹</code></div>
+      <div class="fsheet__item"><b>qPCR</b><code>1 C<sub>t</sub> = 2× · 3.32 C<sub>t</sub> = 10×</code></div>
+      <div class="fsheet__item"><b>Human genome</b><code>3.1 × 10⁹ bp · ≈20 000 coding genes</code></div>
+      <div class="fsheet__item"><b>DNA per diploid cell</b><code>≈2.1 m stretched out</code></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>The nucleotide</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Nucleoside</dt>
+      <dd>A nitrogenous base joined to a pentose sugar by an <strong>N-glycosidic bond</strong> — N9 of a purine
+          or N1 of a pyrimidine to C1′ of the sugar.</dd>
+      <dt>Nucleotide</dt>
+      <dd>A nucleoside carrying one or more phosphate groups esterified to a sugar hydroxyl — the 5′-OH unless
+          stated otherwise. A nucleotide is the monomer; a nucleoside cannot be polymerised.</dd>
+      <dt>Purine / pyrimidine</dt>
+      <dd>Purines (A, G) are bicyclic — a pyrimidine ring fused to an imidazole ring. Pyrimidines (C, T, U) are
+          monocyclic. The size difference is what makes a constant-width helix possible.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">nucleotide = base + pentose + phosphate</span>
+      <span class="fx__tag">drop the phosphate and you have a nucleoside; drop the sugar too and you have a base</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">purine (A, G) → N9–C1′ · pyrimidine (C, U, T) → N1–C1′</span><span class="fx__tag">which ring nitrogen carries the sugar</span></div>
+      <div class="fx"><span class="fx__eq">ΔG°′ hydrolysis: phosphoester ≈ −14 · phosphoanhydride ≈ −30.5 kJ·mol⁻¹</span><span class="fx__tag">why ATP's β- and γ-phosphates are "high energy" and the backbone's are not</span></div>
+      <div class="fx"><span class="fx__eq">ribose C2′–OH  ⇌  2′-deoxyribose C2′–H</span><span class="fx__tag">one atom; it decides RNA vs DNA and everything that follows</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>C1′–C5′</b><span>sugar carbons; primes distinguish them from base ring atoms</span></div>
+      <div><b>N9 / N1</b><span>glycosidic attachment nitrogen (purine / pyrimidine)</span></div>
+      <div><b>P<sub>i</sub></b><span>inorganic phosphate</span></div>
+      <div><b>PP<sub>i</sub></b><span>pyrophosphate, released by every polymerase</span></div>
+      <div><b>dNTP</b><span>deoxynucleoside triphosphate — the DNA monomer</span></div>
+      <div><b>ΔG°′</b><span>standard free-energy change at pH 7 (kJ·mol⁻¹)</span></div>
+    </div>
+  </div>
+
+  <p>Start with the numbering, because it is the source of most avoidable confusion. The base ring atoms are
+     numbered 1, 2, 3…; the sugar carbons are therefore numbered 1′, 2′, 3′, 4′, 5′ with a
+     <strong>prime</strong> so the two systems never collide. Every direction statement in molecular biology —
+     5′→3′, 3′-OH, 5′ cap — refers to the <em>sugar</em>, never the base. Use the prime character ′, not an
+     apostrophe, and you will never misread a question.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 350" role="img" aria-label="Schematic of a nucleotide: a phosphate group joined by a phosphoester bond to carbon 5-prime of a pentose sugar drawn as a pentagon, with a free 3-prime hydroxyl, the 2-prime position marked as hydrogen in DNA and hydroxyl in RNA, and a two-ringed purine base attached at N9 to carbon 1-prime by an N-glycosidic bond. Brackets below show that base plus sugar is a nucleoside and nucleoside plus phosphate is a nucleotide." style="font-family:var(--sans)">
+      <circle cx="95" cy="90" r="28" fill="var(--accent-wash)" stroke="var(--accent-2)" stroke-width="2"/>
+      <text x="95" y="98" text-anchor="middle" font-size="21" font-weight="700" fill="var(--accent-2)">P</text>
+      <text x="95" y="140" text-anchor="middle" font-size="12" fill="var(--ink-soft)">phosphate</text>
+      <text x="95" y="155" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">(2 negative charges)</text>
+
+      <line x1="123" y1="90" x2="196" y2="90" stroke="var(--ink-soft)" stroke-width="2.2"/>
+      <line x1="196" y1="90" x2="225" y2="108" stroke="var(--ink-soft)" stroke-width="2.2"/>
+      <text x="162" y="76" text-anchor="middle" font-size="11.5" fill="var(--accent-2)">phosphoester bond</text>
+      <text x="196" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">5′</text>
+
+      <path d="M 285,62 L 345,108 L 322,178 L 248,178 L 225,108 Z" fill="var(--accent-wash)"
+            stroke="var(--accent)" stroke-width="2.2" stroke-linejoin="round"/>
+      <text x="285" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">O4′</text>
+      <text x="352" y="124" font-size="12" font-weight="700" fill="var(--ink)">1′</text>
+      <text x="330" y="196" font-size="12" font-weight="700" fill="var(--ink)">2′</text>
+      <text x="240" y="196" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink)">3′</text>
+      <text x="213" y="112" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink)">4′</text>
+      <text x="285" y="128" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">pentose</text>
+
+      <line x1="248" y1="178" x2="222" y2="212" stroke="var(--accent)" stroke-width="2.2"/>
+      <text x="196" y="230" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">3′–OH</text>
+      <text x="196" y="245" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">the only growing end</text>
+
+      <line x1="322" y1="178" x2="348" y2="212" stroke="var(--accent-3)" stroke-width="2.2"/>
+      <text x="356" y="222" font-size="11.5" font-weight="700" fill="var(--accent-3)">2′–H in DNA · 2′–OH in RNA</text>
+      <text x="356" y="238" font-size="10.5" fill="var(--ink-faint)">one atom, two completely different molecules</text>
+
+      <line x1="345" y1="108" x2="466" y2="110" stroke="var(--ink-soft)" stroke-width="2.2"/>
+      <text x="404" y="96" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">N-glycosidic bond</text>
+      <text x="466" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)">N9</text>
+
+      <path d="M 585,110 L 565,75 L 525,75 L 505,110 L 525,145 L 565,145 Z" fill="var(--card)"
+            stroke="var(--vdw)" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M 505,110 L 525,75 L 490,48 L 455,72 L 466,110 Z" fill="var(--card)"
+            stroke="var(--vdw)" stroke-width="2.2" stroke-linejoin="round"/>
+      <text x="551" y="117" text-anchor="middle" font-size="15" font-weight="700" fill="var(--vdw)">A · G</text>
+      <text x="545" y="175" text-anchor="middle" font-size="12" fill="var(--ink-soft)">purine base — two fused rings</text>
+      <text x="545" y="191" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">C, U and T have one ring and attach through N1</text>
+
+      <path d="M 210,278 L 210,268 L 620,268 L 620,278" fill="none" stroke="var(--ink-faint)" stroke-width="1.5"/>
+      <text x="415" y="292" text-anchor="middle" font-size="12" fill="var(--ink-soft)">nucleoside = base + sugar</text>
+      <path d="M 60,315 L 60,305 L 620,305 L 620,315" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+      <text x="340" y="330" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">nucleotide = nucleoside + phosphate</text>
+    </svg>
+    <figcaption>Schematic, not a structural formula: ring geometry is stylised so the labels stay legible.
+      The three things worth carrying away are the prime numbering, the free 3′-OH (the only place a chain can
+      be extended), and the 2′ position — the single atom that separates DNA from RNA.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Purines compared with pyrimidines</caption>
+      <thead><tr><th>Feature</th><th>Purine</th><th>Pyrimidine</th></tr></thead>
+      <tbody>
+        <tr><td>Bases</td><td><strong>A</strong>denine, <strong>G</strong>uanine</td><td><strong>C</strong>ytosine, <strong>U</strong>racil (RNA), <strong>T</strong>hymine (DNA)</td></tr>
+        <tr><td>Rings</td><td class="num">2 (fused pyrimidine + imidazole)</td><td class="num">1 (six-membered)</td></tr>
+        <tr><td>Glycosidic nitrogen</td><td class="num">N9</td><td class="num">N1</td></tr>
+        <tr><td>Ring atoms</td><td class="num">9 (4 N, 5 C)</td><td class="num">6 (2 N, 4 C)</td></tr>
+        <tr><td>Synthesised</td><td>On top of a pre-formed ribose-5-phosphate (PRPP) — the ring is built <em>onto</em> the sugar</td><td>Ring built first (orotate), then attached to PRPP</td></tr>
+        <tr><td>Catabolic end-product</td><td><strong>Uric acid</strong> — poorly soluble, hence gout; allopurinol blocks xanthine oxidase</td><td>β-alanine, β-aminoisobutyrate, NH₃, CO₂ — all soluble, so no equivalent disease</td></tr>
+        <tr><td>Thymine only</td><td>—</td><td>T = 5-methyluracil; the methyl group is added at the nucleotide level by thymidylate synthase</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo">
+    <h4>Which are which</h4>
+    <p><strong>PUR</strong>e <strong>A</strong>s <strong>G</strong>old → <strong>PUR</strong>ines are <strong>A</strong>
+       and <strong>G</strong>. <strong>CUT</strong> the <strong>PY</strong> → <strong>C</strong>, <strong>U</strong>,
+       <strong>T</strong> are <strong>PY</strong>rimidines. And note the irony that makes it stick: pyrimidine is
+       the longer <em>word</em> for the smaller <em>molecule</em>.</p>
+  </div>
+
+  <h3>Why ATP's phosphates are "high energy" and the backbone's are not</h3>
+  <p>The sugar–phosphate link in a nucleic acid is a <strong>phosphoester</strong>: phosphate to carbon through
+     oxygen, ΔG°′ of hydrolysis about −14 kJ·mol⁻¹. The bonds between the α, β and γ phosphates of ATP are
+     <strong>phosphoanhydrides</strong>: phosphate to phosphate, ΔG°′ about −30.5 kJ·mol⁻¹. Three things account
+     for the difference, and none of them is "the bond stores energy" — the phrase <em>high-energy bond</em> is a
+     misnomer for a large negative free energy of <em>reaction</em>:</p>
+  <ol>
+    <li><strong>Electrostatic strain.</strong> At pH 7 the triphosphate carries three to four negative charges
+        crowded together. Hydrolysis lets them separate.</li>
+    <li><strong>Resonance stabilisation of the products.</strong> Free P<sub>i</sub> delocalises its charge over
+        four equivalent oxygens; the same phosphorus inside an anhydride cannot.</li>
+    <li><strong>Solvation.</strong> Two separate products are hydrated better than one joined molecule.</li>
+  </ol>
+  <p>This matters immediately for polymerisation. Every polymerase reaction releases <strong>pyrophosphate</strong>,
+     and a separate enzyme, inorganic pyrophosphatase, hydrolyses PP<sub>i</sub> to 2 P<sub>i</sub>. That second,
+     strongly exergonic step is what makes chain extension effectively irreversible — the same trick used in
+     aminoacyl-tRNA synthesis and fatty-acid activation.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Nucleotides that never see a nucleic acid</p>
+    <p style="margin:0">Examiners like this because it tests whether you know a nucleotide is a chemical class,
+      not a genetic one. <strong>ATP and GTP</strong> — energy currency and G-protein switches;
+      <strong>cAMP and cGMP</strong> — second messengers made by cyclase enzymes and destroyed by
+      phosphodiesterases (which is what sildenafil and caffeine inhibit); <strong>NAD⁺, NADP⁺, FAD, FMN</strong> —
+      redox cofactors, each of which contains an AMP moiety; <strong>coenzyme A</strong> — carries a
+      3′-phospho-ADP; <strong>S-adenosylmethionine</strong> — the universal methyl donor;
+      <strong>UDP-glucose</strong> and <strong>CDP-diacylglycerol</strong> — activated carriers for glycogen and
+      phospholipid synthesis. Adenine turns up everywhere in metabolism, which is one of the tidier arguments
+      for an RNA-first origin of life.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The backbone, and why chains have polarity</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Phosphodiester bond</dt>
+      <dd>One phosphate esterified to <em>two</em> sugars at once: the 3′-OH of one nucleotide and the 5′-OH of
+          the next. Two ester linkages on one phosphorus — hence "di-ester".</dd>
+      <dt>Chain polarity</dt>
+      <dd>The consequence: one end of the chain has a free 5′-phosphate, the other a free 3′-OH. The two ends
+          are chemically different, so the chain has a direction. By universal convention sequences are written
+          <strong>5′→3′, left to right</strong>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">5′-P — sugar — 3′-O — P — 5′-sugar — 3′-OH</span>
+      <span class="fx__tag">phosphate bridges 3′ of one residue to 5′ of the next</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">(NMP)<sub>n</sub> + NTP → (NMP)<sub>n+1</sub> + PP<sub>i</sub></span><span class="fx__tag">the 3′-OH attacks the α-phosphate of the incoming nucleotide</span></div>
+      <div class="fx"><span class="fx__eq">PP<sub>i</sub> + H₂O → 2 P<sub>i</sub>   (ΔG°′ ≈ −19 kJ·mol⁻¹)</span><span class="fx__tag">pyrophosphatase pulls the reaction forward</span></div>
+      <div class="fx"><span class="fx__eq">backbone pK<sub>a</sub> ≈ 1 → one negative charge per residue at any physiological pH</span><span class="fx__tag">nucleic acids are polyanions, always</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>NMP</b><span>nucleoside monophosphate residue in the chain</span></div>
+      <div><b>NTP</b><span>nucleoside triphosphate — the incoming monomer</span></div>
+      <div><b>5′ end</b><span>free phosphate; the "beginning" by convention</span></div>
+      <div><b>3′ end</b><span>free hydroxyl; the growing end</span></div>
+      <div><b>n</b><span>chain length (nucleotides)</span></div>
+    </div>
+  </div>
+
+  <h3>Why synthesis can only run 5′→3′</h3>
+  <p>The mechanism answers it in one line: <strong>the 3′-OH of the growing chain attacks the α-phosphate of the
+     incoming nucleoside triphosphate</strong>. The energy for the new bond therefore arrives with the
+     <em>monomer</em>, not with the chain. The chain end contributes only a hydroxyl.</p>
+  <p>Now imagine the alternative. If chains grew 3′→5′, the activating triphosphate would have to sit on the
+     <em>growing chain's</em> 5′ terminus, and each incoming nucleotide would supply only a 3′-OH. That
+     arrangement is chemically possible — but it is fatally incompatible with proofreading. A polymerase that
+     removes a mis-paired terminal nucleotide would, in the 3′→5′ scheme, chop off the chain's activating
+     triphosphate, leaving a dead end that could never be extended again. In the real 5′→3′ scheme, excising a
+     wrong nucleotide simply exposes a fresh 3′-OH and synthesis resumes. <strong>The direction of synthesis is
+     the price of being able to correct mistakes</strong>, and it is the reason the lagging strand exists at all.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Three questions this one fact answers</p>
+    <p style="margin:0">Why is there a lagging strand? Because both new strands must grow 5′→3′ while the two
+      templates run in opposite directions. Why does every <em>DNA</em> polymerase need a <strong>primer</strong>,
+      while RNA polymerase and primase do not? Because a DNA polymerase can only extend an existing 3′-OH — it
+      cannot create the first one. Why do dideoxy nucleotides terminate a
+      Sanger sequencing reaction? Because ddNTPs have no 3′-OH, so nothing can be added after them.</p>
+  </div>
+
+  <h3>Consequences of being a polyanion</h3>
+  <p>The remaining OH on each backbone phosphate has a pK<sub>a</sub> near 1, so it is fully ionised at every pH
+     a cell or a gel will ever see. One nucleotide, one negative charge — <em>exactly</em>, with no sequence
+     dependence. Five things follow directly:</p>
+  <ul>
+    <li><strong>Electrophoresis works and is honest.</strong> Charge is strictly proportional to length, so the
+        charge-to-mass ratio is constant and mobility depends only on size (and on how the gel matrix impedes it).
+        DNA always migrates towards the <strong>anode</strong> (+). Proteins need SDS to fake this property; DNA
+        gets it for free.</li>
+    <li><strong>Histones are basic.</strong> Packaging a polyanion requires a polycation, so the histones are
+        loaded with lysine and arginine. So are protamines in sperm, and the polyamines spermine and spermidine.</li>
+    <li><strong>Mg²⁺ is mandatory.</strong> Divalent cations screen the repulsion between backbone phosphates and
+        sit in the active site of every polymerase and nuclease (the two-metal-ion mechanism). This is why
+        <strong>EDTA</strong> — which chelates Mg²⁺ — is in every DNA storage buffer: no free Mg²⁺, no nuclease
+        activity.</li>
+    <li><strong>DNA is water-soluble</strong> despite a hydrophobic interior, because the charged surface faces
+        the solvent. Add ethanol and salt and it precipitates: the Na⁺ neutralises the charge, the ethanol
+        lowers the dielectric constant, and the polymer collapses. That is the whole basis of ethanol
+        precipitation.</li>
+    <li><strong>Silica columns.</strong> In high chaotropic salt the hydration shell is stripped and DNA binds
+        silica; in low-salt buffer it releases. That is every miniprep kit you will ever use.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">A sequence without a direction is meaningless</p>
+    <p style="margin:0">"GAATTC" is not a sequence; <span class="fi">5′-GAATTC-3′</span> is. If an exam question
+      gives you a bare string, the convention is that it is written 5′→3′ — but if it explicitly says
+      <em>3′-…-5′</em>, that changes the answer completely. Read the primes before you read the letters. This
+      single habit is worth more marks on this topic than any amount of memorising.</p>
+  </div>
+</section>
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Base pairing, stacking and T<sub>m</sub></h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Complementarity</dt>
+      <dd>Adenine pairs with thymine (uracil in RNA) through two hydrogen bonds; guanine pairs with cytosine
+          through three. A purine always faces a pyrimidine, so every rung of the ladder is the same width.</dd>
+      <dt>Chargaff's rules</dt>
+      <dd>In any double-stranded DNA, %A = %T and %G = %C — therefore total purine = total pyrimidine. The
+          ratio (A+T)/(G+C) varies between species; the equalities do not.</dd>
+      <dt>Melting temperature T<sub>m</sub></dt>
+      <dd>The temperature at which half the duplex has separated into single strands, read as the midpoint of
+          the rise in A₂₆₀.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">A = T  (2 H-bonds)   ·   G ≡ C  (3 H-bonds)</span>
+      <span class="fx__tag">the equals and triple-bar signs are the standard shorthand for the count</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">%A = %T · %G = %C · (A+G) = (C+T)</span><span class="fx__tag">Chargaff — true only for a duplex, never for one strand</span></div>
+      <div class="fx"><span class="fx__eq">T<sub>m</sub> = 81.5 + 16.6 log₁₀[Na⁺] + 0.41(%GC) − 600/N</span><span class="fx__tag">duplexes longer than ≈50 bp</span></div>
+      <div class="fx"><span class="fx__eq">T<sub>m</sub> ≈ 2(A+T) + 4(G+C)   °C</span><span class="fx__tag">Wallace rule, short primers of ≈14–25 nt</span></div>
+      <div class="fx"><span class="fx__eq">B-DNA: 10.5 bp/turn · 3.4 Å rise · 2.0 nm diameter</span><span class="fx__tag">solution values; the classic fibre model uses 10 bp/turn</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>T<sub>m</sub></b><span>melting temperature (°C)</span></div>
+      <div><b>%GC</b><span>guanine + cytosine as a percentage of all bases</span></div>
+      <div><b>N</b><span>duplex length (bp)</span></div>
+      <div><b>[Na⁺]</b><span>monovalent salt concentration (mol·L⁻¹)</span></div>
+      <div><b>A₂₆₀</b><span>absorbance at 260 nm — the bases' absorption maximum</span></div>
+      <div><b>rise</b><span>axial distance per base pair (3.4 Å = 0.34 nm)</span></div>
+    </div>
+  </div>
+
+  <p>Watson–Crick geometry is constrained, not chosen. A purine paired with a purine would be too wide; two
+     pyrimidines too narrow. Only purine·pyrimidine keeps the distance between the two C1′ atoms constant at
+     about 10.8 Å, which is what allows a helix of uniform diameter to accommodate any sequence at all. That
+     uniformity is the structural precondition for a general-purpose information store: the shape of the molecule
+     must not depend on the message it carries.</p>
+  <p>The two strands run <strong>antiparallel</strong> — one 5′→3′ downwards, the other 5′→3′ upwards. This too
+     is forced: the hydrogen-bond donors and acceptors on the base edges only line up when the glycosidic bonds
+     point in opposite senses. And because the bases are joined edge-to-edge inside the helix while the backbones
+     run outside, the molecule ends up with its <em>information on the inside and its charge on the outside</em>.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 340" role="img" aria-label="Left panel: a flat ladder representation of an antiparallel DNA duplex. The top strand runs 5-prime to 3-prime left to right reading A T G C A; the bottom strand runs 5-prime to 3-prime right to left, so read 5-prime to 3-prime it is T G C A T, drawn left to right as T A C G T. Adenine-thymine rungs are drawn as two dashed hydrogen bonds and guanine-cytosine rungs as three. Right panel: a cross-section through the helix axis showing the two backbones separated by 135 degrees on one side and 225 degrees on the other, giving a narrow minor groove of about 12 angstroms and a wide major groove of about 22 angstroms where DNA-binding proteins read the sequence." style="font-family:var(--sans)">
+      <text x="228" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">The chemistry: antiparallel and complementary</text>
+      <text x="560" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">The geometry: why the grooves differ</text>
+      <line x1="444" y1="18" x2="444" y2="322" stroke="var(--line)" stroke-width="1"/>
+
+      <line x1="62" y1="90" x2="404" y2="90" stroke="var(--ink-soft)" stroke-width="3.5"/>
+      <line x1="62" y1="250" x2="404" y2="250" stroke="var(--ink-soft)" stroke-width="3.5"/>
+      <polygon points="398,84 412,90 398,96" fill="var(--ink-soft)"/>
+      <polygon points="68,244 54,250 68,256" fill="var(--ink-soft)"/>
+      <text x="48" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">5′</text>
+      <text x="424" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">3′</text>
+      <text x="48" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">3′</text>
+      <text x="424" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">5′</text>
+
+      <g stroke="var(--hbond)" stroke-width="2" stroke-dasharray="4 4">
+        <line x1="95" y1="132" x2="95" y2="208"/><line x1="105" y1="132" x2="105" y2="208"/>
+        <line x1="160" y1="132" x2="160" y2="208"/><line x1="170" y1="132" x2="170" y2="208"/>
+        <line x1="222" y1="132" x2="222" y2="208"/><line x1="230" y1="132" x2="230" y2="208"/><line x1="238" y1="132" x2="238" y2="208"/>
+        <line x1="287" y1="132" x2="287" y2="208"/><line x1="295" y1="132" x2="295" y2="208"/><line x1="303" y1="132" x2="303" y2="208"/>
+        <line x1="355" y1="132" x2="355" y2="208"/><line x1="365" y1="132" x2="365" y2="208"/>
+      </g>
+      <g font-size="14" font-weight="700" text-anchor="middle">
+        <circle cx="100" cy="116" r="14" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5"/><text x="100" y="121" fill="var(--ink)">A</text>
+        <circle cx="165" cy="116" r="14" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5"/><text x="165" y="121" fill="var(--ink)">T</text>
+        <circle cx="230" cy="116" r="14" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5"/><text x="230" y="121" fill="var(--ink)">G</text>
+        <circle cx="295" cy="116" r="14" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5"/><text x="295" y="121" fill="var(--ink)">C</text>
+        <circle cx="360" cy="116" r="14" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5"/><text x="360" y="121" fill="var(--ink)">A</text>
+        <circle cx="100" cy="224" r="14" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.5"/><text x="100" y="229" fill="var(--ink)">T</text>
+        <circle cx="165" cy="224" r="14" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.5"/><text x="165" y="229" fill="var(--ink)">A</text>
+        <circle cx="230" cy="224" r="14" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.5"/><text x="230" y="229" fill="var(--ink)">C</text>
+        <circle cx="295" cy="224" r="14" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.5"/><text x="295" y="229" fill="var(--ink)">G</text>
+        <circle cx="360" cy="224" r="14" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.5"/><text x="360" y="229" fill="var(--ink)">T</text>
+      </g>
+      <text x="228" y="300" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">two dashes = A = T · three dashes = G ≡ C</text>
+      <text x="228" y="317" text-anchor="middle" font-size="11" fill="var(--ink-faint)">backbones outside (charge) · bases inside (information)</text>
+
+      <circle cx="560" cy="170" r="80" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 5"/>
+      <path d="M 486.1,139.4 A 80,80 0 0 1 633.9,139.4" fill="none" stroke="var(--accent-2)" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+      <path d="M 633.9,139.4 A 80,80 0 1 1 486.1,139.4" fill="none" stroke="var(--accent-3)" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+      <line x1="486.1" y1="139.4" x2="633.9" y2="139.4" stroke="var(--hbond)" stroke-width="4"/>
+      <circle cx="486.1" cy="139.4" r="8" fill="var(--ink)"/>
+      <circle cx="633.9" cy="139.4" r="8" fill="var(--ink)"/>
+      <text x="560" y="132" text-anchor="middle" font-size="11" fill="var(--ink-soft)">base pair</text>
+      <text x="560" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-2)">minor groove · 135° · ≈12 Å</text>
+      <text x="560" y="86" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">A·T and G·C look alike from here</text>
+      <text x="560" y="278" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-3)">major groove · 225° · ≈22 Å</text>
+      <line x1="560" y1="266" x2="560" y2="248" stroke="var(--accent-3)" stroke-width="2"/>
+      <polygon points="554,252 560,240 566,252" fill="var(--accent-3)"/>
+      <text x="560" y="300" text-anchor="middle" font-size="11" fill="var(--ink-soft)">all four pairs are distinguishable — proteins read here</text>
+      <text x="560" y="318" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">the two backbones are 135° apart, not opposite</text>
+    </svg>
+    <figcaption>The grooves are unequal for a purely geometric reason: the two glycosidic bonds leave the base
+      pair at an angle of about 120–135°, not 180°, so one face of the helix is approached through a narrow arc
+      and the other through a wide one. In the major groove each of A·T, T·A, G·C and C·G presents a unique
+      pattern of hydrogen-bond donors, acceptors and the thymine methyl group; in the minor groove A·T and T·A
+      are indistinguishable, as are G·C and C·G. That is why nearly every sequence-specific DNA-binding protein
+      — helix-turn-helix, zinc finger, leucine zipper — inserts a recognition helix into the major groove.</figcaption>
+  </figure>
+
+  <h3>Stacking, not hydrogen bonding, is what holds the duplex together</h3>
+  <p>This is the single most frequently mis-stated fact in the topic, and it follows directly from
+     <a href="biochem-01-bonds-lipids.html">note 01</a>. Ask the right question: when two single strands come
+     together, what is actually <em>gained</em>?</p>
+  <p>Not hydrogen bonds. Before pairing, every donor and acceptor on every base edge was already hydrogen-bonded
+     — to <strong>water</strong>. Forming the duplex swaps base–water hydrogen bonds for base–base hydrogen
+     bonds, and the exchange is close to enthalpically neutral. What the hydrogen bonds actually supply is
+     <strong>specificity</strong>: they are the reason A can only face T. They are the lock, not the glue.</p>
+  <p>The glue is <strong>base stacking</strong> — the flat aromatic faces piling on top of one another at 3.4 Å,
+     which delivers exactly the two contributions <a href="biochem-01-bonds-lipids.html">note 01</a> put on the
+     noncovalent energy ruler: the
+     <strong>hydrophobic effect</strong>, because burying those apolar faces releases the ordered water that had
+     been caging them (an entropic gain), and <strong>London dispersion</strong> between large, highly
+     polarisable π systems in van der Waals contact. Measured stacking free energies run about 4–15 kJ·mol⁻¹ per
+     dinucleotide step, and there are as many steps as base pairs. Stack them along a 20-mer and the duplex is
+     unambiguously stacking-stabilised.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap: "G≡C has three hydrogen bonds, so GC-rich DNA is more stable"</p>
+    <p style="margin:0">The conclusion is right and the reason given is only half of it — which is exactly the
+      kind of answer that gets marked down. GC-rich DNA melts higher for <em>two</em> reasons: the extra hydrogen
+      bond, and the fact that G and C are the larger, more polarisable ring systems and therefore
+      <strong>stack better</strong> with their neighbours. Nearest-neighbour thermodynamics makes this explicit —
+      T<sub>m</sub> depends on which dinucleotide <em>steps</em> are present, not merely on how many G·C pairs
+      there are. A 5′-GC-3′ step and a 5′-CG-3′ step contain the same bases and have measurably different
+      stabilities; hydrogen-bond counting cannot explain that, stacking can. If you write only "three hydrogen
+      bonds", cross-reference note 01 and add the stacking sentence.</p>
+  </div>
+
+  <h3>Melting, hyperchromicity and renaturation</h3>
+  <p>Heat a DNA solution and the strands separate over a narrow temperature range — the transition is
+     <strong>cooperative</strong>, because once a few pairs open, their neighbours lose their stacking partners
+     and open more easily. The readout is optical: stacked bases partly quench one another's absorbance, so
+     unstacking raises A₂₆₀ by roughly 40 %. This is the <strong>hyperchromic effect</strong>, and its midpoint
+     is T<sub>m</sub>.</p>
+  <p>Four variables move T<sub>m</sub>, and you should be able to predict the sign of each:</p>
+  <ul>
+    <li><strong>GC content ↑ → T<sub>m</sub> ↑</strong> (about +0.41 °C per 1 % GC) — extra hydrogen bond plus
+        better stacking.</li>
+    <li><strong>Salt ↑ → T<sub>m</sub> ↑</strong> — cations screen the repulsion between the two polyanionic
+        backbones, which is destabilising in itself.</li>
+    <li><strong>pH far from neutral → T<sub>m</sub> ↓</strong> — extreme pH ionises the ring nitrogens and
+        destroys the hydrogen-bond pattern. Alkali is the classic way to denature DNA without heat.</li>
+    <li><strong>Formamide, urea, DMSO → T<sub>m</sub> ↓</strong> — they hydrogen-bond to the bases and weaken
+        stacking, which is why hybridisation buffers contain formamide (it lets you work at a lower, less
+        damaging temperature).</li>
+  </ul>
+  <p>Cooling slowly lets the strands find each other again — <strong>renaturation</strong>, the physical basis of
+     every hybridisation method on this page: Southern and Northern blots, PCR priming, FISH and microarrays all
+     depend on it. Renaturation is second-order, so it is faster for sequences present in many copies; that
+     observation (C₀t analysis) is how repetitive DNA was discovered.</p>
+
+  <h4>Try it: GC content → T<sub>m</sub></h4>
+  <p>The formula below applies to duplexes longer than about 50 bp in 0.05 M Na⁺. Move the sliders and watch
+     which term does the work.</p>
+  <div class="fx"><span class="fx__eq">T<sub>m</sub> = 81.5 + 16.6 log₁₀[Na⁺] + 0.41(%GC) − 600/N</span><span class="fx__tag">at [Na⁺] = 0.05 M the first two terms are a constant 59.9 °C</span></div>
+  <div class="card nu-tm">
+    <div>
+      <label for="tmGc">GC content <output id="tmGcOut" for="tmGc">50 %</output></label>
+      <input id="tmGc" type="range" min="20" max="80" step="1" value="50">
+      <label for="tmLen">Duplex length <output id="tmLenOut" for="tmLen">500 bp</output></label>
+      <input id="tmLen" type="range" min="50" max="2000" step="10" value="500">
+      <p class="nu-tm__terms" id="tmTerms">59.9 (salt) + 0.41 × 50 = +20.5 − 600/500 = −1.2</p>
+    </div>
+    <div>
+      <p class="nu-tm__val"><span id="tmVal">79.2</span> <small>°C melting temperature</small></p>
+      <div class="nu-tm__scale">
+        <div class="nu-tm__track"></div>
+        <div class="nu-tm__ref" style="left:42.5%"><b>72 °C</b></div>
+        <div class="nu-tm__mark" id="tmMark" style="left:60.5%"></div>
+      </div>
+      <div class="nu-tm__ends"><span>55 °C</span><span>95 °C</span></div>
+      <p style="font-size:.8rem;color:var(--ink-faint);margin:.6rem 0 0">Length barely matters above a few
+        hundred base pairs — the −600/N term collapses. GC content does all the work, at 0.41 °C per percent.
+        The dotted line marks 72 °C, the extension temperature of <em>Taq</em> polymerase in §&nbsp;11.</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 1 — a Chargaff deduction</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">One strand of a double-stranded DNA molecule contains 32 % A,
+      28 % T and 18 % G. What is the guanine content of the <em>duplex</em>, and its overall GC content?</p>
+    <ol>
+      <li>Complete the strand first. The four bases must total 100 %, so
+          C in that strand = 100 − 32 − 28 − 18 = <strong>22 %</strong>.</li>
+      <li>Write the complementary strand by pairing rules. Every A in strand 1 faces a T in strand 2, and so on:
+          strand 2 is 32 % T, 28 % A, 18 % C, 22 % G.</li>
+      <li>The duplex composition is the average of the two strands.
+          <span class="fi">A = (32 + 28)/2 = 30 %</span>, and therefore T = 30 %.
+          <span class="fi">G = (18 + 22)/2 = 20 %</span>, and therefore C = 20 %.</li>
+      <li>Check: 30 + 30 + 20 + 20 = 100 ✓, and Chargaff's equalities now hold, which they did <em>not</em> for
+          the single strand.</li>
+      <li>GC content = 20 + 20 = 40 %. Purine/pyrimidine in the duplex = (30+20)/(20+30) = 1.00 — always 1.00
+          for any duplex, which is why that ratio is never a useful discriminator.</li>
+    </ol>
+    <span class="wex__ans">duplex G = 20 % · GC = 40 % · (A+T)/(G+C) = 1.50</span>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 2 — two T<sub>m</sub> estimates, and why they disagree</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) A 500 bp PCR product is 58 % GC, in 0.05 M Na⁺. Estimate
+      T<sub>m</sub>. (b) A 20-mer primer, 5′-GCTAGCTTGACCTAGGACTT-3′, will be used to amplify it. Estimate the
+      primer's T<sub>m</sub> and a sensible annealing temperature.</p>
+    <ol>
+      <li><strong>(a)</strong> Salt term: <span class="fi">81.5 + 16.6 log₁₀(0.05) = 81.5 − 21.6 = 59.9</span>.</li>
+      <li>GC term: <span class="fi">0.41 × 58 = +23.8</span>. Length term:
+          <span class="fi">−600/500 = −1.2</span>.</li>
+      <li><span class="fi">T<sub>m</sub> = 59.9 + 23.8 − 1.2 = 82.5 °C</span>. Note that raising GC from 38 % to
+          58 % would have added <span class="fi">0.41 × 20 = 8.2 °C</span> — a useful rule of thumb.</li>
+      <li><strong>(b)</strong> Count the primer: G+C = 10, A+T = 10 of 20 nucleotides.</li>
+      <li>Wallace rule: <span class="fi">T<sub>m</sub> = 2(10) + 4(10) = 60 °C</span>.</li>
+      <li>Anneal about 5 °C below: <strong>≈55 °C</strong>.</li>
+      <li>Why not use the long formula on the primer? It gives 50.4 °C — nearly 10 °C out. The −600/N term was
+          fitted to long duplexes and blows up for short ones. <strong>Match the formula to the length</strong>;
+          quoting the wrong one is a classic lost mark.</li>
+    </ol>
+    <span class="wex__ans">(a) T<sub>m</sub> ≈ 82.5 °C · (b) primer T<sub>m</sub> ≈ 60 °C, anneal ≈55 °C</span>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>A, B, Z and DNA topology</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Linking number Lk</dt>
+      <dd>The number of times one strand of a <em>closed</em> circular duplex crosses the other. It is a
+          topological invariant: it cannot change unless a strand is broken.</dd>
+      <dt>Twist and writhe</dt>
+      <dd>Twist (Tw) is the winding of the two strands about the helix axis; writhe (Wr) is the coiling of the
+          axis itself in space. Their sum is fixed.</dd>
+      <dt>Supercoiling</dt>
+      <dd>Any deviation of Lk from its relaxed value. Underwinding (negative supercoiling) is the physiological
+          state in essentially every organism.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Lk = Tw + Wr</span>
+      <span class="fx__tag">Lk is fixed for an intact circle; Tw and Wr trade off freely</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">Lk₀ = N / 10.5</span><span class="fx__tag">linking number of the relaxed circle, N base pairs</span></div>
+      <div class="fx"><span class="fx__eq">σ = ΔLk / Lk₀ = (Lk − Lk₀) / Lk₀ ≈ −0.05 to −0.07 in vivo</span><span class="fx__tag">superhelical density — negative means underwound</span></div>
+      <div class="fx"><span class="fx__eq">topo I: ΔLk = ±1, no ATP  ·  topo II: ΔLk = ±2, ATP required</span><span class="fx__tag">one strand cut versus two</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>Lk</b><span>linking number (integer, dimensionless)</span></div>
+      <div><b>Lk₀</b><span>linking number of the relaxed molecule</span></div>
+      <div><b>Tw</b><span>twist — helical turns of the strands</span></div>
+      <div><b>Wr</b><span>writhe — supercoils of the axis</span></div>
+      <div><b>σ</b><span>superhelical density (dimensionless)</span></div>
+      <div><b>N</b><span>length of the circle (bp)</span></div>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">A-, B- and Z-form DNA compared</caption>
+      <thead><tr><th>Property</th><th>A-DNA</th><th>B-DNA</th><th>Z-DNA</th></tr></thead>
+      <tbody>
+        <tr><td>Helical sense</td><td>Right-handed</td><td><strong>Right-handed</strong></td><td><strong>Left-handed</strong></td></tr>
+        <tr><td>Base pairs per turn</td><td class="num">≈11</td><td class="num">≈10.5</td><td class="num">12 (6 dimers)</td></tr>
+        <tr><td>Rise per base pair</td><td class="num">2.6 Å</td><td class="num">3.4 Å</td><td class="num">3.7 Å</td></tr>
+        <tr><td>Diameter</td><td class="num">≈26 Å</td><td class="num">≈20 Å</td><td class="num">≈18 Å</td></tr>
+        <tr><td>Sugar pucker</td><td>C3′-endo</td><td>C2′-endo</td><td>Alternating C2′/C3′-endo</td></tr>
+        <tr><td>Glycosidic bond</td><td>anti</td><td>anti</td><td>Alternating anti / <strong>syn</strong> (purines syn)</td></tr>
+        <tr><td>Grooves</td><td>Deep narrow major, shallow broad minor</td><td>Major ≈22 Å, minor ≈12 Å</td><td>Backbone zig-zags; effectively one deep narrow minor groove</td></tr>
+        <tr><td>Conditions</td><td>Dehydration; the form adopted by <strong>RNA duplexes and RNA–DNA hybrids</strong> (the 2′-OH forbids C2′-endo)</td><td>Physiological aqueous conditions — the biologically dominant form</td><td>Alternating purine–pyrimidine tracts (CGCGCG), high salt, negative supercoiling, cytosine methylation</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The reason A-form matters is not that DNA adopts it often — it is that <strong>RNA has no choice</strong>.
+     The 2′-OH sterically blocks the C2′-endo sugar pucker that B-form requires, so every RNA double helix and
+     every RNA–DNA hybrid (including the one inside a transcribing RNA polymerase, and the one a reverse
+     transcriptase makes) is A-form. That is a structural consequence of the single extra oxygen from §&nbsp;01.</p>
+
+  <h3>Supercoiling: why it exists and why it is negative</h3>
+  <p>Consider the arithmetic problem a replication or transcription bubble creates. Unwinding the duplex locally
+     removes twist, but in a closed circle — or in a long chromosome anchored to a scaffold, which is
+     topologically equivalent — Lk cannot change. So the twist you removed reappears as writhe: <strong>positive
+     supercoils pile up ahead of the moving polymerase and negative supercoils behind it</strong>. Left
+     unresolved, the torsional strain stalls the machine within a few thousand base pairs. Topoisomerases exist
+     to solve exactly this.</p>
+  <p>Resting DNA is held <em>negatively</em> supercoiled (σ ≈ −0.06), which means underwound, which means the
+     duplex is already primed to open. That is a stored free-energy reservoir favouring every process that needs
+     strand separation — origin firing, promoter melting. It is not a defect; it is a setting.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Topoisomerases and the drugs that target them</caption>
+      <thead><tr><th>Enzyme</th><th>Cuts</th><th>ATP</th><th>ΔLk per event</th><th>Function &amp; drugs</th></tr></thead>
+      <tbody>
+        <tr><td>Topoisomerase I (type IB, eukaryotic)</td><td>One strand</td><td>No</td><td class="num">±1</td><td>Relaxes positive <em>and</em> negative supercoils. Inhibited by <strong>camptothecins</strong> — topotecan, irinotecan.</td></tr>
+        <tr><td>Topoisomerase I (type IA, bacterial)</td><td>One strand</td><td>No</td><td class="num">+1</td><td>Relaxes negative supercoils only; opposes gyrase.</td></tr>
+        <tr><td>Topoisomerase II (eukaryotic)</td><td>Both strands</td><td>Yes</td><td class="num">±2</td><td>Relaxation and decatenation of daughter chromosomes. Inhibited by <strong>etoposide</strong>, teniposide, doxorubicin.</td></tr>
+        <tr><td>DNA gyrase (bacterial topo II)</td><td>Both strands</td><td>Yes</td><td class="num">−2</td><td><strong>Actively introduces negative supercoils</strong> — no eukaryotic enzyme does this. Inhibited by <strong>fluoroquinolones</strong> and novobiocin.</td></tr>
+        <tr><td>Topoisomerase IV (bacterial)</td><td>Both strands</td><td>Yes</td><td class="num">±2</td><td>Decatenates daughter chromosomes after replication. Second fluoroquinolone target, dominant in Gram-positives.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Why these drugs are selective, and why they are dangerous</p>
+    <p style="margin:0"><strong>Fluoroquinolones</strong> (ciprofloxacin, levofloxacin) are genuinely selective:
+      DNA gyrase has no human counterpart, and bacterial topo IV differs enough from human topo II to be targeted.
+      <strong>Etoposide and camptothecin are not selective at all</strong> — they hit the human enzymes, and their
+      utility comes only from the fact that tumour cells replicate more. Note the shared mechanism: all of these
+      are <em>not</em> simple catalytic inhibitors. They stabilise the covalent enzyme–DNA "cleavable complex",
+      trapping the enzyme mid-reaction with the DNA cut. The lethal lesion is therefore a
+      <strong>protein-linked double-strand break</strong>, which explains both the cytotoxicity and the
+      therapy-related secondary leukaemias seen after etoposide.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 3 — the linking number of a plasmid</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">A closed circular plasmid is 5250 bp and is isolated at a
+      superhelical density σ = −0.06. Find Lk₀, ΔLk and Lk. How many catalytic events would topoisomerase I
+      need to relax it, and how many would topoisomerase II need?</p>
+    <ol>
+      <li>Relaxed linking number: <span class="fi">Lk₀ = N / 10.5 = 5250 / 10.5 = 500</span>.</li>
+      <li>By definition <span class="fi">σ = ΔLk / Lk₀</span>, so
+          <span class="fi">ΔLk = σ × Lk₀ = −0.06 × 500 = −30</span>.</li>
+      <li><span class="fi">Lk = Lk₀ + ΔLk = 500 − 30 = 470</span>. The molecule is underwound by 30 turns.</li>
+      <li>If all the strain appeared as writhe with the twist unchanged, that is 30 negative supercoils
+          (<span class="fi">Wr = −30</span>). In reality it partitions between Tw and Wr, but Lk = 470 either way
+          — that is what "topological invariant" means.</li>
+      <li>Topoisomerase I changes Lk by 1 per event → <strong>30 events</strong>. Topoisomerase II changes it by
+          2 → <strong>15 events</strong>, each costing ATP.</li>
+    </ol>
+    <span class="wex__ans">Lk₀ = 500 · ΔLk = −30 · Lk = 470 · topo I 30 events, topo II 15 events</span>
+  </div>
+</section>
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Chromatin and packaging</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Nucleosome</dt>
+      <dd>The repeating unit of chromatin: 147 bp of DNA wrapped in about 1.65 left-handed superhelical turns
+          around a histone octamer.</dd>
+      <dt>Histone octamer</dt>
+      <dd>Two copies each of H2A, H2B, H3 and H4. H1 is <em>not</em> part of the core — it binds the linker DNA
+          where it enters and leaves, clamping the wrap and enabling the next level of folding.</dd>
+      <dt>Packing ratio</dt>
+      <dd>The factor by which the linear length of DNA is reduced at a given level of organisation.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">147 bp · ≈1.65 turns · (H2A·H2B·H3·H4)₂</span>
+      <span class="fx__tag">the three numbers that get asked</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">nucleosome repeat ≈ 200 bp = 147 core + ≈53 linker</span><span class="fx__tag">linker ranges 20–80 bp by species and cell type</span></div>
+      <div class="fx"><span class="fx__eq">length = N × 0.34 nm</span><span class="fx__tag">converting base pairs to metres of B-DNA</span></div>
+      <div class="fx"><span class="fx__eq">packing ratio ≈ 10⁴ at metaphase</span><span class="fx__tag">from ≈7× (10 nm fibre) through ≈40× (30 nm fibre)</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>N</b><span>number of base pairs</span></div>
+      <div><b>0.34 nm</b><span>rise per base pair in B-DNA</span></div>
+      <div><b>H1</b><span>linker histone, one per nucleosome</span></div>
+      <div><b>HAT / HDAC</b><span>histone acetyltransferase / deacetylase</span></div>
+      <div><b>DNMT</b><span>DNA methyltransferase</span></div>
+      <div><b>5mC</b><span>5-methylcytosine</span></div>
+    </div>
+  </div>
+
+  <p>Do the arithmetic once and the problem becomes concrete. A diploid human cell holds
+     <span class="fi">2 × 3.1 × 10⁹ bp × 0.34 nm ≈ 2.1 m</span> of DNA, and it has to fit inside a nucleus a few
+     micrometres across — and be selectively readable while it is in there. Packaging is therefore not storage;
+     it is the primary layer of gene regulation.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Levels of chromatin packaging</caption>
+      <thead><tr><th>Level</th><th>Diameter</th><th>Cumulative packing</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><td>Naked duplex</td><td class="num">2 nm</td><td class="num">1×</td><td>B-DNA</td></tr>
+        <tr><td>Nucleosome / "beads on a string"</td><td class="num">10 nm</td><td class="num">≈6–7×</td><td>147 bp per octamer, ≈200 bp repeat; visible when chromatin is stripped of H1</td></tr>
+        <tr><td>30 nm fibre</td><td class="num">30 nm</td><td class="num">≈40×</td><td>Solenoid or zig-zag stacking of nucleosomes; <strong>requires H1</strong></td></tr>
+        <tr><td>Looped domains on a scaffold</td><td class="num">300 nm</td><td class="num">≈1000×</td><td>Loops of 50–100 kb anchored to a non-histone protein scaffold; the modern equivalent is TAD organisation by cohesin and CTCF</td></tr>
+        <tr><td>Condensed chromatid</td><td class="num">700 nm</td><td class="num">≈6000×</td><td>Coiled looped domains</td></tr>
+        <tr><td>Metaphase chromosome</td><td class="num">1400 nm</td><td class="num">≈10 000×</td><td>An average human chromosome holds ≈44 mm of DNA in a ≈5 µm chromatid — check: 44 mm / 5 µm ≈ 8800×</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Why histones can do this at all is §&nbsp;02's polyanion argument in reverse: the core histones are about
+     20 % lysine and arginine, so at physiological pH they carry a large net positive charge that neutralises
+     the backbone. The interaction is largely <strong>sequence-independent</strong>, which is exactly what a
+     general packaging protein needs — contacts are made to the minor groove and the phosphate backbone, not to
+     base identity. H3 and H4 are among the most conserved proteins known: H4 differs by two residues between cow
+     and pea, which tells you how little tolerance the nucleosome surface has for change.</p>
+
+  <h3>Euchromatin, heterochromatin, and the two chemical switches</h3>
+  <p><strong>Euchromatin</strong> is loosely packed, nuclease-accessible and transcriptionally competent.
+     <strong>Heterochromatin</strong> is condensed and silent: <em>constitutive</em> at centromeres and telomeres
+     in every cell, <em>facultative</em> where a cell has decided to shut something down — the inactive X
+     chromosome (the Barr body) being the canonical example, driven by the lncRNA <em>XIST</em>.</p>
+  <ul>
+    <li><strong>Histone acetylation → transcription ON.</strong> A histone acetyltransferase transfers an acetyl
+        group onto a lysine ε-amino group. That removes the positive charge, weakens the electrostatic grip on
+        the backbone, and opens the fibre. Acetylation is therefore <em>always</em> activating — the one histone
+        mark with an unambiguous direction. HDACs reverse it and silence; HDAC inhibitors (vorinostat,
+        romidepsin, and valproate as a side effect) are used in cutaneous T-cell lymphoma.</li>
+    <li><strong>DNA methylation → transcription OFF.</strong> DNMTs place a methyl group on cytosine C5, almost
+        always in a <strong>CpG</strong> dinucleotide. Methylated CpG islands in promoters recruit
+        methyl-CpG-binding proteins and HDACs, and the gene is silenced. This is the mechanism of genomic
+        imprinting and X-inactivation, and hypermethylation of tumour-suppressor promoters (e.g. <em>MLH1</em>,
+        <em>BRCA1</em>) is a common route to cancer without any change in sequence. Azacitidine and decitabine
+        are DNMT inhibitors used in myelodysplastic syndrome.</li>
+    <li><strong>Histone methylation is ambiguous</strong> — do not lump it with the other two. H3K4me3 marks
+        active promoters; H3K9me3 and H3K27me3 mark silent heterochromatin. The mark's meaning depends on which
+        residue carries it.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two easy slips</p>
+    <p style="margin:0"><strong>H1 is not in the octamer.</strong> The core is (H2A·H2B·H3·H4)₂ — eight
+      proteins, four kinds. H1 sits outside, on the linker. <strong>And 147 bp is the core particle, not the
+      repeat.</strong> The repeat including linker is about 200 bp; quoting 200 as the wrapped length, or 147 as
+      the repeat, is a marked error. Also note that 5-methylcytosine deaminates to <em>thymine</em> — a normal
+      DNA base — which makes methylated CpG sites the single biggest mutational hotspot in the human genome, and
+      explains why CpG is under-represented everywhere except in CpG islands.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>RNA, and the price of the 2′-OH</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>RNA</dt>
+      <dd>A nucleic acid built on ribose, using uracil in place of thymine, and synthesised as a single strand.
+          Three differences from DNA — and each one <em>causes</em> something.</dd>
+      <dt>Ribozyme</dt>
+      <dd>An RNA molecule with catalytic activity. Their existence is why the RNA-world hypothesis is taken
+          seriously: RNA is the only known molecule that both carries information and catalyses reactions.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">2′-OH · U instead of T · single-stranded</span>
+      <span class="fx__tag">three differences — learn the consequence of each, not the list</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">2′-O⁻ attacks the adjacent phosphate → 2′,3′-cyclic phosphate → chain cleaved</span><span class="fx__tag">why RNA is destroyed by alkali and DNA is not</span></div>
+      <div class="fx"><span class="fx__eq">C → U by spontaneous deamination (≈100–500 events per cell per day)</span><span class="fx__tag">why DNA pays for the methyl group that makes T</span></div>
+      <div class="fx"><span class="fx__eq">A₂₆₀/A₂₈₀ ≈ 1.8 (DNA) · ≈2.0 (RNA)</span><span class="fx__tag">purity check in the laboratory</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>2′-OH</b><span>ribose hydroxyl absent from DNA</span></div>
+      <div><b>U</b><span>uracil = thymine without the 5-methyl group</span></div>
+      <div><b>T</b><span>thymine = 5-methyluracil</span></div>
+      <div><b>hnRNA</b><span>heterogeneous nuclear RNA = unprocessed pre-mRNA</span></div>
+      <div><b>snRNP</b><span>small nuclear ribonucleoprotein (spliceosome subunit)</span></div>
+    </div>
+  </div>
+
+  <h3>Difference 1: the 2′-OH — catalysis, instability, and A-form</h3>
+  <p>The 2′-hydroxyl sits one bond away from the phosphodiester linkage of its own backbone. Raise the pH and
+     it deprotonates to a 2′-alkoxide, which is perfectly placed to make an in-line nucleophilic attack on the
+     adjacent phosphorus. The result is a 2′,3′-cyclic phosphate and a cut chain. <strong>RNA is destroyed by
+     dilute alkali; DNA, having a hydrogen at 2′, is not.</strong> That single test — treat with NaOH and see
+     what survives — distinguishes them, and it is also why alkaline hydrolysis is used to remove RNA from DNA
+     preparations.</p>
+  <p>The same reactive geometry is what lets RNA be a catalyst: ribozymes such as the hammerhead and hairpin
+     use precisely this in-line attack, as does the branch-point adenosine in splicing (RNase P is the
+     counter-example: it hydrolyses with a metal-activated water instead), and RNase A accelerates it about
+     10¹² fold. So the 2′-OH buys catalysis
+     and pays with a half-life measured in minutes to hours. For a molecule whose job is to be a
+     <em>disposable</em> working copy, that is the correct trade. For the archive, it is not — which is exactly
+     why the archive is deoxy.</p>
+  <p>And, from §&nbsp;04: the 2′-OH forbids the C2′-endo sugar pucker, so double-helical RNA cannot adopt B-form.
+     Every RNA duplex and every RNA–DNA hybrid is A-form.</p>
+
+  <h3>Difference 2: U instead of T — an error-detection argument</h3>
+  <p>Thymine is simply 5-methyluracil. Making it costs a methylation step (thymidylate synthase, the target of
+     5-fluorouracil, using a methyl group from methylene-tetrahydrofolate — which is why methotrexate starves
+     the same reaction). Why would DNA pay for a methyl group that contributes nothing to base pairing?</p>
+  <p>Because cytosine deaminates spontaneously, and the product of cytosine deamination is <strong>uracil</strong>.
+     If uracil were a legitimate DNA base, a repair enzyme finding a U·G mismatch would have no way to tell which
+     base was the intruder — it could equally be a correct U that had lost its partner. By excluding U from DNA
+     entirely, the cell makes the rule trivial: <strong>any uracil in DNA is damage, by definition</strong>, and
+     uracil-DNA glycosylase excises it without ambiguity. The methyl group is not chemistry; it is a checksum.
+     RNA, being disposable and not copied forward, does not need one.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">DNA compared with RNA</caption>
+      <thead><tr><th>Property</th><th>DNA</th><th>RNA</th></tr></thead>
+      <tbody>
+        <tr><td>Sugar</td><td>2′-deoxyribose</td><td>Ribose (2′-OH)</td></tr>
+        <tr><td>Pyrimidines</td><td>C and <strong>T</strong></td><td>C and <strong>U</strong></td></tr>
+        <tr><td>Usual strandedness</td><td>Double-stranded duplex</td><td>Single strand that folds back on itself</td></tr>
+        <tr><td>Helix form when duplexed</td><td>B-form</td><td>A-form (forced by the 2′-OH)</td></tr>
+        <tr><td>Alkali</td><td>Stable</td><td><strong>Hydrolysed</strong></td></tr>
+        <tr><td>Stability in the cell</td><td>Years — it is the archive</td><td>Minutes to hours (mRNA); rRNA and tRNA are much longer-lived</td></tr>
+        <tr><td>Catalysis</td><td>None known in nature</td><td>Ribozymes: peptidyl transferase, RNase P, self-splicing introns, spliceosome</td></tr>
+        <tr><td>Location (eukaryote)</td><td>Nucleus and mitochondria</td><td>Made in the nucleus, works mostly in the cytoplasm</td></tr>
+        <tr><td>Abundance in the cell</td><td>—</td><td>rRNA ≈80 %, tRNA ≈15 %, mRNA only ≈3–5 %</td></tr>
+        <tr><td>A₂₆₀ = 1.0 corresponds to</td><td class="num">50 µg/mL (ds) · 33 µg/mL (ss)</td><td class="num">40 µg/mL</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Difference 3: single-stranded — so it has a shape</h3>
+  <p>A single strand folds back on itself wherever local complementarity allows, producing hairpins, stem-loops,
+     bulges and pseudoknots, and stabilising them with non-Watson–Crick pairs (G·U wobble pairs are common in
+     RNA and are perfectly stable). A DNA duplex has one shape regardless of sequence; an RNA has a
+     <em>sequence-determined</em> three-dimensional structure. That is what makes tRNA a machine, rRNA a
+     scaffold and a catalyst, and riboswitches possible.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The RNA cast</caption>
+      <thead><tr><th>RNA</th><th>Made by (eukaryote)</th><th>Job</th><th>Detail worth remembering</th></tr></thead>
+      <tbody>
+        <tr><td><strong>mRNA</strong></td><td>Pol II</td><td>Carries the coding message</td><td>Only ≈3–5 % of cellular RNA; the only class that is translated. Monocistronic in eukaryotes, often polycistronic (operons) in bacteria.</td></tr>
+        <tr><td><strong>tRNA</strong></td><td>Pol III</td><td>Adapter: anticodon at one end, amino acid at the other</td><td>76–90 nt; cloverleaf in 2D, L-shaped in 3D; many modified bases (dihydrouridine, pseudouridine, ribothymidine, inosine); ends <strong>3′-CCA</strong>, and the amino acid is esterified to the terminal adenosine.</td></tr>
+        <tr><td><strong>rRNA</strong></td><td>Pol I (28S, 18S, 5.8S) and Pol III (5S)</td><td>Structural core and catalytic centre of the ribosome</td><td>The most abundant RNA. The peptidyl transferase is <strong>23S rRNA</strong> in bacteria — the ribosome is a ribozyme.</td></tr>
+        <tr><td><strong>snRNA</strong> (U1, U2, U4, U5, U6)</td><td>Pol II (U6 by Pol III)</td><td>Spliceosome components</td><td>U1 recognises the 5′ GU donor; U2 binds the branch-point A. Anti-Sm antibodies against these particles are specific for SLE.</td></tr>
+        <tr><td><strong>miRNA</strong></td><td>Pol II</td><td>Represses translation</td><td>≈22 nt; binds the 3′-UTR with <em>imperfect</em> complementarity via RISC/Argonaute → translational block and destabilisation.</td></tr>
+        <tr><td><strong>siRNA</strong></td><td>Exogenous or Pol II</td><td>Degrades a transcript</td><td>Same RISC machinery, but <em>perfect</em> complementarity → endonucleolytic cleavage. The basis of RNAi therapeutics (patisiran).</td></tr>
+        <tr><td><strong>lncRNA</strong></td><td>Pol II</td><td>Structural and regulatory scaffolds</td><td>&gt;200 nt, untranslated; <em>XIST</em> coats and silences one X chromosome.</td></tr>
+        <tr><td><strong>snoRNA</strong>, <strong>piRNA</strong></td><td>Pol II</td><td>rRNA modification; germline transposon silencing</td><td>Worth recognising by name.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">tRNA details that are actually asked</p>
+    <p style="margin:0">The <strong>3′-CCA</strong> terminus is added post-transcriptionally by the CCA-adding
+      enzyme in eukaryotes (it is genomically encoded in some bacteria) — it is not transcribed from a template
+      in humans. <strong>Aminoacyl-tRNA synthetases</strong>, one per amino acid, attach the amino acid at the
+      cost of ATP → AMP + PP<sub>i</sub>, and they proofread; they are sometimes called the "second genetic code"
+      because they are where the pairing of an amino acid with an anticodon is actually decided. And the
+      classic demonstration that the ribosome reads the <em>anticodon</em> and not the amino acid: chemically
+      convert Cys-tRNA<sup>Cys</sup> to Ala-tRNA<sup>Cys</sup> with Raney nickel, and alanine is inserted at every
+      cysteine codon.</p>
+  </div>
+</section>
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>DNA replication</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Semiconservative replication</dt>
+      <dd>Each daughter duplex contains one parental strand and one newly synthesised strand. Demonstrated by
+          Meselson and Stahl in 1958 using ¹⁵N labelling and caesium chloride density-gradient centrifugation.</dd>
+      <dt>Replication fork</dt>
+      <dd>The Y-shaped junction where the parental duplex is being unwound and both new strands are being made.
+          Eukaryotic origins fire bidirectionally, so each origin makes two forks.</dd>
+      <dt>Proofreading</dt>
+      <dd>The 3′→5′ exonuclease activity built into replicative polymerases, which removes a just-incorporated
+          mismatched nucleotide before synthesis continues.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">both new strands grow 5′ → 3′, always</span>
+      <span class="fx__tag">the constraint from §&nbsp;02 that forces the lagging strand to exist</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">base pairing 10⁻⁵ → proofreading 10⁻⁷ → mismatch repair 10⁻⁹</span><span class="fx__tag">error per base pair after each layer of checking</span></div>
+      <div class="fx"><span class="fx__eq">t = N / (2 × rate)</span><span class="fx__tag">time for one bidirectional origin to copy a circular genome</span></div>
+      <div class="fx"><span class="fx__eq">telomere repeat (human) = 5′-TTAGGG-3′</span><span class="fx__tag">extended by telomerase, an RNA-dependent DNA polymerase</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>N</b><span>genome size (bp)</span></div>
+      <div><b>rate</b><span>fork speed (bp·s⁻¹): ≈1000 in <em>E. coli</em>, ≈50 in human</span></div>
+      <div><b>Okazaki fragment</b><span>1000–2000 nt in bacteria, 100–200 nt in eukaryotes</span></div>
+      <div><b>SSB / RPA</b><span>single-strand binding protein (bacterial / eukaryotic)</span></div>
+      <div><b>ori</b><span>origin of replication</span></div>
+    </div>
+  </div>
+
+  <h3>Meselson–Stahl, read as an experiment rather than a fact</h3>
+  <p>Grow <em>E. coli</em> for many generations in ¹⁵N so all its DNA is heavy, then transfer to ¹⁴N and sample
+     each generation. The three candidate models predict different band patterns, and one round is enough to
+     kill one of them:</p>
+  <ul>
+    <li><strong>After one generation</strong> a single band of intermediate density. <em>Conservative</em>
+        replication is dead immediately — it predicts two bands, one heavy and one light.</li>
+    <li><strong>After two generations</strong> two bands: half intermediate, half light. <em>Dispersive</em>
+        replication is now dead too — it predicts a single band that simply gets lighter each generation, never
+        two discrete bands.</li>
+    <li>Only semiconservative replication predicts both observations.</li>
+  </ul>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 390" role="img" aria-label="A replication fork moving to the right. The unreplicated parental duplex is at the right; helicase at the fork separates the strands. On the upper template, which runs 3-prime at the left to 5-prime at the right, the leading strand is made continuously with its growing 3-prime end following the fork. On the lower template, which runs 5-prime at the left to 3-prime at the right, the lagging strand is made as three separate Okazaki fragments, each starting from an RNA primer at its fork-proximal end and growing away from the fork." style="font-family:var(--sans)">
+      <path d="M 700,180 L 510,180 C 480,180 470,158 445,148 L 90,78" fill="none" stroke="var(--ink-soft)" stroke-width="3.4"/>
+      <path d="M 700,204 L 510,204 C 480,204 470,226 445,236 L 90,306" fill="none" stroke="var(--ink-soft)" stroke-width="3.4"/>
+      <g stroke="var(--hbond)" stroke-width="2" stroke-dasharray="3 3">
+        <line x1="540" y1="182" x2="540" y2="202"/><line x1="575" y1="182" x2="575" y2="202"/>
+        <line x1="610" y1="182" x2="610" y2="202"/><line x1="645" y1="182" x2="645" y2="202"/>
+        <line x1="680" y1="182" x2="680" y2="202"/>
+      </g>
+      <text x="614" y="230" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">unreplicated parental duplex</text>
+      <text x="700" y="168" text-anchor="end" font-size="12" font-weight="700" fill="var(--accent)">5′</text>
+      <text x="700" y="222" text-anchor="end" font-size="12" font-weight="700" fill="var(--accent)">3′</text>
+      <text x="78" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">3′</text>
+      <text x="78" y="312" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">5′</text>
+
+      <circle cx="500" cy="192" r="24" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="500" y="197" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">Hel</text>
+      <text x="500" y="238" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">helicase</text>
+      <text x="640" y="142" text-anchor="middle" font-size="11" fill="var(--accent-3)">topoisomerase / gyrase</text>
+      <text x="640" y="157" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">removes the twist ahead</text>
+      <line x1="640" y1="163" x2="640" y2="176" stroke="var(--accent-3)" stroke-width="1.5"/>
+      <g fill="var(--accent-3)" opacity=".55">
+        <circle cx="330" cy="127" r="7"/><circle cx="250" cy="111" r="7"/><circle cx="170" cy="95" r="7"/>
+      </g>
+      <text x="250" y="98" text-anchor="middle" font-size="10.5" fill="var(--accent-3)">SSB proteins</text>
+
+      <line x1="100" y1="96" x2="428" y2="161" stroke="var(--accent)" stroke-width="3.4"/>
+      <polygon points="426,153 444,165 424,169" fill="var(--accent)"/>
+      <text x="96" y="112" font-size="11.5" font-weight="700" fill="var(--accent)">5′</text>
+      <text x="418" y="184" font-size="11.5" font-weight="700" fill="var(--accent)">3′</text>
+      <text x="250" y="152" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">leading strand — one continuous piece</text>
+      <text x="250" y="167" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">grows 5′→3′ towards the fork; needs one primer, ever</text>
+
+      <g stroke-width="3.4" fill="none">
+        <line x1="431" y1="223" x2="408" y2="228" stroke="var(--accent-2)"/>
+        <line x1="408" y1="228" x2="337" y2="242" stroke="var(--accent)"/>
+        <line x1="316" y1="246" x2="293" y2="250" stroke="var(--accent-2)"/>
+        <line x1="293" y1="250" x2="222" y2="264" stroke="var(--accent)"/>
+        <line x1="201" y1="268" x2="178" y2="273" stroke="var(--accent-2)"/>
+        <line x1="178" y1="273" x2="107" y2="287" stroke="var(--accent)"/>
+      </g>
+      <g fill="var(--accent)">
+        <polygon points="339,234 326,244 341,250"/><polygon points="224,256 211,266 226,272"/><polygon points="109,279 96,289 111,295"/>
+      </g>
+      <text x="452" y="212" font-size="10.5" font-weight="700" fill="var(--accent-2)">RNA primer</text>
+      <text x="452" y="226" font-size="10.5" fill="var(--ink-faint)">laid by primase</text>
+      <text x="250" y="300" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">lagging strand — Okazaki fragments</text>
+      <text x="250" y="315" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">each grows 5′→3′ <tspan font-style="italic">away</tspan> from the fork, so a new primer is needed every time</text>
+
+      <line x1="300" y1="336" x2="420" y2="336" stroke="var(--ink-faint)" stroke-width="1.5"/>
+      <polygon points="416,330 432,336 416,342" fill="var(--ink-faint)"/>
+      <text x="292" y="340" text-anchor="end" font-size="11" fill="var(--ink-faint)">fork movement</text>
+      <text x="360" y="366" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">One rule — synthesis is 5′→3′ — plus antiparallel templates is the entire explanation for why one strand is continuous and one is not.</text>
+    </svg>
+    <figcaption>The templates are antiparallel, so "5′→3′" points towards the fork on one of them and away from
+      it on the other. Nothing else is needed to derive the lagging strand, the requirement for repeated priming,
+      and the need for a ligase. In bacteria Pol I then removes each RNA primer with its unique 5′→3′
+      exonuclease and fills the gap; DNA ligase seals the nick using ATP (eukaryotes, phage) or NAD⁺
+      (<em>E. coli</em>).</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">DNA polymerases</caption>
+      <thead><tr><th>Polymerase</th><th>5′→3′ synthesis</th><th>3′→5′ exo (proofread)</th><th>5′→3′ exo</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><em>E. coli</em> Pol I</td><td>Yes</td><td>Yes</td><td><strong>Yes</strong></td><td>Removes RNA primers and fills the gaps; nick translation. The only <em>E. coli</em> polymerase with 5′→3′ exonuclease activity — its <em>Taq</em> homologue keeps it, which is exactly what cleaves a TaqMan probe in §&nbsp;11.</td></tr>
+        <tr><td><em>E. coli</em> Pol II</td><td>Yes</td><td>Yes</td><td>No</td><td>DNA repair, restart of stalled forks.</td></tr>
+        <tr><td><em>E. coli</em> Pol III</td><td>Yes</td><td>Yes</td><td>No</td><td><strong>The main replicative enzyme</strong> — highly processive, makes both leading and lagging strands.</td></tr>
+        <tr><td>Eukaryotic Pol α / primase</td><td>Yes</td><td><strong>No</strong></td><td>No</td><td>Lays a short RNA–DNA primer at every start; no proofreading, hence low fidelity — its product is later replaced.</td></tr>
+        <tr><td>Eukaryotic Pol δ</td><td>Yes</td><td>Yes</td><td>No</td><td>Lagging-strand synthesis (and repair).</td></tr>
+        <tr><td>Eukaryotic Pol ε</td><td>Yes</td><td>Yes</td><td>No</td><td>Leading-strand synthesis.</td></tr>
+        <tr><td>Eukaryotic Pol γ</td><td>Yes</td><td>Yes</td><td>No</td><td>Mitochondrial DNA; its inhibition explains the toxicity of some nucleoside-analogue antivirals.</td></tr>
+        <tr><td>Eukaryotic Pol β</td><td>Yes</td><td>No</td><td>No</td><td>Base excision repair gap filling.</td></tr>
+        <tr><td>Telomerase (TERT)</td><td>Yes</td><td>No</td><td>No</td><td>Reverse transcriptase carrying its own RNA template (TERC); extends the 3′ overhang.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Fidelity, in three layers</h3>
+  <p>Base pairing alone is worth about one error in 10⁴–10⁵ — hydrogen-bond geometry plus the polymerase's own
+     induced-fit selection. <strong>Proofreading</strong> by the 3′→5′ exonuclease catches most of the rest and
+     buys a further hundred-fold, to about 10⁻⁷. Post-replicative <strong>mismatch repair</strong> (§&nbsp;10)
+     adds another hundred- to thousand-fold, landing at roughly one uncorrected error per 10⁹–10¹⁰ base pairs
+     replicated. Multiply by 6.4 × 10⁹ bp per diploid cell division and you get a handful of new mutations per
+     division — small enough to be survivable, large enough to be the raw material of evolution and of cancer.</p>
+
+  <h3>The end-replication problem</h3>
+  <p>The lagging strand's final Okazaki fragment needs a primer, and that primer sits at the extreme 5′ end of
+     the new strand. When it is removed there is no upstream 3′-OH from which to fill the gap, so every round of
+     replication shortens the chromosome by 50–200 bp. Somatic cells therefore have a replicative limit (the
+     Hayflick limit) and telomeres act as an expendable buffer of TTAGGG repeats. <strong>Telomerase</strong>
+     carries its own RNA template and extends the 3′ overhang, allowing the lagging strand to be completed; it is
+     active in germline, stem and most cancer cells (≈90 % of tumours) and largely silent in somatic tissue.
+     Loss-of-function mutations cause dyskeratosis congenita and some aplastic anaemias and pulmonary fibroses —
+     tissues with high turnover fail first, which is the prediction the model makes.</p>
+
+  <div class="wex">
+    <h4>Worked example 4 — how long does a bacterium take to copy itself?</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">The <em>E. coli</em> chromosome is 4.6 × 10⁶ bp, circular, with a
+      single origin that fires bidirectionally. Each fork moves at about 1000 bp·s⁻¹. How long does one round of
+      replication take, and how does that square with a 20-minute doubling time?</p>
+    <ol>
+      <li>Two forks leave <em>oriC</em> in opposite directions, so each has to copy half the genome:
+          <span class="fi">4.6 × 10⁶ / 2 = 2.3 × 10⁶ bp</span>.</li>
+      <li><span class="fi">t = 2.3 × 10⁶ / 1000 = 2300 s ≈ 38 min</span>.</li>
+      <li>That is longer than the 20-minute doubling time — the apparent paradox. The resolution is that
+          <em>E. coli</em> starts a new round of replication before the previous one has finished, so a rapidly
+          growing cell contains multiple nested forks and more than one genome-equivalent of DNA.</li>
+      <li>For contrast, a human diploid genome is 6.4 × 10⁹ bp and forks move at only ≈50 bp·s⁻¹. A single
+          bidirectional origin would need <span class="fi">6.4 × 10⁹ / (2 × 50) = 6.4 × 10⁷ s ≈ 2 years</span>.
+          Eukaryotes therefore fire tens of thousands of origins, which is precisely why they need them.</li>
+    </ol>
+    <span class="wex__ans">≈2300 s ≈ 38 min per round · overlapping rounds explain a 20 min doubling time</span>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Transcription and RNA processing</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Template (antisense, non-coding) strand</dt>
+      <dd>The strand the polymerase actually reads, 3′→5′. The RNA is complementary and antiparallel to it.</dd>
+      <dt>Coding (sense) strand</dt>
+      <dd>The other strand. It is <em>not</em> read by anything — but the mRNA sequence is identical to it,
+          with U in place of T. This is why sequences in databases and exam questions are usually quoted as the
+          coding strand.</dd>
+      <dt>Promoter</dt>
+      <dd>The DNA element upstream of the start site that positions the polymerase. Eukaryotic core promoters
+          often carry a TATA box at about −25 to −30; bacterial promoters carry −10 (TATAAT) and −35 (TTGACA)
+          elements recognised by a σ factor.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">mRNA = coding strand, with U for T</span>
+      <span class="fx__tag">the one line that resolves most exam questions on this topic</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">template 3′-TAC-5′ → mRNA 5′-AUG-3′ → coding 5′-ATG-3′</span><span class="fx__tag">the start codon in all three representations</span></div>
+      <div class="fx"><span class="fx__eq">exon–GU … A … AG–exon</span><span class="fx__tag">GU–AG rule: donor, branch point, acceptor</span></div>
+      <div class="fx"><span class="fx__eq">polyadenylation signal 5′-AAUAAA-3′ → cleave, then add ≈200 A</span><span class="fx__tag">the tail is not templated</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>+1</b><span>the transcription start site</span></div>
+      <div><b>−25</b><span>25 bp upstream of +1 (negative = upstream)</span></div>
+      <div><b>hnRNA</b><span>pre-mRNA, before processing</span></div>
+      <div><b>m⁷G</b><span>7-methylguanosine cap</span></div>
+      <div><b>σ</b><span>bacterial sigma factor — promoter recognition subunit</span></div>
+      <div><b>snRNP</b><span>spliceosome subunit (U1, U2, U4, U5, U6)</span></div>
+    </div>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The single most expensive trap on this page: template versus coding</p>
+    <p style="margin:0">Three rules, in this order, and you will not lose the mark.
+      <strong>(1)</strong> Check the primes on the sequence you were given before doing anything else.
+      <strong>(2)</strong> If you are given the <em>coding</em> strand 5′→3′, the mRNA is that string with U for
+      T — no reversing, no complementing. <strong>(3)</strong> If you are given the <em>template</em> strand,
+      complement it; and if that template was written 5′→3′, you must also <em>reverse</em> it, because the mRNA
+      is antiparallel to the template. Skipping the reversal in rule 3 is the classic error: it silently produces
+      a plausible-looking peptide from the wrong reading, usually with a premature stop, and the answer looks
+      confident and is completely wrong.</p>
+  </div>
+
+  <div class="wex">
+    <h4>Worked example 5 — template → mRNA → peptide, done base by base</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">A short gene has the template strand
+      <span class="fi">3′-TAC GGA TTC AAC CTA ACT-5′</span>. Give the coding strand, the mRNA and the peptide.
+      Then delete the fourth base of the mRNA and translate again.</p>
+    <ol>
+      <li>The template is written 3′→5′, so it is already aligned with the mRNA written 5′→3′ — complement it in
+          place, no reversing needed.</li>
+      <li>Complement base by base, using U wherever the template has A:</li>
+    </ol>
+    <div class="nu-lad">
+      <div><b>template 3′→5′</b><span class="nu-seq">TAC GGA TTC AAC CTA ACT</span></div>
+      <div><b>mRNA 5′→3′</b><span class="nu-seq"><b>AUG</b> CCU AAG UUG GAU <i>UGA</i></span></div>
+      <div><b>coding 5′→3′</b><span class="nu-seq">ATG CCT AAG TTG GAT TGA</span></div>
+      <div><b>peptide N→C</b><span class="nu-seq">Met–Pro–Lys–Leu–Asp–<i>stop</i></span></div>
+    </div>
+    <ol start="3">
+      <li>Check the rule: the mRNA is the coding strand with U for T. It is. If your two lines disagree, you have
+          made an error — this is a free self-check and you should always run it.</li>
+      <li>AUG starts, UGA stops, and the stop codon is <strong>not</strong> translated. The peptide is
+          <strong>five residues</strong>, not six.</li>
+      <li>Now delete the fourth base of the mRNA (the first C of CCU). The remaining sequence re-reads as
+          <span class="fi">AUG CUA AGU UGG AUU GA</span> → Met–Leu–Ser–Trp–Ile… Every residue after the initiator
+          is different, the original UGA stop is no longer in frame, and the ribosome runs into the 3′ end. That
+          is a <strong>frameshift</strong>.</li>
+      <li>Finally, the trap. The same gene's template could have been quoted as
+          <span class="fi">5′-TCA ATC CAA CTT AGG CAT-3′</span> — the identical molecule, written the other way
+          round. Complementing that <em>in place</em> without reversing gives AGU UAG… which translates to
+          Ser–stop: a one-residue peptide and a completely wrong answer.</li>
+    </ol>
+    <span class="wex__ans">Met–Pro–Lys–Leu–Asp (5 residues) · after the deletion: Met–Leu–Ser–Trp–Ile…</span>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Eukaryotic RNA polymerases</caption>
+      <thead><tr><th>Polymerase</th><th>Location</th><th>Products</th><th>Inhibited by</th></tr></thead>
+      <tbody>
+        <tr><td>RNA Pol I</td><td>Nucleolus</td><td>28S, 18S and 5.8S rRNA (as one 45S precursor)</td><td>Insensitive to α-amanitin</td></tr>
+        <tr><td>RNA Pol II</td><td>Nucleoplasm</td><td><strong>mRNA</strong>, most snRNA, miRNA, lncRNA</td><td><strong>α-Amanitin</strong> (death cap, <em>Amanita phalloides</em>) at low concentration — hence the hepatotoxicity</td></tr>
+        <tr><td>RNA Pol III</td><td>Nucleoplasm</td><td>tRNA, 5S rRNA, U6 snRNA</td><td>α-Amanitin only at high concentration</td></tr>
+        <tr><td>Bacterial RNA polymerase</td><td>Cytoplasm</td><td>All bacterial RNA; core α₂ββ′ω + σ</td><td><strong>Rifampicin</strong> (binds the β subunit, <em>rpoB</em>) — blocks initiation, not elongation</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Two further inhibitors are worth holding: <strong>actinomycin D</strong> intercalates into DNA and blocks
+     elongation by all polymerases, and <strong>dactinomycin</strong> is the same molecule used as a
+     chemotherapeutic. Note the pattern — an inhibitor that hits a bacterial-only enzyme is an antibiotic; one
+     that hits a shared mechanism is a cytotoxic.</p>
+
+  <h3>Processing: three modifications, all eukaryote-only</h3>
+  <ol>
+    <li><strong>5′ cap.</strong> A 7-methylguanosine joined to the first transcribed nucleotide by an unusual
+        <strong>5′→5′ triphosphate</strong> linkage — one of the very few linkages in nucleic acids that is not
+        3′→5′; the other you meet on this page is the 2′→5′ bond at a splicing lariat's branch point.
+        Added co-transcriptionally after ≈25 nucleotides. It protects against 5′ exonucleases, is required for
+        nuclear export, and is the binding site for eIF4E during translation initiation.</li>
+    <li><strong>3′ poly(A) tail.</strong> The polymerase transcribes past the gene; cleavage occurs 10–30
+        nucleotides after the signal <span class="fi">AAUAAA</span>, and poly(A) polymerase adds ≈200 adenosines
+        <em>without a template</em>. The tail sets mRNA stability — its progressive shortening is the clock that
+        eventually triggers degradation. Histone mRNAs are the exception: no poly(A) tail, a stem-loop instead.</li>
+    <li><strong>Splicing.</strong> Introns are removed by the spliceosome (U1, U2, U4, U5, U6 snRNPs). U1 binds
+        the 5′ <strong>GU</strong> donor site, U2 binds the branch-point adenosine; the branch A's 2′-OH attacks
+        the 5′ splice site to form a <strong>lariat</strong>, then the freed exon 3′-OH attacks the
+        <strong>AG</strong> acceptor and the exons are joined. Two transesterifications, no ATP consumed in the
+        chemistry itself. Remember the <strong>GU–AG rule</strong> and note that the branch-point attack is the
+        same 2′-OH chemistry from §&nbsp;06.</li>
+  </ol>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 470" role="img" aria-label="Flow from gene to protein. A gene is shown with a TATA box promoter, three exons and two introns, drawn between a coding strand running 5-prime to 3-prime on top and a template strand running 3-prime to 5-prime below. Transcription of the template gives pre-messenger RNA containing the introns. Capping, polyadenylation and splicing give mature messenger RNA with a 7-methylguanosine cap, joined exons and a poly-A tail. Translation gives a polypeptide from N-terminus to C-terminus." style="font-family:var(--sans)">
+      <line x1="80" y1="40" x2="660" y2="40" stroke="var(--ink-soft)" stroke-width="2.5"/>
+      <line x1="80" y1="96" x2="660" y2="96" stroke="var(--ink-soft)" stroke-width="2.5"/>
+      <text x="70" y="44" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--accent)">5′</text>
+      <text x="670" y="44" font-size="11.5" font-weight="700" fill="var(--accent)">3′</text>
+      <text x="70" y="100" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--accent)">3′</text>
+      <text x="670" y="100" font-size="11.5" font-weight="700" fill="var(--accent)">5′</text>
+      <text x="80" y="26" font-size="11" fill="var(--ink-soft)">coding / sense strand — the message looks like this</text>
+      <text x="80" y="114" font-size="11" fill="var(--ink-soft)">template / antisense strand — the polymerase reads this</text>
+      <rect x="90" y="52" width="62" height="32" rx="4" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5"/>
+      <text x="121" y="73" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)">TATA</text>
+      <rect x="175" y="52" width="100" height="32" rx="3" fill="var(--accent)"/>
+      <rect x="275" y="60" width="65" height="16" fill="var(--line)" stroke="var(--ink-faint)" stroke-width="1"/>
+      <rect x="340" y="52" width="130" height="32" rx="3" fill="var(--accent)"/>
+      <rect x="470" y="60" width="65" height="16" fill="var(--line)" stroke="var(--ink-faint)" stroke-width="1"/>
+      <rect x="535" y="52" width="115" height="32" rx="3" fill="var(--accent)"/>
+      <g font-size="11" font-weight="700" fill="var(--on-accent)" text-anchor="middle">
+        <text x="225" y="73">exon 1</text><text x="405" y="73">exon 2</text><text x="592" y="73">exon 3</text>
+      </g>
+      <g font-size="10" fill="var(--ink-faint)" text-anchor="middle">
+        <text x="307" y="72">intron</text><text x="502" y="72">intron</text>
+      </g>
+
+      <line x1="360" y1="126" x2="360" y2="152" stroke="var(--ink-faint)" stroke-width="2"/>
+      <polygon points="354,148 360,162 366,148" fill="var(--ink-faint)"/>
+      <text x="376" y="146" font-size="11.5" fill="var(--ink-soft)">transcription · RNA Pol II reads the template 3′→5′, builds RNA 5′→3′</text>
+
+      <rect x="175" y="176" width="100" height="26" rx="3" fill="var(--accent)"/>
+      <rect x="275" y="182" width="65" height="14" fill="var(--line)" stroke="var(--ink-faint)" stroke-width="1"/>
+      <rect x="340" y="176" width="130" height="26" rx="3" fill="var(--accent)"/>
+      <rect x="470" y="182" width="65" height="14" fill="var(--line)" stroke="var(--ink-faint)" stroke-width="1"/>
+      <rect x="535" y="176" width="115" height="26" rx="3" fill="var(--accent)"/>
+      <text x="165" y="194" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--accent)">5′</text>
+      <text x="660" y="194" font-size="11.5" font-weight="700" fill="var(--accent)">3′</text>
+      <text x="80" y="168" font-size="11.5" font-weight="700" fill="var(--ink)">pre-mRNA (hnRNA) — still has the introns</text>
+
+      <line x1="360" y1="216" x2="360" y2="242" stroke="var(--ink-faint)" stroke-width="2"/>
+      <polygon points="354,238 360,252 366,238" fill="var(--ink-faint)"/>
+      <text x="376" y="236" font-size="11.5" fill="var(--ink-soft)">5′ cap · cleave + poly(A) · splice out GU…AG introns</text>
+
+      <circle cx="186" cy="279" r="13" fill="var(--accent-2)"/>
+      <text x="186" y="284" text-anchor="middle" font-size="10" font-weight="700" fill="var(--on-accent)">m⁷G</text>
+      <rect x="205" y="266" width="42" height="26" rx="3" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+      <text x="226" y="284" text-anchor="middle" font-size="9" fill="var(--ink-faint)">5′UTR</text>
+      <rect x="247" y="266" width="285" height="26" rx="3" fill="var(--accent)"/>
+      <text x="389" y="284" text-anchor="middle" font-size="11" font-weight="700" fill="var(--on-accent)">exon 1 + exon 2 + exon 3 — the open reading frame</text>
+      <rect x="532" y="266" width="46" height="26" rx="3" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+      <text x="555" y="284" text-anchor="middle" font-size="9" fill="var(--ink-faint)">3′UTR</text>
+      <path d="M 578,279 q 12,-9 24,0 t 24,0 t 24,0" fill="none" stroke="var(--accent-2)" stroke-width="2.5"/>
+      <text x="626" y="264" text-anchor="middle" font-size="10" fill="var(--accent-2)">AAAA…</text>
+      <text x="80" y="258" font-size="11.5" font-weight="700" fill="var(--ink)">mature mRNA — exported to the cytoplasm</text>
+
+      <line x1="360" y1="306" x2="360" y2="332" stroke="var(--ink-faint)" stroke-width="2"/>
+      <polygon points="354,328 360,342 366,328" fill="var(--ink-faint)"/>
+      <text x="376" y="326" font-size="11.5" fill="var(--ink-soft)">translation · ribosome reads 5′→3′, AUG to stop</text>
+
+      <g fill="var(--vdw)">
+        <circle cx="215" cy="368" r="11"/><circle cx="245" cy="360" r="11"/><circle cx="275" cy="370" r="11"/>
+        <circle cx="305" cy="358" r="11"/><circle cx="335" cy="370" r="11"/><circle cx="365" cy="360" r="11"/>
+        <circle cx="395" cy="370" r="11"/><circle cx="425" cy="358" r="11"/><circle cx="455" cy="368" r="11"/>
+      </g>
+      <path d="M 215,368 L 245,360 L 275,370 L 305,358 L 335,370 L 365,360 L 395,370 L 425,358 L 455,368"
+            fill="none" stroke="var(--vdw)" stroke-width="2.5"/>
+      <text x="196" y="372" text-anchor="end" font-size="12" font-weight="700" fill="var(--vdw)">N</text>
+      <text x="474" y="372" font-size="12" font-weight="700" fill="var(--vdw)">C</text>
+      <text x="80" y="348" font-size="11.5" font-weight="700" fill="var(--ink)">polypeptide</text>
+
+      <text x="360" y="416" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">mRNA sequence = coding strand with U in place of T</text>
+      <text x="360" y="436" text-anchor="middle" font-size="11" fill="var(--ink-soft)">The template is the strand that is read. The coding strand is the one the message resembles. They are not the same strand.</text>
+      <text x="360" y="454" text-anchor="middle" font-size="11" fill="var(--ink-faint)">Which strand is the template is decided per gene by promoter orientation — it can be either physical strand.</text>
+    </svg>
+    <figcaption>Directions are the content of this figure. RNA polymerase moves along the template 3′→5′ while
+      building RNA 5′→3′; the ribosome then reads that RNA 5′→3′ and builds protein N→C. All four directions are
+      consequences of the same chemistry from §&nbsp;02.</figcaption>
+  </figure>
+
+  <h3>Alternative splicing, and where it goes wrong</h3>
+  <p>Roughly 95 % of human multi-exon genes are alternatively spliced, which is how ≈20 000 protein-coding genes
+     support a far larger proteome. It is also a large mutational target, because a splice site is only a few
+     nucleotides long and every one of them matters:</p>
+  <ul>
+    <li><strong>β-thalassaemia</strong> is the classic teaching case. <em>HBB</em> IVS-I-1 G&gt;A destroys the
+        invariant GU donor, abolishing normal splicing (β⁰). IVS-I-110 G&gt;A does something subtler — it
+        <em>creates</em> a new 3′ acceptor site inside intron 1, so most transcripts retain 19 extra nucleotides
+        and are frameshifted, while a minority splice correctly; the result is a β⁺ phenotype with reduced but
+        not absent β-globin. The severity follows directly from how completely the site is destroyed.</li>
+    <li><strong>Spinal muscular atrophy</strong> depends on splicing of <em>SMN2</em> exon 7; nusinersen is an
+        antisense oligonucleotide that redirects that splicing. This is the therapeutic proof that splice choice
+        is druggable.</li>
+  </ul>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Why bacteria can couple transcription and translation and we cannot</p>
+    <p style="margin:0">A bacterium has no nuclear envelope, no introns in its protein-coding genes and no
+      capping or polyadenylation, so ribosomes load onto the 5′ end of a message that is still being transcribed
+      — you can see polysomes trailing an RNA polymerase in electron micrographs. A eukaryote physically cannot:
+      transcription and processing happen in the nucleus, translation in the cytoplasm, and the nuclear envelope
+      enforces the separation. That compartmentalisation is what makes splicing possible in the first place (an
+      unspliced transcript would otherwise be translated), and it gives eukaryotes an entire extra regulatory
+      layer — export control, nonsense-mediated decay, cytoplasmic storage — that bacteria do not have.</p>
+  </div>
+</section>
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>The genetic code and translation</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Codon</dt>
+      <dd>Three consecutive mRNA nucleotides, read 5′→3′, specifying one amino acid or a stop.</dd>
+      <dt>Reading frame</dt>
+      <dd>Which of the three possible groupings of the sequence into triplets is used. The frame is set once, by
+          the initiator AUG, and never re-negotiated — which is why an indel that is not a multiple of three is
+          so destructive.</dd>
+      <dt>Degeneracy</dt>
+      <dd>Most amino acids are specified by more than one codon. The code is degenerate but never
+          <strong>ambiguous</strong>: one codon means exactly one thing.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">4³ = 64 codons = 61 sense + 3 stop  →  20 amino acids</span>
+      <span class="fx__tag">4² = 16 &lt; 20, so triplets are the smallest workable code</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">start: AUG (Met) · stop: UAA, UAG, UGA</span><span class="fx__tag">"U Are Away · U Are Gone · U Go Away"</span></div>
+      <div class="fx"><span class="fx__eq">anticodon (5′→3′) = reverse complement of the codon</span><span class="fx__tag">codon 5′-AUG-3′ pairs with anticodon 5′-CAU-3′</span></div>
+      <div class="fx"><span class="fx__eq">≈4 high-energy phosphates per peptide bond</span><span class="fx__tag">2 for aminoacylation, 1 for delivery, 1 for translocation</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>codon</b><span>mRNA triplet, always quoted 5′→3′</span></div>
+      <div><b>anticodon</b><span>the complementary tRNA triplet, also quoted 5′→3′</span></div>
+      <div><b>wobble</b><span>the third codon position / first anticodon position</span></div>
+      <div><b>A / P / E</b><span>ribosomal aminoacyl, peptidyl and exit sites</span></div>
+      <div><b>S</b><span>Svedberg unit — a sedimentation coefficient, not a mass</span></div>
+      <div><b>~P</b><span>high-energy phosphate bond equivalent</span></div>
+    </div>
+  </div>
+
+  <p>Five properties, and each one is a claim you should be able to defend. The code is
+     <strong>triplet</strong> (two bases would give only 16 combinations, four short of 20);
+     <strong>non-overlapping</strong> (each base belongs to exactly one codon, which is why a single insertion
+     wrecks everything downstream rather than one residue); <strong>comma-less</strong> (no spacer between
+     codons, so the frame must be set by the start codon); <strong>degenerate</strong> (61 sense codons for 20
+     amino acids); and <strong>near-universal</strong> — the same in almost every organism, with mitochondria
+     the notable exception (in human mitochondria UGA reads as Trp rather than stop, and AGA/AGG are stops).</p>
+
+  <h3>The table, and what to do with it</h3>
+  <p>Every codon below already shows the amino acid it specifies, so the table is a complete lookup even before
+     you touch it. Selecting a codon adds the full name, the side-chain class, the anticodon and both DNA
+     strands, and — with the toggle on — dims everything except the other codons for that same amino acid, which
+     is the fastest way to see the pattern the code is built on.</p>
+
+  <div class="nu-code" id="codeTable">
+    <div class="nu-code__scroll">
+  <div class="nu-code__grid">
+    <span class="nu-code__corner" aria-hidden="true">1st <small>↓</small> · 2nd <small>→</small></span>
+    <span class="nu-code__hcol" aria-hidden="true">U</span>
+    <span class="nu-code__hcol" aria-hidden="true">C</span>
+    <span class="nu-code__hcol" aria-hidden="true">A</span>
+    <span class="nu-code__hcol" aria-hidden="true">G</span>
+
+    <span class="nu-code__hrow" aria-hidden="true">U</span>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--np" data-c="UUU" data-a="F" aria-label="Codon UUU: Phe, phenylalanine, nonpolar side chain"><span class="nu-cd__x">UUU</span><span class="nu-cd__y">Phe</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="UUC" data-a="F" aria-label="Codon UUC: Phe, phenylalanine, nonpolar side chain"><span class="nu-cd__x">UUC</span><span class="nu-cd__y">Phe</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="UUA" data-a="L" aria-label="Codon UUA: Leu, leucine, nonpolar side chain"><span class="nu-cd__x">UUA</span><span class="nu-cd__y">Leu</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="UUG" data-a="L" aria-label="Codon UUG: Leu, leucine, nonpolar side chain"><span class="nu-cd__x">UUG</span><span class="nu-cd__y">Leu</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--po" data-c="UCU" data-a="S" aria-label="Codon UCU: Ser, serine, polar uncharged side chain"><span class="nu-cd__x">UCU</span><span class="nu-cd__y">Ser</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="UCC" data-a="S" aria-label="Codon UCC: Ser, serine, polar uncharged side chain"><span class="nu-cd__x">UCC</span><span class="nu-cd__y">Ser</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="UCA" data-a="S" aria-label="Codon UCA: Ser, serine, polar uncharged side chain"><span class="nu-cd__x">UCA</span><span class="nu-cd__y">Ser</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="UCG" data-a="S" aria-label="Codon UCG: Ser, serine, polar uncharged side chain"><span class="nu-cd__x">UCG</span><span class="nu-cd__y">Ser</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--po" data-c="UAU" data-a="Y" aria-label="Codon UAU: Tyr, tyrosine, polar uncharged side chain"><span class="nu-cd__x">UAU</span><span class="nu-cd__y">Tyr</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="UAC" data-a="Y" aria-label="Codon UAC: Tyr, tyrosine, polar uncharged side chain"><span class="nu-cd__x">UAC</span><span class="nu-cd__y">Tyr</span></button>
+      <button type="button" class="nu-cd nu-cd--st" data-c="UAA" data-a="*" aria-label="Codon UAA: stop codon (chain terminator)"><span class="nu-cd__x">UAA</span><span class="nu-cd__y">Stop</span></button>
+      <button type="button" class="nu-cd nu-cd--st" data-c="UAG" data-a="*" aria-label="Codon UAG: stop codon (chain terminator)"><span class="nu-cd__x">UAG</span><span class="nu-cd__y">Stop</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--po" data-c="UGU" data-a="C" aria-label="Codon UGU: Cys, cysteine, polar uncharged side chain"><span class="nu-cd__x">UGU</span><span class="nu-cd__y">Cys</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="UGC" data-a="C" aria-label="Codon UGC: Cys, cysteine, polar uncharged side chain"><span class="nu-cd__x">UGC</span><span class="nu-cd__y">Cys</span></button>
+      <button type="button" class="nu-cd nu-cd--st" data-c="UGA" data-a="*" aria-label="Codon UGA: stop codon (chain terminator)"><span class="nu-cd__x">UGA</span><span class="nu-cd__y">Stop</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="UGG" data-a="W" aria-label="Codon UGG: Trp, tryptophan, nonpolar side chain"><span class="nu-cd__x">UGG</span><span class="nu-cd__y">Trp</span></button>
+    </div>
+
+    <span class="nu-code__hrow" aria-hidden="true">C</span>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--np" data-c="CUU" data-a="L" aria-label="Codon CUU: Leu, leucine, nonpolar side chain"><span class="nu-cd__x">CUU</span><span class="nu-cd__y">Leu</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="CUC" data-a="L" aria-label="Codon CUC: Leu, leucine, nonpolar side chain"><span class="nu-cd__x">CUC</span><span class="nu-cd__y">Leu</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="CUA" data-a="L" aria-label="Codon CUA: Leu, leucine, nonpolar side chain"><span class="nu-cd__x">CUA</span><span class="nu-cd__y">Leu</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="CUG" data-a="L" aria-label="Codon CUG: Leu, leucine, nonpolar side chain"><span class="nu-cd__x">CUG</span><span class="nu-cd__y">Leu</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--np" data-c="CCU" data-a="P" aria-label="Codon CCU: Pro, proline, nonpolar side chain"><span class="nu-cd__x">CCU</span><span class="nu-cd__y">Pro</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="CCC" data-a="P" aria-label="Codon CCC: Pro, proline, nonpolar side chain"><span class="nu-cd__x">CCC</span><span class="nu-cd__y">Pro</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="CCA" data-a="P" aria-label="Codon CCA: Pro, proline, nonpolar side chain"><span class="nu-cd__x">CCA</span><span class="nu-cd__y">Pro</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="CCG" data-a="P" aria-label="Codon CCG: Pro, proline, nonpolar side chain"><span class="nu-cd__x">CCG</span><span class="nu-cd__y">Pro</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--ba" data-c="CAU" data-a="H" aria-label="Codon CAU: His, histidine, basic side chain"><span class="nu-cd__x">CAU</span><span class="nu-cd__y">His</span></button>
+      <button type="button" class="nu-cd nu-cd--ba" data-c="CAC" data-a="H" aria-label="Codon CAC: His, histidine, basic side chain"><span class="nu-cd__x">CAC</span><span class="nu-cd__y">His</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="CAA" data-a="Q" aria-label="Codon CAA: Gln, glutamine, polar uncharged side chain"><span class="nu-cd__x">CAA</span><span class="nu-cd__y">Gln</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="CAG" data-a="Q" aria-label="Codon CAG: Gln, glutamine, polar uncharged side chain"><span class="nu-cd__x">CAG</span><span class="nu-cd__y">Gln</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--ba" data-c="CGU" data-a="R" aria-label="Codon CGU: Arg, arginine, basic side chain"><span class="nu-cd__x">CGU</span><span class="nu-cd__y">Arg</span></button>
+      <button type="button" class="nu-cd nu-cd--ba" data-c="CGC" data-a="R" aria-label="Codon CGC: Arg, arginine, basic side chain"><span class="nu-cd__x">CGC</span><span class="nu-cd__y">Arg</span></button>
+      <button type="button" class="nu-cd nu-cd--ba" data-c="CGA" data-a="R" aria-label="Codon CGA: Arg, arginine, basic side chain"><span class="nu-cd__x">CGA</span><span class="nu-cd__y">Arg</span></button>
+      <button type="button" class="nu-cd nu-cd--ba" data-c="CGG" data-a="R" aria-label="Codon CGG: Arg, arginine, basic side chain"><span class="nu-cd__x">CGG</span><span class="nu-cd__y">Arg</span></button>
+    </div>
+
+    <span class="nu-code__hrow" aria-hidden="true">A</span>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--np" data-c="AUU" data-a="I" aria-label="Codon AUU: Ile, isoleucine, nonpolar side chain"><span class="nu-cd__x">AUU</span><span class="nu-cd__y">Ile</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="AUC" data-a="I" aria-label="Codon AUC: Ile, isoleucine, nonpolar side chain"><span class="nu-cd__x">AUC</span><span class="nu-cd__y">Ile</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="AUA" data-a="I" aria-label="Codon AUA: Ile, isoleucine, nonpolar side chain"><span class="nu-cd__x">AUA</span><span class="nu-cd__y">Ile</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="AUG" data-a="M" data-start="1" aria-label="Codon AUG: methionine, nonpolar; start codon"><span class="nu-cd__x">AUG</span><span class="nu-cd__y">Met</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--po" data-c="ACU" data-a="T" aria-label="Codon ACU: Thr, threonine, polar uncharged side chain"><span class="nu-cd__x">ACU</span><span class="nu-cd__y">Thr</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="ACC" data-a="T" aria-label="Codon ACC: Thr, threonine, polar uncharged side chain"><span class="nu-cd__x">ACC</span><span class="nu-cd__y">Thr</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="ACA" data-a="T" aria-label="Codon ACA: Thr, threonine, polar uncharged side chain"><span class="nu-cd__x">ACA</span><span class="nu-cd__y">Thr</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="ACG" data-a="T" aria-label="Codon ACG: Thr, threonine, polar uncharged side chain"><span class="nu-cd__x">ACG</span><span class="nu-cd__y">Thr</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--po" data-c="AAU" data-a="N" aria-label="Codon AAU: Asn, asparagine, polar uncharged side chain"><span class="nu-cd__x">AAU</span><span class="nu-cd__y">Asn</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="AAC" data-a="N" aria-label="Codon AAC: Asn, asparagine, polar uncharged side chain"><span class="nu-cd__x">AAC</span><span class="nu-cd__y">Asn</span></button>
+      <button type="button" class="nu-cd nu-cd--ba" data-c="AAA" data-a="K" aria-label="Codon AAA: Lys, lysine, basic side chain"><span class="nu-cd__x">AAA</span><span class="nu-cd__y">Lys</span></button>
+      <button type="button" class="nu-cd nu-cd--ba" data-c="AAG" data-a="K" aria-label="Codon AAG: Lys, lysine, basic side chain"><span class="nu-cd__x">AAG</span><span class="nu-cd__y">Lys</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--po" data-c="AGU" data-a="S" aria-label="Codon AGU: Ser, serine, polar uncharged side chain"><span class="nu-cd__x">AGU</span><span class="nu-cd__y">Ser</span></button>
+      <button type="button" class="nu-cd nu-cd--po" data-c="AGC" data-a="S" aria-label="Codon AGC: Ser, serine, polar uncharged side chain"><span class="nu-cd__x">AGC</span><span class="nu-cd__y">Ser</span></button>
+      <button type="button" class="nu-cd nu-cd--ba" data-c="AGA" data-a="R" aria-label="Codon AGA: Arg, arginine, basic side chain"><span class="nu-cd__x">AGA</span><span class="nu-cd__y">Arg</span></button>
+      <button type="button" class="nu-cd nu-cd--ba" data-c="AGG" data-a="R" aria-label="Codon AGG: Arg, arginine, basic side chain"><span class="nu-cd__x">AGG</span><span class="nu-cd__y">Arg</span></button>
+    </div>
+
+    <span class="nu-code__hrow" aria-hidden="true">G</span>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--np" data-c="GUU" data-a="V" aria-label="Codon GUU: Val, valine, nonpolar side chain"><span class="nu-cd__x">GUU</span><span class="nu-cd__y">Val</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="GUC" data-a="V" aria-label="Codon GUC: Val, valine, nonpolar side chain"><span class="nu-cd__x">GUC</span><span class="nu-cd__y">Val</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="GUA" data-a="V" aria-label="Codon GUA: Val, valine, nonpolar side chain"><span class="nu-cd__x">GUA</span><span class="nu-cd__y">Val</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="GUG" data-a="V" aria-label="Codon GUG: Val, valine, nonpolar side chain"><span class="nu-cd__x">GUG</span><span class="nu-cd__y">Val</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--np" data-c="GCU" data-a="A" aria-label="Codon GCU: Ala, alanine, nonpolar side chain"><span class="nu-cd__x">GCU</span><span class="nu-cd__y">Ala</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="GCC" data-a="A" aria-label="Codon GCC: Ala, alanine, nonpolar side chain"><span class="nu-cd__x">GCC</span><span class="nu-cd__y">Ala</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="GCA" data-a="A" aria-label="Codon GCA: Ala, alanine, nonpolar side chain"><span class="nu-cd__x">GCA</span><span class="nu-cd__y">Ala</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="GCG" data-a="A" aria-label="Codon GCG: Ala, alanine, nonpolar side chain"><span class="nu-cd__x">GCG</span><span class="nu-cd__y">Ala</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--ac" data-c="GAU" data-a="D" aria-label="Codon GAU: Asp, aspartate, acidic side chain"><span class="nu-cd__x">GAU</span><span class="nu-cd__y">Asp</span></button>
+      <button type="button" class="nu-cd nu-cd--ac" data-c="GAC" data-a="D" aria-label="Codon GAC: Asp, aspartate, acidic side chain"><span class="nu-cd__x">GAC</span><span class="nu-cd__y">Asp</span></button>
+      <button type="button" class="nu-cd nu-cd--ac" data-c="GAA" data-a="E" aria-label="Codon GAA: Glu, glutamate, acidic side chain"><span class="nu-cd__x">GAA</span><span class="nu-cd__y">Glu</span></button>
+      <button type="button" class="nu-cd nu-cd--ac" data-c="GAG" data-a="E" aria-label="Codon GAG: Glu, glutamate, acidic side chain"><span class="nu-cd__x">GAG</span><span class="nu-cd__y">Glu</span></button>
+    </div>
+    <div class="nu-blk">
+      <button type="button" class="nu-cd nu-cd--np" data-c="GGU" data-a="G" aria-label="Codon GGU: Gly, glycine, nonpolar side chain"><span class="nu-cd__x">GGU</span><span class="nu-cd__y">Gly</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="GGC" data-a="G" aria-label="Codon GGC: Gly, glycine, nonpolar side chain"><span class="nu-cd__x">GGC</span><span class="nu-cd__y">Gly</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="GGA" data-a="G" aria-label="Codon GGA: Gly, glycine, nonpolar side chain"><span class="nu-cd__x">GGA</span><span class="nu-cd__y">Gly</span></button>
+      <button type="button" class="nu-cd nu-cd--np" data-c="GGG" data-a="G" aria-label="Codon GGG: Gly, glycine, nonpolar side chain"><span class="nu-cd__x">GGG</span><span class="nu-cd__y">Gly</span></button>
+    </div>
+  </div>
+    </div>
+    <p style="font-size:.76rem;color:var(--ink-faint);margin:.6rem 0 0">Rows = first base · columns = second base
+      · within each block the third base runs U, C, A, G from top to bottom. Codons are written 5′→3′, as always.</p>
+    <div class="nu-key">
+      <span class="nu-k-np"><i></i>nonpolar</span>
+      <span class="nu-k-po"><i></i>polar, uncharged</span>
+      <span class="nu-k-ac"><i></i>acidic (−)</span>
+      <span class="nu-k-ba"><i></i>basic (+)</span>
+      <span class="nu-k-st"><i></i>stop</span>
+      <span class="nu-k-start"><i></i>dashed outline = start codon</span>
+    </div>
+    <div class="nu-code__ctrls" id="codeCtrls" hidden>
+      <label class="nu-sw"><input type="checkbox" id="codeSyn" checked>
+        <span>Dim everything except the synonymous codons for the amino acid I picked</span></label>
+      <button type="button" class="btn" id="codeClear">Clear selection</button>
+    </div>
+    <div class="nu-panel" id="codePanel" aria-live="polite">
+      <p><strong>Select any codon</strong> for its full name, side-chain class, anticodon and the two DNA strands
+        that encode it. The layout already tells the story: in eight of the sixteen blocks all four codons name
+        the same amino acid, so the third base carries no information at all. That is the visual signature of
+        wobble, and it is the reason most third-position mutations are silent. Watch the colouring though —
+        UU*, AU* and GA* are also a single colour top to bottom, but each of them holds two different amino
+        acids, so a uniform block is not by itself a promise that the third base is free.</p>
+    </div>
+  </div>
+
+  <h3>Why synonymous codons cluster: wobble</h3>
+  <p>Look at what the colouring shows. In <strong>8 of the 16 blocks</strong> — the boxes with a fixed first and
+     second base — all four codons encode the same amino acid: UC* (Ser), CU* (Leu), CC* (Pro), CG* (Arg), AC*
+     (Thr), GU* (Val), GC* (Ala) and GG* (Gly). That is 32 of the 64 codons in which the third base carries no
+     information at all. In most of the remaining blocks the split is by <em>chemical class</em> of the third
+     base: pyrimidine (U or C) means one amino acid, purine (A or G) means another. Only two blocks break that
+     <em>two-and-two</em> split, and both are worth knowing by name: AU* is Ile/Ile/Ile/Met (three and one), and
+     UG* is Cys/Cys/Stop/Trp (two, then one each). Keep this question separate from the colour trap noted on the
+     table: <strong>how many amino acids a block encodes</strong> and <strong>how many colours it shows</strong>
+     are different things, because two different amino acids in the same block can share a side-chain class and
+     therefore a colour.</p>
+  <p>The mechanism is Crick's wobble hypothesis. The tRNA anticodon pairs antiparallel with the codon, so the
+     <strong>first anticodon base pairs with the third codon base</strong>, and it does so at the loose end of a
+     short helix where the geometric constraints are weakest. Non-standard pairs are tolerated there and nowhere
+     else:</p>
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Wobble pairing rules</caption>
+      <thead><tr><th>First base of the anticodon (5′)</th><th>Can pair with third base of the codon (3′)</th><th>Consequence</th></tr></thead>
+      <tbody>
+        <tr><td class="num">C</td><td class="num">G</td><td>Strict — one codon read</td></tr>
+        <tr><td class="num">A</td><td class="num">U</td><td>Strict — rare, usually edited to inosine</td></tr>
+        <tr><td class="num">G</td><td class="num">U or C</td><td>One tRNA reads two codons</td></tr>
+        <tr><td class="num">U</td><td class="num">A or G</td><td>One tRNA reads two codons</td></tr>
+        <tr><td class="num">I (inosine)</td><td class="num">U, C or A</td><td>One tRNA reads three codons — the reason ≈40 tRNAs suffice for 61 codons</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Two consequences follow, and both are examinable. First, <strong>fewer tRNAs than codons</strong> are
+     needed — around 40 in a human cell for 61 sense codons. Second, and more importantly, the code is
+     <strong>error-tolerant by design</strong>: about 69 % of all possible third-position substitutions are
+     synonymous, and the code is further arranged so that codons for chemically similar amino acids differ by a
+     single base (compare GAA/Glu with GAU/Asp, or the whole nonpolar cluster in the second-position-U column).
+     A random point mutation is therefore much more likely to be silent or conservative than the raw numbers
+     suggest — the table you are looking at is a shock absorber.</p>
+
+  <h3>The ribosome and the four steps</h3>
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Prokaryotic and eukaryotic ribosomes compared</caption>
+      <thead><tr><th></th><th>Prokaryote</th><th>Eukaryote (cytosolic)</th></tr></thead>
+      <tbody>
+        <tr><td>Whole ribosome</td><td class="num">70S</td><td class="num">80S</td></tr>
+        <tr><td>Large subunit</td><td class="num">50S — 23S + 5S rRNA, ≈34 proteins</td><td class="num">60S — 28S + 5.8S + 5S rRNA, ≈49 proteins</td></tr>
+        <tr><td>Small subunit</td><td class="num">30S — 16S rRNA, ≈21 proteins</td><td class="num">40S — 18S rRNA, ≈33 proteins</td></tr>
+        <tr><td>Start codon found by</td><td><strong>Shine–Dalgarno</strong> sequence base-pairing with the 3′ end of 16S rRNA</td><td>Cap-dependent <strong>scanning</strong> from the 5′ m⁷G cap to the first favourable AUG (Kozak context)</td></tr>
+        <tr><td>Initiator tRNA</td><td><em>N</em>-formyl-methionine (fMet)</td><td>Methionine (unmodified)</td></tr>
+        <tr><td>Elongation factors</td><td>EF-Tu (delivery), EF-G (translocation)</td><td>eEF1A, eEF2</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Note that 50 + 30 ≠ 70.</strong> The Svedberg unit is a sedimentation coefficient, which depends on
+     shape and mass together and is not additive. Examiners use this.</p>
+  <ol>
+    <li><strong>Initiation.</strong> Small subunit finds the start codon (by Shine–Dalgarno or by scanning),
+        initiator tRNA base-pairs with AUG in the <strong>P site</strong>, large subunit joins. GTP is consumed.</li>
+    <li><strong>Elongation.</strong> An aminoacyl-tRNA enters the <strong>A site</strong> escorted by EF-Tu·GTP;
+        the <strong>peptidyl transferase</strong> — which is 23S rRNA, not a protein — transfers the growing
+        chain from the P-site tRNA onto the A-site amino acid; EF-G·GTP translocates the ribosome one codon,
+        moving the now-uncharged tRNA to the <strong>E site</strong> for exit.</li>
+    <li><strong>Termination.</strong> A stop codon has no matching tRNA. Release factors (RF1 for UAA/UAG, RF2
+        for UAA/UGA in bacteria; eRF1 for all three in eukaryotes) bind and hydrolyse the peptide from the tRNA.</li>
+    <li><strong>Cost.</strong> Aminoacylation costs 2 high-energy phosphates (ATP → AMP + PP<sub>i</sub>, and the
+        PP<sub>i</sub> is hydrolysed), delivery costs 1 GTP, translocation costs 1 GTP: <strong>4 ~P per peptide
+        bond</strong>. A 100-residue protein therefore costs roughly 400 high-energy phosphates — protein
+        synthesis is the most expensive thing most cells do.</li>
+  </ol>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Antibiotics and toxins that exploit ribosome differences</caption>
+      <thead><tr><th>Agent</th><th>Target</th><th>Mechanism</th></tr></thead>
+      <tbody>
+        <tr><td>Aminoglycosides (gentamicin, streptomycin)</td><td class="num">30S</td><td>Block formation of the initiation complex and cause misreading</td></tr>
+        <tr><td>Tetracyclines, tigecycline</td><td class="num">30S</td><td>Block aminoacyl-tRNA binding to the A site</td></tr>
+        <tr><td>Chloramphenicol</td><td class="num">50S</td><td>Inhibits peptidyl transferase</td></tr>
+        <tr><td>Macrolides (erythromycin), clindamycin</td><td class="num">50S</td><td>Block translocation / obstruct the exit tunnel</td></tr>
+        <tr><td>Linezolid</td><td class="num">50S</td><td>Prevents formation of the 70S initiation complex</td></tr>
+        <tr><td>Diphtheria toxin, <em>Pseudomonas</em> exotoxin A</td><td class="num">80S only</td><td>ADP-ribosylate <strong>eEF2</strong> — no bacterial equivalent, so the toxin is selective for us</td></tr>
+        <tr><td>Ricin</td><td class="num">60S</td><td>Depurinates a specific adenine in 28S rRNA</td></tr>
+        <tr><td>Cycloheximide</td><td class="num">80S</td><td>Blocks eukaryotic translocation — laboratory reagent, not a drug</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mnemo">
+    <h4>"Buy AT 30, CCEL at 50"</h4>
+    <p><strong>A</strong>minoglycosides and <strong>T</strong>etracyclines hit the <strong>30S</strong>;
+      <strong>C</strong>hloramphenicol, <strong>C</strong>lindamycin, <strong>E</strong>rythromycin and
+      <strong>L</strong>inezolid hit the <strong>50S</strong>.</p>
+  </div>
+  <div class="callout callout--warn">
+    <p class="callout__title">The selectivity is not perfect, and the exceptions are the side effects</p>
+    <p style="margin:0">Mitochondria descend from bacteria and their ribosomes are <strong>70S-like</strong>. So
+      antibacterial ribosome inhibitors have a target inside human cells after all, and their characteristic
+      toxicities follow directly: chloramphenicol causes dose-dependent bone-marrow suppression and grey baby
+      syndrome; linezolid causes myelosuppression, optic and peripheral neuropathy with prolonged use; and
+      aminoglycoside ototoxicity is dramatically potentiated by the mitochondrial 12S rRNA variant m.1555A&gt;G,
+      which is a maternally inherited deafness risk worth asking about before prescribing.</p>
+  </div>
+</section>
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Mutation and repair</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Point mutation</dt>
+      <dd>A change of a single base pair. Classified by its effect on the protein: silent, missense, nonsense.</dd>
+      <dt>Frameshift</dt>
+      <dd>An insertion or deletion of a number of bases that is <em>not</em> a multiple of three, which shifts
+          the reading frame for every codon downstream.</dd>
+      <dt>Transition / transversion</dt>
+      <dd>Transition = purine↔purine or pyrimidine↔pyrimidine (A↔G, C↔T). Transversion = purine↔pyrimidine.
+          There are twice as many possible transversions, yet transitions are the more common — chiefly because
+          5-methylcytosine deaminates to thymine.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">indel ÷ 3 has a remainder → frameshift</span>
+      <span class="fx__tag">a 3 bp deletion removes one residue; a 1 bp deletion destroys the protein</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">transition: A ↔ G, C ↔ T · transversion: purine ↔ pyrimidine</span><span class="fx__tag">"transItions stay wIthin the ring class"</span></div>
+      <div class="fx"><span class="fx__eq">5-methyl-C → T (deamination) · C → U (deamination) · A → hypoxanthine</span><span class="fx__tag">the three spontaneous deaminations that matter</span></div>
+      <div class="fx"><span class="fx__eq">≈69 % of third-position changes are silent</span><span class="fx__tag">from §&nbsp;09 — the code absorbs errors</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>indel</b><span>insertion or deletion</span></div>
+      <div><b>NMD</b><span>nonsense-mediated decay — degrades transcripts with a premature stop</span></div>
+      <div><b>MMR</b><span>mismatch repair</span></div>
+      <div><b>BER / NER</b><span>base / nucleotide excision repair</span></div>
+      <div><b>HR / NHEJ</b><span>homologous recombination / non-homologous end joining</span></div>
+      <div><b>MSI</b><span>microsatellite instability</span></div>
+    </div>
+  </div>
+
+  <h3>Classifying a point mutation</h3>
+  <ul>
+    <li><strong>Silent (synonymous).</strong> Codon changes, amino acid does not — almost always a third-position
+        change, because of wobble. Not always harmless: silent changes can create or destroy splice sites or
+        alter translation speed and hence folding.</li>
+    <li><strong>Missense.</strong> A different amino acid. <em>Conservative</em> if the replacement is in the
+        same side-chain class (Asp→Glu, both acidic) and usually tolerated; <em>non-conservative</em> if it
+        crosses classes and much more likely to be pathogenic. The colouring in the §&nbsp;09 table lets you
+        judge this at a glance.</li>
+    <li><strong>Nonsense.</strong> A sense codon becomes a stop. The product is truncated, and in eukaryotes the
+        transcript is usually destroyed by nonsense-mediated decay before it is even translated — so the
+        phenotype is typically loss of function rather than a toxic short protein.</li>
+    <li><strong>Frameshift.</strong> Every codon downstream is re-read, so the protein sequence is unrelated
+        beyond the insertion point, and a stop codon appears at random within roughly 20 codons on average
+        (there are 3 stops among 64 triplets). A frameshift is therefore <em>usually worse than a nonsense
+        mutation at the same position</em>: nonsense truncates but leaves the earlier residues correct;
+        frameshift garbles them and truncates as well.</li>
+  </ul>
+
+  <div class="wex">
+    <h4>Worked example 6 — classify four changes in one message</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">Take the mRNA from worked example 5:
+      <span class="fi">5′-AUG CCU AAG UUG GAU UGA-3′</span> → Met–Pro–Lys–Leu–Asp. Classify each of the
+      following, using the table in §&nbsp;09.</p>
+    <ol>
+      <li><strong>UUG → UUA</strong> (codon 4, third base G→A). Both encode <strong>Leu</strong>. This is a
+          <strong>silent</strong> mutation, and a <strong>transition</strong> (purine→purine). Exactly the
+          outcome wobble predicts for a third-position change.</li>
+      <li><strong>CCU → CGU</strong> (codon 2, second base C→G). Pro → <strong>Arg</strong>. Missense, and
+          <strong>non-conservative</strong>: nonpolar to basic. A second-position change almost always changes
+          the amino acid, and usually changes its class — that is why the second position is the least tolerant.
+          C→G is a <strong>transversion</strong>.</li>
+      <li><strong>AAG → UAG</strong> (codon 3, first base A→U). Lys → <strong>stop</strong>. This is a
+          <strong>nonsense</strong> mutation: the peptide is cut to Met–Pro, and the transcript is a target for
+          NMD. A→U is a transversion.</li>
+      <li><strong>Delete the U of codon 4</strong>. Downstream everything re-reads: the protein is
+          Met–Pro–Lys followed by garbage, and the UGA stop is out of frame. <strong>Frameshift</strong> —
+          the worst of the four, despite being the smallest chemical change.</li>
+    </ol>
+    <span class="wex__ans">silent (transition) · non-conservative missense (transversion) · nonsense · frameshift</span>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Sickle cell, read off the codon table</p>
+    <p style="margin:0"><em>HBB</em> codon 6: <span class="fi">GAG → GUG</span>, i.e. an A→T change on the coding
+      strand. Look both up in §&nbsp;09: GAG is <strong>Glu</strong> (acidic), GUG is <strong>Val</strong>
+      (nonpolar). So it is a <strong>non-conservative missense</strong> mutation and a
+      <strong>transversion</strong> — and the change from a charged to a hydrophobic surface residue is precisely
+      why deoxygenated HbS polymerises: it creates a sticky hydrophobic patch that docks into a pocket on an
+      adjacent tetramer. Note also that this change destroys an <em>Mst</em>II restriction site, which is how the
+      diagnosis was made by RFLP before sequencing was cheap.</p>
+  </div>
+
+  <h3>Five repair pathways, and the disease that follows from losing each</h3>
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">DNA repair pathways and their associated diseases</caption>
+      <thead><tr><th>Pathway</th><th>Lesion repaired</th><th>Key players</th><th>Loss of function</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Mismatch repair (MMR)</strong></td><td>Base–base mismatches and small indel loops that escaped proofreading; especially slippage in repeats</td><td>MSH2, MSH6, MLH1, PMS2. In <em>E. coli</em>, MutS/MutL/MutH, which identify the parental strand by its Dam methylation</td><td><strong>Lynch syndrome (HNPCC)</strong> — colorectal, endometrial and ovarian cancer; tumours show <strong>microsatellite instability</strong> and respond well to immune checkpoint inhibitors</td></tr>
+        <tr><td><strong>Base excision repair (BER)</strong></td><td>Single damaged bases with no helix distortion: uracil from C deamination, 8-oxo-guanine from oxidation, alkylated bases, abasic sites</td><td>A specific DNA glycosylase (e.g. UNG, OGG1) → AP endonuclease → Pol β → ligase III; <strong>PARP</strong> is the damage sensor</td><td>MUTYH-associated polyposis. Also the reason <strong>PARP inhibitors</strong> (olaparib) are synthetically lethal in BRCA-mutant tumours: block BER and the cell must use HR, which those tumours lack</td></tr>
+        <tr><td><strong>Nucleotide excision repair (NER)</strong></td><td><strong>Bulky, helix-distorting</strong> lesions: UV pyrimidine dimers, cisplatin adducts, chemical adducts</td><td>XPA–XPG, ERCC1; excises an oligonucleotide of ≈24–32 nt containing the lesion, then Pol δ/ε fills</td><td><strong>Xeroderma pigmentosum</strong> — extreme photosensitivity and a ≈1000-fold increase in skin cancer. Defects in the transcription-coupled branch give Cockayne syndrome</td></tr>
+        <tr><td><strong>Homologous recombination (HR)</strong></td><td>Double-strand breaks and interstrand crosslinks, in S and G2 when a sister chromatid is available</td><td>ATM, MRN complex, BRCA1, BRCA2, RAD51</td><td><strong>Hereditary breast and ovarian cancer</strong> (BRCA1/2); <strong>ataxia-telangiectasia</strong> (ATM); Fanconi anaemia (crosslink repair)</td></tr>
+        <tr><td><strong>Non-homologous end joining (NHEJ)</strong></td><td>Double-strand breaks at any point in the cell cycle; ligates ends directly</td><td>Ku70/Ku80, DNA-PKcs, Artemis, LIG4</td><td><strong>Error-prone by design</strong> — it loses a few bases at the join. Also the mechanism of V(D)J recombination, so defects cause <strong>SCID</strong> with radiosensitivity</td></tr>
+        <tr><td><em>Direct reversal</em></td><td>O⁶-methylguanine; UV dimers in organisms with photolyase</td><td><strong>MGMT</strong> (a suicide enzyme — it is consumed); photolyase, absent in placental mammals</td><td><em>MGMT</em> promoter methylation silences the enzyme and <strong>predicts response to temozolomide</strong> in glioblastoma</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">How to tell them apart in one line each</p>
+    <p style="margin:0"><strong>Which lesion?</strong> One wrong but normal base, no distortion → BER. A bulky
+      distortion → NER. A correctly shaped but mispaired base left behind by the polymerase → MMR. A broken
+      backbone on both strands → HR (accurate, needs a sister chromatid, S/G2 only) or NHEJ (fast, sloppy, any
+      time). <strong>Which disease?</strong> Sun → xeroderma pigmentosum → NER. Bowel and endometrium, with
+      microsatellite instability → Lynch → MMR. Breast and ovary, and PARP-inhibitor sensitivity → BRCA → HR.
+      Cerebellar ataxia with telangiectasia and radiosensitivity → ATM → double-strand break signalling.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two things that sound right and are not</p>
+    <p style="margin:0"><strong>"There are twice as many transversions possible, so they are more common."</strong>
+      The premise is true — each base has two possible transversions but only one transition — and the conclusion
+      is still false. Transitions dominate in real genomes, driven largely by deamination of 5-methylcytosine at
+      CpG sites into thymine, which is invisible to uracil glycosylase because thymine is a legitimate DNA base.
+      <strong>"A silent mutation is harmless."</strong> Often, but not reliably: synonymous changes can destroy
+      an exonic splicing enhancer, create a cryptic splice site, or swap a common codon for a rare one and slow
+      the ribosome enough to change co-translational folding.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Reading nucleic acids in the laboratory</h2>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>PCR</dt>
+      <dd>Exponential in-vitro amplification of a defined DNA segment by repeated cycles of denaturation, primer
+          annealing and extension by a thermostable polymerase.</dd>
+      <dt>Sanger (dideoxy) sequencing</dt>
+      <dd>Chain-termination sequencing: a low concentration of dideoxynucleotides, which lack the 3′-OH, ends a
+          growing chain at random, generating a ladder of every possible length.</dd>
+      <dt>Restriction endonuclease</dt>
+      <dd>A bacterial enzyme that cuts double-stranded DNA at a specific, usually palindromic, recognition site;
+          the host protects its own genome by methylating that site.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">N = N₀ × 2ⁿ</span>
+      <span class="fx__tag">n cycles of PCR at perfect efficiency</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">N = N₀ × (1 + E)ⁿ</span><span class="fx__tag">with efficiency E; E = 1 is the ideal doubling</span></div>
+      <div class="fx"><span class="fx__eq">ΔC<sub>t</sub> = 1 → 2-fold · ΔC<sub>t</sub> = 3.32 → 10-fold</span><span class="fx__tag">log₂10 = 3.32 — the qPCR conversion</span></div>
+      <div class="fx"><span class="fx__eq">94–98 °C denature → 50–65 °C anneal → 72 °C extend</span><span class="fx__tag">anneal ≈5 °C below the primer T<sub>m</sub> from §&nbsp;03</span></div>
+    </div>
+    <div class="symtab">
+      <div><b>n</b><span>number of cycles</span></div>
+      <div><b>E</b><span>amplification efficiency (0–1)</span></div>
+      <div><b>C<sub>t</sub></b><span>threshold cycle — the cycle at which signal crosses a set level</span></div>
+      <div><b>ddNTP</b><span>dideoxynucleotide — no 3′-OH, so it terminates the chain</span></div>
+      <div><b>cDNA</b><span>DNA copied from RNA by reverse transcriptase — intronless</span></div>
+      <div><b>PAM</b><span>protospacer-adjacent motif, 5′-NGG-3′ for SpCas9</span></div>
+    </div>
+  </div>
+
+  <h3>PCR</h3>
+  <p>Everything about the method follows from the fact that the reaction is heated to ≈95 °C once per cycle. A
+     mesophilic polymerase would be denatured and would have to be replaced by hand every cycle, which is
+     literally how PCR was done before 1988. <strong><em>Taq</em> polymerase</strong>, from the hot-spring
+     bacterium <em>Thermus aquaticus</em>, survives it — which is what made automation, and therefore the whole
+     technique, practical. <em>Taq</em> has <strong>no 3′→5′ proofreading exonuclease</strong>, so its error rate
+     is around 1 in 10⁴; for cloning or sequencing you use a proofreading enzyme such as <em>Pfu</em>
+     (<em>Pyrococcus furiosus</em>) instead.</p>
+  <p>The two primers define the product because they flank the target and point <em>towards each other</em>; each
+     one is extended 5′→3′ across the region between them. Note what this implies: the primer that anneals to the
+     template's top strand must have the sequence of the bottom strand, and vice versa. Getting a primer's
+     orientation backwards is the commonest design error, and it produces no product at all.</p>
+  <ul>
+    <li><strong>RT-PCR</strong> starts from RNA: reverse transcriptase makes cDNA first. Because cDNA is made
+        from mature mRNA it contains <em>no introns</em>, which is both how you detect expression and how you
+        distinguish an amplified transcript from contaminating genomic DNA (design primers spanning an
+        exon–exon junction).</li>
+    <li><strong>qPCR (real-time PCR)</strong> measures product as it accumulates, with SYBR Green (binds any
+        dsDNA — cheap, but reports primer-dimers too) or a TaqMan hydrolysis probe (sequence-specific). The
+        readout is C<sub>t</sub>, and because amplification is exponential, C<sub>t</sub> is
+        <em>logarithmically</em> related to starting quantity: a lower C<sub>t</sub> means more template to
+        begin with.</li>
+  </ul>
+
+  <div class="wex">
+    <h4>Worked example 7 — PCR yield, and the qPCR conversion</h4>
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) Starting from a single template molecule, how many copies
+      exist after 30 cycles at perfect efficiency, and how many at 90 % efficiency? (b) In a qPCR experiment a
+      treated sample has C<sub>t</sub> = 22.4 and the control C<sub>t</sub> = 25.7. By what factor does the
+      transcript differ?</p>
+    <ol>
+      <li><strong>(a)</strong> <span class="fi">N = 1 × 2³⁰ = 1.07 × 10⁹</span> copies. Each cycle doubles;
+          30 doublings is a billion-fold.</li>
+      <li>At E = 0.9: <span class="fi">N = 1.9³⁰ = 2.3 × 10⁸</span>. A 10 % shortfall per cycle costs a factor
+          of about 4.7 over 30 cycles — which is exactly why efficiency has to be validated before any
+          quantitative comparison.</li>
+      <li>In practice yield plateaus long before this (reagents deplete, product re-anneals faster than primers
+          can bind), so the exponential formula is only valid in the early cycles — which is precisely the
+          region qPCR measures.</li>
+      <li><strong>(b)</strong> <span class="fi">ΔC<sub>t</sub> = 25.7 − 22.4 = 3.3</span> cycles.</li>
+      <li>Each cycle is a doubling, so the factor is <span class="fi">2³·³ = 9.8 ≈ 10-fold</span>. The treated
+          sample reaches threshold earlier, so it started with <em>more</em> transcript:
+          <strong>≈10× upregulated</strong>. Remember the direction — a <em>lower</em> C<sub>t</sub> means
+          <em>more</em> starting material.</li>
+    </ol>
+    <span class="wex__ans">(a) 1.07 × 10⁹ ideal · 2.3 × 10⁸ at E = 0.9 · (b) ≈10-fold higher</span>
+  </div>
+
+  <h3>Sequencing</h3>
+  <p><strong>Sanger</strong> works because a ddNTP has no 3′-OH: once one is incorporated, §&nbsp;02's mechanism
+     has nowhere to attack and that chain stops. Run the reaction with a small proportion of fluorescently
+     labelled ddNTPs and you get a population of fragments terminating at every position, one colour per base;
+     separate them by capillary electrophoresis, smallest first, and read the colours in order. Read length is
+     roughly 800–1000 bp, accuracy is excellent, and it remains the reference method for confirming a single
+     variant.</p>
+  <p><strong>Next-generation sequencing</strong> trades read length for parallelism: millions of short reads
+     (100–300 bp) generated simultaneously by sequencing-by-synthesis on a flow cell, then aligned to a reference.
+     The consequences are practical — high depth makes it good at detecting low-frequency variants (tumour
+     subclones, cell-free fetal DNA), while short reads make it poor at repeats, large structural variants and
+     phasing. Long-read platforms (nanopore, SMRT) invert that trade-off.</p>
+
+  <h3>Electrophoresis and blotting</h3>
+  <p>From §&nbsp;02: DNA carries one negative charge per nucleotide at any usable pH, so charge is proportional
+     to length, the charge-to-mass ratio is constant, and <strong>DNA always runs towards the anode</strong>
+     ("run to red"). Separation therefore depends only on how the gel matrix retards molecules by size — small
+     fragments migrate fastest. Agarose resolves roughly 0.1–25 kb; polyacrylamide resolves single-nucleotide
+     differences and is what sequencing gels used. Supercoiled plasmid runs faster than the same plasmid nicked
+     open or linearised, because it is more compact — a common source of confusion when a plasmid prep shows
+     three bands.</p>
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Blotting techniques</caption>
+      <thead><tr><th>Blot</th><th>Separates</th><th>Probe</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Southern</strong></td><td>DNA</td><td>Labelled nucleic acid</td><td>Gene copy number, restriction-fragment length polymorphism, repeat expansions (still the standard for fragile X)</td></tr>
+        <tr><td><strong>Northern</strong></td><td>RNA</td><td>Labelled nucleic acid</td><td>Transcript size and abundance</td></tr>
+        <tr><td><strong>Western</strong></td><td>Protein</td><td>Antibody</td><td>Protein presence, size, modification — the confirmatory HIV test historically</td></tr>
+        <tr><td>Southwestern</td><td>Protein</td><td>Labelled DNA</td><td>Identifying DNA-binding proteins</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mnemo">
+    <h4>SNoW DRoP</h4>
+    <p><strong>S</strong>outhern → <strong>D</strong>NA, <strong>N</strong>orthern → <strong>R</strong>NA,
+      <strong>W</strong>estern → <strong>P</strong>rotein. Only Southern is a surname; the others are a joke that
+      stuck, which is a surprisingly reliable memory hook.</p>
+  </div>
+
+  <h3>Restriction enzymes and palindromes</h3>
+  <p>Restriction endonucleases are a bacterial immune system: they destroy incoming phage DNA, while the host
+     genome is protected by a methylase that marks the same sites. Their recognition sequences are usually
+     <strong>palindromic in the double-stranded sense</strong> — the sequence read 5′→3′ on one strand equals the
+     sequence read 5′→3′ on the other, which is <em>not</em> the same as reading the same backwards. <em>Eco</em>RI
+     recognises <span class="fi">5′-GAATTC-3′</span>; its complement read 5′→3′ is also GAATTC, so the site is a
+     true palindrome. It cuts between G and A on both strands, leaving 4-base 5′ overhangs — <strong>sticky
+     ends</strong> that can re-anneal with any fragment cut by the same enzyme, which is the entire basis of
+     cloning. <em>Sma</em>I cuts CCC^GGG down the middle and leaves <strong>blunt ends</strong>: ligatable to
+     anything, but with no specificity and much lower efficiency.</p>
+
+  <h3>CRISPR-Cas9 in one paragraph</h3>
+  <p>Another bacterial defence system, repurposed. A ≈20-nucleotide guide RNA base-pairs with a matching genomic
+     sequence, and Cas9 cuts both strands about 3 bp upstream of a <strong>PAM</strong> (5′-NGG-3′ for
+     <em>Streptococcus pyogenes</em> Cas9) — the PAM is what stops the enzyme from cutting the bacterium's own
+     CRISPR array, and it is the constraint that determines where you are allowed to edit. What happens next is
+     the cell's choice, from §&nbsp;10: <strong>NHEJ</strong> repairs the break sloppily, introducing small
+     indels that frameshift the gene — the standard way to make a knockout — while supplying a homologous donor
+     template lets <strong>HR</strong> install a defined edit, but only in cycling cells in S/G2. Base editors
+     and prime editors avoid the double-strand break entirely, which reduces indel by-products. The first
+     approved CRISPR therapy, exagamglogene autotemcel for sickle cell disease and β-thalassaemia, works by
+     knocking out a <em>BCL11A</em> enhancer to re-express fetal haemoglobin — a neat illustration that editing a
+     regulatory element can be easier than fixing the mutated gene itself.</p>
+</section>
+<!-- =========================== 12 =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+  <p>Three of these need you to actually work a sequence out with the table in §&nbsp;09 — do that rather than
+     recognising the answer, because that is what the exam will require. Two are conceptual traps that are widely
+     answered wrongly. Every explanation says why the right answer is right <em>and</em> why the tempting wrong
+     one is tempting.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="biochem-01-bonds-lipids.html"><small>Previous published</small><b>← 01 · Bonds, functional groups &amp; the hydrophobic effect</b></a>
+  <a href="biochemistry.html"><small>Index</small><b>All biochemistry notes</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry 05 · Nucleic acids</p>
+    <p>Representation used: an interactive 64-codon table of the standard genetic code, plus sequence
+      walk-throughs done base by base. Codon assignments follow NCBI translation table 1. Structural and
+      kinetic values are standard textbook approximations, given to build a sense of magnitude rather than for
+      citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A gene's <b>template</b> strand reads <span class=\"fi\">3′-TAC TGC ACC GTA ATT-5′</span>. What peptide does this region encode?",
+    "options": ["Tyr–Cys–Thr–Val–Ile", "Met–Thr–Trp–His", "Met–Thr–Trp–His–Stop, five residues", "Ile–Val–Thr–Cys–Tyr"],
+    "answer": 1,
+    "explain": "The template is written 3′→5′, so it is already aligned with an mRNA written 5′→3′: complement it in place to get <span class=\"fi\">5′-AUG ACG UGG CAU UAA-3′</span> = Met–Thr–Trp–His–stop. UAA is a chain terminator, not a residue, so the peptide is <b>four</b> amino acids — which is why option C is wrong even though its reading is correct. Option A is the classic error of reading the template strand itself as if it were the message (UAC UGC ACC GUA AUU); option D reads the template backwards."
+  },
+  {
+    "stem": "Which statement about what actually stabilises the DNA double helix is correct?",
+    "options": ["Hydrogen bonds are the dominant stabilising force; stacking is a minor contributor", "The backbone phosphates attract each other across the helix", "Base stacking — hydrophobic burial of the flat rings plus London dispersion between them — contributes more than the hydrogen bonds, which mainly supply <b>specificity</b>", "Counting hydrogen bonds (three for G≡C, two for A=T) fully explains why GC-rich DNA melts higher"],
+    "answer": 2,
+    "explain": "Before pairing, every base donor and acceptor was already hydrogen-bonded to <b>water</b>; forming the duplex only swaps those partners, so the enthalpic gain is small. What is genuinely gained is burial of the apolar aromatic faces (the entropy-driven hydrophobic effect of note 01) plus dispersion between stacked π systems. Option A is the standard mis-statement. Option D is the half-true version that loses marks: GC pairs are also the larger, more polarisable rings and therefore <i>stack</i> better, which is why nearest-neighbour models — where identical base composition in a different order gives a different T<sub>m</sub> — outperform hydrogen-bond counting. Option B is wrong in sign: the phosphates repel, which is why Mg²⁺ and salt stabilise DNA."
+  },
+  {
+    "stem": "Why is nucleic acid synthesis <b>always</b> 5′→3′?",
+    "options": ["Because the growing chain's free 3′-OH attacks the α-phosphate of the incoming NTP, so the activating triphosphate arrives with the monomer — and excising a mis-paired terminal base still leaves an extendable 3′-OH", "Because the template can only be read 5′→3′", "Because the 5′ end carries a phosphate and the 3′ end does not", "Because polymerases bind only to the 5′ end of the template"],
+    "answer": 0,
+    "explain": "The mechanism puts the energy on the incoming nucleotide, not on the chain. That is what makes proofreading possible: chop off a wrong base and you expose a fresh 3′-OH and carry on. In a hypothetical 3′→5′ scheme the chain would carry the activating triphosphate, and any excision would leave a permanently dead end. Option B is the most tempting distractor and is <b>backwards</b> — the template is read 3′→5′ precisely <i>because</i> the new strand grows 5′→3′ and the two are antiparallel. Option C states a true fact that explains nothing about direction."
+  },
+  {
+    "stem": "One strand of a double-stranded DNA contains 32 % A, 28 % T and 18 % G. What are the guanine content and the GC content <b>of the duplex</b>?",
+    "options": ["G = 18 %, GC = 36 %", "G = 22 %, GC = 44 %", "G = 40 %, GC = 40 %", "G = 20 %, GC = 40 %"],
+    "answer": 3,
+    "explain": "Complete the strand first: C = 100 − 32 − 28 − 18 = 22 %. The complementary strand is therefore 28 % A, 32 % T, 22 % G, 18 % C, and the duplex is the average of the two: A = T = 30 %, <b>G = C = 20 %</b>, so GC = 40 %. Options A and B are the trap — they quote the <i>single-strand</i> values. Chargaff's equalities apply only to a duplex, never to one strand; here the single strand has 18 % G and 22 % C, which is exactly why the question is worth asking. Option C confuses G content with total GC."
+  },
+  {
+    "stem": "A 500 bp duplex in 0.05 M Na⁺ has its GC content raised from 40 % to 60 %. Using <span class=\"fi\">T<sub>m</sub> = 81.5 + 16.6 log₁₀[Na⁺] + 0.41(%GC) − 600/N</span>, roughly how much does T<sub>m</sub> change?",
+    "options": ["About +2 °C", "About +8 °C", "About +20 °C", "It falls — higher GC destabilises the duplex"],
+    "answer": 1,
+    "explain": "Only the GC term changes, so ΔT<sub>m</sub> = 0.41 × (60 − 40) = <b>+8.2 °C</b> (75.1 °C → 83.3 °C). Option C is the reflex of reading the 20-percentage-point change as 20 °C and ignoring the 0.41 coefficient — the single commonest slip on this formula. Option D has the sign backwards: more GC means an extra hydrogen bond <i>and</i> better stacking, so T<sub>m</sub> rises."
+  },
+  {
+    "stem": "The mRNA <span class=\"fi\">5′-AUG CCU AAG UUG GAU UGA-3′</span> normally gives Met–Pro–Lys–Leu–Asp. The <b>fourth base</b> of the message is deleted. What is now made?",
+    "options": ["Met–Pro–Lys–Leu–Asp, unchanged — one base is too small to matter", "Met–Pro, because a stop codon is created immediately", "Met–Leu–Ser–Trp–Ile…, with every residue after the initiator changed and the original UGA no longer in frame", "Met–Ala–Lys–Leu–Asp, a single conservative substitution"],
+    "answer": 2,
+    "explain": "Deleting one base leaves <span class=\"fi\">AUG CUA AGU UGG AUU GA</span> — read it out: Met–Leu–Ser–Trp–Ile, and the ribosome then runs off the end because UGA has been shifted out of frame. This is a <b>frameshift</b>, and it is worse than a nonsense mutation at the same position: nonsense truncates but leaves the upstream residues correct, whereas a frameshift garbles everything downstream <i>and</i> truncates at whatever stop turns up next (on average within ~20 codons, since 3 of 64 triplets are stops). Option D is the tempting one — it assumes an indel behaves like a substitution, which is exactly the misconception being tested. A deletion of <i>three</i> bases would have removed one residue and left the frame intact."
+  },
+  {
+    "stem": "A gene's <b>coding (sense)</b> strand reads <span class=\"fi\">5′-ATG TGG AAA TAT TGC TAG-3′</span>. What does this region encode?",
+    "options": ["Met–Trp–Lys–Tyr–Cys", "Tyr–Thr–Phe–Ile–Thr–Ile", "Met–Trp–Lys–Tyr–Cys–Stop, six residues", "Leu–Ala–Ile–Phe–Pro–His"],
+    "answer": 0,
+    "explain": "Coding strand means the mRNA is that same string with U for T — no complementing and no reversing: <span class=\"fi\">5′-AUG UGG AAA UAU UGC UAG-3′</span> = Met–Trp–Lys–Tyr–Cys–stop, so <b>five residues</b>. Option B is the trap: it is what you get by complementing the coding strand as though it were the template, which is the single most common error on this topic. Option D is the reverse complement read left to right. Option C reads correctly but counts the stop codon as an amino acid; stop codons have no tRNA and are never translated."
+  },
+  {
+    "stem": "A child has extreme photosensitivity, freckling on sun-exposed skin from infancy and several basal-cell carcinomas by age eight. Which pathway is defective, and what does it normally repair?",
+    "options": ["Mismatch repair — base–base mismatches missed by the polymerase", "Base excision repair — uracil produced by cytosine deamination", "Homologous recombination — double-strand breaks in S and G2", "Nucleotide excision repair — bulky, helix-distorting lesions such as UV pyrimidine dimers"],
+    "answer": 3,
+    "explain": "This is <b>xeroderma pigmentosum</b>. UV creates cyclobutane pyrimidine dimers, which are bulky and distort the helix; only NER (XPA–XPG, ERCC1) excises them, as an oligonucleotide of ~24–32 nt. Option A is the plausible-sounding distractor because MMR loss <i>is</i> a cancer-predisposition syndrome — but it gives <b>Lynch syndrome</b> (colorectal and endometrial cancer with microsatellite instability), with no photosensitivity at all. Match the lesion to the pathway: distortion → NER, single damaged base with normal geometry → BER, correctly shaped mispair → MMR, broken backbone → HR or NHEJ."
+  },
+  {
+    "stem": "Ciprofloxacin is genuinely selective for bacteria. Why?",
+    "options": ["It inhibits topoisomerase I, and humans have no topoisomerase I", "It targets DNA gyrase — a type II topoisomerase that actively introduces negative supercoils and has no human counterpart — together with topoisomerase IV", "It is too large to cross human cell membranes", "Human topoisomerase II does not cut DNA, so the drug has no substrate"],
+    "answer": 1,
+    "explain": "No eukaryote has an enzyme that <i>introduces</i> negative supercoils; gyrase is a genuinely bacteria-specific target, and topoisomerase IV (the decatenase) is different enough from human topo II to be hit selectively. Option A is false twice over — humans do have topoisomerase I, and it is the target of the camptothecins. Option D is false: human topo II cuts both strands and is the target of etoposide. Note the shared mechanism across this drug class: they stabilise the covalent cleavable complex, so the lethal lesion is a protein-linked double-strand break, not simple enzyme inhibition."
+  },
+  {
+    "stem": "Which statement about ribosomes is correct?",
+    "options": ["A 50S and a 30S subunit combine to make an 80S ribosome", "Peptidyl transferase activity resides in a protein of the large subunit", "Svedberg units are sedimentation coefficients and are not additive, which is why 50S + 30S = 70S — and human mitochondrial ribosomes are 70S-like, which is why chloramphenicol can suppress the bone marrow", "Eukaryotes find the start codon by pairing an mRNA Shine–Dalgarno sequence with 18S rRNA"],
+    "answer": 2,
+    "explain": "S is a sedimentation coefficient — it depends on shape as well as mass, so subunit values do not add: 50S + 30S = 70S in bacteria, 60S + 40S = 80S in eukaryotes. The mitochondrial consequence is the clinically important half: mitochondria are of bacterial descent, so 'bacteria-selective' ribosome inhibitors are not perfectly selective, and chloramphenicol's marrow suppression, linezolid's cytopenias and neuropathy, and aminoglycoside ototoxicity all follow. Option A gets the arithmetic wrong in the other direction. Option B is the tempting one and is wrong in an important way: the peptidyl transferase is <b>23S rRNA</b> — the ribosome is a ribozyme. Option D swaps the two initiation mechanisms; Shine–Dalgarno is bacterial (pairing with 16S rRNA), whereas eukaryotes scan from the 5′ cap."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+<script>
+/* ---------- Interactive genetic code table ---------------------------
+   The 64 buttons in the HTML are the single source of truth: the codon →
+   amino-acid map is read back out of the DOM, so the script cannot drift
+   from the table the reader sees. With JS off, every codon still shows its
+   amino acid and its side-chain colour; only the detail panel is lost. */
+(function () {
+  'use strict';
+  var root = document.getElementById('codeTable');
+  if (!root) return;
+  var panel  = document.getElementById('codePanel');
+  var ctrls  = document.getElementById('codeCtrls');
+  var synBox = document.getElementById('codeSyn');
+  var clear  = document.getElementById('codeClear');
+  var btns   = Array.prototype.slice.call(root.querySelectorAll('.nu-cd'));
+  if (!panel || !ctrls || !synBox || !clear || btns.length !== 64) return;
+
+  var MAP = {};
+  btns.forEach(function (b) { MAP[b.getAttribute('data-c')] = b.getAttribute('data-a'); });
+
+  var AA = {
+    F: ['Phe', 'phenylalanine', 'np', 'Bulky aromatic ring, strongly hydrophobic. Hydroxylated to tyrosine — the step that fails in phenylketonuria.'],
+    L: ['Leu', 'leucine',       'np', 'Branched-chain, the most abundant residue in human proteins; purely ketogenic.'],
+    I: ['Ile', 'isoleucine',    'np', 'Branched-chain amino acid; both glucogenic and ketogenic.'],
+    M: ['Met', 'methionine',    'np', 'Sulfur-containing, and the initiator residue of every protein. Precursor of S-adenosylmethionine, the universal methyl donor.'],
+    V: ['Val', 'valine',        'np', 'Branched-chain. The residue that replaces glutamate in sickle haemoglobin.'],
+    P: ['Pro', 'proline',       'np', 'A cyclic imino acid: its ring locks the backbone and breaks α-helices. Hydroxyproline is the collagen signature.'],
+    A: ['Ala', 'alanine',       'np', 'Smallest side chain after glycine; carries nitrogen from muscle to liver in the glucose–alanine cycle.'],
+    W: ['Trp', 'tryptophan',    'np', 'Largest residue, indole ring. Precursor of serotonin, melatonin and (inefficiently) niacin. One codon only.'],
+    G: ['Gly', 'glycine',       'np', 'Side chain is a single hydrogen — no chirality, maximum backbone flexibility. Every third residue of collagen.'],
+    S: ['Ser', 'serine',        'po', 'Hydroxyl side chain: a phosphorylation site and a nucleophile in serine proteases.'],
+    T: ['Thr', 'threonine',     'po', 'Hydroxyl side chain; phosphorylation and O-linked glycosylation site.'],
+    C: ['Cys', 'cysteine',      'po', 'Thiol side chain; two cysteines oxidise to a disulfide bond — the only covalent crosslink in most proteins.'],
+    Y: ['Tyr', 'tyrosine',      'po', 'Aromatic but with a hydroxyl, so amphipathic. Phosphorylation site; precursor of catecholamines, thyroid hormone and melanin.'],
+    N: ['Asn', 'asparagine',    'po', 'Amide side chain and the anchor for N-linked glycosylation (Asn-X-Ser/Thr).'],
+    Q: ['Gln', 'glutamine',     'po', 'Amide side chain; the main blood carrier of amino nitrogen.'],
+    D: ['Asp', 'aspartate',     'ac', 'Carboxylate, negatively charged at pH 7.4. Common in enzyme active sites and metal-binding sites.'],
+    E: ['Glu', 'glutamate',     'ac', 'Carboxylate, negatively charged at pH 7.4. The CNS excitatory neurotransmitter; γ-carboxylated in vitamin-K-dependent clotting factors.'],
+    K: ['Lys', 'lysine',        'ba', 'ε-Amino group, positive at pH 7.4. The residue acetylated on histones and cross-linked in collagen.'],
+    R: ['Arg', 'arginine',      'ba', 'Guanidinium group, pKa ≈ 12.5 — positively charged under all physiological conditions. Substrate for nitric oxide synthase.'],
+    H: ['His', 'histidine',     'ba', 'Imidazole, pKa ≈ 6.0 — the only side chain that buffers at physiological pH, and hence a general acid–base catalyst.'],
+    '*': ['Stop', 'chain terminator', 'st', 'No tRNA reads it. Release factors (RF1 for UAA and UAG, RF2 for UAA and UGA in bacteria; eRF1 for all three in eukaryotes) hydrolyse the finished chain off its tRNA.']
+  };
+  var CLASSNAME = {
+    np: 'nonpolar / hydrophobic',
+    po: 'polar, uncharged',
+    ac: 'acidic — negative at pH 7.4',
+    ba: 'basic — positive at pH 7.4',
+    st: 'stop codon'
+  };
+  var RNACOMP = { A: 'U', U: 'A', G: 'C', C: 'G' };
+  var DNACOMP = { A: 'T', T: 'A', G: 'C', C: 'G' };
+
+  /* The anticodon pairs antiparallel with the codon, so written 5′→3′ it is
+     the reverse complement: codon 5′-AUG-3′ ↔ anticodon 5′-CAU-3′. */
+  function anticodon(c) {
+    return RNACOMP[c.charAt(2)] + RNACOMP[c.charAt(1)] + RNACOMP[c.charAt(0)];
+  }
+  function dnaCoding(c) { return c.replace(/U/g, 'T'); }
+  function dnaTemplate(c) {
+    var d = dnaCoding(c), out = '', i;
+    for (i = 0; i < d.length; i++) out += DNACOMP[d.charAt(i)];
+    return out;
+  }
+
+  var STOPNOTE = { UAA: 'U Are Away', UAG: 'U Are Gone', UGA: 'U Go Away' };
+  var selected = null;
+
+  function wobbleNote(codon, aa) {
+    if (aa === '*') {
+      if (codon === 'UGA') {
+        return 'UGA sits alone in the UG box, between Cys (UGU, UGC) and Trp (UGG) — so a single base change ' +
+          'either way turns a stop into a sense codon or vice versa. In human <em>mitochondria</em> UGA is read ' +
+          'as Trp rather than stop: the best-known exception to the universality of the code.';
+      }
+      return 'UAA and UAG occupy the purine half of the UA box; the pyrimidine half is Tyr. Note how narrow the ' +
+        'margin is — UAC (Tyr) becomes UAA with one substitution, which is how many nonsense mutations arise.';
+    }
+    var pre = codon.slice(0, 2), bases = ['U', 'C', 'A', 'G'], same = [], i;
+    for (i = 0; i < 4; i++) if (MAP[pre + bases[i]] === aa) same.push(bases[i]);
+    if (same.length === 4) {
+      return 'All four codons beginning ' + pre + ' encode the same thing, so the third base carries no ' +
+        'information at all — a four-fold degenerate box. Every third-position change here is silent.';
+    }
+    if (same.length === 3) {
+      return 'Three of the four ' + pre + ' codons encode this amino acid (' + same.join(', ') +
+        ' in the third position). This is the AU box, the one irregular three-plus-one split in the code.';
+    }
+    if (same.length === 2) {
+      var pair = same.join('');
+      var kind = (pair === 'UC') ? 'a pyrimidine (U or C)'
+               : (pair === 'AG') ? 'a purine (A or G)'
+               : 'either ' + same.join(' or ');
+      var how  = (pair === 'UC')
+               ? 'G — or inosine — in the wobble position of the anticodon pairs with both U and C'
+               : 'U, usually a modified U, in the wobble position of the anticodon pairs with both A and G';
+      return 'Two of the four ' + pre + ' codons encode this amino acid: the third base must be ' + kind +
+        '. A single tRNA can read both, because ' + how + '.';
+    }
+    return 'This codon stands alone in its box — the third base is <em>not</em> free here, so a third-position ' +
+      'change is not silent. There are only two such single-codon amino acids: Met (AUG) and Trp (UGG).';
+  }
+
+  function render(codon) {
+    var aa = MAP[codon], info = AA[aa], cls = info[2];
+    var fam = Object.keys(MAP).filter(function (c) { return MAP[c] === aa; }).sort();
+    var isStart = codon === 'AUG';
+    var head = (aa === '*')
+      ? '<span class="nu-panel__aa">Stop — chain terminator</span>'
+      : '<span class="nu-panel__aa">' + info[0] + ' · ' + aa + ' · ' + info[1] + '</span>';
+    var tags = '<span class="tag">' + CLASSNAME[cls] + '</span>';
+    if (isStart) tags += ' <span class="tag tag--accent">START codon</span>';
+    if (aa === '*') tags += ' <span class="tag tag--accent">' + STOPNOTE[codon] + '</span>';
+
+    var facts =
+      '<div><b>Codon (mRNA)</b><span>5′-' + codon + '-3′</span></div>' +
+      '<div><b>tRNA anticodon</b><span>5′-' + anticodon(codon) + '-3′</span></div>' +
+      '<div><b>DNA coding strand</b><span>5′-' + dnaCoding(codon) + '-3′</span></div>' +
+      '<div><b>DNA template strand</b><span>3′-' + dnaTemplate(codon) + '-5′</span></div>' +
+      '<div><b>Synonymous codons</b><span>' + fam.length + ' of 64</span></div>' +
+      '<div><b>The set</b><span>' + fam.join(' · ') + '</span></div>';
+
+    panel.className = 'nu-panel nu-panel--' + cls;
+    panel.innerHTML =
+      '<div class="nu-panel__top"><span class="nu-panel__codon">' + codon + '</span>' + head + tags + '</div>' +
+      '<div class="nu-panel__facts">' + facts + '</div>' +
+      '<p>' + info[3] + '</p>' +
+      '<p><b>Third base:</b> ' + wobbleNote(codon, aa) + '</p>';
+  }
+
+  function paint() {
+    var aa = selected ? MAP[selected] : null;
+    var dim = !!selected && synBox.checked;
+    root.classList.toggle('nu-code--focus', dim);
+    btns.forEach(function (b) {
+      var c = b.getAttribute('data-c');
+      b.setAttribute('aria-pressed', c === selected ? 'true' : 'false');
+      b.classList.toggle('nu-cd--syn', !!aa && MAP[c] === aa && c !== selected);
+    });
+  }
+
+  function pick(codon) { selected = codon; render(codon); paint(); }
+
+  btns.forEach(function (b) {
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', function () { pick(b.getAttribute('data-c')); });
+  });
+
+  /* Arrow-key navigation across the visual 16 × 4 layout. DOM order is
+     first base (outer) → second base → third base (inner), so index
+     n gives row = 4·b1 + b3 and column = b2. */
+  function rc(n) { return [((n >> 4) * 4) + (n & 3), (n >> 2) & 3]; }
+  function idx(r, c) { return (Math.floor(r / 4) * 16) + (c * 4) + (r % 4); }
+  root.addEventListener('keydown', function (ev) {
+    var cell = ev.target && ev.target.closest ? ev.target.closest('.nu-cd') : null;
+    var i = cell ? btns.indexOf(cell) : -1;
+    if (i < 0) return;
+    var p = rc(i), r = p[0], c = p[1];
+    if (ev.key === 'ArrowDown')       r = Math.min(15, r + 1);
+    else if (ev.key === 'ArrowUp')    r = Math.max(0, r - 1);
+    else if (ev.key === 'ArrowRight') c = Math.min(3, c + 1);
+    else if (ev.key === 'ArrowLeft')  c = Math.max(0, c - 1);
+    else if (ev.key === 'Home')       c = 0;
+    else if (ev.key === 'End')        c = 3;
+    else return;
+    ev.preventDefault();
+    btns[idx(r, c)].focus();
+  });
+
+  synBox.addEventListener('change', paint);
+  clear.addEventListener('click', function () {
+    selected = null;
+    panel.className = 'nu-panel';
+    panel.innerHTML = '<p><strong>Select any codon</strong> for its full name, side-chain class, anticodon and ' +
+      'the two DNA strands that encode it. The layout already tells the story: in eight of the sixteen blocks ' +
+      'all four codons name the same amino acid, so the third base carries no information at all. That is the ' +
+      'visual signature of wobble, and it is the reason most third-position mutations are silent. Watch the ' +
+      'colouring though — UU*, AU* and GA* are also a single colour top to bottom, but each of them holds two ' +
+      'different amino acids, so a uniform block is not by itself a promise that the third base is free.</p>';
+    paint();
+  });
+
+  ctrls.hidden = false;
+})();
+
+/* ---------- GC content → melting temperature ------------------------- */
+(function () {
+  'use strict';
+  var gc = document.getElementById('tmGc'), len = document.getElementById('tmLen');
+  if (!gc || !len) return;
+  var oGc = document.getElementById('tmGcOut'), oLen = document.getElementById('tmLenOut'),
+      out = document.getElementById('tmVal'), mark = document.getElementById('tmMark'),
+      terms = document.getElementById('tmTerms');
+  if (!oGc || !oLen || !out || !mark || !terms) return;
+
+  var SALT = 81.5 + 16.6 * (Math.log(0.05) / Math.LN10);   /* = 59.9 °C at 0.05 M Na+ */
+
+  function update() {
+    var g = +gc.value, n = +len.value;
+    var tm = SALT + 0.41 * g - 600 / n;
+    oGc.textContent = g + ' %';
+    oLen.textContent = n + ' bp';
+    out.textContent = tm.toFixed(1);
+    mark.style.left = Math.max(0, Math.min(100, (tm - 55) / 40 * 100)).toFixed(1) + '%';
+    terms.textContent = SALT.toFixed(1) + ' (salt) + 0.41 × ' + g + ' = +' + (0.41 * g).toFixed(1) +
+                        ' − 600/' + n + ' = −' + (600 / n).toFixed(1);
+  }
+  gc.addEventListener('input', update);
+  len.addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>
