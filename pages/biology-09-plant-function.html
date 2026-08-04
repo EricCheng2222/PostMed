@@ -43,7 +43,6 @@
   </p>
   <div class="article-meta">
     <span class="tag tag--accent">Z scheme &amp; carbon bookkeeping</span>
-    <span class="tag">≈7.5 % of the paper</span>
     <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
     <span class="tag">10 self-test questions</span>
     <span>~55 min read</span>
@@ -87,6 +86,11 @@
         molecular route from photoperiod to florigen (<b>§11</b>) are folded away behind "Go deeper" for
         exactly that reason. The pigment chemistry in <b>§02</b> matters much less than the single distinction
         between an absorption spectrum and an action spectrum, so get that and move on.</li>
+      <li><b>Three lines to carry in</b> — <b>eight photons, then A-N-O: 3, 2, 1</b> (per CO₂: 8 photons,
+        3 ATP, 2 NADPH, 1 O₂; multiply by six for glucose, §&nbsp;04), <b>two before one</b> (electrons run
+        PSII → PSI, because the numbering records the order of discovery, §&nbsp;03), and <b>the plant times
+        the night, not the day</b> (§&nbsp;11). Between them they settle most of the arithmetic in
+        §&nbsp;04–§&nbsp;05 and the whole photoperiod question type.</li>
     </ol>
   </div>
 
@@ -235,6 +239,33 @@
      exchange is zero. The <strong>CO₂ compensation point</strong> (Γ) is the CO₂ concentration at which the
      same is true at a given light level — about <strong>50 ppm</strong> in a C₃ plant and below
      <strong>10 ppm</strong> in a C₄ plant, a difference that §&nbsp;07 will explain entirely.</p>
+
+  <div class="tech">
+    <p class="tech__title">Exam technique · settle "which compartment?" before you read the options</p>
+    <ol>
+      <li><b>Label the stem in five seconds</b> — photons, a wavelength, O₂ evolution, NADP⁺, plastoquinone, a
+        proton gradient or an inhibitor means <b>thylakoid membrane / lumen</b>. CO₂, RuBP, 3-PGA, G3P,
+        "ATP <em>consumed</em>", starch or sucrose means <b>stroma</b>. It is the cheapest filter on the page
+        and it costs no thinking at all.</li>
+      <li><b>Then run the three geography checks</b> — protons are pumped <em>into the lumen</em>, never into
+        the intermembrane space; the ATP synthase head faces the <em>stroma</em>, so ATP and NADPH both appear
+        in the stroma; the alkaline side is the stroma (pH ≈ 8) and the acidic side is the lumen (pH ≈ 5). An
+        option that breaks any one of the three is dead without further reading.</li>
+      <li><b>Strike out anything wearing mitochondrial clothes</b> — ubiquinone, cytochrome <em>c</em>,
+        complex I/III/IV, "O₂ is the terminal acceptor", "the intermembrane space acidifies". The chloroplast
+        equivalents are <b>PQ, PC and cytochrome b₆f</b>, and the terminal acceptor is <b>NADP⁺</b>. The
+        examiner writes these options precisely because the two chains genuinely are analogous, so the swap
+        reads as respectable prose.</li>
+      <li><b>Two claims that are wrong every single time</b> — "the O₂ comes from CO₂" (it comes from the
+        hydrogen donor, i.e. water) and "photosynthesis is respiration run backwards" (only the two summary
+        equations are reverses; no enzyme, carrier or compartment is shared). Either phrase in an option
+        removes it.</li>
+      <li><b>Where the time goes</b> — compartment items are ten-second questions. Bank the time here and
+        spend it on the §&nbsp;04 arithmetic. And note that with five options and −0.25 marking, ruling out
+        even one option makes answering strictly better than leaving it blank, so a half-recognised stem is
+        still worth an answer.</li>
+    </ol>
+  </div>
 </section>
 
 <!-- =========================== 2 =========================== -->
@@ -303,8 +334,10 @@
      red ones. That sounds as if blue light should be better, and it is not: a blue photon excites chlorophyll to
      a higher singlet state which decays to the same lowest excited state within picoseconds, wasting the excess
      as heat. <strong>Every absorbed photon does exactly the same amount of photochemical work regardless of its
-     colour.</strong> A 680 nm photon carries 176 kJ·mol⁻¹ and a 430 nm photon 278 kJ·mol⁻¹; both deliver one
-     excited chlorophyll, so per photon absorbed, red light is more efficient.</p>
+     colour.</strong> A 680 nm photon carries 176 kJ·mol⁻¹ and a 430 nm photon 278 kJ·mol⁻¹; both deliver exactly
+     one excited chlorophyll, so the two are equally efficient <em>per photon</em> — but red light is the more
+     efficient <em>per joule absorbed</em>, because none of its energy is thrown away as heat on the way down to
+     the lowest excited state.</p>
 
   <h3>Why the action spectrum is broader than chlorophyll <em>a</em>'s absorption spectrum</h3>
   <p>If chlorophyll <em>a</em> were the only pigment, photosynthesis would run only in the narrow blue and red
@@ -516,8 +549,8 @@
       <circle cx="544" cy="118" r="5" fill="var(--ink-soft)"/>
       <text x="544" y="107" text-anchor="middle" font-size="10" fill="var(--ink-soft)">A₀ A₁ Fx</text>
       <path d="M 551,122 L 600,164" stroke="var(--ink-soft)" stroke-width="2" fill="none" marker-end="url(#zar)"/>
-      <circle cx="610" cy="170" r="6" fill="var(--v-energy)"/>
-      <text x="610" y="159" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--v-energy)">Fd</text>
+      <circle cx="610" cy="170" r="6" fill="var(--ok)"/>
+      <text x="610" y="159" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ok)">Fd</text>
       <path d="M 617,173 L 668,178" stroke="var(--ink-soft)" stroke-width="2" fill="none" marker-end="url(#zar)"/>
       <circle cx="678" cy="181" r="6" fill="var(--accent-3)"/>
       <text x="678" y="203" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-3)">NADPH</text>
@@ -586,6 +619,38 @@
     <p style="margin:0"><strong>"Photosystem II produces NADPH."</strong> PSII produces O₂ and reduced
       plastoquinone. NADPH is made at the far end of PSI by ferredoxin–NADP⁺ reductase. A question that says
       "the complex that reduces NADP⁺" is pointing at FNR, downstream of PSI.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Which photosystem carries which number, and which one goes first</h4>
+    <span class="kj">Two before one · six before seven</span>
+    <p>Ours, not a standard hook — but two short phrases fix the pair that gets swapped more than any other on
+      this page. <b>Two before one</b>: the electron passes <b>PSII first, PSI second</b>, because the
+      numbering records the order of <em>discovery</em>, not the order of use. (Water's own formula agrees —
+      it is H₂O that feeds PS<b>II</b>.) <b>Six before seven</b>: walk that same journey in wavelengths and it
+      reads <b>P680 then P700</b>, so the <b>6</b> travels with the <b>II</b> and the <b>7</b> with the
+      <b>I</b>. Lay the two phrases side by side and the pairing is forced — and you can see why it is misread
+      so often, since the Roman numeral and the wavelength run in <em>opposite</em> directions.
+      <span class="mnemo__gloss">It does not carry the three facts that hang off it, and you should hold those
+        separately: both reaction centres are chlorophyll <em>a</em> (P680 and P700 differ by their protein
+        environment, not their pigment); PSII sits mostly in the stacked grana and PSI in the unstacked stroma
+        lamellae where NADP⁺ can reach it; and P680⁺ is biology's strongest oxidant while P700* is its
+        strongest reductant — the two extremes sit at opposite ends of the same chain.</span></p>
+  </div>
+
+  <div class="mnemo">
+    <h4>The carrier string — no mnemonic, and you do not need one</h4>
+    <p>Do not encode <span class="fi">H₂O → PSII → PQ → b₆f → PC → PSI → Fd → FNR → NADP⁺</span> as a word;
+      rebuild it. The chloroplast chain is the mitochondrial chain with the prefix changed. Between the two
+      photosystems sit exactly the three kinds of carrier that sit between complexes I and IV in a
+      mitochondrion: a lipid-soluble <b>quinone</b> that ferries two electrons and two protons across the
+      membrane (<b>plasto</b>quinone ↔ ubi<b>quinone</b>); a <b>cytochrome complex running a Q cycle</b>
+      (b₆f ↔ complex III); and a small soluble <b>one-electron carrier in the aqueous compartment</b>
+      (<b>plasto</b>cyanin, a blue copper protein, ↔ cytochrome <em>c</em>). "Plasto-" is simply the plant
+      badge on a familiar molecule. Only the two ends are new — water in front, and Fd → FNR → NADP⁺ behind —
+      and both are stated by the Z scheme's redox axis, since every carrier in a downhill run must be a better
+      oxidant than the one before it. Derive it that way and you get the string in both directions, plus the
+      respiratory chain for free.</p>
   </div>
 </section>
 
@@ -705,8 +770,8 @@
       <text x="495" y="106" text-anchor="middle" font-size="10" fill="var(--accent-2)">hν</text>
       <line x1="495" y1="88" x2="495" y2="116" stroke="var(--accent-2)" stroke-width="2.4" marker-end="url(#tar2)"/>
 
-      <circle cx="566" cy="96" r="14" fill="var(--card)" stroke="var(--v-energy)" stroke-width="2"/>
-      <text x="566" y="101" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--v-energy)">Fd</text>
+      <circle cx="566" cy="96" r="14" fill="var(--card)" stroke="var(--ok)" stroke-width="2"/>
+      <text x="566" y="101" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ok)">Fd</text>
       <path d="M 528,124 L 554,104" stroke="var(--ink-soft)" stroke-width="2" fill="none" marker-end="url(#tar)"/>
       <rect x="596" y="76" width="60" height="40" rx="6" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2"/>
       <text x="626" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-3)">FNR</text>
@@ -790,6 +855,22 @@
     </div>
   </details>
 
+  <div class="mnemo">
+    <h4>The entire ledger of photosynthesis in four digits</h4>
+    <span class="kj">Eight photons, then A-N-O: 3, 2, 1</span>
+    <p>Ours, not a standard hook. Per <b>one CO₂</b> fixed: <b>8</b> photons in, and then the other three
+      quantities in alphabetical order with their counts running <em>down</em> — <b>3 A</b>TP spent,
+      <b>2 N</b>ADPH spent, <b>1 O</b>₂ out. The initials climb A → N → O while the numbers fall 3 → 2 → 1,
+      so neither the order nor the digits can slip. Multiply by three for one export cycle (24 photons, 9 ATP,
+      6 NADPH, 3 O₂ → 1 G3P leaves) and by six for one glucose (<b>48 photons, 18 ATP, 12 NADPH, 6 O₂</b>,
+      from 12 H₂O). Nearly every number in §&nbsp;03–§&nbsp;05 is one of those four multiplied by 3 or by 6.
+      <span class="mnemo__gloss">Two limits it does not carry. The <b>8</b> is the theoretical <em>minimum</em>,
+        from linear flow alone: because linear flow yields ATP : NADPH ≈ 1.29 against the Calvin cycle's
+        demand of 1.50, cyclic flow has to top the ATP up, so the measured requirement is <b>9–10 photons per
+        O₂</b> and a real glucose costs about 54. And the <b>3 ATP</b> is the C₃ figure — a C₄ plant pays 5
+        (§&nbsp;07).</span></p>
+  </div>
+
   <div class="callout callout--exam">
     <p class="callout__title">Inhibitor logic — a favourite two-mark item</p>
     <p style="margin:0">Cut the chain in one place and predict what accumulates. <strong>DCMU</strong>
@@ -800,6 +881,35 @@
       (lung concentration, redox cycling, no antidote). <strong>DNP or another uncoupler</strong> makes the
       thylakoid leaky to protons: electron transport actually speeds up, O₂ is still evolved, NADPH is still
       made, but ATP synthesis collapses. Match the symptom to the site and these questions become free.</p>
+  </div>
+
+  <div class="tech">
+    <p class="tech__title">Exam technique · light-reaction stoichiometry, as one fixed chain</p>
+    <ol>
+      <li><b>Recognise the type</b> — the stem hands you a c-ring subunit count, an H⁺-per-O₂ figure, or asks
+        for photons, waters, protons, ATP or NADPH. Nothing conceptual is being tested; every mark is in the
+        unit chain, so do not re-read the physiology.</li>
+      <li><b>Always start from electrons, always in the same direction</b> —
+        <span class="fi">e⁻ = 2 × NADPH</span>; <span class="fi">H₂O = e⁻ ÷ 2</span>;
+        <span class="fi">O₂ = e⁻ ÷ 4</span>; <span class="fi">photons = 2 × e⁻</span> (one lift at each
+        photosystem); <span class="fi">H⁺ into the lumen = 12 per O₂</span> (4 from water + 8 from the Q
+        cycle); <span class="fi">ATP = H⁺ ÷ (c/3)</span>, which is 4.67 H⁺ per ATP for a 14-subunit ring.
+        Going the other way, invert each step. Write the chain down before you look at the options.</li>
+      <li><b>One ratio checks the whole answer</b> — linear flow alone must land at
+        <b>ATP : NADPH ≈ 1.29</b>, below the <b>1.50</b> the Calvin cycle demands. If your working gives 1.5
+        or more from linear flow alone, you used the wrong c-ring or dropped the Q cycle. And any option
+        asserting that linear flow exactly meets the Calvin demand is wrong <em>by construction</em>: it
+        deletes the reason cyclic flow exists. That option is always present and always sounds the tidiest.</li>
+      <li><b>Three option shapes that are always wrong here</b> — "one H⁺ makes one ATP" (no rotary synthase
+        works that way); "the photosystems pump the protons" (they do not — water splitting on the lumenal
+        face and the b₆f Q cycle do); and any photon count below <b>8 per CO₂</b>, which is a hard floor set
+        by two lifts per electron and four electrons per O₂.</li>
+      <li><b>Inhibitor stems answer themselves in ten seconds</b> — find the cut, read off what stops. Cut
+        before PSI (DCMU): O₂, NADPH and linear ATP stop, cyclic ATP survives. Cut at PSI's acceptor side
+        (paraquat): electrons go to O₂, superoxide, damage in the light only. Cut the membrane (uncoupler):
+        electron transport <em>speeds up</em>, O₂ and NADPH continue, ATP collapses. One of those three
+        patterns is the answer nearly every time.</li>
+    </ol>
   </div>
 </section>
 
@@ -897,9 +1007,9 @@
       <text x="310" y="320" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">6 × G3P (3C)</text>
       <text x="310" y="337" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">18 C</text>
 
-      <path d="M 396,326 L 470,326" stroke="var(--v-energy)" stroke-width="2.6" fill="none" marker-end="url(#car)"/>
-      <rect x="472" y="304" width="140" height="44" rx="8" fill="var(--accent-wash)" stroke="var(--v-energy)" stroke-width="2"/>
-      <text x="542" y="323" text-anchor="middle" font-size="12" font-weight="700" fill="var(--v-energy)">1 G3P OUT (3C)</text>
+      <path d="M 396,326 L 470,326" stroke="var(--ok)" stroke-width="2.6" fill="none" marker-end="url(#car)"/>
+      <rect x="472" y="304" width="140" height="44" rx="8" fill="var(--accent-wash)" stroke="var(--ok)" stroke-width="2"/>
+      <text x="542" y="323" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ok)">1 G3P OUT (3C)</text>
       <text x="542" y="339" text-anchor="middle" font-size="10" fill="var(--ink-soft)">→ sucrose, starch</text>
 
       <path d="M 226,318 C 150,300 118,240 122,196" stroke="var(--accent)" stroke-width="2.2" fill="none" marker-end="url(#car)"/>
@@ -957,7 +1067,7 @@
   <p>G3P leaving the chloroplast goes out through the <strong>triose-phosphate translocator</strong>, a strict
      one-for-one antiporter that imports inorganic phosphate as it exports the sugar. In the cytosol two G3P are
      condensed into fructose-1,6-bisphosphate and on to <strong>sucrose</strong>, the transport sugar of the
-     phloem (§&nbsp;08 of the previous note). G3P that stays behind is built into
+     phloem (§&nbsp;09 of the previous note). G3P that stays behind is built into
      <strong>starch</strong> inside the stroma during the day and remobilised at night. The phosphate exchange
      is the hidden control: if sucrose synthesis in the cytosol stalls, phosphate stops coming back, the stroma
      runs out of P<sub>i</sub>, ATP synthesis stops and photosynthesis is inhibited by its own unsold product.
@@ -1099,8 +1209,9 @@
           energy penalty — the salvage pathway consumes ATP and reductant and the released NH₃ must be
           re-assimilated by glutamine synthetase at further ATP cost — so the loss in <em>growth</em> terms is
           larger than the loss in carbon terms.</li>
-      <li><strong>Compare a C₄ bundle sheath.</strong> Concentrate CO₂ tenfold to 60 µM and, even at
-          S<sub>c/o</sub> = 80, <span class="fi">V<sub>c</sub>/V<sub>o</sub> = 80 × 60/250 = 19.2</span> —
+      <li><strong>Compare a C₄ bundle sheath.</strong> Concentrate the stressed leaf's CO₂ tenfold, from 6 µM to
+          60 µM, hold O₂ at 250 µM, and take a slightly poorer S<sub>c/o</sub> of 80:
+          <span class="fi">V<sub>c</sub>/V<sub>o</sub> = 80 × 60/250 = 19.2</span> —
           a loss of only <span class="fi">0.5/19.2 = 2.6 %</span>. That single number is the entire argument for
           §&nbsp;07.</li>
     </ol>
@@ -1115,6 +1226,51 @@
       fixation lost by a comfortable C₃ leaf. <strong>V<sub>o</sub>/V<sub>c</sub></strong> on its own — 0.28 in
       that example — is neither of those, and a distractor quoting it without the factor of one-half is the
       commonest trap on this calculation. Always ask: a fraction of <em>what</em>?</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>The photorespiratory salvage route, in three letters</h4>
+    <span class="kj">CPM out, then the same road home</span>
+    <p>Ours, not a standard hook. <b>C</b>hloroplast → <b>P</b>eroxisome → <b>M</b>itochondrion — and then
+      the identical route in reverse, peroxisome and chloroplast again. Three letters cover all five stops
+      because the itinerary is a <em>palindrome</em>, and that is the whole device: the carbon leaves through
+      the peroxisome, turns round in the mitochondrion, and comes home the same way it went. Three organelles,
+      five stops — and the single irreversible loss, <b>one CO₂ and one NH₃ released by glycine
+      decarboxylase</b>, happens at the <b>M</b>, the turning point in the middle.
+      <span class="mnemo__gloss">It encodes the itinerary, not the arithmetic. Hold those separately: two
+        2-phosphoglycolates (4 C) go in and one 3-PGA (3 C) comes back, so <b>25 %</b> of the carbon
+        <em>entering salvage</em> is lost — which is not the ≈14 % of <em>total</em> fixation a comfortable C₃
+        leaf loses. Nor does it say why a peroxisome is in the route at all: glycolate oxidase makes H₂O₂, and
+        H₂O₂ needs catalase.</span></p>
+  </div>
+
+  <div class="tech">
+    <p class="tech__title">Exam technique · the V<sub>c</sub>/V<sub>o</sub> calculation, and "a fraction of what?"</p>
+    <ol>
+      <li><b>Recognise it instantly</b> — a specificity factor <b>S</b>, two gas concentrations, and the word
+        "fraction" or "percentage". There is exactly one equation:
+        <span class="fi">V<sub>c</sub>/V<sub>o</sub> = S × [CO₂]/[O₂]</span>. Write it before you look at the
+        options.</li>
+      <li><b>Three moves, then stop</b> — (1) compute <span class="fi">V<sub>c</sub>/V<sub>o</sub></span>;
+        (2) invert to <span class="fi">V<sub>o</sub>/V<sub>c</sub></span>; (3) <b>halve it</b>, because it
+        takes <em>two</em> oxygenations to lose one CO₂. The answer is
+        <span class="fi">0.5 × V<sub>o</sub>/V<sub>c</sub></span> and nothing else.</li>
+      <li><b>The planted distractor sits a factor of two away</b> — after step (2), scan the options for a
+        number equal to <span class="fi">V<sub>o</sub>/V<sub>c</sub></span> itself. It will be there; it is
+        the commonest slip on this calculation; and the answer you want is exactly half of it. A second
+        planted option is <b>25 %</b> — a genuine figure attached to the wrong denominator, being the loss
+        from carbon <em>entering the salvage pathway</em>, not from total fixation.</li>
+      <li><b>Cheap magnitude check</b> — in the stroma [O₂] runs roughly 20–50× [CO₂], so
+        <span class="fi">V<sub>c</sub>/V<sub>o</sub></span> for a C₃ leaf lands in the low single digits
+        (≈3.6 when comfortable, ≈1.5 when hot and stressed). Double digits means either you inverted the
+        ratio or the stem described a <b>C₄ bundle sheath</b> (≈15–20), where the loss is a couple of per
+        cent.</li>
+      <li><b>If the stem says "warmer" or "drier", the direction is fixed</b> — CO₂ solubility falls faster
+        than O₂'s, S<sub>c/o</sub> itself declines (≈90 at 25 °C → ≈70 at 35 °C), and stomata close. All
+        three push toward oxygenation, so the loss <b>rises</b>. Any option in which warming reduces
+        photorespiration is dead on sight, and one elimination is already enough to make answering better
+        than a blank.</li>
+    </ol>
   </div>
 
   <details class="disc disc--deep">
@@ -1247,7 +1403,7 @@
       <text x="304" y="74" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)">BUNDLE SHEATH</text>
       <text x="304" y="94" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">thick, suberised wall</text>
       <text x="304" y="122" text-anchor="middle" font-size="11" fill="var(--ink)">malate → pyruvate</text>
-      <text x="304" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="var(--v-energy)">CO₂ released</text>
+      <text x="304" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ok)">CO₂ released</text>
       <text x="304" y="163" text-anchor="middle" font-size="10" fill="var(--ink-soft)">10–20 × ambient</text>
       <text x="304" y="192" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">RuBisCO</text>
       <text x="304" y="210" text-anchor="middle" font-size="11" fill="var(--ink)">Calvin cycle</text>
@@ -1258,7 +1414,7 @@
 
       <rect x="410" y="52" width="164" height="212" rx="10" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2"/>
       <text x="492" y="74" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-3)">NIGHT</text>
-      <text x="492" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="var(--v-energy)">stomata OPEN</text>
+      <text x="492" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ok)">stomata OPEN</text>
       <text x="492" y="116" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">cool, humid — little water lost</text>
       <text x="492" y="144" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--vdw)">PEP carboxylase</text>
       <text x="492" y="164" text-anchor="middle" font-size="11" fill="var(--ink)">CO₂ → OAA → malate</text>
@@ -1274,7 +1430,7 @@
       <text x="688" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="var(--bad)">stomata SHUT</text>
       <text x="688" y="116" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">hot, dry — no water lost</text>
       <text x="688" y="142" text-anchor="middle" font-size="11" fill="var(--ink)">malate → pyruvate</text>
-      <text x="688" y="164" text-anchor="middle" font-size="13" font-weight="700" fill="var(--v-energy)">CO₂ released</text>
+      <text x="688" y="164" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ok)">CO₂ released</text>
       <text x="688" y="190" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">RuBisCO</text>
       <text x="688" y="208" text-anchor="middle" font-size="11" fill="var(--ink)">Calvin cycle</text>
       <text x="688" y="236" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">light reactions run NOW</text>
@@ -1374,6 +1530,37 @@
       C₄. And note that some species (<em>Mesembryanthemum crystallinum</em>) are <strong>facultative</strong>,
       switching from C₃ to CAM under salt or drought stress — so the same individual can give different answers
       in different weeks.</p>
+  </div>
+
+  <div class="tech">
+    <p class="tech__title">Exam technique · C₃ / C₄ / CAM — what to strike out before you start thinking</p>
+    <ol>
+      <li><b>No mnemonic is needed for the comparison table and you should not build one</b> — it is one
+        sentence unpacked. <em>Both C₄ and CAM run the same two carboxylations; C₄ separates them in space,
+        CAM in time.</em> Every row follows: two cell types versus one, Kranz anatomy versus succulence,
+        stomata open by day versus by night, an acid store needed only when the gap is twelve hours long.</li>
+      <li><b>"True of C₄ but NOT of CAM" is always about geometry</b> — PEP carboxylase first, bicarbonate as
+        its substrate, a 4-carbon acid as first stable product, RuBisCO and the Calvin cycle doing the net
+        fixation: all shared, all strikeable unread. The answer is whichever option names <b>two cell
+        types</b>, mesophyll versus bundle sheath, Kranz anatomy, or plasmodesmata.</li>
+      <li><b>Four sentences that read like textbook prose and are false</b> — "C₄ and CAM plants do not use
+        RuBisCO"; "CAM plants photosynthesise at night" (they <em>carboxylate</em> at night; the light
+        reactions run the next day); "PEP carboxylase fixes CO₂" (its substrate is <b>HCO₃⁻</b>, which is
+        exactly why it has no oxygenase activity); "C₄ is simply better". Each is lifted from prose that
+        exists somewhere, which is why each looks respectable. Spotting one is a free elimination.</li>
+      <li><b>Use the ATP counter as a numerical filter</b> — 3 ATP per CO₂ in C₃, <b>5</b> in C₄ (the two
+        extra are PPDK's single ATP → AMP + PP<sub>i</sub>, i.e. two high-energy bonds), and <b>2 NADPH in
+        all three</b>. Any option in which C₄ saves ATP, or in which the NADPH requirement changes, is dead
+        arithmetic.</li>
+      <li><b>Rank the diagnostic cues by what they can actually decide</b> — titratable acidity high at dawn
+        and low at dusk, or net CO₂ uptake at night → <b>CAM specifically</b>. Kranz anatomy → <b>C₄
+        specifically</b>. But Γ &lt; 10 ppm, or a rate that does not rise when O₂ is dropped from 21 % to
+        2 %, distinguishes only <b>C₄ or CAM from C₃</b> — if both C₄ and CAM are on offer you need one of
+        the first two cues, and if only one of them is on offer you already have the answer.</li>
+      <li><b>If the stem describes the weather, it has told you the answer</b> — cool, moist, dim or
+        CO₂-enriched favours C₃; hot, bright, moderately dry favours C₄; extreme drought favours CAM. The
+        crossover sits near <b>25–30 °C</b>, which is why wheat beats maize in a cold wet spring.</li>
+    </ol>
   </div>
 </section>
 
@@ -1476,8 +1663,8 @@
       <text x="682" y="138" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent-3)">GAMETES  n</text>
       <text x="682" y="155" text-anchor="middle" font-size="10" fill="var(--ink-soft)">sperm + egg</text>
 
-      <path d="M 610,146 L 512,146" stroke="var(--v-energy)" stroke-width="2.6" marker-end="url(#lar)"/>
-      <text x="560" y="134" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--v-energy)">FERTILISATION</text>
+      <path d="M 610,146 L 512,146" stroke="var(--ok)" stroke-width="2.6" marker-end="url(#lar)"/>
+      <text x="560" y="134" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ok)">FERTILISATION</text>
 
       <rect x="368" y="122" width="140" height="48" rx="9" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
       <text x="438" y="142" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">ZYGOTE  2n</text>
@@ -1656,6 +1843,24 @@
       exploits.</p>
   </div>
 
+  <div class="mnemo">
+    <h4>What is inside the embryo sac, and why the count comes out 7 and 8</h4>
+    <span class="kj">E-SAC · 1, 2, 3, then one big cell holding 2</span>
+    <p><b>Seven cells, eight nuclei</b> is the standard shorthand you will meet everywhere; <b>E-SAC</b> is
+      ours, and it has two virtues — it counts itself, and it all but spells the structure it describes.
+      <b>E</b>gg: <b>1</b>. <b>S</b>ynergids: <b>2</b>, flanking the egg at the <em>micropylar</em> end.
+      <b>A</b>ntipodals: <b>3</b>, at the far <em>chalazal</em> end. <b>C</b>entral cell: <b>1</b> large cell
+      filling the space between the two ends, carrying <b>2</b> polar nuclei. Cells: 1 + 2 + 3 + 1 =
+      <b>7</b>. Nuclei: 1 + 2 + 3 + 2 = <b>8</b>. The 1-2-3 climb is the self-check — if your version does
+      not climb, you have dropped a cell.
+      <span class="mnemo__gloss">Two things it deliberately leaves out. It is the <b>Polygonum type</b> only
+        (≈70 % of angiosperms, and the one every diagram draws); other sac types give diploid or 5n endosperm,
+        so the safe phrasing in an answer is "triploid <em>in the usual Polygonum-type sac</em>". And it says
+        nothing about the male side: a pollen grain is <b>3 cells</b> — one tube cell plus two sperm — and
+        because the two sperm are mitotic sisters they are genetically <em>identical</em>, which is the fact
+        the maize-cob question in §&nbsp;10 turns on.</span></p>
+  </div>
+
   <h3>Pollination syndromes, and why the flower looks the way it does</h3>
   <p>A flower's appearance is a specification for its courier. This is worth learning as a set of inferences
      rather than a list, because exam items usually describe a flower and ask for the vector.</p>
@@ -1682,6 +1887,27 @@
      <em>anemophilous</em>. Insect-pollinated pollen is heavy, sticky and stays on the insect, which is why
      brightly coloured garden flowers rarely cause hay fever while grasses and ragweed do, and why removing
      showy flowers from a hospital ward achieves nothing for a pollen-allergic patient.</p>
+
+  <div class="mnemo">
+    <h4>Pollination syndromes — no mnemonic, and building one would cost you marks</h4>
+    <p>A mnemonic over thirty-five table cells would be longer than the table. Derive each row instead, from
+      the courier's senses, in about five seconds: the flower is a <em>specification</em> for the animal it is
+      hiring. <b>Birds</b> see red superbly and smell poorly → bright red, <em>scentless</em>, copious dilute
+      nectar, sturdy tube, often no landing platform. <b>Moths and bats</b> work in the dark, where colour is
+      nearly useless and smell is not → pale or dull (moth white; bat dull white, green or purple), strong
+      night scent, opening after dusk. <b>Bees</b> see
+      into the ultraviolet but not the red, and they <em>walk</em> → blue, yellow and purple, UV nectar
+      guides, landing platform, sticky sculptured pollen. <b>Carrion flies</b> are shopping for a corpse →
+      dark red-brown, mottled, putrid, no nectar, sometimes warm. <b>Wind</b> cannot be advertised to at all →
+      no petals, no scent, no nectar, feathery stigmas, exposed anthers, and the entire budget spent on the
+      sheer quantity of small dry pollen. Run the derivation and the clinical corollary falls out with it:
+      allergenic pollen is almost always the anemophilous kind.
+      <span class="mnemo__gloss">The one thing worth memorising outright, because it is not derivable, is the
+        distinction the examiners deliberately swap: <b>perfect / imperfect</b> describes a <em>flower</em>
+        (both sexes in it or not), <b>monoecious / dioecious</b> describes a <em>plant</em> (one house or two).
+        Greek <em>oikos</em> = house, so mono-<em>ecious</em> is one house holding both — that half does
+        derive.</span></p>
+  </div>
 
   <details class="disc disc--deep">
     <summary>Go deeper · outbreeding devices and the two flavours of self-incompatibility</summary>
@@ -1825,6 +2051,38 @@
     </div>
   </details>
 
+  <div class="tech">
+    <p class="tech__title">Exam technique · ploidy and parentage of any seed or fruit tissue, in four questions</p>
+    <ol>
+      <li><b>There is no mnemonic for the ploidy table and you do not need one</b> — every row falls out of a
+        single question: <em>which part of the flower was this?</em> Ovary wall → pericarp. Integuments → seed
+        coat. Nucellus → perisperm. Zygote → embryo. Central cell + second sperm → endosperm. Answer that and
+        the ploidy and the parentage are both forced. The containment even maps across: the ovule sat inside
+        the ovary, so the seed sits inside the fruit; the integuments wrapped the ovule, so the coat wraps the
+        seed.</li>
+      <li><b>Sort the tissues into two piles before you read the options</b> — <b>the mother's own body</b>
+        (pericarp, seed coat, perisperm: 2n, maternal genotype only, and therefore <em>identical in every seed
+        of one plant</em>) versus <b>the new generation</b> (embryo 2n, one allele from each parent;
+        endosperm 3n, two maternal to one paternal). Almost every option set on this topic is built by
+        swapping the piles.</li>
+      <li><b>Two option shapes are dead on sight</b> — a <b>seed coat or pericarp carrying a paternal
+        allele</b>, and an <b>endosperm genotype written with two alleles instead of three</b>. Either kills
+        the option before you do any genetics at all, and one kill is already worth answering under negative
+        marking.</li>
+      <li><b>The two sperm in one grain are mitotic sisters</b>, hence identical, so a kernel is wholly
+        <em>Su</em> or wholly <em>su</em>, never a mixture. A 3 : 1 ratio on a single cob therefore needs
+        <em>both</em> parents heterozygous — if the stem hands you a homozygous mother, any 3/4 option is
+        wrong without further thought.</li>
+      <li><b>Check which structure the question actually asked about</b> — "the kernel looks starchy" is a
+        statement about the <b>3n endosperm</b> (this is xenia), not about the embryo and not about the coat.
+        The distractors here are true sentences about the wrong tissue, which is the hardest kind to catch
+        when you are reading fast.</li>
+      <li><b>If the stem says pine, spruce or cycad, change tables</b> — a gymnosperm's food store is the
+        <b>haploid female gametophyte</b>, maternal, and laid down <em>before</em> fertilisation. No
+        endosperm, no 3n tissue, and no "wasted provisioning is impossible" argument.</li>
+    </ol>
+  </div>
+
   <h3>Fruit types, and the ones examiners actually use</h3>
   <p>The taxonomy is large; the yield per hour of study is not. Learn the handful below, learn the principle
      that <em>a fruit is a mature ovary</em>, and let the rest go until a second pass.</p>
@@ -1863,6 +2121,21 @@
      malted.) Then <strong>growth</strong>: the radicle emerges first — it anchors the seedling and reaches
      water before the shoot commits — followed by the shoot, protected by a hypocotyl hook in eudicots or a
      coleoptile in grasses.</p>
+
+  <div class="mnemo">
+    <h4>Epigeal or hypogeal — and which axis does the lifting</h4>
+    <span class="kj">Epi-geal lifts with the hypo-cotyl · the prefixes always cross</span>
+    <p>Ours, not a standard hook, but it fixes a pair whose prefixes are deliberately crossed. <b>Epi</b>geal
+      = cotyledons carried <em>above</em> ground — and the organ that does the carrying is the
+      <b>hypo</b>cotyl, arching into a hook (bean, castor). Now apply the second half and the rest is forced:
+      <b>hypo</b>geal = cotyledons <em>stay below</em>, so the organ that elongates must be the
+      <b>epi</b>cotyl (pea, broad bean, maize). Because the crossing is total, holding one pairing in your
+      head hands you the other, and there is no third pattern to confuse either with.
+      <span class="mnemo__gloss">The <em>-geal</em> half needs no hook whatever: <em>epi</em> = upon,
+        <em>hypo</em> = under, exactly as in epidermis and hypodermis, and <em>-geal</em> is the ground. Only
+        the crossing is arbitrary. Note also what the line does not say — the <b>radicle emerges first</b> in
+        both patterns, always, and that is never the discriminator.</span></p>
+  </div>
 
   <div class="callout callout--exam">
     <p class="callout__title">Dormancy is a decision, not a failure</p>
@@ -2033,9 +2306,34 @@
       system recovers.</p>
   </div>
 
+  <div class="mnemo">
+    <h4>The five classical hormones, with their signature effects attached</h4>
+    <span class="kj">Acid · Giants · Cytokinesis · Arid · Eat</span>
+    <p>Ours, not a standard hook, and it does double duty: each word <em>begins</em> with its hormone's
+      initial and <em>states</em> that hormone's signature effect, in the standard textbook order of the
+      table above. <b>A</b>uxin → <b>acid</b> growth: it acidifies the wall and the cell <em>elongates</em>.
+      <b>G</b>ibberellin → <b>giants</b>: internode elongation, i.e. stem height — and the Green Revolution
+      semi-dwarfs are precisely the plants that cannot respond to it. <b>C</b>ytokinin →
+      <b>cytokinesis</b>: cell <em>division</em>, which is only what the name already says. <b>A</b>BA →
+      <b>arid</b>: it shuts the stomata within minutes of water stress. <b>E</b>thylene → <b>eat</b>: it
+      <em>ripens</em> the fruit. Five words, five hormone-effect pairs, in a fixed order — and the two words
+      beginning with A cannot be swapped, because acidifying a cell wall is a growth mechanism and drought
+      is not.
+      <span class="mnemo__gloss">Two of the five need no hook at all — <em>auxin</em> is Greek
+        <em>auxein</em>, to grow, and <em>cytokinin</em> is named for cytokinesis — so the shelf space is
+        really being spent on the other three. One name actively lies: <b>abscisic acid does not cause
+        abscission</b> (ethylene does, as auxin from the blade falls away), and a distractor built on that
+        name looks completely respectable. The line also carries only the <em>signature</em> effect, not the
+        second half of each hormone's job — apical dominance, delayed senescence, dormancy, the triple
+        response — which the table above holds. One note on the names in Chinese-language textbooks, because
+        two of the five come in competing versions: gibberellin is 激勃素 or 赤黴素 and ABA is 離層酸 or
+        脫落酸, while auxin, cytokinin and ethylene are 生長素, 細胞分裂素 and 乙烯 throughout. Recognise
+        all of them on the page; the paper you sit is set in English.</span></p>
+  </div>
+
   <h3>Auxin, in enough detail to answer the questions</h3>
   <p>Auxin's transport is unlike anything else in the plant: it is <strong>polar</strong>. IAA is a weak acid, so
-     in the acidic apoplast a fraction is protonated and uncrossed the membrane freely; inside the neutral
+     in the acidic apoplast a fraction is protonated and uncharged, and crosses the membrane freely; inside the neutral
      cytosol it dissociates and is trapped as the anion, and it can only leave through a <strong>PIN efflux
      carrier</strong> — and PIN proteins sit at the <em>basal</em> end of each cell. The result is a
      one-way, cell-to-cell stream moving away from the shoot tip at about 1 cm·h⁻¹. Relocate the PINs and you
@@ -2056,8 +2354,11 @@
   <p><strong>Phototropism.</strong> The classical experiments are worth knowing as a chain of eliminations,
      because that is how they get examined. Darwin and his son showed that a covered <em>tip</em> abolished
      bending while a covered <em>base</em> did not — the tip perceives, the base responds. Boysen-Jensen showed
-     that a gelatin block inserted under the severed tip preserved the response but an impermeable mica sheet on
-     the lit side did not — so the signal is a <strong>diffusible chemical</strong>. Went collected the chemical
+     that a permeable gelatin block inserted under the severed tip preserved the response while an impermeable
+     mica sheet in the same place abolished it — so the signal is a <strong>diffusible chemical</strong>, not an
+     electrical or mechanical one. He then located that chemical: a mica sheet slipped into the
+     <em>shaded</em> flank blocked the bending, whereas the same sheet in the <em>lit</em> flank did not, so
+     whatever moves down does so on the shaded side. Went collected the chemical
      into agar, applied the block off-centre in the dark, obtained bending without any light at all, and named
      it auxin. The <strong>Cholodny–Went hypothesis</strong> is the synthesis: light causes auxin to redistribute
      laterally to the <em>shaded</em> side, that side elongates faster, and the organ bends toward the light.</p>
@@ -2224,6 +2525,36 @@
     </div>
   </details>
 
+  <div class="tech">
+    <p class="tech__title">Exam technique · night-break regimes in twenty seconds</p>
+    <ol>
+      <li><b>Throw the light away first</b> — rewrite every regime as one number, the <b>longest uninterrupted
+        dark stretch</b>. Total darkness does not matter, total light does not matter, and the day length
+        quoted in the stem is decoration. Nothing else in the question is doing any work.</li>
+      <li><b>Apply the flash rules to that one number</b> — a red flash <em>splits</em> the night, so take the
+        longer half. Red immediately followed by far-red is <b>no split at all</b>. Far-red then red <b>is</b>
+        a split. Only the last flash counts, because only the last flash decides how much P<sub>fr</sub> is
+        left.</li>
+      <li><b>Then two comparisons, no biology</b> — a short-day (really <em>long-night</em>) plant flowers
+        when your number is <b>≥</b> its critical night length; a long-day (really <em>short-night</em>) plant
+        flowers when it is <b>&lt;</b> its critical night length. Day-neutral flowers regardless. Write the
+        two inequalities and read the answer off.</li>
+      <li><b>"Which single regime flowers both?"</b> — you are looking for a night <em>t</em> with
+        <span class="fi">SDP critical ≤ t &lt; LDP critical</span>. The window exists only when the SDP's
+        threshold is the <em>smaller</em> of the two, and any regime inside it works. This is a
+        two-inequality question wearing a physiology costume.</li>
+      <li><b>Kill on sight</b> — any option whose reasoning invokes <b>day length</b>; any option that treats
+        short-day and long-day as opposites (they are two thresholds on one axis, which is precisely why one
+        regime can satisfy both); and any option in which far-red <em>creates</em> a night break rather than
+        cancelling one.</li>
+      <li><b>Recognition rule for the receptor</b> — a red effect reversed by far-red is <b>phytochrome</b>
+        and nothing else, so the stem is about flowering, germination of small seeds, de-etiolation or shade
+        avoidance. An action spectrum peaking near <b>450 nm with no red peak</b> is phototropin or
+        cryptochrome instead, so the stem is about phototropism, chloroplast movement or blue-light stomatal
+        opening — a different half of the syllabus, and you can stop reading the flowering options.</li>
+    </ol>
+  </div>
+
   <h3>What phytochrome is actually for, most of the time</h3>
   <p>Flowering is the textbook use, but the everyday one is <strong>shade avoidance</strong>, and it follows
      directly from the physics. A leaf absorbs red strongly and transmits far-red, so light that has passed
@@ -2240,6 +2571,23 @@
      as lettuce, a flash of red promotes germination and a following flash of far-red abolishes it, through as
      many alternations as you care to run — the definitive photoreversibility experiment, and a sensible
      adaptation, since a small seed with tiny reserves must not germinate under soil or under a canopy.</p>
+
+  <div class="mnemo">
+    <h4>Which phytochrome form does the work, and which flash counts</h4>
+    <span class="kj">P<sub>fr</sub> = the Functional form · the last flash wins</span>
+    <p>The "<b>f</b> for <b>f</b>unctional" tag is the usual student hook rather than anything official, and it
+      is worth the shelf space because which of two interconverting forms is the active one is the single
+      genuinely arbitrary fact in this topic. Everything else derives: each form is <em>named for the light it
+      absorbs</em>, and absorbing that light converts it into the other. So <b>P<sub>r</sub></b> absorbs
+      <em>red</em> (660 nm) and becomes P<sub>fr</sub>; <b>P<sub>fr</sub></b> absorbs <em>far-red</em>
+      (730 nm) and becomes P<sub>r</sub>. Run any sequence of flashes you like and only the final one decides
+      the state — which is exactly why R then FR cancels a night break and FR then R restores it.
+      <span class="mnemo__gloss">Carry the two consequences alongside it. Daylight is red-rich and canopy shade
+        is far-red-rich (R : FR falls from ≈1.15 in the open to ≈0.1–0.2 under leaves), so <b>little
+        P<sub>fr</sub> means "I am being shaded"</b> and triggers the shade-avoidance syndrome. And
+        P<sub>fr</sub> also reverts slowly in darkness and is degraded — which is part of what a long night
+        gives a plant time to register.</span></p>
+  </div>
 
   <details class="disc disc--deep">
     <summary>Go deeper · from a measured night to a flower — florigen, the clock, and vernalization</summary>
@@ -2329,6 +2677,7 @@
 <nav class="pager">
   <a href="biology-08-plant-structure.html"><small>Previous</small><b>← Plant Structure, Transport and Nutrition</b></a>
   <a href="biology.html"><small>Index</small><b>All biology notes</b></a>
+  <a href="biology-10-animal-physiology-1.html"><small>Next</small><b>Animal Physiology I — Circulation, Gas Exchange, Digestion, Osmoregulation →</b></a>
 </nav>
 
 </main>

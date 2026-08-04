@@ -520,14 +520,44 @@ table.data td.num { font-family: var(--mono); font-size: .86rem; white-space: no
 }
 .figure figcaption { font-size: .82rem; color: var(--ink-faint); margin-top: .5rem; line-height: 1.55; }
 
-/* Mnemonic / one-liner. */
+/* Mnemonic / 口訣 — a memory hook meant to be committed verbatim. */
 .mnemo {
   border: 1px solid var(--line); border-left: 4px solid var(--accent-3);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   background: var(--card); padding: .8rem 1rem;
 }
 .mnemo h4 { margin: 0 0 .2rem; font-size: .92rem; }
+.mnemo h4::before { content: '🔑 '; }
 .mnemo p { margin: 0; font-size: .88rem; color: var(--ink-soft); }
+
+/* The mnemonic itself, set apart so the eye can grab it on a revision pass. */
+.kj {
+  display: block; margin: .4rem 0 .45rem; padding: .5rem .85rem;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--accent-3) 12%, transparent);
+  border: 1px dashed var(--accent-3);
+  font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+  line-height: 1.5; letter-spacing: .02em; color: var(--ink);
+}
+.mnemo__gloss { display: block; margin-top: .3rem; font-size: .84rem; color: var(--ink-faint); }
+
+/* Exam technique — how to actually attack this in the paper. */
+.tech {
+  margin: 1.4rem 0; padding: .9rem 1.1rem;
+  border: 1px solid var(--accent-2); border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--accent-2) 8%, transparent);
+}
+.tech__title {
+  display: flex; align-items: center; gap: .45rem; margin: 0 0 .45rem;
+  font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent-2);
+}
+.tech__title::before { content: '◎'; font-size: .95rem; }
+.tech ol, .tech ul { margin: .35rem 0 0; padding-left: 1.25rem; font-size: .93rem; }
+.tech li { margin: .28rem 0; }
+.tech p { font-size: .93rem; margin: 0 0 .5rem; }
+.tech > :last-child { margin-bottom: 0; }
+.tech b { color: var(--ink); }
 
 /* ---------- 10. Hub / index components ------------------------------------ */
 .hero { padding: 4rem 0 2.5rem; }

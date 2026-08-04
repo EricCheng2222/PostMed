@@ -86,6 +86,11 @@
         the E1/E2 cycle of a P-type pump in <b>§04</b>, the Goldman–Hodgkin–Katz equation and the K<sub>ATP</sub>
         channel in <b>§06</b>, and JAK–STAT in <b>§10</b>. The <b>§01</b> panel is worth one careful read and then
         leaving alone. Everything else here — including the coregulator switching in <b>§11</b> — is core.</li>
+      <li><b>Carry into the hall verbatim</b> — only two things in this note earn rote memory, because the rest is
+        reconstructable from them. The two constants at 37 °C (<b>RT = 2.58 kJ·mol⁻¹</b>,
+        <b>F = 96.5 kJ·mol⁻¹·V⁻¹</b>, §&#160;04), out of which 61.5 mV and 13.2 kJ per Na⁺ both fall; and
+        <b>QISS QIQ SIQ SQS</b> (§&#160;08) for receptor-to-G-protein assignment. Everything else on this paper
+        yields to a gradient, a charge count, or the five boxes of §&#160;07.</li>
     </ol>
   </div>
 
@@ -313,6 +318,24 @@
       makes the luminal face of the ER become the outer face of the plasma membrane.</figcaption>
   </figure>
 
+  <div class="mnemo">
+    <h4>Which lipid sits on which face</h4>
+    <span class="kj">A sugar-coated COIN — Choline Out, Inside Negative</span>
+    <p>Our own backronym rather than a circulating one — but it collapses six lipids into two chemical families,
+      which is what makes it worth the shelf space. <b>Sugar-coated</b>: the <b>glycolipids</b> ride on the outer
+      face, because sugar always points away from the cytosol. <b>C-O, choline out</b>: the outer leaflet takes the
+      <em>choline</em>-headed lipids, <b>PC</b> (phosphatidylcholine) and <b>SM</b> (sphingomyelin, also a choline
+      head). <b>I-N, inside negative</b>: everything without a choline head stays in — the <em>amino</em>-headed
+      <b>PE</b> and <b>PS</b> together with the <em>anionic</em> <b>PI</b> and <b>PIP₂</b> — so the cytosolic face
+      is the negatively charged face.
+      <span class="mnemo__gloss">The charge half is what earns its keep. It is why <b>PS</b>, once scramblase puts
+        it on the outside, is both the apoptotic "eat me" signal and the platelet's procoagulant surface; why
+        conventional <b>PKC</b> lists phosphatidylserine as its third requirement (§&#160;09); and why
+        <b>PIP₂</b> — substrate of PLC (§&#160;09) and of PI3K (§&#160;10) — has to be on the inside, where the
+        signal is read. It does <em>not</em> cover cholesterol, which sits in both leaflets, and it says nothing
+        about the flippase / floppase / scramblase machinery that maintains the asymmetry (Go deeper, below).</span></p>
+  </div>
+
   <div class="table-scroll">
     <table class="data">
       <caption class="sr-only">Membrane protein classes compared</caption>
@@ -367,6 +390,32 @@
       <em>thicker</em> and more ordered than the surrounding bilayer, and which concentrate GPI-anchored proteins
       and certain signalling components. They are a real but subtle phenomenon; an exam option calling them
       "regions of increased fluidity" has it backwards.</p>
+  </div>
+
+  <div class="tech">
+    <p class="tech__title">Exam technique · membrane options you can kill before you finish the stem</p>
+    <ol>
+      <li><b>Any cholesterol option naming one direction only is dead</b> — "increases fluidity" and "decreases
+        fluidity" are each exactly half the rule, and a well-built option set offers <em>both</em>, so you strike
+        two of five in one move. The survivor names the temperature relative to <b>T<sub>m</sub></b>, or uses the
+        words <em>modulates</em>, <em>buffers</em>, or <em>broadens the transition</em>.</li>
+      <li><b>"Rafts are more fluid" is backwards</b> — sphingolipid- and cholesterol-rich microdomains are
+        <em>thicker</em> and more <em>ordered</em> than the bilayer around them, and they concentrate GPI-anchored
+        proteins. One-line elimination, and it recurs across papers.</li>
+      <li><b>Never let fluidity and permeability move together</b> — cholesterol fills packing defects, so it makes
+        a membrane <em>less</em> leaky at the same time as it stops it gelling. Any option that treats fluid and
+        leaky as one axis is wrong by construction, whichever direction it picks.</li>
+      <li><b>Use the extraction method as a free classifier</b> — detergent → <b>integral</b>; high salt, EDTA or a
+        pH change → <b>peripheral</b>; PI-specific phospholipase C → <b>GPI-anchored</b>. If the stem tells you how
+        the protein came off, it has already told you the class, and you can answer without recognising the protein
+        at all.</li>
+      <li><b>One direction check covers every other fluidity item</b> — anything that <em>disrupts packing</em>
+        raises fluidity (a <i>cis</i> double bond, a shorter chain, a higher temperature); anything that lets
+        chains lie flat against each other lowers it (saturation, a <i>trans</i> double bond, extra length,
+        cooling). Do not memorise a list; ask "does this make the chains pack better or worse?"</li>
+      <li><b>Where the time goes</b> — these are ten-second questions. Answer on sight and bank the time for the
+        §&#160;04–§&#160;06 arithmetic, which genuinely needs the full 66 seconds.</li>
+    </ol>
   </div>
 
   <details class="disc disc--deep">
@@ -498,6 +547,16 @@
       you can reconstruct that chain you never have to memorise which hormone uses which system.</p>
   </div>
 
+  <p>Notice what this section does <em>not</em> get: a 口訣 for the permeability table. There is no mnemonic for it
+     and you do not need one, because the table is a single argument read downwards — add polarity, then add size,
+     then add charge, and each addition costs orders of magnitude. Given any two solutes you can rank them in three
+     seconds by asking which of them minds being dried off more, and a memorised word would only be a second thing
+     to get wrong. The same applies to the hormone list in the box above: <em>solubility predicts receptor
+     location, and receptor location predicts speed</em>. Hold that one sentence plus its two named exceptions —
+     <strong>thyroid hormone</strong>, which needs MCT8 to get in yet still uses a nuclear receptor, and the
+     over-lipophilic drugs below, which partition so well they never leave the membrane — and the list looks after
+     itself.</p>
+
   <div class="callout callout--warn">
     <p class="callout__title">The trap: "lipid-soluble = permeable" is only half a rule</p>
     <p style="margin:0">Permeability is <em>P ≈ KD/d</em>, so it depends on partitioning <strong>and</strong> on
@@ -588,6 +647,28 @@
     </table>
   </div>
 
+  <div class="mnemo">
+    <h4>Which number sits in which tissue</h4>
+    <span class="kj">One fuel · Two-way · Three thinks · Four doors · Five for fructose</span>
+    <p>Ours except for the last clause, which circulates everywhere — but the <em>number-to-tissue</em> pairing is
+      the genuinely arbitrary part of this table, so it is where a hook belongs, and each clause is chosen so that
+      the number and the tissue explain each other. <b>One fuel</b>: the erythrocyte has no mitochondria and runs on
+      glucose alone, and it (with the blood–brain barrier and most other cells) gets <b>GLUT1</b>. <b>Two-way</b>:
+      <b>GLUT2</b> serves the hepatocyte and the β cell, and it is the door that swings both ways — the basolateral
+      <em>exit</em> in gut and kidney, and the route by which hepatic glucose leaves. <b>Three thinks</b>: the
+      neuron (and placenta) takes <b>GLUT3</b>. <b>Four doors</b>: insulin brings <b>GLUT4</b> to the door of muscle
+      and fat. <b>Five for fructose</b>: <b>GLUT5</b> — the standard alliteration, and the only part of this hook
+      you are likely to meet elsewhere.
+      <span class="mnemo__gloss">Do <em>not</em> memorise the four K<sub>t</sub> values separately — they follow
+        from the job, which is the whole point of this section. The two tissues that must never starve get the
+        lowest K<sub>t</sub> (GLUT3 1.4, GLUT1 1.5) and so run saturated at 5 mM; the two cells that must
+        <em>measure</em> glucose get the highest (GLUT2 17) and so track it linearly; GLUT4 sits at ≈5 mM, right on
+        plasma glucose, and is regulated by <em>number</em> rather than affinity. Take the two-way clause literally
+        — <b>GLUT2</b> is the partner of SGLT1/SGLT2 in §&#160;05 — and take the fifth one narrowly:
+        <b>GLUT5</b> moves fructose <em>only</em>, which is exactly why it is planted in glucose option
+        sets.</span></p>
+  </div>
+
   <details class="disc disc--wex">
     <summary>Worked example 1 — why the liver notices a meal and the red cell does not</summary>
     <div class="disc__body">
@@ -628,6 +709,36 @@
       gradient is maintained by <em>metabolism</em>, not by the transporter.</p>
   </div>
 
+  <div class="tech">
+    <p class="tech__title">Exam technique · classify the transport first, then do the K<sub>t</sub> arithmetic</p>
+    <ol>
+      <li><b>Three cues mean "a protein is doing it"</b> — <em>saturation</em> (there is a V<sub>max</sub>),
+        <em>stereospecificity</em> (D-glucose moves, L-glucose does not), and <em>competitive inhibition</em> or a
+        named blocker. Any one of the three kills "simple diffusion" as an option without further thought.</li>
+      <li><b>Then one more cue separates passive-mediated from active</b> — ask only this: <em>does the solute end
+        up further from equilibrium than it started?</em> "Concentrates it", "against its gradient", "accumulates
+        100-fold" → active. Then: the protein hydrolyses ATP itself → primary; another ion falls downhill alongside
+        → secondary. Saturation kinetics is <em>not</em> evidence of activity, and that is the trap this whole
+        section is built around.</li>
+      <li><b>Ratio questions: cancel V<sub>max</sub> and stop</b> — evaluate
+        <span class="fi">[S]/(K<sub>t</sub> + [S])</span> at each concentration and divide the two results.
+        V<sub>max</sub> never enters, so a stem that withholds it is not incomplete. Two additions, two divisions,
+        one more division — twenty seconds, not sixty.</li>
+      <li><b>Sanity-check the direction of the response before you trust your answer</b> — a transporter whose
+        K<sub>t</sub> is well <em>below</em> the ambient concentration is already near-saturated and can barely
+        respond; one whose K<sub>t</sub> is well <em>above</em> it responds almost proportionally. Any option that
+        has the low-K<sub>t</sub> transporter responding <em>more</em> strongly is backwards, and it is the
+        commonest distractor here.</li>
+      <li><b>Treat "increases the affinity" as guilty</b> — insulin moves GLUT4 by <em>number</em> (vesicle
+        fusion), not by K<sub>t</sub>. An option in which a hormone changes a transporter's K<sub>m</sub> should be
+        the first one you look at sceptically.</li>
+      <li><b>The turnover numbers need no mnemonic</b> — channel 10⁷–10⁸, carrier 10²–10⁴, pump 10²–10³ s⁻¹. That
+        ordering is just how much work each does per solute molecule: a hole does nothing, a revolving door has to
+        turn, a pump has to turn <em>and</em> run a chemical reaction. Rank them by that and the exponents come
+        back on their own.</li>
+    </ol>
+  </div>
+
   <h3>Aquaporins, and the reason a kidney needs them</h3>
   <p>Water crosses a bare bilayer at about 10⁻³ cm·s⁻¹ — fast in the table above, but hopelessly slow for a nephron
      that must reabsorb ~180 L a day, or a red cell that must swell and shrink in seconds. Aquaporins are tetramers
@@ -638,6 +749,22 @@
      Grotthuss proton-hopping mechanism. <strong>Aquaporins conduct water but not protons</strong>, which is
      essential: a membrane freely permeable to H⁺ would short-circuit every proton gradient in the cell, including
      the one that makes ATP.</p>
+
+  <div class="mnemo">
+    <h4>Why a water channel refuses protons</h4>
+    <span class="kj">NPA = No Protons Allowed</span>
+    <p>A backronym of ours rather than a circulating 口訣 — but the three letters are the real motif, which is what
+      makes it cheap. Two opposed <b>N</b>-<b>P</b>-<b>A</b> (asparagine–proline–alanine) loops meet at the centre
+      of the pore and force each passing water molecule to reorient; that breaks the hydrogen-bond chain which
+      Grotthuss proton hopping depends on. The <b>ar/R constriction</b> is the separate, upstream filter, and it
+      works on size alone: nothing bigger than water gets past it.
+      <span class="mnemo__gloss">Carry the reason with the letters, because the reason is what is examined — a
+        membrane freely permeable to H⁺ would short-circuit every proton gradient in the cell, ATP synthase
+        included. The hook says nothing about the architecture: an aquaporin is a <em>tetramer of four independent
+        pores</em>, each conducting ~10⁹ water molecules per second, so an option describing "a single central
+        channel formed by the four subunits" sounds plausible and is wrong.</span></p>
+  </div>
+
   <p>The clinical hook is <strong>AQP2</strong> in the renal collecting duct. Vasopressin (ADH) binds the
      <strong>V₂ receptor</strong>, a G<sub>s</sub>-coupled GPCR; cAMP rises, PKA phosphorylates AQP2, and AQP2-laden
      vesicles fuse with the apical membrane. Water is then reabsorbed and urine concentrates. Lose the receptor or
@@ -738,6 +865,56 @@
      negative for a cation, because a positive charge is <em>attracted</em> into a cell whose interior is negative.
      For an uncharged solute like glucose, z = 0 and the electrical term vanishes entirely — which is why glucose
      transport is unaffected by membrane potential and Na⁺ transport is not.</p>
+
+  <div class="mnemo">
+    <h4>The only two numbers in §§&#160;04–06 that are not derivable</h4>
+    <span class="kj">RT counts up in threes · F is Faraday</span>
+    <p>Our own hook, not a standard one, and it is deliberately small because almost nothing else in these three
+      sections has to be memorised. <b>RT counts up in threes</b>: at 37 °C <b>RT = 2.58 kJ·mol⁻¹</b>, whose digits
+      climb 2, 5, 8 — which is enough to catch the usual slips (2.85, 2.55), and if you ever want to check the
+      figure it is simply R × T = 8.314 × 310 K. <b>F is Faraday</b>: <b>96.5 kJ·mol⁻¹·V⁻¹</b> is nothing but the
+      Faraday constant 96 485 C·mol⁻¹ read in this chapter's units — 96.5 kJ per mole per volt.
+      Everything you can be asked to compute grows out of that pair: <span class="fi">2.303 RT/F</span> =
+      <b>61.5 mV</b>, the Nernst coefficient; <span class="fi">RT/F</span> = 26.7 mV; and one Na⁺ re-entering the
+      cell releases <span class="fi">2.58 ln(12/145)</span> + <span class="fi">96.5 × (−0.070)</span> =
+      <span class="fi">−6.43 − 6.75</span> = <b>−13.2 kJ·mol⁻¹</b>, which is the unit price everything in
+      §&#160;05 is quoted in.
+      <span class="mnemo__gloss">Two cautions. 61.5 mV is 61.5 <em>only at 37 °C</em> — a paper set at 25 °C wants
+        59.2, and you can regenerate either figure from the pair rather than storing both. And the ion
+        concentrations (Na⁺ 145/12, K⁺ 4/140, Cl⁻ 110/10, Ca²⁺ 1.8 mM/100 nM) are deliberately <em>not</em> in the
+        hook, because a well-written stem hands them to you; if you want one anchor for them, note that Na⁺ and K⁺
+        are near mirror images — each sits at about 140 mM on the side it is concentrated on.</span></p>
+  </div>
+
+  <div class="tech">
+    <p class="tech__title">Exam technique · any transport-energetics number, in six moves</p>
+    <ol>
+      <li><b>Always write it inward, then flip if you need to</b> —
+        <span class="fi">ΔG = RT ln([S]<sub>in</sub>/[S]<sub>out</sub>) + zFΔψ</span> with
+        <span class="fi">Δψ = −0.070 V</span>. Hold that one version. For outward movement change the sign of the
+        whole expression rather than trying to remember a second formula and a second convention.</li>
+      <li><b>Two terms, and one of them sometimes vanishes</b> — for an uncharged solute z = 0 and the electrical
+        term disappears completely. An option that makes glucose transport voltage-sensitive, or that charges a
+        neutral solute for crossing a potential, dies on that alone without any arithmetic.</li>
+      <li><b>Reuse four numbers instead of deriving them each time</b> — one Na⁺ <em>out</em> costs
+        <b>+13.2 kJ·mol⁻¹</b> (6.4 chemical + 6.8 electrical, almost equal halves); one K⁺ <em>in</em> costs
+        <b>+2.4</b>, cheap because the voltage helps; one Ca²⁺ <em>out</em> costs <b>+38.8</b>; a 3 Na⁺ : 2 K⁺
+        cycle therefore costs <b>44.4</b>. Run backwards, each Na⁺ falling <em>in</em> releases 13.2.</li>
+      <li><b>The feasibility check kills options with no calculation at all</b> — one ATP delivers about
+        <b>50 kJ·mol⁻¹</b> inside a cell. Any stoichiometry needing more than 50 per ATP is impossible, which is
+        how 4 Na⁺ : 2 K⁺ (57.6) dies in five seconds. Apply the same test to any invented pump a stem offers
+        you.</li>
+      <li><b>ln, not log₁₀ — this is the planted error</b> — the formula is <span class="fi">RT ln(ratio)</span>
+        with RT = 2.58. Using log₁₀ makes every answer 2.303× too small, and it characteristically makes a
+        symporter look as though one fewer sodium would do. If your answer lands just under a whole number of Na⁺,
+        check this before anything else.</li>
+      <li><b>Do not memorise stoichiometries — derive them or read them off the name</b> — <b>3 out, 2 in</b> is a
+        <em>result</em> (worked example 2 below), not a fact; NCX's <b>3 : 1</b> is forced, because 38.8 kJ·mol⁻¹
+        is more than two sodiums (26.4) can supply; and several names carry their own numbers
+        (<b>NKCC2</b> = Na⁺-K⁺-2Cl⁻, <b>NCC</b> = Na⁺-Cl⁻). Electrogenicity is not a list either: count the charges
+        crossing each way and see whether they cancel.</li>
+    </ol>
+  </div>
 
   <details class="disc disc--wex">
     <summary>Worked example 2 — the price of one Na⁺/K⁺-ATPase cycle, and why the stoichiometry cannot be 4:2</summary>
@@ -1223,6 +1400,36 @@
       change. Writing "sodium floods in and raises intracellular sodium" is the classic error.</p>
   </div>
 
+  <div class="tech">
+    <p class="tech__title">Exam technique · Nernst and driving force under time pressure</p>
+    <ol>
+      <li><b>Out over in, and write the <span class="fi">61.5/z</span> down first</b> —
+        <span class="fi">E = (61.5/z) log₁₀([ion]<sub>out</sub>/[ion]<sub>in</sub>)</span> mV at 37 °C. Putting the
+        coefficient on paper <em>before</em> you touch the logarithm is the whole fix for the single most-missed
+        step on this calculation: dividing by 2 for Ca²⁺. The undivided answer is always offered.</li>
+      <li><b>Fix the sign before you compute anything</b> — an ion concentrated <em>outside</em> has a
+        <em>positive</em> E (Na⁺ +67, Ca²⁺ +131); one concentrated <em>inside</em> has a <em>negative</em> E
+        (K⁺ −95). For an anion z is negative, so chloride's inward gradient gives a <em>negative</em> E (−64).
+        Option sets routinely carry the same magnitude with both signs, so this check is a free elimination.</li>
+      <li><b>Order-of-magnitude check: 61.5 mV per ten-fold gradient, divided by z</b> — calcium's 10⁴-fold
+        gradient on a divalent ion is about <span class="fi">4 × 30.75 ≈ +123</span> mV. So an answer near
+        <b>+262</b> has forgotten z, and an answer near +30 or +60 has counted one decade instead of four.</li>
+      <li><b>Driving force is <span class="fi">V<sub>m</sub> − E<sub>ion</sub></span>, and its sign is the
+        answer</b> — negative means the cation flows <em>in</em>. And if the stem asks "what happens when this
+        channel opens", compute nothing at all: V<sub>m</sub> moves <em>towards</em> that ion's E. K⁺ or Cl⁻ →
+        hyperpolarise, inhibit. Na⁺ or Ca²⁺ → depolarise, excite. That one rule answers GABA<sub>A</sub>,
+        nicotinic, GIRK and K<sub>ATP</sub> stems alike.</li>
+      <li><b>Kill the pump half-truth</b> — "the Na⁺/K⁺-ATPase generates the resting potential" is wrong by
+        construction: its <em>direct</em> electrogenic contribution is only −4 to −10 mV. It maintains the
+        concentration ratios that set E<sub>K</sub>, which is a different sentence, and the difference between the
+        two sentences is usually the entire question.</li>
+      <li><b>Kill "sodium floods in and raises intracellular sodium"</b> — during a single action potential only
+        the <em>permeabilities</em> change; bulk concentrations do not move measurably. Any option explaining a
+        spike by a concentration change can be struck without reading the rest of the stem. It is lifted from real
+        textbook prose, which is precisely why it looks safe.</li>
+    </ol>
+  </div>
+
   <details class="disc disc--deep">
     <summary>Go deeper · the Goldman–Hodgkin–Katz equation, and where the K<sub>ATP</sub> channel fits</summary>
     <div class="disc__body">
@@ -1349,6 +1556,15 @@
      milliseconds, excitatory at the neuromuscular junction) and on muscarinic receptors (GPCRs, seconds, and
      inhibitory on the heart via M₂ → G<sub>i</sub>). Asking "what does acetylcholine do?" is not a well-posed
      question; asking "which receptor?" is.</p>
+
+  <p>There is no 口訣 for that table, and you should resist inventing one, because the class, the transducer and
+     the timescale are the same fact counted three ways. An ionotropic receptor <em>is</em> the pore, so nothing
+     has to happen between binding and response: milliseconds. A GPCR inserts one diffusing switch and one enzyme:
+     seconds. An RTK has to build a docking platform and then run a kinase cascade: minutes. A nuclear receptor has
+     to make an mRNA and then a protein: hours. Count the chemical steps and the ladder
+     <b>ms → s → min → h</b> writes itself — and because a signal lasts about as long as the machinery carrying it
+     survives, the duration column runs in the same order. The only thing worth holding separately is that one
+     ligand, acetylcholine, appears in <em>two</em> of the four rows.</p>
 
   <h3>Affinity, occupancy and why potency is not efficacy</h3>
   <p>Receptor binding is a simple equilibrium, <span class="fi">R + L ⇌ RL</span>, with
@@ -1580,6 +1796,24 @@
       G<sub>q</sub>, because contraction needs calcium.</p>
   </div>
 
+  <div class="mnemo">
+    <h4>The standard string for receptor → G protein</h4>
+    <span class="kj">QISS · QIQ · SIQ · SQS</span>
+    <p>This is <em>the</em> circulating mnemonic for this list — it appears in First Aid-derived and 補習班 material,
+      so use it rather than anything of your own, because you will meet it again. Thirteen letters for thirteen
+      receptors, read in exactly this order: <b>α₁ α₂ β₁ β₂</b> = <b>Q I S S</b> · <b>M₁ M₂ M₃</b> =
+      <b>Q I Q</b> · <b>D₁ D₂ H₁</b> = <b>S I Q</b> · <b>H₂ V₁ V₂</b> = <b>S Q S</b>. Note that the third group
+      straddles two families (D₂, then H₁), which is where people miscount. The short companion line most notes
+      also carry is <b>"MAD 2's are G<sub>i</sub>"</b> — <b>M</b>₂, <b>A</b>lpha₂, <b>D</b>₂ — and those three are
+      the only G<sub>i</sub> members of the thirteen.
+      <span class="mnemo__gloss">Beware two things. It covers the autonomic and amine receptors and nothing else,
+        so read the table above for what it silently drops: glucagon, GLP-1, PTH, TSH/LH/FSH/ACTH are
+        G<sub>s</sub>; opioid, somatostatin, GABA<sub>B</sub> and adenosine A₁ are G<sub>i</sub>; AT₁, 5-HT₂, TRH,
+        GnRH and oxytocin are G<sub>q</sub>; thrombin/PAR1 is G<sub>12/13</sub>; rhodopsin is G<sub>t</sub>. And
+        "MAD 2's" names three specific receptors, not a rule about the digit — β₂, H₂ and V₂ are all
+        G<sub>s</sub>.</span></p>
+  </div>
+
   <h3>What PKA actually does, and why the same hormone means different things in different tissues</h3>
   <p>PKA phosphorylates serine and threonine residues in the consensus <span class="fi">R-R-X-S/T-Φ</span>. Its
      substrate list is the answer to most "adrenaline does what?" questions:</p>
@@ -1617,6 +1851,23 @@
       examined together.</p>
   </div>
 
+  <div class="mnemo">
+    <h4>Cholera and pertussis, and why both raise cAMP</h4>
+    <span class="kj">Cholera jams the GAS pedal · pertussis cuts the brake cable · the car speeds up either way</span>
+    <p>The accelerator-and-brake picture for G<sub>s</sub> and G<sub>i</sub> is the usual one; the spelling trick is
+      ours, and it is what makes the assignment stick. <b>GAS pedal</b> — <b>G</b>-<b>A</b>-<b>S</b> contains
+      <b>G<sub>s</sub></b>, the stimulatory arm: cholera toxin ADP-ribosylates G<sub>s</sub>α and abolishes its
+      GTPase, so the throttle is jammed open and adenylyl cyclase never switches off. <b>Brake cable</b> —
+      <b>G<sub>i</sub></b> is the <b>i</b>nhibitory arm: pertussis toxin modifies the very C-terminal surface of
+      G<sub>i</sub>α that the receptor must touch, so G<sub>i</sub> can never be loaded with GTP and the cable is
+      cut. A jammed throttle and a cut brake do the same thing to the speed: <b>cAMP rises either way</b>.
+      <span class="mnemo__gloss">The image deliberately does not encode the chemistry — cholera modifies an
+        <em>arginine</em> in G<sub>s</sub>α, pertussis a <em>cysteine</em> in G<sub>i</sub>α — so hold that pair
+        separately if the paper asks for it. What the image does protect is the double negative: "pertussis toxin
+        inhibits G<sub>i</sub>" and "pertussis toxin lowers cAMP" are not the same sentence, and the second one is
+        an option in almost every version of this question.</span></p>
+  </div>
+
   <div class="callout callout--warn">
     <p class="callout__title">Four confusions inside this section</p>
     <p style="margin:0 0 .45rem"><strong>"The G protein is phosphorylated when activated."</strong> No. It exchanges
@@ -1631,6 +1882,38 @@
       (caffeine, theophylline) inhibit <strong>phosphodiesterases</strong>, so cAMP is destroyed more slowly. Blocking
       degradation and stimulating synthesis both raise a messenger, but only the second requires a receptor —
       which is why a PDE inhibitor works on a cell with no receptor at all.</p>
+  </div>
+
+  <div class="tech">
+    <p class="tech__title">Exam technique · any GPCR stem, in five boxes</p>
+    <ol>
+      <li><b>Fill the boxes in whichever direction the stem runs</b> — ligand → receptor subtype → G protein →
+        effector → second messenger → kinase. Fill the four you know and the fifth <em>is</em> the answer. The
+        table above is built to be read backwards as well as forwards, and examiners ask it both ways within the
+        same paper.</li>
+      <li><b>Recognition rules that skip the table entirely</b> — "smooth muscle contracts" or "a gland secretes"
+        → <b>G<sub>q</sub></b>, because contraction needs calcium. "Heart rate falls", "transmitter release is
+        suppressed", or an opioid, an α₂ agonist or adenosine in the stem → <b>G<sub>i</sub></b>, and often free
+        Gβγ opening a GIRK channel rather than the cAMP fall itself. "β-anything, glucagon, GLP-1, PTH, V₂,
+        TSH/LH/FSH/ACTH" → <b>G<sub>s</sub></b>.</li>
+      <li><b>The toxin item is a double negative, not a fact</b> — both toxins <em>raise</em> cAMP. The option
+        that lowers cAMP after pertussis toxin is the designed trap and is chosen more often than the correct
+        answer; recognising the shape is worth more than recalling the toxin.</li>
+      <li><b>"Which of these is a second messenger" is a definition test</b> — small, diffusible, made fast,
+        destroyed fast, and it <em>binds</em> a regulatory site rather than being consumed. A hormone never
+        qualifies, and neither does a kinase. DAG qualifies but does not diffuse. If NO and cGMP are both on
+        offer, <b>cGMP</b> is the safe answer, because most sources reserve the term for it and class NO as an
+        intercellular messenger.</li>
+      <li><b>Three distractor sentences that are always wrong</b> — "the G protein is phosphorylated when
+        activated" (it exchanges GDP for GTP; nothing is phosphorylated at that step), "cAMP activates PKA by
+        phosphorylating it" (an allosteric ligand transfers no phosphate), "caffeine raises cAMP by stimulating
+        adenylyl cyclase" (it inhibits phosphodiesterase). Each reads exactly like textbook prose, which is why it
+        is in the option list.</li>
+      <li><b>Where the time goes</b> — with QISS in place a receptor-to-messenger item is a fifteen-second
+        question; spend the saved minutes on §&#160;04–§&#160;06. And never leave one blank: even placing the
+        receptor in its family eliminates two options, and with five options that makes answering strictly better
+        than a gap, even at −0.5.</li>
+    </ol>
   </div>
 </section>
 <!-- =========================== 9 =========================== -->
@@ -1762,6 +2045,26 @@
       genuinely depends on extracellular calcium, and calcium-channel blockers work. In skeletal muscle the
       DHPR–RyR1 coupling is mechanical, so contraction continues in calcium-free medium. Same ion, same store,
       completely different dependence — a classic discriminating stem.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Where each kind of muscle gets its calcium</h4>
+    <span class="kj">One touch · two steps · three phosphates</span>
+    <p>Our own line rather than a circulating one, and it settles the discriminator this section is built around by
+      letting each receptor's own number carry its mechanism. <b>One touch — RyR1, skeletal</b>: the DHPR is coupled
+      to <b>RyR1</b> <em>mechanically</em>, a single direct contact, so skeletal muscle keeps contracting with no
+      extracellular calcium at all. <b>Two steps — RyR2, cardiac</b>: cardiac muscle needs both — trigger calcium
+      first enters from <em>outside</em> through L-type channels, then amplifies itself through <b>RyR2</b>, which
+      is why cardiac contraction genuinely fails in a calcium-free medium and why calcium-channel blockers work.
+      <b>Three phosphates — IP₃, smooth</b>: in smooth muscle and in non-muscle cells the store is opened by
+      <b>IP₃</b>, the three-phosphate inositol, acting on the IP₃ receptor — the pathway this section has just
+      traced from α₁ all the way to contraction.
+      <span class="mnemo__gloss">Read the third clause narrowly: it names what opens the <em>store</em>, not the
+        only source, because smooth muscle also takes calcium in from outside — which is exactly why
+        dihydropyridines relax a vessel. Two things the line does not carry, and both are examined:
+        <b>malignant hyperthermia</b> is a RyR1 mutation triggered by volatile anaesthetics and succinylcholine and
+        blocked by dantrolene; and smooth muscle has <em>no troponin</em>, so its calcium sensor is calmodulin
+        driving MLCK.</span></p>
   </div>
 </section>
 <!-- =========================== 10 =========================== -->
@@ -1983,6 +2286,38 @@
       composition is what distinguishes them.</p>
   </div>
 
+  <div class="tech">
+    <p class="tech__title">Exam technique · pathway-level reasoning and drug-target option sets</p>
+    <ol>
+      <li><b>Sort the options by <em>level</em> before you read them properly</b> — outside the cell
+        (trastuzumab, cetuximab, panitumumab), receptor kinase domain (gefitinib, erlotinib, osimertinib),
+        cytoplasmic kinase (imatinib on BCR-ABL), MAPKKK (vemurafenib and dabrafenib on B-Raf V600E), MAPKK
+        (trametinib). Any stem that names a mutation is asking one question and only one:
+        <em>is the drug above or below the lesion?</em></li>
+      <li><b>The inference the paper is really after</b> — a jammed switch makes everything upstream of it
+        irrelevant, so <b>KRAS</b>-mutant colorectal cancer does not respond to anti-EGFR antibodies. Apply that
+        one sentence to any "downstream activating mutation" stem and you will not need to have memorised the drug
+        list at all.</li>
+      <li><b>Kill the affinity answer on Ras</b> — the mutant binds GTP and GDP essentially normally and its
+        intrinsic GTPase is only modestly impaired; what is destroyed is <b>GAP-stimulated</b> hydrolysis.
+        "Binds GTP more tightly", "cannot bind GDP", "is constitutively phosphorylated" and "dimerises
+        spontaneously" are four wrong options, and each one sounds entirely reasonable.</li>
+      <li><b>Kill on residue chemistry</b> — a receptor <em>tyrosine</em> kinase phosphorylates tyrosine, by
+        definition. Nearly every kinase downstream (Raf, Akt, PKA, PKC, ERK) is Ser/Thr, and <b>MEK</b> is the one
+        dual-specificity exception. An option handing serine phosphorylation to an RTK is a free elimination.</li>
+      <li><b>Remember which receptor is the exception</b> — EGFR and PDGFR genuinely do dimerise on ligand
+        binding, but the <b>insulin receptor</b> is already an α₂β₂ disulfide-linked tetramer, so "insulin causes
+        its receptor to dimerise" is wrong. That sentence is true of every other receptor in the same table, which
+        is exactly what makes it a good distractor.</li>
+      <li><b>You do not need to rote-learn the chain</b> — read it off the logic instead. An SH2 domain (Grb2)
+        grabs the new phosphotyrosine; its partner is a <b>GEF</b> (Sos); a GEF loads a <b>GTPase</b> (Ras); and a
+        GTPase switches on a cascade named for its own tiers, MAPKKK → MAPKK → MAPK, which is
+        <b>Raf → MEK → ERK</b>. The order is forced by the names; only the names themselves are new. Hold the two
+        <em>branches</em> instead: PI3K → PIP₃ → Akt is the metabolic arm, Grb2 → Ras → ERK the mitogenic
+        one.</li>
+    </ol>
+  </div>
+
   <details class="disc disc--deep">
     <summary>Go deeper · JAK–STAT, and the kinases that are not receptors</summary>
     <div class="disc__body">
@@ -2136,6 +2471,22 @@
 
   <p>That last row explains why hypothyroidism is more than an absence of stimulation: an unliganded TR sits on its
      response elements and actively silences them. It is also the key to the drug that closes this note.</p>
+
+  <div class="mnemo">
+    <h4>Type I versus Type II nuclear receptor</h4>
+    <span class="kj">Type I = In the cytosol · Identical partners · Inverted repeat</span>
+    <p>Our own hook, not a standard one, but the three <b>I</b>s are precisely the three rows people invert.
+      <b>In the cytosol</b>: a Type I (steroid) receptor waits in the cytosol, held inactive by <b>hsp90</b>, until
+      its ligand arrives. <b>Identical partners</b>: it then forms a <b>homodimer</b>. <b>Inverted repeat</b>: and
+      binds a palindromic inverted repeat with a 3 bp spacer. Type II is the complement on every count — already in
+      the nucleus, already sitting on DNA, a <b>heterodimer with RXR</b>, on <b>direct</b> repeats.
+      <span class="mnemo__gloss">Which receptors are Type I needs no separate storage: it is the five steroid
+        receptors <b>GR, MR, AR, PR, ER</b>, and everything else (TR, RAR, RXR, VDR, PPAR, LXR, FXR) is Type II.
+        The one row the three <b>I</b>s do <em>not</em> cover is the most examined of the lot — what happens with
+        <em>no</em> ligand. A Type I receptor is simply inactive; a Type II receptor <strong>actively
+        represses</strong>, recruiting NCoR/SMRT and histone deacetylases, which is why an unliganded TR silences
+        its genes and why hypothyroidism is more than the absence of stimulation.</span></p>
+  </div>
 
   <div class="callout callout--exam">
     <p class="callout__title">Three clinical mechanisms in the 115 style</p>

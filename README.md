@@ -16,7 +16,7 @@ Subjects are split onto their own shelves. The home page is a subject directory.
 |---------|-------|-------|-----------|
 | Physics | [pages/physics.html](pages/physics.html) | 15 · complete | 150 |
 | Biochemistry | [pages/biochemistry.html](pages/biochemistry.html) | 10 · complete | 100 |
-| Biology | [pages/biology.html](pages/biology.html) | 3 of 14 | 30 |
+| Biology | [pages/biology.html](pages/biology.html) | 14 · complete | 140 |
 
 The biochemistry and biology shelves target 高雄醫學大學's 「普通生物及生化概論」 paper — 90 questions,
 150 of 400 written marks, split exactly 45 biology / 45 biochemistry. Topic weightings on each shelf
@@ -67,18 +67,28 @@ standalone — most plans over-study it), and **lipids are the heaviest single t
 six questions a paper and trending up. KMU cites Lehninger 8th ed when defending disputed answers, so
 the notes are pitched at that depth.
 
-### Biology — three of fourteen written
+### Biology — fourteen notes, weighted by the papers
 
 | # | Note | Share of the biology half |
 |---|------|---------------------------|
+| 01 | [Cells, organelles, membranes and transport](pages/biology-01-cells.html) | 5.5 % |
+| 02 | [The cell cycle, mitosis, meiosis and cancer](pages/biology-02-cell-cycle.html) | 6.5 % |
+| 03 | [Classical and chromosomal genetics](pages/biology-03-genetics.html) | 6.0 % |
+| 04 | [Molecular genetics and gene expression](pages/biology-04-molecular-genetics.html) | 9.0 % |
+| 05 | [Evolution and population genetics](pages/biology-05-evolution.html) | 4.5 % |
+| 06 | [Biodiversity, phylogeny and classification](pages/biology-06-diversity.html) | 5.5 % |
 | 07 | [Prokaryotes, viruses, protists and fungi](pages/biology-07-microbes.html) | 8.0 % — exactly 4 questions every year |
 | 08 | [Plant structure, transport and nutrition](pages/biology-08-plant-structure.html) | ≈7.5 % |
-| 09 | [Photosynthesis, plant reproduction and plant responses](pages/biology-09-plant-function.html) | ≈7.5 % |
+| 09 | [Photosynthesis, plant reproduction and responses](pages/biology-09-plant-function.html) | ≈7.5 % |
+| 10 | [Animal physiology I — circulation, gas exchange, digestion, osmoregulation](pages/biology-10-animal-physiology-1.html) | ≈7.5 % |
+| 11 | [Animal physiology II — nerve, muscle, endocrine](pages/biology-11-animal-physiology-2.html) | ≈7.5 % |
+| 12 | [Immunology](pages/biology-12-immunology.html) | 3.5 % |
+| 13 | [Animal reproduction and development](pages/biology-13-development.html) | 3.0 % |
+| 14 | [Ecology and animal behaviour](pages/biology-14-ecology.html) | 4.5 % |
 
-Remaining (01–06, 10–14): cells and transport, the cell cycle, classical genetics, molecular genetics,
-evolution, biodiversity, animal physiology I and II, immunology, development, ecology. The biology half
-is **not** molecular-dominated — plants and animal physiology carry 15 % each, and skipping plants,
-diversity and ecology costs roughly 40 % of the block.
+The biology half is **not** molecular-dominated — plants and animal physiology carry 15 % each, and
+molecular genetics only 9 %. Skipping plants, diversity and ecology costs roughly 40 % of the block,
+which is why plants get two full notes.
 
 ## Running it locally
 
