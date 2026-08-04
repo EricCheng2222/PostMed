@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biochem 07 · Lipid Metabolism, Cholesterol and Lipoproteins — PostMed Notebook</title>
+<meta name="description" content="Biochemistry note 07: the carnitine shuttle, β-oxidation and its ATP arithmetic, odd and unsaturated chains, ketone bodies, fatty-acid and cholesterol synthesis, statins, lipoproteins and eicosanoids.">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+/* ===== Page-specific: fatty-acid oxidation yield calculator ===== */
+.lp-calc { display:grid; gap:1.1rem; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+           align-items:start; }
+@media (max-width:46rem){ .lp-calc { grid-template-columns:1fr; } }
+.lp-calc label { display:flex; justify-content:space-between; align-items:baseline; gap:.5rem;
+                 font-size:.85rem; font-weight:600; margin:.2rem 0 .2rem; }
+.lp-calc label output { font-family:var(--mono); font-weight:700; color:var(--accent); font-size:.88rem; }
+.lp-calc input[type=range] { width:100%; accent-color:var(--accent); margin:0 0 .8rem; }
+.lp-calc__name { font-size:.82rem; color:var(--ink-faint); margin:.1rem 0 .9rem; min-height:2.4em; }
+.lp-calc__name b { color:var(--ink-soft); font-weight:600; }
+.lp-calc__val { font-family:var(--mono); font-size:2.5rem; font-weight:700; line-height:1;
+                color:var(--accent); margin:0 0 .15rem; }
+.lp-calc__val small { font-size:.95rem; color:var(--ink-faint); font-weight:400; font-family:var(--sans); }
+.lp-terms { display:grid; gap:.22rem; margin:.9rem 0 0; font-size:.8rem; }
+.lp-terms div { display:flex; gap:.5rem; align-items:baseline; justify-content:space-between;
+                border-bottom:1px dotted var(--line); padding-bottom:.16rem; }
+.lp-terms div span:first-child { color:var(--ink-soft); }
+.lp-terms div span:last-child { color:var(--ink); white-space:nowrap; font-family:var(--mono); font-size:.94em; }
+.lp-terms div.lp-terms--sum { border-bottom:0; border-top:1.5px solid var(--line); padding-top:.3rem;
+                              margin-top:.15rem; font-weight:700; }
+.lp-terms div.lp-terms--sum span:first-child { font-weight:700; color:var(--ink); }
+.lp-note { font-size:.8rem; color:var(--ink-faint); margin:.75rem 0 0; line-height:1.6; }
+
+/* Small reusable helpers ------------------------------------------------- */
+.lp-steps { display:grid; gap:.15rem; margin:.8rem 0; overflow-x:auto; }
+.lp-steps div { display:flex; gap:.6rem; align-items:baseline; font-size:.87rem; white-space:nowrap; }
+.lp-steps div > b { flex:none; width:11rem; font-size:.71rem; font-weight:700; color:var(--ink-faint);
+                    text-transform:uppercase; letter-spacing:.05em; white-space:normal; line-height:1.3; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biochemistry.html">Biochemistry</a>
+      <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Note 07</p>
+  <h1>Lipid Metabolism, Cholesterol and Lipoproteins</h1>
+  <p class="lede">
+    A fatty acid is a long row of <span class="fi">–CH<sub>2</sub>–</span> groups, and almost everything here
+    follows from that. Because those carbons are nearly fully reduced, burning them releases more energy per
+    carbon than anything else the body stores; because they are nearly featureless, the cell can only take them
+    apart — and only build them — two carbons at a time. That gives a spiral rather than a linear pathway, an ATP
+    yield that is a formula rather than a number, an acetyl-CoA that can never become glucose again, and a
+    molecule so insoluble that transporting it needs a protein-coated particle. The same two-carbon units also
+    become cholesterol, membrane lipids and every prostaglandin you will ever prescribe against.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Interactive ATP-yield calculator</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~55 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Getting fatty acids out and switched on</a></li>
+      <li><a href="#s2">The carnitine shuttle and the malonyl-CoA brake</a></li>
+      <li><a href="#s3">β-Oxidation: one spiral, four reactions</a></li>
+      <li><a href="#s4">The ATP arithmetic, as a method</a></li>
+      <li><a href="#s5">Awkward chains: unsaturated, odd, very long, branched</a></li>
+      <li><a href="#s6">Ketone bodies</a></li>
+      <li><a href="#s7">Building fatty acids: the committed step</a></li>
+      <li><a href="#s8">Complex lipids and the sphingolipidoses</a></li>
+      <li><a href="#s9">Cholesterol, HMG-CoA reductase and the statins</a></li>
+      <li><a href="#s10">Lipoproteins and where the traffic fails</a></li>
+      <li><a href="#s11">Eicosanoids: the COX and LOX branches</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§ 02</b> and <b>§ 03</b>. One membrane step decides whether a fatty acid
+        is burned at all (the carnitine shuttle), and one four-reaction spiral does all the burning. Then
+        <b>§ 07</b>, because the single regulator of that membrane step, malonyl-CoA, is the product of the
+        committed enzyme of the <em>opposite</em> pathway. That one molecule is the hinge the whole note turns
+        on: understand why malonyl-CoA closes CPT-1 and you can derive fed-versus-fasted lipid metabolism from
+        scratch instead of memorising it.</li>
+      <li><b>Then be able to do</b> — <b>§ 04</b>: count rounds, acetyl-CoA, FADH<sub>2</sub> and NADH for
+        <em>any</em> chain you are handed and turn them into ATP, including the activation cost. Do it until it
+        is a procedure, not a recalled number. <b>§ 05</b>: adjust that count for a double bond and for an odd
+        chain, and name the cofactor at each awkward step (B<sub>12</sub>, biotin). <b>§ 07</b>: write the
+        stoichiometry of palmitate synthesis and say which carrier, cofactor and stereochemistry differ from
+        oxidation. <b>§ 09–§ 10</b>: explain a statin and read a lipid panel mechanistically.</li>
+      <li><b>Leave for a second pass</b> — the sphingolipidosis table in <b>§ 08</b> is pure recall and keeps
+        until the pathways are secure; the peroxisomal disorders in <b>§ 05</b> and the individual
+        hyperlipoproteinaemias in <b>§ 10</b> are the same. Everything folded behind a "Go deeper" line is
+        second-pass material by construction. <b>§ 11</b> is short and self-contained — read it whenever you
+        like, but nothing else on the page depends on it.</li>
+    </ol>
+  </div>
+
+  <details class="disc disc--sheet">
+    <summary>Quick sheet<span class="disc__count">28 entries</span></summary>
+    <div class="disc__body">
+      <div class="fsheet__grid">
+        <div class="fsheet__item"><b>Activation</b><code>FA + CoA + ATP → acyl-CoA + AMP + PP<sub>i</sub> (2 ~P)</code></div>
+        <div class="fsheet__item"><b>Rate-limiting entry</b><code>CPT-1, inhibited by malonyl-CoA</code></div>
+        <div class="fsheet__item"><b>Spiral, one turn</b><code>oxidise → hydrate → oxidise → thiolyse</code></div>
+        <div class="fsheet__item"><b>Yield per turn</b><code>1 FADH₂ + 1 NADH + 1 acetyl-CoA</code></div>
+        <div class="fsheet__item"><b>Rounds, even chain C<sub>n</sub></b><code>n/2 − 1</code></div>
+        <div class="fsheet__item"><b>Acetyl-CoA, even chain</b><code>n/2</code></div>
+        <div class="fsheet__item"><b>P/O values (Lehninger 8e)</b><code>NADH 2.5 · FADH₂ 1.5 · acetyl-CoA 10</code></div>
+        <div class="fsheet__item"><b>Net ATP, saturated even C<sub>n</sub></b><code>7n − 6</code></div>
+        <div class="fsheet__item"><b>Palmitate (C16)</b><code>7(16) − 6 = 106 ATP</code></div>
+        <div class="fsheet__item"><b>Each double bond</b><code>−1.5 (odd-numbered) or −2.5 (even)</code></div>
+        <div class="fsheet__item"><b>Odd chain ends as</b><code>acetyl-CoA + propionyl-CoA</code></div>
+        <div class="fsheet__item"><b>Propionyl-CoA route</b><code>biotin → epimerase → B₁₂ → succinyl-CoA</code></div>
+        <div class="fsheet__item"><b>Ketogenesis</b><code>2 AcCoA → AcAc-CoA → HMG-CoA → acetoacetate</code></div>
+        <div class="fsheet__item"><b>Ketone bodies</b><code>acetoacetate · D-β-hydroxybutyrate · acetone</code></div>
+        <div class="fsheet__item"><b>Liver cannot use them</b><code>no SCOT (OXCT1)</code></div>
+        <div class="fsheet__item"><b>Committed step of synthesis</b><code>ACC: acetyl-CoA → malonyl-CoA</code></div>
+        <div class="fsheet__item"><b>Palmitate synthesis</b><code>8 AcCoA + 7 ATP + 14 NADPH</code></div>
+        <div class="fsheet__item"><b>Carrier &amp; cofactor</b><code>ox: CoA, FAD/NAD⁺ · syn: ACP, NADPH</code></div>
+        <div class="fsheet__item"><b>Stereochemistry</b><code>ox: L-3-hydroxy · syn: D-3-hydroxy</code></div>
+        <div class="fsheet__item"><b>Acetyl-CoA export</b><code>citrate shuttle → ATP-citrate lyase</code></div>
+        <div class="fsheet__item"><b>Essential fatty acids</b><code>linoleate 18:2 ω-6 · α-linolenate 18:3 ω-3</code></div>
+        <div class="fsheet__item"><b>Desaturase limit</b><code>nothing beyond Δ9 in mammals</code></div>
+        <div class="fsheet__item"><b>Cholesterol</b><code>18 acetyl-CoA → C27; ring never broken</code></div>
+        <div class="fsheet__item"><b>Committed step</b><code>HMG-CoA reductase (2 NADPH), ER membrane</code></div>
+        <div class="fsheet__item"><b>Statin mechanism</b><code>↓ hepatic sterol → SREBP-2 → ↑ LDL receptor</code></div>
+        <div class="fsheet__item"><b>Only exit route</b><code>bile acids; CYP7A1 rate-limiting</code></div>
+        <div class="fsheet__item"><b>Friedewald</b><code>LDL = TC − HDL − TG/5 (mg/dL)</code></div>
+        <div class="fsheet__item"><b>Aspirin</b><code>acetylates COX-1 Ser530 — irreversible</code></div>
+      </div>
+    </div>
+  </details>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Getting fatty acids out and switched on</h2>
+
+  <p class="idea"><b>The idea</b>Fat sits as a dense greasy droplet inside a fat cell, and it has to be cut up, floated through watery blood
+     and handed to a muscle before any of it can be burned. Three problems, in that order: dismantle the stored
+     molecule, carry the greasy pieces through water, then tag each piece so the cell that received it cannot let
+     it drift out again. The tagging step costs energy, and it is why a fatty acid is committed the moment it
+     enters a cell.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key reaction</p>
+    <dl class="def">
+      <dt>Lipolysis（脂解作用）</dt>
+      <dd>Hydrolysis of stored triacylglycerol into three free fatty acids and glycerol, carried out inside the
+          adipocyte by three lipases acting in sequence on the surface of the lipid droplet.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">fatty acid + CoA-SH + ATP → acyl-CoA + AMP + PP<sub>i</sub></span>
+      <span class="fx__tag">activation: one ATP molecule but <strong>two</strong> high-energy phosphate bonds</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Free fatty acid (FFA / NEFA)</dt>
+          <dd>A fatty acid not esterified to glycerol. Long-chain FFAs are essentially insoluble in water, so
+              plasma FFA travels non-covalently bound to <strong>serum albumin</strong> — about seven binding
+              sites per molecule, of which only one or two are occupied at rest and three or more during active
+              lipolysis. Turnover is fast: the plasma half-life is 1–2 minutes.</dd>
+          <dt>Acyl-CoA synthetase (fatty acid–CoA ligase, ACSL)</dt>
+          <dd>Sits on the <strong>outer mitochondrial membrane</strong> and on the ER. Forms a thioester between
+              the fatty acid carboxyl and the thiol of coenzyme A, through an acyl-adenylate intermediate — so
+              ATP is cleaved to AMP + PP<sub>i</sub>, and inorganic pyrophosphatase then hydrolyses the
+              PP<sub>i</sub>. Charge acyl-CoA formation at <strong>2 ATP equivalents</strong>, never 1.</dd>
+          <dt>Perilipin-1</dt>
+          <dd>The coat protein of the adipocyte lipid droplet. Unphosphorylated it is a barrier and it sequesters
+              the ATGL coactivator CGI-58; phosphorylated by PKA it releases CGI-58 and admits the lipases. It is
+              the gate, not an enzyme.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">TAG →[ATGL] DAG →[HSL] MAG →[MGL] glycerol + 3 FFA</span><span class="fx__tag">three lipases, one droplet, one hormone-controlled coat</span></div>
+          <div class="fx"><span class="fx__eq">glucagon / adrenaline → G<sub>s</sub> → cAMP ↑ → PKA → lipolysis ON</span><span class="fx__tag">insulin → PDE3B → cAMP ↓ → lipolysis OFF</span></div>
+          <div class="fx"><span class="fx__eq">ΔG°′ (thioester hydrolysis) ≈ −31 kJ·mol⁻¹</span><span class="fx__tag">an acyl-CoA is an <em>activated</em> acyl group, exactly like acetyl-CoA</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>TAG</b><span>triacylglycerol（三酸甘油酯）</span></div>
+          <div><b>DAG / MAG</b><span>di- and mono-acylglycerol</span></div>
+          <div><b>ATGL</b><span>adipose triglyceride lipase (PNPLA2)</span></div>
+          <div><b>HSL</b><span>hormone-sensitive lipase; acts mainly on DAG</span></div>
+          <div><b>FFA</b><span>free fatty acid; plasma 0.2–2.0 mmol·L⁻¹</span></div>
+          <div><b>~P</b><span>high-energy phosphate bond, ≈ 30.5 kJ·mol⁻¹</span></div>
+          <div><b>CoA-SH</b><span>coenzyme A; its thiol arm comes from pantothenate (B5)</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change at pH 7, in kJ·mol⁻¹</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Note 01 § 08 and § 09 already dealt with what a triacylglycerol <em>is</em>, why it packs into an anhydrous
+     droplet while glycogen drags roughly three grams of water per gram of sugar, and how chain saturation sets
+     melting point. That structural material is not repeated here. This note starts one step later, at the moment
+     the droplet has to be taken apart.</p>
+
+  <h3>Three lipases, one gate</h3>
+  <p>The classical name <em>hormone-sensitive lipase</em> is a historical accident. The enzyme that makes the
+     first cut — triacylglycerol to diacylglycerol — is <strong>adipose triglyceride lipase (ATGL)</strong>, and
+     it sets the basal rate; HSL then works mostly on diacylglycerol, and monoacylglycerol lipase finishes.
+     What hormones actually control is less the lipases than the <strong>coat</strong>. PKA phosphorylates
+     perilipin-1, which both opens the droplet surface to HSL and releases the ATGL coactivator CGI-58. One
+     phosphorylation therefore switches on two enzymes at once, which is why lipolysis can rise more than tenfold
+     within minutes of an adrenaline surge.</p>
+  <p>Insulin turns it off by a route worth remembering, because caffeine exploits the same route in the opposite
+     direction: insulin activates <strong>phosphodiesterase 3B</strong>, which destroys cAMP, while
+     methylxanthines such as caffeine and theophylline inhibit phosphodiesterases so cAMP survives longer.
+     Neither hormone touches the lipase itself — what changes is the lifetime of the second messenger.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Glycerol has exactly one destination, and it is not the fat cell</p>
+    <p style="margin:0">Adipose tissue lacks <strong>glycerol kinase</strong>. Glycerol released by lipolysis
+      cannot be re-used locally; it leaves in the blood and is phosphorylated in <em>liver</em> (and kidney),
+      entering gluconeogenesis or glycolysis as dihydroxyacetone phosphate. Two consequences, both examined.
+      Plasma glycerol is therefore a clean marker of whole-body lipolysis. And to re-esterify fatty acids the
+      adipocyte must build glycerol-3-phosphate from <strong>glucose</strong> via DHAP — so fat storage is
+      chemically dependent on carbohydrate uptake. That is why insulin is the storage signal, and why an
+      adipocyte cut off from glucose cannot store fat even when fatty acids are abundant.</p>
+  </div>
+
+  <h3>Dietary fat, in one paragraph</h3>
+  <p>Bile salts emulsify dietary triacylglycerol; <strong>pancreatic lipase</strong>, held on the droplet surface
+     by <strong>colipase</strong>, hydrolyses positions 1 and 3 to give 2-monoacylglycerol plus two free fatty
+     acids; mixed micelles ferry those to the enterocyte brush border. Inside the enterocyte they are
+     re-esterified and packaged — with apoB-48, and with the help of microsomal triglyceride transfer protein —
+     into a <strong>chylomicron</strong>, which leaves by lymph rather than by the portal vein because the
+     particle is far too large to cross a capillary endothelium. Short- and medium-chain fatty acids skip all of
+     this: they are water-soluble enough to enter portal blood directly, bound to albumin. That single exception
+     is the entire basis of MCT feeds, which return in § 02 and § 05. Orlistat, incidentally, acts at the very
+     first step — inhibit pancreatic lipase and the triacylglycerol is never hydrolysed, so it passes through
+     unabsorbed.</p>
+
+  <h3>Why activation costs two, not one</h3>
+  <p>Acyl-CoA synthetase does not use ATP the way a kinase does. It attacks the <strong>α</strong>-phosphate,
+     displacing pyrophosphate and forming a fatty acyl–AMP intermediate; CoA-SH then displaces AMP. The products
+     are therefore <strong>AMP + PP<sub>i</sub></strong>: two phosphoanhydride bonds spent. That is exactly what
+     the "2 ATP equivalents" means — AMP has to be rephosphorylated twice to become ATP again, first by adenylate
+     kinase (ATP + AMP → 2 ADP) and then by oxidative phosphorylation. It is two, not three: the adenylate kinase
+     step <em>is</em> the second equivalent, not an extra one on top. Inorganic pyrophosphatase then
+     hydrolyses the PP<sub>i</sub>, and that strongly exergonic mop-up is what makes activation effectively
+     irreversible — the same pull-it-forward trick used by every polymerase in note 05 and by every
+     aminoacyl-tRNA synthetase.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Where the mark is actually lost</p>
+    <p style="margin:0">Every fatty-acid ATP question turns on two things: activation costs
+      <strong>2 ATP equivalents</strong>, and it is charged <strong>once per molecule</strong>, not once per turn
+      of the spiral. An option offering <span class="fi">108</span> for palmitate belongs to someone who forgot
+      the activation entirely; an option offering <span class="fi">94</span> belongs to someone who charged it
+      seven times. Both appear on real papers, because both are what a hurried candidate produces under time
+      pressure.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The carnitine shuttle and the malonyl-CoA brake</h2>
+
+  <p class="idea"><b>The idea</b>The machinery that burns fat sits inside the mitochondrion, but an activated fatty acid cannot cross the
+     inner membrane — the very tag that switched it on is what blocks it. So the cell swaps that tag for a
+     smaller one, carries the molecule across on a dedicated ferry, and swaps it back on the far side. Because
+     the swap is the only way in, whoever controls the swap controls fat burning completely. And the control
+     signal the cell chose is a molecule made by the pathway that <em>builds</em> fat, so the two can never run
+     fast at the same time.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; controlling step</p>
+    <dl class="def">
+      <dt>Carnitine shuttle（肉鹼穿梭）</dt>
+      <dd>The three-protein system that carries long-chain (C14–C20) acyl groups from cytosolic acyl-CoA into
+          the mitochondrial matrix as acylcarnitine esters, regenerating matrix acyl-CoA at the far end.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">acyl-CoA + carnitine ⇌[CPT-1] acylcarnitine + CoA-SH</span>
+      <span class="fx__tag"><strong>rate-limiting step</strong> of fatty-acid oxidation; inhibited by malonyl-CoA</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>CPT-1 (carnitine palmitoyltransferase I)</dt>
+          <dd>Outer mitochondrial membrane, active site facing the cytosol. Three isoforms: CPT-1A (liver),
+              CPT-1B (muscle and heart), CPT-1C (brain). The muscle isoform is far more sensitive to
+              malonyl-CoA than the liver isoform — by roughly two orders of magnitude — which is why muscle
+              fatty-acid oxidation shuts down so sharply after a carbohydrate meal.</dd>
+          <dt>CACT (carnitine–acylcarnitine translocase, SLC25A20)</dt>
+          <dd>An inner-membrane antiporter: one acylcarnitine in, one free carnitine out, strictly one-for-one,
+              so the matrix carnitine pool is conserved.</dd>
+          <dt>CPT-2</dt>
+          <dd>Inner membrane, active site facing the matrix. Runs the reverse transesterification —
+              acylcarnitine + CoA-SH → acyl-CoA + carnitine.</dd>
+          <dt>Carnitine</dt>
+          <dd>β-Hydroxy-γ-trimethylaminobutyrate. Synthesised in liver and kidney from a protein-bound
+              <strong>lysine</strong> residue trimethylated by <strong>S-adenosylmethionine</strong>, with
+              vitamin C required by two of the hydroxylases; also obtained readily from meat and dairy.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">C4–C12 fatty acids diffuse into the matrix and are activated <em>there</em></span><span class="fx__tag">no shuttle needed — the entire rationale for MCT feeds</span></div>
+          <div class="fx"><span class="fx__eq">malonyl-CoA —| CPT-1</span><span class="fx__tag">the product of the committed step of synthesis (§ 07) closes the door on oxidation</span></div>
+          <div class="fx"><span class="fx__eq">net: acyl-CoA(cyt) + carnitine(mito) → acyl-CoA(mito) + carnitine(cyt)</span><span class="fx__tag">no ATP is consumed — it is an exchange, not a pump</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>CPT-1 / CPT-2</b><span>carnitine palmitoyltransferase I and II</span></div>
+          <div><b>CACT</b><span>carnitine–acylcarnitine translocase</span></div>
+          <div><b>IMS</b><span>intermembrane space</span></div>
+          <div><b>MCT</b><span>medium-chain triglyceride, C6–C12</span></div>
+          <div><b>[carnitine]</b><span>plasma ≈ 40–60 µmol·L⁻¹</span></div>
+          <div><b>[malonyl-CoA]</b><span>hepatic ≈ 1–10 µmol·L⁻¹; falls sharply on fasting</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 430" role="img" aria-label="Diagram of the carnitine shuttle. In the cytosol a long-chain fatty acid is converted by acyl-CoA synthetase, using ATP to AMP plus pyrophosphate, into acyl-CoA. Carnitine palmitoyltransferase 1 in the outer mitochondrial membrane exchanges coenzyme A for carnitine to give acylcarnitine, and malonyl-CoA inhibits this step. Carnitine-acylcarnitine translocase in the inner membrane exchanges one acylcarnitine inward for one free carnitine outward. Carnitine palmitoyltransferase 2 on the matrix face regenerates acyl-CoA, which enters beta-oxidation. A separate dashed arrow on the left shows short and medium chain fatty acids crossing both membranes directly and being activated inside the matrix." style="font-family:var(--sans)">
+      <text x="16" y="26" font-size="12" font-weight="700" fill="var(--ink-faint)" letter-spacing="1.2">CYTOSOL</text>
+
+      <rect x="0" y="118" width="760" height="26" fill="var(--accent-wash)" stroke="var(--line)" stroke-width="1"/>
+      <text x="16" y="136" font-size="10.5" font-weight="700" fill="var(--ink-soft)">OUTER MEMBRANE</text>
+      <rect x="0" y="212" width="760" height="26" fill="var(--accent-wash)" stroke="var(--line)" stroke-width="1"/>
+      <text x="16" y="230" font-size="10.5" font-weight="700" fill="var(--ink-soft)">INNER MEMBRANE</text>
+      <text x="16" y="182" font-size="10" font-weight="700" fill="var(--ink-faint)" letter-spacing="1">INTERMEMBRANE SPACE</text>
+      <text x="16" y="268" font-size="12" font-weight="700" fill="var(--ink-faint)" letter-spacing="1.2">MATRIX</text>
+
+      <rect x="150" y="34" width="132" height="42" rx="8" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <text x="216" y="53" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">fatty acid</text>
+      <text x="216" y="68" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">C14–C20, albumin-bound</text>
+
+      <line x1="284" y1="55" x2="344" y2="55" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="350,55 340,50 340,60" fill="var(--ink-soft)"/>
+      <text x="316" y="42" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-2)">ACSL</text>
+      <text x="316" y="72" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">ATP → AMP + PP</text>
+
+      <rect x="352" y="34" width="106" height="42" rx="8" fill="var(--card)" stroke="var(--accent)" stroke-width="1.8"/>
+      <text x="405" y="61" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">acyl-CoA</text>
+
+      <rect x="588" y="26" width="156" height="54" rx="8" fill="var(--card)" stroke="var(--bad)" stroke-width="1.8"/>
+      <text x="666" y="47" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--bad)">malonyl-CoA</text>
+      <text x="666" y="64" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">made by ACC when fed</text>
+      <path d="M 600,80 L 492,120" stroke="var(--bad)" stroke-width="2.2" fill="none"/>
+      <line x1="488" y1="109" x2="496" y2="131" stroke="var(--bad)" stroke-width="3.4"/>
+
+      <line x1="405" y1="76" x2="405" y2="112" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="405,118 400,108 410,108" fill="var(--ink-soft)"/>
+
+      <rect x="330" y="112" width="150" height="38" rx="6" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.5"/>
+      <text x="405" y="137" text-anchor="middle" font-size="13" font-weight="700" fill="var(--on-accent)">CPT-1</text>
+      <text x="510" y="128" font-size="10" fill="var(--ink-soft)">carnitine in</text>
+      <text x="510" y="143" font-size="10" fill="var(--ink-soft)">CoA-SH out</text>
+
+      <line x1="405" y1="150" x2="405" y2="166" stroke="var(--ink-soft)" stroke-width="2"/>
+      <rect x="316" y="164" width="178" height="34" rx="7" fill="var(--card)" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <text x="405" y="187" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-2)">acylcarnitine</text>
+
+      <line x1="405" y1="198" x2="405" y2="208" stroke="var(--ink-soft)" stroke-width="2"/>
+      <rect x="330" y="206" width="150" height="38" rx="6" fill="var(--accent-3)" stroke="var(--accent-3)" stroke-width="1.5"/>
+      <text x="405" y="231" text-anchor="middle" font-size="13" font-weight="700" fill="var(--on-accent)">CACT</text>
+      <text x="500" y="222" font-size="10" fill="var(--ink-soft)">1 acylcarnitine in</text>
+      <text x="500" y="237" font-size="10" fill="var(--ink-soft)">1 carnitine out</text>
+
+      <line x1="405" y1="244" x2="405" y2="266" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="405,272 400,262 410,262" fill="var(--ink-soft)"/>
+      <rect x="330" y="272" width="150" height="36" rx="6" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.5"/>
+      <text x="405" y="296" text-anchor="middle" font-size="13" font-weight="700" fill="var(--on-accent)">CPT-2</text>
+      <text x="500" y="288" font-size="10" fill="var(--ink-soft)">CoA-SH in</text>
+      <text x="500" y="303" font-size="10" fill="var(--ink-soft)">carnitine out → CACT</text>
+
+      <line x1="405" y1="308" x2="405" y2="336" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="405,342 400,332 410,332" fill="var(--ink-soft)"/>
+      <rect x="310" y="340" width="190" height="38" rx="8" fill="var(--card)" stroke="var(--accent)" stroke-width="1.8"/>
+      <text x="405" y="364" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">acyl-CoA → β-oxidation</text>
+
+      <path d="M 92,58 L 92,348" stroke="var(--hydrophobic)" stroke-width="2.2" stroke-dasharray="7 5" fill="none"/>
+      <polygon points="92,356 87,344 97,344" fill="var(--hydrophobic)"/>
+      <text x="104" y="300" font-size="10.5" font-weight="700" fill="var(--hydrophobic)">C4–C12</text>
+      <text x="104" y="316" font-size="10" fill="var(--ink-soft)">cross freely and are</text>
+      <text x="104" y="330" font-size="10" fill="var(--ink-soft)">activated inside —</text>
+      <text x="104" y="344" font-size="10" fill="var(--ink-soft)">no shuttle at all</text>
+
+      <text x="744" y="412" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">carnitine is recycled, never consumed</text>
+    </svg>
+    <figcaption>The shuttle is an exchange, not a pump: no ATP is spent moving the acyl group in, and carnitine
+      is conserved. Everything examinable is on two features — malonyl-CoA closing CPT-1, and the dashed bypass
+      that medium-chain fatty acids take.</figcaption>
+  </figure>
+
+  <h3>Why the door is where it is</h3>
+  <p>Putting the control point at the membrane rather than inside the spiral is a design decision, and it is
+     worth seeing why it is the right one. β-Oxidation is a <em>spiral</em>: the product of each turn is the
+     substrate of the next. Regulate an enzyme inside the spiral and you regulate every turn simultaneously,
+     accumulating half-processed intermediates. Regulate entry and the matrix either receives substrate or does
+     not, and the spiral itself can be left to run flat out whenever it has something to run on. Commit early,
+     commit once — the same logic as any committed step in a branched pathway.</p>
+  <p>The signal chosen is beautifully economical. <strong>Malonyl-CoA</strong> is the product of acetyl-CoA
+     carboxylase, the committed enzyme of fatty-acid <em>synthesis</em> (§ 07). Its concentration is high
+     precisely when the cell is building fat and low precisely when it is not. So one metabolite guarantees that
+     synthesis and oxidation are never simultaneously fast, and the cell never wastes the round trip — building
+     palmitate for 42 ATP equivalents and burning it back for 106 in the same minute. Muscle makes the point
+     even more sharply: it carries the isoform ACC2, whose malonyl-CoA has essentially <em>no</em> synthetic
+     fate, since muscle has almost no fatty-acid synthase. That malonyl-CoA exists only to speak to CPT-1.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two shuttles, opposite directions — never fuse them</p>
+    <p style="margin:0">The <strong>carnitine</strong> shuttle carries acyl groups <em>into</em> the matrix so
+      they can be oxidised. The <strong>citrate</strong> shuttle (§ 07) carries acetyl groups <em>out</em> of the
+      matrix so they can be built into fat. Different cargo, opposite direction, opposite purpose. A stem that
+      says "acetyl-CoA is carried into the mitochondrion by carnitine" is testing exactly this, and it is wrong
+      twice over.</p>
+  </div>
+
+  <h3>What happens when the shuttle fails</h3>
+  <p>Every defect in this pathway produces the same physiological signature, and once you can derive it you never
+     need to memorise a single one of these diseases. Block fatty-acid oxidation and, during a fast, three things
+     happen at once. Ketone bodies cannot be made, because they are made from the acetyl-CoA that β-oxidation
+     supplies. Gluconeogenesis stalls, because it needs the ATP and NADH that β-oxidation supplies and because
+     pyruvate carboxylase requires acetyl-CoA as an allosteric activator. And tissues that normally live on fat —
+     heart, skeletal muscle — fall back on glucose, consuming it faster. The result is
+     <strong>hypoketotic hypoglycaemia</strong>: a low blood glucose with inappropriately <em>low</em> ketones.
+     A hypoglycaemic child with high ketones has some other problem; a hypoglycaemic child with no ketones has a
+     fatty-acid oxidation defect until proved otherwise.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Disorders of the carnitine shuttle and of fatty-acid oxidation</caption>
+      <thead><tr><th>Disorder</th><th>Defect</th><th>Distinguishing features</th><th>Acylcarnitine profile</th></tr></thead>
+      <tbody>
+        <tr><td>Primary carnitine deficiency</td><td>OCTN2 carnitine transporter (SLC22A5)</td><td>Cardiomyopathy, weakness, hypoketotic hypoglycaemia; <strong>responds to oral carnitine</strong></td><td class="num">All species low; free carnitine very low</td></tr>
+        <tr><td>CPT-1 deficiency (hepatic)</td><td>CPT-1A</td><td>Fasting hypoketotic hypoglycaemia and hepatomegaly; no myopathy</td><td class="num">Free carnitine <strong>high</strong>, long-chain esters low</td></tr>
+        <tr><td>CACT deficiency</td><td>SLC25A20</td><td>Severe neonatal presentation — arrhythmia, coma, hyperammonaemia</td><td class="num">Long-chain esters high</td></tr>
+        <tr><td>CPT-2 deficiency (adult, myopathic)</td><td>CPT-2</td><td>Exercise- or fasting-induced myalgia with <strong>rhabdomyolysis and myoglobinuria</strong>; normal between attacks</td><td class="num">C16 and C18 esters high</td></tr>
+        <tr><td>MCAD deficiency</td><td>Medium-chain acyl-CoA dehydrogenase</td><td>Commonest FAO defect (≈ 1 : 15 000). Presents at 3 months–2 years after a missed meal or an illness: vomiting, lethargy, seizure; can be fatal, and is classically mistaken for Reye syndrome</td><td class="num"><strong>C8</strong> (octanoyl)carnitine high; C6–C10 dicarboxylic aciduria</td></tr>
+        <tr><td>VLCAD / LCHAD / TFP deficiency</td><td>Very-long-chain dehydrogenase; mitochondrial trifunctional protein</td><td>Cardiomyopathy, myopathy, retinopathy. <strong>An LCHAD-deficient fetus can cause HELLP syndrome or acute fatty liver in the heterozygous mother</strong></td><td class="num">C14–C18 and 3-hydroxy esters high</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The therapy follows from the diagram</p>
+    <p style="margin:0">Because C6–C12 fatty acids bypass the shuttle entirely, <strong>MCT oil</strong> treats
+      any block <em>at or above</em> the shuttle — carnitine deficiency, CPT-1, CACT, CPT-2, VLCAD — and is
+      <strong>contraindicated in MCAD deficiency</strong>, where the block is downstream of entry and you would
+      be feeding substrate straight into the jam. The universal measure in all of them is simply
+      <em>do not fast</em>: frequent carbohydrate feeds, and intravenous glucose during any intercurrent illness.
+      Newborn screening by tandem mass spectrometry picks all of these up from the acylcarnitine pattern, which
+      is why the last column is the clinically operative one.</p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>β-Oxidation: one spiral, four reactions</h2>
+
+  <p class="idea"><b>The idea</b>To break a long, featureless hydrocarbon chain you first have to create a weak point in it. The cell does
+     this the same way twice: put a double bond in, add water across it, then oxidise the new alcohol to a
+     ketone. A carbon two places along from the business end is now a ketone, and a ketone next to a thioester is
+     easy to snip. Cut there, take two carbons off, and you are holding a chain exactly like the one you started
+     with — only shorter. So the pathway is not a line, it is a loop that feeds itself, and the chain spirals
+     down two carbons at a time.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the four reactions</p>
+    <dl class="def">
+      <dt>β-Oxidation（β-氧化）</dt>
+      <dd>The mitochondrial spiral that shortens a fatty acyl-CoA by two carbons per turn, oxidising the
+          <strong>β-carbon</strong> (C3) to a ketone before cleaving it off as acetyl-CoA. Each turn releases one
+          FADH<sub>2</sub>, one NADH and one acetyl-CoA.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">C<sub>n</sub>-acyl-CoA + FAD + NAD⁺ + H₂O + CoA-SH → C<sub>n−2</sub>-acyl-CoA + acetyl-CoA + FADH₂ + NADH + H⁺</span>
+      <span class="fx__tag">one turn of the spiral; repeat until only acetyl-CoA is left</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>1 · Acyl-CoA dehydrogenase (FAD)</dt>
+          <dd>Creates a <strong>trans-Δ²</strong> double bond. Four chain-length-specific isoforms — VLCAD (bound
+              to the inner membrane), LCAD, MCAD, SCAD. The FADH<sub>2</sub> does <em>not</em> hand its electrons
+              to complex I; it passes them to <strong>electron-transferring flavoprotein (ETF)</strong> and then
+              to ETF–ubiquinone oxidoreductase, entering the chain at coenzyme Q. That is exactly why it is worth
+              1.5 ATP and not 2.5.</dd>
+          <dt>2 · Enoyl-CoA hydratase</dt>
+          <dd>Adds water across the double bond, stereospecifically, giving <strong>L</strong>-3-hydroxyacyl-CoA.
+              Remember the L: fatty-acid synthesis makes the D isomer (§ 07).</dd>
+          <dt>3 · L-3-Hydroxyacyl-CoA dehydrogenase (NAD⁺)</dt>
+          <dd>Oxidises the new hydroxyl to a ketone, giving 3-ketoacyl-CoA and NADH.</dd>
+          <dt>4 · β-Ketothiolase (thiolase)</dt>
+          <dd>A second CoA-SH attacks the C3 carbonyl; the chain breaks between C2 and C3, releasing
+              <strong>acetyl-CoA</strong> and leaving an acyl-CoA two carbons shorter, already activated and
+              ready for the next turn. No further ATP is spent — this is why activation is a one-off cost.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">FADH₂ → ETF → ETF-QO → Q → complex III → …</span><span class="fx__tag">entry at Q, hence 1.5 ATP per FADH₂</span></div>
+          <div class="fx"><span class="fx__eq">steps 2, 3, 4 (long chains) = one trifunctional protein (HADHA/HADHB)</span><span class="fx__tag">why LCHAD and TFP deficiency overlap clinically</span></div>
+          <div class="fx"><span class="fx__eq">succinate → fumarate → malate → OAA</span><span class="fx__tag">identical chemistry: oxidise, hydrate, oxidise — recognise the motif</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>C<sub>n</sub></b><span>number of carbons in the acyl chain</span></div>
+          <div><b>Δ²</b><span>double bond between C2 and C3, counting from the thioester</span></div>
+          <div><b>α / β carbon</b><span>C2 and C3 — the pathway is named for the one it oxidises</span></div>
+          <div><b>ETF</b><span>electron-transferring flavoprotein</span></div>
+          <div><b>VLCAD…SCAD</b><span>very-long-, long-, medium-, short-chain acyl-CoA dehydrogenase</span></div>
+          <div><b>TFP</b><span>mitochondrial trifunctional protein</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 740 420" role="img" aria-label="One turn of the beta-oxidation spiral drawn as a cycle of four reactions. Starting from acyl-CoA with n carbons at the top left, acyl-CoA dehydrogenase using FAD produces trans-delta-2-enoyl-CoA at the top right and one FADH2. Enoyl-CoA hydratase adds water to give L-3-hydroxyacyl-CoA at the bottom right. L-3-hydroxyacyl-CoA dehydrogenase using NAD plus gives 3-ketoacyl-CoA at the bottom left and one NADH. Thiolase adds coenzyme A, releasing acetyl-CoA and returning an acyl-CoA two carbons shorter to the start of the cycle." style="font-family:var(--sans)">
+      <rect x="238" y="150" width="266" height="112" rx="12" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="371" y="188" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--accent)">ONE TURN</text>
+      <text x="371" y="210" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">chain loses 2 carbons</text>
+      <text x="371" y="230" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">1 FADH₂ · 1 NADH · 1 acetyl-CoA</text>
+      <text x="371" y="250" text-anchor="middle" font-size="11" fill="var(--ink-faint)">no ATP spent — activation was a one-off</text>
+
+      <rect x="52" y="34" width="182" height="46" rx="9" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="143" y="54" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">acyl-CoA (C<tspan font-size="10">n</tspan>)</text>
+      <text x="143" y="70" text-anchor="middle" font-size="10" fill="var(--ink-soft)">saturated, activated</text>
+
+      <line x1="234" y1="57" x2="500" y2="57" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="508,57 496,51 496,63" fill="var(--ink-soft)"/>
+      <text x="368" y="30" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">① acyl-CoA dehydrogenase</text>
+      <text x="368" y="76" text-anchor="middle" font-size="10.5" fill="var(--ok)">FAD → FADH₂  (worth 1.5 ATP, enters at Q)</text>
+
+      <rect x="510" y="34" width="196" height="46" rx="9" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2"/>
+      <text x="608" y="54" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-2)">trans-Δ²-enoyl-CoA</text>
+      <text x="608" y="70" text-anchor="middle" font-size="10" fill="var(--ink-soft)">a double bond has been created</text>
+
+      <line x1="608" y1="80" x2="608" y2="316" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="608,324 602,312 614,312" fill="var(--ink-soft)"/>
+      <text x="622" y="196" font-size="11.5" font-weight="700" fill="var(--ink)">② enoyl-CoA hydratase</text>
+      <text x="622" y="214" font-size="10.5" fill="var(--hbond)">+ H₂O, gives the L isomer</text>
+
+      <rect x="500" y="326" width="212" height="46" rx="9" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2"/>
+      <text x="606" y="346" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-3)">L-3-hydroxyacyl-CoA</text>
+      <text x="606" y="362" text-anchor="middle" font-size="10" fill="var(--ink-soft)">β-carbon now an alcohol</text>
+
+      <line x1="500" y1="349" x2="248" y2="349" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="240,349 252,343 252,355" fill="var(--ink-soft)"/>
+      <text x="374" y="396" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">③ L-3-hydroxyacyl-CoA dehydrogenase</text>
+      <text x="374" y="336" text-anchor="middle" font-size="10.5" fill="var(--ok)">NAD⁺ → NADH  (worth 2.5 ATP)</text>
+
+      <rect x="36" y="326" width="204" height="46" rx="9" fill="var(--card)" stroke="var(--bad)" stroke-width="2"/>
+      <text x="138" y="346" text-anchor="middle" font-size="12" font-weight="700" fill="var(--bad)">3-ketoacyl-CoA</text>
+      <text x="138" y="362" text-anchor="middle" font-size="10" fill="var(--ink-soft)">β-carbon is now a ketone</text>
+
+      <line x1="138" y1="326" x2="138" y2="88" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="138,80 132,92 144,92" fill="var(--ink-soft)"/>
+      <text x="20" y="196" font-size="11.5" font-weight="700" fill="var(--ink)">④ thiolase</text>
+      <text x="20" y="214" font-size="10.5" fill="var(--ink-soft)">+ CoA-SH</text>
+      <text x="20" y="240" font-size="11" font-weight="700" fill="var(--accent)">acetyl-CoA out</text>
+      <text x="20" y="256" font-size="10.5" fill="var(--ink-soft)">chain returns as C<tspan font-size="9">n−2</tspan></text>
+      <path d="M 138,238 L 96,238" stroke="var(--accent)" stroke-width="2" fill="none"/>
+      <polygon points="88,238 100,232 100,244" fill="var(--accent)"/>
+    </svg>
+    <figcaption>Oxidise, hydrate, oxidise, cleave. The first three reactions are the same chemistry as
+      succinate → fumarate → malate → oxaloacetate in the TCA cycle, which is a useful thing to notice: the cell
+      reuses a motif for converting a <span class="fi">–CH₂–CH₂–</span> into a ketone. The two carbons that leave
+      are always the ones that were nearest the CoA.</figcaption>
+  </figure>
+
+  <h3>Reading the chemistry rather than remembering it</h3>
+  <p>You can reconstruct the four steps from first principles if you ask what has to happen. A saturated chain is
+     inert — there is no electrophile to attack, so nothing can cleave it. The pathway therefore has to
+     <em>install</em> reactivity, and the cheapest way to make a carbon electrophilic is to give it a carbonyl.
+     Getting from <span class="fi">–CH₂–</span> to <span class="fi">–C=O</span> takes exactly three moves:
+     dehydrogenate to make an alkene, hydrate the alkene to an alcohol, oxidise the alcohol to a ketone. Now C3
+     is a ketone flanked by a thioester at C1, so C2 is doubly activated and a thiolate can attack C3 cleanly.
+     The result is a retro-Claisen cleavage, which is precisely the reverse of the condensation used to
+     <em>build</em> fatty acids in § 07 — a symmetry worth holding on to.</p>
+  <p>Two details are worth a moment because examiners use them as discriminators. First, the two oxidation steps
+     use <strong>different</strong> electron acceptors, and not arbitrarily: making a C=C from a C–C is worth
+     less free energy than making a C=O from a C–OH, so the first oxidation is coupled to the weaker acceptor
+     (FAD) and the second to NAD⁺. That is a general rule, not a fact about fatty acids —
+     succinate dehydrogenase uses FAD for the same reason. Second, the FADH<sub>2</sub> here never reaches
+     complex I; ETF delivers it to ubiquinone, which is why it buys 1.5 ATP. If a stem tells you that
+     β-oxidation's FADH<sub>2</sub> yields 2.5 ATP, that is the error being tested.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The spiral is aerobic, all the way down</p>
+    <p style="margin:0">Nothing in β-oxidation makes ATP directly — there is no substrate-level phosphorylation
+      anywhere in it. Every ATP comes from re-oxidising FADH<sub>2</sub> and NADH, and from burning the
+      acetyl-CoA in the TCA cycle, all of which need oxygen. So fatty acids are <strong>useless</strong> as a
+      fuel under anaerobic conditions, and useless to a cell with no mitochondria. Red blood cells cannot oxidise
+      fatty acids at all. That is also why fat cannot power a sprint: the pathway is high-yield but slow and
+      strictly aerobic, whereas glycolysis is low-yield, fast and works without oxygen.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · where β-oxidation is regulated once the substrate is inside</summary>
+    <div class="disc__body">
+      <p>CPT-1 governs entry, but the spiral itself is not entirely passive. Three feedback loops matter.</p>
+      <ul>
+        <li><strong>NADH/NAD⁺ ratio.</strong> Step 3 needs NAD⁺. If the respiratory chain is not consuming NADH —
+          hypoxia, or the enormous NADH load produced by ethanol oxidation — step 3 stalls and β-oxidation slows.
+          This is a large part of why alcohol causes hepatic steatosis: fatty acids arrive but cannot be burned,
+          so they are esterified and stored.</li>
+        <li><strong>Acetyl-CoA / CoA-SH ratio.</strong> Thiolysis needs free CoA-SH. When acetyl-CoA accumulates
+          because the TCA cycle is saturated — or because oxaloacetate has been drained into gluconeogenesis —
+          free CoA falls and the spiral backs up. In the liver the overflow is diverted into ketone bodies
+          (§ 06), which is the elegant solution to exactly this problem.</li>
+        <li><strong>Malonyl-CoA, continuously.</strong> Because CPT-1 is inhibited rather than switched, the flux
+          is graded: hepatic malonyl-CoA falls progressively over the first hours of a fast, and fatty-acid
+          oxidation rises progressively with it. Nothing here is a binary switch.</li>
+      </ul>
+      <p>Peroxisome-proliferator-activated receptor α (<strong>PPARα</strong>) sits above all of this as the
+        transcriptional layer: fasting and fibrate drugs activate it, and it induces CPT-1, the acyl-CoA
+        dehydrogenases, HMG-CoA synthase 2 and lipoprotein lipase together. One transcription factor, the whole
+        fat-burning programme — which is also why fibrates lower plasma triacylglycerol (§ 10).</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>The ATP arithmetic, as a method</h2>
+
+  <p class="idea"><b>The idea</b>Do not memorise that palmitate gives 106. Memorise how to get there, because the exam will hand you a
+     different chain and the memorised number will be useless. There are only four quantities to count — how
+     many times the loop runs, how many two-carbon pieces come off, and the two kinds of electron carrier the
+     loop produces — and one fixed charge for switching the molecule on at the start. Count those and the answer
+     falls out for any fatty acid at all.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Formula &amp; the counting rules</p>
+    <dl class="def">
+      <dt>The counting rules for a saturated, even-numbered chain of n carbons</dt>
+      <dd>Rounds of the spiral = <span class="fi">n/2 − 1</span>. Acetyl-CoA produced =
+          <span class="fi">n/2</span>. FADH<sub>2</sub> = NADH = number of rounds. Activation costs
+          <strong>2</strong> ATP equivalents, once. The last round produces <em>two</em> acetyl-CoA, which is why
+          rounds are one fewer than you first expect.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ATP<sub>net</sub> = (n/2 − 1)(1.5 + 2.5) + (n/2)(10) − 2 = <b>7n − 6</b></span>
+      <span class="fx__tag">saturated, even-numbered chain, Lehninger 8e P/O values, complete oxidation to CO₂ and H₂O</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Why 7n − 6 and not something you must look up</dt>
+          <dd>Expand it once and it stops being magic. Each round gives 1.5 + 2.5 = 4 ATP, so the rounds
+              contribute <span class="fi">4(n/2 − 1) = 2n − 4</span>. Each acetyl-CoA is worth 10 ATP in the TCA
+              cycle, contributing <span class="fi">10(n/2) = 5n</span>. Subtract the 2 for activation:
+              <span class="fi">2n − 4 + 5n − 2 = 7n − 6</span>. The formula is a derivation, not a fact.</dd>
+          <dt>The P/O convention matters</dt>
+          <dd>Lehninger 8th edition (and every recent paper) uses <strong>NADH = 2.5</strong>,
+              <strong>FADH<sub>2</sub> = 1.5</strong>, and hence <strong>acetyl-CoA = 10</strong> in the TCA
+              cycle. Older textbooks used 3, 2 and 12, which gives 129 for palmitate rather than 106. If a stem
+              states its convention, use the stem's; if not, use 2.5/1.5 and expect 106.</dd>
+          <dt>Where the acetyl-CoA's 10 comes from</dt>
+          <dd>One turn of the TCA cycle: 3 NADH (7.5) + 1 FADH<sub>2</sub> (1.5) + 1 GTP (1) = 10. This is
+              covered in note 06; here it is simply the exchange rate.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">rounds = <span class="mf" role="img" aria-label="n over 2"><span>n</span><span>2</span></span> − 1 &nbsp;·&nbsp; acetyl-CoA = <span class="mf" role="img" aria-label="n over 2"><span>n</span><span>2</span></span></span><span class="fx__tag">the two counts examiners most often see confused</span></div>
+          <div class="fx"><span class="fx__eq">gross ATP = 4 × rounds + 10 × acetyl-CoA</span><span class="fx__tag">before subtracting the activation cost</span></div>
+          <div class="fx"><span class="fx__eq">energy per carbon: fat <span class="mf" role="img" aria-label="106 over 16 equals 6.6"><span>106</span><span>16</span></span> = 6.6 &nbsp;vs&nbsp; glucose <span class="mf" role="img" aria-label="32 over 6 equals 5.3"><span>32</span><span>6</span></span> = 5.3</span><span class="fx__tag">ATP per carbon atom — why fat is the storage fuel</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>n</b><span>carbons in the fatty acid (dimensionless)</span></div>
+          <div><b>P/O</b><span>ATP made per pair of electrons delivered (dimensionless)</span></div>
+          <div><b>ATP<sub>net</sub></b><span>mol ATP per mol fatty acid</span></div>
+          <div><b>β-oxidation ΔG°′</b><span>palmitate complete oxidation ≈ −9790 kJ·mol⁻¹</span></div>
+          <div><b>Energy density</b><span>fat ≈ 37 kJ·g⁻¹ (9 kcal·g⁻¹); carbohydrate ≈ 17 kJ·g⁻¹</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Do it once, slowly, on palmitate</h3>
+  <p>Palmitate is C16, so the chain must be cut into eight two-carbon pieces. Cutting a rope into eight pieces
+     takes <strong>seven</strong> cuts, not eight — and that single sentence is the whole reason rounds are
+     <span class="fi">n/2 − 1</span>. The seventh round starts with a four-carbon butyryl-CoA and produces two
+     acetyl-CoA at once, which is where the extra one comes from.</p>
+
+  <div class="lp-steps">
+    <div><b>Rounds</b><span class="fi">16/2 − 1 = 7</span></div>
+    <div><b>Acetyl-CoA</b><span class="fi">16/2 = 8</span></div>
+    <div><b>FADH₂</b><span class="fi">7 × 1.5 = 10.5 ATP</span></div>
+    <div><b>NADH</b><span class="fi">7 × 2.5 = 17.5 ATP</span></div>
+    <div><b>Acetyl-CoA → TCA</b><span class="fi">8 × 10 = 80 ATP</span></div>
+    <div><b>Gross</b><span class="fi">10.5 + 17.5 + 80 = 108 ATP</span></div>
+    <div><b>Less activation</b><span class="fi">108 − 2 = 106 ATP</span></div>
+  </div>
+
+  <h3>Try it on any chain</h3>
+  <p>Move the sliders. The point of the panel is not the final number — it is the middle column, which shows the
+     same four counts every time. Set the carbon count to an odd number and the last fragment becomes
+     propionyl-CoA instead of acetyl-CoA (§ 05); add double bonds and the FADH<sub>2</sub> column shrinks.</p>
+
+  <div class="card lp-calc">
+    <div>
+      <label for="lpC">Carbon chain length <output id="lpCOut" for="lpC">16 C</output></label>
+      <input id="lpC" type="range" min="4" max="24" step="1" value="16">
+      <label for="lpD">Double bonds (cis, methylene-interrupted) <output id="lpDOut" for="lpD">0</output></label>
+      <input id="lpD" type="range" min="0" max="4" step="1" value="0">
+      <p class="lp-calc__name" id="lpName"><b>Palmitate, 16:0</b> — the reference case. Saturated and
+        even-numbered, so the plain <span class="fi">7n − 6</span> rule applies exactly.</p>
+    </div>
+    <div>
+      <p class="lp-calc__val"><span id="lpVal">106</span> <small>ATP, net, per molecule</small></p>
+      <div class="lp-terms" id="lpTerms"></div>
+      <p class="lp-note">Double bonds are modelled the way natural fatty acids actually present them —
+        alternating odd- and even-numbered positions after chain-shortening, so the first costs 1.5 ATP (an
+        isomerase replaces a dehydrogenase) and the second costs 2.5 ATP (an NADPH is consumed by
+        2,4-dienoyl-CoA reductase). This reproduces the textbook values for oleate and linoleate. It is a
+        method, not a lookup table — check it against § 05 before trusting an exotic chain.</p>
+    </div>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — palmitate, and turning it into a general rule</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) Compute the net ATP yield from the complete oxidation of one
+      molecule of palmitate (16:0). (b) Derive a formula valid for any saturated even-numbered chain and test it
+      on butyrate (4:0) and stearate (18:0).</p>
+    <ol>
+      <li><strong>(a)</strong> Eight acetyl-CoA means seven cleavages, so <strong>7 rounds</strong>.</li>
+      <li>Each round: 1 FADH<sub>2</sub> (1.5) + 1 NADH (2.5) = 4 ATP.
+          <span class="fi">7 × 4 = 28 ATP</span>.</li>
+      <li>Eight acetyl-CoA through the TCA cycle: <span class="fi">8 × 10 = 80 ATP</span>.</li>
+      <li>Gross <span class="fi">28 + 80 = 108</span>; activation cost 2 (ATP → AMP + PP<sub>i</sub>), charged
+          once. <span class="fi">108 − 2 = <strong>106 ATP</strong></span>.</li>
+      <li><strong>(b)</strong> Generalise: rounds <span class="fi">= n/2 − 1</span>, acetyl-CoA
+          <span class="fi">= n/2</span>, so
+          <span class="fi">ATP = 4(n/2 − 1) + 10(n/2) − 2 = 2n − 4 + 5n − 2 = 7n − 6</span>.</li>
+      <li>Test on butyrate, n = 4: <span class="fi">7(4) − 6 = 22</span>. Check the long way — 1 round
+          (1 FADH<sub>2</sub> + 1 NADH = 4) and 2 acetyl-CoA (20), gross 24, minus 2 = 22 ✓.</li>
+      <li>Test on stearate, n = 18: <span class="fi">7(18) − 6 = 120</span>. Long way — 8 rounds (32) plus
+          9 acetyl-CoA (90) = 122, minus 2 = 120 ✓.</li>
+      <li>Sanity check the shape of the rule: two more carbons always add exactly 14 ATP (one more round worth 4,
+          one more acetyl-CoA worth 10). If your answers for consecutive even chains do not differ by 14, you
+          have miscounted something.</li>
+    </ol>
+    <span class="wex__ans">palmitate = 106 ATP · general rule ATP<sub>net</sub> = 7n − 6 · each extra C₂ = +14</span>
+    </div>
+  </details>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — a whole fat molecule, and why fat beats sugar per gram</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) How much ATP does the complete oxidation of one molecule of
+      tripalmitin (a triacylglycerol of glycerol plus three palmitates) yield? (b) Compare palmitate with glucose
+      per carbon and per gram, and explain the difference chemically.</p>
+    <ol>
+      <li><strong>(a)</strong> Three palmitates: <span class="fi">3 × 106 = 318 ATP</span>.</li>
+      <li>The glycerol backbone, in liver (adipose cannot do this — no glycerol kinase):
+          glycerol → glycerol-3-phosphate costs <span class="fi">−1 ATP</span>.</li>
+      <li>Glycerol-3-P → DHAP by cytosolic glycerol-3-phosphate dehydrogenase:
+          <span class="fi">+1 NADH = +2.5</span> — cytosolic, so this and the glycolytic NADH below are valued
+          at 2.5 only because liver uses the malate–aspartate shuttle.</li>
+      <li>DHAP → glyceraldehyde-3-P → pyruvate is the lower half of glycolysis for one triose:
+          <span class="fi">+1 NADH (2.5) + 2 ATP = +4.5</span>.</li>
+      <li>Pyruvate → acetyl-CoA: <span class="fi">+1 NADH = +2.5</span>. Acetyl-CoA → TCA:
+          <span class="fi">+10</span>.</li>
+      <li>Glycerol total: <span class="fi">−1 + 2.5 + 4.5 + 2.5 + 10 = 18.5 ATP</span>. Whole molecule:
+          <span class="fi">318 + 18.5 = 336.5 ATP</span>.</li>
+      <li><strong>(b)</strong> Per carbon: palmitate <span class="fi">106/16 = 6.6</span>, glucose
+          <span class="fi">32/6 = 5.3</span> (32, not 30, because this is liver — the malate–aspartate shuttle,
+          note 06). Per gram: palmitate
+          <span class="fi">106/256.4 = 0.41 mol ATP·g⁻¹</span>, glucose
+          <span class="fi">32/180.2 = 0.18</span> — a factor of <strong>2.3</strong>.</li>
+      <li>Why: average carbon oxidation state. For C<sub>n</sub>H<sub>m</sub>O<sub>k</sub> the carbons sum to
+          <span class="fi">2k − m</span>. Palmitic acid C₁₆H₃₂O₂ gives <span class="fi">4 − 32 = −28</span>,
+          i.e. <span class="fi">−1.75</span> per carbon; glucose C₆H₁₂O₆ gives
+          <span class="fi">12 − 12 = 0</span>. Fat starts further from CO₂, so there is more oxidation left to
+          harvest. In the body the advantage is larger still, because glycogen is stored with roughly three
+          grams of water per gram while a fat droplet is anhydrous.</li>
+    </ol>
+    <span class="wex__ans">tripalmitin ≈ 336.5 ATP · fat carries 2.3× the ATP per gram of glucose, before counting storage water</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The three ways this arithmetic goes wrong</p>
+    <p style="margin:0"><strong>One.</strong> Using <span class="fi">n/2</span> rounds instead of
+      <span class="fi">n/2 − 1</span> — this is the commonest: eight rounds instead of seven adds one spurious
+      FADH<sub>2</sub> and one spurious NADH, so a C16 answer comes out as
+      <span class="fi">112 − 2 = 110</span> instead of 106.
+      <strong>Two.</strong> Charging activation per round, or forgetting it entirely: the two errors give 94 and
+      108 respectively for palmitate, and both usually appear as options. <strong>Three.</strong> Mixing
+      conventions — counting acetyl-CoA at 12 while counting FADH<sub>2</sub> at 1.5. Decide on 2.5/1.5/10 at the
+      start of the question and stay there. A fourth, subtler one: assuming the FADH<sub>2</sub> from
+      β-oxidation is worth 2.5 because it "comes from a dehydrogenase". It enters at ubiquinone, so it is 1.5.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Awkward chains: unsaturated, odd, very long, branched</h2>
+
+  <p class="idea"><b>The idea</b>The four-step loop only works on a plain, even, medium-length chain. Real fats are not always like that.
+     A kink in the wrong place, an odd number of carbons, a chain too long to fit the machinery, a methyl branch
+     sticking out — each defeats one specific step, and for each the cell keeps one small accessory enzyme that
+     fixes exactly that problem and nothing else. Learn which step is defeated and the accessory enzyme is
+     obvious; learn the enzyme names first and nothing sticks.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the four exceptions</p>
+    <dl class="def">
+      <dt>Auxiliary enzymes of β-oxidation</dt>
+      <dd>Enzymes not part of the four-step spiral, each required because a particular substrate cannot enter one
+          particular step: an isomerase and a reductase for double bonds, a carboxylase–mutase pair for odd
+          chains, a peroxisomal system for very long chains, and α-oxidation for β-methyl branches.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">propionyl-CoA →[biotin, ATP] D-methylmalonyl-CoA →[epimerase] L- →[B₁₂] succinyl-CoA</span>
+      <span class="fx__tag">the only route by which fatty-acid carbon can become glucose</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Enoyl-CoA isomerase</dt>
+          <dd>Handles a double bond that ends up in an <strong>odd-numbered</strong> position (Δ3) after
+              chain-shortening. It slides the <em>cis</em>-Δ³ bond to <em>trans</em>-Δ², which is exactly the
+              product acyl-CoA dehydrogenase would have made. So that round <strong>skips step 1</strong> and
+              loses its FADH<sub>2</sub> — a cost of 1.5 ATP.</dd>
+          <dt>2,4-Dienoyl-CoA reductase</dt>
+          <dd>Handles a double bond in an <strong>even-numbered</strong> position (Δ4). Here step 1 runs
+              normally, producing a 2-trans,4-cis-dienoyl-CoA that the hydratase cannot use. The reductase spends
+              one <strong>NADPH</strong> to give trans-Δ³, and the isomerase then moves it to trans-Δ². The
+              FADH<sub>2</sub> is made, but an NADPH is consumed — a net cost of about 2.5 ATP.</dd>
+          <dt>Propionyl-CoA carboxylase</dt>
+          <dd><strong>Biotin</strong>-dependent, ATP-consuming. One of four human biotin carboxylases —
+              the others are pyruvate carboxylase, acetyl-CoA carboxylase and 3-methylcrotonyl-CoA carboxylase.
+              Biotin deficiency therefore hits all four at once.</dd>
+          <dt>Methylmalonyl-CoA mutase</dt>
+          <dd>Requires <strong>adenosylcobalamin</strong> (vitamin B<sub>12</sub>) and performs a genuine
+              carbon-skeleton rearrangement — a radical mechanism, not a simple transfer. One of only two
+              B<sub>12</sub> reactions in humans; the other is methionine synthase, which uses
+              methylcobalamin.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">odd-numbered double bond → isomerase only → −1.5 ATP</span><span class="fx__tag">e.g. the Δ9 of oleate</span></div>
+          <div class="fx"><span class="fx__eq">even-numbered double bond → reductase + isomerase → −2.5 ATP</span><span class="fx__tag">e.g. the Δ12 of linoleate</span></div>
+          <div class="fx"><span class="fx__eq">C<sub>2k+1</sub>: rounds = (n − 3)/2, acetyl-CoA = (n − 3)/2, plus 1 propionyl-CoA</span><span class="fx__tag">odd chains never give an odd acetyl-CoA count — they give a C3 remainder</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Δ<sup>x</sup></b><span>double bond starting at carbon x, counted from the thioester</span></div>
+          <div><b>ω-3 / ω-6</b><span>position counted from the <em>methyl</em> end instead</span></div>
+          <div><b>VLCFA</b><span>very-long-chain fatty acid, &gt; C22</span></div>
+          <div><b>MMA</b><span>methylmalonic acid; plasma normally &lt; 0.4 µmol·L⁻¹</span></div>
+          <div><b>PCC</b><span>propionyl-CoA carboxylase</span></div>
+          <div><b>Phytanic acid</b><span>3,7,11,15-tetramethylhexadecanoate — a β-methyl branch</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Unsaturated chains: the position of the kink decides the penalty</h3>
+  <p>Natural unsaturated fatty acids have <em>cis</em> double bonds; the spiral needs a <em>trans</em>-Δ² bond.
+     So the question is never "does a double bond cost energy" but "where does the double bond end up once the
+     chain has been shortened to reach it". Chain-shortening moves the bond two carbons closer to the thioester
+     each round, so a bond that started at an odd-numbered position stays odd, and one that started even stays
+     even.</p>
+  <p>An odd-position bond arrives at Δ3. The isomerase simply repositions it to trans-Δ², so the chain enters at
+     step 2 and the FADH<sub>2</sub> of that round is never made — <strong>lose 1.5 ATP</strong>. An
+     even-position bond arrives at Δ4. Step 1 runs, so the FADH<sub>2</sub> <em>is</em> made, but the resulting
+     2,4-diene needs an NADPH from the reductase before the isomerase can finish the job —
+     <strong>lose about 2.5 ATP</strong>. The counterintuitive result is worth stating explicitly: the
+     even-numbered bond is the more expensive one, even though it is the one that keeps its FADH<sub>2</sub>.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — oleate, linoleate and an odd chain</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) Net ATP from oleate (18:1 Δ9) and from linoleate
+      (18:2 Δ9,12), compared with stearate (18:0). (b) Net ATP from heptadecanoate (17:0), a C17 odd chain,
+      assuming the propionyl-CoA is completely oxidised.</p>
+    <ol>
+      <li><strong>(a)</strong> Baseline: stearate, <span class="fi">7(18) − 6 = 120 ATP</span>. Every C18 chain
+          gives 8 rounds and 9 acetyl-CoA regardless of double bonds — a double bond changes the
+          <em>cofactors</em>, never the number of cuts.</li>
+      <li>Oleate: the Δ9 is odd-numbered, so one round uses the isomerase and skips acyl-CoA dehydrogenase.
+          FADH<sub>2</sub> = 7 not 8. <span class="fi">7(1.5) + 8(2.5) + 9(10) = 10.5 + 20 + 90 = 120.5</span>,
+          minus 2 = <strong>118.5 ATP</strong> — exactly 1.5 below stearate.</li>
+      <li>Linoleate: Δ9 costs the same 1.5. The Δ12 is even-numbered, so its round keeps its FADH<sub>2</sub> but
+          burns one NADPH at 2,4-dienoyl-CoA reductase. <span class="fi">118.5 − 2.5 = <strong>116 ATP</strong></span>,
+          i.e. 4 below stearate.</li>
+      <li><strong>(b)</strong> C17: the spiral shortens 17 → 15 → 13 → 11 → 9 → 7 → 5, and the seventh round
+          cleaves the C5 into acetyl-CoA + propionyl-CoA. So <strong>7 rounds, 7 acetyl-CoA, 1 propionyl-CoA</strong>.
+          Check the carbons: <span class="fi">7(2) + 3 = 17</span> ✓.</li>
+      <li>Spiral: <span class="fi">7(1.5) + 7(2.5) + 7(10) = 10.5 + 17.5 + 70 = 98</span>, minus 2 activation =
+          <strong>96 ATP</strong>.</li>
+      <li>Propionyl-CoA, if fully oxidised: carboxylation <span class="fi">−1</span>; succinyl-CoA → succinate
+          <span class="fi">+1 GTP</span>; succinate → fumarate <span class="fi">+1.5</span>; malate → OAA
+          <span class="fi">+2.5</span>; then OAA → PEP (<span class="fi">−1</span>) → pyruvate
+          (<span class="fi">+1</span>) → acetyl-CoA (<span class="fi">+2.5</span>) → TCA
+          (<span class="fi">+10</span>). Total <span class="fi">= 16.5 ATP</span>.</li>
+      <li>Grand total <span class="fi">96 + 16.5 = 112.5 ATP</span>. State the assumption in an exam: if the
+          propionyl-CoA instead leaves as succinyl-CoA for gluconeogenesis, only the spiral's 96 is available as
+          ATP.</li>
+    </ol>
+    <span class="wex__ans">stearate 120 · oleate 118.5 · linoleate 116 · C17 ≈ 96 + 16.5 = 112.5 ATP</span>
+    </div>
+  </details>
+
+  <h3>Odd chains: three carbons that behave completely differently from two</h3>
+  <p>Every fatty acid with an odd number of carbons ends the same way: the final round cleaves a five-carbon
+     acyl-CoA into acetyl-CoA and <strong>propionyl-CoA</strong>. Propionyl-CoA has three carbons, and three
+     carbons are enough to reach the TCA cycle as a genuine <em>anaplerotic</em> input rather than as fuel. That
+     one difference carries the entire clinical weight of this section.</p>
+  <p>The route is short and every step is examinable. Propionyl-CoA carboxylase, using
+     <strong>biotin</strong> and ATP, adds a carboxyl to give D-methylmalonyl-CoA. A racemase (epimerase)
+     inverts it to the L form. Methylmalonyl-CoA mutase, using <strong>adenosylcobalamin</strong>, rearranges the
+     carbon skeleton into <strong>succinyl-CoA</strong>. Succinyl-CoA is a four-carbon TCA intermediate, so it
+     can leave the cycle as malate, become oxaloacetate and then phosphoenolpyruvate, and become glucose.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">"Can fatty acids be converted to glucose?" — answer it precisely</p>
+    <p style="margin:0">For the ordinary even-chain fatty acid the answer is <strong>no</strong>, and the reason
+      is structural, not regulatory: acetyl-CoA enters the TCA cycle by condensing with a four-carbon
+      oxaloacetate, and by the end of one turn two carbons have left as CO<sub>2</sub>. There is
+      <em>no net gain</em> of oxaloacetate, so nothing can be drained off to gluconeogenesis. Pyruvate
+      dehydrogenase is also physiologically irreversible, so you cannot simply run back. Plants get round this
+      with the glyoxylate cycle; animals have no such pathway.<br>
+      But two parts of a triacylglycerol molecule <em>can</em> reach glucose: the
+      <strong>glycerol</strong> backbone, and the <strong>propionyl-CoA</strong> from an odd chain, because both
+      enter below acetyl-CoA and add net carbon to the four-carbon pool. (Note the wording: two <em>parts</em> of
+      the molecule, not two carbon atoms — glycerol contributes all three of its carbons.) A stem that says "no part of a fat
+      molecule can become glucose" is wrong; a stem that says "acetyl-CoA cannot become glucose" is right.</p>
+  </div>
+
+  <p>The clinical use of that pathway is the cleanest vitamin-diagnosis question in all of metabolism. Block the
+     mutase — by B<sub>12</sub> deficiency — and methylmalonyl-CoA accumulates and is hydrolysed to
+     <strong>methylmalonic acid</strong>, which rises in plasma and urine. Vitamin B<sub>12</sub> also serves
+     methionine synthase, so B<sub>12</sub> deficiency also raises <strong>homocysteine</strong>. Folate
+     deficiency, however, blocks only methionine synthase, so it raises homocysteine but leaves methylmalonic
+     acid <em>normal</em>. Both produce an identical megaloblastic anaemia; only B<sub>12</sub> deficiency
+     produces subacute combined degeneration of the cord, and only B<sub>12</sub> deficiency raises MMA.
+     Measuring methylmalonic acid separates them — and the reason it works is a fatty-acid pathway.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The four awkward substrates and what each one costs</caption>
+      <thead><tr><th>Substrate</th><th>Which step fails</th><th>Accessory enzyme / pathway</th><th>Energetic consequence</th></tr></thead>
+      <tbody>
+        <tr><td>Double bond at an <strong>odd</strong> position (e.g. oleate Δ9)</td><td>Step 1 — the bond is already there, at Δ3</td><td><strong>Enoyl-CoA isomerase</strong> (cis-Δ³ → trans-Δ²)</td><td class="num">−1.5 ATP (FADH₂ not made)</td></tr>
+        <tr><td>Double bond at an <strong>even</strong> position (e.g. linoleate Δ12)</td><td>Step 2 — hydratase cannot use a 2,4-diene</td><td><strong>2,4-Dienoyl-CoA reductase</strong> (NADPH), then isomerase</td><td class="num">−2.5 ATP (NADPH consumed)</td></tr>
+        <tr><td><strong>Odd</strong>-numbered chain (e.g. C17)</td><td>None — but the last fragment is C3</td><td>PCC (<strong>biotin</strong>) → epimerase → mutase (<strong>B₁₂</strong>)</td><td class="num">Propionyl-CoA ≈ +16.5 ATP, or becomes glucose</td></tr>
+        <tr><td><strong>Very long</strong> chain (&gt; C22) and branched</td><td>Mitochondrial enzymes do not accept them</td><td><strong>Peroxisomal β-oxidation</strong> (acyl-CoA oxidase → H₂O₂)</td><td class="num">First oxidation yields <strong>no ATP</strong> — heat instead</td></tr>
+        <tr><td><strong>β-Methyl</strong> branch (phytanic acid)</td><td>Step 1 — the β-carbon has no hydrogen to remove</td><td><strong>α-Oxidation</strong> (phytanoyl-CoA hydroxylase, peroxisomal)</td><td class="num">One carbon removed first (formyl-CoA → CO₂), then normal β-oxidation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Peroxisomes: the pre-processing plant</h3>
+  <p>Very-long-chain fatty acids above about C22 are not accepted by the mitochondrial dehydrogenases at all.
+     They are handled first in the <strong>peroxisome</strong>, which runs the same four-step chemistry with one
+     crucial change: the first oxidation is done by <strong>acyl-CoA oxidase</strong>, which passes its electrons
+     straight to O<sub>2</sub> to make hydrogen peroxide, disposed of by catalase. Those electrons never reach
+     the respiratory chain, so that step yields <strong>no ATP</strong> — the energy appears as heat. Peroxisomal
+     β-oxidation shortens the chain to about C8 and then hands it to the mitochondrion as a carnitine ester.
+     Peroxisomes also do not go to completion; they are a pre-processing plant, not a furnace.</p>
+  <p>Two further peroxisomal jobs matter clinically. <strong>α-Oxidation</strong> deals with phytanic acid, a
+     chlorophyll-derived branched fatty acid from dairy and ruminant fat whose <em>methyl group on the
+     β-carbon</em> leaves no hydrogen for acyl-CoA dehydrogenase to abstract. Phytanoyl-CoA hydroxylase opens a
+     short three-enzyme sequence — hydroxylate the α-carbon, cleave that carbon off as formyl-CoA (which ends up
+     as CO<sub>2</sub>), oxidise the remaining aldehyde back to an acid — after which the methyl branch sits at
+     an α-position and ordinary β-oxidation can proceed. "Loses one carbon as CO<sub>2</sub>" is the usual
+     shorthand for that sequence, not a single decarboxylation. And peroxisomes build <strong>plasmalogens</strong>, the ether phospholipids that
+     make up a large share of myelin and cardiac membrane.</p>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the peroxisomal disorders, and ω-oxidation as the overflow route</summary>
+    <div class="disc__body">
+      <div class="table-scroll">
+        <table class="data">
+          <caption class="sr-only">Peroxisomal disorders of lipid metabolism</caption>
+          <thead><tr><th>Disorder</th><th>Defect</th><th>Accumulates</th><th>Clinical picture</th></tr></thead>
+          <tbody>
+            <tr><td>X-linked adrenoleukodystrophy</td><td>ABCD1 — the peroxisomal VLCFA transporter</td><td>VLCFA (C26:0)</td><td>Adrenal insufficiency plus progressive cerebral demyelination in boys; the <em>Lorenzo's Oil</em> disease</td></tr>
+            <tr><td>Zellweger spectrum</td><td>PEX genes — peroxisomes are not assembled at all</td><td>VLCFA, phytanate; plasmalogens <em>absent</em></td><td>Neonatal hypotonia, craniofacial dysmorphism, hepatomegaly, seizures; usually fatal in infancy</td></tr>
+            <tr><td>Refsum disease</td><td>Phytanoyl-CoA hydroxylase (α-oxidation)</td><td>Phytanic acid</td><td>Retinitis pigmentosa, anosmia, ataxia, peripheral neuropathy; <strong>treated by dietary restriction</strong> of dairy and ruminant fat</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>ω-Oxidation</strong> is the third route and normally trivial. Cytochrome P450 4A enzymes in the
+        ER hydroxylate the terminal (ω) methyl group; further oxidation gives a
+        <strong>dicarboxylic acid</strong>, which can then be β-oxidised from either end and, being water-soluble,
+        excreted in urine. It matters only when the main route jams — which is exactly why
+        <strong>C6–C10 dicarboxylic aciduria</strong> is the biochemical fingerprint of MCAD deficiency. The
+        urine tells you where the block is: medium-chain dicarboxylic acids mean medium-chain fatty acids piled
+        up.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Ketone bodies</h2>
+
+  <p class="idea"><b>The idea</b>The brain cannot burn fat, because fatty acids do not cross into it usefully and it has no way to store
+     them. But during a long fast the liver has more two-carbon units than it can burn and the brain has almost
+     no glucose left. So the liver welds pairs of those units into a small, water-soluble molecule that travels
+     freely in blood and crosses into the brain, where it is unwelded again and burned. Ketone bodies are not a
+     pathological accident — they are a transport format for fat, invented to feed an organ that cannot receive
+     fat directly.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the ketogenic pathway</p>
+    <dl class="def">
+      <dt>Ketone bodies（酮體）</dt>
+      <dd>Acetoacetate, D-β-hydroxybutyrate and acetone. Made in <strong>liver mitochondria</strong> from
+          acetyl-CoA when β-oxidation outruns the TCA cycle, and used by brain, heart, skeletal muscle and renal
+          cortex — but never by the liver itself.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">2 acetyl-CoA → acetoacetyl-CoA →[+ acetyl-CoA, HMG-CoA synthase 2] HMG-CoA →[lyase] acetoacetate + acetyl-CoA</span>
+      <span class="fx__tag">HMG-CoA synthase 2 is the controlling enzyme; it is <strong>mitochondrial</strong></span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>D-β-Hydroxybutyrate</dt>
+          <dd>Made from acetoacetate by β-hydroxybutyrate dehydrogenase using NADH, so the
+              <span class="fi">[β-OHB]/[AcAc]</span> ratio directly reports the mitochondrial
+              <span class="fi">NADH/NAD⁺</span> ratio. Normally about 1 : 1; in severe ketoacidosis it can exceed
+              6 : 1. It is <em>not chemically a ketone</em> — it is a hydroxy acid — which is why the classic
+              nitroprusside dipstick cannot see it.</dd>
+          <dt>Acetone</dt>
+          <dd>Formed by spontaneous, non-enzymatic decarboxylation of acetoacetate. It cannot be metabolised
+              back to acetyl-CoA in any significant amount and is largely exhaled — the fruity breath.</dd>
+          <dt>SCOT (succinyl-CoA : 3-ketoacid CoA transferase, OXCT1)</dt>
+          <dd>The enzyme that activates acetoacetate in peripheral tissue, borrowing a CoA from succinyl-CoA.
+              <strong>The liver does not express it</strong>, which is the structural reason liver cannot consume
+              the ketone bodies it makes.</dd>
+          <dt>Why liver, and why then</dt>
+          <dd>Ketogenesis rises when hepatic acetyl-CoA is abundant <em>and</em> oxaloacetate is scarce — during
+              fasting, oxaloacetate is pulled into gluconeogenesis, so the TCA cycle cannot absorb the incoming
+              acetyl-CoA. Hence the old line: fat burns in the flame of carbohydrate.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">acetoacetate + succinyl-CoA →[SCOT] acetoacetyl-CoA + succinate</span><span class="fx__tag">peripheral activation; forfeits the GTP that succinyl-CoA synthetase would have made</span></div>
+          <div class="fx"><span class="fx__eq">acetoacetyl-CoA + CoA-SH →[thiolase] 2 acetyl-CoA</span><span class="fx__tag">and then straight into the TCA cycle</span></div>
+          <div class="fx"><span class="fx__eq">pK<sub>a</sub>: acetoacetate ≈ 3.6 · β-hydroxybutyrate ≈ 4.4</span><span class="fx__tag">fully ionised at pH 7.4 — hence a high-anion-gap metabolic acidosis</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>AcAc</b><span>acetoacetate</span></div>
+          <div><b>β-OHB</b><span>D-β-hydroxybutyrate</span></div>
+          <div><b>HMGCS2</b><span>mitochondrial HMG-CoA synthase (ketogenic)</span></div>
+          <div><b>HMGCS1</b><span>cytosolic HMG-CoA synthase (cholesterogenic)</span></div>
+          <div><b>[ketones], fed</b><span>&lt; 0.2 mmol·L⁻¹</span></div>
+          <div><b>[ketones], DKA</b><span>often &gt; 15 mmol·L⁻¹</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Making them, and the trap in the middle of the pathway</h3>
+  <p>The sequence is short: thiolase runs <em>backwards</em> to join two acetyl-CoA into acetoacetyl-CoA;
+     HMG-CoA synthase adds a third acetyl-CoA to give β-hydroxy-β-methylglutaryl-CoA; HMG-CoA lyase then splits
+     off acetoacetate and releases the third acetyl-CoA again. Net, three acetyl-CoA in, one acetoacetate and one
+     acetyl-CoA out. Acetoacetate is then either reduced to β-hydroxybutyrate or spontaneously decarboxylated to
+     acetone.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">HMG-CoA appears twice on this page, in two compartments</p>
+    <p style="margin:0"><strong>Mitochondrial</strong> HMG-CoA, made by HMGCS2 and cleaved by HMG-CoA lyase, is
+      the ketone-body pathway. <strong>Cytosolic</strong> HMG-CoA, made by HMGCS1 and reduced by HMG-CoA
+      reductase, is the cholesterol pathway (§ 09). Same molecule, different compartment, opposite fate, and
+      completely different regulation — a statin does not affect ketogenesis. HMG-CoA also appears a third time,
+      as an intermediate of <strong>leucine</strong> catabolism in the mitochondrion, which is precisely why
+      leucine is a purely ketogenic amino acid. If a question asks "which of these is the substrate of HMG-CoA
+      reductase", the answer is a cytosolic pool that the ketone pathway never touches.</p>
+  </div>
+
+  <h3>Using them, and why the liver is excluded</h3>
+  <p>In a peripheral cell, β-hydroxybutyrate is oxidised back to acetoacetate, which then has to be re-activated
+     with a CoA. The cell does not spend an ATP on this: <strong>SCOT</strong> steals a CoA from succinyl-CoA,
+     which costs the cell the GTP that succinyl-CoA synthetase would otherwise have made. Thiolase then splits
+     acetoacetyl-CoA into two acetyl-CoA. So acetoacetate is worth about
+     <span class="fi">2 × 10 − 1 = 19 ATP</span>, and β-hydroxybutyrate about
+     <span class="fi">19 + 2.5 = 21.5 ATP</span> because it delivers an extra NADH on the way in.</p>
+  <p>The liver lacks SCOT entirely. This is not an oversight — it is what makes the system work. If liver could
+     consume ketone bodies it would consume its own product, and no ketones would ever reach the brain. An organ
+     that exports a fuel must be unable to burn it, which is the same reason the liver exports glucose while
+     muscle cannot (muscle has no glucose-6-phosphatase). Recognising that pattern answers a whole family of
+     questions.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — fuel reserves, and what the numbers force the body to do</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A 70 kg adult carries roughly 15 kg of triacylglycerol and about
+      500 g of glycogen (100 g hepatic, 400 g muscle), and uses about 2000 kcal per day. (a) How long does each
+      store last on its own? (b) The brain uses about 120 g of glucose a day. What does that force the body to
+      do, and how do ketone bodies change it?</p>
+    <ol>
+      <li><strong>(a)</strong> Fat: <span class="fi">15 000 g × 9 kcal·g⁻¹ = 135 000 kcal</span>, i.e.
+          <span class="fi">135 000 / 2000 ≈ 68 days</span>.</li>
+      <li>Glycogen: <span class="fi">500 g × 4 kcal·g⁻¹ = 2000 kcal</span> — about
+          <strong>one day</strong>. And muscle glycogen cannot leave muscle, so the systemically useful store is
+          the 100 g in liver, worth a few hours.</li>
+      <li>Add the storage water: glycogen is hydrated at roughly 3 g water per gram, so its effective density is
+          about <span class="fi">4/(1+3) = 1 kcal per gram of wet tissue</span> against 9 for fat — a ninefold
+          difference. Storing 135 000 kcal as glycogen would require roughly 135 kg of hydrated tissue.</li>
+      <li><strong>(b)</strong> The brain's 120 g·day⁻¹ cannot come from fat, because acetyl-CoA cannot become
+          glucose (§ 05). With hepatic glycogen gone within a day, glucose must be made from amino acids — and
+          the measured rate of muscle protein breakdown in early fasting is about
+          <span class="fi">75 g·day⁻¹</span>, the classic 12 g of urinary nitrogen. It is not the ~200 g a day
+          that 120 g of glucose would need outright, because glycerol and Cori-cycle lactate carry part of the
+          load and the brain starts switching over almost immediately. Even 75 g·day⁻¹ costs functional muscle
+          within two to three weeks, long before the fat runs out.</li>
+      <li>Ketone bodies solve exactly this. After 3–4 days the brain begins to oxidise them, and after several
+          weeks they supply roughly two-thirds of its energy, cutting its glucose requirement to about
+          <span class="fi">40 g·day⁻¹</span>. Protein breakdown falls to about 20 g·day⁻¹ — a
+          <strong>protein-sparing</strong> effect that converts survival time from weeks into the two months the
+          fat store actually allows.</li>
+      <li>Note what still cannot use them: erythrocytes have no mitochondria, and the renal medulla, cornea and
+          lens are equally committed to glycolysis, so the ~40 g·day⁻¹ of glucose they consume between them is
+          obligatory no matter how long the fast.</li>
+    </ol>
+    <span class="wex__ans">fat ≈ 68 days · glycogen ≈ 1 day · ketosis cuts brain glucose need from ≈120 to ≈40 g·day⁻¹</span>
+    </div>
+  </details>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Physiological ketosis compared with diabetic ketoacidosis</caption>
+      <thead><tr><th></th><th>Fed</th><th>Overnight fast</th><th>Starvation ketosis</th><th>Diabetic ketoacidosis</th></tr></thead>
+      <tbody>
+        <tr><td>Plasma ketones</td><td class="num">&lt; 0.2 mmol·L⁻¹</td><td class="num">≈ 0.1–0.5</td><td class="num">≈ 2–8</td><td class="num">&gt; 15, often 20–25</td></tr>
+        <tr><td>Insulin</td><td>High</td><td>Low</td><td>Low but present</td><td><strong>Absent</strong> — nothing restrains lipolysis</td></tr>
+        <tr><td>Glucose</td><td>High</td><td>Normal</td><td>Low-normal</td><td>Very high</td></tr>
+        <tr><td>Arterial pH</td><td>Normal</td><td>Normal</td><td>Normal or slightly low</td><td><strong>Acidotic</strong>, high anion gap</td></tr>
+        <tr><td>Why it stops</td><td colspan="3">Ketone bodies themselves stimulate a little insulin release, which restrains lipolysis — a negative feedback loop</td><td>That loop is broken: no β cells, so no brake at all</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Three clinical facts that are really biochemistry</p>
+    <p style="margin:0"><strong>1 · The dipstick lies in severe DKA.</strong> The nitroprusside reaction detects
+      acetoacetate and acetone but <em>not</em> β-hydroxybutyrate. In severe ketoacidosis the high
+      NADH/NAD⁺ ratio pushes the equilibrium towards β-hydroxybutyrate, so the dipstick underestimates the ketone
+      load — and then appears to <em>worsen</em> during successful treatment as β-hydroxybutyrate is reoxidised
+      back to acetoacetate. Measure serum β-hydroxybutyrate instead.<br>
+      <strong>2 · Alcoholic ketoacidosis behaves the same way</strong>, for the same reason: ethanol oxidation
+      floods the cell with NADH, so ketones are overwhelmingly β-hydroxybutyrate and the dipstick can be nearly
+      negative. The same NADH excess simultaneously blocks gluconeogenesis, which is why these patients are
+      hypoglycaemic rather than hyperglycaemic.<br>
+      <strong>3 · Ketone bodies are acids, and the acidosis is theirs.</strong> With pK<sub>a</sub> values near
+      3.6 and 4.4 they are fully dissociated at pH 7.4, so each one contributes a proton and an unmeasured
+      anion — a high-anion-gap metabolic acidosis. Acetone contributes none, being neutral.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Building fatty acids: the committed step</h2>
+
+  <p class="idea"><b>The idea</b>Making a fatty acid is not simply running the breakdown backwards, and the reason is thermodynamic: joining
+     two-carbon units head to tail is uphill, so the cell cheats. It temporarily adds a carbon dioxide to one of
+     the units, which makes the joint easy to form, and then throws that same carbon dioxide away at the moment
+     of joining. The molecule that carries the temporary extra carbon is the entire control point of fat
+     synthesis — and, as § 02 showed, it is also the molecule that shuts down fat burning. One metabolite, both
+     halves of the switch.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the committed step</p>
+    <dl class="def">
+      <dt>Acetyl-CoA carboxylase (ACC)</dt>
+      <dd>The <strong>committed and rate-limiting</strong> enzyme of fatty-acid synthesis. A biotin-dependent
+          carboxylase that converts acetyl-CoA to malonyl-CoA at the cost of one ATP. Malonyl-CoA has essentially
+          only one destination, which is what makes the step committed.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">acetyl-CoA + HCO₃⁻ + ATP →[ACC, biotin] malonyl-CoA + ADP + P<sub>i</sub></span>
+      <span class="fx__tag">committed step; activated by citrate, inhibited by palmitoyl-CoA and by AMPK</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Overall stoichiometry for palmitate</dt>
+          <dd><span class="fi">8 acetyl-CoA + 7 ATP + 14 NADPH + 14 H⁺ → palmitate + 8 CoA-SH + 7 ADP + 7 P<sub>i</sub> + 14 NADP⁺ + 6 H₂O</span>.
+              Seven ATP because seven malonyl-CoA are made; fourteen NADPH because each of the seven elongation
+              cycles uses two.</dd>
+          <dt>Fatty acid synthase (FAS)</dt>
+          <dd>In animals a single multifunctional polypeptide carrying <strong>seven</strong> catalytic
+              activities plus an acyl carrier protein domain, functioning as a homodimer. Because everything is
+              on one chain, no intermediate ever leaves the complex — a substrate channelling arrangement that
+              makes the pathway fast and prevents side reactions.</dd>
+          <dt>Acyl carrier protein (ACP)</dt>
+          <dd>Carries the growing chain on a <strong>4′-phosphopantetheine</strong> arm — the same business end
+              as coenzyme A, derived from the same vitamin, <strong>pantothenate</strong>. So the chemistry of
+              the thioester is identical to β-oxidation; only the protein it hangs from differs.</dd>
+          <dt>Citrate shuttle</dt>
+          <dd>Acetyl-CoA cannot cross the inner mitochondrial membrane. It leaves condensed with oxaloacetate as
+              <strong>citrate</strong>, and <strong>ATP-citrate lyase</strong> regenerates cytosolic acetyl-CoA
+              at the cost of one ATP. The returning oxaloacetate is reduced to malate and decarboxylated by
+              <strong>malic enzyme</strong>, generating one NADPH per acetyl group exported.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">citrate + ATP + CoA-SH → acetyl-CoA + oxaloacetate + ADP + P<sub>i</sub></span><span class="fx__tag">ATP-citrate lyase — the target of bempedoic acid</span></div>
+          <div class="fx"><span class="fx__eq">malate + NADP⁺ → pyruvate + CO₂ + NADPH</span><span class="fx__tag">malic enzyme; supplies roughly half the NADPH, the pentose phosphate pathway the rest</span></div>
+          <div class="fx"><span class="fx__eq">condense → reduce (NADPH) → dehydrate → reduce (NADPH)</span><span class="fx__tag">one elongation cycle; the exact reverse order of β-oxidation</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>ACC1 / ACC2</b><span>cytosolic (lipogenic) and mitochondria-associated (regulatory) isoforms</span></div>
+          <div><b>ACP</b><span>acyl carrier protein domain of FAS</span></div>
+          <div><b>KS</b><span>β-ketoacyl-ACP synthase — the condensing activity</span></div>
+          <div><b>TE</b><span>thioesterase; releases free palmitate at C16</span></div>
+          <div><b>NADPH</b><span>the reductant of all biosynthesis (never NADH)</span></div>
+          <div><b>SREBP-1c / ChREBP</b><span>transcription factors induced by insulin and by glucose</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 400" role="img" aria-label="Diagram of the citrate shuttle and the malonyl-CoA node. Inside the mitochondrion acetyl-CoA condenses with oxaloacetate to form citrate, which crosses to the cytosol. ATP-citrate lyase splits citrate into acetyl-CoA and oxaloacetate. Oxaloacetate is reduced to malate and malic enzyme decarboxylates it to pyruvate, producing NADPH; pyruvate returns to the mitochondrion. Cytosolic acetyl-CoA is carboxylated by acetyl-CoA carboxylase, using biotin and ATP, to malonyl-CoA. Malonyl-CoA feeds fatty acid synthase to make palmitate, and simultaneously inhibits CPT-1, blocking fatty acid oxidation. Citrate activates acetyl-CoA carboxylase; palmitoyl-CoA, AMPK and glucagon inhibit it; insulin activates it." style="font-family:var(--sans)">
+      <rect x="14" y="40" width="228" height="322" rx="16" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.6"/>
+      <text x="128" y="66" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)" letter-spacing="1">MITOCHONDRION</text>
+
+      <text x="128" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">acetyl-CoA</text>
+      <text x="128" y="124" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">+ oxaloacetate</text>
+      <line x1="128" y1="132" x2="128" y2="156" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="128,162 123,152 133,152" fill="var(--ink-soft)"/>
+      <text x="140" y="150" font-size="9.5" fill="var(--ink-faint)">citrate synthase</text>
+      <rect x="72" y="164" width="112" height="32" rx="8" fill="var(--card)" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <text x="128" y="185" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-2)">citrate</text>
+
+      <line x1="184" y1="180" x2="286" y2="180" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <polygon points="294,180 282,174 282,186" fill="var(--accent-2)"/>
+      <text x="238" y="171" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">transporter</text>
+
+      <text x="128" y="300" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">pyruvate</text>
+      <path d="M 296,300 L 176,300" stroke="var(--ink-soft)" stroke-width="2" fill="none"/>
+      <polygon points="168,300 180,294 180,306" fill="var(--ink-soft)"/>
+
+      <text x="640" y="66" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink-faint)" letter-spacing="1">CYTOSOL</text>
+
+      <rect x="296" y="164" width="150" height="32" rx="8" fill="var(--card)" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <text x="371" y="185" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-2)">ATP-citrate lyase</text>
+      <line x1="371" y1="196" x2="371" y2="216" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="371,222 366,212 376,212" fill="var(--ink-soft)"/>
+
+      <text x="336" y="240" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">acetyl-CoA</text>
+      <text x="440" y="240" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">oxaloacetate</text>
+
+      <path d="M 440,248 L 440,272 L 300,272 L 300,292" stroke="var(--ink-soft)" stroke-width="1.8" fill="none"/>
+      <polygon points="300,300 295,288 305,288" fill="var(--ink-soft)"/>
+      <text x="452" y="266" font-size="9.5" fill="var(--ink-faint)">→ malate → malic enzyme</text>
+      <text x="452" y="280" font-size="10" font-weight="700" fill="var(--ok)">+ NADPH</text>
+
+      <line x1="336" y1="248" x2="336" y2="290" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="336,296 331,286 341,286" fill="var(--ink-soft)"/>
+      <rect x="266" y="298" width="140" height="34" rx="8" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.5"/>
+      <text x="336" y="320" text-anchor="middle" font-size="12" font-weight="700" fill="var(--on-accent)">ACC · biotin · ATP</text>
+
+      <line x1="406" y1="315" x2="452" y2="315" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="460,315 448,309 448,321" fill="var(--ink-soft)"/>
+      <rect x="462" y="296" width="146" height="38" rx="8" fill="var(--card)" stroke="var(--bad)" stroke-width="2.2"/>
+      <text x="535" y="320" text-anchor="middle" font-size="13" font-weight="700" fill="var(--bad)">malonyl-CoA</text>
+
+      <line x1="608" y1="315" x2="656" y2="315" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="664,315 652,309 652,321" fill="var(--ink-soft)"/>
+      <text x="700" y="311" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">FAS</text>
+      <text x="700" y="327" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">→ palmitate</text>
+
+      <path d="M 535,296 L 535,214" stroke="var(--bad)" stroke-width="2.2" fill="none"/>
+      <line x1="522" y1="210" x2="548" y2="210" stroke="var(--bad)" stroke-width="3.4"/>
+      <text x="535" y="196" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--bad)">CPT-1 closed</text>
+      <text x="535" y="180" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">no fatty acid enters the matrix</text>
+      <text x="535" y="164" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">no β-oxidation, no ketogenesis</text>
+
+      <rect x="266" y="352" width="342" height="34" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/>
+      <text x="278" y="374" font-size="10.5" fill="var(--ok)" font-weight="700">+ citrate, insulin</text>
+      <text x="420" y="374" font-size="10.5" fill="var(--bad)" font-weight="700">− palmitoyl-CoA, AMPK, glucagon</text>
+    </svg>
+    <figcaption>Read the figure as one sentence: carbon leaves the mitochondrion as citrate, citrate both
+      <em>supplies</em> the substrate and <em>allosterically activates</em> the enzyme that commits it, and the
+      product of that enzyme simultaneously bars the door on oxidation. Citrate is the signal that the cell has
+      more fuel than the TCA cycle can burn, which is precisely when storing it is the right decision.</figcaption>
+  </figure>
+
+  <h3>The carboxylation trick</h3>
+  <p>Condensing two acetyl units directly, as a Claisen condensation, is thermodynamically unfavourable — which
+     is exactly why the reverse reaction (thiolysis, step 4 of β-oxidation) runs so readily. The cell gets round
+     this by making one partner into <strong>malonyl</strong>-CoA. Now the condensation is coupled to a
+     decarboxylation: the carboxyl group that ACC installed leaves as CO<sub>2</sub> at the moment the bond
+     forms, and that loss of a gas makes the overall step strongly exergonic. The ATP spent by ACC is, in effect,
+     the price of pulling the condensation forward.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The labelling question that follows directly</p>
+    <p style="margin:0">The CO<sub>2</sub> fixed by acetyl-CoA carboxylase is the <em>same</em> CO<sub>2</sub>
+      released in the condensation. It is borrowed, not incorporated. So if you supply
+      <sup>14</sup>C-labelled <strong>bicarbonate</strong> to a lipogenic cell, the palmitate produced is
+      <strong>unlabelled</strong>, even though every carbon of it passed through malonyl-CoA. Supply
+      <sup>14</sup>C-labelled <strong>acetyl-CoA</strong> instead and every carbon is labelled. Examiners
+      love this because it separates people who know the mechanism from people who know the map.</p>
+  </div>
+
+  <h3>One elongation cycle, and why it is not β-oxidation in reverse</h3>
+  <p>Each cycle adds two carbons and runs: <strong>condense</strong> (β-ketoacyl-ACP synthase, releasing
+     CO<sub>2</sub>), <strong>reduce</strong> the new ketone with NADPH to give a
+     <strong>D</strong>-3-hydroxyacyl-ACP, <strong>dehydrate</strong> to a trans-Δ²-enoyl-ACP, and
+     <strong>reduce</strong> again with NADPH to the saturated chain. Seven cycles take the chain from acetyl to
+     palmitoyl, at which point a thioesterase hydrolyses it off — and <strong>C16 is where the enzyme
+     stops</strong>. Everything longer is made by separate ER elongases.</p>
+  <p>Notice how many things are inverted relative to § 03, and notice that none of the inversions is arbitrary.
+     Different compartment (cytosol, so the two pathways cannot even meet). Different carrier (ACP, not CoA, so
+     the intermediates are physically held inside one complex). Different cofactor (NADPH, not NAD⁺ and FAD —
+     the cell keeps its NADPH pool highly reduced and its NADH pool oxidised, precisely so that biosynthesis and
+     catabolism can run under different driving forces). And different stereochemistry at the 3-hydroxy
+     intermediate, <strong>D</strong> rather than <strong>L</strong>, which is the single cleanest way an
+     examiner can force you to prove you know the two pathways are separate enzymes rather than one reversible
+     one.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">β-Oxidation compared with fatty-acid synthesis</caption>
+      <thead><tr><th>Feature</th><th>β-Oxidation</th><th>Fatty-acid synthesis</th></tr></thead>
+      <tbody>
+        <tr><td>Location</td><td>Mitochondrial matrix (peroxisome for VLCFA)</td><td><strong>Cytosol</strong></td></tr>
+        <tr><td>Acyl carrier</td><td>Coenzyme A</td><td><strong>Acyl carrier protein</strong> (ACP)</td></tr>
+        <tr><td>Two-carbon unit</td><td>Released as acetyl-CoA</td><td>Donated as <strong>malonyl</strong>-CoA</td></tr>
+        <tr><td>Redox cofactor</td><td>FAD and NAD⁺ (produce FADH₂, NADH)</td><td><strong>NADPH</strong>, twice per cycle</td></tr>
+        <tr><td>3-Hydroxy intermediate</td><td><strong>L</strong>-3-hydroxyacyl-CoA</td><td><strong>D</strong>-3-hydroxyacyl-ACP</td></tr>
+        <tr><td>Enzyme organisation</td><td>Four separate enzymes (three fused as TFP for long chains)</td><td>One multifunctional polypeptide, a homodimer</td></tr>
+        <tr><td>CO₂</td><td>Not involved</td><td>Fixed by ACC, released at condensation — net zero</td></tr>
+        <tr><td>Bicarbonate / biotin</td><td>Not required</td><td>Both required (at ACC)</td></tr>
+        <tr><td>Regulated at</td><td><strong>CPT-1</strong> (entry), by malonyl-CoA</td><td><strong>ACC</strong> (commitment), by citrate, AMPK, insulin</td></tr>
+        <tr><td>Chain-length limit</td><td>Runs to completion</td><td>Stops at <strong>C16</strong> (palmitate)</td></tr>
+        <tr><td>Hormonal setting</td><td>Glucagon, adrenaline; fasting</td><td>Insulin; fed, high-carbohydrate</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — what palmitate costs to build, and the efficiency of storing energy as fat</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) How many ATP and NADPH are consumed in making one palmitate
+      from cytosolic acetyl-CoA? (b) Express that in ATP equivalents, and compute the round-trip efficiency of
+      storing energy as fat and getting it back.</p>
+    <ol>
+      <li><strong>(a)</strong> Palmitate is C16, so it is built from 8 acetyl units. One is the primer; the other
+          seven must be carboxylated to malonyl-CoA, at 1 ATP each — <span class="fi">7 ATP</span>.</li>
+      <li>Each of the seven elongation cycles uses two NADPH (one at the ketoacyl reductase, one at the enoyl
+          reductase): <span class="fi">7 × 2 = 14 NADPH</span>.</li>
+      <li>Overall: <span class="fi">8 acetyl-CoA + 7 ATP + 14 NADPH → palmitate</span>.</li>
+      <li><strong>(b)</strong> Valuing NADPH at the same 2.5 ATP as NADH:
+          <span class="fi">7 + 14 × 2.5 = 42 ATP equivalents</span>.</li>
+      <li>But the eight acetyl-CoA were themselves worth <span class="fi">8 × 10 = 80 ATP</span> had they been
+          burned. Total chemical potential invested = <span class="fi">80 + 42 = 122 ATP equivalents</span>.</li>
+      <li>Oxidising the palmitate returns <strong>106</strong>. Round-trip efficiency
+          <span class="fi">= 106/122 = 0.87</span>, i.e. about <strong>87 %</strong>.</li>
+      <li>Two readings of that number. It is remarkably good for a storage system — but it also means a futile
+          synthesis-and-oxidation cycle would waste roughly 13 % of the energy passing through it, which is
+          exactly the waste the malonyl-CoA switch of § 02 exists to prevent.</li>
+      <li>One more accounting point, easy to miss: the citrate shuttle costs an extra ATP per acetyl group
+          exported (at ATP-citrate lyase), and returns roughly one NADPH per acetyl group (at malic enzyme). If a
+          question asks you to include transport, add 8 ATP and subtract 8 of the 14 NADPH from the
+          pentose-phosphate requirement.</li>
+    </ol>
+    <span class="wex__ans">7 ATP + 14 NADPH = 42 ATP equivalents · round trip ≈ 87 % efficient</span>
+    </div>
+  </details>
+
+  <h3>Regulating ACC, on three timescales</h3>
+  <p>The same enzyme is controlled allosterically in seconds, covalently in minutes and transcriptionally in
+     hours, and the three layers all say the same thing.</p>
+  <ul>
+    <li><strong>Allosteric.</strong> <strong>Citrate</strong> activates, by polymerising ACC into long active
+      filaments; citrate accumulates when the mitochondrion has more acetyl-CoA and ATP than it can use, so it is
+      a direct report of energy surplus. <strong>Palmitoyl-CoA</strong> — the end product — depolymerises and
+      inactivates it. Classic feed-forward activation plus feedback inhibition on one protein.</li>
+    <li><strong>Covalent.</strong> <strong>AMPK</strong> phosphorylates and inactivates ACC whenever AMP rises,
+      i.e. whenever the cell is short of energy. So does PKA under glucagon and adrenaline. <strong>Insulin</strong>
+      activates protein phosphatase 2A, which removes those phosphates and switches ACC back on. Metformin
+      activates AMPK, which is part of why it reduces hepatic lipogenesis.</li>
+    <li><strong>Transcriptional.</strong> Insulin induces <strong>SREBP-1c</strong> and glucose induces
+      <strong>ChREBP</strong>; between them they raise the expression of ACC, FAS, ATP-citrate lyase and the
+      NADPH-producing enzymes together. A sustained high-carbohydrate diet therefore does not just switch
+      lipogenesis on, it builds more of the machinery.</li>
+  </ul>
+
+  <h3>Beyond palmitate: elongation, desaturation, and what humans cannot do</h3>
+  <p>FAS releases palmitate and stops. Longer chains are made by ER <strong>elongases</strong>, which use
+     malonyl-CoA and NADPH exactly as FAS does but work on acyl-<em>CoA</em> rather than acyl-ACP. Double bonds
+     are inserted by <strong>desaturases</strong> — mixed-function oxidases requiring O<sub>2</sub>, NADH,
+     cytochrome b<sub>5</sub> and its reductase, in which both the fatty acid and NADH are oxidised while
+     O<sub>2</sub> is reduced to two molecules of water. Stearoyl-CoA desaturase (Δ9) converts stearate to
+     oleate, and Δ5 and Δ6 desaturases act closer to the carboxyl end.</p>
+  <p>The limit is absolute and it is the source of one clean exam fact: <strong>mammals have no desaturase that
+     acts beyond C9</strong>, counting from the carboxyl end. We therefore cannot make a double bond at Δ12 or
+     Δ15, and so cannot synthesise <strong>linoleate (18:2, ω-6)</strong> or
+     <strong>α-linolenate (18:3, ω-3)</strong>. Those two are the <em>essential</em> fatty acids. Arachidonate
+     (20:4, ω-6) is made from linoleate by desaturation and elongation, so it is essential only when linoleate is
+     absent — conditionally essential. Essential fatty acid deficiency, seen historically in patients on
+     fat-free parenteral nutrition, gives a scaly dermatitis, poor wound healing and hair loss, and is diagnosed
+     by a rising ratio of mead acid (20:3 ω-9) to arachidonate as the body improvises with the wrong precursor.</p>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · where NADPH comes from, and why it is NADPH and not NADH</summary>
+    <div class="disc__body">
+      <p>NADH and NADPH differ by a single phosphate on the adenosine 2′-OH, and they carry the same hydride.
+        The point of having two is that the cell can hold them at different redox poise: cytosolic
+        <span class="fi">NAD⁺/NADH ≈ 700</span> (strongly oxidised, good for accepting electrons from catabolism)
+        while <span class="fi">NADP⁺/NADPH ≈ 0.01</span> (strongly reduced, good for donating electrons to
+        biosynthesis). The phosphate is simply a molecular tag that lets enzymes tell the two pools apart. Any
+        question asking "why NADPH" has this as its answer.</p>
+      <p>Three sources supply it in a lipogenic cell:</p>
+      <ul>
+        <li>The oxidative branch of the <strong>pentose phosphate pathway</strong> — glucose-6-phosphate
+          dehydrogenase and 6-phosphogluconate dehydrogenase, two NADPH per glucose-6-phosphate. This is the
+          major source in adipose tissue and lactating mammary gland.</li>
+        <li><strong>Malic enzyme</strong>, on the return leg of the citrate shuttle — one NADPH per acetyl group
+          exported, so up to 8 of the 14 needed for palmitate.</li>
+        <li>Cytosolic <strong>isocitrate dehydrogenase</strong> (IDH1), a minor contributor.</li>
+      </ul>
+      <p>The link to G6PD deficiency is worth making, because it is where this shows up clinically: the same
+        NADPH pool also keeps glutathione reduced. A G6PD-deficient erythrocyte has no other NADPH source at all,
+        which is why oxidative stress from primaquine, sulfonamides, fava beans or infection causes haemolysis
+        with Heinz bodies and bite cells. The lipogenic function and the antioxidant function compete for one
+        pool.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Complex lipids and the sphingolipidoses</h2>
+
+  <p class="idea"><b>The idea</b>A free fatty acid is never the final product. It is fitted onto a backbone — usually glycerol, sometimes an
+     amino alcohol — and the head group bolted onto that backbone decides what the molecule is <em>for</em>:
+     storage, membrane, signal, or insulation. Because these molecules are built by adding pieces one at a time,
+     they are also taken apart one piece at a time in the lysosome, and a missing enzyme anywhere in that
+     dismantling line causes the half-degraded lipid to pile up. That is the entire logic of the storage
+     diseases.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the branch point</p>
+    <dl class="def">
+      <dt>Phosphatidate（磷脂酸）</dt>
+      <dd>Glycerol-3-phosphate bearing two acyl chains. It is the common precursor of <em>both</em> storage fat
+          and glycerophospholipid: dephosphorylate it and you get diacylglycerol on the way to triacylglycerol;
+          activate it with CTP and you get the acidic phospholipids instead.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">glycerol-3-P →[2 acyl-CoA] phosphatidate → DAG → <b>triacylglycerol</b> &nbsp;·&nbsp; phosphatidate → CDP-DAG → <b>PI, PG, cardiolipin</b></span>
+      <span class="fx__tag">one branch point decides storage versus membrane</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Where glycerol-3-phosphate comes from</dt>
+          <dd>From <strong>DHAP</strong> by glycerol-3-phosphate dehydrogenase, in every tissue; or from free
+              glycerol by <strong>glycerol kinase</strong>, in liver and kidney only. Adipose tissue has no
+              glycerol kinase, so its glycerol-3-phosphate must come from glucose — the causal link between
+              carbohydrate intake and fat storage already met in § 01.</dd>
+          <dt>Kennedy pathway</dt>
+          <dd>The route to the two commonest phospholipids: choline (or ethanolamine) is phosphorylated,
+              activated with CTP to <strong>CDP-choline</strong>, and transferred onto diacylglycerol to give
+              phosphatidylcholine. Note which partner carries the CTP — here the <em>head group</em> is
+              activated, whereas for PI and cardiolipin it is the <em>diacylglycerol</em> that is activated as
+              CDP-DAG. That swap is a favourite discriminator.</dd>
+          <dt>Ceramide</dt>
+          <dd>Sphingosine with a fatty acid on its amino group. Built from <strong>serine + palmitoyl-CoA</strong>
+              by serine palmitoyltransferase (PLP-dependent). Ceramide is the hub of all sphingolipids: add
+              phosphocholine and you have <strong>sphingomyelin</strong>; add one sugar and you have a
+              cerebroside; add a chain of sugars containing sialic acid and you have a
+              <strong>ganglioside</strong>.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">serine + palmitoyl-CoA → … → sphingosine → ceramide</span><span class="fx__tag">the only lipid backbone that is not glycerol</span></div>
+          <div class="fx"><span class="fx__eq">ceramide + phosphocholine → sphingomyelin</span><span class="fx__tag">the only sphingolipid that is also a phospholipid</span></div>
+          <div class="fx"><span class="fx__eq">PE + 3 SAM → PC</span><span class="fx__tag">the hepatic PEMT route; a reason choline demand rises when methyl donors are short</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>PA</b><span>phosphatidate</span></div>
+          <div><b>PC / PE / PS / PI</b><span>phosphatidyl-choline, -ethanolamine, -serine, -inositol</span></div>
+          <div><b>CDP-DAG</b><span>cytidine diphosphate diacylglycerol</span></div>
+          <div><b>DPPC</b><span>dipalmitoylphosphatidylcholine — the surfactant lipid</span></div>
+          <div><b>NANA</b><span>N-acetylneuraminate (sialic acid); defines a ganglioside</span></div>
+          <div><b>SAM</b><span>S-adenosylmethionine, the methyl donor</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Note 01 § 07–§ 09 covered what these molecules look like and how amphipathic structure produces a bilayer;
+     that material is not repeated. What follows is only the metabolic layer — how they are assembled, and what
+     happens when they cannot be taken apart again.</p>
+
+  <h3>Four clinical facts that fall straight out of the assembly routes</h3>
+  <ul>
+    <li><strong>Lung surfactant is a phosphatidylcholine.</strong> Specifically dipalmitoylphosphatidylcholine,
+      made by type II pneumocytes from about week 24 and surging near term. Too little and alveolar surface
+      tension collapses the lung on expiration — neonatal respiratory distress syndrome. Antenatal
+      glucocorticoids accelerate its synthesis; an amniotic
+      <strong>lecithin : sphingomyelin ratio ≥ 2</strong> indicates maturity, and it works as a test precisely
+      because sphingomyelin stays roughly constant while lecithin rises.</li>
+    <li><strong>Cardiolipin is the mitochondrial signature.</strong> Two phosphatidates joined through a glycerol
+      — four acyl chains — and found almost exclusively in the inner mitochondrial membrane, where it is required
+      for the function of the respiratory complexes and the adenine nucleotide translocase. Defective remodelling
+      of it (tafazzin) causes Barth syndrome: cardiomyopathy, neutropenia, 3-methylglutaconic aciduria.</li>
+    <li><strong>Phosphatidylinositol is a signalling reservoir.</strong> PIP<sub>2</sub> in the inner leaflet is
+      cleaved by phospholipase C into IP<sub>3</sub> (releases stored Ca<sup>2+</sup>) and diacylglycerol
+      (activates protein kinase C). Lithium's classical mechanism is inhibition of inositol monophosphatase,
+      which depletes the recycling pool.</li>
+    <li><strong>Phospholipases are named by the bond they cut.</strong> A<sub>1</sub> and A<sub>2</sub> remove
+      the sn-1 and sn-2 acyl chains; C cuts on the glycerol side of the phosphate (releasing DAG); D cuts on the
+      head-group side (releasing the alcohol). Only PLA<sub>2</sub> matters for § 11, because the sn-2 chain is
+      where arachidonate sits.</li>
+  </ul>
+
+  <h3>The sphingolipidoses</h3>
+  <p>Sphingolipids are degraded in the lysosome by removing terminal groups one at a time. Each removal has its
+     own hydrolase, so a deficiency produces a very specific accumulated species — and the accumulated species
+     determines the clinical picture, because it determines which cell type is worst affected. Neurons are hit
+     when gangliosides or their relatives accumulate; macrophages of liver, spleen and marrow are hit when the
+     substrate arrives mainly from turnover of blood cells; myelin fails when the substrate is a myelin lipid.
+     Reading the table that way makes it derivable rather than a list.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Sphingolipid storage diseases</caption>
+      <thead><tr><th>Disease</th><th>Missing enzyme</th><th>Accumulates</th><th>Clinical signature</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tay–Sachs</strong></td><td>β-Hexosaminidase A</td><td>GM2 ganglioside</td><td>Cherry-red macula, exaggerated startle, regression from ~6 months, <strong>no hepatosplenomegaly</strong>; Ashkenazi carrier frequency ≈ 1 : 30</td></tr>
+        <tr><td>Sandhoff</td><td>Hexosaminidase A <em>and</em> B</td><td>GM2 + globoside</td><td>As Tay–Sachs but <strong>with</strong> hepatosplenomegaly</td></tr>
+        <tr><td><strong>Gaucher</strong> (commonest of all)</td><td>Glucocerebrosidase</td><td>Glucocerebroside</td><td>Hepatosplenomegaly, pancytopenia, bone crises and Erlenmeyer-flask femora; "crumpled tissue paper" macrophages. Enzyme replacement works</td></tr>
+        <tr><td>Niemann–Pick A/B</td><td>Sphingomyelinase</td><td>Sphingomyelin</td><td>Cherry-red macula <strong>plus</strong> hepatosplenomegaly — the pairing that separates it from Tay–Sachs</td></tr>
+        <tr><td><strong>Fabry</strong></td><td>α-Galactosidase A</td><td>Globotriaosylceramide</td><td>The only <strong>X-linked</strong> one. Angiokeratomas, burning acroparaesthesiae, hypohidrosis, progressive renal failure, early stroke</td></tr>
+        <tr><td>Krabbe</td><td>Galactocerebrosidase</td><td>Galactocerebroside, psychosine</td><td>Optic atrophy, peripheral neuropathy, <strong>globoid cells</strong>, rapid demyelination</td></tr>
+        <tr><td>Metachromatic leukodystrophy</td><td>Arylsulfatase A</td><td>Cerebroside sulfate</td><td>Central <em>and</em> peripheral demyelination, ataxia, dementia</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The two discriminators examiners actually use</p>
+    <p style="margin:0"><strong>Cherry-red spot</strong> occurs in both Tay–Sachs and Niemann–Pick, so it never
+      distinguishes them on its own — <strong>hepatosplenomegaly</strong> does: absent in Tay–Sachs, present in
+      Niemann–Pick and in Sandhoff. And <strong>Fabry is the only X-linked</strong> sphingolipidosis; every other
+      one in the table is autosomal recessive, so a pedigree showing affected males across generations through
+      unaffected mothers is pointing at Fabry. Hunter syndrome is also X-linked but it is a
+      mucopolysaccharidosis, not a sphingolipidosis — a different substrate entirely.</p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Cholesterol, HMG-CoA reductase and the statins</h2>
+
+  <p class="idea"><b>The idea</b>Cholesterol is built from the same two-carbon units as everything else on this page, but instead of being
+     strung into a line they are assembled into five-carbon branched blocks, joined into a long chain, and then
+     folded up and zipped into four fused rings in one spectacular reaction. The rings are the problem: once
+     formed, no human enzyme can break them open again. So cholesterol can only be made, stored or exported —
+     never burned. That single structural fact is why the body needs an elaborate transport system for it, why
+     it accumulates in arteries, and why the only drug target that matters is the enzyme that commits carbon to
+     the pathway in the first place.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; committed step</p>
+    <dl class="def">
+      <dt>HMG-CoA reductase</dt>
+      <dd>An integral <strong>ER membrane</strong> protein that reduces HMG-CoA to <strong>mevalonate</strong>
+          using two NADPH. It is the <strong>committed and rate-limiting</strong> step of cholesterol synthesis,
+          the most heavily regulated enzyme in the pathway, and the target of every statin.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">HMG-CoA + 2 NADPH + 2 H⁺ → mevalonate + CoA-SH + 2 NADP⁺</span>
+      <span class="fx__tag">irreversible; the point of no return for these carbons</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>The four stages</dt>
+          <dd><strong>1.</strong> 3 acetyl-CoA → HMG-CoA → mevalonate (C6). <strong>2.</strong> Mevalonate + 3 ATP
+              → isopentenyl pyrophosphate (C5), the isoprene unit, with the third phosphorylation driving a
+              decarboxylation. <strong>3.</strong> C5 + C5 → geranyl-PP (C10) → farnesyl-PP (C15); two farnesyl-PP
+              condense head-to-head to <strong>squalene</strong> (C30). <strong>4.</strong> Squalene is
+              epoxidised (O<sub>2</sub>, NADPH) and cyclised in one step to <strong>lanosterol</strong>, then
+              converted over about nineteen further steps to cholesterol (C27), losing its three extra methyl
+              carbons — the two at C4 as CO<sub>2</sub>, the one at C14 as formate.</dd>
+          <dt>Carbon accounting</dt>
+          <dd>Six mevalonate are needed, each from three acetyl-CoA — <strong>18 acetyl-CoA</strong> in total.
+              Six C5 isoprene units give C30 (squalene and lanosterol); three demethylations then bring it to the
+              C27 of cholesterol.</dd>
+          <dt>Where and when</dt>
+          <dd>Chiefly liver and intestine, on the smooth ER, with roughly 1 g synthesised daily against about
+              0.3 g absorbed from the diet. Synthesis peaks at night, which is why short-acting statins are
+              taken in the evening.</dd>
+          <dt>Sterol-regulatory element-binding protein 2 (SREBP-2)</dt>
+          <dd>An ER-membrane transcription factor. When cell sterol is <em>low</em>, SCAP escorts SREBP-2 to the
+              Golgi, where two proteases release its DNA-binding domain; that domain then induces
+              <strong>both</strong> HMG-CoA reductase and the <strong>LDL receptor</strong>. When sterol is high,
+              Insig retains the complex in the ER and nothing is induced.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">18 acetyl-CoA (C36) → cholesterol (C27); 9 C removed</span><span class="fx__tag">six as CO₂ at the mevalonate-pyrophosphate decarboxylase, three at the demethylations; every carbon of cholesterol comes from acetyl-CoA</span></div>
+          <div class="fx"><span class="fx__eq">cholesterol →[CYP7A1] 7α-hydroxycholesterol → bile acids</span><span class="fx__tag">rate-limiting step of the <em>only</em> significant elimination route</span></div>
+          <div class="fx"><span class="fx__eq">mevalonate → … → farnesyl-PP → CoQ₁₀, dolichol, prenylated Ras</span><span class="fx__tag">the branch that explains statin side effects and bisphosphonates</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>HMG-CoA</b><span>3-hydroxy-3-methylglutaryl-CoA</span></div>
+          <div><b>IPP / DMAPP</b><span>isopentenyl and dimethylallyl pyrophosphate (C5)</span></div>
+          <div><b>SCAP / Insig</b><span>the sterol sensor and its ER retention partner</span></div>
+          <div><b>ACAT</b><span>acyl-CoA : cholesterol acyltransferase — esterifies <em>inside</em> cells</span></div>
+          <div><b>LCAT</b><span>lecithin : cholesterol acyltransferase — esterifies <em>in plasma</em>, on HDL</span></div>
+          <div><b>Serum TC</b><span>desirable &lt; 200 mg/dL (&lt; 5.2 mmol·L⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Follow the carbons once</h3>
+  <p>Three acetyl-CoA condense to HMG-CoA in the <em>cytosol</em> — the same molecule that ketogenesis makes in
+     the mitochondrion (§ 06), and the point at which the two pathways diverge for good. HMG-CoA reductase then
+     reduces the thioester all the way to a primary alcohol, using two NADPH, and mevalonate is produced. From
+     mevalonate onwards the chemistry is isoprenoid: three ATP convert it to the C5 isopentenyl pyrophosphate,
+     and C5 units are then strung together — C10, C15 — before two C15 pieces are welded tail-to-tail into the
+     C30 hydrocarbon squalene. Squalene monooxygenase installs an epoxide, and oxidosqualene cyclase folds the
+     whole linear molecule into the four-ring steroid nucleus in a single concerted reaction. What emerges is
+     lanosterol, and about nineteen further steps trim three methyl carbons to give cholesterol.</p>
+  <p>Two consequences are worth stating explicitly. First, <strong>everything after mevalonate is expensive but
+     unregulated</strong>; the cell makes its decision at the reductase and then simply runs the rest. Second,
+     the intermediates are not only cholesterol precursors. Farnesyl pyrophosphate branches off to give
+     <strong>coenzyme Q<sub>10</sub></strong>, <strong>dolichol</strong> (needed for N-linked glycosylation),
+     haem A, and the farnesyl and geranylgeranyl anchors that tether Ras and Rho to the membrane. Block the
+     reductase and you dial down all of them, which is the mechanistic hypothesis behind statin myopathy and the
+     reason nitrogen-containing bisphosphonates — which inhibit farnesyl pyrophosphate synthase and so strip
+     osteoclasts of their prenylated signalling proteins — sit on this same pathway.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The ring cannot be broken — and everything follows</p>
+    <p style="margin:0">Humans have no enzyme that degrades the steroid nucleus to CO<sub>2</sub>. Cholesterol
+      therefore has only three fates: it is incorporated into membranes, converted to a steroid product (bile
+      acids, the adrenal and gonadal steroids, vitamin D<sub>3</sub> via 7-dehydrocholesterol in skin), or
+      excreted. Quantitatively, essentially all elimination is as <strong>bile acids and biliary
+      cholesterol</strong>, with <strong>cholesterol 7α-hydroxylase (CYP7A1)</strong> the rate-limiting enzyme of
+      bile acid synthesis. Since roughly 95 % of bile salts are reclaimed in the terminal ileum by the
+      enterohepatic circulation, interrupting that circulation forces the liver to make more from cholesterol —
+      which is exactly how bile acid sequestrants such as cholestyramine lower LDL, and also why terminal ileal
+      disease or resection causes both bile-salt diarrhoea and gallstones.</p>
+  </div>
+
+  <h3>Regulation: four layers on one enzyme</h3>
+  <p>HMG-CoA reductase is a textbook case of an enzyme controlled at every available level, and each level has a
+     different time constant.</p>
+  <ul>
+    <li><strong>Transcription (hours).</strong> Low cell sterol frees SREBP-2, which induces the reductase
+      <em>and</em> the LDL receptor. High sterol keeps SCAP–SREBP-2 locked in the ER by Insig.</li>
+    <li><strong>Regulated degradation (hours).</strong> Sterols — particularly lanosterol and oxysterols — make
+      the reductase bind Insig, which recruits a ubiquitin ligase and sends the enzyme to the proteasome.
+      Its half-life falls several-fold.</li>
+    <li><strong>Phosphorylation (minutes).</strong> AMPK phosphorylates and inactivates it, exactly as it does
+      ACC. Cholesterol synthesis is expensive, so a cell short of ATP stops making it.</li>
+    <li><strong>Hormones.</strong> Insulin and thyroid hormone increase activity; glucagon and glucocorticoids
+      decrease it. Clinically this shows as the hypercholesterolaemia of untreated
+      <em>hypo</em>thyroidism — reduced LDL-receptor expression as well as altered synthesis — which is why
+      thyroid function is checked before labelling someone with primary dyslipidaemia.</li>
+  </ul>
+
+  <h3>Statins: the mechanism is not the one most people give</h3>
+  <p>Statins are competitive inhibitors: they carry a group that mimics the mevalonate half of HMG-CoA, and they
+     bind the reductase with dissociation constants in the nanomolar range against a K<sub>m</sub> for HMG-CoA in
+     the micromolar range — roughly a thousandfold tighter. So far, so ordinary. But the reason plasma LDL falls
+     by a quarter to a half is <em>not</em> primarily that the liver makes less cholesterol. It is that the
+     hepatocyte's internal sterol level drops, SREBP-2 is released, and the liver
+     <strong>puts more LDL receptors on its surface</strong> — so it clears LDL out of the plasma faster. The
+     drug works by turning up the disposal machinery, not by turning down production.</p>
+  <p>That distinction is worth holding because it explains the clinical facts around it. Homozygous familial
+     hypercholesterolaemia, in which there are no functional LDL receptors to upregulate, responds poorly to
+     statins — a diagnostic clue in itself. PCSK9 inhibitors work on the same lever from the other side: PCSK9
+     normally binds the LDL receptor and directs it to lysosomal destruction after each round of endocytosis, so
+     blocking PCSK9 lets receptors recycle instead, and the two drug classes are additive. And people with
+     natural loss-of-function PCSK9 variants have lifelong low LDL and markedly reduced coronary risk, which is
+     one of the strongest pieces of evidence that LDL is causal rather than merely correlated.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Lipid-lowering drugs and their molecular targets</caption>
+      <thead><tr><th>Drug class</th><th>Molecular target</th><th>Principal effect</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Statins</strong></td><td>HMG-CoA reductase (competitive)</td><td>LDL ↓ 25–55 %</td><td>Acts via SREBP-2 → more LDL receptors. Myopathy and raised transaminases; CYP3A4 interactions for simvastatin and atorvastatin</td></tr>
+        <tr><td>Ezetimibe</td><td>NPC1L1 in the enterocyte brush border</td><td>LDL ↓ ≈ 18 %</td><td>Blocks absorption of dietary <em>and</em> biliary cholesterol; synergistic with a statin</td></tr>
+        <tr><td>Bile acid sequestrants</td><td>Bind bile salts in the gut lumen</td><td>LDL ↓</td><td>Interrupt enterohepatic circulation → more cholesterol drawn into bile acid synthesis; can raise triacylglycerol</td></tr>
+        <tr><td>PCSK9 inhibitors</td><td>PCSK9 (monoclonal antibody or siRNA)</td><td>LDL ↓ 50–60 %</td><td>Prevents LDL-receptor degradation, so receptors recycle</td></tr>
+        <tr><td>Fibrates</td><td>PPARα agonist</td><td>Triacylglycerol ↓, HDL ↑</td><td>Induce LPL, suppress apoC-III. Rhabdomyolysis risk rises when gemfibrozil is combined with a statin</td></tr>
+        <tr><td>Bempedoic acid</td><td>ATP-citrate lyase</td><td>LDL ↓</td><td>A prodrug activated only in liver, not muscle — hence little myopathy. Acts one step upstream of the statins</td></tr>
+        <tr><td>Omega-3 esters</td><td>Substrate substitution / hepatic VLDL output</td><td>Triacylglycerol ↓</td><td>EPA and DHA also shift eicosanoid output (§ 11)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · esterification, and the two enzymes that are constantly confused</summary>
+    <div class="disc__body">
+      <p>Free cholesterol is amphipathic and intercalates into membranes; a <strong>cholesteryl ester</strong>,
+        with a fatty acid on the 3-OH, is entirely hydrophobic and can only sit in the oily core of a droplet or
+        a lipoprotein. Esterification is therefore the packaging operation, and two different enzymes do it in
+        two different places:</p>
+      <ul>
+        <li><strong>ACAT</strong> (acyl-CoA : cholesterol acyltransferase, now SOAT) works <em>inside</em> the
+          cell, on the ER, using acyl-CoA as the acyl donor. It is activated when free cholesterol rises — the
+          third arm of the response to LDL uptake, alongside suppressing the reductase and suppressing the LDL
+          receptor.</li>
+        <li><strong>LCAT</strong> (lecithin : cholesterol acyltransferase) works <em>in plasma</em>, on the
+          surface of HDL, using the sn-2 acyl chain of phosphatidylcholine as the donor, and is activated by
+          <strong>apoA-I</strong>. Esterifying surface cholesterol drives it into the particle core, which is
+          what converts a flat discoidal nascent HDL into a spherical mature one and keeps the surface
+          concentration low enough for more cholesterol to keep flowing in.</li>
+      </ul>
+      <p>The mnemonic that survives the exam: <strong>A</strong>CAT is <strong>a</strong>ctivated by cholesterol
+        and works inside the cell; <strong>L</strong>CAT works in the <strong>l</strong>iquid — plasma.
+        LCAT deficiency produces corneal opacities, haemolytic anaemia and renal failure with almost no
+        cholesteryl ester in plasma.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Lipoproteins and where the traffic fails</h2>
+
+  <p class="idea"><b>The idea</b>Fat and cholesterol have to travel through blood, which is water. The solution is a droplet: oil in the
+     middle, a single layer of water-facing molecules around the outside, and proteins stuck through that layer
+     which act as address labels and switches. The whole system is one idea repeated — the same kind of particle,
+     carrying different cargo, wearing different labels. If you know which label a particle wears, you know where
+     it goes and which enzyme is allowed to act on it, and every one of the classic lipid disorders becomes a
+     missing label or a missing enzyme.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the organising rule</p>
+    <dl class="def">
+      <dt>Lipoprotein（脂蛋白）</dt>
+      <dd>A spherical particle with a core of triacylglycerol and cholesteryl esters, surrounded by a monolayer
+          of phospholipid, free cholesterol and apolipoproteins. Classes are separated by density, and density
+          rises as the (light) lipid core shrinks and the (dense) protein fraction grows.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">chylomicron &gt; VLDL &gt; IDL &gt; LDL &gt; HDL &nbsp;— size falls, density rises, %protein rises</span>
+      <span class="fx__tag">one ordering answers a whole family of questions</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>The apolipoproteins that actually get examined</dt>
+          <dd><strong>apoB-48</strong> — chylomicrons only, made in the intestine.
+              <strong>apoB-100</strong> — VLDL, IDL and LDL; the <em>ligand for the LDL receptor</em>.
+              <strong>apoC-II</strong> — the obligatory <em>activator of lipoprotein lipase</em>.
+              <strong>apoC-III</strong> — inhibits LPL, the counterweight.
+              <strong>apoE</strong> — the ligand for hepatic <em>remnant</em> uptake.
+              <strong>apoA-I</strong> — the structural protein of HDL and the <em>activator of LCAT</em>.</dd>
+          <dt>Why apoB-48 and apoB-100 are the same gene</dt>
+          <dd>The intestine edits the APOB transcript: APOBEC-1 deaminates a single cytosine, creating a
+              premature stop codon, so the intestinal protein is the amino-terminal 48 % of the hepatic one — and
+              the LDL-receptor-binding domain, which lies in the missing part, is absent. That is why
+              chylomicron remnants are cleared by <em>apoE</em> and LDL by <em>apoB-100</em>.</dd>
+          <dt>Lipoprotein lipase (LPL)</dt>
+          <dd>Anchored to the capillary endothelium of muscle, heart and adipose by GPIHBP1, and released into
+              plasma by heparin. Hydrolyses core triacylglycerol so that fatty acids can be taken up locally.
+              Adipose LPL is induced by insulin; cardiac and muscle LPL is not, so during a fast the triglyceride
+              traffic is redirected to the tissues that need to burn it.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Friedewald: LDL-C = TC − HDL-C − <span class="mf" role="img" aria-label="TG over 5"><span>TG</span><span>5</span></span> &nbsp;(mg/dL)</span><span class="fx__tag">in mmol·L⁻¹ divide TG by 2.2 instead; invalid if TG &gt; 400 mg/dL or the sample is non-fasting</span></div>
+          <div class="fx"><span class="fx__eq">non-HDL-C = TC − HDL-C</span><span class="fx__tag">counts every apoB particle; valid even when triglycerides are high</span></div>
+          <div class="fx"><span class="fx__eq">TG/5 estimates VLDL-cholesterol</span><span class="fx__tag">because a VLDL particle carries roughly five times as much TG as cholesterol</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>TC</b><span>total cholesterol (mg/dL or mmol·L⁻¹)</span></div>
+          <div><b>TG</b><span>triacylglycerol</span></div>
+          <div><b>LPL / HL</b><span>lipoprotein lipase / hepatic lipase</span></div>
+          <div><b>CETP</b><span>cholesteryl ester transfer protein</span></div>
+          <div><b>SR-B1</b><span>scavenger receptor B1 — selective HDL cholesteryl ester uptake</span></div>
+          <div><b>ABCA1</b><span>the efflux pump that loads nascent HDL</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 780 470" role="img" aria-label="Three-pathway map of lipoprotein traffic. The exogenous pathway runs from the intestine, where dietary fat is packaged with apoB-48 into a chylomicron, through lipoprotein lipase on the capillary endothelium which releases fatty acids to muscle and adipose, to a chylomicron remnant taken up by the liver through apoE. The endogenous pathway runs from the liver, which secretes VLDL carrying apoB-100, through lipoprotein lipase to IDL and then LDL, which is taken up by the LDL receptor on liver and peripheral cells or oxidised and engulfed by macrophage scavenger receptors to form foam cells. The reverse pathway runs from peripheral cells, where ABCA1 effluxes cholesterol onto nascent HDL, through LCAT which esterifies it, back to the liver via SR-B1, with CETP exchanging cholesteryl esters onto apoB particles." style="font-family:var(--sans)">
+      <text x="14" y="24" font-size="11" font-weight="700" fill="var(--accent-2)" letter-spacing=".8">EXOGENOUS · dietary fat</text>
+      <rect x="14" y="34" width="112" height="42" rx="9" fill="var(--card)" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <text x="70" y="53" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">intestine</text>
+      <text x="70" y="68" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">apoB-48, MTP</text>
+      <line x1="126" y1="55" x2="186" y2="55" stroke="var(--accent-2)" stroke-width="2"/>
+      <polygon points="194,55 182,49 182,61" fill="var(--accent-2)"/>
+      <rect x="196" y="34" width="126" height="42" rx="9" fill="var(--card)" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <text x="259" y="53" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-2)">chylomicron</text>
+      <text x="259" y="68" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">via lymph, not portal</text>
+      <line x1="322" y1="55" x2="386" y2="55" stroke="var(--accent-2)" stroke-width="2"/>
+      <polygon points="394,55 382,49 382,61" fill="var(--accent-2)"/>
+      <text x="356" y="42" text-anchor="middle" font-size="10" font-weight="700" fill="var(--ink)">LPL</text>
+      <text x="356" y="74" text-anchor="middle" font-size="9" fill="var(--ink-faint)">apoC-II</text>
+      <rect x="396" y="34" width="132" height="42" rx="9" fill="var(--card)" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <text x="462" y="60" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">remnant</text>
+      <line x1="528" y1="55" x2="590" y2="55" stroke="var(--accent-2)" stroke-width="2"/>
+      <polygon points="598,55 586,49 586,61" fill="var(--accent-2)"/>
+      <text x="559" y="42" text-anchor="middle" font-size="10" font-weight="700" fill="var(--ink)">apoE</text>
+      <line x1="462" y1="78" x2="462" y2="102" stroke="var(--hydrophobic)" stroke-width="1.8" stroke-dasharray="4 3"/>
+      <text x="472" y="96" font-size="9.5" fill="var(--hydrophobic)">FFA → muscle, adipose</text>
+
+      <rect x="600" y="26" width="166" height="140" rx="12" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <text x="683" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent)">LIVER</text>
+      <text x="683" y="72" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">remnant receptor (LRP1)</text>
+      <text x="683" y="88" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">LDL receptor · SR-B1</text>
+      <text x="683" y="104" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">bile acid synthesis</text>
+      <text x="683" y="128" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">the only organ that can</text>
+      <text x="683" y="142" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">dispose of cholesterol</text>
+
+      <text x="14" y="184" font-size="11" font-weight="700" fill="var(--accent-3)" letter-spacing=".8">ENDOGENOUS · hepatic fat</text>
+      <line x1="640" y1="166" x2="640" y2="196" stroke="var(--accent-3)" stroke-width="2"/>
+      <polygon points="640,204 634,192 646,192" fill="var(--accent-3)"/>
+      <rect x="560" y="206" width="140" height="42" rx="9" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <text x="630" y="225" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-3)">VLDL</text>
+      <text x="630" y="240" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">apoB-100</text>
+      <line x1="560" y1="227" x2="500" y2="227" stroke="var(--accent-3)" stroke-width="2"/>
+      <polygon points="492,227 504,221 504,233" fill="var(--accent-3)"/>
+      <text x="528" y="215" text-anchor="middle" font-size="10" font-weight="700" fill="var(--ink)">LPL</text>
+      <rect x="378" y="206" width="112" height="42" rx="9" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <text x="434" y="232" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">IDL</text>
+      <line x1="378" y1="227" x2="322" y2="227" stroke="var(--accent-3)" stroke-width="2"/>
+      <polygon points="314,227 326,221 326,233" fill="var(--accent-3)"/>
+      <text x="350" y="215" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)">hepatic lipase</text>
+      <rect x="186" y="204" width="126" height="46" rx="9" fill="var(--card)" stroke="var(--bad)" stroke-width="2.2"/>
+      <text x="249" y="224" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--bad)">LDL</text>
+      <text x="249" y="240" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">≈70 % of plasma cholesterol</text>
+
+      <path d="M 249,250 L 249,286" stroke="var(--bad)" stroke-width="2" fill="none"/>
+      <polygon points="249,294 243,282 255,282" fill="var(--bad)"/>
+      <rect x="150" y="296" width="200" height="44" rx="9" fill="var(--card)" stroke="var(--bad)" stroke-width="1.8"/>
+      <text x="250" y="315" text-anchor="middle" font-size="11" font-weight="700" fill="var(--bad)">oxidised LDL → scavenger receptor</text>
+      <text x="250" y="331" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">not downregulated → foam cell → plaque</text>
+      <path d="M 312,226 L 596,196" stroke="var(--accent-3)" stroke-width="1.6" stroke-dasharray="5 4" fill="none"/>
+      <text x="430" y="192" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">LDL receptor uptake, apoB-100</text>
+
+      <text x="14" y="374" font-size="11" font-weight="700" fill="var(--ok)" letter-spacing=".8">REVERSE · cholesterol coming back</text>
+      <rect x="14" y="386" width="140" height="46" rx="9" fill="var(--card)" stroke="var(--ok)" stroke-width="1.8"/>
+      <text x="84" y="405" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)">peripheral cell</text>
+      <text x="84" y="421" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">ABCA1 effluxes</text>
+      <line x1="154" y1="409" x2="212" y2="409" stroke="var(--ok)" stroke-width="2"/>
+      <polygon points="220,409 208,403 208,415" fill="var(--ok)"/>
+      <rect x="222" y="386" width="150" height="46" rx="9" fill="var(--card)" stroke="var(--ok)" stroke-width="1.8"/>
+      <text x="297" y="405" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ok)">HDL · apoA-I</text>
+      <text x="297" y="421" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">LCAT esterifies → core</text>
+      <line x1="372" y1="409" x2="590" y2="409" stroke="var(--ok)" stroke-width="2"/>
+      <polygon points="598,409 586,403 586,415" fill="var(--ok)"/>
+      <text x="484" y="399" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink)">SR-B1 selective uptake</text>
+      <rect x="600" y="386" width="166" height="46" rx="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.6"/>
+      <text x="683" y="414" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)">liver → bile</text>
+      <path d="M 297,386 L 297,352 L 249,352" stroke="var(--ink-faint)" stroke-width="1.6" stroke-dasharray="4 3" fill="none"/>
+      <text x="392" y="356" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">CETP swaps CE for TG with apoB particles</text>
+    </svg>
+    <figcaption>Three loops, one particle design. Read each arrow as "which label lets this happen": apoC-II
+      licenses LPL, apoE licenses remnant uptake, apoB-100 licenses the LDL receptor, apoA-I licenses LCAT. Every
+      disorder in the table below is one of these arrows failing.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Lipoprotein classes and their properties</caption>
+      <thead><tr><th>Class</th><th>Made by</th><th>Main cargo</th><th>Key apolipoproteins</th><th>Fate</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Chylomicron</strong></td><td>Intestine</td><td>Dietary triacylglycerol (≈85 %)</td><td>B-48, C-II, E</td><td>LPL strips TG; remnant cleared by liver via apoE</td></tr>
+        <tr><td><strong>VLDL</strong></td><td>Liver</td><td>Endogenous triacylglycerol (≈55 %)</td><td>B-100, C-II, E</td><td>LPL strips TG → IDL</td></tr>
+        <tr><td>IDL (remnant)</td><td>From VLDL</td><td>TG and cholesteryl ester</td><td>B-100, E</td><td>Either taken up by liver, or converted to LDL by hepatic lipase</td></tr>
+        <tr><td><strong>LDL</strong></td><td>From IDL</td><td>Cholesteryl ester (≈50 %)</td><td>B-100 only</td><td>LDL receptor on liver and peripheral cells; half-life 2–3 days</td></tr>
+        <tr><td><strong>HDL</strong></td><td>Liver and intestine</td><td>Cholesteryl ester; ≈50 % protein</td><td>A-I, C-II, E</td><td>Reverse transport to liver via SR-B1; also the circulating reservoir of apoC-II and apoE</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">HDL is not just "the good one"</p>
+    <p style="margin:0">HDL does three jobs, and the exam asks about all of them. It is the
+      <strong>acceptor</strong> for cholesterol effluxed from peripheral cells through ABCA1 — including from the
+      macrophage foam cells in a plaque. It is the <strong>site of LCAT</strong>, which esterifies that
+      cholesterol and buries it in the core, keeping the surface free to accept more. And it is the circulating
+      <strong>lending library of apolipoproteins</strong>: a newly secreted chylomicron has no apoC-II or apoE
+      until HDL donates them, and it hands them back when it becomes a remnant. That last role means an HDL
+      deficiency also impairs triglyceride clearance, which is not obvious from the "good cholesterol" slogan.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 6 — reading a lipid panel, and knowing when the formula breaks</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A fasting sample gives total cholesterol 268 mg/dL, HDL-C
+      42 mg/dL, triglyceride 150 mg/dL. (a) Calculate LDL-C and non-HDL-C. (b) A second patient has TC 268,
+      HDL-C 42 and triglyceride 620 mg/dL. What changes?</p>
+    <ol>
+      <li><strong>(a)</strong> Friedewald: <span class="fi">LDL-C = TC − HDL-C − TG/5</span>.</li>
+      <li>VLDL-cholesterol is estimated as <span class="fi">150/5 = 30 mg/dL</span>. The divisor is 5 because a
+          VLDL particle carries roughly five times as much triacylglycerol as cholesterol.</li>
+      <li><span class="fi">LDL-C = 268 − 42 − 30 = <strong>196 mg/dL</strong></span>. That is very high — above
+          190 is one of the diagnostic thresholds for familial hypercholesterolaemia.</li>
+      <li>Non-HDL-C <span class="fi">= 268 − 42 = <strong>226 mg/dL</strong></span>. This counts every
+          apoB-containing particle — LDL, IDL and VLDL together — and needs no assumption at all.</li>
+      <li><strong>(b)</strong> At TG = 620 the estimate <strong>fails</strong>. Friedewald is invalid above
+          about 400 mg/dL, because at high triglyceride the VLDL particles are triglyceride-enriched and the
+          fixed 5 : 1 ratio no longer holds, so <span class="fi">TG/5</span> overestimates VLDL-cholesterol and
+          LDL-C is reported too low. It is also invalid in a non-fasting sample (chylomicrons present) and in
+          type III dysbetalipoproteinaemia, where remnants have an abnormal composition.</li>
+      <li>The practical answer: report <strong>non-HDL-C</strong>, or measure LDL directly. Non-HDL-C is
+          <span class="fi">226 mg/dL</span> in both patients — and the second patient additionally needs
+          treating for pancreatitis risk, which rises steeply above about 1000 mg/dL.</li>
+      <li>In SI units the same calculation uses <span class="fi">TG/2.2</span>: with TC 6.94, HDL-C 1.09 and TG
+          1.70 mmol·L⁻¹, <span class="fi">LDL-C = 6.94 − 1.09 − 0.77 = 5.08 mmol·L⁻¹</span>. Check which unit
+          system a stem is using before dividing by anything.</li>
+    </ol>
+    <span class="wex__ans">LDL-C = 196 mg/dL · non-HDL-C = 226 mg/dL · Friedewald invalid above TG ≈ 400 mg/dL</span>
+    </div>
+  </details>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the named dyslipidaemias, each one a broken arrow on the map</summary>
+    <div class="disc__body">
+      <div class="table-scroll">
+        <table class="data">
+          <caption class="sr-only">Inherited lipoprotein disorders</caption>
+          <thead><tr><th>Disorder</th><th>Defect</th><th>Accumulates</th><th>Clinical picture</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Familial hypercholesterolaemia</strong> (type IIa)</td><td>LDL receptor (or apoB-100, or gain-of-function PCSK9)</td><td>LDL</td><td>Heterozygotes ≈ 1 : 250, LDL roughly doubled, tendon xanthomas, corneal arcus, coronary disease in the fourth decade. Homozygotes: LDL 4–6× normal, xanthomas in childhood, infarction before twenty, poor statin response</td></tr>
+            <tr><td>Familial chylomicronaemia (type I)</td><td><strong>LPL</strong> or <strong>apoC-II</strong></td><td>Chylomicrons</td><td>Triglyceride often &gt; 1000 mg/dL, eruptive xanthomas, lipaemia retinalis, milky plasma, recurrent <strong>pancreatitis</strong>. Notably <em>not</em> strongly atherogenic</td></tr>
+            <tr><td>Dysbetalipoproteinaemia (type III)</td><td><strong>apoE2/E2</strong> — poor remnant ligand</td><td>Chylomicron and VLDL remnants</td><td>Both cholesterol and triglyceride raised; <strong>palmar</strong> and tuberoeruptive xanthomas; premature vascular disease</td></tr>
+            <tr><td>Abetalipoproteinaemia</td><td><strong>MTP</strong> — apoB particles cannot be assembled</td><td>Nothing; apoB lipoproteins are <em>absent</em></td><td>Infantile steatorrhoea and failure to thrive, <strong>acanthocytes</strong>, fat-soluble vitamin deficiency; vitamin E deficiency drives the retinitis pigmentosa and spinocerebellar degeneration</td></tr>
+            <tr><td>Tangier disease</td><td><strong>ABCA1</strong> — cholesterol cannot be effluxed onto HDL</td><td>Cholesteryl ester in tissue macrophages</td><td>Near-absent HDL, <strong>orange tonsils</strong>, hepatosplenomegaly, relapsing neuropathy</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Two synthesising remarks. First, notice that the disorders of triglyceride clearance (type I) cause
+        <em>pancreatitis</em> while the disorders of cholesterol clearance (type IIa) cause
+        <em>atherosclerosis</em> — the cargo determines the complication. Second, LDL becomes atherogenic only
+        after it is oxidised in the subendothelial space; the macrophage <strong>scavenger receptors</strong>
+        that then take it up are not downregulated by intracellular cholesterol, unlike the LDL receptor. That
+        one missing feedback loop is what allows a macrophage to gorge itself into a foam cell, and it is the
+        molecular reason plaques form at all.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Eicosanoids: the COX and LOX branches</h2>
+
+  <p class="idea"><b>The idea</b>One particular twenty-carbon fatty acid, sitting quietly in the membrane, is the raw material for a whole
+     family of short-range signals — fever, pain, inflammation, clotting, bronchospasm, labour. It is not stored
+     as a signal; it is cut out of the membrane on demand, and then sent down one of two production lines. Almost
+     every anti-inflammatory drug you will ever prescribe works by blocking that release, or by blocking one of
+     the two lines. Learning where each drug cuts in is the same as learning why each drug has the side effects
+     it has.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the branch point</p>
+    <dl class="def">
+      <dt>Eicosanoid（類二十碳酸）</dt>
+      <dd>Any signalling molecule derived from a C20 polyunsaturated fatty acid, in practice
+          <strong>arachidonate</strong> (20:4, ω-6). Prostaglandins, thromboxanes, prostacyclin and leukotrienes
+          are all eicosanoids. They act locally and are destroyed within seconds — autocrine and paracrine
+          signals, never circulating hormones.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">membrane phospholipid →[PLA₂] arachidonate → COX → prostaglandins · 5-LOX → leukotrienes</span>
+      <span class="fx__tag">one substrate, two production lines; the drugs sort themselves by which one they hit</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Phospholipase A<sub>2</sub></dt>
+          <dd>Cleaves the <strong>sn-2</strong> acyl chain from a membrane phospholipid — which is exactly where
+              arachidonate sits. This is the <strong>rate-limiting step</strong>, because free arachidonate is
+              otherwise essentially absent. Glucocorticoids induce annexin-1 (lipocortin), which inhibits it, so
+              steroids shut down <em>both</em> branches at once. That is the mechanistic reason steroids are
+              broader anti-inflammatories than NSAIDs.</dd>
+          <dt>Cyclooxygenase (prostaglandin H synthase)</dt>
+          <dd>One protein, two activities: a <em>cyclooxygenase</em> that adds two O<sub>2</sub> to give
+              PGG<sub>2</sub>, and a <em>peroxidase</em> that reduces it to PGH<sub>2</sub>. PGH<sub>2</sub> is
+              the common precursor; which product a cell makes depends on which downstream synthase it
+              expresses. <strong>COX-1</strong> is constitutive — gastric mucosa, platelets, kidney;
+              <strong>COX-2</strong> is largely inducible at sites of inflammation, though constitutive in
+              kidney and vascular endothelium.</dd>
+          <dt>Aspirin</dt>
+          <dd>The only NSAID that is <strong>irreversible</strong>: it transfers an acetyl group onto
+              <strong>Ser530</strong> in the COX-1 channel (the equivalent serine in COX-2), permanently blocking
+              arachidonate's access. All other NSAIDs are reversible competitive inhibitors.</dd>
+          <dt>5-Lipoxygenase</dt>
+          <dd>With its partner FLAP, converts arachidonate to 5-HPETE and then LTA<sub>4</sub>, the precursor of
+              LTB<sub>4</sub> (a powerful neutrophil chemoattractant) and of the cysteinyl leukotrienes
+              LTC<sub>4</sub>, LTD<sub>4</sub> and LTE<sub>4</sub> — historically "slow-reacting substance of
+              anaphylaxis".</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">platelet PGH₂ → thromboxane synthase → TXA₂</span><span class="fx__tag">aggregation and vasoconstriction</span></div>
+          <div class="fx"><span class="fx__eq">endothelial PGH₂ → prostacyclin synthase → PGI₂</span><span class="fx__tag">the exact opposite: inhibits aggregation, vasodilates</span></div>
+          <div class="fx"><span class="fx__eq">EPA (20:5, ω-3) → series-3 prostaglandins, series-5 leukotrienes</span><span class="fx__tag">less thrombotic and less inflammatory — the fish-oil rationale</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>PG</b><span>prostaglandin; subscript = number of double bonds</span></div>
+          <div><b>TXA₂</b><span>thromboxane A₂; half-life ≈ 30 s</span></div>
+          <div><b>PGI₂</b><span>prostacyclin</span></div>
+          <div><b>LT</b><span>leukotriene</span></div>
+          <div><b>PLA₂</b><span>phospholipase A₂ (cytosolic form is Ca²⁺-activated)</span></div>
+          <div><b>FLAP</b><span>5-lipoxygenase-activating protein</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 740 400" role="img" aria-label="Branch diagram of arachidonate metabolism. Membrane phospholipid is cleaved by phospholipase A2, which corticosteroids inhibit, releasing arachidonate. On the left branch cyclooxygenase 1 and 2, inhibited by NSAIDs and irreversibly by aspirin, produce PGH2, which becomes thromboxane A2 in platelets, prostacyclin in endothelium, and PGE2 and PGF2 alpha elsewhere. On the right branch 5-lipoxygenase, inhibited by zileuton, produces leukotriene A4, which becomes LTB4 for neutrophil chemotaxis and the cysteinyl leukotrienes C4, D4 and E4, whose receptor is blocked by montelukast." style="font-family:var(--sans)">
+      <rect x="252" y="18" width="236" height="42" rx="9" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <text x="370" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">membrane phospholipid</text>
+      <text x="370" y="53" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">arachidonate esterified at sn-2</text>
+
+      <line x1="370" y1="60" x2="370" y2="94" stroke="var(--ink-soft)" stroke-width="2.2"/>
+      <polygon points="370,102 364,90 376,90" fill="var(--ink-soft)"/>
+      <text x="384" y="82" font-size="11" font-weight="700" fill="var(--ink)">phospholipase A₂</text>
+      <text x="196" y="82" text-anchor="end" font-size="10.5" font-weight="700" fill="var(--bad)">corticosteroids —|</text>
+      <line x1="202" y1="78" x2="356" y2="78" stroke="var(--bad)" stroke-width="1.8" stroke-dasharray="5 4"/>
+
+      <rect x="284" y="104" width="172" height="38" rx="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="370" y="128" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">arachidonate (20:4)</text>
+
+      <path d="M 330,142 L 190,178" stroke="var(--ink-soft)" stroke-width="2" fill="none"/>
+      <polygon points="182,180 194,172 196,184" fill="var(--ink-soft)"/>
+      <path d="M 410,142 L 550,178" stroke="var(--ink-soft)" stroke-width="2" fill="none"/>
+      <polygon points="558,180 544,184 546,172" fill="var(--ink-soft)"/>
+
+      <rect x="96" y="182" width="180" height="42" rx="9" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2"/>
+      <text x="186" y="201" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-2)">COX-1 · COX-2</text>
+      <text x="186" y="216" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">→ PGG₂ → PGH₂</text>
+      <text x="14" y="200" font-size="10" font-weight="700" fill="var(--bad)">NSAIDs —|</text>
+      <text x="14" y="216" font-size="10" font-weight="700" fill="var(--bad)">aspirin (Ser530)</text>
+      <line x1="88" y1="203" x2="92" y2="203" stroke="var(--bad)" stroke-width="2"/>
+
+      <line x1="186" y1="224" x2="186" y2="252" stroke="var(--ink-soft)" stroke-width="2"/>
+      <path d="M 186,252 L 66,252 L 66,276" stroke="var(--ink-soft)" stroke-width="1.8" fill="none"/>
+      <path d="M 186,252 L 186,276" stroke="var(--ink-soft)" stroke-width="1.8" fill="none"/>
+      <path d="M 186,252 L 300,252 L 300,276" stroke="var(--ink-soft)" stroke-width="1.8" fill="none"/>
+
+      <rect x="14" y="278" width="104" height="60" rx="8" fill="var(--card)" stroke="var(--bad)" stroke-width="1.6"/>
+      <text x="66" y="297" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--bad)">TXA₂</text>
+      <text x="66" y="312" text-anchor="middle" font-size="9" fill="var(--ink-soft)">platelet</text>
+      <text x="66" y="325" text-anchor="middle" font-size="9" fill="var(--ink-soft)">aggregation ↑</text>
+
+      <rect x="130" y="278" width="112" height="60" rx="8" fill="var(--card)" stroke="var(--ok)" stroke-width="1.6"/>
+      <text x="186" y="297" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ok)">PGI₂</text>
+      <text x="186" y="312" text-anchor="middle" font-size="9" fill="var(--ink-soft)">endothelium</text>
+      <text x="186" y="325" text-anchor="middle" font-size="9" fill="var(--ink-soft)">aggregation ↓</text>
+
+      <rect x="252" y="278" width="112" height="60" rx="8" fill="var(--card)" stroke="var(--accent-2)" stroke-width="1.6"/>
+      <text x="308" y="297" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-2)">PGE₂ · PGF₂α</text>
+      <text x="308" y="312" text-anchor="middle" font-size="9" fill="var(--ink-soft)">fever, pain, mucus,</text>
+      <text x="308" y="325" text-anchor="middle" font-size="9" fill="var(--ink-soft)">renal flow, uterine tone</text>
+
+      <rect x="466" y="182" width="180" height="42" rx="9" fill="var(--card)" stroke="var(--vdw)" stroke-width="2"/>
+      <text x="556" y="201" text-anchor="middle" font-size="12" font-weight="700" fill="var(--vdw)">5-lipoxygenase + FLAP</text>
+      <text x="556" y="216" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">→ 5-HPETE → LTA₄</text>
+      <text x="726" y="203" text-anchor="end" font-size="10" font-weight="700" fill="var(--bad)">|— zileuton</text>
+
+      <line x1="556" y1="224" x2="556" y2="252" stroke="var(--ink-soft)" stroke-width="2"/>
+      <path d="M 556,252 L 460,252 L 460,276" stroke="var(--ink-soft)" stroke-width="1.8" fill="none"/>
+      <path d="M 556,252 L 640,252 L 640,276" stroke="var(--ink-soft)" stroke-width="1.8" fill="none"/>
+
+      <rect x="398" y="278" width="124" height="60" rx="8" fill="var(--card)" stroke="var(--vdw)" stroke-width="1.6"/>
+      <text x="460" y="297" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--vdw)">LTB₄</text>
+      <text x="460" y="312" text-anchor="middle" font-size="9" fill="var(--ink-soft)">neutrophil</text>
+      <text x="460" y="325" text-anchor="middle" font-size="9" fill="var(--ink-soft)">chemotaxis</text>
+
+      <rect x="562" y="278" width="164" height="60" rx="8" fill="var(--card)" stroke="var(--vdw)" stroke-width="1.6"/>
+      <text x="644" y="297" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--vdw)">LTC₄ · LTD₄ · LTE₄</text>
+      <text x="644" y="312" text-anchor="middle" font-size="9" fill="var(--ink-soft)">bronchoconstriction,</text>
+      <text x="644" y="325" text-anchor="middle" font-size="9" fill="var(--ink-soft)">mucus, permeability</text>
+      <text x="644" y="358" text-anchor="middle" font-size="10" font-weight="700" fill="var(--bad)">montelukast blocks the receptor</text>
+    </svg>
+    <figcaption>Four drug classes, four different cut points: steroids at PLA<sub>2</sub> (both branches),
+      NSAIDs at COX, zileuton at 5-LOX, montelukast at the cysteinyl leukotriene receptor. Notice that blocking
+      COX alone leaves the leukotriene branch open — and can even divert substrate into it.</figcaption>
+  </figure>
+
+  <h3>Why low-dose aspirin is antithrombotic and high-dose aspirin is not more so</h3>
+  <p>This is the most satisfying mechanism-to-clinic chain in the whole note, and it turns entirely on one
+     structural fact: <strong>platelets have no nucleus</strong>.</p>
+  <p>Aspirin acetylates COX irreversibly. In a platelet, the enzyme it destroys can never be replaced, because
+     the cell cannot transcribe a new gene — so thromboxane A<sub>2</sub> production is lost for the platelet's
+     entire remaining life, seven to ten days, and recovery depends only on new platelets entering the
+     circulation at roughly 10 % per day. In an endothelial cell, which has a nucleus, new COX protein appears
+     within hours and prostacyclin production recovers. A small dose, given once daily, is therefore enough to
+     keep the platelet pool permanently inhibited while barely touching the endothelium — and since platelets are
+     exposed to the drug in the portal circulation before the liver can clear most of it, the selectivity is
+     better still. Raising the dose does not increase the antiplatelet effect; it only starts to suppress
+     endothelial PGI<sub>2</sub> as well, which is counterproductive.</p>
+  <p>Everything else about aspirin falls out of the same picture. Gastric injury: COX-1 in gastric mucosa makes
+     the PGE<sub>2</sub> that drives mucus and bicarbonate secretion and restrains acid, so inhibiting it removes
+     the mucosal defence. Renal impairment in a volume-depleted patient: prostaglandins dilate the afferent
+     arteriole, and when renal perfusion depends on that dilation, an NSAID drops the glomerular filtration rate.
+     Antipyresis: PGE<sub>2</sub> raises the hypothalamic set point, so blocking its synthesis lowers a fever but
+     not a normal temperature. And <strong>ibuprofen taken shortly before aspirin can abolish the
+     cardioprotection</strong>, because the reversible drug occupies the channel and blocks aspirin's access to
+     Ser530 — a genuine, clinically advised interaction that only makes sense once you know the two drugs bind
+     the same site by different chemistry.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">COX-2 selectivity was a trade, not a free win</p>
+    <p style="margin:0">Celecoxib and its relatives spare gastric COX-1, so they cause fewer ulcers. But
+      endothelial <strong>PGI<sub>2</sub></strong> is largely a COX-2 product while platelet
+      <strong>TXA<sub>2</sub></strong> is a COX-1 product — so a COX-2-selective drug removes the antithrombotic
+      side of the balance and leaves the prothrombotic side intact. That imbalance is why rofecoxib was
+      withdrawn, and it is the standard exam illustration that selectivity is only useful if you know what the
+      spared isoform was doing. In the same spirit: <strong>paracetamol (acetaminophen)</strong> is a weak,
+      largely central COX inhibitor with essentially no anti-inflammatory and no antiplatelet action, so it is
+      not an NSAID in the pharmacological sense, and its toxicity is a hepatic one — NAPQI depleting
+      glutathione — that has nothing to do with prostaglandins.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The substrate-shunting question</p>
+    <p style="margin:0">In aspirin-exacerbated respiratory disease (Samter's triad: asthma, nasal polyps,
+      aspirin sensitivity), inhibiting COX pushes arachidonate down the <strong>5-LOX</strong> branch, raising
+      cysteinyl leukotrienes and provoking bronchospasm. The management follows from the diagram: use a
+      leukotriene-directed drug (montelukast, or zileuton) rather than more COX inhibition. The same shunting
+      logic explains why ω-3 supplementation blunts inflammation — EPA competes with arachidonate for the same
+      enzymes and yields series-3 prostaglandins and series-5 leukotrienes, which are markedly less potent.
+      Whenever a stem gives you a pathway with two branches and blocks one, ask what happens to the substrate
+      that has nowhere else to go.</p>
+  </div>
+</section>
+
+<!-- =========================== 12 =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>These questions are part of the reading, not a test bolted on at the end. Pulling an answer out of your own
+     head — even a wrong one — fixes it far more firmly than reading the same paragraph a third time. The wrong
+     options here are mistakes people genuinely make, so being caught by one is worth more to you than a lucky
+     guess.</p>
+  <p>Three of these need real arithmetic — do it on paper, using the counting method of § 04 rather than a
+     remembered number, because that is exactly what the exam requires. Several of the rest are conceptual traps
+     that are widely answered wrongly. Every explanation says why the right answer is right <em>and</em> why the
+     tempting wrong one is tempting.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="biochem-06-bioenergetics-oxphos.html"><small>Previous</small><b>← Bioenergetics, the TCA Cycle and Oxidative Phosphorylation</b></a>
+  <a href="biochemistry.html"><small>Index</small><b>All biochemistry notes</b></a>
+  <a href="biochem-08-nitrogen-metabolism.html"><small>Next</small><b>Nitrogen Metabolism: Amino Acids, the Urea Cycle and Nucleotides →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry 07 · Lipid metabolism, cholesterol and lipoproteins</p>
+    <p>Representation used: explicit ATP accounting with the Lehninger 8th-edition P/O values (NADH 2.5,
+      FADH<sub>2</sub> 1.5, acetyl-CoA 10), together with an interactive yield calculator that shows the counts
+      rather than the answer. Enzyme names, cofactors and regulation points follow standard textbook usage;
+      concentrations and clinical thresholds are typical values given to build a sense of magnitude rather than
+      for citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "Myristic acid is a saturated C14 fatty acid. What is the <b>net</b> ATP yield from its complete oxidation, using NADH = 2.5, FADH<sub>2</sub> = 1.5 and acetyl-CoA = 10 ATP?",
+    "options": ["92", "94", "96", "112"],
+    "answer": 0,
+    "explain": "Count, do not recall. Seven acetyl-CoA means <b>six</b> cleavages, so 6 rounds: 6(1.5) + 6(2.5) = 24, plus 7 × 10 = 70, gross 94, minus <b>2</b> for activation (ATP → AMP + PP<sub>i</sub>, charged once for the whole molecule) = <b>92</b>. The shortcut 7n − 6 gives 7(14) − 6 = 92 as a check. Option B is the answer of someone who forgot activation altogether. Option C is the commonest error of all — using n/2 = 7 rounds instead of n/2 − 1 = 6; the last round produces two acetyl-CoA, which is where the extra one comes from. Option D is correct arithmetic on the <i>old</i> 3 / 2 / 12 convention, and is the option to avoid unless the stem states that convention."
+  },
+  {
+    "stem": "A well-fed liver cell has high insulin, high citrate and abundant malonyl-CoA. Fatty acids taken up from plasma are esterified rather than oxidised. Which single molecular event most directly prevents their oxidation?",
+    "options": ["Acetyl-CoA cannot be carried into the mitochondrial matrix by carnitine", "Thiolase is inhibited by the high acetyl-CoA / CoA-SH ratio", "Malonyl-CoA inhibits carnitine palmitoyltransferase-1, so long-chain acyl groups never enter the matrix", "Insulin directly inhibits the acyl-CoA dehydrogenases"],
+    "answer": 2,
+    "explain": "CPT-1 is the <b>rate-limiting</b> step of fatty-acid oxidation, and malonyl-CoA — the product of acetyl-CoA carboxylase, the committed enzyme of <i>synthesis</i> — is its physiological inhibitor. One metabolite therefore guarantees that synthesis and oxidation cannot run fast together, which is what prevents a futile cycle. Option A is the classic conflation of the two shuttles: acetyl-CoA is exported by the <b>citrate</b> shuttle, and it goes <i>out</i>, not in; carnitine carries long-chain acyl groups <i>in</i>. Option B describes a real feedback, but a downstream and secondary one — the substrate never gets that far. Option D is invented: insulin acts through gene expression and through dephosphorylating ACC, not on the dehydrogenases."
+  },
+  {
+    "stem": "Compared with stearate (18:0), how much ATP does the complete oxidation of oleate (18:1 cis-Δ9) yield?",
+    "options": ["The same, because the number of acetyl-CoA is unchanged", "1.5 ATP less", "2.5 ATP less", "4 ATP less"],
+    "answer": 1,
+    "explain": "Both are C18, so both give 8 rounds and 9 acetyl-CoA — a double bond changes the <i>cofactors</i>, never the number of cuts. The Δ9 bond is at an <b>odd</b>-numbered position, so after three rounds it sits at Δ3 and enoyl-CoA isomerase simply repositions it to trans-Δ2. That round therefore skips acyl-CoA dehydrogenase and its FADH<sub>2</sub> is never made: 120 − 1.5 = <b>118.5</b>. Option A is right about the acetyl-CoA and wrong about the conclusion. Option C is the penalty for an <i>even</i>-numbered double bond, where 2,4-dienoyl-CoA reductase burns an NADPH — that is linoleate's second bond, not oleate's first. Option D is the total for linoleate (18:2), which loses 1.5 + 2.5."
+  },
+  {
+    "stem": "How much ATP and NADPH does the cytosolic synthesis of one palmitate from acetyl-CoA consume, excluding the cost of exporting acetyl-CoA from the mitochondrion?",
+    "options": ["8 ATP and 16 NADPH", "14 ATP and 7 NADPH", "7 ATP and 7 NADPH", "7 ATP and 14 NADPH"],
+    "answer": 3,
+    "explain": "Palmitate is assembled from 8 acetyl units. One is the primer and the other <b>seven</b> must be carboxylated to malonyl-CoA at 1 ATP each, so <b>7 ATP</b>. Each of the seven elongation cycles uses <b>two</b> NADPH — one at the β-ketoacyl reductase and one at the enoyl reductase — so <b>14 NADPH</b>. Option A charges the carboxylation eight times, forgetting the primer. Option C gives one NADPH per cycle and misses that the cycle contains two separate reductions. Option B swaps the two figures. In ATP equivalents this is 7 + 14(2.5) = 42, against the 106 recovered on oxidation, so storage is roughly 87 % efficient once you also count the 80 ATP of chemical potential in the eight acetyl-CoA."
+  },
+  {
+    "stem": "A hepatocyte actively making fatty acids is supplied with <sup>14</sup>C-labelled bicarbonate. Where does the label appear in the palmitate?",
+    "options": ["In every even-numbered carbon, because malonyl-CoA supplies alternate carbons", "Nowhere — the palmitate is unlabelled", "Only in C-1, the carboxyl carbon", "In C-15 and C-16, the last two carbons added"],
+    "answer": 1,
+    "explain": "Acetyl-CoA carboxylase fixes bicarbonate to make malonyl-CoA, but that <b>same</b> carbon leaves as CO<sub>2</sub> during the condensation step — its whole purpose is to make the condensation exergonic, and it is borrowed rather than incorporated. So the fatty acid contains no bicarbonate-derived carbon at all. Option A is the intuitive but wrong answer: malonyl-CoA does supply the alternate two-carbon units, but only via its <i>acetyl</i> portion. Label the acetyl-CoA instead and every carbon of the palmitate is labelled. Option C is the trap for anyone who assumes the carboxyl ACC installs ends up as the fatty acid's own carboxyl group — it is precisely the carbon that leaves. Option D names the primer's carbons, which really do become C-15 and C-16 (the methyl end, so they are the <i>first</i> added, not the last) — but they come from acetyl-CoA, not from bicarbonate."
+  },
+  {
+    "stem": "A 68-year-old vegan has a macrocytic anaemia. Serum homocysteine is raised and serum <b>methylmalonic acid</b> is also raised. Which statement best explains the methylmalonic acid, and what does it establish?",
+    "options": ["Folate deficiency blocks methylmalonyl-CoA mutase, so both folate and B<sub>12</sub> deficiency raise it", "Propionyl-CoA carboxylase requires folate, so the finding indicates folate deficiency", "Methylmalonyl-CoA mutase requires adenosylcobalamin, so a raised level indicates B<sub>12</sub> rather than folate deficiency", "Methylmalonic acid comes from even-chain fatty acid oxidation and is a non-specific marker of increased lipolysis"],
+    "answer": 2,
+    "explain": "Odd-chain fatty acids (and the amino acids valine, isoleucine, methionine and threonine) yield <b>propionyl-CoA</b>, which is carboxylated using <b>biotin</b> to methylmalonyl-CoA and then rearranged to succinyl-CoA by methylmalonyl-CoA mutase using <b>adenosylcobalamin</b>. Block the mutase and methylmalonyl-CoA accumulates and is hydrolysed to methylmalonic acid. Vitamin B<sub>12</sub> serves only two human reactions — this one and methionine synthase — and of those two only methionine synthase also needs folate, as N<sup>5</sup>-methyl-THF. The mutase needs no folate at all. So both deficiencies raise homocysteine, but <b>only B<sub>12</sub> deficiency raises MMA</b>, which is exactly what makes the test discriminating. Option A is the trap and is the reverse of the truth. Option B swaps the cofactors — propionyl-CoA carboxylase runs on <b>biotin</b>, and no step of this route uses folate. Option D is wrong twice: even-chain oxidation gives only acetyl-CoA, and MMA is highly specific."
+  },
+  {
+    "stem": "A 14-month-old is brought in after an overnight illness with vomiting: he is drowsy, glucose is 1.6 mmol/L, urinary ketones are <b>negative</b>, and urine organic acids show C6–C10 dicarboxylic acids. Tandem mass spectrometry shows a raised C8-acylcarnitine. What is the diagnosis, and would MCT feeds help?",
+    "options": ["CPT-1 deficiency; MCT feeds would bypass the block and help", "Glycogen storage disease type I; frequent cornstarch feeds would help", "Primary carnitine deficiency; oral carnitine would correct it", "MCAD deficiency; MCT feeds are contraindicated because the block is downstream of mitochondrial entry"],
+    "answer": 3,
+    "explain": "Hypoglycaemia with <b>inappropriately absent ketones</b> is the signature of a fatty-acid oxidation defect: no β-oxidation means no acetyl-CoA for ketogenesis, and gluconeogenesis stalls for want of ATP and of the acetyl-CoA that activates pyruvate carboxylase. The C8 (octanoyl)carnitine and the C6–C10 dicarboxylic aciduria — the products of ω-oxidation taking over when medium-chain β-oxidation jams — localise the block precisely to <b>MCAD</b>. Option A is the tempting one, because CPT-1 deficiency gives an identical clinical picture; but it would show <i>high free carnitine with low</i> acylcarnitines, and medium-chain fats bypass CPT-1 entirely, so MCT would be therapeutic there and is exactly the wrong thing here. Option B is excluded by the absent ketones and the acylcarnitine profile (GSD I gives lactic acidosis, hepatomegaly and hyperuricaemia). Option C would show every acylcarnitine species low with a very low free carnitine, not an isolated C8 peak."
+  },
+  {
+    "stem": "During a five-day fast the liver exports large amounts of β-hydroxybutyrate and acetoacetate but oxidises none of it. Why not?",
+    "options": ["The liver lacks succinyl-CoA : 3-ketoacid CoA transferase (SCOT), so it cannot re-activate acetoacetate to acetoacetyl-CoA", "Ketone bodies cannot re-enter hepatocytes because the monocarboxylate transporter is absent from liver", "Hepatic thiolase runs only in the condensing direction", "The liver's mitochondria are saturated with fatty acyl-CoA, so ketone bodies are competitively excluded"],
+    "answer": 0,
+    "explain": "Using a ketone body means re-attaching a CoA, and peripheral tissue does this without spending ATP by borrowing one from succinyl-CoA — the SCOT reaction. <b>Liver does not express SCOT</b>, and that is not an oversight but the design: an organ that exports a fuel must be unable to consume it, or none would ever reach the brain. The same principle explains why liver has glucose-6-phosphatase and muscle does not. Option C is wrong — thiolase is freely reversible and the liver uses it in the condensing direction to <i>make</i> acetoacetyl-CoA. Option B is invented; ketone bodies cross membranes readily on MCT1. Option D describes a competition that does not occur."
+  },
+  {
+    "stem": "A statin lowers plasma LDL by 40 %. Which mechanism accounts for most of that fall?",
+    "options": ["Direct chelation of cholesterol in the intestinal lumen, preventing absorption", "Reduced hepatic cholesterol synthesis alone, which lowers VLDL output enough to explain the whole effect", "Falling hepatic sterol releases SREBP-2, which induces the LDL receptor, so the liver clears LDL from plasma faster", "Inhibition of squalene synthase, which blocks the pathway after the branch to coenzyme Q"],
+    "answer": 2,
+    "explain": "Statins are competitive inhibitors of <b>HMG-CoA reductase</b>, but the plasma effect is mostly about <i>clearance</i>, not production: as hepatocyte sterol falls, SCAP escorts SREBP-2 to the Golgi, its transcription-factor domain is released, and it induces both the reductase and the <b>LDL receptor</b>. More receptors means faster removal of circulating LDL. The clinical proof is that homozygous familial hypercholesterolaemia, which has no functional receptors to induce, responds poorly to statins — and that PCSK9 inhibitors, which stop LDL receptors being degraded, act on the same lever and are additive. Option B is the half-right answer most candidates give. Option A is ezetimibe's territory (and its actual target is NPC1L1, not chelation). Option D names the wrong enzyme."
+  },
+  {
+    "stem": "Why does a single low daily dose of aspirin suppress platelet thromboxane A<sub>2</sub> almost completely for days, while endothelial prostacyclin recovers within hours?",
+    "options": ["Aspirin is concentrated in platelets by an active transporter", "Aspirin acetylates COX irreversibly, and platelets — being anucleate — cannot synthesise replacement enzyme, whereas endothelial cells can", "Endothelial COX cannot be acetylated by aspirin, so prostacyclin synthesis is never inhibited in the first place", "Thromboxane synthase is itself inhibited by aspirin, but prostacyclin synthase is not"],
+    "answer": 1,
+    "explain": "Aspirin transfers an acetyl group onto <b>Ser530</b> of COX-1, permanently blocking the substrate channel — it is the only irreversible NSAID. A platelet has no nucleus, so the enzyme it loses is gone for the cell's remaining 7–10 days and the pool recovers only as new platelets appear, at roughly 10 % per day. A nucleated endothelial cell simply transcribes more COX. That asymmetry of <i>replacement</i>, not any difference in inhibition, is why low-dose aspirin is antiplatelet, and why raising the dose does not help — it only starts to suppress the protective PGI<sub>2</sub> as well. Option A is invented; there is no platelet aspirin transporter, though platelets are genuinely exposed to higher concentrations in portal blood before the liver clears the drug. Option C is the plausible-sounding distractor and is simply false: endothelial COX <i>is</i> acetylated and prostacyclin output does fall — it comes back only because a nucleated cell can transcribe more enzyme. Option D is wrong: aspirin acts on COX, upstream of both terminal synthases, which is precisely why it hits both products in a nucleated cell."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+<script>
+/* ---------- Fatty-acid oxidation yield calculator ---------------------
+   Shows the four counts of § 04 rather than a lookup table. Even chains
+   use rounds = n/2 − 1; odd chains end in propionyl-CoA. Double bonds are
+   charged alternately 1.5 (odd-numbered position: isomerase replaces the
+   dehydrogenase) and 2.5 (even-numbered: 2,4-dienoyl-CoA reductase burns
+   an NADPH), which reproduces the textbook oleate and linoleate values. */
+(function () {
+  'use strict';
+  var cIn = document.getElementById('lpC'), dIn = document.getElementById('lpD');
+  if (!cIn || !dIn) return;
+  var cOut = document.getElementById('lpCOut'), dOut = document.getElementById('lpDOut'),
+      val = document.getElementById('lpVal'), terms = document.getElementById('lpTerms'),
+      name = document.getElementById('lpName');
+  if (!cOut || !dOut || !val || !terms || !name) return;
+
+  var ATP_NADH = 2.5, ATP_FADH2 = 1.5, ATP_ACOA = 10, ACTIVATION = 2;
+  /* propionyl-CoA, fully oxidised: −1 carboxylation, +1 GTP, +1.5, +2.5,
+     then OAA → PEP (−1) → pyruvate (+1) → acetyl-CoA (+2.5) → TCA (+10) */
+  var PROPIONYL = 16.5;
+
+  var NAMES = {
+    '4:0':  ['Butyrate', 'the shortest chain the spiral handles — one round only.'],
+    '6:0':  ['Caproate', 'medium-chain: crosses the mitochondrial membranes without carnitine.'],
+    '8:0':  ['Caprylate', 'the C8 whose carnitine ester is the newborn-screening marker for MCAD deficiency.'],
+    '10:0': ['Caprate', 'medium-chain; a major component of MCT oil.'],
+    '12:0': ['Laurate', 'the top of the medium-chain range.'],
+    '14:0': ['Myristate', 'long-chain — from here on the carnitine shuttle is obligatory.'],
+    '16:0': ['Palmitate', 'the reference case, and the only product fatty acid synthase releases.'],
+    '16:1': ['Palmitoleate', 'made from palmitate by the Δ9 desaturase.'],
+    '18:0': ['Stearate', 'two carbons longer than palmitate, so exactly 14 ATP more.'],
+    '18:1': ['Oleate', 'the commonest dietary fatty acid; its Δ9 bond costs one FADH₂.'],
+    '18:2': ['Linoleate', 'ω-6 and <b>essential</b> — no mammalian desaturase acts beyond Δ9.'],
+    '18:3': ['α-Linolenate', 'ω-3 and <b>essential</b>, for the same reason.'],
+    '20:0': ['Arachidate', 'long-chain saturated.'],
+    '20:4': ['Arachidonate', 'the eicosanoid precursor of § 11 — normally released for signalling, not burned.'],
+    '22:0': ['Behenate', 'approaching the very-long-chain range that peroxisomes pre-process.'],
+    '24:0': ['Lignocerate', 'a VLCFA: shortened in the peroxisome first, so the first oxidation of each early round yields heat rather than ATP.'],
+    '17:0': ['Heptadecanoate', 'odd-chain: the last cleavage yields propionyl-CoA, the only fatty-acid carbon that can reach glucose.'],
+    '15:0': ['Pentadecanoate', 'odd-chain — note the propionyl-CoA line below.']
+  };
+
+  function row(label, value, cls) {
+    return '<div' + (cls ? ' class="' + cls + '"' : '') + '><span>' + label +
+           '</span><span>' + value + '</span></div>';
+  }
+
+  function update() {
+    var n = +cIn.value, d = +dIn.value;
+    var odd = (n % 2) === 1;
+    /* an odd chain can only carry as many double bonds as it has room for */
+    var maxD = Math.max(0, Math.floor((n - 4) / 3));
+    if (d > maxD) { d = maxD; dIn.value = String(d); }
+
+    var rounds, acoa, propionyl;
+    if (odd) { rounds = (n - 3) / 2; acoa = rounds; propionyl = 1; }
+    else     { rounds = n / 2 - 1;   acoa = n / 2;  propionyl = 0; }
+
+    var fadh2 = rounds, nadh = rounds, penalty = 0, i;
+    for (i = 0; i < d; i++) penalty += (i % 2 === 0) ? ATP_FADH2 : ATP_NADH;
+
+    var gross = fadh2 * ATP_FADH2 + nadh * ATP_NADH + acoa * ATP_ACOA;
+    var total = gross - ACTIVATION - penalty + propionyl * PROPIONYL;
+
+    cOut.textContent = n + ' C';
+    dOut.textContent = String(d);
+    val.textContent = (Math.round(total * 10) / 10).toString();
+
+    var html = '';
+    html += row('Rounds of the spiral', rounds);
+    html += row('Acetyl-CoA released', acoa + (propionyl ? ' + 1 propionyl-CoA' : ''));
+    html += row(fadh2 + ' × FADH₂ @ 1.5', '+' + (fadh2 * ATP_FADH2).toFixed(1));
+    html += row(nadh + ' × NADH @ 2.5', '+' + (nadh * ATP_NADH).toFixed(1));
+    html += row(acoa + ' × acetyl-CoA @ 10', '+' + (acoa * ATP_ACOA).toFixed(1));
+    if (propionyl) html += row('propionyl-CoA, fully oxidised', '+' + PROPIONYL.toFixed(1));
+    html += row('activation (ATP → AMP + PP)', '−2.0');
+    if (penalty) html += row(d + ' double bond' + (d > 1 ? 's' : ''), '−' + penalty.toFixed(1));
+    html += row('Net ATP', (Math.round(total * 10) / 10).toFixed(1), 'lp-terms--sum');
+    terms.innerHTML = html;
+
+    var key = n + ':' + d;
+    if (NAMES[key]) {
+      name.innerHTML = '<b>' + NAMES[key][0] + ', ' + key + '</b> — ' + NAMES[key][1];
+    } else if (odd) {
+      name.innerHTML = '<b>C' + n + ', odd-numbered chain</b> — the final cleavage gives acetyl-CoA plus ' +
+        'propionyl-CoA, which needs biotin and vitamin B₁₂ to reach succinyl-CoA.';
+    } else if (d === 0) {
+      name.innerHTML = '<b>C' + n + ':0, saturated</b> — the plain rule applies: 7n − 6 = ' + (7 * n - 6) + '.';
+    } else {
+      name.innerHTML = '<b>C' + n + ':' + d + '</b> — every double bond changes the cofactors, never the ' +
+        'number of cuts.';
+    }
+  }
+
+  cIn.addEventListener('input', update);
+  dIn.addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>

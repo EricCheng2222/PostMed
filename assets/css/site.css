@@ -382,6 +382,25 @@ table.data td.num { font-family: var(--mono); font-size: .86rem; white-space: no
   --on-accent:#12151b;
 }
 
+[data-subject="biology"] {
+  --accent:#15803d; --accent-2:#b45309; --accent-3:#4338ca; --accent-wash:#e7f5ec;
+  --on-accent:#ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  [data-subject="biology"] {
+    --accent:#4ade80; --accent-2:#fbbf24; --accent-3:#a5b4fc; --accent-wash:#14301f;
+    --on-accent:#12151b;
+  }
+}
+:root[data-theme="light"] [data-subject="biology"] {
+  --accent:#15803d; --accent-2:#b45309; --accent-3:#4338ca; --accent-wash:#e7f5ec;
+  --on-accent:#ffffff;
+}
+:root[data-theme="dark"] [data-subject="biology"] {
+  --accent:#4ade80; --accent-2:#fbbf24; --accent-3:#a5b4fc; --accent-wash:#14301f;
+  --on-accent:#12151b;
+}
+
 /* ---------- 8. Definition & formula blocks --------------------------------
    Every section of a note opens with one of these: what the quantity *is*,
    the formula that defines it, and what each symbol means.

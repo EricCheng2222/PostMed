@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biochem 03 · Enzymes: Kinetics, Inhibition and Regulation — PostMed Notebook</title>
+<meta name="description" content="Biochemistry note 03: transition-state stabilisation, catalytic strategies, the catalytic triad, coenzymes, Michaelis–Menten kinetics, k_cat/K_m, linear plots, the five inhibition patterns, allostery and covalent regulation.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biochemistry.html">Biochemistry</a>
+      <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Note 03</p>
+  <h1>Enzymes: Kinetics, Inhibition and Regulation</h1>
+  <p class="lede">
+    One idea organises the whole note: an enzyme does nothing to the <em>destination</em> of a reaction and
+    everything to the <em>route</em>. It cannot make an unfavourable reaction favourable, it cannot change an
+    equilibrium constant, and it comes out of the reaction unchanged. What it does is build a lower pass over the
+    energy barrier, by being shaped to fit not the substrate but the strained, half-reacted arrangement the
+    substrate has to pass through. Everything else here — why <span class="fi">K<sub>m</sub></span> is not a
+    dissociation constant, why a competitive inhibitor leaves <span class="fi">V<sub>max</sub></span> alone, why
+    an uncompetitive inhibitor is the one you cannot out-compete with more substrate, why cooperative enzymes
+    exist at all — falls out of that single sentence plus some careful algebra.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Rate equations &amp; kinetic plots</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~50 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Catalysis: the barrier, not the equilibrium</a></li>
+      <li><a href="#s2">Binding energy and the catalytic strategies</a></li>
+      <li><a href="#s3">Chymotrypsin and the catalytic triad</a></li>
+      <li><a href="#s4">Coenzymes: chemistry the protein cannot do</a></li>
+      <li><a href="#s5">Michaelis–Menten, derived properly</a></li>
+      <li><a href="#s6">k<sub>cat</sub>, k<sub>cat</sub>/K<sub>m</sub> and catalytic perfection</a></li>
+      <li><a href="#s7">Straightening the hyperbola: three plots</a></li>
+      <li><a href="#s8">Inhibition: five patterns, one equation</a></li>
+      <li><a href="#s9">Two substrates, pH and temperature</a></li>
+      <li><a href="#s10">Allostery and cooperativity</a></li>
+      <li><a href="#s11">Covalent modification and zymogens</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§01</b>: a catalyst lowers the activation barrier and touches nothing
+        else, so it speeds the forward and reverse reactions by exactly the same factor. <b>§02</b>: the energy
+        for that comes from binding, and the site is built to fit the <em>transition state</em>, not the
+        substrate. Then <b>§05</b>: derive Michaelis–Menten yourself once, on paper, from the steady-state
+        assumption — everything in §§06–08 is that one equation rearranged. If you understand §01, §02 and §05
+        you can reconstruct most of the rest.</li>
+      <li><b>Then be able to do</b> — <b>§05</b>: substitute numbers into
+        <span class="fi">v = V<sub>max</sub>[S]/(K<sub>m</sub>+[S])</span> in both directions, including
+        "what [S] gives 90 % of V<sub>max</sub>". <b>§06</b>: get from micrograms of protein and a molecular
+        weight to k<sub>cat</sub>, then to k<sub>cat</sub>/K<sub>m</sub>, with the units right.
+        <b>§07</b>: read V<sub>max</sub> and K<sub>m</sub> off <em>all three</em> linear plots, not just
+        Lineweaver–Burk. <b>§08</b>: name the inhibition type from what happens to V<sub>max</sub> and
+        K<sub>m</sub>, or from the plot, and compute K<sub>I</sub>. <b>§10</b>: use the Hill coefficient.
+        These five skills are the examinable core and they are worth full marks for modest effort.</li>
+      <li><b>Leave for a second pass</b> — <b>§03</b> beyond the triad itself and the two-stage mechanism;
+        <b>§04</b>'s deficiency column, which belongs with the vitamin note; <b>§09</b> in full, which is
+        genuinely lower-yield apart from the parallel-lines signature; and the drug tables in §08 and §11,
+        which read far better once the kinetics are automatic. Everything folded behind a "Go deeper" line is
+        second-pass by construction.</li>
+    </ol>
+  </div>
+
+  <div class="fsheet card">
+    <details class="disc disc--sheet">
+      <summary>Quick sheet<span class="disc__count">30 entries</span></summary>
+      <div class="disc__body">
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>What a catalyst does</b><code>ΔG‡ ↓ · ΔG°′, K′<sub>eq</sub> unchanged</code></div>
+      <div class="fsheet__item"><b>Rate and barrier</b><code>k ∝ e<sup>−ΔG‡/RT</sup></code></div>
+      <div class="fsheet__item"><b>Cost of 10× rate</b><code>2.303RT = 5.71 kJ·mol⁻¹ at 25 °C</code></div>
+      <div class="fsheet__item"><b>Michaelis–Menten</b><code>v₀ = V<sub>max</sub>[S] / (K<sub>m</sub> + [S])</code></div>
+      <div class="fsheet__item"><b>K<sub>m</sub> defined</b><code>K<sub>m</sub> = (k₋₁ + k₂)/k₁</code></div>
+      <div class="fsheet__item"><b>K<sub>m</sub> = K<sub>d</sub> only if</b><code>k₂ ≪ k₋₁ (rapid equilibrium)</code></div>
+      <div class="fsheet__item"><b>Half-maximal</b><code>v = V<sub>max</sub>/2 when [S] = K<sub>m</sub></code></div>
+      <div class="fsheet__item"><b>[S] for a fraction f</b><code>[S] = K<sub>m</sub> · f/(1 − f)</code></div>
+      <div class="fsheet__item"><b>10 % → 90 % of V<sub>max</sub></b><code>needs an 81-fold rise in [S]</code></div>
+      <div class="fsheet__item"><b>V<sub>max</sub></b><code>V<sub>max</sub> = k<sub>cat</sub>[E]<sub>t</sub></code></div>
+      <div class="fsheet__item"><b>Turnover number</b><code>k<sub>cat</sub> = V<sub>max</sub>/[E]<sub>t</sub> (s⁻¹)</code></div>
+      <div class="fsheet__item"><b>Specificity constant</b><code>k<sub>cat</sub>/K<sub>m</sub> (M⁻¹·s⁻¹)</code></div>
+      <div class="fsheet__item"><b>Low [S] limit</b><code>v ≈ (k<sub>cat</sub>/K<sub>m</sub>)[E]<sub>t</sub>[S]</code></div>
+      <div class="fsheet__item"><b>Diffusion limit</b><code>10⁸ – 10⁹ M⁻¹·s⁻¹</code></div>
+      <div class="fsheet__item"><b>Competing substrates</b><code>v<sub>A</sub>/v<sub>B</sub> = (k<sub>cat</sub>/K<sub>m</sub>)<sub>A</sub>[A] ÷ (k<sub>cat</sub>/K<sub>m</sub>)<sub>B</sub>[B]</code></div>
+      <div class="fsheet__item"><b>Lineweaver–Burk</b><code>y-int 1/V<sub>max</sub> · x-int −1/K<sub>m</sub> · slope K<sub>m</sub>/V<sub>max</sub></code></div>
+      <div class="fsheet__item"><b>Eadie–Hofstee</b><code>y-int V<sub>max</sub> · slope −K<sub>m</sub> · x-int V<sub>max</sub>/K<sub>m</sub></code></div>
+      <div class="fsheet__item"><b>Hanes–Woolf</b><code>slope 1/V<sub>max</sub> · y-int K<sub>m</sub>/V<sub>max</sub> · x-int −K<sub>m</sub></code></div>
+      <div class="fsheet__item"><b>General inhibition</b><code>v = V<sub>max</sub>[S] / (αK<sub>m</sub> + α′[S])</code></div>
+      <div class="fsheet__item"><b>α and α′</b><code>α = 1 + [I]/K<sub>I</sub> · α′ = 1 + [I]/K′<sub>I</sub></code></div>
+      <div class="fsheet__item"><b>Apparent constants</b><code>V<sub>max</sub><sup>app</sup> = V<sub>max</sub>/α′ · K<sub>m</sub><sup>app</sup> = K<sub>m</sub>α/α′</code></div>
+      <div class="fsheet__item"><b>Competitive</b><code>K<sub>m</sub> ↑ ×α · V<sub>max</sub> unchanged</code></div>
+      <div class="fsheet__item"><b>Uncompetitive</b><code>K<sub>m</sub> and V<sub>max</sub> both ÷ α′ · LB parallel</code></div>
+      <div class="fsheet__item"><b>Pure non-competitive</b><code>V<sub>max</sub> ÷ α · K<sub>m</sub> unchanged</code></div>
+      <div class="fsheet__item"><b>Mixed</b><code>α ≠ α′ · LB lines cross off both axes</code></div>
+      <div class="fsheet__item"><b>Hill equation</b><code>Y = [S]<sup>n</sup> / (K<sub>0.5</sub><sup>n</sup> + [S]<sup>n</sup>)</code></div>
+      <div class="fsheet__item"><b>Hill span</b><code>[S]<sub>90</sub>/[S]<sub>10</sub> = 81<sup>1/n</sup></code></div>
+      <div class="fsheet__item"><b>Typical n<sub>H</sub></b><code>Mb 1.0 · Hb ≈2.8 · ATCase ≈2</code></div>
+      <div class="fsheet__item"><b>MWC vs KNF</b><code>concerted, all-or-none · sequential, hybrids allowed</code></div>
+      <div class="fsheet__item"><b>Covalent switch</b><code>kinase + ATP puts P on · phosphatase + H₂O takes it off (on ≠ active)</code></div>
+    </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Catalysis: the barrier, not the equilibrium</h2>
+
+  <p class="idea"><b>The idea</b>A reaction that "does not happen" in a test tube is usually one that is perfectly happy to happen — the
+     products are already more stable than the starting material. What stops it is that on the way across,
+     the molecule has to pass through an awkward, half-broken arrangement that costs a lot of energy, and at
+     room temperature almost none of the molecules ever have that much. A catalyst does not push the reaction
+     downhill. It builds a lower pass over the same hill. Because it is the <em>same</em> hill, with the same
+     two ends, the catalyst helps the reverse journey by exactly as much as the forward one — which is why an
+     enzyme can never change where a reaction ends up.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Catalyst</dt>
+      <dd>A substance that increases the rate of a reaction by providing a pathway with a lower activation
+          free energy <span class="fi">ΔG‡</span>, is regenerated unchanged at the end, and does
+          <strong>not</strong> alter <span class="fi">ΔG°′</span> or the equilibrium constant
+          <span class="fi">K′<sub>eq</sub></span>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">k = <span class="mf" role="img" aria-label="k B T over h"><span>k<sub>B</sub>T</span><span>h</span></span> · e<sup>−ΔG‡/RT</sup></span>
+      <span class="fx__tag">Eyring: the rate constant depends <em>exponentially</em> on the barrier, so small changes in ΔG‡ are enormous changes in rate</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Transition state (‡)</dt>
+          <dd>The highest-energy arrangement on the reaction coordinate — bonds part-formed and part-broken.
+              It is <em>not</em> a molecule: it sits at a maximum, not in a well, and survives for about one
+              bond vibration, ~10<sup>−13</sup> s. It cannot be isolated.</dd>
+          <dt>Intermediate</dt>
+          <dd>A genuine chemical species that sits in a local minimum (a well) between two transition states.
+              It has a finite lifetime and can sometimes be trapped and identified — the acyl-enzyme of
+              §&nbsp;03 is one.</dd>
+          <dt>Rate enhancement</dt>
+          <dd><span class="fi">k<sub>cat</sub>/k<sub>uncat</sub></span>, the factor by which the enzyme
+              accelerates its reaction. Ranges from ~10<sup>5</sup> to ~10<sup>17</sup>.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">ΔG°′ = −RT ln K′<sub>eq</sub></span><span class="fx__tag">thermodynamics — untouched by any catalyst</span></div>
+          <div class="fx"><span class="fx__eq">ΔΔG‡ = RT ln(rate enhancement) = 2.303 RT · log₁₀(enhancement)</span><span class="fx__tag">how much barrier a given speed-up costs</span></div>
+          <div class="fx"><span class="fx__eq">2.303 RT = 5.71 kJ·mol⁻¹ = 1.36 kcal·mol⁻¹  (25 °C)</span><span class="fx__tag">the price of one factor of ten in rate</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>ΔG‡</b><span>activation free energy (J·mol⁻¹)</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change at pH 7 (J·mol⁻¹)</span></div>
+          <div><b>K′<sub>eq</sub></b><span>equilibrium constant at pH 7 (dimensionless)</span></div>
+          <div><b>k</b><span>rate constant (s⁻¹ for first order)</span></div>
+          <div><b>k<sub>B</sub></b><span>Boltzmann constant, 1.381 × 10⁻²³ J·K⁻¹</span></div>
+          <div><b>h</b><span>Planck constant, 6.626 × 10⁻³⁴ J·s</span></div>
+          <div><b>R</b><span>gas constant, 8.314 J·mol⁻¹·K⁻¹</span></div>
+          <div><b>T</b><span>absolute temperature (K)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 400" role="img" aria-label="Reaction coordinate diagram. A dashed uncatalysed curve rises from the E plus S ground state to a tall transition state and falls to the E plus P level. A solid catalysed curve starts at the same ground state, dips into a shallow ES well, rises to a much lower transition state, passes through an EP well and ends at the same E plus P level. Two vertical double arrows measure the large uncatalysed activation energy and the small catalysed activation energy from the same ground-state line, and a third arrow at the right shows that the overall free-energy change is identical for both routes." style="font-family:var(--sans)">
+      <line x1="70" y1="250" x2="700" y2="250" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <line x1="380" y1="300" x2="700" y2="300" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="4 4"/>
+
+      <path d="M 90,250 C 200,250 270,58 375,58 C 480,58 560,300 660,300" fill="none"
+            stroke="var(--ink-faint)" stroke-width="2.4" stroke-dasharray="7 5"/>
+      <path d="M 90,250 C 130,250 150,270 190,270 C 255,270 292,150 375,150 C 455,150 490,312 560,312 C 605,312 625,300 660,300"
+            fill="none" stroke="var(--accent)" stroke-width="3"/>
+
+      <defs>
+        <marker id="ar1" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-2)"/>
+        </marker>
+        <marker id="ar2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-3)"/>
+        </marker>
+      </defs>
+
+      <line x1="336" y1="250" x2="336" y2="60" stroke="var(--accent-2)" stroke-width="2"
+            marker-start="url(#ar1)" marker-end="url(#ar1)"/>
+      <text x="328" y="120" text-anchor="end" font-size="12.5" font-weight="700" fill="var(--accent-2)">ΔG‡ uncatalysed</text>
+      <text x="328" y="136" text-anchor="end" font-size="11" fill="var(--ink-faint)">rare event — reaction is slow</text>
+
+      <line x1="410" y1="250" x2="410" y2="152" stroke="var(--accent-3)" stroke-width="2"
+            marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+      <text x="420" y="196" font-size="12.5" font-weight="700" fill="var(--accent-3)">ΔG‡ catalysed</text>
+      <text x="420" y="212" font-size="11" fill="var(--ink-faint)">the enzyme pays for this drop with binding energy</text>
+
+      <line x1="676" y1="250" x2="676" y2="300" stroke="var(--ok)" stroke-width="2"/>
+      <circle cx="676" cy="250" r="3" fill="var(--ok)"/><circle cx="676" cy="300" r="3" fill="var(--ok)"/>
+      <text x="668" y="278" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ok)">ΔG°′</text>
+
+      <text x="88" y="240" font-size="12.5" font-weight="700" fill="var(--ink)">E + S</text>
+      <text x="196" y="288" font-size="11.5" fill="var(--accent)">ES</text>
+      <text x="375" y="44" text-anchor="middle" font-size="11.5" fill="var(--ink-faint)">‡ uncatalysed</text>
+      <text x="375" y="140" text-anchor="middle" font-size="11.5" fill="var(--accent)">ES‡</text>
+      <text x="562" y="330" font-size="11.5" fill="var(--accent)">EP</text>
+      <text x="666" y="318" text-anchor="end" font-size="12.5" font-weight="700" fill="var(--ink)">E + P</text>
+
+      <line x1="70" y1="360" x2="700" y2="360" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <text x="385" y="380" text-anchor="middle" font-size="12" fill="var(--ink-soft)">reaction coordinate →</text>
+      <line x1="70" y1="360" x2="70" y2="40" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <text x="52" y="200" text-anchor="middle" font-size="12" fill="var(--ink-soft)" transform="rotate(-90 52 200)">free energy G →</text>
+    </svg>
+    <figcaption>The two routes share both ends. That is the entire argument for why a catalyst cannot shift an
+      equilibrium: <span class="fi">ΔG°′</span> is the difference between the ends, and the enzyme touches only
+      what happens in between. Note also that the catalysed path has <em>wells</em> (ES, EP) as well as peaks —
+      the wells are intermediates, the peaks are transition states, and confusing the two is a reliable way to
+      lose a mark.</figcaption>
+  </figure>
+
+  <h3>Why the exponential matters</h3>
+  <p>Because <span class="fi">k ∝ e<sup>−ΔG‡/RT</sup></span>, rate depends on the barrier <em>exponentially</em>.
+     Take the log and the arithmetic becomes friendly: at 25 °C, every factor of ten in rate costs
+     <span class="fi">2.303 RT = 5.71 kJ·mol⁻¹</span> of barrier. So an enzyme that accelerates its reaction
+     10<sup>6</sup>-fold — a modest enzyme — has lowered <span class="fi">ΔG‡</span> by
+     <span class="fi">6 × 5.71 = 34.2 kJ·mol⁻¹</span>. That is about the energy of two or three hydrogen bonds.
+     The lesson is that catalysis does not require exotic chemistry; a handful of well-placed weak interactions,
+     applied to the right structure at the right moment, is enough.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Four things an enzyme does <em>not</em> do</p>
+    <p style="margin:0">It does not change <strong>ΔG°′</strong>, <strong>K′<sub>eq</sub></strong>, or the
+      <strong>position</strong> of equilibrium. It does not make an endergonic reaction spontaneous — cells solve
+      that by <em>coupling</em>, not by catalysis. It does not change the <strong>ratio</strong> of forward to
+      reverse rate constants, only both together. And it is not consumed, so it never appears in the balanced
+      equation. The classic exam sentence is "an enzyme accelerates the attainment of equilibrium without
+      altering it"; every distractor built on this topic is a violation of one of those four.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · Arrhenius, Eyring, and where 5.71 kJ·mol⁻¹ comes from</summary>
+    <div class="disc__body">
+      <p>Arrhenius wrote <span class="fi">k = A e<sup>−E<sub>a</sub>/RT</sup></span> empirically: a
+        pre-exponential collision/orientation factor <span class="fi">A</span> times the Boltzmann fraction of
+        molecules with at least <span class="fi">E<sub>a</sub></span>. Transition-state theory (Eyring) replaces
+        <span class="fi">A</span> with something derivable: assume the transition state is in quasi-equilibrium
+        with the reactants, and it decomposes at the universal frequency
+        <span class="fi">k<sub>B</sub>T/h</span> ≈ 6 × 10<sup>12</sup> s⁻¹ at 25 °C. Then
+        <span class="fi">k = (k<sub>B</sub>T/h) e<sup>−ΔG‡/RT</sup></span>, and because
+        <span class="fi">ΔG‡ = ΔH‡ − TΔS‡</span> you can separate an enthalpic contribution (bond strain,
+        electrostatics) from an entropic one (holding two reactants still — the "proximity and orientation"
+        strategy of §&nbsp;02).</p>
+      <p>The number every calculation reduces to: take the ratio of two rates,
+        <span class="fi">k₂/k₁ = e<sup>−(ΔG‡₂ − ΔG‡₁)/RT</sup></span>. Rearranged,
+        <span class="fi">ΔΔG‡ = RT ln(k₂/k₁)</span>. With <span class="fi">R = 8.314 J·mol⁻¹·K⁻¹</span> and
+        <span class="fi">T = 298 K</span>, <span class="fi">RT = 2.48 kJ·mol⁻¹</span> and
+        <span class="fi">RT ln 10 = 5.71 kJ·mol⁻¹</span>. Orotidine-5′-monophosphate decarboxylase, the current
+        record holder, achieves about 10<sup>17</sup>-fold — that is
+        <span class="fi">17 × 5.71 = 97 kJ·mol⁻¹</span> of barrier removed by a protein that uses no metal and
+        no coenzyme at all.</p>
+    </div>
+  </details>
+
+  <h3>Classifying enzymes: the seven EC classes</h3>
+  <p>Enzyme Commission numbers have four levels — <span class="fi">EC 1.1.1.27</span> is lactate dehydrogenase —
+     but only the first digit is examinable, and it is examined by giving you a reaction and asking which class
+     it belongs to. Decide by asking what happens to the atoms.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The seven Enzyme Commission classes</caption>
+      <thead><tr><th>EC</th><th>Class</th><th>Reaction</th><th>Typical names</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td><strong>Oxidoreductases</strong></td><td>Electron / hydride transfer</td><td>dehydrogenase, oxidase, reductase, peroxidase, oxygenase</td><td>Lactate dehydrogenase; cytochrome <em>c</em> oxidase</td></tr>
+        <tr><td class="num">2</td><td><strong>Transferases</strong></td><td>Move a functional group from one molecule to another</td><td>kinase, transaminase, glycosyltransferase, <em>phosphorylase</em></td><td>Hexokinase; ALT (alanine aminotransferase); glycogen phosphorylase</td></tr>
+        <tr><td class="num">3</td><td><strong>Hydrolases</strong></td><td>Bond cleavage <em>using water</em></td><td>protease, lipase, phosphatase, nuclease, glycosidase</td><td>Trypsin; alkaline phosphatase; lactase</td></tr>
+        <tr><td class="num">4</td><td><strong>Lyases</strong></td><td>Break or form a bond by elimination or addition — <em>not</em> hydrolysis, <em>not</em> redox; usually creates or consumes a double bond</td><td>synth<em>ase</em>, decarboxylase, aldolase, hydratase, cyclase</td><td>Fumarase; aldolase; pyruvate decarboxylase; adenylyl cyclase</td></tr>
+        <tr><td class="num">5</td><td><strong>Isomerases</strong></td><td>Intramolecular rearrangement — same formula in and out</td><td>isomerase, mutase, epimerase, racemase, topoisomerase</td><td>Triose phosphate isomerase; phosphoglycerate mutase</td></tr>
+        <tr><td class="num">6</td><td><strong>Ligases</strong></td><td>Join two molecules, <em>coupled to NTP hydrolysis</em></td><td>synth<em>etase</em>, carboxylase, ligase</td><td>DNA ligase; pyruvate carboxylase; glutamine synthetase; aminoacyl-tRNA synthetase</td></tr>
+        <tr><td class="num">7</td><td><strong>Translocases</strong></td><td>Move ions or molecules across a membrane (class created 2018)</td><td>ATPase pumps, transporters</td><td>Na⁺/K⁺-ATPase; F₁F₀ ATP synthase</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo">
+    <h4>Seven classes, in order</h4>
+    <p><strong>O</strong>ver <strong>T</strong>he <strong>H</strong>ill, <strong>L</strong>ittle
+      <strong>I</strong>nsects <strong>L</strong>ove <strong>T</strong>rees →
+      Oxidoreductase · Transferase · Hydrolase · Lyase · Isomerase · Ligase · Translocase. And the
+      decision rule underneath it: <em>water in? → hydrolase. NTP in? → ligase. Electrons moved? →
+      oxidoreductase. Same formula out? → isomerase.</em></p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The naming minefield examiners reuse</p>
+    <p><strong>Synthase vs synthetase.</strong> A <em>synthase</em> (lyase, class 4) joins things without
+      nucleotide hydrolysis; a <em>synthetase</em> (ligase, class 6) requires ATP or another NTP. Citrate
+      synthase needs no ATP; glutamine synthetase does. One consonant, two different classes.</p>
+    <p><strong>Kinase vs phosphorylase vs phosphatase.</strong> A <em>kinase</em> transfers phosphoryl
+      <em>from ATP</em> (transferase). A <em>phosphorylase</em> cleaves a bond using inorganic phosphate
+      instead of water — glycogen phosphorylase is a glycosyl<em>transferase</em>, class 2, and notably does
+      <strong>not</strong> use ATP. A <em>phosphatase</em> removes phosphate <em>using water</em>, so it is a
+      hydrolase, class 3. Answering "kinase" for a phosphorolysis question is a standard trap.</p>
+    <p style="margin:0"><strong>Not all enzymes are proteins.</strong> Ribozymes catalyse real chemistry: RNase P
+      (tRNA 5′ processing), self-splicing group I and II introns, the spliceosome, and — the important one —
+      the <strong>peptidyl transferase centre of the ribosome</strong>, which is built entirely of 23S/28S rRNA.
+      A question that says "all enzymes are proteins" is false as written.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Binding energy and the catalytic strategies</h2>
+
+  <p class="idea"><b>The idea</b>Where does an enzyme get the energy to lower a barrier? From sticking to its substrate. Every hydrogen
+     bond, salt bridge and buried hydrophobic contact between enzyme and substrate releases a little free
+     energy, and there are dozens of them. But here is the twist that makes the whole subject make sense: if
+     the enzyme were shaped to grip the substrate perfectly, it would just hold it in a comfortable pit and
+     nothing would happen. The site is instead shaped to grip the <em>strained, half-reacted</em> form. So the
+     substrate is only partly comfortable, and it can become fully comfortable by distorting towards the
+     product. The enzyme pulls the reaction over the hill by rewarding the climb.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; principle</p>
+    <dl class="def">
+      <dt>Binding energy (ΔG<sub>B</sub>)</dt>
+      <dd>The free energy released when the many weak, non-covalent interactions between enzyme and substrate
+          form. It is the <strong>major source of catalytic free energy</strong> — the fund the enzyme spends
+          on lowering <span class="fi">ΔG‡</span>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">the active site is complementary to the <b>transition state</b>, not to S</span>
+      <span class="fx__tag">the single most-tested statement in the whole of enzymology</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Active site</dt>
+          <dd>A small pocket or cleft, usually a few percent of the protein's volume, lined by residues that are
+              distant in sequence but adjacent in space. Mostly excluded from bulk water, which raises the
+              effective strength of electrostatic interactions.</dd>
+          <dt>Lock-and-key vs induced fit</dt>
+          <dd>Fischer's lock-and-key (1894) explains specificity but not catalysis. Koshland's induced fit
+              (1958) has the enzyme change shape on binding — hexokinase closing over glucose is the textbook
+              picture, and the closure is what excludes water so that ATP phosphorylates glucose rather than
+              being hydrolysed.</dd>
+          <dt>Transition-state analogue</dt>
+          <dd>A stable molecule that mimics the geometry and charge of the transition state. Because the enzyme
+              is built to bind that shape, such analogues bind 10<sup>2</sup>–10<sup>6</sup> times more tightly
+              than the substrate — the founding principle of rational drug design.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">E + S ⇌ ES ⇌ [ES]‡ → EP ⇌ E + P</span><span class="fx__tag">the wells are ES and EP; the peaks are the transition states</span></div>
+          <div class="fx"><span class="fx__eq">too tight an ES well ⇒ ΔG‡ rises ⇒ slower</span><span class="fx__tag">the "thermodynamic pit" — over-binding is anti-catalytic</span></div>
+          <div class="fx"><span class="fx__eq">effective molarity = k<sub>intramolecular</sub> / k<sub>intermolecular</sub></span><span class="fx__tag">how much the proximity effect alone is worth — up to 10⁸ M</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>ΔG<sub>B</sub></b><span>binding energy (J·mol⁻¹, negative)</span></div>
+          <div><b>ES</b><span>enzyme–substrate (Michaelis) complex</span></div>
+          <div><b>[ES]‡</b><span>enzyme-bound transition state</span></div>
+          <div><b>K<sub>d</sub></b><span>dissociation constant of ES (M)</span></div>
+          <div><b>EM</b><span>effective molarity (M)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Binding energy buys catalysis in six recognisable ways. Real enzymes use several at once — chymotrypsin in
+     §&nbsp;03 uses four of the six — so a question asking for "the" mechanism is usually asking which one
+     <em>dominates</em>.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The six catalytic strategies</caption>
+      <thead><tr><th>Strategy</th><th>What it does</th><th>Chemistry</th><th>Worked example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Proximity &amp; orientation</strong></td><td>Converts a bimolecular collision problem into an intramolecular one, and freezes the reactants in the correct geometry</td><td>Pays an entropic price once, on binding, instead of every time the molecules meet</td><td>Any two-substrate enzyme; effective molarities up to 10⁸ M</td></tr>
+        <tr><td><strong>Transition-state stabilisation</strong></td><td>Binds the ‡ geometry and its developing charge better than it binds S</td><td>Electrostatic complementarity in a low-dielectric pocket</td><td>The <strong>oxyanion hole</strong> of serine proteases (§&nbsp;03)</td></tr>
+        <tr><td><strong>General acid–base catalysis</strong></td><td>Donates or accepts a proton at the moment it is needed, rather than waiting for H₃O⁺ or OH⁻</td><td><strong>Histidine</strong> is the workhorse: its imidazole pK<sub>a</sub> ≈ 6–7 means it is half protonated at physiological pH, so it can do both jobs</td><td>His57 in chymotrypsin; His12 and His119 in RNase A</td></tr>
+        <tr><td><strong>Covalent catalysis</strong></td><td>Forms a transient covalent bond to the substrate, splitting one hard step into two easy ones</td><td>Needs a nucleophile: Ser–O⁻, Cys–S⁻, Lys–NH₂ (Schiff base), His</td><td>Acyl-enzyme in chymotrypsin; Schiff base in aldolase and in every PLP enzyme</td></tr>
+        <tr><td><strong>Metal-ion catalysis</strong></td><td>Stabilises negative charge, orients substrate, lowers the pK<sub>a</sub> of bound water, or shuttles electrons</td><td>Zn²⁺, Mg²⁺, Mn²⁺, Fe²⁺/Fe³⁺, Cu⁺/Cu²⁺</td><td>Zn²⁺ in carbonic anhydrase (makes OH⁻ at pH 7) and carboxypeptidase A; Mg²⁺ chelating ATP in every kinase</td></tr>
+        <tr><td><strong>Desolvation &amp; strain</strong></td><td>Strips ordered water off the reacting groups; distorts the substrate towards the ‡ geometry</td><td>Raises the effective strength of electrostatics; destabilises the ground state</td><td>Lysozyme distorting its sugar ring towards the half-chair oxocarbenium</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">"A good enzyme binds its substrate tightly" — no</p>
+    <p style="margin:0">Very tight substrate binding deepens the ES well, which <em>increases</em> the climb from
+      ES to the transition state and makes the enzyme <strong>slower</strong>. The quantity that must be
+      maximised is the difference in binding between the transition state and the substrate, not the binding of
+      the substrate. This is exactly why transition-state analogues are such potent inhibitors — they exploit
+      the affinity the enzyme reserves for a species that normally exists for 10<sup>−13</sup> s — and why
+      K<sub>m</sub> values cluster in the range of physiological substrate concentrations rather than being as
+      low as chemistry could make them.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Transition-state logic in the clinic</p>
+    <p style="margin:0"><strong>Statins</strong> resemble the mevaldyl-CoA intermediate/transition state of
+      HMG-CoA reductase and bind with nanomolar K<sub>i</sub> against a micromolar K<sub>m</sub> substrate.
+      <strong>Oseltamivir</strong> and zanamivir mimic the planar sialosyl oxocarbenium transition state of
+      influenza neuraminidase — the sugar in the drug is deliberately drawn flat.
+      <strong>Saquinavir</strong> and the other HIV protease inhibitors carry a hydroxyethylene isostere in
+      place of the scissile peptide bond: it looks like the tetrahedral intermediate but cannot be cleaved.
+      <strong>Allopurinol</strong> is converted by its own target, xanthine oxidase, into oxypurinol, which
+      then sits on the reduced molybdenum centre — catalysis that produces the inhibitor is called
+      mechanism-based, and §&nbsp;08 returns to it. The general moral: if you want a tight-binding inhibitor,
+      do not copy the substrate; copy the transition state.</p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Chymotrypsin and the catalytic triad</h2>
+
+  <p class="idea"><b>The idea</b>A peptide bond in neutral water survives for hundreds of years. To cut one in milliseconds you have two
+     problems. First, you need something far more eager to attack than water is — and the only nucleophile
+     conveniently to hand in a protein, a serine hydroxyl, is feeble. Second, the attack produces a
+     short-lived, negatively charged, four-cornered arrangement at a carbon that would much rather be flat, and
+     unless something grips that negative charge it will simply collapse back. The serine proteases solve both
+     with two devices: a three-residue relay that strips the proton off the serine at the instant it is needed,
+     and a pair of backbone N–H bonds pointing into exactly the place the new negative charge appears.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; mechanism</p>
+    <dl class="def">
+      <dt>Catalytic triad</dt>
+      <dd><strong>Ser195 – His57 – Asp102</strong> (chymotrypsin numbering, used for the whole family). His57
+          acts as a general base to deprotonate Ser195; Asp102 orients the imidazole and stabilises the
+          resulting imidazolium by electrostatics. The three residues are far apart in sequence and adjacent
+          in space.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Asp102 ⋯ His57 ⋯ HO–Ser195 → Ser195–O⁻ attacks the carbonyl C</span>
+      <span class="fx__tag">a proton relay that turns an ordinary alcohol into a genuine nucleophile</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Oxyanion hole</dt>
+          <dd>A small pocket formed by the <strong>backbone amide N–H groups of Gly193 and Ser195</strong>. It
+              hydrogen-bonds the negatively charged oxygen of the tetrahedral intermediate. The substrate's
+              flat, uncharged carbonyl cannot reach both N–H groups; the tetrahedral oxyanion can — textbook
+              transition-state complementarity.</dd>
+          <dt>Acyl-enzyme intermediate</dt>
+          <dd>A covalent <strong>ester</strong> between the substrate's carbonyl carbon and Ser195 Oγ, formed
+              after the amine leaving group departs. A true intermediate, not a transition state — it can be
+              trapped and its accumulation is what produces burst kinetics.</dd>
+          <dt>Specificity pocket (S1)</dt>
+          <dd>The pocket that accepts the side chain immediately before the scissile bond. Its shape and charge,
+              not the catalytic machinery, decide what each family member cuts.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">acylation: E + R–CO–NH–R′ → E–CO–R + H₂N–R′</span><span class="fx__tag">the amine (or, for an ester, the alcohol) leaves first; this half is the fast one <em>for ester substrates</em> — for peptides acylation is usually the slow step</span></div>
+          <div class="fx"><span class="fx__eq">deacylation: E–CO–R + H₂O → E + R–COOH</span><span class="fx__tag">rate-limiting for ester substrates; hence the burst</span></div>
+          <div class="fx"><span class="fx__eq">Ser195 + DIPF → dead enzyme (1 : 1 stoichiometry)</span><span class="fx__tag">the classical proof that one specific serine is the nucleophile</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Ser195</b><span>catalytic nucleophile (Oγ)</span></div>
+          <div><b>His57</b><span>general base / general acid</span></div>
+          <div><b>Asp102</b><span>orients and stabilises His57</span></div>
+          <div><b>Gly193</b><span>backbone N–H of the oxyanion hole</span></div>
+          <div><b>S1</b><span>primary specificity pocket</span></div>
+          <div><b>DIPF</b><span>di-isopropyl fluorophosphate, an irreversible serine-protease inhibitor</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 420" role="img" aria-label="Top panel: the catalytic triad. Aspartate 102 hydrogen bonds to histidine 57, which in turn removes the proton from serine 195; an arrow shows the resulting serine alkoxide attacking the carbonyl carbon of the substrate peptide bond. Two dashed lines from the backbone amide N-H groups of glycine 193 and serine 195 point at the carbonyl oxygen, marking the oxyanion hole. Bottom panel: a four-box flow showing the Michaelis complex, the first tetrahedral intermediate, the acyl-enzyme with the amine product leaving, and finally water attacking to release the carboxylic acid product and regenerate free enzyme." style="font-family:var(--sans)">
+      <rect x="30" y="238" width="126" height="44" rx="9" fill="var(--card)" stroke="var(--ionic)" stroke-width="2"/>
+      <text x="93" y="260" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ionic)">Asp102</text>
+      <text x="93" y="275" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">–COO⁻</text>
+
+      <rect x="196" y="178" width="126" height="44" rx="9" fill="var(--card)" stroke="var(--vdw)" stroke-width="2"/>
+      <text x="259" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="var(--vdw)">His57</text>
+      <text x="259" y="215" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">imidazole, pK<tspan font-size="8" dy="2">a</tspan><tspan dy="-2"> ≈ 6–7</tspan></text>
+
+      <rect x="358" y="118" width="126" height="44" rx="9" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="421" y="140" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent)">Ser195</text>
+      <text x="421" y="155" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">–CH₂–OH → –CH₂–O⁻</text>
+
+      <line x1="156" y1="252" x2="196" y2="206" stroke="var(--hbond)" stroke-width="2.2" stroke-dasharray="5 4"/>
+      <line x1="322" y1="192" x2="358" y2="146" stroke="var(--hbond)" stroke-width="2.2" stroke-dasharray="5 4"/>
+      <text x="150" y="216" font-size="10.5" fill="var(--hbond)">H-bond</text>
+      <text x="316" y="156" font-size="10.5" fill="var(--hbond)">H⁺ taken</text>
+
+      <path d="M 484,132 C 520,120 540,104 556,96" fill="none" stroke="var(--covalent)" stroke-width="2.4"/>
+      <path d="M 556,96 l -12,1.5 l 5,7 z" fill="var(--covalent)"/>
+      <text x="500" y="112" font-size="10.5" font-weight="700" fill="var(--covalent)">nucleophilic attack</text>
+
+      <line x1="560" y1="92" x2="612" y2="92" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="612" y1="92" x2="660" y2="118" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="609" y1="92" x2="609" y2="60" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="615" y1="92" x2="615" y2="60" stroke="var(--ink-soft)" stroke-width="2"/>
+      <text x="612" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">O</text>
+      <text x="668" y="126" font-size="11.5" fill="var(--ink-soft)">N–R′ (leaves first)</text>
+      <text x="560" y="112" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">C</text>
+      <text x="530" y="76" font-size="11" fill="var(--ink-faint)">scissile peptide bond</text>
+
+      <line x1="540" y1="30" x2="605" y2="52" stroke="var(--hbond)" stroke-width="2" stroke-dasharray="4 3"/>
+      <line x1="684" y1="30" x2="620" y2="52" stroke="var(--hbond)" stroke-width="2" stroke-dasharray="4 3"/>
+      <text x="528" y="24" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--hbond)">Gly193 N–H</text>
+      <text x="694" y="24" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--hbond)">Ser195 N–H</text>
+      <text x="612" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="var(--hbond)">oxyanion hole</text>
+      <text x="612" y="195" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">grips the O⁻ that only the</text>
+      <text x="612" y="209" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">tetrahedral intermediate has</text>
+
+      <line x1="30" y1="300" x2="700" y2="300" stroke="var(--line)" stroke-width="1.2"/>
+
+      <rect x="30" y="322" width="146" height="66" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.6"/>
+      <text x="103" y="345" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">1 · ES complex</text>
+      <text x="103" y="362" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">side chain in S1;</text>
+      <text x="103" y="376" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">carbonyl flat</text>
+
+      <rect x="196" y="322" width="146" height="66" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.6"/>
+      <text x="269" y="345" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">2 · tetrahedral</text>
+      <text x="269" y="362" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">O⁻ in the oxyanion</text>
+      <text x="269" y="376" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">hole; His57 now H⁺</text>
+
+      <rect x="362" y="322" width="146" height="66" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.6"/>
+      <text x="435" y="345" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">3 · acyl-enzyme</text>
+      <text x="435" y="362" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">amine product out;</text>
+      <text x="435" y="376" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">covalent ester left</text>
+
+      <rect x="528" y="322" width="162" height="66" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.6"/>
+      <text x="609" y="345" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">4 · deacylation</text>
+      <text x="609" y="362" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">His57 activates H₂O;</text>
+      <text x="609" y="376" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">acid out, E regenerated</text>
+
+      <path d="M 178,355 l 14,0" stroke="var(--ink-faint)" stroke-width="2"/><path d="M 194,355 l -7,-4 l 0,8 z" fill="var(--ink-faint)"/>
+      <path d="M 344,355 l 14,0" stroke="var(--ink-faint)" stroke-width="2"/><path d="M 360,355 l -7,-4 l 0,8 z" fill="var(--ink-faint)"/>
+      <path d="M 510,355 l 14,0" stroke="var(--ink-faint)" stroke-width="2"/><path d="M 526,355 l -7,-4 l 0,8 z" fill="var(--ink-faint)"/>
+    </svg>
+    <figcaption>Schematic, not a structure. Steps 1–3 are <em>acylation</em> and step 4 is
+      <em>deacylation</em>; each half passes through its own tetrahedral intermediate, so the full mechanism has
+      two intermediates and four transition states. Asp102 does not remove a proton from His57 — a persistent
+      misreading. It stays ionised and stabilises the imidazolium that forms when His57 takes the proton from
+      Ser195.</figcaption>
+  </figure>
+
+  <h3>The evidence: burst kinetics</h3>
+  <p>The acyl-enzyme is not a story; it was measured. Give chymotrypsin the artificial substrate
+     <em>p</em>-nitrophenyl acetate and watch the yellow <em>p</em>-nitrophenolate appear. You see a rapid
+     <strong>burst</strong> — one mole of product per mole of enzyme, released within milliseconds — followed
+     by a much slower steady rate. The interpretation is forced: acylation is fast and releases the first
+     product (the alcohol/amine), leaving every active site loaded as the acyl-enzyme; the slow phase is
+     deacylation, which is rate-limiting for this substrate. The size of the burst is a direct titration of
+     active sites, which is one of the few ways to measure <span class="fi">[E]<sub>t</sub></span> without
+     assuming purity — and §&nbsp;06 needs <span class="fi">[E]<sub>t</sub></span> to get
+     <span class="fi">k<sub>cat</sub></span>.</p>
+
+  <h3>Same machinery, different pocket</h3>
+  <p>Trypsin, chymotrypsin and elastase are built on the same fold with the same triad in the same relative
+     positions. They cut different bonds solely because the S1 pocket differs. This is the cleanest illustration
+     in biochemistry of specificity and catalysis being <em>separable</em> properties.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The three pancreatic serine proteases compared</caption>
+      <thead><tr><th>Enzyme</th><th>Cuts after</th><th>S1 pocket</th><th>Key residue at the bottom</th><th>Zymogen</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Chymotrypsin</strong></td><td>Phe, Trp, Tyr (bulky aromatic); also Leu, Met slowly</td><td>Deep, narrow, hydrophobic</td><td>Ser189 — uncharged, so only shape selects</td><td>Chymotrypsinogen</td></tr>
+        <tr><td><strong>Trypsin</strong></td><td><strong>Lys, Arg</strong> (positively charged)</td><td>Deep, narrow, with a negative charge at the base</td><td><strong>Asp189</strong> — the salt bridge that reads the substrate's charge</td><td>Trypsinogen</td></tr>
+        <tr><td><strong>Elastase</strong></td><td>Ala, Gly, Ser (small, uncharged)</td><td>Shallow — effectively filled in</td><td>Val216 and Thr226 bulk out the pocket</td><td>Proelastase</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Aspartate proteases: the same problem, no covalent intermediate</h3>
+  <p>Not every protease goes through a covalent intermediate. Aspartate proteases carry <strong>two aspartate
+     carboxylates</strong> facing each other across the site, one ionised and one protonated at the working pH.
+     The ionised one acts as a general base and activates a water molecule <em>directly</em>; the protonated
+     one protonates the carbonyl oxygen. Water attacks the carbonyl carbon in one step, giving a
+     <strong>non-covalent</strong> gem-diol tetrahedral intermediate. There is no acyl-enzyme, and the
+     mechanism is therefore called <em>general acid–base</em> rather than covalent catalysis.</p>
+  <p>The family is medically enormous. <strong>Pepsin</strong> works at pH 1.5–2, which is what a pair of
+     carboxylates with widely split pK<sub>a</sub> values makes possible. <strong>Renin</strong> cleaves
+     angiotensinogen and is the target of aliskiren. <strong>BACE1</strong> makes the amyloid β peptide. And
+     <strong>HIV-1 protease</strong> is a symmetric <em>homodimer</em> contributing one Asp25 each — a
+     structural fact that is directly exam-relevant, because the drug that fills a two-fold symmetric site can
+     be designed symmetric too, and because a homodimer cannot tolerate a mutation on one chain only.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Irreversible inhibitors of the serine machinery</p>
+    <p style="margin:0"><strong>DIPF</strong> and <strong>PMSF</strong> phosphorylate or sulfonylate Ser195
+      itself; the 1 : 1 stoichiometry was the original proof of the mechanism. Nerve agents and
+      <strong>organophosphate insecticides</strong> do exactly the same to the equivalent serine of
+      <strong>acetylcholinesterase</strong>, producing a cholinergic crisis (the SLUDGE / DUMBBELS picture,
+      plus fasciculations and respiratory failure). <strong>Pralidoxime</strong> pulls the phosphoryl group off
+      the serine — but only before "<strong>aging</strong>", the spontaneous loss of one alkyl group from the
+      bound phosphate, after which the adduct is permanent. That is the pharmacological reason pralidoxime is
+      time-critical, and it is a clean illustration of what "irreversible" really means: not that the chemistry
+      is magic, but that the off-rate is effectively zero. Carbamates such as neostigmine and physostigmine
+      carbamylate the same serine but hydrolyse off in minutes to hours — "pseudo-irreversible".</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the other three protease families and the drugs built on them</summary>
+    <div class="disc__body">
+      <div class="table-scroll">
+        <table class="data">
+          <caption class="sr-only">Protease mechanistic classes</caption>
+          <thead><tr><th>Class</th><th>Nucleophile</th><th>Covalent intermediate?</th><th>Examples</th><th>Drugs / clinical</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Serine</strong></td><td>Ser–O⁻, activated by a His–Asp relay</td><td>Yes — acyl-enzyme ester</td><td>Chymotrypsin, trypsin, elastase, thrombin, factor Xa, tPA, acetylcholinesterase</td><td>Rivaroxaban (Xa), argatroban (thrombin); α₁-antitrypsin is the physiological serpin</td></tr>
+            <tr><td><strong>Cysteine</strong></td><td>Cys–S⁻, usually a Cys–His dyad; thiolate is a better nucleophile than alkoxide, so no Asp needed</td><td>Yes — acyl-enzyme thioester</td><td>Papain, cathepsins, <strong>caspases</strong> (cut after Asp), calpains</td><td>Caspase cascade in apoptosis; SARS-CoV-2 M<sup>pro</sup> is the nirmatrelvir target</td></tr>
+            <tr><td><strong>Aspartate</strong></td><td>None — a water molecule activated between two Asp</td><td><strong>No</strong></td><td>Pepsin, renin, BACE1, HIV-1 protease, cathepsin D</td><td>Aliskiren, saquinavir and relatives (hydroxyethylene isosteres)</td></tr>
+            <tr><td><strong>Metallo</strong></td><td>Zn²⁺-bound hydroxide</td><td>No</td><td>Carboxypeptidase A, ACE, matrix metalloproteinases, thermolysin</td><td>Captopril and enalaprilat chelate the ACE zinc; MMPs in tumour invasion</td></tr>
+            <tr><td><strong>Threonine</strong></td><td>N-terminal Thr–O⁻</td><td>Yes — acyl-enzyme ester</td><td>The <strong>20S proteasome</strong> β1/β2/β5 subunits</td><td><strong>Bortezomib</strong>, carfilzomib in myeloma</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-bottom:0">Two patterns worth carrying: the families that form a covalent intermediate
+        (serine, cysteine, threonine) all use an activated <em>protein</em> nucleophile and are therefore
+        vulnerable to covalent drugs; the families that do not (aspartate, metallo) activate <em>water</em> and
+        are attacked instead with transition-state analogues or metal chelators. Which family a protease belongs
+        to predicts what kind of drug will work on it.</p>
+    </div>
+  </details>
+</section>
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Coenzymes: chemistry the protein cannot do</h2>
+
+  <p class="idea"><b>The idea</b>Twenty amino acid side chains are excellent at two things: pushing protons around, and holding molecules
+     still in a particular orientation. They are hopeless at almost everything else. Nothing in a protein can
+     carry an electron one at a time, carry a one-carbon fragment, stabilise a carbanion, or activate carbon
+     dioxide. So enzymes hire specialists — small organic molecules, most of them things we must eat because we
+     cannot make them. The division of labour is exact: the coenzyme supplies the chemistry, the protein
+     supplies the speed and the choice of substrate. That is why the same coenzyme turns up in dozens of
+     unrelated enzymes, and why a single vitamin deficiency knocks out a whole set of reactions at once.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; vocabulary</p>
+    <dl class="def">
+      <dt>Cofactor</dt>
+      <dd>Any non-protein component an enzyme needs for activity. Two kinds: <strong>inorganic ions</strong>
+          (Zn²⁺, Mg²⁺, Fe²⁺, Cu²⁺, Mn²⁺, Se) and <strong>coenzymes</strong> — small organic molecules, most of
+          them vitamin-derived.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">holoenzyme = apoenzyme (protein) + cofactor</span>
+      <span class="fx__tag">the apoenzyme alone is catalytically dead; "holo" is the working form</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Coenzyme vs prosthetic group</dt>
+          <dd>A <strong>coenzyme</strong> is a co-substrate: it binds, is chemically altered, dissociates, and is
+              regenerated somewhere else — NAD⁺ is the model. A <strong>prosthetic group</strong> stays bound,
+              often covalently, and must be re-set on the same enzyme before the next turnover — FAD, biotin,
+              lipoamide, haem, PLP.</dd>
+          <dt>Why the distinction is tested</dt>
+          <dd>Because it predicts the kinetics. A dissociable coenzyme makes the enzyme a genuine two-substrate
+              enzyme (§&nbsp;09); a prosthetic group forces a <em>ping-pong</em> mechanism, since the enzyme
+              itself is chemically changed between the two half-reactions.</dd>
+          <dt>Vitamin</dt>
+          <dd>An organic micronutrient the organism cannot synthesise in sufficient quantity. Every water-soluble
+              vitamin except vitamin C is the precursor of a coenzyme; vitamin C is a reducing cosubstrate
+              rather than a coenzyme in the strict sense.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">NAD⁺ + 2e⁻ + H⁺ → NADH  (a hydride, H:⁻, is transferred)</span><span class="fx__tag">obligate two-electron chemistry; freely dissociable</span></div>
+          <div class="fx"><span class="fx__eq">FAD + 2e⁻ + 2H⁺ → FADH₂ · also FAD → FADH· (one electron)</span><span class="fx__tag">this is why flavins, not NAD, interface with the respiratory chain</span></div>
+          <div class="fx"><span class="fx__eq">NADH → catabolism / ATP  ·  NADPH → reductive biosynthesis</span><span class="fx__tag">one 2′-phosphate decides which enzymes will accept it</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>TPP</b><span>thiamine pyrophosphate (vitamin B₁)</span></div>
+          <div><b>FAD / FMN</b><span>flavin adenine dinucleotide / mononucleotide (B₂)</span></div>
+          <div><b>NAD⁺ / NADP⁺</b><span>nicotinamide adenine dinucleotide (± 2′-phosphate) (B₃)</span></div>
+          <div><b>CoA</b><span>coenzyme A (B₅, pantothenate)</span></div>
+          <div><b>PLP</b><span>pyridoxal phosphate (B₆)</span></div>
+          <div><b>THF</b><span>tetrahydrofolate (B₉)</span></div>
+          <div><b>AdoCbl</b><span>adenosylcobalamin (B₁₂)</span></div>
+          <div><b>SAM</b><span>S-adenosylmethionine, the universal methyl donor</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Vitamins, their coenzymes, the group transferred and deficiency states</caption>
+      <thead><tr><th>Vitamin</th><th>Coenzyme</th><th>Carries / does</th><th>Enzymes</th><th>Deficiency</th></tr></thead>
+      <tbody>
+        <tr><td>B₁ thiamine</td><td><strong>TPP</strong></td><td>Activated aldehyde; decarboxylation of α-keto acids</td><td>Pyruvate dehydrogenase, α-ketoglutarate dehydrogenase, branched-chain ketoacid DH, <strong>transketolase</strong></td><td>Beriberi (wet = cardiac, dry = neuropathy); Wernicke–Korsakoff. Red-cell transketolase activity is the classic assay.</td></tr>
+        <tr><td>B₂ riboflavin</td><td><strong>FAD, FMN</strong></td><td>Electrons — one <em>or</em> two at a time</td><td>Succinate dehydrogenase, acyl-CoA dehydrogenases, glutathione reductase, complex I/II</td><td>Angular cheilitis, glossitis, corneal vascularisation</td></tr>
+        <tr><td>B₃ niacin</td><td><strong>NAD⁺, NADP⁺</strong></td><td>Hydride (obligate 2 e⁻)</td><td>Essentially every dehydrogenase</td><td>Pellagra — dermatitis, diarrhoea, dementia. Made from Trp, so also seen in Hartnup disease and carcinoid.</td></tr>
+        <tr><td>B₅ pantothenate</td><td><strong>CoA</strong>, phosphopantetheine</td><td>Acyl groups, as thioesters</td><td>All of β-oxidation, TCA, fatty-acid synthase</td><td>Rare in isolation; burning-feet syndrome</td></tr>
+        <tr><td>B₆ pyridoxine</td><td><strong>PLP</strong></td><td>Amino groups; also decarboxylation, racemisation, β/γ-elimination — all via a Schiff base</td><td>ALT, AST, glycogen phosphorylase, ALA synthase, cystathionine β-synthase, DOPA decarboxylase</td><td>Sideroblastic anaemia, seizures, peripheral neuropathy; classically precipitated by <strong>isoniazid</strong></td></tr>
+        <tr><td>B₇ biotin</td><td><strong>Biocytin</strong> (biotin–Lys)</td><td><strong>CO₂</strong>, in ATP-dependent carboxylations</td><td>Pyruvate carboxylase, acetyl-CoA carboxylase, propionyl-CoA carboxylase</td><td>Dermatitis, alopecia; caused by raw egg white (avidin) or biotinidase deficiency</td></tr>
+        <tr><td>B₉ folate</td><td><strong>THF</strong></td><td>One-carbon units at every oxidation level <em>except</em> CO₂ — methyl, methylene, formyl</td><td>Thymidylate synthase, SHMT, purine synthesis (2 steps)</td><td>Megaloblastic anaemia <em>without</em> neurological signs; neural-tube defects</td></tr>
+        <tr><td>B₁₂ cobalamin</td><td><strong>Methyl-Cbl, Ado-Cbl</strong></td><td>Methyl transfer; 1,2 carbon-skeleton rearrangement</td><td>Methionine synthase (cytosol), methylmalonyl-CoA mutase (mitochondrion)</td><td>Megaloblastic anaemia <strong>with</strong> subacute combined degeneration. Methylmalonic acid is raised in B₁₂ but not folate deficiency — that is the discriminating test.</td></tr>
+        <tr><td>Lipoic acid</td><td><strong>Lipoamide</strong></td><td>Acyl groups <em>and</em> electrons</td><td>PDH and α-KGDH E2 subunits</td><td>Not a dietary vitamin in humans</td></tr>
+        <tr><td>Vitamin K</td><td>Hydroquinone form</td><td>γ-carboxylation of glutamate → Gla, which chelates Ca²⁺</td><td>γ-glutamyl carboxylase; factors II, VII, IX, X, protein C/S</td><td>Bleeding; the target of <strong>warfarin</strong>, which blocks the epoxide reductase that recycles it</td></tr>
+        <tr><td>Vitamin C</td><td>Ascorbate (cosubstrate)</td><td>Keeps the active-site Fe²⁺ reduced</td><td>Prolyl and lysyl hydroxylase; dopamine β-hydroxylase</td><td><strong>Scurvy</strong> — under-hydroxylated collagen cannot form stable triple helices</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">How this is actually asked</p>
+    <p style="margin:0">Not as "what is the coenzyme for X", but as a chemistry question: <em>which cofactor is
+      required by an enzyme that removes CO₂ from an α-keto acid?</em> (TPP). <em>Which is needed to add CO₂ at
+      the cost of ATP?</em> (biotin). <em>Which reaction type always begins with a Schiff base to a lysine?</em>
+      (PLP chemistry, and aldolase). <em>Which coenzyme is used by an enzyme that must feed electrons into the
+      respiratory chain one at a time?</em> (a flavin — NAD⁺ physically cannot). Learn the four or five
+      <strong>reaction types</strong> and the coenzyme names come free; learn the names alone and you will miss
+      the question. The single highest-yield pair is TPP for oxidative decarboxylation versus biotin for
+      carboxylation — they look symmetric and are constantly swapped in distractors.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">NADH and NADPH are not interchangeable</p>
+    <p style="margin:0">They differ by one phosphate on the 2′-OH of the adenosine ribose — no difference in
+      redox chemistry whatsoever. The difference is entirely one of <em>recognition</em>: enzymes read the
+      phosphate and so the cell can hold two separate pools at two separate redox poises. <strong>The NAD pool is
+      kept mostly oxidised</strong> (high NAD⁺/NADH) to drive catabolic dehydrogenations and feed the respiratory
+      chain; <strong>the NADP pool is kept mostly reduced</strong> (high NADPH/NADP⁺) to drive reductive biosynthesis —
+      fatty acids, cholesterol, deoxyribonucleotides — and to reduce glutathione. It is the same molecule doing
+      two jobs that must not be allowed to short-circuit, and the phosphate is the tag that keeps them apart.
+      Glucose-6-phosphate dehydrogenase deficiency is the clinical demonstration: no NADPH, no reduced
+      glutathione, haemolysis under oxidant stress.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Michaelis–Menten, derived properly</h2>
+
+  <p class="idea"><b>The idea</b>Fix the amount of enzyme and keep adding substrate while you measure how fast product appears. At first the
+     rate rises in step with what you add — the enzyme spends most of its time waiting for a substrate molecule
+     to arrive. Eventually adding more does nothing at all, because every active site is already occupied the
+     instant it becomes free and the only thing left limiting the rate is how long one cycle of chemistry takes.
+     The curve that connects those two regimes is a rectangular hyperbola, and the two numbers that describe it
+     are the substrate concentration at which the enzyme is working at half speed, and the speed it approaches
+     but never reaches. Everything else in this note is about reading those two numbers off real data.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Initial velocity v<sub>0</sub></dt>
+      <dd>The rate measured at the very start of the reaction — conventionally before ~5–10 % of the substrate
+          is consumed. This matters: it keeps <span class="fi">[S]</span> effectively constant, keeps
+          <span class="fi">[P] ≈ 0</span> so the reverse reaction is negligible, and avoids product
+          inhibition. Every constant below is defined for <span class="fi">v<sub>0</sub></span>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v<sub>0</sub> = <span class="mf" role="img" aria-label="V max times S, over K m plus S"><span>V<sub>max</sub>[S]</span><span>K<sub>m</sub> + [S]</span></span></span>
+      <span class="fx__tag">a rectangular hyperbola: linear in [S] when [S] ≪ K<sub>m</sub>, flat when [S] ≫ K<sub>m</sub></span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Michaelis constant K<sub>m</sub></dt>
+          <dd>Defined by the rate constants, not by affinity:
+              <span class="fi">K<sub>m</sub> = (k₋₁ + k₂)/k₁</span>. Operationally it is the substrate
+              concentration at which <span class="fi">v₀ = V<sub>max</sub>/2</span>. Units: concentration (M,
+              mM, µM). Independent of how much enzyme you added.</dd>
+          <dt>Maximum velocity V<sub>max</sub></dt>
+          <dd>The rate when every enzyme molecule is in the ES form. Units: concentration per time (or
+              µmol·min⁻¹, or µmol·min⁻¹·mg⁻¹ as "specific activity"). <strong>Proportional to
+              [E]<sub>t</sub></strong> — double the enzyme and you double V<sub>max</sub>, which is exactly why
+              V<sub>max</sub> alone is not a property of the enzyme.</dd>
+          <dt>Steady state</dt>
+          <dd>The assumption that <span class="fi">d[ES]/dt = 0</span> — ES is being made and destroyed at
+              equal rates. Valid because <span class="fi">[S] ≫ [E]<sub>t</sub></span>, so after a
+              pre-steady-state lasting microseconds the complex concentration is stationary.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">E + S ⇌<sup>k₁</sup><sub>k₋₁</sub> ES →<sup>k₂</sup> E + P</span><span class="fx__tag">the scheme the derivation assumes; k₂ = k<sub>cat</sub> here</span></div>
+          <div class="fx"><span class="fx__eq">K<sub>m</sub> = <span class="mf" role="img" aria-label="k minus one plus k two, over k one"><span>k₋₁ + k₂</span><span>k₁</span></span>  ·  K<sub>d</sub> = <span class="mf" role="img" aria-label="k minus one over k one"><span>k₋₁</span><span>k₁</span></span></span><span class="fx__tag">K<sub>m</sub> ≥ K<sub>d</sub> always, with equality only when k₂ ≪ k₋₁</span></div>
+          <div class="fx"><span class="fx__eq">[S] = K<sub>m</sub> · <span class="mf" role="img" aria-label="f over one minus f"><span>f</span><span>1 − f</span></span>   for v₀ = f · V<sub>max</sub></span><span class="fx__tag">the inverted form — how much substrate a given fraction of V<sub>max</sub> costs</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>v₀</b><span>initial velocity (M·s⁻¹ or µmol·min⁻¹)</span></div>
+          <div><b>V<sub>max</sub></b><span>maximal velocity, same units as v₀</span></div>
+          <div><b>K<sub>m</sub></b><span>Michaelis constant (M)</span></div>
+          <div><b>K<sub>d</sub></b><span>dissociation constant of ES (M)</span></div>
+          <div><b>[E]<sub>t</sub></b><span>total enzyme concentration (M)</span></div>
+          <div><b>k₁</b><span>association rate constant (M⁻¹·s⁻¹)</span></div>
+          <div><b>k₋₁</b><span>dissociation rate constant (s⁻¹)</span></div>
+          <div><b>k₂ = k<sub>cat</sub></b><span>catalytic rate constant (s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>The derivation, in five lines</h3>
+  <p>Do this once with a pen. It takes two minutes and it immunises you against every K<sub>m</sub> misconception
+     in §&nbsp;08.</p>
+  <ol>
+    <li>Product only comes from ES, so <span class="fi">v₀ = k₂[ES]</span>. The whole job is finding
+        <span class="fi">[ES]</span>.</li>
+    <li><strong>Steady state.</strong> ES is formed at <span class="fi">k₁[E][S]</span> and lost at
+        <span class="fi">k₋₁[ES] + k₂[ES]</span>. Setting formation equal to loss:
+        <span class="fi">k₁[E][S] = (k₋₁ + k₂)[ES]</span>.</li>
+    <li><strong>Conservation.</strong> Free enzyme is what is left over:
+        <span class="fi">[E] = [E]<sub>t</sub> − [ES]</span>. Substituting,
+        <span class="fi">k₁([E]<sub>t</sub> − [ES])[S] = (k₋₁ + k₂)[ES]</span>.</li>
+    <li>Divide through by <span class="fi">k₁</span>, collect the <span class="fi">[ES]</span> terms and define
+        <span class="fi">K<sub>m</sub> ≡ (k₋₁ + k₂)/k₁</span>:
+        <span class="fi">[E]<sub>t</sub>[S] = [ES](K<sub>m</sub> + [S])</span>, so
+        <span class="fi">[ES] = [E]<sub>t</sub>[S] / (K<sub>m</sub> + [S])</span>.</li>
+    <li>Put that back in line 1 and notice that at saturation every enzyme is ES, so
+        <span class="fi">V<sub>max</sub> = k₂[E]<sub>t</sub></span>. Result:
+        <span class="fi">v₀ = V<sub>max</sub>[S] / (K<sub>m</sub> + [S])</span>. ∎</li>
+  </ol>
+  <p>Two checks that make the equation intuitive. Put <span class="fi">[S] = K<sub>m</sub></span> and you get
+     <span class="fi">V<sub>max</sub>/2</span> — that is the operational definition. Let
+     <span class="fi">[S] → ∞</span> and the K<sub>m</sub> in the denominator becomes negligible, so
+     <span class="fi">v₀ → V<sub>max</sub></span> — asymptotically, never actually reaching it, which is the
+     practical reason §&nbsp;07 exists.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 360" role="img" aria-label="Plot of initial velocity against substrate concentration. The curve is a rectangular hyperbola rising steeply from the origin and flattening towards a horizontal asymptote at V max. Dashed guides mark half of V max reached at a substrate concentration equal to K m, eighty percent of V max at four K m, and ninety percent at nine K m. A dashed straight line through the origin shows the initial slope, equal to V max divided by K m." style="font-family:var(--sans)">
+      <line x1="100" y1="300" x2="690" y2="300" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="100" y1="300" x2="100" y2="40" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <text x="395" y="344" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)">substrate concentration [S] →</text>
+      <text x="40" y="180" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" transform="rotate(-90 40 180)">initial velocity v₀ →</text>
+
+      <line x1="100" y1="60" x2="680" y2="60" stroke="var(--accent-2)" stroke-width="1.6" stroke-dasharray="6 4"/>
+      <text x="684" y="56" font-size="12" font-weight="700" fill="var(--accent-2)">V<tspan font-size="9" dy="3">max</tspan></text>
+      <line x1="100" y1="84" x2="600" y2="84" stroke="var(--ink-faint)" stroke-width="1.1" stroke-dasharray="3 4"/>
+      <text x="604" y="80" font-size="10.5" fill="var(--ink-faint)">0.9 V<tspan font-size="8" dy="2">max</tspan></text>
+      <line x1="100" y1="108" x2="325" y2="108" stroke="var(--ink-faint)" stroke-width="1.1" stroke-dasharray="3 4"/>
+      <text x="329" y="104" font-size="10.5" fill="var(--ink-faint)">0.8 V<tspan font-size="8" dy="2">max</tspan></text>
+      <line x1="100" y1="180" x2="160" y2="180" stroke="var(--accent-3)" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="164" y="176" font-size="11" font-weight="700" fill="var(--accent-3)">½ V<tspan font-size="8" dy="2">max</tspan></text>
+
+      <line x1="155" y1="300" x2="155" y2="180" stroke="var(--accent-3)" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <line x1="320" y1="300" x2="320" y2="108" stroke="var(--ink-faint)" stroke-width="1.1" stroke-dasharray="3 4"/>
+      <line x1="595" y1="300" x2="595" y2="84" stroke="var(--ink-faint)" stroke-width="1.1" stroke-dasharray="3 4"/>
+
+      <line x1="100" y1="300" x2="155" y2="60" stroke="var(--vdw)" stroke-width="1.6" stroke-dasharray="7 4"/>
+      <text x="166" y="52" font-size="10.5" fill="var(--vdw)">initial slope = V<tspan font-size="8" dy="2">max</tspan><tspan dy="-2">/K</tspan><tspan font-size="8" dy="2">m</tspan></text>
+
+      <polyline fill="none" stroke="var(--accent)" stroke-width="3" points="100.0,300.0 102.8,288.6 105.5,278.2 108.2,268.7 111.0,260.0 113.8,252.0 117.9,241.1 122.0,231.4 127.5,220.0 133.0,210.0 138.5,201.2 146.8,189.7 155.0,180.0 163.2,171.6 174.2,162.1 185.2,154.1 199.0,145.7 215.5,137.4 232.0,130.6 251.2,124.0 273.2,117.8 298.0,112.2 325.5,107.1 355.8,102.5 388.8,98.4 424.5,94.8 463.0,91.6 504.2,88.7 548.2,86.2 595.0,84.0 650.0,81.8"/>
+
+      <text x="155" y="318" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-3)">K<tspan font-size="8" dy="2">m</tspan></text>
+      <text x="320" y="318" text-anchor="middle" font-size="11" fill="var(--ink-faint)">4 K<tspan font-size="8" dy="2">m</tspan></text>
+      <text x="595" y="318" text-anchor="middle" font-size="11" fill="var(--ink-faint)">9 K<tspan font-size="8" dy="2">m</tspan></text>
+      <text x="100" y="318" text-anchor="middle" font-size="11" fill="var(--ink-faint)">0</text>
+    </svg>
+    <figcaption>Read the spacing of the vertical guides, not just their labels. Half-maximal velocity costs
+      1&nbsp;K<sub>m</sub> of substrate; 80 % costs 4&nbsp;K<sub>m</sub>; 90 % costs 9&nbsp;K<sub>m</sub>; 99 %
+      costs 99&nbsp;K<sub>m</sub>. Saturation is expensive, and that single fact is why a Michaelis–Menten
+      enzyme makes a poor regulatory switch — the argument §&nbsp;10 builds on.</figcaption>
+  </figure>
+
+  <h3>What K<sub>m</sub> is, and the three things it is not</h3>
+  <p><strong>K<sub>m</sub> is a concentration.</strong> It tells you the substrate concentration at which the
+     enzyme is half-busy, and therefore where on the curve the enzyme is operating in a real cell. An enzyme
+     whose K<sub>m</sub> sits far above physiological [S] responds proportionally to substrate supply; one whose
+     K<sub>m</sub> sits far below is running flat out and is deaf to supply.</p>
+  <p><strong>K<sub>m</sub> is not K<sub>d</sub>.</strong> From the definitions,
+     <span class="fi">K<sub>m</sub> = (k₋₁ + k₂)/k₁</span> while <span class="fi">K<sub>d</sub> = k₋₁/k₁</span>.
+     So <span class="fi">K<sub>m</sub> ≥ K<sub>d</sub></span>, always, and they coincide only in the
+     <em>rapid-equilibrium</em> limit <span class="fi">k₂ ≪ k₋₁</span> — the case Michaelis and Menten
+     originally assumed, before Briggs and Haldane generalised it. For a fast enzyme where
+     <span class="fi">k₂</span> is comparable to or larger than <span class="fi">k₋₁</span>, K<sub>m</sub> can
+     exceed K<sub>d</sub> by orders of magnitude, and quoting K<sub>m</sub> as "the affinity" is then simply
+     wrong.</p>
+  <p><strong>K<sub>m</sub> is not a property of the enzyme alone.</strong> It is a property of an
+     enzyme–substrate pair under stated conditions: change the substrate and K<sub>m</sub> changes (hexokinase
+     has K<sub>m</sub> ≈ 0.05 mM for glucose but ≈ 1.5 mM for fructose); change pH, ionic strength or
+     temperature and it changes again. A K<sub>m</sub> quoted without its conditions is incomplete.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The three K<sub>m</sub> traps that cost marks</p>
+    <p><strong>1. "Low K<sub>m</sub> means high affinity."</strong> True only under rapid equilibrium. The safe
+      phrasing, and the one exam answers use, is "a lower K<sub>m</sub> means half-maximal velocity is reached
+      at a lower substrate concentration". If a question gives you k₁, k₋₁ and k₂ and asks for affinity, it is
+      testing precisely this.</p>
+    <p><strong>2. "K<sub>m</sub> depends on enzyme concentration."</strong> It does not. Double
+      [E]<sub>t</sub> and V<sub>max</sub> doubles while K<sub>m</sub> is unchanged — the curve gets taller, not
+      wider. This is the reason V<sub>max</sub> is a useless way to compare two enzymes and k<sub>cat</sub>
+      (§&nbsp;06) is the right one.</p>
+    <p style="margin:0"><strong>3. "V<sub>max</sub> is reached at high [S]."</strong> It is
+      <em>approached</em>. Even at 99 K<sub>m</sub> you are only at 99 %. This is not pedantry: it is why
+      V<sub>max</sub> cannot be read reliably off a hyperbola and why the linearisations of §&nbsp;07 were
+      invented.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Two K<sub>m</sub> values that are worth knowing as facts</p>
+    <p style="margin:0"><strong>Hexokinase vs glucokinase.</strong> Hexokinase (I–III, all tissues) has
+      K<sub>m</sub> ≈ 0.05 mM for glucose and is inhibited by its product glucose-6-phosphate — it is a
+      high-affinity scavenger, saturated at any normal blood glucose, guaranteeing that the brain and red cells
+      get theirs. Glucokinase (hexokinase IV, liver and pancreatic β-cell) has S<sub>0.5</sub> ≈ 10 mM, is
+      mildly sigmoid, and is <em>not</em> inhibited by G6P — it deliberately works on the steep part of its
+      curve so that hepatic glucose uptake rises with portal glucose after a meal, and so that the β-cell can
+      use it as a glucose sensor. <em>MODY 2</em> is a glucokinase mutation, and the phenotype — a resetting of
+      the glucose set-point — falls straight out of the kinetics.
+      <strong>Alcohol dehydrogenase</strong> is the other one: it has a lower K<sub>m</sub> for ethanol than for
+      methanol, which is the entire logic of treating methanol poisoning with ethanol, and of the cleaner modern
+      alternative, the competitive inhibitor fomepizole (§&nbsp;08).</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — substitution both ways, and the price of saturation</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">An enzyme has <span class="fi">V<sub>max</sub> = 120
+      µmol·min⁻¹·mg⁻¹</span> and <span class="fi">K<sub>m</sub> = 4.0 mM</span>.
+      (a) Find v₀ at [S] = 1.0, 4.0 and 12 mM. (b) What [S] gives 80 % of V<sub>max</sub>? (c) What [S] gives
+      90 %? (d) Comment on the ratio.</p>
+    <ol>
+      <li><strong>(a)</strong> <span class="fi">v₀ = 120 × 1.0/(4.0 + 1.0) = 120/5 = <b>24</b></span>
+          µmol·min⁻¹·mg⁻¹.</li>
+      <li><span class="fi">v₀ = 120 × 4.0/(4.0 + 4.0) = <b>60</b></span> — as it must be, since [S] = K<sub>m</sub>
+          is by definition half-maximal. Use this as a free arithmetic check on every such question.</li>
+      <li><span class="fi">v₀ = 120 × 12/(4.0 + 12) = 1440/16 = <b>90</b></span> µmol·min⁻¹·mg⁻¹, which is
+          75 % of V<sub>max</sub> at three times K<sub>m</sub>.</li>
+      <li><strong>(b)</strong> Invert the equation. If <span class="fi">v = f·V<sub>max</sub></span> then
+          <span class="fi">f = [S]/(K<sub>m</sub> + [S])</span>, so
+          <span class="fi">[S] = K<sub>m</sub>·f/(1 − f)</span>. With f = 0.80:
+          <span class="fi">[S] = 4.0 × 0.8/0.2 = 4.0 × 4 = <b>16 mM</b></span> — i.e. 4 K<sub>m</sub>.</li>
+      <li><strong>(c)</strong> With f = 0.90: <span class="fi">[S] = 4.0 × 0.9/0.1 = 4.0 × 9 =
+          <b>36 mM</b></span> — i.e. 9 K<sub>m</sub>.</li>
+      <li><strong>(d)</strong> Going from 80 % to 90 % of V<sub>max</sub> required more than doubling the
+          substrate. Going from 10 % (0.111 K<sub>m</sub>) to 90 % (9 K<sub>m</sub>) requires an
+          <strong>81-fold</strong> rise. Remember that 81; §&nbsp;10 uses it as the baseline against which
+          cooperative enzymes are judged.</li>
+    </ol>
+    <span class="wex__ans">(a) 24 · 60 · 90 µmol·min⁻¹·mg⁻¹ · (b) 16 mM = 4K<sub>m</sub> · (c) 36 mM = 9K<sub>m</sub> · (d) 10 %→90 % costs 81×</span>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>k<sub>cat</sub>, k<sub>cat</sub>/K<sub>m</sub> and catalytic perfection</h2>
+
+  <p class="idea"><b>The idea</b>There are two quite different questions you can ask about how good an enzyme is, and they have two
+     different answers. <em>When it never has to wait for substrate, how many molecules can one active site
+     process per second?</em> That is the turnover number. <em>When substrate is scarce — which is the normal
+     state of a cell — how efficiently does the enzyme find it and convert it?</em> That is a completely
+     separate question, and its answer combines how fast the chemistry is with how well the enzyme captures
+     what little there is. Most people learn the first and assume it answers the second. Exam questions are
+     built on that gap.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Turnover number k<sub>cat</sub></dt>
+      <dd>The number of substrate molecules converted to product per active site per unit time when the enzyme
+          is fully saturated. Units <strong>s⁻¹</strong> (a first-order rate constant). For the simple scheme
+          of §&nbsp;05, <span class="fi">k<sub>cat</sub> = k₂</span>; for multi-step mechanisms it is a
+          composite of all the first-order steps after substrate binding.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">k<sub>cat</sub> = <span class="mf" role="img" aria-label="V max over total enzyme concentration"><span>V<sub>max</sub></span><span>[E]<sub>t</sub></span></span></span>
+      <span class="fx__tag">you cannot get k<sub>cat</sub> without knowing how much enzyme is present — that is the whole difficulty</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Specificity constant k<sub>cat</sub>/K<sub>m</sub></dt>
+          <dd>The apparent <strong>second-order</strong> rate constant for the whole reaction
+              <span class="fi">E + S → E + P</span> when <span class="fi">[S] ≪ K<sub>m</sub></span>. Units
+              M⁻¹·s⁻¹. It is the correct single number for ranking substrates and for comparing enzymes.</dd>
+          <dt>Diffusion limit</dt>
+          <dd>k<sub>cat</sub>/K<sub>m</sub> can never exceed k₁, the rate at which E and S can meet — about
+              <strong>10⁸–10⁹ M⁻¹·s⁻¹</strong> in water. Enzymes at that ceiling are said to have achieved
+              <em>catalytic perfection</em>: chemistry is no longer limiting, encounter is.</dd>
+          <dt>Specific activity</dt>
+          <dd>µmol of product per minute per <em>milligram</em> of total protein. A purification metric, not a
+              kinetic constant: it rises during purification as contaminating protein is removed. Convert to
+              k<sub>cat</sub> only if you know the molecular weight and the enzyme is pure.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">when [S] ≪ K<sub>m</sub>:  v₀ ≈ <span class="mf" role="img" aria-label="k cat over K m"><span>k<sub>cat</sub></span><span>K<sub>m</sub></span></span> [E]<sub>t</sub>[S]</span><span class="fx__tag">second order — this is where k<sub>cat</sub>/K<sub>m</sub> comes from</span></div>
+          <div class="fx"><span class="fx__eq"><span class="mf" role="img" aria-label="v A over v B"><span>v<sub>A</sub></span><span>v<sub>B</sub></span></span> = <span class="mf" role="img" aria-label="k cat over K m for A, times A, over k cat over K m for B, times B"><span>(k<sub>cat</sub>/K<sub>m</sub>)<sub>A</sub>[A]</span><span>(k<sub>cat</sub>/K<sub>m</sub>)<sub>B</sub>[B]</span></span></span><span class="fx__tag">two substrates competing for one enzyme — why it is called the <em>specificity</em> constant</span></div>
+          <div class="fx"><span class="fx__eq">k<sub>cat</sub>/K<sub>m</sub> = <span class="mf" role="img" aria-label="k one k two over k minus one plus k two"><span>k₁k₂</span><span>k₋₁ + k₂</span></span> ≤ k₁</span><span class="fx__tag">the hard upper bound: you cannot react faster than you can collide</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>k<sub>cat</sub></b><span>turnover number (s⁻¹)</span></div>
+          <div><b>k<sub>cat</sub>/K<sub>m</sub></b><span>specificity constant (M⁻¹·s⁻¹)</span></div>
+          <div><b>[E]<sub>t</sub></b><span>total active-site concentration (M)</span></div>
+          <div><b>M<sub>r</sub></b><span>relative molecular mass (g·mol⁻¹)</span></div>
+          <div><b>k₁</b><span>encounter rate constant (M⁻¹·s⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>The derivation of the specificity constant takes one line and is worth seeing, because it explains why the
+     ratio, and not either constant alone, is the meaningful number. Start from Michaelis–Menten and let
+     <span class="fi">[S] ≪ K<sub>m</sub></span>, so the denominator is essentially K<sub>m</sub>:</p>
+  <div class="fx">
+    <span class="fx__eq">v₀ = <span class="mf" role="img" aria-label="V max times S over K m plus S"><span>V<sub>max</sub>[S]</span><span>K<sub>m</sub> + [S]</span></span> ≈ <span class="mf" role="img" aria-label="V max times S over K m"><span>V<sub>max</sub>[S]</span><span>K<sub>m</sub></span></span> = <span class="mf" role="img" aria-label="k cat over K m"><span>k<sub>cat</sub></span><span>K<sub>m</sub></span></span> [E]<sub>t</sub>[S]</span>
+    <span class="fx__tag">at low [S] almost all the enzyme is free, so [E] ≈ [E]<sub>t</sub></span>
+  </div>
+  <p>The rate is now first order in enzyme <em>and</em> first order in substrate, and the constant of
+     proportionality is <span class="fi">k<sub>cat</sub>/K<sub>m</sub></span>. Give an enzyme two substrates at
+     once and each is converted at its own such rate, so the ratio of the two rates is the ratio of their
+     specificity constants weighted by concentration. That is the operational meaning of "this enzyme prefers A
+     over B", and it is why an enzyme can prefer a substrate with the <em>worse</em> k<sub>cat</sub>.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Which constant answers which question</p>
+    <p style="margin:0"><strong>k<sub>cat</sub></strong> — "how fast at saturation?" Compare two enzymes' raw
+      chemical speed. <strong>K<sub>m</sub></strong> — "at what concentration does it engage?" Predict whether a
+      physiological change in [S] will change flux. <strong>k<sub>cat</sub>/K<sub>m</sub></strong> — "which
+      substrate wins when both are present at low concentration?" and "how close to perfect is this enzyme?"
+      <strong>V<sub>max</sub></strong> — answers nothing about the enzyme, only about this particular assay
+      tube, because it scales with [E]<sub>t</sub>. A question that asks you to compare two enzymes and gives
+      you V<sub>max</sub> values is either giving you [E]<sub>t</sub> as well, or testing whether you notice.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — from micrograms of protein to k<sub>cat</sub>/K<sub>m</sub></summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A 1.0 mL assay contains <strong>2.0 µg</strong> of a pure
+      enzyme of M<sub>r</sub> <strong>50 000</strong>, with one active site per molecule. At saturating
+      substrate the assay produces <strong>6.0 µmol of product per minute</strong>. K<sub>m</sub> for this
+      substrate is <strong>25 µM</strong>. Find [E]<sub>t</sub>, k<sub>cat</sub> and
+      k<sub>cat</sub>/K<sub>m</sub>, and say whether this enzyme is close to catalytic perfection.</p>
+    <ol>
+      <li>Moles of enzyme:
+          <span class="fi">2.0 × 10⁻⁶ g ÷ 5.0 × 10⁴ g·mol⁻¹ = 4.0 × 10⁻¹¹ mol = 40 pmol</span>.</li>
+      <li>In 1.0 mL = 1.0 × 10⁻³ L, so
+          <span class="fi">[E]<sub>t</sub> = 4.0 × 10⁻¹¹ / 1.0 × 10⁻³ = 4.0 × 10⁻⁸ M = <b>40 nM</b></span>.
+          Note how little enzyme this is — nanomolar against a micromolar-to-millimolar substrate, which is
+          exactly the condition the steady-state derivation assumed.</li>
+      <li>The measured rate at saturation <em>is</em> V<sub>max</sub>:
+          <span class="fi">6.0 µmol·min⁻¹ = 6.0 × 10⁻⁶ mol·min⁻¹</span>.</li>
+      <li><span class="fi">k<sub>cat</sub> = V<sub>max</sub>/[E]<sub>t</sub></span>. Work in moles, not
+          concentrations, and the volume cancels:
+          <span class="fi">6.0 × 10⁻⁶ mol·min⁻¹ ÷ 4.0 × 10⁻¹¹ mol = 1.5 × 10⁵ min⁻¹</span>.</li>
+      <li>Convert to the conventional unit:
+          <span class="fi">1.5 × 10⁵ ÷ 60 = <b>2.5 × 10³ s⁻¹</b></span>. Each active site turns over 2500 times a
+          second — about 2–3 molecules every millisecond.</li>
+      <li><span class="fi">k<sub>cat</sub>/K<sub>m</sub> = 2.5 × 10³ s⁻¹ ÷ 2.5 × 10⁻⁵ M =
+          <b>1.0 × 10⁸ M⁻¹·s⁻¹</b></span>.</li>
+      <li>That sits at the bottom of the diffusion-limited range of 10⁸–10⁹ M⁻¹·s⁻¹, so
+          <strong>yes</strong> — this enzyme is essentially perfect. Improving the chemistry further would gain
+          nothing, because substrate cannot be delivered any faster.</li>
+    </ol>
+    <span class="wex__ans">[E]<sub>t</sub> = 40 nM · k<sub>cat</sub> = 2.5 × 10³ s⁻¹ · k<sub>cat</sub>/K<sub>m</sub> = 1.0 × 10⁸ M⁻¹·s⁻¹ — diffusion-limited</span>
+    </div>
+  </details>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the catalytic-perfection league table, and what stops everyone reaching it</summary>
+    <div class="disc__body">
+      <div class="table-scroll">
+        <table class="data">
+          <caption class="sr-only">Turnover numbers and specificity constants of selected enzymes</caption>
+          <thead><tr><th>Enzyme</th><th>k<sub>cat</sub> (s⁻¹)</th><th>K<sub>m</sub> (M)</th><th>k<sub>cat</sub>/K<sub>m</sub> (M⁻¹·s⁻¹)</th><th>Comment</th></tr></thead>
+          <tbody>
+            <tr><td>Catalase</td><td class="num">4 × 10⁷</td><td class="num">1.1</td><td class="num">3.6 × 10⁷</td><td>Fastest k<sub>cat</sub> known, but a poor binder — H₂O₂ is too small to grip</td></tr>
+            <tr><td>Carbonic anhydrase II</td><td class="num">1 × 10⁶</td><td class="num">1.2 × 10⁻²</td><td class="num">8.3 × 10⁷</td><td>Zn²⁺-bound OH⁻; the reason CO₂ can be blown off in one lung transit</td></tr>
+            <tr><td>Acetylcholinesterase</td><td class="num">1.4 × 10⁴</td><td class="num">9 × 10⁻⁵</td><td class="num">1.6 × 10⁸</td><td>Must clear a synapse in under a millisecond</td></tr>
+            <tr><td>Triose phosphate isomerase</td><td class="num">4.3 × 10³</td><td class="num">1.8 × 10⁻⁵</td><td class="num">2.4 × 10⁸</td><td>The canonical "perfect" enzyme</td></tr>
+            <tr><td>Fumarase</td><td class="num">8 × 10²</td><td class="num">5 × 10⁻⁶</td><td class="num">1.6 × 10⁸</td><td>Modest k<sub>cat</sub>, superb K<sub>m</sub> — perfection by the other route</td></tr>
+            <tr><td>β-Lactamase</td><td class="num">2 × 10³</td><td class="num">2 × 10⁻⁵</td><td class="num">1 × 10⁸</td><td>Evolved to perfection under antibiotic selection, within decades</td></tr>
+            <tr><td>Chymotrypsin</td><td class="num">≈1 × 10²</td><td class="num">≈1.5 × 10⁻²</td><td class="num">≈7 × 10³</td><td>Ordinary — and it does not need to be fast, only specific</td></tr>
+            <tr><td>Lysozyme</td><td class="num">0.5</td><td class="num">6 × 10⁻⁶</td><td class="num">≈8 × 10⁴</td><td>A reminder that "enzyme" does not imply "fast"</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Two lessons hide in this table. First, catalase and fumarase are both extraordinary enzymes for opposite
+        reasons — catalase has a colossal k<sub>cat</sub> and a terrible K<sub>m</sub>, fumarase the reverse —
+        and only the ratio puts them on the same scale. Second, most enzymes are nowhere near the limit, and
+        that is not a failure. Selection acts on flux through a pathway, not on the speed of any one step, and
+        an enzyme that is not rate-limiting gains nothing by getting faster. The enzymes that <em>are</em>
+        perfect are the ones where speed itself was the selection pressure: clearing a neurotransmitter,
+        detoxifying a radical, destroying an antibiotic.</p>
+      <p style="margin-bottom:0">A caution about <strong>k<sub>cat</sub> in multi-step mechanisms</strong>: it
+        is not the rate constant of any single chemical step but a composite of every first-order step after
+        binding, so it is bounded by the slowest of them. For chymotrypsin with an ester substrate, that is
+        deacylation — which is precisely what burst kinetics in §&nbsp;03 demonstrated.</p>
+    </div>
+  </details>
+</section>
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Straightening the hyperbola: three plots</h2>
+
+  <p class="idea"><b>The idea</b>A hyperbola creeps towards its ceiling and never touches it, so if you try to read that ceiling off a
+     curve by eye you will guess low — and since the other constant is defined as the concentration giving half
+     the ceiling, a bad guess corrupts both numbers. The fix is algebra: rearrange the equation into the form
+     <em>y = mx + c</em> so the data lie on a straight line and the constants become intercepts, which the eye
+     is good at. There are three ways to do the rearrangement. They contain identical information and differ
+     only in where they put the experimental error — and, far more usefully for exams, in the shape they make
+     when an inhibitor is present.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formulae</p>
+    <dl class="def">
+      <dt>Lineweaver–Burk (double-reciprocal) plot</dt>
+      <dd>Take reciprocals of both sides of the Michaelis–Menten equation. Plot
+          <span class="fi">1/v₀</span> against <span class="fi">1/[S]</span>. The most-drawn plot in
+          biochemistry and the one every inhibition question uses.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq"><span class="mf" role="img" aria-label="one over v zero"><span>1</span><span>v<sub>0</sub></span></span> = <span class="mf" role="img" aria-label="K m over V max"><span>K<sub>m</sub></span><span>V<sub>max</sub></span></span> · <span class="mf" role="img" aria-label="one over S"><span>1</span><span>[S]</span></span> + <span class="mf" role="img" aria-label="one over V max"><span>1</span><span>V<sub>max</sub></span></span></span>
+      <span class="fx__tag">y-intercept 1/V<sub>max</sub>, x-intercept −1/K<sub>m</sub>, slope K<sub>m</sub>/V<sub>max</sub></span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Eadie–Hofstee plot</dt>
+          <dd>Multiply out and rearrange to <span class="fi">v₀ = −K<sub>m</sub>(v₀/[S]) + V<sub>max</sub></span>.
+              Plot <span class="fi">v₀</span> against <span class="fi">v₀/[S]</span>. Deviations from
+              Michaelis–Menten behaviour — cooperativity, two binding sites — show up as visible curvature far
+              more clearly than on a Lineweaver–Burk plot.</dd>
+          <dt>Hanes–Woolf plot</dt>
+          <dd>Multiply the reciprocal form through by [S]:
+              <span class="fi">[S]/v₀ = (1/V<sub>max</sub>)[S] + K<sub>m</sub>/V<sub>max</sub></span>. Plot
+              <span class="fi">[S]/v₀</span> against <span class="fi">[S]</span>. Statistically the best of
+              the three, because it does not take the reciprocal of the measured velocity on its own.</dd>
+          <dt>Why linear plots survive</dt>
+          <dd>Nobody fits constants this way any more — non-linear regression on the raw hyperbola is better in
+              every respect. The plots survive because their <em>shape</em> is diagnostic: the way two lines
+              move relative to each other identifies an inhibitor's mechanism at a glance (§&nbsp;08).</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Eadie–Hofstee:  v₀ = V<sub>max</sub> − K<sub>m</sub> · <span class="mf" role="img" aria-label="v zero over S"><span>v<sub>0</sub></span><span>[S]</span></span></span><span class="fx__tag">y-intercept V<sub>max</sub>, slope −K<sub>m</sub>, x-intercept V<sub>max</sub>/K<sub>m</sub></span></div>
+          <div class="fx"><span class="fx__eq">Hanes–Woolf:  <span class="mf" role="img" aria-label="S over v zero"><span>[S]</span><span>v<sub>0</sub></span></span> = <span class="mf" role="img" aria-label="one over V max"><span>1</span><span>V<sub>max</sub></span></span>[S] + <span class="mf" role="img" aria-label="K m over V max"><span>K<sub>m</sub></span><span>V<sub>max</sub></span></span></span><span class="fx__tag">slope 1/V<sub>max</sub>, y-intercept K<sub>m</sub>/V<sub>max</sub>, x-intercept −K<sub>m</sub></span></div>
+          <div class="fx"><span class="fx__eq">every plot: K<sub>m</sub> = V<sub>max</sub> ÷ (x-intercept of Eadie–Hofstee)</span><span class="fx__tag">a useful cross-check when a question gives two intercepts</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>1/v₀</b><span>reciprocal velocity (min·µmol⁻¹ etc.)</span></div>
+          <div><b>1/[S]</b><span>reciprocal concentration (M⁻¹, mM⁻¹)</span></div>
+          <div><b>v₀/[S]</b><span>velocity per unit concentration (s⁻¹)</span></div>
+          <div><b>[S]/v₀</b><span>concentration per unit rate (s, or min·µmol⁻¹·mM)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 300" role="img" aria-label="Three linear transformations of the same Michaelis-Menten data shown side by side. Left: a Lineweaver-Burk plot of one over v against one over substrate, with y-intercept one over V max and x-intercept minus one over K m. Middle: an Eadie-Hofstee plot of v against v over substrate, sloping down from a y-intercept equal to V max to an x-intercept equal to V max over K m. Right: a Hanes-Woolf plot of substrate over v against substrate, with y-intercept K m over V max and x-intercept minus K m." style="font-family:var(--sans)">
+      <g>
+        <line x1="25" y1="210" x2="225" y2="210" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="70" y1="235" x2="70" y2="40" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="30" y1="210" x2="210" y2="75" stroke="var(--accent)" stroke-width="2.6"/>
+        <circle cx="70" cy="180" r="4" fill="var(--accent-2)"/>
+        <circle cx="30" cy="210" r="4" fill="var(--accent-3)"/>
+        <text x="78" y="176" font-size="10.5" font-weight="700" fill="var(--accent-2)">1/V<tspan font-size="8" dy="2">max</tspan></text>
+        <text x="26" y="230" font-size="10.5" font-weight="700" fill="var(--accent-3)">−1/K<tspan font-size="8" dy="2">m</tspan></text>
+        <text x="150" y="120" font-size="10" fill="var(--ink-faint)">slope K<tspan font-size="8" dy="2">m</tspan><tspan dy="-2">/V</tspan><tspan font-size="8" dy="2">max</tspan></text>
+        <text x="125" y="255" text-anchor="middle" font-size="11" fill="var(--ink-soft)">1/[S]</text>
+        <text x="52" y="52" text-anchor="middle" font-size="11" fill="var(--ink-soft)">1/v₀</text>
+        <text x="125" y="278" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">Lineweaver–Burk</text>
+        <text x="125" y="292" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">the inhibition plot</text>
+      </g>
+      <g>
+        <line x1="265" y1="210" x2="470" y2="210" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="280" y1="235" x2="280" y2="40" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="280" y1="60" x2="440" y2="210" stroke="var(--accent)" stroke-width="2.6"/>
+        <circle cx="280" cy="60" r="4" fill="var(--accent-2)"/>
+        <circle cx="440" cy="210" r="4" fill="var(--accent-3)"/>
+        <text x="288" y="56" font-size="10.5" font-weight="700" fill="var(--accent-2)">V<tspan font-size="8" dy="2">max</tspan></text>
+        <text x="444" y="230" font-size="10.5" font-weight="700" fill="var(--accent-3)">V<tspan font-size="8" dy="2">max</tspan><tspan dy="-2">/K</tspan><tspan font-size="8" dy="2">m</tspan></text>
+        <text x="330" y="115" font-size="10" fill="var(--ink-faint)">slope −K<tspan font-size="8" dy="2">m</tspan></text>
+        <text x="370" y="255" text-anchor="middle" font-size="11" fill="var(--ink-soft)">v₀/[S]</text>
+        <text x="262" y="52" text-anchor="middle" font-size="11" fill="var(--ink-soft)">v₀</text>
+        <text x="370" y="278" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">Eadie–Hofstee</text>
+        <text x="370" y="292" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">curvature shows cooperativity</text>
+      </g>
+      <g>
+        <line x1="485" y1="210" x2="700" y2="210" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="530" y1="235" x2="530" y2="40" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="490" y1="210" x2="690" y2="60" stroke="var(--accent)" stroke-width="2.6"/>
+        <circle cx="530" cy="180" r="4" fill="var(--accent-2)"/>
+        <circle cx="490" cy="210" r="4" fill="var(--accent-3)"/>
+        <text x="538" y="176" font-size="10.5" font-weight="700" fill="var(--accent-2)">K<tspan font-size="8" dy="2">m</tspan><tspan dy="-2">/V</tspan><tspan font-size="8" dy="2">max</tspan></text>
+        <text x="486" y="230" font-size="10.5" font-weight="700" fill="var(--accent-3)">−K<tspan font-size="8" dy="2">m</tspan></text>
+        <text x="605" y="115" font-size="10" fill="var(--ink-faint)">slope 1/V<tspan font-size="8" dy="2">max</tspan></text>
+        <text x="590" y="255" text-anchor="middle" font-size="11" fill="var(--ink-soft)">[S]</text>
+        <text x="512" y="52" text-anchor="middle" font-size="11" fill="var(--ink-soft)">[S]/v₀</text>
+        <text x="590" y="278" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">Hanes–Woolf</text>
+        <text x="590" y="292" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">best error behaviour</text>
+      </g>
+    </svg>
+    <figcaption>All three lines here come from the same enzyme —
+      V<sub>max</sub> = 80 µmol·min⁻¹·mg⁻¹ and K<sub>m</sub> = 2.0 mM. The information is identical; only the
+      packaging differs. Learn which constant lives at which intercept, because a question that says
+      "the y-intercept of a Hanes–Woolf plot is 0.025" is unanswerable otherwise.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The three linear transformations compared</caption>
+      <thead><tr><th>Plot</th><th>y</th><th>x</th><th>Slope</th><th>y-intercept</th><th>x-intercept</th><th>Strength / weakness</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lineweaver–Burk</strong></td><td class="num">1/v₀</td><td class="num">1/[S]</td><td class="num">K<sub>m</sub>/V<sub>max</sub></td><td class="num">1/V<sub>max</sub></td><td class="num">−1/K<sub>m</sub></td><td>Inhibition patterns are unmistakable. But it compresses the accurate high-[S] points into a cluster near the y-axis and stretches the inaccurate low-[S] points across the plot, where they dominate the fit — the worst possible weighting.</td></tr>
+        <tr><td><strong>Eadie–Hofstee</strong></td><td class="num">v₀</td><td class="num">v₀/[S]</td><td class="num">−K<sub>m</sub></td><td class="num">V<sub>max</sub></td><td class="num">V<sub>max</sub>/K<sub>m</sub></td><td>No compression, and both constants read directly. v₀ appears on both axes so errors are correlated; against that, departures from hyperbolic kinetics curve the line visibly.</td></tr>
+        <tr><td><strong>Hanes–Woolf</strong></td><td class="num">[S]/v₀</td><td class="num">[S]</td><td class="num">1/V<sub>max</sub></td><td class="num">K<sub>m</sub>/V<sub>max</sub></td><td class="num">−K<sub>m</sub></td><td>The most even error distribution of the three, and K<sub>m</sub> is read straight off the x-axis. Least often drawn, which is exactly why it appears in exams.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The intercept mix-ups, in order of how often they happen</p>
+    <p style="margin:0">On a <strong>Lineweaver–Burk</strong> plot the y-intercept is
+      <span class="fi">1/V<sub>max</sub></span>, not V<sub>max</sub>; a line that intercepts <em>higher</em>
+      therefore means a <em>smaller</em> V<sub>max</sub>. The x-intercept is
+      <span class="fi">−1/K<sub>m</sub></span> — negative, and reciprocal, so a point further left means a
+      <em>smaller</em> K<sub>m</sub>. On an <strong>Eadie–Hofstee</strong> plot the slope is
+      <span class="fi">−K<sub>m</sub></span>, so a steeper downward slope means a larger K<sub>m</sub> and the
+      y-intercept is V<sub>max</sub> itself, not its reciprocal. On <strong>Hanes–Woolf</strong> the x-intercept
+      is <span class="fi">−K<sub>m</sub></span> directly, no reciprocal at all. If you remember only one thing:
+      <em>reciprocal plots invert the sense of "bigger"</em>.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — the same enzyme through all three plots</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A Lineweaver–Burk analysis gives a y-intercept of
+      <strong>0.0125</strong> (min·mg·µmol⁻¹) and an x-intercept of <strong>−0.50 mM⁻¹</strong>.
+      (a) Find V<sub>max</sub> and K<sub>m</sub>. (b) Predict the slope and both intercepts of a Hanes–Woolf
+      plot of the same data. (c) Predict them for an Eadie–Hofstee plot. (d) What velocity would you measure at
+      [S] = 1.0 mM?</p>
+    <ol>
+      <li><strong>(a)</strong> y-intercept = <span class="fi">1/V<sub>max</sub> = 0.0125</span>, so
+          <span class="fi">V<sub>max</sub> = 1/0.0125 = <b>80 µmol·min⁻¹·mg⁻¹</b></span>.</li>
+      <li>x-intercept = <span class="fi">−1/K<sub>m</sub> = −0.50 mM⁻¹</span>, so
+          <span class="fi">K<sub>m</sub> = 1/0.50 = <b>2.0 mM</b></span>. Check the slope while you are here:
+          <span class="fi">K<sub>m</sub>/V<sub>max</sub> = 2.0/80 = 0.025</span>, and indeed
+          <span class="fi">0.0125 ÷ 0.50 = 0.025</span> ✓.</li>
+      <li><strong>(b)</strong> Hanes–Woolf slope = <span class="fi">1/V<sub>max</sub> = 1/80 =
+          <b>0.0125</b></span>; y-intercept = <span class="fi">K<sub>m</sub>/V<sub>max</sub> = 2.0/80 =
+          <b>0.025</b></span>; x-intercept = <span class="fi">−K<sub>m</sub> = <b>−2.0 mM</b></span>.
+          Notice that the two numbers 0.0125 and 0.025 have <em>swapped roles</em> between the two plots — that
+          swap is the single commonest source of error on this topic.</li>
+      <li><strong>(c)</strong> Eadie–Hofstee y-intercept = <span class="fi">V<sub>max</sub> = <b>80</b></span>;
+          slope = <span class="fi">−K<sub>m</sub> = <b>−2.0 mM</b></span>; x-intercept =
+          <span class="fi">V<sub>max</sub>/K<sub>m</sub> = 80/2.0 = <b>40 µmol·min⁻¹·mg⁻¹·mM⁻¹</b></span>
+          (the units of v/[S] — amount per time per mass per concentration, <em>not</em> a reciprocal time,
+          because V<sub>max</sub> here is a specific activity rather than a concentration per time).</li>
+      <li><strong>(d)</strong> Straight back to Michaelis–Menten:
+          <span class="fi">v₀ = 80 × 1.0/(2.0 + 1.0) = 80/3 = <b>26.7 µmol·min⁻¹·mg⁻¹</b></span>, one third of
+          V<sub>max</sub> — as it must be when [S] = ½K<sub>m</sub>.</li>
+    </ol>
+    <span class="wex__ans">V<sub>max</sub> = 80 · K<sub>m</sub> = 2.0 mM · HW 0.0125 / 0.025 / −2.0 · EH 80 / −2.0 / 40 · v(1 mM) = 26.7</span>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Inhibition: five patterns, one equation</h2>
+
+  <p class="idea"><b>The idea</b>Most drugs are enzyme inhibitors, and the question the exam asks about them is always the same one: where
+     does the inhibitor bind? There are only three possibilities — it binds the free enzyme, it binds the
+     enzyme–substrate complex, or it binds both — and each possibility leaves a distinct fingerprint on the two
+     numbers you can measure. If the inhibitor competes for the same site as the substrate, then piling on more
+     substrate crowds it out, and the enzyme can still reach full speed; it just needs more substrate to get
+     there. If instead the inhibitor only grabs the enzyme <em>after</em> the substrate is already bound, adding
+     substrate makes things worse, not better. Everything in this section is that idea, made quantitative.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; general formula</p>
+    <dl class="def">
+      <dt>Reversible inhibitor</dt>
+      <dd>Binds non-covalently and dissociates; activity returns on dialysis or dilution. Characterised by a
+          dissociation constant: <span class="fi">K<sub>I</sub> = [E][I]/[EI]</span> for binding to free
+          enzyme, <span class="fi">K′<sub>I</sub> = [ES][I]/[ESI]</span> for binding to the ES complex. A
+          <em>smaller</em> K means tighter binding.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">v<sub>0</sub> = <span class="mf" role="img" aria-label="V max times S, over alpha K m plus alpha prime times S"><span>V<sub>max</sub>[S]</span><span>αK<sub>m</sub> + α′[S]</span></span></span>
+      <span class="fx__tag">one equation covers all four reversible types; α and α′ say which</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>α and α′</dt>
+          <dd><span class="fi">α = 1 + [I]/K<sub>I</sub></span> is the factor by which the inhibitor removes
+              <em>free</em> enzyme; <span class="fi">α′ = 1 + [I]/K′<sub>I</sub></span> is the factor by which
+              it removes <em>ES</em>. Both are ≥ 1, and both equal 1 when [I] = 0, which returns the ordinary
+              Michaelis–Menten equation.</dd>
+          <dt>Apparent constants</dt>
+          <dd>Comparing the general equation with the standard form gives
+              <span class="fi">V<sub>max</sub><sup>app</sup> = V<sub>max</sub>/α′</span> and
+              <span class="fi">K<sub>m</sub><sup>app</sup> = K<sub>m</sub>·α/α′</span>. Every entry in the
+              table below is these two expressions with particular values of α and α′ — you do not have to
+              memorise the table if you can reconstruct it.</dd>
+          <dt>Irreversible inhibitor</dt>
+          <dd>Forms a covalent bond, or binds so tightly that the off-rate is effectively zero. It does not have
+              a K<sub>I</sub> in the usual sense; it is characterised by a rate of inactivation, and the extent
+              of inhibition <em>increases with time of exposure</em>.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">V<sub>max</sub><sup>app</sup> = <span class="mf" role="img" aria-label="V max over alpha prime"><span>V<sub>max</sub></span><span>α′</span></span>   ·   K<sub>m</sub><sup>app</sup> = K<sub>m</sub> <span class="mf" role="img" aria-label="alpha over alpha prime"><span>α</span><span>α′</span></span></span><span class="fx__tag">the two lines that generate every row of the table</span></div>
+          <div class="fx"><span class="fx__eq">Lineweaver–Burk:  <span class="mf" role="img" aria-label="one over v zero"><span>1</span><span>v<sub>0</sub></span></span> = <span class="mf" role="img" aria-label="alpha K m over V max"><span>αK<sub>m</sub></span><span>V<sub>max</sub></span></span> · <span class="mf" role="img" aria-label="one over S"><span>1</span><span>[S]</span></span> + <span class="mf" role="img" aria-label="alpha prime over V max"><span>α′</span><span>V<sub>max</sub></span></span></span><span class="fx__tag">α multiplies the slope; α′ multiplies the y-intercept. That is the whole diagnosis.</span></div>
+          <div class="fx"><span class="fx__eq">K<sub>I</sub> = <span class="mf" role="img" aria-label="I over alpha minus one"><span>[I]</span><span>α − 1</span></span>   ·   K′<sub>I</sub> = <span class="mf" role="img" aria-label="I over alpha prime minus one"><span>[I]</span><span>α′ − 1</span></span></span><span class="fx__tag">how a numerical question gets from a fold-change to an inhibition constant</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>K<sub>I</sub></b><span>dissociation constant of EI (M)</span></div>
+          <div><b>K′<sub>I</sub></b><span>dissociation constant of ESI (M)</span></div>
+          <div><b>α</b><span>1 + [I]/K<sub>I</sub> (dimensionless)</span></div>
+          <div><b>α′</b><span>1 + [I]/K′<sub>I</sub> (dimensionless)</span></div>
+          <div><b>[I]</b><span>inhibitor concentration (M)</span></div>
+          <div><b>IC<sub>50</sub></b><span>[I] giving 50 % inhibition under stated conditions (M)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Work through the four reversible cases by asking only "which species does the inhibitor bind?", and let
+     the two expressions for the apparent constants do the rest.</p>
+
+  <h3>Competitive（競爭型抑制）— binds free E only</h3>
+  <p>The inhibitor occupies the substrate site, so E and I compete. <span class="fi">α &gt; 1, α′ = 1</span>.
+     Then <span class="fi">V<sub>max</sub><sup>app</sup> = V<sub>max</sub></span> — unchanged — and
+     <span class="fi">K<sub>m</sub><sup>app</sup> = αK<sub>m</sub></span>, raised. The reason V<sub>max</sub>
+     survives is the important part: at sufficiently high [S], substrate outnumbers inhibitor at the site by any
+     margin you like, so essentially all the enzyme is in ES and the full rate is recovered. Competitive
+     inhibition is <strong>surmountable</strong>. K<sub>m</sub> rises because you now need more substrate to
+     achieve any given occupancy. Note that <span class="fi">k<sub>cat</sub></span> is untouched but
+     <span class="fi">k<sub>cat</sub>/K<sub>m</sub></span> falls by α — catalysis is unimpaired, capture is
+     impaired.</p>
+
+  <h3>Uncompetitive（反競爭型抑制）— binds ES only</h3>
+  <p>The inhibitor's site only exists once substrate has bound and the enzyme has changed shape.
+     <span class="fi">α = 1, α′ &gt; 1</span>. Both apparent constants fall by the same factor:
+     <span class="fi">V<sub>max</sub>/α′</span> and <span class="fi">K<sub>m</sub>/α′</span>. V<sub>max</sub>
+     falls because ESI is a dead end. K<sub>m</sub> falls — apparently improving the "affinity" — because
+     removing ES from the equilibrium pulls more E and S together, a straightforward Le Chatelier effect. Since
+     both fall equally, <span class="fi">k<sub>cat</sub>/K<sub>m</sub></span> is <strong>unchanged</strong>, and
+     on a Lineweaver–Burk plot the slope <span class="fi">αK<sub>m</sub>/V<sub>max</sub></span> is unchanged
+     too: the lines are <strong>parallel</strong>. That parallel-line signature is the single most reliable
+     identification in the whole topic.</p>
+  <p>The consequence that matters clinically: because the inhibitor <em>needs</em> ES, raising the substrate
+     concentration makes inhibition <em>worse</em>. An uncompetitive inhibitor cannot be out-competed. It is
+     rare — but <strong>lithium</strong> acting on inositol monophosphatase is a genuine example, and its
+     uncompetitive character is exactly why it acts preferentially on over-active signalling pathways where the
+     substrate has accumulated.</p>
+
+  <h3>Mixed and pure non-competitive（非競爭型抑制）— binds both</h3>
+  <p>The inhibitor binds at a separate site available on both E and ES, but usually not with equal affinity, so
+     <span class="fi">α ≠ α′</span> and both exceed 1. V<sub>max</sub> always falls; K<sub>m</sub> rises if
+     <span class="fi">α &gt; α′</span> (inhibitor prefers free enzyme) and falls if
+     <span class="fi">α′ &gt; α</span>. The special case <span class="fi">α = α′</span> — equal affinity for E
+     and ES, meaning the inhibitor's binding is entirely indifferent to whether substrate is present — is
+     <strong>pure non-competitive</strong> inhibition: <span class="fi">V<sub>max</sub></span> falls by α,
+     <span class="fi">K<sub>m</sub> is unchanged</span>. It behaves as if the inhibitor simply deleted a
+     fraction of the enzyme molecules from the tube, which is precisely what it does. Heavy metals acting on
+     essential thiols are the classic example; so, functionally, is an irreversible inhibitor.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 430" role="img" aria-label="Four Lineweaver-Burk panels showing the signature of each inhibition type. Competitive: the inhibited line is steeper but meets the control line exactly on the y-axis. Uncompetitive: the inhibited line is parallel to the control with a higher y-intercept. Pure non-competitive: the inhibited line is steeper with a higher y-intercept and meets the control on the x-axis. Mixed: the two lines cross in the second quadrant, above the x-axis and left of the y-axis." style="font-family:var(--sans)">
+      <g transform="translate(10,8)">
+        <line x1="10" y1="140" x2="330" y2="140" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="110" y1="160" x2="110" y2="24" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="110" y1="110" x2="290" y2="56" stroke="var(--ink-faint)" stroke-width="2.2" stroke-dasharray="6 4"/>
+        <line x1="10" y1="140" x2="110" y2="110" stroke="var(--ink-faint)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="110" y1="110" x2="250" y2="26" stroke="var(--accent-2)" stroke-width="2.6"/>
+        <line x1="60" y1="140" x2="110" y2="110" stroke="var(--accent-2)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="110" cy="110" r="4.5" fill="var(--bad)"/>
+        <text x="118" y="106" font-size="10" font-weight="700" fill="var(--bad)">same 1/V<tspan font-size="8" dy="2">max</tspan></text>
+        <text x="200" y="150" font-size="10.5" font-weight="700" fill="var(--ink)">Competitive</text>
+        <text x="200" y="163" font-size="9.5" fill="var(--ink-faint)">α&gt;1, α′=1 · K<tspan font-size="7.5" dy="2">m</tspan><tspan dy="-2">↑, V</tspan><tspan font-size="7.5" dy="2">max</tspan><tspan dy="-2"> =</tspan></text>
+        <text x="14" y="34" font-size="9.5" fill="var(--ink-faint)">1/v₀</text>
+        <text x="318" y="136" font-size="9.5" fill="var(--ink-faint)">1/[S]</text>
+      </g>
+      <g transform="translate(375,8)">
+        <line x1="10" y1="140" x2="330" y2="140" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="110" y1="160" x2="110" y2="24" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="110" y1="110" x2="290" y2="56" stroke="var(--ink-faint)" stroke-width="2.2" stroke-dasharray="6 4"/>
+        <line x1="10" y1="140" x2="110" y2="110" stroke="var(--ink-faint)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="110" y1="80" x2="290" y2="26" stroke="var(--accent-2)" stroke-width="2.6"/>
+        <line x1="10" y1="110" x2="110" y2="80" stroke="var(--accent-2)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <text x="118" y="76" font-size="10" font-weight="700" fill="var(--bad)">parallel — slope unchanged</text>
+        <text x="200" y="150" font-size="10.5" font-weight="700" fill="var(--ink)">Uncompetitive</text>
+        <text x="200" y="163" font-size="9.5" fill="var(--ink-faint)">α=1, α′&gt;1 · both ÷ α′</text>
+        <text x="14" y="34" font-size="9.5" fill="var(--ink-faint)">1/v₀</text>
+        <text x="318" y="136" font-size="9.5" fill="var(--ink-faint)">1/[S]</text>
+      </g>
+      <g transform="translate(10,218)">
+        <line x1="10" y1="140" x2="330" y2="140" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="110" y1="160" x2="110" y2="24" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="110" y1="110" x2="290" y2="56" stroke="var(--ink-faint)" stroke-width="2.2" stroke-dasharray="6 4"/>
+        <line x1="10" y1="140" x2="110" y2="110" stroke="var(--ink-faint)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="110" y1="80" x2="200" y2="26" stroke="var(--accent-2)" stroke-width="2.6"/>
+        <line x1="10" y1="140" x2="110" y2="80" stroke="var(--accent-2)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="10" cy="140" r="4.5" fill="var(--bad)"/>
+        <text x="18" y="132" font-size="10" font-weight="700" fill="var(--bad)">same −1/K<tspan font-size="8" dy="2">m</tspan></text>
+        <text x="200" y="150" font-size="10.5" font-weight="700" fill="var(--ink)">Pure non-competitive</text>
+        <text x="200" y="163" font-size="9.5" fill="var(--ink-faint)">α=α′ · V<tspan font-size="7.5" dy="2">max</tspan><tspan dy="-2">↓, K</tspan><tspan font-size="7.5" dy="2">m</tspan><tspan dy="-2"> =</tspan></text>
+        <text x="14" y="34" font-size="9.5" fill="var(--ink-faint)">1/v₀</text>
+        <text x="318" y="136" font-size="9.5" fill="var(--ink-faint)">1/[S]</text>
+      </g>
+      <g transform="translate(375,218)">
+        <line x1="10" y1="140" x2="330" y2="140" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="110" y1="160" x2="110" y2="24" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="110" y1="110" x2="290" y2="56" stroke="var(--ink-faint)" stroke-width="2.2" stroke-dasharray="6 4"/>
+        <line x1="10" y1="140" x2="110" y2="110" stroke="var(--ink-faint)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="110" y1="95" x2="190" y2="23" stroke="var(--accent-2)" stroke-width="2.6"/>
+        <line x1="60" y1="140" x2="110" y2="95" stroke="var(--accent-2)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="85" cy="117.5" r="4.5" fill="var(--bad)"/>
+        <text x="20" y="102" font-size="10" font-weight="700" fill="var(--bad)">cross above the x-axis</text>
+        <text x="200" y="150" font-size="10.5" font-weight="700" fill="var(--ink)">Mixed (α &gt; α′)</text>
+        <text x="200" y="163" font-size="9.5" fill="var(--ink-faint)">V<tspan font-size="7.5" dy="2">max</tspan><tspan dy="-2">↓, K</tspan><tspan font-size="7.5" dy="2">m</tspan><tspan dy="-2">↑</tspan></text>
+        <text x="14" y="34" font-size="9.5" fill="var(--ink-faint)">1/v₀</text>
+        <text x="318" y="136" font-size="9.5" fill="var(--ink-faint)">1/[S]</text>
+      </g>
+    </svg>
+    <figcaption>Dashed grey = no inhibitor; solid amber = inhibitor present; the dotted extensions carry each
+      line to its intercepts. Read the panels by asking <em>where do the two lines meet?</em> On the y-axis →
+      competitive. Nowhere, because they are parallel → uncompetitive. On the x-axis → pure non-competitive.
+      Somewhere in the second quadrant off both axes → mixed (above the axis when α &gt; α′, below it when
+      α′ &gt; α).</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The five inhibition patterns compared</caption>
+      <thead><tr><th>Type</th><th>Binds</th><th>V<sub>max</sub><sup>app</sup></th><th>K<sub>m</sub><sup>app</sup></th><th>k<sub>cat</sub>/K<sub>m</sub></th><th>Lineweaver–Burk</th><th>Beaten by more [S]?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Competitive</strong></td><td>E only (usually the active site)</td><td>Unchanged</td><td><strong>↑ ×α</strong></td><td>↓ ÷α</td><td>Lines meet on the <strong>y-axis</strong>; slope ×α</td><td><strong>Yes</strong> — fully surmountable</td></tr>
+        <tr><td><strong>Uncompetitive</strong></td><td>ES only</td><td><strong>↓ ÷α′</strong></td><td><strong>↓ ÷α′</strong></td><td><strong>Unchanged</strong></td><td><strong>Parallel</strong> lines; y-intercept ×α′</td><td><strong>No</strong> — more [S] makes it worse</td></tr>
+        <tr><td><strong>Mixed</strong></td><td>Both, unequally</td><td>↓ ÷α′</td><td>↑ if α&gt;α′, ↓ if α′&gt;α</td><td>↓ ÷α</td><td>Cross in quadrant 2, off both axes</td><td>Partly at best</td></tr>
+        <tr><td><strong>Pure non-competitive</strong></td><td>Both, equally (α = α′)</td><td>↓ ÷α</td><td><strong>Unchanged</strong></td><td>↓ ÷α</td><td>Lines meet on the <strong>x-axis</strong></td><td>No</td></tr>
+        <tr><td><strong>Irreversible</strong></td><td>Covalent, usually at the active site</td><td>↓ (fewer working enzymes)</td><td>Unchanged</td><td>↓</td><td>Looks like <em>pure non-competitive</em></td><td>No; and inhibition grows with time</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>One tidy regularity is worth extracting from that table. Since
+     <span class="fi">k<sub>cat</sub><sup>app</sup>/K<sub>m</sub><sup>app</sup> = (V<sub>max</sub>/α′) ÷ ([E]<sub>t</sub> · K<sub>m</sub>α/α′)</span>,
+     the α′ cancels: the specificity constant is divided by <strong>α alone</strong>, in every case. So an
+     inhibitor that does not touch free enzyme (α = 1, i.e. uncompetitive) leaves
+     k<sub>cat</sub>/K<sub>m</sub> untouched, and every other type reduces it by exactly its α. If you can
+     remember that, you can regenerate the whole column.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three confusions the examiners rely on</p>
+    <p><strong>"Non-competitive" does not mean "binds elsewhere and is therefore weak."</strong> It means the
+      inhibitor binds E and ES with equal affinity, so substrate presence is irrelevant to it. Nor does
+      "competitive" require binding at the active site — a competitive inhibitor merely has to make S-binding
+      and I-binding mutually exclusive, which an allosteric site can also achieve.</p>
+    <p><strong>Uncompetitive inhibition lowers K<sub>m</sub>, and that is not a mistake in the table.</strong>
+      Pulling ES out of the equilibrium drags E + S towards ES, so half-maximal velocity is reached at a lower
+      [S] — even though the enzyme is <em>less</em> active overall. If a question offers you "K<sub>m</sub>
+      decreased and V<sub>max</sub> decreased" and you reject it as impossible, you have lost the mark.</p>
+    <p style="margin:0"><strong>An irreversible inhibitor reads out as pure non-competitive.</strong> It removes
+      enzyme molecules permanently from the population; the survivors have a perfectly normal K<sub>m</sub>, and
+      there are simply fewer of them, so V<sub>max</sub> falls. Distinguish it from a genuine reversible
+      non-competitive inhibitor by two things a kinetic plot cannot show you: activity does not return on
+      <strong>dialysis or dilution</strong>, and inhibition <strong>deepens with pre-incubation time</strong>.
+      Aspirin on cyclo-oxygenase is the standard vignette.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — classify four inhibitors and get their K<sub>I</sub> values</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">An enzyme has <span class="fi">V<sub>max</sub> = 120
+      µmol·min⁻¹</span> and <span class="fi">K<sub>m</sub> = 2.0 mM</span>. Four inhibitors are tested
+      separately. Identify each type and calculate the relevant inhibition constant.</p>
+    <div class="table-scroll">
+      <table class="data">
+        <caption class="sr-only">Apparent kinetic constants with four different inhibitors</caption>
+        <thead><tr><th></th><th>[I]</th><th>V<sub>max</sub><sup>app</sup></th><th>K<sub>m</sub><sup>app</sup></th></tr></thead>
+        <tbody>
+          <tr><td>no inhibitor</td><td class="num">—</td><td class="num">120</td><td class="num">2.0 mM</td></tr>
+          <tr><td>inhibitor A</td><td class="num">6.0 mM</td><td class="num">120</td><td class="num">8.0 mM</td></tr>
+          <tr><td>inhibitor B</td><td class="num">2.0 mM</td><td class="num">40</td><td class="num">2.0 mM</td></tr>
+          <tr><td>inhibitor C</td><td class="num">3.0 mM</td><td class="num">30</td><td class="num">0.50 mM</td></tr>
+          <tr><td>inhibitor D</td><td class="num">4.0 mM</td><td class="num">60</td><td class="num">3.0 mM</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ol>
+      <li>Set up the two master relations once:
+          <span class="fi">α′ = V<sub>max</sub>/V<sub>max</sub><sup>app</sup></span> and
+          <span class="fi">α = (K<sub>m</sub><sup>app</sup>/K<sub>m</sub>) × α′</span>. Then
+          <span class="fi">K<sub>I</sub> = [I]/(α − 1)</span> and
+          <span class="fi">K′<sub>I</sub> = [I]/(α′ − 1)</span>.</li>
+      <li><strong>A:</strong> <span class="fi">α′ = 120/120 = 1</span>;
+          <span class="fi">α = (8.0/2.0) × 1 = 4</span>. α&gt;1 with α′=1 → <strong>competitive</strong>.
+          <span class="fi">K<sub>I</sub> = 6.0/(4 − 1) = <b>2.0 mM</b></span>. Note
+          k<sub>cat</sub>/K<sub>m</sub> has fallen four-fold while k<sub>cat</sub> is untouched.</li>
+      <li><strong>B:</strong> <span class="fi">α′ = 120/40 = 3</span>;
+          <span class="fi">α = (2.0/2.0) × 3 = 3</span>. α = α′ → <strong>pure non-competitive</strong>.
+          <span class="fi">K<sub>I</sub> = K′<sub>I</sub> = 2.0/(3 − 1) = <b>1.0 mM</b></span>.</li>
+      <li><strong>C:</strong> <span class="fi">α′ = 120/30 = 4</span>;
+          <span class="fi">α = (0.50/2.0) × 4 = 1</span>. α = 1 with α′&gt;1 → <strong>uncompetitive</strong>.
+          <span class="fi">K′<sub>I</sub> = 3.0/(4 − 1) = <b>1.0 mM</b></span>. Both constants fell by exactly
+          four-fold, so k<sub>cat</sub>/K<sub>m</sub> is unchanged — the fingerprint.</li>
+      <li><strong>D:</strong> <span class="fi">α′ = 120/60 = 2</span>;
+          <span class="fi">α = (3.0/2.0) × 2 = 3</span>. Both &gt;1 and unequal, with α &gt; α′ →
+          <strong>mixed</strong>, preferring free enzyme.
+          <span class="fi">K<sub>I</sub> = 4.0/(3 − 1) = <b>2.0 mM</b></span> and
+          <span class="fi">K′<sub>I</sub> = 4.0/(2 − 1) = <b>4.0 mM</b></span> — and indeed
+          K<sub>I</sub> &lt; K′<sub>I</sub> confirms it binds E more tightly than ES.</li>
+      <li><strong>Check with a real velocity.</strong> Uninhibited at [S] = 2.0 mM:
+          <span class="fi">120 × 2/(2 + 2) = 60</span>. With inhibitor A:
+          <span class="fi">120 × 2/(8 + 2) = 24</span>. To restore v = 60 you would need
+          <span class="fi">120[S]/(8 + [S]) = 60 → [S] = <b>8.0 mM</b></span>, a four-fold rise — exactly α.
+          That is competitive inhibition being surmounted, in numbers.</li>
+    </ol>
+    <span class="wex__ans">A competitive, K<sub>I</sub> 2.0 mM · B non-competitive, 1.0 mM · C uncompetitive, K′<sub>I</sub> 1.0 mM · D mixed, K<sub>I</sub> 2.0 / K′<sub>I</sub> 4.0 mM</span>
+    </div>
+  </details>
+
+  <h3>Irreversible and mechanism-based inhibitors</h3>
+  <p>An irreversible inhibitor forms a covalent adduct. Two sub-types are worth separating. A
+     <strong>group-specific</strong> reagent attacks a chemical class wherever it finds it — DIPF on any
+     reactive serine, iodoacetamide on any cysteine — and is a laboratory tool rather than a drug. A
+     <strong>mechanism-based</strong> or <em>suicide</em> inhibitor is far more elegant: it is an unreactive
+     compound that the target enzyme itself converts into a reactive species, which then kills the enzyme that
+     made it. Selectivity is therefore guaranteed by the catalytic step, because only the intended enzyme can
+     do the activating chemistry.</p>
+  <p>Three examples worth knowing precisely. <strong>Penicillin</strong> mimics the D-Ala-D-Ala terminus that
+     the bacterial transpeptidase normally cleaves; the enzyme's serine attacks the β-lactam ring, opens it, and
+     is left as a stable penicilloyl-enzyme. <strong>5-Fluorouracil</strong> is converted in the cell to FdUMP,
+     which lets thymidylate synthase begin its normal chemistry and then traps it in a covalent ternary complex
+     with N⁵,N¹⁰-methylene-THF, because the fluorine cannot be abstracted as the hydrogen would have been.
+     <strong>Allopurinol</strong> is oxidised by xanthine oxidase to oxypurinol, which then binds the reduced
+     molybdenum centre and stays there.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Clinically important enzyme inhibitors by kinetic class</caption>
+      <thead><tr><th>Drug / agent</th><th>Target enzyme</th><th>Kinetic class</th><th>Point of interest</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Methotrexate</strong></td><td>Dihydrofolate reductase</td><td>Competitive (tight-binding, K<sub>i</sub> ~pM)</td><td>Leucovorin rescue works because it supplies reduced folate <em>downstream</em> of the block</td></tr>
+        <tr><td><strong>Statins</strong></td><td>HMG-CoA reductase</td><td>Competitive, transition-state analogue</td><td>K<sub>i</sub> nanomolar against a micromolar substrate — the analogue advantage</td></tr>
+        <tr><td><strong>Fomepizole</strong></td><td>Alcohol dehydrogenase</td><td>Competitive</td><td>Methanol and ethylene glycol poisoning: block the enzyme rather than flood it with ethanol</td></tr>
+        <tr><td><strong>Acetazolamide</strong></td><td>Carbonic anhydrase</td><td>Reversible; classically <em>non</em>-competitive with respect to CO₂</td><td>The sulfonamide anion coordinates the Zn²⁺ in place of the catalytic OH⁻, not in the CO₂ pocket — hence the kinetics. Glaucoma, altitude sickness, alkalinisation of urine</td></tr>
+        <tr><td><strong>Captopril, enalaprilat</strong></td><td>Angiotensin-converting enzyme</td><td>Competitive, zinc-chelating</td><td>Designed from snake-venom peptides — an early triumph of structure-based design</td></tr>
+        <tr><td><strong>Sildenafil</strong></td><td>Phosphodiesterase 5</td><td>Competitive with cGMP</td><td>Selectivity over PDE6 (retina) is imperfect — hence the blue-tinged vision</td></tr>
+        <tr><td><strong>Lithium</strong></td><td>Inositol monophosphatase</td><td><strong>Uncompetitive</strong></td><td>The textbook clinical uncompetitive inhibitor; hits over-active pathways hardest</td></tr>
+        <tr><td>Pb²⁺, Hg²⁺, Cd²⁺</td><td>Thiol enzymes — ALA dehydratase, ferrochelatase</td><td>Non-competitive / mixed</td><td>Lead poisoning: basophilic stippling, raised ALA and protoporphyrin</td></tr>
+        <tr><td><strong>Aspirin</strong></td><td>COX-1 and COX-2</td><td><strong>Irreversible</strong> — acetylates Ser530 (the equivalent residue is Ser516 in COX-2)</td><td>Platelets cannot resynthesise COX, so the antiplatelet effect lasts the platelet's 7–10 day life</td></tr>
+        <tr><td><strong>Omeprazole</strong></td><td>Gastric H⁺/K⁺-ATPase</td><td>Irreversible (acid-activated prodrug)</td><td>Duration of action far outlasts the plasma half-life — a general property of covalent drugs</td></tr>
+        <tr><td><strong>Penicillins</strong></td><td>Transpeptidase (PBPs)</td><td>Mechanism-based irreversible</td><td>β-lactamase is the counter-move; clavulanate is a suicide inhibitor of β-lactamase</td></tr>
+        <tr><td><strong>5-Fluorouracil</strong></td><td>Thymidylate synthase</td><td>Mechanism-based irreversible</td><td>Thymineless death; the reason the toxicity is worst in dividing tissue</td></tr>
+        <tr><td><strong>Allopurinol</strong></td><td>Xanthine oxidase</td><td>Mechanism-based</td><td>Also why azathioprine dosing must be cut by ~75 % when the two are combined</td></tr>
+        <tr><td>Organophosphates</td><td>Acetylcholinesterase</td><td>Irreversible (ageing)</td><td>Pralidoxime works only before ageing — see §&nbsp;03</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">How the paper phrases it</p>
+    <p style="margin:0">Almost always as a two-line data stem — "in the presence of compound X, V<sub>max</sub>
+      is unchanged and K<sub>m</sub> increases three-fold" — or as a plot description. Build the reflex:
+      <em>V<sub>max</sub> unchanged</em> ⇒ competitive, full stop. <em>Both fall by the same factor / parallel
+      lines</em> ⇒ uncompetitive. <em>V<sub>max</sub> falls, K<sub>m</sub> unchanged</em> ⇒ pure
+      non-competitive <strong>or an irreversible inhibitor</strong> — and if the stem mentions covalent
+      modification, pre-incubation, or failure to recover after dialysis, it is the latter. <em>Both change,
+      unequally</em> ⇒ mixed. Then check whether they also want K<sub>I</sub>: it is one line of arithmetic
+      from the fold-change, and it is a free mark.</p>
+  </div>
+</section>
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Two substrates, pH and temperature</h2>
+
+  <p class="idea"><b>The idea</b>Almost no enzyme has just one substrate. Most take two, and there is a genuine mechanistic fork: either both
+     substrates have to be sitting on the enzyme at the same time, so that a group can pass directly from one to
+     the other, or the enzyme takes a piece off the first substrate, lets the remainder go, and then hands that
+     piece to the second. The second route means the enzyme itself is chemically different in between — it is
+     temporarily carrying a load — and that is visible in the kinetics. Separately, two environmental variables
+     change the rate for reasons that look similar and are not: pH changes which groups are protonated, while
+     temperature changes both the speed of the chemistry and the survival of the protein.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the two mechanisms</p>
+    <dl class="def">
+      <dt>Sequential (single-displacement) mechanism</dt>
+      <dd>Both substrates bind before any product leaves, forming a <strong>ternary complex</strong>. Binding may
+          be <em>ordered</em> (an obligatory sequence — most NAD⁺-dependent dehydrogenases bind the coenzyme
+          first) or <em>random</em> (either order — creatine kinase, glycogen phosphorylase).</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ping-pong ⇒ <b>parallel</b> lines on a Lineweaver–Burk family; sequential ⇒ lines <b>intersect</b></span>
+      <span class="fx__tag">plot 1/v against 1/[S₁] at several fixed [S₂] — the shape names the mechanism</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Ping-pong (double-displacement) mechanism</dt>
+          <dd>The first substrate binds, transfers a group <em>to the enzyme</em>, and the first product leaves.
+              Only then does the second substrate bind and collect the group. No ternary complex ever exists, and
+              the enzyme passes through a <strong>substituted (modified) form</strong>, usually via a prosthetic
+              group.</dd>
+          <dt>pH optimum</dt>
+          <dd>The pH at which activity is maximal. The curve is usually bell-shaped because <em>two</em>
+              ionisable groups must be in opposite protonation states — one deprotonated to act as a base, one
+              protonated to act as an acid. The optimum is therefore a property of the <em>mechanism</em>, not
+              of protein stability, over most of the range.</dd>
+          <dt>Temperature "optimum"</dt>
+          <dd>Not a real optimum. It is the crossing point of two competing effects: the Arrhenius increase in
+              rate with temperature (Q₁₀ ≈ 2, so roughly a doubling per 10 °C) and the onset of thermal
+              denaturation. Shift the incubation time and the apparent optimum moves — which is the giveaway
+              that it is not a constant.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">sequential:  E + A + B ⇌ EAB → EPQ → E + P + Q</span><span class="fx__tag">a ternary complex is obligatory</span></div>
+          <div class="fx"><span class="fx__eq">ping-pong:  E + A ⇌ EA ⇌ E′P → E′ + P;  E′ + B ⇌ E′B → E + Q</span><span class="fx__tag">E′ is the substituted enzyme — the "ping" before the "pong"</span></div>
+          <div class="fx"><span class="fx__eq">Q₁₀ = <span class="mf" role="img" aria-label="rate at T plus ten degrees over rate at T"><span>rate at (T + 10 °C)</span><span>rate at T</span></span> ≈ 2</span><span class="fx__tag">before denaturation begins to bite</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>A, B</b><span>substrates (Cleland notation)</span></div>
+          <div><b>P, Q</b><span>products</span></div>
+          <div><b>E′</b><span>substituted (covalently modified) enzyme</span></div>
+          <div><b>Q₁₀</b><span>temperature coefficient (dimensionless)</span></div>
+          <div><b>pK<sub>a</sub></b><span>where an ionisable group is half dissociated</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>The kinetic signature has a simple origin. In a ping-pong mechanism, changing the concentration of the
+     second substrate changes how quickly the substituted enzyme E′ is returned to E, and in the double-reciprocal
+     form that appears purely as a change in the <em>intercept</em> — the slope term has no
+     <span class="fi">[B]</span> in it, because A and B never meet on the enzyme. Hence parallel lines. In a
+     sequential mechanism both substrates occupy the same complex, the cross-term survives, and the slope changes
+     with [B] as well: the lines converge.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Bisubstrate mechanisms compared</caption>
+      <thead><tr><th></th><th>Sequential</th><th>Ping-pong</th></tr></thead>
+      <tbody>
+        <tr><td>Ternary complex</td><td><strong>Yes</strong></td><td><strong>No</strong></td></tr>
+        <tr><td>First product released</td><td>After both substrates bind</td><td>Before the second substrate binds</td></tr>
+        <tr><td>Enzyme modified mid-cycle</td><td>No</td><td><strong>Yes</strong> — E′</td></tr>
+        <tr><td>Lineweaver–Burk family</td><td>Lines <strong>intersect</strong> (left of the y-axis)</td><td>Lines are <strong>parallel</strong></td></tr>
+        <tr><td>Examples</td><td>Lactate dehydrogenase and most NAD⁺ dehydrogenases (ordered); creatine kinase, hexokinase (random)</td><td><strong>Aminotransferases</strong> (ALT, AST) via PLP ⇌ PMP; chymotrypsin via the acyl-enzyme; nucleoside diphosphate kinase</td></tr>
+        <tr><td>Why the cofactor matters</td><td>A dissociable coenzyme (NAD⁺) is just another substrate</td><td>A <strong>prosthetic group</strong> that stays bound forces the two half-reactions apart</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The aminotransferases are worth carrying as the concrete case, because they also carry a large amount of
+     clinical weight. In the first half-reaction an amino acid donates its amino group to enzyme-bound PLP,
+     converting it to pyridoxamine phosphate (PMP) and releasing an α-keto acid. In the second, PMP hands the
+     amino group to a different α-keto acid, regenerating PLP. The amino group is passed <em>through</em> the
+     enzyme. That is what ping-pong means, and it explains why, in B₆ deficiency, serum AST and ALT activities
+     read falsely low unless the assay is supplemented with PLP — the apoenzyme is there, but empty, and only
+     added coenzyme reconstitutes the holoenzyme the assay is trying to measure.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">pH: mechanism, not denaturation</p>
+    <p style="margin:0">The bell-shaped pH profile of chymotrypsin has its ascending limb at pK<sub>a</sub> ≈ 6.8
+      (His57 must be <em>un</em>protonated to act as a general base) and its descending limb near pK<sub>a</sub>
+      ≈ 9 (the Ile16–Asp194 salt bridge that holds the active conformation together must stay ionised). Neither
+      limb is denaturation. Contrast <strong>pepsin</strong>, optimal at pH 1.5–2, where the mechanism requires
+      one active-site aspartate protonated and one ionised, and <strong>alkaline phosphatase</strong>, optimal
+      near pH 10. The exam version of this: <em>an enzyme's activity falls at low pH; is the enzyme denatured?</em>
+      Usually not — test by returning the pH to neutral. If activity comes back, it was ionisation; if not, it
+      was denaturation.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · Cleland notation, and reading a bisubstrate plot properly</summary>
+    <div class="disc__body">
+      <p>Cleland's shorthand draws the enzyme as a horizontal line, with substrates arriving on downward arrows
+        and products leaving on upward arrows, and the enzyme's successive forms named underneath. An
+        <em>ordered bi-bi</em> mechanism reads: A binds, B binds, chemistry, P leaves, Q leaves. A
+        <em>ping-pong bi-bi</em> reads: A binds, P leaves (leaving E′), B binds, Q leaves. "Bi-bi" means two
+        substrates and two products; you will also meet uni-bi (one in, two out — as in a lyase) and ter-bi.</p>
+      <p>To read the experiment: hold [B] at several fixed values and vary [A], then plot
+        <span class="fi">1/v</span> against <span class="fi">1/[A]</span> once for each [B]. In double-reciprocal
+        form a ping-pong mechanism gives
+        <span class="fi">1/v = (K<sub>A</sub>/V<sub>max</sub>)(1/[A]) + (1/V<sub>max</sub>)(1 + K<sub>B</sub>/[B])</span>
+        — [B] appears only in the constant term, so changing it slides the line up and down without tilting it.
+        A sequential mechanism adds a term in <span class="fi">1/([A][B])</span>, which lives in the slope, so
+        the lines fan out and intersect.</p>
+      <p style="margin-bottom:0">One practical caution: parallel lines are also produced by a sequential
+        mechanism in which one K value is very small, so a single experiment showing parallel lines is
+        suggestive rather than conclusive. The definitive test is an <strong>isotope-exchange</strong>
+        experiment — a ping-pong enzyme will exchange label between A and P in the complete absence of B,
+        because the first half-reaction is genuinely independent. A sequential enzyme cannot.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Allostery and cooperativity</h2>
+
+  <p class="idea"><b>The idea</b>A Michaelis–Menten enzyme makes a terrible switch. To take it from a tenth of full speed to nine tenths you
+     have to raise the substrate concentration eighty-one fold — and no cell can swing a metabolite over that
+     range. The way out is to build the enzyme from several subunits and let them talk to each other, so that the
+     first substrate molecule to bind makes the next one easier to bind. The response curve then stops being a
+     hyperbola and becomes an S-shape: sluggish at low concentrations, then suddenly steep over a narrow band,
+     then saturated. That steep band is a switch. And once subunits can influence one another, other molecules
+     that are not the substrate at all can bind somewhere else and shift the whole curve sideways — which is how
+     a pathway tells its own first enzyme to slow down.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Allosteric enzyme（異位調節酵素）</dt>
+      <dd>An enzyme whose activity is changed by a ligand binding at a site <em>other than</em> the active site,
+          acting through a conformational change. Almost always multi-subunit. Its kinetics are
+          <strong>not</strong> Michaelis–Menten, so the constant that replaces K<sub>m</sub> must be called
+          <span class="fi">K<sub>0.5</sub></span> or <span class="fi">S<sub>0.5</sub></span>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Y = <span class="mf" role="img" aria-label="S to the power n, over K nought point five to the power n plus S to the power n"><span>[S]<sup>n</sup></span><span>K<sub>0.5</sub><sup>n</sup> + [S]<sup>n</sup></span></span></span>
+      <span class="fx__tag">the Hill equation; n = 1 collapses it back to a hyperbola</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Homotropic vs heterotropic</dt>
+          <dd><strong>Homotropic</strong>: the modulator <em>is</em> the substrate — this is cooperativity, and
+              it is positive in almost every case that matters, though genuine <em>negative</em> homotropic
+              cooperativity does exist (glyceraldehyde-3-phosphate dehydrogenase, CTP synthetase), which is why
+              n<sub>H</sub> &lt; 1 is a real reading and not an artefact. <strong>Heterotropic</strong>: the
+              modulator is a different molecule, and it may activate or inhibit.</dd>
+          <dt>Hill coefficient n<sub>H</sub></dt>
+          <dd>An empirical measure of steepness, obtained as the slope of
+              <span class="fi">log[Y/(1 − Y)]</span> against <span class="fi">log[S]</span> at half saturation.
+              n<sub>H</sub> &gt; 1 positive cooperativity; = 1 none; &lt; 1 negative cooperativity.
+              <strong>n<sub>H</sub> ≤ the number of binding sites</strong> and equals it only in the
+              hypothetical all-or-none limit — haemoglobin has four sites and n<sub>H</sub> ≈ 2.8.</dd>
+          <dt>K-system vs V-system</dt>
+          <dd>In a <strong>K-system</strong> the modulator changes K<sub>0.5</sub> and leaves V<sub>max</sub>
+              alone (ATCase, phosphofructokinase-1). In a <strong>V-system</strong> it changes V<sub>max</sub>
+              at constant K<sub>0.5</sub>. Superficially these mimic competitive and non-competitive inhibition
+              respectively, which is exactly the trap.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">log <span class="mf" role="img" aria-label="Y over one minus Y"><span>Y</span><span>1 − Y</span></span> = n log[S] − n log K<sub>0.5</sub></span><span class="fx__tag">the Hill plot: slope n, x-intercept log K<sub>0.5</sub></span></div>
+          <div class="fx"><span class="fx__eq"><span class="mf" role="img" aria-label="S at ninety percent over S at ten percent"><span>[S]<sub>90 %</sub></span><span>[S]<sub>10 %</sub></span></span> = 81<sup>1/n</sup></span><span class="fx__tag">n = 1 → 81× · n = 2 → 9× · n = 4 → 3×</span></div>
+          <div class="fx"><span class="fx__eq">MWC:  L = <span class="mf" role="img" aria-label="T nought over R nought"><span>[T₀]</span><span>[R₀]</span></span>  ·  substrate binds R, so binding pulls T → R</span><span class="fx__tag">L is the allosteric constant; activators lower it, inhibitors raise it</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Y</b><span>fractional saturation (0 to 1, dimensionless)</span></div>
+          <div><b>K<sub>0.5</sub>, S<sub>0.5</sub></b><span>[S] giving half-maximal velocity (M)</span></div>
+          <div><b>n<sub>H</sub></b><span>Hill coefficient (dimensionless)</span></div>
+          <div><b>L</b><span>T/R equilibrium constant in the absence of ligand</span></div>
+          <div><b>T, R</b><span>tense (low-affinity) and relaxed (high-affinity) states</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 340" role="img" aria-label="Fractional saturation plotted against substrate concentration. A hyperbolic curve for a non-cooperative enzyme rises steeply at once and flattens slowly. A sigmoid curve for a cooperative enzyme with Hill coefficient four lags at low substrate and then rises very steeply through half saturation before flattening. Two further sigmoid curves show an allosteric activator shifting the same curve to the left and an allosteric inhibitor shifting it to the right, with the shape unchanged." style="font-family:var(--sans)">
+      <line x1="95" y1="290" x2="660" y2="290" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="95" y1="305" x2="95" y2="40" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="95" y1="172.5" x2="640" y2="172.5" stroke="var(--ink-faint)" stroke-width="1.1" stroke-dasharray="4 4"/>
+      <line x1="95" y1="55" x2="640" y2="55" stroke="var(--ink-faint)" stroke-width="1.1" stroke-dasharray="4 4"/>
+      <text x="88" y="177" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">0.5</text>
+      <text x="88" y="59" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">1.0</text>
+      <text x="88" y="294" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">0</text>
+      <text x="375" y="322" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)">[S] →</text>
+      <text x="36" y="170" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" transform="rotate(-90 36 170)">fractional saturation Y →</text>
+
+      <polyline fill="none" stroke="var(--ink-faint)" stroke-width="2.4" stroke-dasharray="7 4" points="95.0,290.0 103.4,275.3 111.8,262.4 120.2,250.8 128.7,240.5 137.1,231.2 145.5,222.9 153.9,215.2 162.3,208.3 170.8,201.9 179.2,196.0 187.6,190.6 196.0,185.6 204.4,180.9 212.8,176.6 221.2,172.5 229.7,168.7 238.1,165.2 246.5,161.8 254.9,158.7 263.3,155.7 271.8,152.9 280.2,150.3 288.6,147.8 297.0,145.4 305.4,143.1 313.8,141.0 322.2,138.9 330.7,137.0 339.1,135.1 347.5,133.3 355.9,131.6 364.3,130.0 372.8,128.4 381.2,126.9 389.6,125.5 398.0,124.1 406.4,122.8 414.8,121.5 423.2,120.3 431.7,119.1 440.1,117.9 448.5,116.8 456.9,115.8 465.3,114.7 473.8,113.8 482.2,112.8 490.6,111.9 499.0,111.0 507.4,110.1 515.8,109.2 524.2,108.4 532.7,107.6 541.1,106.8 549.5,106.1 557.9,105.4 566.3,104.6 574.8,104.0 583.2,103.3 591.6,102.6 600.0,102.0"/>
+      <polyline fill="none" stroke="var(--accent)" stroke-width="3" points="95.0,290.0 103.4,290.0 111.8,289.9 120.2,289.6 128.7,288.8 137.1,287.1 145.5,284.1 153.9,279.4 162.3,272.4 170.8,263.0 179.2,251.2 187.6,237.3 196.0,221.7 204.4,205.2 212.8,188.6 221.2,172.5 229.7,157.4 238.1,143.7 246.5,131.5 254.9,120.7 263.3,111.5 271.8,103.5 280.2,96.8 288.6,91.0 297.0,86.1 305.4,82.0 313.8,78.4 322.2,75.4 330.7,72.9 339.1,70.7 347.5,68.8 355.9,67.2 364.3,65.8 372.8,64.6 381.2,63.6 389.6,62.7 398.0,61.9 406.4,61.2 414.8,60.6 423.2,60.0 431.7,59.6 440.1,59.1 448.5,58.8 456.9,58.4 465.3,58.1 473.8,57.9 482.2,57.6 490.6,57.4 499.0,57.2 507.4,57.0 515.8,56.9 524.2,56.7 532.7,56.6 541.1,56.5 549.5,56.4 557.9,56.3 566.3,56.2 574.8,56.1 583.2,56.0 591.6,56.0 600.0,55.9"/>
+      <polyline fill="none" stroke="var(--ok)" stroke-width="2.2" points="95.0,290.0 103.4,289.9 111.8,288.8 120.2,284.1 128.7,272.4 137.1,251.2 145.5,221.7 153.9,188.6 162.3,157.4 170.8,131.5 179.2,111.5 187.6,96.8 196.0,86.1 204.4,78.4 212.8,72.9 221.2,68.8 229.7,65.8 238.1,63.6 246.5,61.9 254.9,60.6 263.3,59.6 271.8,58.8 280.2,58.1 288.6,57.6 297.0,57.2 305.4,56.9 313.8,56.6 322.2,56.4 330.7,56.2 339.1,56.0 347.5,55.9 355.9,55.8 364.3,55.7 372.8,55.6 381.2,55.6 389.6,55.5 398.0,55.4 406.4,55.4 414.8,55.4 423.2,55.3 431.7,55.3 440.1,55.3 448.5,55.2 456.9,55.2 465.3,55.2 473.8,55.2 482.2,55.2 490.6,55.2 499.0,55.1 507.4,55.1 515.8,55.1 524.2,55.1 532.7,55.1 541.1,55.1 549.5,55.1 557.9,55.1 566.3,55.1 574.8,55.1 583.2,55.1 591.6,55.1 600.0,55.1"/>
+      <polyline fill="none" stroke="var(--bad)" stroke-width="2.2" points="95.0,290.0 103.4,290.0 111.8,290.0 120.2,290.0 128.7,289.9 137.1,289.7 145.5,289.4 153.9,288.8 162.3,288.0 170.8,286.8 179.2,285.2 187.6,283.0 196.0,280.2 204.4,276.7 212.8,272.4 221.2,267.4 229.7,261.5 238.1,254.8 246.5,247.5 254.9,239.4 263.3,230.8 271.8,221.7 280.2,212.4 288.6,202.9 297.0,193.3 305.4,183.9 313.8,174.7 322.2,165.9 330.7,157.4 339.1,149.4 347.5,141.8 355.9,134.8 364.3,128.2 372.8,122.2 381.2,116.6 389.6,111.5 398.0,106.8 406.4,102.5 414.8,98.6 423.2,95.0 431.7,91.8 440.1,88.8 448.5,86.1 456.9,83.7 465.3,81.4 473.8,79.4 482.2,77.5 490.6,75.8 499.0,74.3 507.4,72.9 515.8,71.6 524.2,70.4 532.7,69.3 541.1,68.3 549.5,67.4 557.9,66.6 566.3,65.8 574.8,65.1 583.2,64.6 591.6,63.9 600.0,63.3"/>
+
+      <text x="606" y="106" font-size="11" font-weight="700" fill="var(--ink-faint)">n = 1 (hyperbolic)</text>
+      <text x="606" y="52" font-size="11" font-weight="700" fill="var(--accent)">n ≈ 4, no modulator</text>
+      <text x="150" y="118" font-size="11" font-weight="700" fill="var(--ok)">+ activator</text>
+      <text x="606" y="66" font-size="11" font-weight="700" fill="var(--bad)">+ inhibitor</text>
+      <line x1="221" y1="290" x2="221" y2="172.5" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <text x="221" y="306" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent)">K<tspan font-size="8" dy="2">0.5</tspan></text>
+    </svg>
+    <figcaption>All four curves reach the same maximum — this is a <em>K-system</em>, in which modulators move
+      K<sub>0.5</sub> sideways and leave V<sub>max</sub> alone. Notice what cooperativity buys: the teal curve
+      goes from 10 % to 90 % saturation over a three-fold change in [S], where the dashed hyperbola needs
+      eighty-one-fold. The flat foot at low [S] is not a defect either — it is a threshold, and it means the
+      enzyme stays effectively off until substrate accumulates.</figcaption>
+  </figure>
+
+  <h3>Two models, and what each predicts</h3>
+  <p>Both models start from the same physical picture — subunits exist in a low-affinity <strong>T</strong>
+     (tense) state and a high-affinity <strong>R</strong> (relaxed) state — and differ in whether the subunits
+     are allowed to disagree with each other.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Concerted versus sequential models of cooperativity</caption>
+      <thead><tr><th></th><th>MWC — concerted (Monod, Wyman, Changeux 1965)</th><th>KNF — sequential (Koshland, Némethy, Filmer 1966)</th></tr></thead>
+      <tbody>
+        <tr><td>Core assumption</td><td>The oligomer switches <strong>all at once</strong>; molecular symmetry is preserved at every moment</td><td>Ligand binding <strong>induces</strong> a change in that subunit, which then alters its neighbours</td></tr>
+        <tr><td>Hybrid states (some T, some R)</td><td><strong>Forbidden</strong></td><td><strong>Allowed</strong> — they are the mechanism</td></tr>
+        <tr><td>T and R exist before ligand?</td><td>Yes — they are in pre-existing equilibrium, described by L; ligand only <em>selects</em></td><td>No — R is created by binding</td></tr>
+        <tr><td>Negative cooperativity</td><td><strong>Cannot</strong> explain it</td><td><strong>Can</strong> explain it</td></tr>
+        <tr><td>Activators / inhibitors</td><td>Shift L: an activator stabilises R (lowers L), an inhibitor stabilises T (raises L)</td><td>Alter the subunit-interaction energies</td></tr>
+        <tr><td>Verdict</td><td>Simpler, and fits haemoglobin and ATCase well</td><td>More general; real enzymes usually sit somewhere between the two</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo">
+    <h4>Telling the two apart in one line</h4>
+    <p><strong>MWC = "all or none"</strong> — the whole molecule flips together, so no mixed states and no
+      negative cooperativity. <strong>KNF = "one at a time"</strong> — induced fit propagating subunit by
+      subunit, so mixed states are allowed and negative cooperativity is possible. If a question mentions
+      <em>negative</em> cooperativity, the answer cannot be the concerted model.</p>
+  </div>
+
+  <h3>The three canonical systems</h3>
+  <p><strong>Aspartate transcarbamoylase (ATCase)</strong> catalyses the committed step of pyrimidine
+     synthesis <em>in bacteria</em> — in mammals the regulated step is carbamoyl-phosphate synthetase II, and
+     ATCase is one domain of the multifunctional CAD protein. It is
+     <span class="fi">c₆r₆</span>: six catalytic subunits in two trimers, six regulatory
+     subunits in three dimers. <strong>CTP</strong>, the end product, binds the regulatory subunits and
+     stabilises T — classic feedback inhibition. <strong>ATP</strong> binds the same sites and stabilises R,
+     which balances purine against pyrimidine supply. Treat the enzyme with a mercurial to strip off the
+     regulatory subunits and you get an enzyme that is <em>more</em> active, hyperbolic rather than sigmoid,
+     and completely insensitive to CTP — the cleanest demonstration anywhere that regulation and catalysis are
+     separable functions of separate protein parts.</p>
+  <p><strong>Phosphofructokinase-1</strong> is the one to know for metabolism. ATP is both its substrate (at
+     the catalytic site) and its allosteric <em>inhibitor</em> (at a separate, lower-affinity site) — a fact
+     that looks paradoxical until you notice the two sites are different. AMP and ADP relieve that inhibition,
+     citrate reinforces it, and <strong>fructose-2,6-bisphosphate</strong> is the most powerful activator of
+     all. This is how a cell reads its own energy charge and its own supply of biosynthetic precursors, and
+     converts both into one flux decision.</p>
+  <p><strong>Haemoglobin</strong> is not an enzyme but is the reference implementation of everything above:
+     four sites, n<sub>H</sub> ≈ 2.8, T ⇌ R, with heterotropic modulation by H⁺ and CO₂ (the Bohr effect) and
+     by 2,3-BPG. Myoglobin, a monomer, gives n<sub>H</sub> = 1 and a hyperbola — the control experiment.</p>
+
+  <h3>Feedback inhibition</h3>
+  <p>The organising principle of metabolic regulation: the end product of a pathway inhibits the enzyme that
+     catalyses the <strong>committed step</strong> — the first step that is both irreversible under cellular
+     conditions and unique to that pathway. Inhibiting later would waste the intermediates already made;
+     inhibiting a reversible or shared step would disturb other pathways. Examples worth having: CTP on ATCase;
+     isoleucine on threonine deaminase (the original 1956 observation); cholesterol on HMG-CoA reductase — by
+     three separate mechanisms, allosteric-like inhibition, reduced transcription via SREBP, and accelerated
+     proteolytic degradation of the enzyme; haem on ALA synthase; and purine nucleotides on PRPP
+     amidotransferase.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Sigmoid does not mean inhibited</p>
+    <p style="margin:0">Two traps sit next to each other. First, an allosteric enzyme's constants are
+      <strong>K<sub>0.5</sub> and n<sub>H</sub>, not K<sub>m</sub></strong> — writing K<sub>m</sub> for a
+      sigmoid enzyme is a definitional error, because K<sub>m</sub> is derived from a scheme this enzyme does
+      not obey, and its Lineweaver–Burk plot is curved, not straight. Second, a heterotropic <em>inhibitor</em>
+      of a K-system raises K<sub>0.5</sub> without touching V<sub>max</sub>, which looks exactly like
+      competitive inhibition on a superficial reading — but the inhibitor is not competing for the active site
+      at all, and its curve is sigmoid. The discriminator is the shape of the uninhibited curve. And note the
+      third member of the family: the <strong>committed step is not necessarily the first step</strong> of a
+      pathway, only the first irreversible one that is unique to it.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — extracting the Hill coefficient, and what it buys</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">An allosteric enzyme reaches 10 % of V<sub>max</sub> at
+      [S] = 1.33 mM and 90 % of V<sub>max</sub> at [S] = 12.0 mM. (a) Find n<sub>H</sub>. (b) Find
+      K<sub>0.5</sub>. (c) How much substrate would a non-cooperative enzyme with the same K<sub>0.5</sub> need
+      to cover the same 10 %→90 % span? (d) An activator halves K<sub>0.5</sub> without changing
+      n<sub>H</sub> — what is v at [S] = 4.0 mM, before and after?</p>
+    <ol>
+      <li><strong>(a)</strong> From the Hill equation, at fractional saturation Y,
+          <span class="fi">[S] = K<sub>0.5</sub>(Y/(1 − Y))<sup>1/n</sup></span>. Divide the 90 % case by the
+          10 % case and K<sub>0.5</sub> cancels:
+          <span class="fi">[S]<sub>90</sub>/[S]<sub>10</sub> = (9 ÷ ⅑)<sup>1/n</sup> = 81<sup>1/n</sup></span>.</li>
+      <li>Here the ratio is <span class="fi">12.0/1.33 = 9.0</span>, so
+          <span class="fi">81<sup>1/n</sup> = 9</span>. Since <span class="fi">81 = 9²</span>, we need
+          <span class="fi">1/n = ½</span>, giving <span class="fi">n<sub>H</sub> = <b>2.0</b></span>.
+          (Formally, <span class="fi">n = log 81 / log 9 = 1.908/0.954 = 2.00</span>.)</li>
+      <li><strong>(b)</strong> Substitute back at Y = 0.9:
+          <span class="fi">12.0 = K<sub>0.5</sub> × 9<sup>1/2</sup> = 3K<sub>0.5</sub></span>, so
+          <span class="fi">K<sub>0.5</sub> = <b>4.0 mM</b></span>. Check at Y = 0.1:
+          <span class="fi">4.0 × (1/9)<sup>1/2</sup> = 4.0/3 = 1.33 mM</span> ✓.</li>
+      <li><strong>(c)</strong> With n = 1 the ratio is <span class="fi">81<sup>1/1</sup> = <b>81</b></span>:
+          from 4.0/9 = 0.44 mM up to 4.0 × 9 = 36 mM. Cooperativity has compressed a 81-fold requirement into a
+          9-fold one. With n = 4 it would be <span class="fi">81<sup>1/4</sup> = 3.0</span>-fold — and this is
+          the quantitative reason cooperative enzymes exist.</li>
+      <li><strong>(d)</strong> Before: <span class="fi">Y = 4.0²/(4.0² + 4.0²) = 16/32 = <b>0.50</b></span> —
+          half-maximal, as expected at [S] = K<sub>0.5</sub>. After the activator halves K<sub>0.5</sub> to
+          2.0 mM: <span class="fi">Y = 16/(4 + 16) = 16/20 = <b>0.80</b></span>. A two-fold change in one
+          constant produced a 60 % increase in rate at unchanged substrate — allosteric amplification in a
+          single line of arithmetic.</li>
+    </ol>
+    <span class="wex__ans">n<sub>H</sub> = 2.0 · K<sub>0.5</sub> = 4.0 mM · non-cooperative span 81× · activator takes Y from 0.50 to 0.80</span>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Covalent modification and zymogens</h2>
+
+  <p class="idea"><b>The idea</b>Allostery is instantaneous and it is also instantly forgotten — the moment the signalling molecule floats
+     away, the enzyme reverts. Some jobs need memory: a hormone arrives for thirty seconds and the liver should
+     keep releasing glucose for an hour. Other jobs need the opposite of reversibility altogether — a protease
+     that digests protein must be absolutely, unconditionally off until it is somewhere it can do no harm. So
+     cells also regulate by changing the enzyme's covalent structure. Bolt a phosphate on, and it stays on until
+     a different enzyme takes it off. Cut a piece out of the protein, and there is no going back at all.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the two mechanisms</p>
+    <dl class="def">
+      <dt>Covalent modification</dt>
+      <dd>Reversible attachment of a chemical group to a specific residue, changing activity. Overwhelmingly the
+          commonest is <strong>phosphorylation</strong> of Ser, Thr or Tyr — reversible, but only because two
+          different enzymes exist to do the two directions.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">E–OH + ATP →<sup>kinase</sup> E–OPO<sub>3</sub><sup>2−</sup> + ADP · E–OPO<sub>3</sub><sup>2−</sup> + H₂O →<sup>phosphatase</sup> E–OH + P<sub>i</sub></span>
+      <span class="fx__tag">two enzymes, two reactions — the phosphatase is <em>not</em> the kinase running backwards</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Why phosphorylation is such a good switch</dt>
+          <dd>A phosphoryl group adds <strong>two negative charges</strong> where there were none, which can
+              make or break salt bridges across a whole domain; it adds three hydrogen-bond acceptors; it is
+              bulky; and ATP is abundant so the modification is always available. Roughly a third of human
+              proteins are phosphorylated at some point, by ~518 kinases, and removed by a smaller set of
+              phosphatases.</dd>
+          <dt>Zymogen（酵素原）/ proenzyme</dt>
+          <dd>An inactive precursor activated by <strong>irreversible proteolytic cleavage</strong>. Because
+              the cell cannot undo it, the switch is one-way and control has to be exerted on the activating
+              protease and on separate inhibitor proteins.</dd>
+          <dt>Amplification</dt>
+          <dd>Each enzyme in a covalent cascade activates many copies of the next, so the signal is multiplied
+              at every tier. One hormone molecule can lead to the release of ~10<sup>7</sup>–10<sup>8</sup>
+              glucose molecules. Neither allostery nor gene expression can amplify like that.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">adrenaline → GPCR → G<sub>s</sub> → adenylyl cyclase → cAMP → PKA → phosphorylase kinase → glycogen phosphorylase</span><span class="fx__tag">four enzymatic tiers, each multiplying</span></div>
+          <div class="fx"><span class="fx__eq">phosphorylase b (less active) + ATP → phosphorylase a (active) at Ser14</span><span class="fx__tag">and simultaneously glycogen synthase a → b (less active); muscle phosphorylase b is still switched on allosterically by AMP</span></div>
+          <div class="fx"><span class="fx__eq">trypsinogen →<sup>enteropeptidase</sup> trypsin →<sup>autocatalysis</sup> more trypsin</span><span class="fx__tag">one cleavage that then propagates — hence the need for inhibitor proteins</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>PKA</b><span>cAMP-dependent protein kinase</span></div>
+          <div><b>P<sub>i</sub></b><span>inorganic phosphate</span></div>
+          <div><b>a / b</b><span>conventional labels for the active / less-active form of an interconvertible enzyme</span></div>
+          <div><b>PP1</b><span>protein phosphatase 1, the counter-enzyme in glycogen control</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Two features of the glycogen cascade deserve to be understood rather than memorised. First, the
+     <strong>same</strong> kinase, PKA, phosphorylates both glycogen phosphorylase kinase and glycogen synthase
+     — and phosphorylation <em>activates</em> the first and <em>inactivates</em> the second. One signal,
+     opposite effects, no possibility of a futile cycle in which the cell simultaneously builds and breaks
+     glycogen. Second, the modification is reversible only in the sense that a second enzyme, protein
+     phosphatase 1, can remove it; the kinase reaction itself is thermodynamically one-way because it consumes
+     ATP. This is a general design: reversible <em>control</em> built from two irreversible reactions, which is
+     what allows the cell to set the position of the switch independently of any equilibrium.</p>
+
+  <h3>Zymogens: making destructive enzymes safe</h3>
+  <p>Chymotrypsinogen is synthesised, packaged and secreted as a single inactive chain. In the duodenum, trypsin
+     cleaves the Arg15–Ile16 bond, producing π-chymotrypsin, and autolysis then excises two dipeptides to give
+     α-chymotrypsin: three chains held together by disulfide bonds. What actually switches the enzyme on is
+     subtle and worth knowing — the new N-terminal Ile16 swings inward and forms a <strong>salt bridge with
+     Asp194</strong>, and it is that rearrangement which finally shapes the substrate pocket and completes the
+     oxyanion hole. The catalytic triad was correctly assembled all along; what was missing was the binding
+     site.</p>
+  <p>Trypsinogen is the master switch of the whole pancreatic set, activated by <strong>enteropeptidase</strong>
+     (enterokinase) from the duodenal mucosa, which removes a hexapeptide; trypsin then activates further
+     trypsinogen, plus chymotrypsinogen, proelastase and the procarboxypeptidases. Pepsinogen is different — it
+     autoactivates below about pH 5, so the stomach's acid is itself the trigger. And the same logic governs
+     blood coagulation (a cascade of serine-protease zymogens, amplifying at each tier), apoptosis (procaspases),
+     and connective-tissue turnover (pro-MMPs).</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Three diseases that are zymogen control failing</p>
+    <p><strong>Acute pancreatitis</strong> is premature intrapancreatic trypsinogen activation: the amplifying
+      cascade fires inside the organ that made it. The protective layers are physical (zymogen granules),
+      chemical (a low-Ca²⁺ environment) and molecular — <strong>SPINK1</strong>, a trypsin inhibitor secreted
+      alongside. Hereditary pancreatitis is usually <strong>PRSS1</strong> R122H, a mutation of cationic
+      trypsinogen that removes the site at which trypsin normally destroys itself, so activated trypsin
+      persists.</p>
+    <p><strong>α₁-antitrypsin deficiency.</strong> The serpin that restrains neutrophil elastase in the lung.
+      The PiZZ variant (Glu342Lys) polymerises inside hepatocytes, giving both a <em>loss</em> of function in
+      the lung — unopposed elastase, panacinar basal emphysema — and a <em>gain</em> of toxic function in the
+      liver, with PAS-positive globules and cirrhosis. Cigarette smoke oxidises the reactive-centre methionine
+      of even normal α₁-antitrypsin, which is why smoking and the deficiency compound each other so
+      viciously.</p>
+    <p style="margin:0"><strong>Hereditary angioedema</strong> is C1-inhibitor deficiency — the same principle
+      applied to complement and to kallikrein: with the brake gone, a protease cascade runs, bradykinin
+      accumulates, and non-pruritic non-urticarial swelling follows. Note that antihistamines do nothing, which
+      is the diagnostic clue and follows directly from the mechanism.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The regulatory hierarchy by timescale</caption>
+      <thead><tr><th>Mechanism</th><th>Timescale</th><th>Reversible?</th><th>Amplifies?</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Substrate / product concentration</strong></td><td>Instant</td><td>Yes</td><td>No</td><td>Any Michaelis–Menten enzyme operating below saturation</td></tr>
+        <tr><td><strong>Allosteric modulation</strong></td><td>Milliseconds</td><td>Yes, immediately</td><td>No</td><td>ATP and F-2,6-BP on PFK-1; CTP on ATCase</td></tr>
+        <tr><td><strong>Covalent modification</strong></td><td>Seconds to minutes</td><td>Yes — but only via a second enzyme</td><td><strong>Yes, enormously</strong></td><td>Glycogen phosphorylase; the whole PKA cascade</td></tr>
+        <tr><td><strong>Proteolytic activation</strong></td><td>Seconds, once triggered</td><td><strong>No</strong></td><td>Yes, in a cascade</td><td>Chymotrypsinogen, coagulation factors, caspases</td></tr>
+        <tr><td><strong>Protein amount</strong> (transcription, translation, degradation)</td><td>Hours to days</td><td>Yes, slowly</td><td>No</td><td>HMG-CoA reductase via SREBP; induction of CYP enzymes by drugs</td></tr>
+        <tr><td><strong>Compartmentation</strong></td><td>Structural</td><td>—</td><td>No</td><td>Fatty-acid synthesis in cytosol vs β-oxidation in mitochondria; lysosomal hydrolases</td></tr>
+        <tr><td><strong>Isozymes</strong></td><td>Developmental / tissue-specific</td><td>—</td><td>No</td><td>Hexokinase I–III vs glucokinase; LDH-1 (heart) vs LDH-5 (liver, muscle); CK-MB</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · covalent modifications that are not phosphorylation</summary>
+    <div class="disc__body">
+      <div class="table-scroll">
+        <table class="data">
+          <caption class="sr-only">Other covalent modifications of proteins</caption>
+          <thead><tr><th>Modification</th><th>Residue</th><th>Effect</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Adenylylation</td><td>Tyr</td><td>Inactivates</td><td>Bacterial glutamine synthetase — the classic cascade of covalent modification of a covalent modifier</td></tr>
+            <tr><td>ADP-ribosylation</td><td>Arg, Cys, His</td><td>Locks a switch</td><td><strong>Cholera toxin</strong> ADP-ribosylates G<sub>sα</sub> and abolishes its GTPase, so cAMP stays high; <strong>pertussis toxin</strong> ADP-ribosylates G<sub>iα</sub> so it cannot inhibit. Diphtheria toxin does the same to eEF-2 and stops translation.</td></tr>
+            <tr><td>Acetylation</td><td>Lys</td><td>Neutralises the positive charge</td><td>Histone acetylation opens chromatin; HDAC inhibitors are anticancer drugs</td></tr>
+            <tr><td>Methylation</td><td>Lys, Arg</td><td>Creates a reader-binding mark</td><td>Histone code; SAM is always the donor</td></tr>
+            <tr><td>Ubiquitination</td><td>Lys</td><td>Targets for proteasomal destruction</td><td>Cyclin degradation at the metaphase–anaphase transition</td></tr>
+            <tr><td>γ-Carboxylation</td><td>Glu → Gla</td><td>Creates a Ca²⁺-binding site</td><td>Clotting factors II, VII, IX, X — vitamin K dependent, warfarin sensitive</td></tr>
+            <tr><td>Hydroxylation</td><td>Pro, Lys</td><td>Enables cross-linking and helix stability</td><td>Collagen; requires vitamin C</td></tr>
+            <tr><td>Prenylation / myristoylation</td><td>Cys, N-terminal Gly</td><td>Anchors the protein to a membrane</td><td>Ras — and the reason farnesyltransferase was pursued as a drug target</td></tr>
+            <tr><td>Disulfide formation</td><td>Cys pairs</td><td>Stabilises; also a redox switch</td><td>Extracellular and secreted proteins; thioredoxin-regulated enzymes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-bottom:0">The pattern to extract: a covalent modification is useful precisely when the
+        cell wants the change to <em>outlast</em> the signal. Where the signal itself is persistent — a
+        metabolite concentration, say — allostery is cheaper and faster, and the cell uses that instead.</p>
+    </div>
+  </details>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 6 — how much barrier is a rate enhancement worth?</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) An enzyme accelerates its reaction 10<sup>6</sup>-fold at
+      25 °C. By how much has it lowered ΔG‡? (b) A point mutation in the oxyanion hole slows the enzyme
+      100-fold. How much catalytic power was in those two hydrogen bonds? (c) The uncatalysed reaction has
+      K′<sub>eq</sub> = 4.0 × 10³. What is K′<sub>eq</sub> for the enzyme-catalysed reaction?</p>
+    <ol>
+      <li><strong>(a)</strong> <span class="fi">ΔΔG‡ = RT ln(k<sub>cat</sub>/k<sub>uncat</sub>)</span>. Work in
+          logs base 10: <span class="fi">ΔΔG‡ = 2.303 RT × log₁₀(10⁶) = 5.71 × 6</span>.</li>
+      <li><span class="fi">= <b>34.2 kJ·mol⁻¹</b></span> (8.2 kcal·mol⁻¹). Two or three hydrogen bonds' worth —
+          which is the point of the exercise: catalysis is not magic, it is a handful of interactions applied at
+          the right instant to the right geometry.</li>
+      <li><strong>(b)</strong> A 100-fold loss is two log units:
+          <span class="fi">5.71 × 2 = <b>11.4 kJ·mol⁻¹</b></span>. That is entirely plausible for two hydrogen
+          bonds to a developing negative charge in a low-dielectric pocket, and it is why site-directed
+          mutagenesis of the oxyanion hole was such convincing evidence for the mechanism in §&nbsp;03.</li>
+      <li><strong>(c)</strong> <span class="fi">K′<sub>eq</sub> = <b>4.0 × 10³</b></span>, unchanged. The
+          enzyme accelerates both directions by the identical factor 10<sup>6</sup>, so the ratio of forward to
+          reverse rate constants — which <em>is</em> K′<sub>eq</sub> — cannot move. If part (c) tempted you even
+          slightly, re-read §&nbsp;01; this is the most frequently mis-answered conceptual item on the topic.</li>
+    </ol>
+    <span class="wex__ans">(a) 34.2 kJ·mol⁻¹ · (b) 11.4 kJ·mol⁻¹ · (c) 4.0 × 10³, unchanged</span>
+    </div>
+  </details>
+</section>
+<!-- =========================== 12 =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>Pulling an answer out of your own head, even a wrong one, fixes it far more firmly than reading the same
+     paragraph a third time. The wrong options below are not filler: each one is a mistake that people
+     genuinely make, so being caught by one is worth more to you than a lucky guess.</p>
+  <p>Six of these need real arithmetic — do it on paper rather than recognising the answer, because that is
+     what the paper will require and because the marks in this topic are calculational. The other four are the
+     conceptual traps: K<sub>m</sub> versus K<sub>d</sub>, the parallel-line signature, which interaction really
+     stabilises the tetrahedral intermediate, and the irreversible inhibitor that reads out as non-competitive.
+     Every explanation says
+     why the right answer is right <em>and</em> why the tempting wrong one is tempting.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="biochem-02-amino-acids-proteins.html"><small>Previous</small><b>← Amino Acids, Peptides and Protein Structure</b></a>
+  <a href="biochemistry.html"><small>Index</small><b>All biochemistry notes</b></a>
+  <a href="biochem-04-carbohydrate-metabolism.html"><small>Next</small><b>Carbohydrate Metabolism: Glycolysis, Gluconeogenesis, Glycogen and the PPP →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry 03 · Enzymes: kinetics, inhibition and regulation</p>
+    <p>Representation used: steady-state rate equations and their linear transforms, with every worked example
+      carried through in explicit units. Kinetic constants, turnover numbers and K<sub>m</sub> values are
+      standard textbook approximations quoted to build a sense of magnitude rather than for citation; they
+      depend on substrate, pH, ionic strength and temperature, and real values vary between sources.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "An enzyme has <span class=\"fi\">V<sub>max</sub> = 60 µmol·min⁻¹</span> and <span class=\"fi\">K<sub>m</sub> = 5.0 mM</span>. What is v₀ at <span class=\"fi\">[S] = 15 mM</span>?",
+    "options": ["48 µmol·min⁻¹", "45 µmol·min⁻¹", "30 µmol·min⁻¹", "15 µmol·min⁻¹"],
+    "answer": 1,
+    "explain": "Substitute: <span class=\"fi\">v₀ = 60 × 15/(5.0 + 15) = 900/20 = <b>45</b></span> µmol·min⁻¹, which is 75 % of V<sub>max</sub> at 3 K<sub>m</sub> — worth recognising as a checkpoint. <b>30</b> is the answer you get by assuming that any [S] above K<sub>m</sub> gives half-maximal velocity; half-maximal happens <i>at</i> K<sub>m</sub> and nowhere else. <b>15</b> comes from swapping [S] and K<sub>m</sub> in the numerator (60 × 5/20). <b>48</b> is 80 % of V<sub>max</sub>, which would require [S] = 4K<sub>m</sub> = 20 mM, not 15 mM."
+  },
+  {
+    "stem": "An enzyme has <span class=\"fi\">V<sub>max</sub> = 80 µmol·min⁻¹</span> and <span class=\"fi\">K<sub>m</sub> = 2.0 mM</span>. A <b>competitive</b> inhibitor with <span class=\"fi\">K<sub>I</sub> = 2.0 mM</span> is added at 6.0 mM. What is v₀ at <span class=\"fi\">[S] = 2.0 mM</span>?",
+    "options": ["40 µmol·min⁻¹", "20 µmol·min⁻¹", "16 µmol·min⁻¹", "10 µmol·min⁻¹"],
+    "answer": 2,
+    "explain": "<span class=\"fi\">α = 1 + [I]/K<sub>I</sub> = 1 + 6.0/2.0 = 4</span>, so <span class=\"fi\">K<sub>m</sub><sup>app</sup> = 4 × 2.0 = 8.0 mM</span> while V<sub>max</sub> is unchanged. Then <span class=\"fi\">v₀ = 80 × 2.0/(8.0 + 2.0) = <b>16</b></span> µmol·min⁻¹. <b>40</b> is the uninhibited rate — the answer if you forget to apply α. <b>10</b> is what you get by treating the inhibitor as pure non-competitive, dividing V<sub>max</sub> by 4 and leaving K<sub>m</sub> alone: (80/4) × 2/(2+2) = 10. <b>20</b> is V<sub>max</sub>/α, i.e. assuming saturation. The general lesson: a competitive inhibitor moves the denominator, never the numerator."
+  },
+  {
+    "stem": "A 1.0 mL assay contains <b>0.10 µg</b> of a pure enzyme of M<sub>r</sub> <b>25 000</b> with one active site per molecule. At saturating substrate it produces <b>3.0 µmol of product per minute</b>. What is k<sub>cat</sub>?",
+    "options": ["1.25 × 10¹ s⁻¹", "2.1 × 10² s⁻¹", "1.25 × 10⁴ s⁻¹", "7.5 × 10⁵ s⁻¹"],
+    "answer": 2,
+    "explain": "Moles of enzyme = <span class=\"fi\">0.10 × 10⁻⁶ g ÷ 2.5 × 10⁴ g·mol⁻¹ = 4.0 × 10⁻¹² mol</span> (4.0 pmol). Then <span class=\"fi\">k<sub>cat</sub> = 3.0 × 10⁻⁶ mol·min⁻¹ ÷ 4.0 × 10⁻¹² mol = 7.5 × 10⁵ min⁻¹</span>, and dividing by 60 gives <b>1.25 × 10⁴ s⁻¹</b>. <b>7.5 × 10⁵</b> is the same number left in min⁻¹ — the commonest slip, and one the units in the option should catch. <b>2.1 × 10²</b> is 12 500 divided by 60 a second time. <b>1.25 × 10¹</b> comes from reading \"25 kDa\" as 25 g·mol⁻¹, which makes the moles a thousand-fold too large. Note that the 1.0 mL volume never actually enters: it cancels between V<sub>max</sub> and [E]<sub>t</sub>."
+  },
+  {
+    "stem": "For the scheme <span class=\"fi\">E + S ⇌(k₁, k₋₁) ES →(k₂) E + P</span>, under what condition does K<sub>m</sub> equal the true dissociation constant K<sub>d</sub> of the ES complex?",
+    "options": ["Always — K<sub>m</sub> is by definition the dissociation constant of ES", "When [S] ≫ K<sub>m</sub>, so that the enzyme is saturated", "When k₂ ≫ k₋₁, so that chemistry is much faster than substrate release", "When k₂ ≪ k₋₁, so that ES is in rapid equilibrium with E and S"],
+    "answer": 3,
+    "explain": "<span class=\"fi\">K<sub>m</sub> = (k₋₁ + k₂)/k₁</span> whereas <span class=\"fi\">K<sub>d</sub> = k₋₁/k₁</span>. They coincide only when k₂ is negligible beside k₋₁ — the <b>rapid-equilibrium</b> case Michaelis and Menten originally assumed, before Briggs and Haldane generalised it to the steady state. The first option is the misconception the question exists to test: since <span class=\"fi\">K<sub>m</sub> ≥ K<sub>d</sub></span> always, calling K<sub>m</sub> \"the affinity\" is safe only under this condition. Option C has the inequality exactly backwards — a fast k₂ makes K<sub>m</sub> <i>larger</i> than K<sub>d</sub>, potentially by orders of magnitude. Option B confuses a condition on the experiment with a condition on the rate constants; saturating the enzyme does not change what K<sub>m</sub> means."
+  },
+  {
+    "stem": "An inhibitor lowers both V<sub>max</sub> and K<sub>m</sub> of an enzyme by exactly the same factor of 4, and its Lineweaver–Burk line is <b>parallel</b> to the uninhibited line. Which statement is correct?",
+    "options": ["It is competitive, and the inhibition can be fully reversed by raising [S]", "It is uncompetitive: it binds only ES, k<sub>cat</sub>/K<sub>m</sub> is unchanged, and raising [S] makes the inhibition <i>worse</i>", "It is pure non-competitive, binding E and ES with equal affinity", "The data are internally inconsistent — K<sub>m</sub> cannot fall while V<sub>max</sub> falls"],
+    "answer": 1,
+    "explain": "Parallel lines mean the slope <span class=\"fi\">αK<sub>m</sub>/V<sub>max</sub></span> is unchanged while the intercept <span class=\"fi\">α′/V<sub>max</sub></span> has risen — that is α = 1, α′ > 1, which is <b>uncompetitive</b>. Both constants divide by α′, so their ratio, and hence k<sub>cat</sub>/K<sub>m</sub>, is untouched. The clinically important consequence is in the second half of the option: the inhibitor needs ES to exist, so more substrate means more target. Option D is the trap — a falling K<sub>m</sub> alongside a falling V<sub>max</sub> feels wrong but is exactly right, because removing ES from the equilibrium pulls E and S together (Le Chatelier). Option C would give <i>unchanged</i> K<sub>m</sub> and lines meeting on the x-axis; option A would leave V<sub>max</sub> alone entirely."
+  },
+  {
+    "stem": "An enzyme acts on two substrates. For A: k<sub>cat</sub> = 100 s⁻¹, K<sub>m</sub> = 5.0 mM. For B: k<sub>cat</sub> = 20 s⁻¹, K<sub>m</sub> = 0.50 mM. Both are present at 1 µM. Which is converted faster, and by how much?",
+    "options": ["A, by 5-fold — it has the higher k<sub>cat</sub>", "A, by 2-fold", "B, by 10-fold — it has the lower K<sub>m</sub>", "B, by 2-fold"],
+    "answer": 3,
+    "explain": "At 1 µM both substrates are far below their K<sub>m</sub>, so each is converted at a rate governed by its specificity constant: <span class=\"fi\">(k<sub>cat</sub>/K<sub>m</sub>)<sub>A</sub> = 100/5.0 × 10⁻³ = 2.0 × 10⁴</span> and <span class=\"fi\">(k<sub>cat</sub>/K<sub>m</sub>)<sub>B</sub> = 20/5.0 × 10⁻⁴ = 4.0 × 10⁴ M⁻¹·s⁻¹</span>. B wins, by exactly <b>2-fold</b>. The two wrong-direction options are each half the calculation: comparing k<sub>cat</sub> alone gives \"A by 5-fold\", comparing K<sub>m</sub> alone gives \"B by 10-fold\". Neither constant on its own answers a question about low substrate concentration — that is precisely why k<sub>cat</sub>/K<sub>m</sub> is called the <i>specificity</i> constant."
+  },
+  {
+    "stem": "An Eadie–Hofstee plot (v₀ on the y-axis against v₀/[S] on the x-axis) has a y-intercept of 250 µmol·min⁻¹ and an x-intercept of 625 µmol·min⁻¹·mM⁻¹. What is K<sub>m</sub>?",
+    "options": ["0.40 mM", "2.5 mM", "250 mM", "625 mM"],
+    "answer": 0,
+    "explain": "On an Eadie–Hofstee plot the y-intercept is V<sub>max</sub> itself (not its reciprocal) and the x-intercept is V<sub>max</sub>/K<sub>m</sub>. So <span class=\"fi\">K<sub>m</sub> = V<sub>max</sub> ÷ (x-intercept) = 250/625 = <b>0.40 mM</b></span>. Equivalently, the slope is −K<sub>m</sub> = −0.40. <b>2.5 mM</b> is the same division performed upside down (625/250) — the single commonest error here. <b>250</b> and <b>625</b> are the intercepts themselves, offered because it is easy to forget that neither intercept <i>is</i> K<sub>m</sub> on this plot. Contrast Hanes–Woolf, where the x-intercept is −K<sub>m</sub> directly and no division is needed at all."
+  },
+  {
+    "stem": "A tetrameric allosteric enzyme has a Hill coefficient of 4.0. By what factor must [S] rise to take it from 10 % to 90 % of V<sub>max</sub>?",
+    "options": ["About 3-fold", "About 4-fold", "About 9-fold", "About 81-fold"],
+    "answer": 0,
+    "explain": "From the Hill equation, <span class=\"fi\">[S]<sub>90</sub>/[S]<sub>10</sub> = (9 ÷ ⅑)<sup>1/n</sup> = 81<sup>1/n</sup></span>. With n = 4 that is <span class=\"fi\">81<sup>0.25</sup> = <b>3.0</b></span>. <b>81-fold</b> is the answer for n = 1, i.e. an ordinary Michaelis–Menten enzyme — it is the baseline the question is measuring against, and quoting it means the Hill coefficient was ignored. <b>9-fold</b> corresponds to n = 2. <b>4-fold</b> is the reflex of reading n as the answer rather than as an exponent. This single calculation is the whole quantitative case for cooperativity: it converts an impossible 81-fold demand on a metabolite into a 3-fold one."
+  },
+  {
+    "stem": "In chymotrypsin, which interaction is chiefly responsible for stabilising the tetrahedral intermediate, and therefore for most of the rate enhancement?",
+    "options": ["The Asp102 carboxylate, which removes the proton from His57", "The His57 imidazolium, which donates a hydrogen bond to the oxyanion", "The backbone amide N–H groups of Gly193 and Ser195 — the oxyanion hole", "The hydrophobic S1 pocket, which grips the substrate's aromatic side chain"],
+    "answer": 2,
+    "explain": "The <b>oxyanion hole</b> is transition-state complementarity in its purest form: two backbone N–H groups point at exactly the position the negative oxygen appears in the tetrahedral intermediate, and the substrate's flat, neutral carbonyl cannot reach both. Mutating either backbone environment costs orders of magnitude in k<sub>cat</sub>. Option A is the persistent misreading of the triad — Asp102 stays ionised and <i>stabilises the imidazolium</i> that forms when His57 takes the proton from Ser195; it does not deprotonate His57 itself. Option B is the near-miss: the His57 imidazolium really does form at this point, but the proton it carries is donated to the <i>leaving-group nitrogen</i>, not to the oxyanion — the oxyanion is held by main-chain N–H groups, which is the whole reason mutating a <i>side chain</i> is not how you kill the oxyanion hole. Option D describes the specificity pocket, which decides <i>which</i> bond is cut but contributes little to how fast the chemistry goes — trypsin and elastase have the same catalytic machinery and different pockets, which is the experiment that separates the two."
+  },
+  {
+    "stem": "Aspirin acetylates Ser530 of cyclo-oxygenase-1. Enzyme is pre-incubated with aspirin, free drug is then washed away, and kinetics are measured over a range of substrate concentrations. What is seen, and how would you prove the mechanism?",
+    "options": ["K<sub>m</sub> increases with V<sub>max</sub> unchanged — competitive; confirm by showing full activity is restored at high [S]", "V<sub>max</sub> falls with K<sub>m</sub> unchanged — the <i>pattern</i> of pure non-competitive inhibition; confirm it is irreversible by showing activity does not return on dialysis and that inhibition deepens with longer pre-incubation", "Both K<sub>m</sub> and V<sub>max</sub> fall — uncompetitive; confirm by showing inhibition worsens as [S] rises", "No inhibition at all, since the free drug was removed before the assay began"],
+    "answer": 1,
+    "explain": "A covalent inhibitor deletes enzyme molecules from the population. The survivors are perfectly normal, so K<sub>m</sub> is unchanged; there are simply fewer of them, so V<sub>max</sub> falls — kinetically indistinguishable from pure non-competitive inhibition, which is exactly why the question asks how you would <i>prove</i> it. Two experiments a steady-state plot cannot do: removal by <b>dialysis or dilution</b> (a reversible inhibitor lets activity return, a covalent one does not) and <b>time-dependence of pre-incubation</b> (covalent inactivation accumulates; reversible inhibition equilibrates instantly). Option D is the trap for anyone who thinks washing removes the effect — it removes only the unbound drug, and it is precisely why aspirin's antiplatelet action lasts the 7–10 day life of the platelet, which cannot resynthesise COX."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

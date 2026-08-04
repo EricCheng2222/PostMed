@@ -15,7 +15,13 @@ Subjects are split onto their own shelves. The home page is a subject directory.
 | Subject | Shelf | Notes | Questions |
 |---------|-------|-------|-----------|
 | Physics | [pages/physics.html](pages/physics.html) | 15 · complete | 150 |
-| Biochemistry | [pages/biochemistry.html](pages/biochemistry.html) | 2 · in progress | 20 |
+| Biochemistry | [pages/biochemistry.html](pages/biochemistry.html) | 10 · complete | 100 |
+| Biology | [pages/biology.html](pages/biology.html) | 3 of 14 | 30 |
+
+The biochemistry and biology shelves target 高雄醫學大學's 「普通生物及生化概論」 paper — 90 questions,
+150 of 400 written marks, split exactly 45 biology / 45 biochemistry. Topic weightings on each shelf
+are derived by tagging the official 109–115 past papers, not from a syllabus: KMU publishes no
+命題範圍. All self-test questions are original; no past exam question is reproduced.
 
 ### Physics — a full freshman course in fifteen notes
 
@@ -41,16 +47,38 @@ Physics is written with the medical candidate in mind: Poiseuille's law and vasc
 Laplace's law and pulmonary surfactant, the corrective-lens calculation for myopia and hyperopia,
 half-life and technetium-99m.
 
-### Biochemistry
+### Biochemistry — ten notes, weighted by the papers
 
-| # | Note | Primary representation |
-|---|------|------------------------|
-| 01 | [Bonds, functional groups & the hydrophobic effect](pages/biochem-01-bonds-lipids.html) | Interactive energy ruler · polarity spectrum · thermodynamic decomposition bars |
-| 05 | [Nucleic acids: DNA, RNA and the central dogma](pages/biochem-05-nucleic-acids.html) | Interactive genetic code table · sequence walkthroughs · central dogma map |
+| # | Note | Share of the biochem half |
+|---|------|---------------------------|
+| 01 | [Bonds, functional groups & the hydrophobic effect](pages/biochem-01-bonds-lipids.html) | foundations |
+| 02 | [Amino acids, peptides and protein structure](pages/biochem-02-amino-acids-proteins.html) | 12.7 % |
+| 03 | [Enzymes: kinetics, inhibition and regulation](pages/biochem-03-enzymes.html) | 7.0 % |
+| 04 | [Carbohydrate metabolism](pages/biochem-04-carbohydrate-metabolism.html) | 7.9 % |
+| 05 | [Nucleic acids: DNA, RNA and the central dogma](pages/biochem-05-nucleic-acids.html) | 21.9 %, shrinking |
+| 06 | [Bioenergetics, the TCA cycle and oxidative phosphorylation](pages/biochem-06-bioenergetics-oxphos.html) | 10.5 % |
+| 07 | [Lipid metabolism, cholesterol and lipoproteins](pages/biochem-07-lipid-metabolism.html) | **12.7 % — heaviest** |
+| 08 | [Nitrogen metabolism: amino acids, urea cycle, nucleotides](pages/biochem-08-nitrogen-metabolism.html) | 9.2 % |
+| 09 | [Membranes, receptors and signal transduction](pages/biochem-09-membranes-signalling.html) | 8.3 %, spiking |
+| 10 | [Vitamins, cofactors and metabolic integration](pages/biochem-10-vitamins-integration.html) | 7.6 % |
 
-Planned (02–04): amino acids & protein structure (decision tree), enzyme kinetics (parameter
-simulator), glycolysis/TCA (pathway map) — plus chemistry, physiology and the informatics-track
-subjects.
+Two findings from the past-paper analysis shape this ordering: the **TCA cycle is light** (~3 %
+standalone — most plans over-study it), and **lipids are the heaviest single topic**, averaging almost
+six questions a paper and trending up. KMU cites Lehninger 8th ed when defending disputed answers, so
+the notes are pitched at that depth.
+
+### Biology — three of fourteen written
+
+| # | Note | Share of the biology half |
+|---|------|---------------------------|
+| 07 | [Prokaryotes, viruses, protists and fungi](pages/biology-07-microbes.html) | 8.0 % — exactly 4 questions every year |
+| 08 | [Plant structure, transport and nutrition](pages/biology-08-plant-structure.html) | ≈7.5 % |
+| 09 | [Photosynthesis, plant reproduction and plant responses](pages/biology-09-plant-function.html) | ≈7.5 % |
+
+Remaining (01–06, 10–14): cells and transport, the cell cycle, classical genetics, molecular genetics,
+evolution, biodiversity, animal physiology I and II, immunology, development, ecology. The biology half
+is **not** molecular-dominated — plants and animal physiology carry 15 % each, and skipping plants,
+diversity and ecology costs roughly 40 % of the block.
 
 ## Running it locally
 

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Biochemistry — PostMed Notebook</title>
-<meta name="description" content="The biochemistry shelf of the PostMed Notebook: bonding and the hydrophobic effect, with amino acids, enzyme kinetics and metabolism to follow. Every note ends with a self-test.">
+<meta name="description" content="Biochemistry for the KMU post-baccalaureate medicine entrance exam: ten notes weighted by what the paper actually asks, from bonding and proteins through the four metabolic blocks to signalling and integration. Every note ends with a self-test.">
 <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
@@ -15,7 +15,8 @@
     <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
     <nav>
       <a href="../index.html">Subjects</a>
-      <a href="physics.html">Physics</a>
+      <a href="#paper">The paper</a>
+      <a href="biology.html">Biology</a>
       <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
     </nav>
   </div>
@@ -26,90 +27,115 @@
   <div class="article-head">
     <p class="eyebrow">Subject shelf</p>
     <h1>Biochemistry</h1>
-    <p class="lede" style="max-width:45rem">
-      Biochemistry rewards anyone who fixes the <strong>energy scale</strong> first. Once you know what a
-      bond is worth in kJ/mol and how much thermal energy is available at 37 °C, protein folding, membrane
-      self-assembly and denaturation stop being lists to memorise and become consequences you can derive.
+    <p class="lede" style="max-width:46rem">
+      Half of the 高醫 後醫 science paper is biochemistry — <strong>45 questions, 75 marks</strong>,
+      sat in English alongside the general-biology half. KMU cites <strong>Lehninger</strong> when it
+      defends a disputed answer, so this is a real biochemistry standard, not a survey 概論. And the
+      weighting is not what most study plans assume: metabolism is about 40% of it, and
+      <strong>lipids alone outweigh every other single topic</strong>.
     </p>
     <div class="article-meta">
-      <span class="tag tag--accent">2 notes published</span>
-      <span class="tag">3 planned</span>
-      <span class="tag">20 self-test questions</span>
+      <span class="tag tag--accent">10 notes</span>
+      <span class="tag">Weighted by 7 years of past papers</span>
+      <span class="tag">100 self-test questions</span>
       <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
     </div>
   </div>
 
-  <section id="notes">
-    <div class="subject-head">
-      <h2>Notes</h2>
-      <span>in reading order</span>
+  <!-- ===================== What the paper asks ===================== -->
+  <section class="section" id="paper">
+    <h2>What the paper actually asks</h2>
+
+    <p class="idea"><b>The idea</b>Before you read a single note, know where the marks are. Almost
+      everyone revising this paper over-studies the citric acid cycle and under-studies lipids — and
+      the past papers say that is exactly backwards. The TCA cycle is worth about one question a
+      year on its own; lipid metabolism is worth nearly six, and rising.</p>
+
+    <div class="grid grid--3">
+      <div class="card">
+        <h4>The format</h4>
+        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">One paper,
+          「普通生物及生化概論」, 150 of 400 written marks. 90 single-choice questions with five
+          options, 100 minutes, <strong>entirely in English</strong>. Q16–30 and Q61–90 are the
+          biochemistry half. About 66 seconds per question.</p>
+      </div>
+      <div class="card">
+        <h4>The marking</h4>
+        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Wrong answers are penalised:
+          −0.25 in Part I, −0.5 in Part II, floored at zero per section. With five options a blind
+          guess is exactly break-even — so once you eliminate one option, answering beats leaving it
+          blank. Never abandon a question you have already thought about.</p>
+      </div>
+      <div class="card">
+        <h4>The source</h4>
+        <p style="font-size:.92rem;color:var(--ink-soft);margin:0">KMU's official answer-dispute
+          documents cite <strong>Lehninger Principles of Biochemistry, 8th ed</strong> repeatedly,
+          down to specific figures. Figure-level detail is fair game, and these notes are pitched at
+          that depth.</p>
+      </div>
     </div>
 
+    <div class="callout callout--exam" style="margin-top:1.5rem">
+      <p class="callout__title">Where the 45 questions actually go</p>
+      <div class="table-scroll" style="margin:.6rem 0 0">
+        <table class="data">
+          <caption class="sr-only">Measured topic weighting of the biochemistry half</caption>
+          <thead><tr><th>Block</th><th>Share</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td><b>Lipid metabolism</b> — the heaviest single topic, and rising</td><td class="num">12.7 %</td><td>07</td></tr>
+            <tr><td>Amino acids, protein structure &amp; protein methods</td><td class="num">12.7 %</td><td>02</td></tr>
+            <tr><td>Oxidative phosphorylation, bioenergetics + TCA</td><td class="num">10.5 %</td><td>06</td></tr>
+            <tr><td>Amino-acid + nucleotide metabolism</td><td class="num">9.2 %</td><td>08</td></tr>
+            <tr><td>Membranes &amp; signal transduction — <em>spiking</em></td><td class="num">8.3 %</td><td>09</td></tr>
+            <tr><td>Carbohydrate metabolism</td><td class="num">7.9 %</td><td>04</td></tr>
+            <tr><td>Vitamins, cofactors &amp; clinical integration</td><td class="num">7.6 %</td><td>10</td></tr>
+            <tr><td>Enzyme kinetics, inhibition &amp; regulation</td><td class="num">7.0 %</td><td>03</td></tr>
+            <tr><td>Molecular biology — <em>shrinking</em></td><td class="num">21.9 %</td><td>05</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:.7rem 0 0;font-size:.9rem">Measured over 315 biochemistry questions across the
+        109–115 papers. KMU publishes no official 命題範圍, so this is a derived count — but it comes
+        from the real papers, not from an imagined syllabus.</p>
+    </div>
+
+    <div class="grid grid--2" style="margin-top:1.25rem">
+      <div class="callout callout--warn" style="margin:0">
+        <p class="callout__title">Two traps in how people revise this</p>
+        <p style="margin:0"><b>The TCA cycle is light.</b> About 3% standalone — roughly one question
+          a year. It matters, but mostly embedded in oxidative phosphorylation, anaplerosis and
+          carbon-labelling questions. <b>Lipids are heavy.</b> 12.7%, averaging almost six questions
+          a paper and trending up — and they are the block most study plans shortchange.</p>
+      </div>
+      <div class="callout" style="margin:0">
+        <p class="callout__title">Where the paper is moving</p>
+        <p style="margin:0">The 115 paper pivoted hard: <b>signalling and clinical pharmacology took
+          14 of the 45 biochemistry questions</b>, against 0–3 in every earlier year — GPCRs, RTKs,
+          Ras, NO→cGMP, statins, tamoxifen, GLP-1 agonists. Meanwhile molecular biology shrank to
+          six, with no replication or repair question at all. Notes 09 and 10 target that shift.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Foundations ============ -->
+  <section id="foundations">
+    <div class="subject-head">
+      <h2>Foundations</h2>
+      <span>note 01</span>
+    </div>
     <div class="stack">
       <a class="entry" href="biochem-01-bonds-lipids.html">
         <div class="entry__no">01<small>BIOCHEM</small></div>
         <div>
           <h3>Bonds, functional groups &amp; the hydrophobic effect</h3>
-          <p>
-            Built on one ruler — how many kJ/mol is a bond worth. Covalent bonds versus the four noncovalent
-            interactions; the functional groups of biochemistry ranked from hydrophilic to hydrophobic, with the
-            condensation reactions each one can undergo; water and its hydrogen-bond network; the entropy-driven
-            hydrophobic effect; amphipathic self-assembly into micelles, bilayers and liposomes; the lipid map;
-            and how saturation sets melting point and then membrane fluidity.
-          </p>
+          <p>Built on one ruler — how many kJ/mol a bond is worth. Covalent bonds versus the four
+            noncovalent interactions; the functional groups ranked from hydrophilic to hydrophobic
+            with the condensation reactions each can undergo; water and its hydrogen-bond network;
+            the entropy-driven hydrophobic effect; amphipathic self-assembly; the lipid map; and how
+            saturation sets melting point and then membrane fluidity.</p>
           <div class="entry__tags">
-            <span class="tag tag--accent">Interactive energy ruler</span>
-            <span class="tag">Polarity spectrum</span>
-            <span class="tag">Thermodynamic decomposition</span>
-            <span class="tag">10 questions</span>
-          </div>
-        </div>
-      </a>
-
-      <div class="entry entry--soon">
-        <div class="entry__no">02<small>BIOCHEM</small></div>
-        <div>
-          <h3>Amino acids and protein structure</h3>
-          <p>Grouping the 20 side chains by property, pI and titration curves, the geometry behind secondary structure, folding and denaturation.</p>
-          <div class="entry__tags"><span class="tag">Classification decision tree + flip cards</span><span class="tag">Planned</span></div>
-        </div>
-      </div>
-
-      <div class="entry entry--soon">
-        <div class="entry__no">03<small>BIOCHEM</small></div>
-        <div>
-          <h3>Enzyme kinetics and inhibition</h3>
-          <p>Michaelis–Menten, Lineweaver–Burk, and what each of the four inhibition types does to K<sub>m</sub> and V<sub>max</sub>.</p>
-          <div class="entry__tags"><span class="tag">Adjustable-parameter curve simulator</span><span class="tag">Planned</span></div>
-        </div>
-      </div>
-
-      <div class="entry entry--soon">
-        <div class="entry__no">04<small>BIOCHEM</small></div>
-        <div>
-          <h3>Glycolysis, the TCA cycle and oxidative phosphorylation</h3>
-          <p>The energy ledger, the regulated steps, the shuttle systems and the ATP arithmetic.</p>
-          <div class="entry__tags"><span class="tag">Metabolic pathway map</span><span class="tag">Planned</span></div>
-        </div>
-      </div>
-
-      <a class="entry" href="biochem-05-nucleic-acids.html">
-        <div class="entry__no">05<small>BIOCHEM</small></div>
-        <div>
-          <h3>Nucleic acids: DNA, RNA and the central dogma</h3>
-          <p>
-            From one nucleotide to the whole information system. The base–sugar–phosphate unit and the
-            polarity it forces on every chain; base pairing, the double helix, and why stacking — not the
-            hydrogen bonds — is what actually holds it together; DNA topology, the topoisomerases and the
-            drugs that hit them; chromatin packaging; the RNA cast and what the 2′-OH costs it;
-            replication, transcription and translation; the genetic code as a table you can interrogate;
-            mutation and the repair pathways behind xeroderma pigmentosum and Lynch syndrome; and the
-            laboratory methods that read all of it.
-          </p>
-          <div class="entry__tags">
-            <span class="tag tag--accent">Interactive genetic code table</span>
-            <span class="tag">Sequence walkthroughs</span>
-            <span class="tag">Central dogma map</span>
+            <span class="tag tag--accent">Underpins everything</span>
+            <span class="tag">Interactive energy ruler</span>
             <span class="tag">10 questions</span>
           </div>
         </div>
@@ -117,8 +143,204 @@
     </div>
   </section>
 
+  <!-- ============ Proteins ============ -->
+  <section id="proteins">
+    <div class="subject-head">
+      <h2>Proteins and enzymes</h2>
+      <span>notes 02–03 · 19.7 %</span>
+    </div>
+    <div class="stack">
+
+      <a class="entry" href="biochem-02-amino-acids-proteins.html">
+        <div class="entry__no">02<small>BIOCHEM</small></div>
+        <div>
+          <h3>Amino acids, peptides and protein structure</h3>
+          <p>Examined as physical chemistry, not as a list to memorise: side-chain pK<sub>a</sub>
+            ranking, net charge at a stated pH and pI reasoning, φ/ψ angles and Ramachandran logic,
+            α-helix geometry and why proline and glycine break it, the collagen repeat, folding and
+            misfolding — then the purification and analysis methods and what each separates on.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">12.7 % of the paper</span>
+            <span class="tag">Titration &amp; pI calculations</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="biochem-03-enzymes.html">
+        <div class="entry__no">03<small>BIOCHEM</small></div>
+        <div>
+          <h3>Enzymes: kinetics, inhibition and regulation</h3>
+          <p>A small, perfectly predictable block that includes real calculation — worth full marks
+            for modest effort. Michaelis–Menten derived from the steady-state assumption; identifying
+            inhibition type from what happens to K<sub>m</sub> and V<sub>max</sub>; Lineweaver–Burk,
+            Eadie–Hofstee and Hanes–Woolf; k<sub>cat</sub>/K<sub>m</sub> as the specificity constant;
+            allostery, covalent modification and zymogens.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">7.0 % of the paper</span>
+            <span class="tag">Kinetic plots</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ Metabolism ============ -->
+  <section id="metabolism">
+    <div class="subject-head">
+      <h2>Metabolism</h2>
+      <span>notes 04, 06, 07, 08 · ≈40 % — the largest block on the paper</span>
+    </div>
+    <div class="stack">
+
+      <a class="entry" href="biochem-04-carbohydrate-metabolism.html">
+        <div class="entry__no">04<small>BIOCHEM</small></div>
+        <div>
+          <h3>Carbohydrate metabolism: glycolysis, gluconeogenesis, glycogen and the PPP</h3>
+          <p>Glycolysis with its three irreversible regulated steps and an honest ATP ledger; the
+            fates of pyruvate; the Cori cycle; fructose and galactose entry and their inborn errors;
+            gluconeogenesis and why it is not reversed glycolysis; reciprocal control through
+            fructose-2,6-bisphosphate; glycogen and the phosphorylase cascade; the pentose phosphate
+            pathway, NADPH, and why G6PD deficiency causes haemolysis.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">7.9 % of the paper</span>
+            <span class="tag">Carbon-labelling bookkeeping</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="biochem-06-bioenergetics-oxphos.html">
+        <div class="entry__no">06<small>BIOCHEM</small></div>
+        <div>
+          <h3>Bioenergetics, the TCA cycle and oxidative phosphorylation</h3>
+          <p>The counter-intuitive one: oxidative phosphorylation outweighs the TCA cycle more than
+            two to one, and is tested mechanistically. Free energy and coupled reactions; redox
+            potentials and ΔG from ΔE°; the PDH complex; the cycle and its anaplerotic role; the
+            chain complex by complex with every inhibitor and uncoupler; the proton-motive force;
+            rotational catalysis; the shuttles, and the honest ATP count.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">10.5 % of the paper</span>
+            <span class="tag">Inhibitor mapping</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="biochem-07-lipid-metabolism.html">
+        <div class="entry__no">07<small>BIOCHEM</small></div>
+        <div>
+          <h3>Lipid metabolism, cholesterol and lipoproteins</h3>
+          <p><strong>The heaviest single topic on the paper, and the one most study plans
+            shortchange.</strong> The carnitine shuttle; β-oxidation with the ATP arithmetic taught as
+            a method rather than a memorised number; odd-chain fatty acids through methylmalonyl-CoA
+            mutase; acetyl-CoA carboxylase as the committed step; how synthesis differs from
+            breakdown in every respect; ketone bodies; cholesterol, HMG-CoA reductase and statins;
+            the lipoproteins; eicosanoids and NSAIDs; the sphingolipid storage diseases.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">12.7 % — heaviest topic</span>
+            <span class="tag">ATP yield as a method</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="biochem-08-nitrogen-metabolism.html">
+        <div class="entry__no">08<small>BIOCHEM</small></div>
+        <div>
+          <h3>Nitrogen metabolism: amino acids, the urea cycle and nucleotides</h3>
+          <p>Ammonia toxicity as the problem the whole chapter solves. Transamination and PLP, and
+            why ALT and AST are clinical markers; the glucose–alanine cycle; the urea cycle with its
+            compartmentation, energy cost and inherited defects; glucogenic versus ketogenic carbon
+            skeletons; the classic inborn errors; one-carbon metabolism, folate, SAM and the folate
+            trap; purine and pyrimidine synthesis and salvage, the drugs that block them, and gout.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">9.2 % of the paper</span>
+            <span class="tag">Pathway maps</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ Information ============ -->
+  <section id="information">
+    <div class="subject-head">
+      <h2>Molecular biology</h2>
+      <span>note 05 · 21.9 %, but shrinking</span>
+    </div>
+    <div class="stack">
+      <a class="entry" href="biochem-05-nucleic-acids.html">
+        <div class="entry__no">05<small>BIOCHEM</small></div>
+        <div>
+          <h3>Nucleic acids: DNA, RNA and the central dogma</h3>
+          <p>From one nucleotide to the whole information system. Base pairing and why stacking —
+            not the hydrogen bonds — is what holds the duplex together; DNA topology, the
+            topoisomerases and the drugs that hit them; chromatin; the RNA cast and what the 2′-OH
+            costs it; replication, transcription and translation; the genetic code as a table you can
+            interrogate; mutation and repair; and the laboratory methods that read all of it.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">Interactive genetic code table</span>
+            <span class="tag">21.9 %, trending down</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ Signalling & integration ============ -->
+  <section id="integration">
+    <div class="subject-head">
+      <h2>Signalling and integration</h2>
+      <span>notes 09–10 · 15.9 % — the growth area</span>
+    </div>
+    <div class="stack">
+
+      <a class="entry" href="biochem-09-membranes-signalling.html">
+        <div class="entry__no">09<small>BIOCHEM</small></div>
+        <div>
+          <h3>Membranes, receptors and signal transduction</h3>
+          <p>The block that jumped from two questions to seven in a single year. Membrane transport
+            from diffusion to the Na⁺/K⁺-ATPase; then signalling properly — GPCRs with
+            G<sub>s</sub>, G<sub>i</sub> and G<sub>q</sub>; cAMP and PKA; PLC, IP₃, DAG and calcium;
+            receptor tyrosine kinases, insulin and the Ras–MAPK cascade; NO→cGMP and why nitrates and
+            sildenafil work; nuclear receptors; and how signals are switched off.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">8.3 % and spiking</span>
+            <span class="tag">Cascade maps</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="entry" href="biochem-10-vitamins-integration.html">
+        <div class="entry__no">10<small>BIOCHEM</small></div>
+        <div>
+          <h3>Vitamins, cofactors and metabolic integration</h3>
+          <p>The integrator. Every water-soluble vitamin mapped to the coenzyme it becomes, the
+            reaction that coenzyme enables and the deficiency that follows; the fat-soluble four and
+            why they accumulate; then the fed, post-absorptive, fasting and starved states organ by
+            organ; insulin and glucagon as the master switches; the metabolic picture in diabetes;
+            and the pharmacology the recent papers reach for.</p>
+          <div class="entry__tags">
+            <span class="tag tag--accent">7.6 % of the paper</span>
+            <span class="tag">Fuel-flow diagrams</span>
+            <span class="tag">10 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
   <nav class="pager">
     <a href="../index.html"><small>Back</small><b>← All subjects</b></a>
+    <a href="biology.html"><small>The other half</small><b>Biology →</b></a>
     <a href="physics.html"><small>Other shelf</small><b>Physics · 15 notes →</b></a>
   </nav>
 
@@ -126,8 +348,10 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p><strong>PostMed Notebook</strong> · Biochemistry</p>
-    <p>Fully static site. No external dependencies, no tracking. Numerical values are standard textbook approximations, used to build a sense of magnitude rather than for precise citation.</p>
+    <p><strong>PostMed Notebook</strong> · Biochemistry · the 45-question biochemistry half of 「普通生物及生化概論」</p>
+    <p>Fully static site. No external dependencies, no tracking. Topic weightings are derived from the
+       official past papers, not from an official syllabus — KMU publishes no 命題範圍. All self-test
+       questions are original; no past exam question is reproduced.</p>
   </div>
 </footer>
 

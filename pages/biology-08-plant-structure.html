@@ -1,0 +1,2235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biology 08 · Plant Structure, Transport and Nutrition — PostMed Notebook</title>
+<meta name="description" content="Biology note 08: the three tissue systems and their meristems, root, stem and leaf anatomy, water potential, cohesion–tension, stomatal control, pressure flow in the phloem, mineral nutrition and nitrogen fixation.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-subject="biology">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biology.html">Biology</a>
+      <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biology · Note 08</p>
+  <h1>Plant Structure, Transport and Nutrition</h1>
+  <p class="lede">
+    A plant is an organism with no heart, no muscles and no nerves that nevertheless moves hundreds of litres of
+    water from the soil to the sky and hundreds of grams of sugar from leaf to root. It does both without spending
+    ATP on the movement itself. Almost every question on this half of the plant block is, underneath, a question
+    about <strong>one number</strong> — the water potential Ψ — and about the <strong>two pipes</strong> that Ψ
+    drives flow through: a dead one under tension, and a living one under pressure. Get the sign conventions of Ψ
+    secure and the tall tree, the wilting leaf, the closing stoma, the girdled trunk and the loaded sieve tube all
+    become the same problem asked five ways.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Water-potential arithmetic in MPa</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~55 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">The three tissue systems</a></li>
+      <li><a href="#s2">Meristems, primary and secondary growth</a></li>
+      <li><a href="#s3">Root, stem, leaf — and the monocot split</a></li>
+      <li><a href="#s4">Water potential Ψ</a></li>
+      <li><a href="#s5">Soil to stele: the endodermal checkpoint</a></li>
+      <li><a href="#s6">Cohesion–tension and the tall tree</a></li>
+      <li><a href="#s7">Stomata: the guard cell as an osmotic machine</a></li>
+      <li><a href="#s8">Transpiration and the trade it cannot avoid</a></li>
+      <li><a href="#s9">Phloem: pressure flow, source to sink</a></li>
+      <li><a href="#s10">Mineral nutrition and deficiency</a></li>
+      <li><a href="#s11">Soil, nitrogen fixation and mycorrhizae</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§04</b> before anything else, even before the anatomy. Water potential is
+        the single organising quantity of this note; <b>§05</b>, <b>§06</b>, <b>§07</b> and <b>§09</b> are all the
+        same equation applied to four different places. Then <b>§01</b> and <b>§03</b> for the vocabulary you need
+        to read a question at all — which cell type, which tissue, which organ. Anatomy without Ψ is a list;
+        Ψ without anatomy has nowhere to happen.</li>
+      <li><b>Then be able to do</b> — <b>§04</b>: given Ψ<sub>s</sub> and Ψ<sub>p</sub> for a cell and for the
+        solution around it, say which way water moves and where it stops. <b>§06</b>: state <em>where</em> the
+        tension is generated and why root pressure and capillarity cannot be the answer. <b>§07</b>: put the guard
+        cell steps in the right order, starting from the proton pump and not from potassium. <b>§09</b>: read off
+        what a girdling experiment does and does not prove. <b>§10</b>: diagnose a chlorosis from two facts —
+        interveinal or uniform, old leaves or young.</li>
+      <li><b>Leave for a second pass</b> — the modified-organ table in <b>§03</b> and the full seventeen-element
+        table in <b>§10</b> are lookup material; read the 2 × 2 chlorosis rule instead and come back for the rest.
+        The whole of <b>§11</b> beyond nitrogenase and mycorrhizal type is second-pass, and every line folded
+        behind a "Go deeper" heading is genuinely optional on a first read. Do not defer <b>§08</b>, though —
+        it looks like ecology and is examined as physiology.</li>
+    </ol>
+  </div>
+
+  <section class="fsheet card">
+    <details class="disc disc--sheet">
+      <summary>Quick sheet<span class="disc__count">30 entries</span></summary>
+      <div class="disc__body">
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Water potential</b><code>Ψ = Ψ<sub>s</sub> + Ψ<sub>p</sub></code></div>
+      <div class="fsheet__item"><b>Solute potential</b><code>Ψ<sub>s</sub> = −iCRT</code></div>
+      <div class="fsheet__item"><b>R for Ψ</b><code>0.00831 L·MPa·mol⁻¹·K⁻¹</code></div>
+      <div class="fsheet__item"><b>Reference state</b><code>pure water, open beaker → Ψ = 0</code></div>
+      <div class="fsheet__item"><b>Direction of flow</b><code>high Ψ → low Ψ, always</code></div>
+      <div class="fsheet__item"><b>0.1 M sucrose, 20 °C</b><code>Ψ<sub>s</sub> = −0.24 MPa</code></div>
+      <div class="fsheet__item"><b>Gravity term</b><code>+0.01 MPa per metre of height</code></div>
+      <div class="fsheet__item"><b>Suction limit</b><code>0.1013 MPa / ρg = 10.3 m</code></div>
+      <div class="fsheet__item"><b>Ψ of air</b><code>(RT/V̄<sub>w</sub>) ln(RH) · 137.6 MPa × ln(RH)</code></div>
+      <div class="fsheet__item"><b>Air at 50 % RH</b><code>Ψ ≈ −95 MPa</code></div>
+      <div class="fsheet__item"><b>Typical span</b><code>soil −0.05 → leaf −1.0 MPa</code></div>
+      <div class="fsheet__item"><b>Wilting point</b><code>soil Ψ ≈ −1.5 MPa</code></div>
+      <div class="fsheet__item"><b>Sap speed</b><code>xylem ≤15 m/h · phloem ≈1 m/h</code></div>
+      <div class="fsheet__item"><b>Tissue systems</b><code>dermal · vascular · ground</code></div>
+      <div class="fsheet__item"><b>Primary meristems</b><code>protoderm · procambium · ground meristem</code></div>
+      <div class="fsheet__item"><b>Lateral meristems</b><code>vascular cambium · cork cambium</code></div>
+      <div class="fsheet__item"><b>Wood / bark</b><code>2° xylem / everything outside the cambium</code></div>
+      <div class="fsheet__item"><b>Casparian strip</b><code>suberin · endodermis · radial + transverse walls</code></div>
+      <div class="fsheet__item"><b>Stomatal opening</b><code>blue light → H⁺-ATPase → K⁺ in → H₂O in</code></div>
+      <div class="fsheet__item"><b>Stomatal closing</b><code>ABA → anion efflux → K⁺ out</code></div>
+      <div class="fsheet__item"><b>Stomatal area</b><code>1–2 % of leaf · &gt;90 % of water loss</code></div>
+      <div class="fsheet__item"><b>Water cost</b><code>E/A = 1.6 × Δw / Δc</code></div>
+      <div class="fsheet__item"><b>C3 at 50 % RH</b><code>≈180 mol H₂O per mol CO₂</code></div>
+      <div class="fsheet__item"><b>Fate of uptake</b><code>≈97 % transpired · ≈2 % retained</code></div>
+      <div class="fsheet__item"><b>Phloem loading</b><code>sucrose–H⁺ symport, 2° active</code></div>
+      <div class="fsheet__item"><b>Pressure flow</b><code>ΔΨ<sub>p</sub> ≈ 0.6–0.8 MPa, source → sink</code></div>
+      <div class="fsheet__item"><b>Essential elements</b><code>17 = 9 macro + 8 micro</code></div>
+      <div class="fsheet__item"><b>Macronutrients</b><code>CHNOPS + K, Ca, Mg</code></div>
+      <div class="fsheet__item"><b>Nitrogenase</b><code>N₂ + 8H⁺ + 8e⁻ + 16 ATP → 2NH₃ + H₂</code></div>
+      <div class="fsheet__item"><b>Mobility rule</b><code>mobile → old leaves · immobile → young</code></div>
+    </div>
+      </div>
+    </details>
+  </section>
+</div>
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>The three tissue systems</h2>
+
+  <p class="idea"><b>The idea</b>A plant is not built organ by organ out of separate materials. Three continuous
+     layers run through the whole body without a break: a skin on the outside, a set of pipes threading through the
+     middle, and packing material filling everything in between. A root, a stem and a leaf are not three different
+     constructions — they are three different arrangements of exactly the same three layers. Once you can name
+     which layer a cell belongs to, most anatomy questions collapse into one question: where does that layer sit in
+     <em>this</em> organ?</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; organisation</p>
+    <dl class="def">
+      <dt>Tissue system</dt>
+      <dd>A tissue, or a set of tissues, that is <strong>continuous throughout the plant body</strong> — through
+          root, stem and leaf alike. There are exactly three, and every cell in a plant belongs to one of them.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">plant body = dermal ⊕ vascular ⊕ ground</span>
+      <span class="fx__tag">covering · plumbing · everything else — continuous through every organ</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Dermal tissue system</dt>
+          <dd>The outer covering. In a primary body this is the <strong>epidermis</strong>, a single layer coated
+              on its outer wall with a <strong>cuticle</strong> of cutin polyester and waxes. Where secondary
+              growth occurs the epidermis is replaced by <strong>periderm</strong>.</dd>
+          <dt>Vascular tissue system</dt>
+          <dd><strong>Xylem</strong> conducts water and dissolved minerals upward from the root; <strong>phloem</strong>
+              conducts sugars and other organic solutes from source to sink in whichever direction that requires.
+              Both also contain supporting and living parenchyma cells.</dd>
+          <dt>Ground tissue system</dt>
+          <dd>Everything that is neither dermal nor vascular: <strong>pith</strong> internal to the vascular
+              tissue, <strong>cortex</strong> external to it. Built from parenchyma, collenchyma and sclerenchyma,
+              and responsible for photosynthesis, storage and support.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">tracheids + vessel elements → dead at maturity, lignified</span><span class="fx__tag">the water pipes are corpses; only their walls matter</span></div>
+          <div class="fx"><span class="fx__eq">sieve-tube element → alive, no nucleus · companion cell → alive, with nucleus</span><span class="fx__tag">the sugar pipe is alive but outsources its housekeeping</span></div>
+          <div class="fx"><span class="fx__eq">parenchyma 1° wall · collenchyma thickened 1° wall · sclerenchyma lignified 2° wall</span><span class="fx__tag">the three ground-tissue cells, in order of wall investment</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>1° wall</b><span>primary cell wall, cellulose + pectin, laid down while the cell still expands; thickness ~0.1–1 µm</span></div>
+          <div><b>2° wall</b><span>secondary wall, deposited inside the primary wall after expansion stops, usually lignified; ~1–10 µm</span></div>
+          <div><b>lignin</b><span>cross-linked phenylpropanoid polymer; compressive strength and waterproofing (no unit — a substance, not a quantity)</span></div>
+          <div><b>suberin</b><span>waxy polyester of the Casparian strip and of cork; blocks apoplastic water flow</span></div>
+          <div><b>cutin</b><span>polyester of the cuticle, on the outer epidermal wall; typical cuticle 0.5–15 µm thick</span></div>
+          <div><b>plasmodesma</b><span>membrane-lined channel, ~40 nm diameter, joining the cytoplasm of adjacent cells</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Dermal: one cell thick and doing four jobs</h3>
+  <p>The epidermis has to be transparent enough to let light through to the mesophyll, waterproof enough to stop
+     the leaf drying out, permeable enough to let CO₂ in, and tough enough to keep pathogens out. It solves this by
+     specialising: ordinary epidermal cells are flat, tightly interlocked and cuticle-covered; <strong>guard
+     cells</strong> punch adjustable holes through the barrier; <strong>trichomes</strong> (hairs) stand off the
+     surface to trap a layer of still air, reflect light and deter insects; and in roots, where there is no
+     cuticle and no light, epidermal cells extend <strong>root hairs</strong>.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">A root hair is not a cell</p>
+    <p style="margin:0">A root hair is a tubular <em>extension of a single epidermal cell</em> — same cytoplasm,
+      same nucleus, no cross wall. This matters because it explains the numbers: a root hair costs almost nothing
+      to build and lives only days to weeks, yet it multiplies absorbing surface enormously. The classic 1937
+      measurement on a single winter-rye plant grown in roughly 0.05 m³ of soil found some 600 m² of combined root
+      and root-hair surface. A trichome, by contrast, <em>is</em> a cell (or several), and is a shoot structure.
+      Calling a root hair a trichome, or a trichome a root hair, is a standard distractor.</p>
+  </div>
+
+  <h3>Vascular: two pipes with opposite designs</h3>
+  <p>The two conducting tissues are built on opposite principles, and almost every exam item about them turns on
+     that contrast. <strong>Xylem conducts through dead cells.</strong> A tracheid or vessel element builds a
+     lignified secondary wall, then undergoes programmed cell death and autolysis, leaving a hollow, rigid,
+     open-ended tube. That is not a limitation but the design: a living cell would have a plasma membrane, and a
+     membrane cannot hold the enormous tensions that §&nbsp;06 will show xylem sap is under. <strong>Phloem
+     conducts through living cells.</strong> A sieve-tube element retains its plasma membrane — it must, because
+     phloem transport depends on maintaining a solute gradient across that membrane — but it sacrifices its
+     nucleus, ribosomes, vacuole and Golgi to clear the lumen, and is kept alive by an adjacent
+     <strong>companion cell</strong> connected to it by unusually dense plasmodesmata.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Conducting cell types of xylem and phloem compared</caption>
+      <thead><tr><th>Cell</th><th>Tissue</th><th>Alive at maturity?</th><th>Distinguishing structure</th><th>Occurs in</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tracheid</strong></td><td>Xylem</td><td>No</td><td>Long, tapered, closed ends; water passes sideways through <strong>bordered pits</strong> whose pit membrane is unlignified primary wall</td><td><strong>All</strong> vascular plants, angiosperms included</td></tr>
+        <tr><td><strong>Vessel element</strong></td><td>Xylem</td><td>No</td><td>Wider, shorter; <strong>perforation plates</strong> are genuine holes with no membrane, stacked end to end into a vessel</td><td>Almost all angiosperms; <em>Gnetum</em>; a few ferns — <em>not</em> conifers</td></tr>
+        <tr><td><strong>Sieve-tube element</strong></td><td>Phloem</td><td><strong>Yes</strong> — but with no nucleus, ribosomes, vacuole or Golgi</td><td><strong>Sieve plates</strong>: end walls perforated by pores lined with plasma membrane</td><td>Angiosperms</td></tr>
+        <tr><td><strong>Companion cell</strong></td><td>Phloem</td><td>Yes, fully nucleate</td><td>Sister cell of the sieve element from one unequal division; dense plasmodesmata; transfer-cell walls where loading is apoplastic</td><td>Angiosperms</td></tr>
+        <tr><td>Sieve cell + albuminous cell</td><td>Phloem</td><td>Yes</td><td>Sieve <em>areas</em> rather than sieve plates; the albuminous (Strasburger) cell is not a sister cell</td><td>Gymnosperms and ferns</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The vessel/tracheid item, and how it is set</p>
+    <p style="margin:0 0 .5em">Examiners like this pair because the intuitive answer is wrong. It is <em>not</em>
+      the case that angiosperms have vessels "instead of" tracheids — they have both. Conifers have <em>only</em>
+      tracheids, which is why softwood is anatomically "non-porous" and why a pine is a slower but more reliable
+      conductor. The functional trade-off is worth being able to state in one line: <strong>a wide vessel conducts
+      far more water per unit pressure drop, but a wider conduit cavitates more readily</strong> — under freezing,
+      under drought, or under mechanical damage — and when a vessel embolises, a much larger share of the plant's
+      conducting capacity is lost at once. Safety versus efficiency, decided by conduit diameter.</p>
+    <p style="margin:0">Flow through a tube scales as the <em>fourth power</em> of radius (Poiseuille), so doubling
+      conduit diameter multiplies conductance by sixteen. That single fact explains both why vessels evolved and
+      why they are dangerous.</p>
+  </div>
+
+  <h3>Ground: three cells, distinguished by their walls</h3>
+  <p>The whole of ground tissue is classified by one criterion — how much wall the cell has built — and the
+     classification predicts the function.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The three ground tissue cell types</caption>
+      <thead><tr><th>Cell type</th><th>Wall</th><th>Alive?</th><th>Job</th><th>Where you meet it</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Parenchyma</strong></td><td>Thin primary wall only</td><td>Yes, and usually retains the ability to divide</td><td>Photosynthesis, storage, secretion, wound repair — the metabolic workhorse; the cell from which a whole plant can be regenerated</td><td>Mesophyll, cortex, pith, fleshy fruit, potato tuber</td></tr>
+        <tr><td><strong>Collenchyma</strong></td><td><strong>Unevenly thickened primary wall, no lignin</strong></td><td>Yes</td><td>Flexible support in organs that are <em>still elongating</em> — it can stretch as the organ grows</td><td>The "strings" of celery, the ridges of a young stem, petioles, just under the epidermis</td></tr>
+        <tr><td><strong>Sclerenchyma</strong></td><td>Thick <strong>lignified secondary wall</strong></td><td><strong>No</strong> — dead at maturity in most cases</td><td>Rigid support in organs that have <em>stopped</em> elongating; cannot stretch</td><td><strong>Fibres</strong> (long, in bundles — flax, hemp) and <strong>sclereids</strong> (short, irregular — the grittiness of a pear, a peach stone, a seed coat)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two sentences that sound right and are not</p>
+    <p style="margin:0 0 .4em">"<em>Collenchyma cells have thick secondary walls that provide rigid support.</em>"
+      Wrong on both counts. Collenchyma has a thickened <strong>primary</strong> wall, unlignified, and it provides
+      <em>flexible</em> support — that is precisely why it, and not sclerenchyma, is the support tissue of growing
+      organs. A lignified wall cannot be extended, so a young stem full of sclerenchyma could not elongate.</p>
+    <p style="margin:0">"<em>Sclerenchyma cells are living cells with lignified walls.</em>" Fibres and sclereids
+      complete their walls and then die; the functioning structure is the wall, not the protoplast. The same logic
+      as xylem — and the same reason a wooden beam works.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Meristems, primary and secondary growth</h2>
+
+  <p class="idea"><b>The idea</b>Animals build the whole body once and then mostly stop. Plants never stop: they
+     keep small pockets of permanently embryonic cells and add new body from those pockets for as long as they
+     live. The pockets at the tips add length; the pockets arranged as cylinders down the stem and root add
+     girth. That is the whole of plant growth in two sentences, and it explains why a nail hammered into a trunk
+     stays at the same height forever, why a tree gets fatter every year, and why a palm cannot.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the two growth modes</p>
+    <dl class="def">
+      <dt>Meristem</dt>
+      <dd>A tissue of cells that retain the capacity to divide indefinitely. Each division produces one cell that
+          stays meristematic (the <strong>initial</strong>) and one that goes on to differentiate (the
+          <strong>derivative</strong>) — so the meristem never exhausts itself.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">apical meristem → primary growth (length) · lateral meristem → secondary growth (girth)</span>
+      <span class="fx__tag">tips lengthen; cylinders thicken — and only some plants have the cylinders</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Primary growth</dt>
+          <dd>Growth from apical meristems, producing the <strong>primary plant body</strong> — every tissue of
+              every herbaceous plant, and the young parts of a woody one. All three tissue systems in their
+              primary form arise here.</dd>
+          <dt>Secondary growth</dt>
+          <dd>Growth in thickness from the two lateral meristems. The <strong>vascular cambium</strong> produces
+              secondary xylem inward and secondary phloem outward; the <strong>cork cambium</strong>
+              (phellogen) produces the periderm that replaces the epidermis.</dd>
+          <dt>Determinate vs indeterminate</dt>
+          <dd>Growth from an apical meristem is <strong>indeterminate</strong> — it has no built-in endpoint.
+              Leaves, flowers and fruits are <strong>determinate</strong>: their meristematic activity stops at a
+              defined size. A plant is therefore indeterminate as a whole while being made of determinate parts.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">protoderm → epidermis · procambium → 1° xylem + 1° phloem · ground meristem → pith + cortex</span><span class="fx__tag">the three primary meristems and their one product each</span></div>
+          <div class="fx"><span class="fx__eq">vascular cambium: 2° xylem inward, 2° phloem outward</span><span class="fx__tag">a single layer of initials facing two ways</span></div>
+          <div class="fx"><span class="fx__eq">bark = 2° phloem + periderm = everything external to the vascular cambium</span><span class="fx__tag">the definition examiners test</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>SAM</b><span>shoot apical meristem; a dome typically 50–500 µm across</span></div>
+          <div><b>RAM</b><span>root apical meristem; sub-apical, covered by the root cap</span></div>
+          <div><b>QC</b><span>quiescent centre — slowly dividing reserve cells at the heart of the RAM (no unit)</span></div>
+          <div><b>phellogen</b><span>cork cambium; produces phellem (cork) outward, phelloderm inward</span></div>
+          <div><b>fusiform initial</b><span>elongate cambial cell giving the axial system: vessels, fibres, sieve tubes</span></div>
+          <div><b>ray initial</b><span>near-isodiametric cambial cell giving the radial system: vascular rays for lateral transport</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Primary growth: the root tip, zone by zone</h3>
+  <p>The root apex is the cleanest teaching example in plant biology because its zones are laid out in space in
+     the order they occur in time. Right at the tip sits the <strong>root cap</strong>: a sacrificial helmet of
+     cells that lubricates the advance with mucigel, senses gravity through sedimenting starch grains in
+     specialised statocytes, and is continually shed and replaced from behind. Note what this immediately tells
+     you — the root apical meristem is <strong>sub-apical</strong>, sitting behind a cap it must also feed, whereas
+     the shoot apical meristem sits genuinely at the tip.</p>
+  <p>Behind the cap comes the <strong>zone of cell division</strong>, containing the meristem proper and the
+     quiescent centre. Then the <strong>zone of elongation</strong> — and this is where the actual advance
+     happens. Cells here may lengthen ten-fold or more by taking up water into a vacuole, not by adding
+     cytoplasm; it is a cheap way to generate force and displacement, and it is what physically pushes the root
+     tip through soil. Finally the <strong>zone of differentiation (maturation)</strong>, where cells take on
+     their final identities and where <strong>root hairs</strong> appear. Root hairs are absent from the
+     elongating zone for an obvious mechanical reason: a hair anchored in soil while the cell around it is
+     lengthening would simply be torn off.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Where lateral roots come from — and why that is not where branches come from</p>
+    <p style="margin:0">Lateral roots originate <strong>endogenously</strong>, from the <strong>pericycle</strong>,
+      deep inside the parent root, and then push out destructively through the cortex and epidermis. Branch shoots
+      originate <strong>exogenously</strong>, from axillary buds sitting on the surface in leaf axils. The
+      contrast is a favourite one-line question, and there is a functional reason behind it: a lateral root must
+      be plumbed straight into the stele to be any use, and the pericycle is the outermost layer of the stele.
+      Note the trap in the other direction too — the pericycle is inside the endodermis, not outside it.</p>
+  </div>
+
+  <h3>Secondary growth: how a stem becomes a trunk</h3>
+  <p>Secondary growth begins when a continuous cylinder of vascular cambium forms — partly from procambium left
+     between the primary xylem and primary phloem of each bundle, partly from parenchyma between the bundles that
+     is recruited into the ring. Thereafter each cambial initial divides periclinally (tangentially), and the
+     derivative it leaves on the inside becomes secondary xylem while the one it leaves on the outside becomes
+     secondary phloem.</p>
+  <p>Two consequences follow immediately, and both are examined. First, <strong>far more xylem accumulates than
+     phloem</strong> — the cambium favours the inward direction, and old secondary phloem is crushed and sloughed
+     away with the outer bark, while secondary xylem is permanent. That is why a tree trunk is essentially a
+     column of wood with a thin skin of functioning phloem, and why <strong>wood is secondary xylem</strong>.
+     Second, the epidermis cannot keep up with the expanding girth and splits; a <strong>cork cambium</strong>
+     arises in the outer cortex and lays down cork cells whose walls are impregnated with suberin. Those cells
+     die, and the resulting periderm is the new waterproof covering — punctuated by <strong>lenticels</strong>,
+     loosely packed regions that leave a gas-exchange path to the living tissue inside.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">"Bark" is a bigger word than you think</p>
+    <p style="margin:0"><strong>Bark = all tissues external to the vascular cambium</strong>, which means
+      secondary phloem <em>plus</em> periderm — not just the dead outer crust. This is not a pedantic definition;
+      it is the definition on which the girdling experiment of §&nbsp;09 depends. If you believe bark is only
+      cork, you cannot explain why removing a ring of it kills the tree. And note that the cambium itself is not
+      part of the bark: strip bark cleanly and the cambium is what you have exposed.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper — reading a tree ring, and heartwood versus sapwood</summary>
+    <div class="disc__body">
+      <p style="margin:0 0 .6em">In a seasonal climate the cambium produces wide, thin-walled vessels in spring —
+        <strong>earlywood</strong>, optimised for conduction when soil water is plentiful — and narrow,
+        thick-walled cells later in the season — <strong>latewood</strong>, optimised for strength. The abrupt
+        boundary between one year's latewood and the next year's earlywood is what you see as a ring. One ring per
+        year, therefore, <em>in a climate with one growing season per year</em>. In the wet tropics rings may be
+        absent or unrelated to years, and a drought that stops and restarts growth can produce a false ring, so
+        counting rings is a good estimate rather than a proof.</p>
+      <p style="margin:0 0 .6em">Ring width records growing conditions, which is the basis of dendrochronology
+        and of the palaeoclimate record. Ring-porous woods (oak, ash) put all their large vessels in the
+        earlywood; diffuse-porous woods (maple, birch) spread them evenly — which is why oak conducts sap at up
+        to about 45 m/h and a conifer, with tracheids only, manages 1–2 m/h.</p>
+      <p style="margin:0">As a trunk ages, the innermost secondary xylem stops conducting: its vessels embolise
+        permanently and the surrounding parenchyma dies, filling the cells with resins, tannins, gums and
+        pigments. That is <strong>heartwood</strong> — darker, more decay-resistant, and mechanically the core of
+        the tree, but hydraulically inert. The outer, pale, still-conducting shell is <strong>sapwood</strong>.
+        A hollow old tree is still perfectly alive, because everything that matters hydraulically is in the
+        outermost few centimetres.</p>
+    </div>
+  </details>
+
+  <div class="mnemo">
+    <h4>Why a palm trunk is not a tree trunk</h4>
+    <p>Monocots have <strong>no vascular cambium</strong>, so no true secondary growth. A palm reaches its adult
+      diameter by a <em>primary</em> thickening meristem near the apex before it grows tall, and thereafter the
+      trunk cannot widen; a bamboo culm emerges at final diameter. So: no annual rings, no bark in the technical
+      sense, and no way to repair a girdle. "Woody" and "having secondary growth" are not synonyms — a palm is
+      hard without being woody.</p>
+  </div>
+</section>
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Root, stem, leaf — and the monocot split</h2>
+
+  <p class="idea"><b>The idea</b>Each of the three organs solves a different problem with the same three tissue
+     systems, so each arranges them differently. A root must absorb, so its plumbing is bundled tightly into a
+     central core with a wide absorbing rind around it. A stem must hold the leaves up against bending, so its
+     plumbing is pushed out towards the edge where a beam is strongest. A leaf must catch light and let CO₂ in, so
+     it is flattened into a sheet with air spaces inside. And there is a second axis of variation on top of all
+     that: the flowering plants split early into two groups that lay the same tissues out in different patterns.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the organ plans</p>
+    <dl class="def">
+      <dt>Stele</dt>
+      <dd>The vascular cylinder of a root or stem, together with the pericycle that bounds it. In a eudicot root
+          the stele is solid and central; in a stem the vascular tissue is broken into discrete bundles.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">root: epidermis → cortex → <b>endodermis</b> → pericycle → stele</span>
+      <span class="fx__tag">learn this sequence outward-in; four of the ten quiz-able facts about roots are its order</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Endodermis</dt>
+          <dd>The innermost layer of the root cortex, one cell thick, whose radial and transverse walls carry the
+              <strong>Casparian strip</strong> of suberin. It is the gatekeeper of §&nbsp;05.</dd>
+          <dt>Pericycle</dt>
+          <dd>The outermost layer of the stele, immediately inside the endodermis; retains meristematic potential
+              and gives rise to lateral roots and, in secondary growth, to part of the cork cambium.</dd>
+          <dt>Mesophyll</dt>
+          <dd>Leaf ground tissue. <strong>Palisade</strong> mesophyll is columnar, packed with chloroplasts and
+              sits under the upper epidermis where the light is; <strong>spongy</strong> mesophyll below it is
+              loosely arranged so that CO₂ can diffuse in air — about 10 000 times faster than in water — to
+              every cell surface.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">eudicot root: xylem as a solid star, phloem between the arms, no pith</span><span class="fx__tag">the diarch–tetrarch pattern</span></div>
+          <div class="fx"><span class="fx__eq">monocot root: xylem and phloem alternating in a ring around a central pith</span><span class="fx__tag">polyarch, pith present</span></div>
+          <div class="fx"><span class="fx__eq">collateral bundle: xylem adaxial (inner), phloem abaxial (outer)</span><span class="fx__tag">true in stems and in leaf veins — so the xylem of a leaf vein is on the upper side</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>adaxial</b><span>the surface facing the axis — the upper side of a leaf (no unit)</span></div>
+          <div><b>abaxial</b><span>the surface facing away — the lower side of a leaf, where most stomata are</span></div>
+          <div><b>anticlinal wall</b><span>a wall perpendicular to the surface — the radial and transverse walls that carry the Casparian strip</span></div>
+          <div><b>stomatal density</b><span>stomata per unit leaf area; typically 100–300 mm⁻², range 50–1000 mm⁻²</span></div>
+          <div><b>bundle sheath</b><span>a layer of cells enclosing a leaf vein; in C4 plants it is chloroplast-rich (Kranz anatomy)</span></div>
+          <div><b>boundary layer</b><span>the still air film over a leaf; thickness ~0.1–10 mm, thicker in still air and on large leaves</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 900 340" role="img" aria-label="Four transverse sections compared. A eudicot root has a solid four-armed star of xylem in the centre with phloem patches between the arms and no pith, ringed by an endodermis. A monocot root has xylem and phloem alternating in a ring around a central pith, also ringed by an endodermis. A eudicot stem has vascular bundles arranged in a single ring with xylem inside and phloem outside, surrounding a pith. A monocot stem has bundles scattered through the ground tissue with no ring and no distinct pith or cortex." style="font-family:var(--sans)">
+      <text x="118" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">Eudicot root</text>
+      <text x="344" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">Monocot root</text>
+      <text x="570" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">Eudicot stem</text>
+      <text x="796" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">Monocot stem</text>
+
+      <circle cx="118" cy="196" r="86" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="2"/>
+      <circle cx="118" cy="196" r="77" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+      <circle cx="118" cy="196" r="42" fill="var(--card)" stroke="var(--accent-2)" stroke-width="3.5"/>
+      <circle cx="118" cy="196" r="35" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <path d="M118.0,165.0 L110.2,188.2 L87.0,196.0 L110.2,203.8 L118.0,227.0 L125.8,203.8 L149.0,196.0 L125.8,188.2 Z" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="133.6" cy="180.4" r="7.5" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="102.4" cy="180.4" r="7.5" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="102.4" cy="211.6" r="7.5" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="133.6" cy="211.6" r="7.5" fill="var(--accent-2)" opacity="0.9"/>
+      <text x="118" y="302" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">solid xylem star · no pith</text>
+
+      <circle cx="344" cy="196" r="86" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="2"/>
+      <circle cx="344" cy="196" r="77" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+      <circle cx="344" cy="196" r="52" fill="var(--card)" stroke="var(--accent-2)" stroke-width="3.5"/>
+      <circle cx="344" cy="196" r="20" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1.5"/>
+      <circle cx="344.0" cy="159.0" r="9" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="325.5" cy="164.0" r="7" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="312.0" cy="177.5" r="9" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="307.0" cy="196.0" r="7" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="312.0" cy="214.5" r="9" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="325.5" cy="228.0" r="7" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="344.0" cy="233.0" r="9" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="362.5" cy="228.0" r="7" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="376.0" cy="214.5" r="9" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="381.0" cy="196.0" r="7" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="376.0" cy="177.5" r="9" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="362.5" cy="164.0" r="7" fill="var(--accent-2)" opacity="0.9"/>
+      <text x="344" y="302" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">alternating ring · central pith</text>
+
+      <circle cx="570" cy="196" r="86" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="2"/>
+      <circle cx="570" cy="196" r="78" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+      <circle cx="570" cy="196" r="46" fill="var(--card)" stroke="var(--line)" stroke-width="1.5"/>
+      <circle cx="570" cy="196" r="60" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="4 4"/>
+      <circle cx="570.0" cy="128.0" r="8" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="570.0" cy="143.0" r="9.5" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="521.9" cy="147.9" r="8" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="532.5" cy="158.5" r="9.5" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="502.0" cy="196.0" r="8" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="517.0" cy="196.0" r="9.5" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="521.9" cy="244.1" r="8" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="532.5" cy="233.5" r="9.5" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="570.0" cy="264.0" r="8" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="570.0" cy="249.0" r="9.5" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="618.1" cy="244.1" r="8" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="607.5" cy="233.5" r="9.5" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="638.0" cy="196.0" r="8" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="623.0" cy="196.0" r="9.5" fill="var(--hbond)" opacity="0.85"/>
+      <circle cx="618.1" cy="147.9" r="8" fill="var(--accent-2)" opacity="0.9"/>
+      <circle cx="607.5" cy="158.5" r="9.5" fill="var(--hbond)" opacity="0.85"/>
+      <text x="570" y="302" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">bundles in one ring · pith inside</text>
+
+      <circle cx="796" cy="196" r="86" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="2"/>
+      <circle cx="796" cy="196" r="78" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1"/>
+      <circle cx="796.0" cy="196.0" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="800.0" cy="196.0" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="812.7" cy="177.4" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="815.4" cy="174.4" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="756.2" cy="162.6" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="753.1" cy="160.0" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="764.9" cy="217.8" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="761.6" cy="220.1" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="811.5" cy="254.0" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="812.6" cy="257.8" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="855.9" cy="174.7" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="859.3" cy="173.5" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="813.1" cy="132.2" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="814.1" cy="128.4" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="777.2" cy="189.2" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="773.4" cy="187.8" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="790.9" cy="210.1" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="789.5" cy="213.9" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="830.5" cy="224.9" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="833.5" cy="227.5" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="787.7" cy="165.1" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="786.7" cy="161.2" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="733.4" cy="212.7" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="729.6" cy="213.8" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="855.9" cy="217.3" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="859.3" cy="218.5" r="4.6" fill="var(--accent-2)"/>
+      <circle cx="760.0" cy="133.6" r="10" fill="var(--hbond)" opacity="0.75"/>
+      <circle cx="758.0" cy="130.2" r="4.6" fill="var(--accent-2)"/>
+      <text x="796" y="302" text-anchor="middle" font-size="11.5" fill="var(--ink-soft)">bundles scattered · no ring</text>
+
+      <g font-size="12">
+        <circle cx="322" cy="326" r="7" fill="var(--hbond)" opacity="0.85"/>
+        <text x="336" y="330" fill="var(--ink-soft)">xylem</text>
+        <circle cx="400" cy="326" r="7" fill="var(--accent-2)" opacity="0.9"/>
+        <text x="414" y="330" fill="var(--ink-soft)">phloem</text>
+        <line x1="480" y1="326" x2="504" y2="326" stroke="var(--accent-2)" stroke-width="3.5"/>
+        <text x="512" y="330" fill="var(--ink-soft)">endodermis (Casparian strip)</text>
+      </g>
+    </svg>
+    <figcaption>The four sections examiners actually put on the paper. Two discriminations do the work: is the
+      vascular tissue a solid central core (root) or split into bundles (stem)? And is there an endodermis with a
+      Casparian strip (root) or none (stem)? The monocot/eudicot difference is then a second, independent
+      question. Note that in the eudicot stem the xylem of every bundle faces inward — that <em>collateral</em>
+      arrangement also holds in a leaf vein, so the xylem of a vein sits on the upper side of the leaf.</figcaption>
+  </figure>
+
+  <h3>The leaf, read as a gas-exchange organ</h3>
+  <p>A leaf is a compromise device and every feature of it is one side of a trade. The cuticle stops water loss,
+     so CO₂ cannot get in either — hence stomata, which reopen the hole under control. Palisade mesophyll is packed
+     tightly to intercept light, but tightly packed cells impede gas diffusion — hence spongy mesophyll below it,
+     which is up to 30–40 % air space by volume, so that CO₂ can reach a mesophyll surface area several times the
+     external leaf area. The stomata are concentrated on the <strong>lower (abaxial)</strong> surface of a typical
+     land plant's leaf, which is shaded and cooler, so the vapour gradient across them is smaller.</p>
+  <p>Two variations on that make good exam items because they follow logically. A <strong>floating</strong> leaf
+     such as a water lily's has its stomata on the <em>upper</em> surface only, since the lower surface is in
+     water. A fully <strong>submerged</strong> leaf has none at all, since dissolved CO₂ enters directly and there
+     is nothing to conserve. Neither fact needs to be memorised if you ask what the stoma is for.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Monocots compared with eudicots</caption>
+      <thead><tr><th>Character</th><th>Monocot</th><th>Eudicot</th><th>Why it is worth knowing</th></tr></thead>
+      <tbody>
+        <tr><td>Cotyledons</td><td>One</td><td>Two</td><td>The name-giving character, and the least useful in practice — you rarely see a seedling in a question</td></tr>
+        <tr><td>Leaf venation</td><td>Parallel</td><td>Netted (reticulate)</td><td>Instantly visible in a photograph; the commonest way the question is set</td></tr>
+        <tr><td>Stem vascular bundles</td><td><strong>Scattered</strong> through the ground tissue</td><td>In a single <strong>ring</strong></td><td>Determines whether a vascular cambium can form a continuous cylinder</td></tr>
+        <tr><td>Root system</td><td>Fibrous, adventitious</td><td>Taproot from the radicle</td><td>Fibrous systems hold topsoil; taproots reach deep water</td></tr>
+        <tr><td>Root anatomy</td><td>Many xylem arms alternating with phloem around a <strong>pith</strong></td><td>Few xylem arms in a solid star, <strong>no pith</strong></td><td>The cleanest cross-section discriminator</td></tr>
+        <tr><td>Floral parts</td><td>Multiples of <strong>three</strong></td><td>Multiples of four or five</td><td>Reliable; lilies and grasses versus roses and legumes</td></tr>
+        <tr><td>Pollen apertures</td><td>One (monosulcate)</td><td><strong>Three</strong> (tricolpate)</td><td>The real defining character of eudicots as a clade — see below</td></tr>
+        <tr><td>Secondary growth</td><td>Usually absent</td><td>Usually present</td><td>No annual rings, no true bark, no recovery from girdling</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper — why "dicot" is not a real group</summary>
+    <div class="disc__body">
+      <p style="margin:0 0 .6em">The flowering plants do not divide into two equal halves. Monocots
+        (<em>Monocotyledoneae</em>) are a genuine clade — all descended from one common ancestor. "Dicots" is
+        simply everything else, which is a <strong>paraphyletic</strong> grouping: it lumps the true
+        <strong>eudicots</strong> (roses, legumes, sunflowers, oaks — about three quarters of all angiosperms)
+        together with the magnoliids (magnolia, avocado, black pepper), <em>Amborella</em>, and the water lilies,
+        which branched off <em>before</em> monocots did. Saying "the angiosperms split into monocots and dicots"
+        therefore has the tree wrong.</p>
+      <p style="margin:0">Eudicots are defined by a single derived character — <strong>tricolpate pollen</strong>,
+        with three germination furrows — which is why that unglamorous line in the table is the one a
+        systematist cares about. This is note 06's territory, but it shows up in plant-anatomy questions phrased
+        as "which of the following is <em>not</em> a valid taxonomic group", and the answer is dicots.</p>
+    </div>
+  </details>
+
+  <h3>Modified organs — telling a stem from a root from a leaf</h3>
+  <p>This is pure recall, but it recurs, and there is a principle that makes it recallable: <strong>an organ is
+     identified by its structure and origin, not by where it sits or what it looks like</strong>. Anything bearing
+     nodes, internodes, axillary buds or scale leaves is a stem, however far underground it is. Anything with a
+     root cap and no nodes is a root, however far above ground it is.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Modified plant organs and their true identity</caption>
+      <thead><tr><th>Structure</th><th>Really a…</th><th>Give-away</th></tr></thead>
+      <tbody>
+        <tr><td>Potato tuber</td><td><strong>Stem</strong></td><td>The "eyes" are axillary buds with scale leaves — roots do not have buds</td></tr>
+        <tr><td>Sweet potato, carrot, radish</td><td><strong>Root</strong></td><td>No nodes, no buds; a swollen taproot</td></tr>
+        <tr><td>Onion bulb</td><td><strong>Leaves</strong> on a compressed stem</td><td>The fleshy scales are leaf bases; the flat plate at the bottom is the stem</td></tr>
+        <tr><td>Ginger, iris rhizome</td><td><strong>Stem</strong> (horizontal, underground)</td><td>Nodes, internodes, scale leaves, adventitious roots below</td></tr>
+        <tr><td>Strawberry runner</td><td><strong>Stem</strong> (stolon, horizontal, above ground)</td><td>Produces plantlets at nodes</td></tr>
+        <tr><td>Cactus spine</td><td><strong>Leaf</strong></td><td>Borne on an areole, which is an axillary bud; the green photosynthetic body is the stem</td></tr>
+        <tr><td>Hawthorn thorn</td><td><strong>Stem</strong> (a modified branch)</td><td>Arises in a leaf axil and may bear leaves</td></tr>
+        <tr><td>Rose "thorn"</td><td>Neither — a <strong>prickle</strong></td><td>An epidermal/cortical outgrowth with no vascular tissue; snaps off cleanly</td></tr>
+        <tr><td>Pea tendril / grape tendril</td><td>Leaflet / <strong>stem</strong> respectively</td><td>Position tells you: in the axil means stem, part of the leaf means leaf</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Water potential Ψ</h2>
+
+  <p class="idea"><b>The idea</b>Water does not move because one place is wetter than another, or saltier, or
+     under more pressure. It moves because of a single combined score that folds all of those together, and it
+     always moves from the higher score to the lower one. Dissolving something lowers the score. Squeezing raises
+     it. Once you can write down that score for two places, you can predict the direction of every drop of water
+     in a plant without knowing anything else about it — and you can stop guessing at whether a cell will swell
+     or shrink.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Water potential Ψ</dt>
+      <dd>The free energy of water per unit volume, relative to pure free water at atmospheric pressure and the
+          same temperature and height. Because it is energy per volume it has the units of pressure, and it is
+          quoted in <strong>megapascals</strong>. The reference state is defined as zero, so almost every
+          biological Ψ is <strong>negative</strong>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Ψ = Ψ<sub>s</sub> + Ψ<sub>p</sub></span>
+      <span class="fx__tag">solute potential plus pressure potential; water flows from high Ψ to low Ψ</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Solute potential Ψ<sub>s</sub> (osmotic potential)</dt>
+          <dd>Always <strong>zero or negative</strong>. Dissolved particles lower the chemical potential of water,
+              so adding solute always makes Ψ<sub>s</sub> more negative. Given by the van 't Hoff relation
+              Ψ<sub>s</sub> = −iCRT, valid for a dilute ideal solution.</dd>
+          <dt>Pressure potential Ψ<sub>p</sub></dt>
+          <dd>The hydrostatic pressure, which may be <strong>positive or negative</strong>. Positive inside a
+              turgid cell (turgor pressure) and inside a loaded sieve tube; strongly <strong>negative</strong>
+              inside transpiring xylem, where the water is under tension.</dd>
+          <dt>The two terms usually dropped</dt>
+          <dd>Ψ<sub>g</sub>, the gravitational term, adds +0.01 MPa per metre of height and is ignored below about
+              10 m but is unavoidable in a tall tree. Ψ<sub>m</sub>, the matric potential, is the binding of water
+              to surfaces — dominant in dry soil, in cell walls and in seeds, and it is always negative.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Ψ<sub>s</sub> = −iCRT · R = 0.00831 L·MPa·mol⁻¹·K⁻¹ · T in K</span><span class="fx__tag">i is the number of particles each formula unit gives: 1 for sucrose, 2 for NaCl</span></div>
+          <div class="fx"><span class="fx__eq">Ψ<sub>air</sub> = <span class="mf" role="img" aria-label="R T over V bar w"><span>RT</span><span>V̄<sub>w</sub></span></span> ln(RH) = 137.6 MPa × ln(RH) at 25 °C</span><span class="fx__tag">the vapour form; V̄<sub>w</sub> is the partial molar volume of water, 18 cm³·mol⁻¹</span></div>
+          <div class="fx"><span class="fx__eq">Ψ<sub>full turgor</sub> = 0 · Ψ<sub>incipient plasmolysis</sub> = Ψ<sub>s</sub></span><span class="fx__tag">the two endpoints of the pressure–volume curve</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Ψ</b><span>water potential; MPa (1 MPa = 10 bar ≈ 9.87 atm)</span></div>
+          <div><b>Ψ<sub>s</sub></b><span>solute (osmotic) potential; MPa, ≤ 0</span></div>
+          <div><b>Ψ<sub>p</sub></b><span>pressure potential; MPa, any sign</span></div>
+          <div><b>i</b><span>van 't Hoff factor — particles per dissolved formula unit; dimensionless</span></div>
+          <div><b>C</b><span>molar concentration; mol·L⁻¹</span></div>
+          <div><b>R</b><span>gas constant, 0.00831 L·MPa·mol⁻¹·K⁻¹ (= 8.31 J·mol⁻¹·K⁻¹)</span></div>
+          <div><b>T</b><span>absolute temperature; K</span></div>
+          <div><b>RH</b><span>relative humidity as a fraction, 0–1; dimensionless</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Three habits make this section safe. <strong>First, get the sign convention right and never argue with
+     it.</strong> Pure water in an open beaker is the zero. Anything dissolved in it drags Ψ below zero. So the
+     saltier solution has the <em>lower</em> Ψ and water flows towards it — which is the ordinary statement of
+     osmosis, recovered as a special case. <strong>Second, water responds to Ψ, not to Ψ<sub>s</sub>.</strong> A
+     cell can have a very negative Ψ<sub>s</sub> and still gain no water at all, because a large positive
+     Ψ<sub>p</sub> has cancelled it. That is exactly what a fully turgid cell is: Ψ<sub>s</sub> = −0.9,
+     Ψ<sub>p</sub> = +0.9, Ψ = 0, indistinguishable from pure water as far as water movement is concerned.
+     <strong>Third, "concentration" language is a trap in the xylem</strong>, where the pressure term dominates
+     completely and there is no membrane for osmosis to happen across at all.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">You already know this equation from physiology</p>
+    <p style="margin:0">Ψ = Ψ<sub>s</sub> + Ψ<sub>p</sub> is Starling's equation with the signs rearranged. A
+      capillary drives filtration when hydrostatic pressure exceeds oncotic pressure, and reabsorbs when oncotic
+      wins; a plant cell takes up water when turgor is less than the osmotic pull, and loses it when turgor
+      exceeds it. Plasma albumin is Ψ<sub>s</sub>; capillary hydrostatic pressure is Ψ<sub>p</sub>. Hypoalbuminaemic
+      oedema and a wilting leaf are the same failure — the solute term can no longer hold water against the
+      pressure term. Reading the plant version as the physiology you already have is faster than learning it
+      twice.</p>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 880 400" role="img" aria-label="A descending staircase of water potential from soil to atmosphere. Moist soil is minus 0.05 megapascals, root hair and cortex minus 0.3, root xylem minus 0.6, trunk xylem ten metres up minus 0.8, leaf mesophyll cell minus 1.0, the leaf air space at 99 percent relative humidity minus 1.4, and after a break in the scale the outside air at 25 degrees and 50 percent relative humidity is minus 95 megapascals. Water moves down this gradient at every step." style="font-family:var(--sans)">
+      <line x1="40" y1="90" x2="850" y2="90" stroke="var(--ink-faint)" stroke-width="1.4" stroke-dasharray="6 5"/>
+      <text x="44" y="80" font-size="12" fill="var(--ink-faint)">Ψ = 0 · pure free water, open to the air</text>
+      <text x="44" y="52" font-size="13" font-weight="700" fill="var(--accent)">Water moves down this staircase at every single step  ⟶</text>
+
+      <polyline points="68,94.5 180,94.5 180,117 292,117 292,144 404,144 404,162 516,162 516,180 628,180 628,216 690,216"
+                fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>
+      <polyline points="742,262 800,262 800,305 860,305"
+                fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M690,216 L706,222 L698,238 L714,244 L706,258 L722,262 L742,262" fill="none"
+            stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="716" y="200" text-anchor="middle" font-size="11" fill="var(--accent-2)">scale break</text>
+
+      <g font-size="12">
+        <circle cx="68"  cy="94.5" r="5.5" fill="var(--accent)"/>
+        <circle cx="180" cy="117"  r="5.5" fill="var(--accent)"/>
+        <circle cx="292" cy="144"  r="5.5" fill="var(--accent)"/>
+        <circle cx="404" cy="162"  r="5.5" fill="var(--accent)"/>
+        <circle cx="516" cy="180"  r="5.5" fill="var(--accent)"/>
+        <circle cx="628" cy="216"  r="5.5" fill="var(--accent)"/>
+        <circle cx="800" cy="305"  r="5.5" fill="var(--bad)"/>
+      </g>
+
+      <g font-family="var(--mono)" font-size="12.5" font-weight="700" fill="var(--ink)">
+        <text x="68"  y="83" text-anchor="middle">−0.05</text>
+        <text x="180" y="108" text-anchor="middle">−0.30</text>
+        <text x="292" y="135" text-anchor="middle">−0.60</text>
+        <text x="404" y="153" text-anchor="middle">−0.80</text>
+        <text x="516" y="171" text-anchor="middle">−1.00</text>
+        <text x="628" y="207" text-anchor="middle">−1.4</text>
+        <text x="800" y="296" text-anchor="middle" fill="var(--bad)">−95</text>
+      </g>
+
+      <g font-size="11.5" fill="var(--ink-soft)" text-anchor="middle">
+        <text x="68"  y="345">Moist soil</text><text x="68"  y="360" fill="var(--ink-faint)">Ψ<tspan baseline-shift="sub" font-size="9">p</tspan> ≈ 0</text>
+        <text x="180" y="345">Root hair</text><text x="180" y="360" fill="var(--ink-faint)">turgid, Ψ<tspan baseline-shift="sub" font-size="9">p</tspan> &gt; 0</text>
+        <text x="292" y="345">Root xylem</text><text x="292" y="360" fill="var(--ink-faint)">tension begins</text>
+        <text x="404" y="345">Trunk xylem</text><text x="404" y="360" fill="var(--ink-faint)">10 m up: −0.1 is gravity</text>
+        <text x="516" y="345">Mesophyll cell</text><text x="516" y="360" fill="var(--ink-faint)">Ψ<tspan baseline-shift="sub" font-size="9">p</tspan> still &gt; 0</text>
+        <text x="628" y="345">Leaf air space</text><text x="628" y="360" fill="var(--ink-faint)">≈99 % RH</text>
+        <text x="800" y="345">Outside air</text><text x="800" y="360" fill="var(--ink-faint)">25 °C, 50 % RH</text>
+      </g>
+
+      <g stroke="var(--line)" stroke-width="1">
+        <line x1="68" y1="100" x2="68" y2="332"/><line x1="180" y1="123" x2="180" y2="332"/>
+        <line x1="292" y1="150" x2="292" y2="332"/><line x1="404" y1="168" x2="404" y2="332"/>
+        <line x1="516" y1="186" x2="516" y2="332"/><line x1="628" y1="222" x2="628" y2="332"/>
+        <line x1="800" y1="311" x2="800" y2="332"/>
+      </g>
+    </svg>
+    <figcaption>The soil–plant–atmosphere continuum drawn on its own scale. Notice two things. The entire journey
+      through the plant costs about 1 MPa, and it is a smooth, shallow gradient — nothing dramatic happens
+      anywhere in it. The step out of the leaf into the air, by contrast, is nearly a hundred megapascals, which
+      is why the atmosphere is never the limiting factor and why control of transpiration has to be exercised at
+      the stoma. The plant is not pulling water out of the air's grip; it is throttling how fast the air is
+      allowed to take it.</figcaption>
+  </figure>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — will this cell swell, shrink, or sit still?</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A plant cell has Ψ<sub>s</sub> = −0.70 MPa and a turgor pressure
+      of 0.30 MPa. It is transferred to (a) pure water in an open beaker, and separately to (b) a 0.40 M sucrose
+      solution in an open beaker at 20 °C. Predict the initial direction of water movement in each case, and say
+      where each ends up.</p>
+    <ol>
+      <li>Score the cell first: <span class="fi">Ψ<sub>cell</sub> = Ψ<sub>s</sub> + Ψ<sub>p</sub> = −0.70 + 0.30 =
+          <strong>−0.40 MPa</strong></span>. This one number is all that matters about the cell.</li>
+      <li><strong>(a)</strong> Pure water, open beaker, so Ψ<sub>p</sub> = 0 and Ψ<sub>s</sub> = 0:
+          <span class="fi">Ψ<sub>solution</sub> = 0</span>.</li>
+      <li>0 is greater than −0.40, so water moves <strong>into the cell</strong>. It keeps entering while
+          Ψ<sub>cell</sub> &lt; 0, and each entering molecule pushes the protoplast harder against the wall,
+          raising Ψ<sub>p</sub>. Movement stops when Ψ<sub>cell</sub> = 0, which requires Ψ<sub>p</sub> ≈ +0.70
+          MPa. The cell is then at <strong>full turgor</strong>. Ignoring the slight dilution of the cell sap,
+          turgor has risen from 0.30 to 0.70 MPa.</li>
+      <li><strong>(b)</strong> Sucrose does not dissociate, so i = 1. At 20 °C, T = 293 K:
+          <span class="fi">Ψ<sub>s</sub> = −(1)(0.40)(0.00831)(293) = −0.974 MPa</span>, and with the beaker open,
+          Ψ<sub>p</sub> = 0. So <span class="fi">Ψ<sub>solution</sub> = −0.97 MPa</span>.</li>
+      <li>−0.97 is <em>lower</em> than −0.40, so water leaves the cell. Turgor falls; when Ψ<sub>p</sub> reaches
+          zero the cell is <strong>flaccid</strong> and Ψ<sub>cell</sub> = Ψ<sub>s</sub>. Water is still leaving,
+          so the protoplast now pulls away from the wall — <strong>plasmolysis</strong>. It stops when the cell
+          sap has concentrated enough that Ψ<sub>s</sub> reaches −0.97 MPa.</li>
+      <li>Sanity check on the trap: had you compared solute concentrations alone you would still have got (b)
+          right and (a) right — but you would get the <em>general</em> rule wrong. Put this same cell in a 0.20 M
+          sucrose solution (Ψ = −0.49 MPa) and water still leaves, even though the cell's own Ψ<sub>s</sub> of
+          −0.70 corresponds to a <em>more</em> concentrated interior. Turgor is what decides it.</li>
+    </ol>
+    <span class="wex__ans">(a) water in, stops at Ψ<sub>p</sub> = +0.70 MPa · (b) water out, plasmolysis begins once Ψ<sub>p</sub> = 0</span>
+    </div>
+  </details>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — how thirsty is the air?</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">At 25 °C, compute the water potential of air at 99 %, 95 % and
+      50 % relative humidity, and comment on what that means for a leaf sitting at −1.0 MPa.</p>
+    <ol>
+      <li>The prefactor first. <span class="fi">RT/V̄<sub>w</sub> = (8.314 × 298.15) / (18.02 × 10⁻⁶ m³·mol⁻¹) =
+          1.376 × 10⁸ Pa = <strong>137.6 MPa</strong></span>.</li>
+      <li><span class="fi">RH = 0.99 → Ψ = 137.6 × ln(0.99) = 137.6 × (−0.01005) = <strong>−1.38 MPa</strong></span>.</li>
+      <li><span class="fi">RH = 0.95 → Ψ = 137.6 × (−0.05129) = <strong>−7.06 MPa</strong></span>.</li>
+      <li><span class="fi">RH = 0.50 → Ψ = 137.6 × (−0.6931) = <strong>−95.4 MPa</strong></span>.</li>
+      <li>Read the consequences. Air that a meteorologist would call "saturated to within one per cent" is already
+          at −1.4 MPa, <em>below</em> a healthy leaf — so a leaf loses water even in a fog. Ordinary room air is a
+          hundred times more negative than any tissue in the plant.</li>
+      <li>The logarithm is doing the work, and this is the point of the exercise. Halving the humidity from 100 %
+          to 50 % does not halve anything; it takes Ψ from 0 to −95 MPa. There is no realistic atmosphere that is
+          <em>not</em> an overwhelming sink for leaf water.</li>
+    </ol>
+    <span class="wex__ans">99 % RH → −1.38 MPa · 95 % → −7.1 MPa · 50 % → −95 MPa · the air always wins</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three sentences about Ψ that are printed in textbooks and still mislead</p>
+    <p style="margin:0 0 .4em">"<em>Water moves from a region of high water concentration to one of low water
+      concentration.</em>" True only when the pressure term is equal on both sides. Put a cell under enough
+      turgor and water leaves it for a solution that is more concentrated than its own contents — the whole point
+      of worked example 1.</p>
+    <p style="margin:0 0 .4em">"<em>Water potential is the tendency of water to move by osmosis.</em>" Osmosis is
+      one mechanism among several. Ψ also predicts bulk flow through the xylem, where there is no membrane;
+      capillary rise, which is a matric effect; and evaporation into air, which is a phase change. It is a
+      thermodynamic bookkeeping quantity, not a description of a mechanism.</p>
+    <p style="margin:0">"<em>Ψ<sub>p</sub> is the turgor pressure.</em>" It is turgor pressure only inside a
+      living walled cell. In the xylem of a transpiring plant Ψ<sub>p</sub> is <strong>negative</strong> — a
+      tension of one or two megapascals, which is a pressure well below a vacuum. A question that asks for the
+      pressure potential of xylem sap at midday is asking whether you noticed that.</p>
+  </div>
+</section>
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Soil to stele: the endodermal checkpoint</h2>
+
+  <p class="idea"><b>The idea</b>Water entering a root has two ways to travel inward: through the porous walls
+     between the cells, never crossing a membrane; or into the cells and from cell to cell through the tunnels
+     that join them. The first route is fast and free, but it is uncontrolled — anything dissolved in soil water
+     would ride it straight into the plant's plumbing. So the root builds a waterproof seal one cell layer deep,
+     right at the boundary of the plumbing, that forces everything through at least one membrane. That single ring
+     of glue is why a plant can be selective about what it drinks.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the three routes</p>
+    <dl class="def">
+      <dt>Apoplast</dt>
+      <dd>The continuum of cell walls, intercellular spaces and dead conducting elements — everything
+          <em>outside</em> the plasma membranes. Water moves through it by bulk flow, driven by pressure, and
+          crosses no membrane, so nothing is selected.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">apoplast ⇢ <b>Casparian strip</b> ⇢ symplast ⇢ xylem</span>
+      <span class="fx__tag">the strip is what makes the arrow bend — no route into the stele avoids a membrane</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Symplast</dt>
+          <dd>The continuum of cytoplasm, joined cell to cell through <strong>plasmodesmata</strong>. Entry
+              requires crossing the plasma membrane once, at whichever cell the water first enters; after that,
+              travel is membrane-free.</dd>
+          <dt>Transmembrane (transcellular) route</dt>
+          <dd>Repeated crossing into and out of successive cells, membrane by membrane. Fast where aquaporin
+              density is high, and the route the plant can regulate minute by minute by gating aquaporins.</dd>
+          <dt>Casparian strip</dt>
+          <dd>A band of <strong>suberin</strong> (with lignin) deposited in the <strong>radial and transverse
+              (anticlinal) walls</strong> of every endodermal cell, and fused to the plasma membrane. It
+              seals the apoplast in the plane of the endodermis the way mortar seals the joints of a brick ring.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">aquaporin (PIP, TIP) → water-selective channel, no ATP, bidirectional</span><span class="fx__tag">gated by phosphorylation, pH and Ca²⁺; sets membrane water permeability, not direction</span></div>
+          <div class="fx"><span class="fx__eq">root pressure: ions pumped into stele → Ψ<sub>s</sub> falls → water follows → Ψ<sub>p</sub> &gt; 0</span><span class="fx__tag">the only step of long-distance water transport that costs the plant ATP</span></div>
+          <div class="fx"><span class="fx__eq">guttation ≠ dew</span><span class="fx__tag">xylem sap forced out of hydathodes, versus condensation from the air</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>suberin</b><span>waxy polyester barrier of the Casparian strip and of cork (no unit)</span></div>
+          <div><b>plasmodesma</b><span>cytoplasmic channel through the wall, ~40 nm across, with a desmotubule of ER inside</span></div>
+          <div><b>aquaporin</b><span>membrane water channel; single-channel flux of order 10⁹ water molecules s⁻¹</span></div>
+          <div><b>hydathode</b><span>pore at a leaf margin or tip through which guttation fluid escapes</span></div>
+          <div><b>root pressure</b><span>positive xylem Ψ<sub>p</sub> generated by the root; typically 0.05–0.2 MPa, rarely above 0.5 MPa</span></div>
+          <div><b>exodermis</b><span>a second suberised layer just inside the epidermis in many species</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Follow one water molecule in from a root hair. It can slip along the porous cellulose walls of the epidermis
+     and cortex without ever meeting a membrane — the apoplast route — and this is genuinely how most of it
+     travels across the cortex, because walls are wide, wet and offer little resistance. Then it reaches the
+     endodermis and the road ends. Suberin fills the radial and transverse walls, welded to the plasma membrane
+     of the endodermal cell, so the only way past is <em>through</em> that cell: across its plasma membrane, into
+     its cytoplasm, and out again on the stele side.</p>
+  <p>What has the plant bought with this? <strong>Selectivity.</strong> Every ion that reaches the xylem has been
+     through a transport protein of the endodermal plasma membrane, and the plant therefore decides what it
+     absorbs. Aluminium, sodium in a saline soil, heavy metals — all can be excluded at this checkpoint, and
+     essential ions can be actively accumulated far above their soil concentration. Without the Casparian strip
+     the xylem would simply contain filtered soil solution.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The second job of the strip, which is the one usually missed</p>
+    <p style="margin:0">The seal works in both directions. Once ions have been pumped into the stele they cannot
+      leak back out through the apoplast, because the same suberin ring blocks the return path. That is what makes
+      <strong>root pressure</strong> possible: the stele becomes an osmotic compartment whose solute content the
+      plant controls, its Ψ falls, water follows in from the cortex, and because the stele is enclosed the
+      incoming water generates <em>positive hydrostatic pressure</em> in the xylem. A question that asks why root
+      pressure fails in a plant with a damaged endodermis is asking about the return path, not the inward one.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The three radial transport routes across a root compared</caption>
+      <thead><tr><th>Route</th><th>Membranes crossed</th><th>Selective?</th><th>Where it dominates</th><th>Blocked by</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Apoplast</strong></td><td>None</td><td>No</td><td>Across the cortex, and everywhere in xylem; carries most of the volume in a rapidly transpiring root</td><td>The Casparian strip, at the endodermis</td></tr>
+        <tr><td><strong>Symplast</strong></td><td>One, at entry</td><td>Yes, at that one membrane</td><td>Cell-to-cell movement through plasmodesmata; the only route through the endodermis</td><td>Callose deposition closing plasmodesmata</td></tr>
+        <tr><td><strong>Transmembrane</strong></td><td>Two per cell</td><td>Yes, repeatedly</td><td>Wherever aquaporin density is high; gives the plant fine control of hydraulic conductance</td><td>Aquaporin closure — e.g. on anoxia, cytosolic acidification</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>A note on <strong>passage cells</strong>, which turn up in the more detailed questions. In an older root the
+     endodermis often goes further and deposits a complete suberin lamella over the whole inner face of each cell,
+     sealing it off entirely. A minority of cells — typically those opposite the xylem arms — are left
+     unsuberised. These are the passage cells, and they are where uptake into the stele continues in mature root
+     regions. It is a neat illustration of the general design: the plant restricts a pathway and then leaves
+     deliberate, countable gates in it.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Guttation is not dew, and root pressure is not the answer to tall trees</p>
+    <p style="margin:0 0 .4em"><strong>Guttation</strong> is xylem sap pushed out through hydathodes at leaf
+      margins by root pressure, and it happens at night or in the early morning when soil is wet, humidity is
+      high and transpiration has stopped — precisely the conditions under which root pressure builds and has
+      nowhere to discharge. The droplets contain dissolved minerals and sugars; dew is condensed atmospheric
+      water and contains nothing. A stem cut at that moment will bleed, which is the same phenomenon and is how
+      maple syrup and birch sap are harvested.</p>
+    <p style="margin:0">But root pressure is small — usually 0.05–0.2 MPa, which corresponds to lifting water
+      5–20 m at absolute best, and it is <em>absent</em> in many conifers and in any plant that is transpiring
+      rapidly, because the xylem is then under tension rather than pressure. Its real biological role is refilling
+      embolised vessels in spring, not raising the transpiration stream. Any answer option that attributes the
+      ascent of sap in a tall tree to root pressure is wrong, and it is wrong for a quantitative reason you can
+      state.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>The nephron parallel worth carrying</h4>
+    <p>The endodermis is the plant's tight-junction layer. In a proximal tubule, tight junctions define what may
+      go around cells (paracellular) versus through them (transcellular), and reabsorption is selective because
+      the paracellular route is restricted. The Casparian strip does the identical job in a root: apoplast is
+      paracellular, symplast is transcellular, suberin is the tight junction. And the water channel is literally
+      homologous — plant PIP aquaporins and the human AQP2 of the collecting duct are the same protein family, so
+      nephrogenic diabetes insipidus and a root's hydraulic conductance are variations on one mechanism.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Cohesion–tension and the tall tree</h2>
+
+  <p class="idea"><b>The idea</b>Nothing in a plant pushes water upward. Water evaporates from wet walls deep
+     inside a leaf; as it goes, the remaining water is pulled into ever tighter curves in the microscopic pores of
+     those walls, and surface tension turns that curvature into an enormous suction. Because water molecules stick
+     to each other so strongly, the suction is transmitted all the way down an unbroken thread of water to the
+     roots — like pulling on a rope rather than pushing on one. The sun does the work; the plant only decides how
+     wide to open the tap.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; mechanism</p>
+    <dl class="def">
+      <dt>Cohesion–tension mechanism</dt>
+      <dd>Evaporation from mesophyll cell walls generates negative pressure at curved air–water menisci; the
+          cohesion of water transmits that tension through continuous columns in the xylem; bulk flow follows the
+          pressure gradient from root to leaf. The energy source is <strong>solar</strong>, not metabolic.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Ψ<sub>leaf</sub> &lt; Ψ<sub>stem</sub> &lt; Ψ<sub>root</sub> &lt; Ψ<sub>soil</sub> · and Ψ<sub>p</sub>(xylem) &lt; 0</span>
+      <span class="fx__tag">one continuous descending gradient, with the pressure term negative throughout</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Cohesion and adhesion</dt>
+          <dd><strong>Cohesion</strong> is water-to-water hydrogen bonding, which gives a confined water column a
+              tensile strength of tens of megapascals. <strong>Adhesion</strong> is water-to-wall bonding, which
+              keeps the column attached to the lignified conduit and prevents it slumping.</dd>
+          <dt>Meniscus pressure (Young–Laplace)</dt>
+          <dd>A curved air–water interface of radius r sustains a pressure difference ΔP = 2γ/r. Because cell-wall
+              pores are of order 5 nm, the menisci there can hold tensions far greater than any a plant actually
+              generates.</dd>
+          <dt>Cavitation and embolism</dt>
+          <dd>Under excessive tension, or on freezing, dissolved gas comes out of solution and an air bubble
+              breaks the column — <strong>cavitation</strong>. The gas-filled conduit is an
+              <strong>embolism</strong> and no longer conducts.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">h<sub>max</sub> = P<sub>atm</sub> / ρg = 101 325 / (1000 × 9.81) = 10.3 m</span><span class="fx__tag">the absolute ceiling for any mechanism that <em>sucks</em> water up a pipe</span></div>
+          <div class="fx"><span class="fx__eq">h = <span class="mf" role="img" aria-label="two gamma cosine theta, over rho g r"><span>2γ cos θ</span><span>ρ g r</span></span></span><span class="fx__tag">capillary rise; γ = 0.0728 N·m⁻¹ for water at 20 °C</span></div>
+          <div class="fx"><span class="fx__eq">ΔP = 2γ / r</span><span class="fx__tag">Young–Laplace at a meniscus of radius r — 29 MPa in a 5 nm wall pore</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>γ</b><span>surface tension of water; 0.0728 N·m⁻¹ at 20 °C</span></div>
+          <div><b>ρ</b><span>density of water; 1000 kg·m⁻³</span></div>
+          <div><b>g</b><span>gravitational acceleration; 9.81 m·s⁻²</span></div>
+          <div><b>r</b><span>pore or conduit radius; m (vessels 10–100 µm, tracheids 5–30 µm, wall pores ~5 nm)</span></div>
+          <div><b>θ</b><span>contact angle; ≈0° for water on a wetted cellulose wall (dimensionless)</span></div>
+          <div><b>v</b><span>sap velocity; m·h⁻¹ — 1–15 typical, up to ~45 in ring-porous oak</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>The mechanism is worth stating in the order the events actually occur, because most wrong answers come from
+     getting the order backwards. <strong>(1)</strong> Water evaporates from the wetted walls of mesophyll cells
+     into the leaf's internal air space. <strong>(2)</strong> The air–water interfaces retreat into the wall's
+     nanoscale pores and become sharply curved. <strong>(3)</strong> Surface tension at those curved menisci puts
+     the liquid water behind them under <em>negative pressure</em>. <strong>(4)</strong> That negative pressure
+     lowers Ψ in the mesophyll wall, which draws water out of the adjacent xylem of the leaf vein.
+     <strong>(5)</strong> Because the water in the xylem is one continuous, cohering column from leaf to root, the
+     tension propagates down the whole tree within seconds. <strong>(6)</strong> At the bottom, the lowered Ψ in
+     the root xylem draws water in from the cortex and hence from the soil.</p>
+  <p>Notice what is <em>not</em> in that list. No pump. No living cell. No ATP. The xylem conduits are dead, which
+     is essential rather than incidental: a living cell's plasma membrane would be torn apart by a tension of two
+     megapascals. This is why a plant killed with a metabolic poison keeps transpiring, and why a cut branch in a
+     vase continues to take up water — facts that would be inexplicable if the ascent were an active process.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — three ways of raising water, two of which fail</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A coast redwood is 100 m tall. Show that (a) atmospheric pressure
+      and (b) capillarity in the vessels cannot account for the ascent, and (c) estimate the tension actually
+      required at the top.</p>
+    <ol>
+      <li><strong>(a) Sucking.</strong> A perfect vacuum pump at the top can at best remove all the pressure above
+          the column, leaving atmospheric pressure to push it up.
+          <span class="fi">h = P<sub>atm</sub>/ρg = 101 325 / (1000 × 9.81) = <strong>10.3 m</strong></span>.
+          That is the barometric limit and it applies to any "suction" mechanism at all — including the mercury
+          barometer, and including the reason a hand pump cannot draw from a well deeper than about ten metres.
+          A redwood beats it by a factor of ten, so the water is <em>not</em> being sucked in that sense; it is
+          under genuine negative absolute pressure, a metastable state that only works because the column is
+          confined and free of nucleation sites.</li>
+      <li><strong>(b) Capillarity.</strong> Take a generous vessel radius of 20 µm:
+          <span class="fi">h = 2γ cos θ / (ρgr) = (2 × 0.0728) / (1000 × 9.81 × 2×10⁻⁵) = 0.1456 / 0.1962 =
+          <strong>0.74 m</strong></span>. A conifer tracheid at r = 10 µm manages 1.5 m. Capillary rise in the
+          conduits is therefore worth well under a metre and is irrelevant at tree scale.</li>
+      <li><strong>Where capillarity <em>does</em> matter</strong> is the cell wall, where the pores are of order
+          5 nm. <span class="fi">ΔP = 2γ/r = (2 × 0.0728)/(5×10⁻⁹) = 2.91×10⁷ Pa = <strong>29 MPa</strong></span>.
+          The meniscus in a mesophyll wall can hold roughly thirty megapascals of tension — an order of magnitude
+          more than any tree ever demands. That is the real function of the wall pores: not to lift water, but to
+          be the anchor from which the whole column hangs.</li>
+      <li><strong>(c) The requirement.</strong> Gravity alone costs
+          <span class="fi">ρgh = 1000 × 9.81 × 100 = 9.81×10⁵ Pa = <strong>0.98 MPa</strong></span>, i.e. the
+          0.01 MPa per metre in the quick sheet. Add frictional loss through 100 m of conduit — comparable in
+          magnitude — and the soil's own Ψ of about −0.05 MPa, and the leaf xylem at the top must sit near
+          <strong>−2 MPa</strong>. Measured values in tall conifers are close to this, which is one of the
+          reasons the cohesion–tension theory is accepted.</li>
+      <li>Note the consequence for tree height: gravity imposes a fixed 0.01 MPa·m⁻¹ toll whether the tree is
+          transpiring or not, so the tallest trees have leaves permanently near their cavitation limit and
+          measurably smaller, more water-stressed leaves at the top than at the bottom.</li>
+    </ol>
+    <span class="wex__ans">atmospheric limit 10.3 m · capillary rise 0.74 m · required tension ≈ −2 MPa · wall menisci can hold ≈29 MPa</span>
+    </div>
+  </details>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The evidence, in the form the paper likes</p>
+    <p style="margin:0 0 .4em"><strong>Trunk diameter shrinks during the day and recovers at night.</strong> If the
+      xylem were pressurised the trunk would swell in the daytime. It narrows, measurably, because tension pulls
+      the conduit walls inward — direct evidence of negative pressure. This is the single most quotable piece of
+      support for cohesion–tension.</p>
+    <p style="margin:0 0 .4em"><strong>The Scholander pressure chamber.</strong> Seal a shoot in a chamber with
+      the cut stem protruding, raise the gas pressure until sap just appears at the cut surface; the applied
+      pressure equals the tension that was in the xylem. It works, and it gives numbers consistent with the
+      calculation above.</p>
+    <p style="margin:0"><strong>Killing the plant does not stop the flow.</strong> Steam-killing a length of stem,
+      or poisoning it, leaves transpiration running. Chilling or poisoning the phloem, by contrast, stops sugar
+      transport within minutes (§&nbsp;09). The contrast between those two experiments is a favourite way of
+      asking whether you know which tissue is alive.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper — cavitation, and how a conifer survives a hard winter</summary>
+    <div class="disc__body">
+      <p style="margin:0 0 .6em">Water under 2 MPa of tension is metastable: thermodynamically it "wants" to
+        become vapour, and only the absence of a nucleation site prevents it. Introduce a bubble — through a
+        wound, through drought pushing air across a pit membrane, or through freezing, which expels dissolved gas
+        because ice excludes it — and the column snaps. The tension vanishes locally and the conduit fills with
+        water vapour and air. You can hear this happening: drought-stressed stems emit ultrasonic acoustic
+        emissions, one per cavitation event.</p>
+      <p style="margin:0 0 .6em">The structural defence is compartmentalisation. Conduits are finite in length,
+        and water passes between them only through <strong>pits</strong> whose pit membrane is unlignified
+        primary wall. That membrane is wettable and its pores are small enough that surface tension holds an
+        air–water meniscus in place: air cannot cross until the tension exceeds the "air-seeding" threshold of
+        the largest pore. So an embolism is trapped in the conduit where it started. Conifers do better still —
+        their bordered pits carry a <strong>torus–margo</strong> valve, a thickened disc suspended on a porous
+        mesh, which is pushed across and seals the pit aperture the moment the pressure difference across it
+        becomes large. A pine effectively closes a hatch on each dead compartment.</p>
+      <p style="margin:0">This is the deeper reason the vessel/tracheid trade-off matters. Freeze–thaw cavitation
+        risk scales steeply with conduit diameter, because a wide conduit freezes with larger bubbles that fail to
+        redissolve on thawing. Hence conifers dominate cold and high-altitude forests with narrow tracheids and
+        a valve, while wide-vesselled ring-porous angiosperms such as oak simply write off last year's earlywood
+        and build a new ring each spring — which is why their vessels are all in the earlywood in the first
+        place.</p>
+    </div>
+  </details>
+</section>
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Stomata: the guard cell as an osmotic machine</h2>
+
+  <p class="idea"><b>The idea</b>A stoma is a hole with two sausages around it. To open the hole the plant does not
+     pull the sausages apart — it inflates them. Because each sausage is hooped with inextensible bands like a
+     garden hose, and because the wall facing the hole is stiffer than the wall facing away, inflating it makes it
+     bow outwards rather than fatten, and the hole opens. Everything else about stomatal physiology is the story
+     of how the cell gets water to come in, and the answer is always the same: it makes its inside osmotically
+     attractive by loading it with ions.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the opening sequence</p>
+    <dl class="def">
+      <dt>Stoma (pl. stomata)</dt>
+      <dd>A pore in the epidermis bounded by two <strong>guard cells</strong>, together with any adjacent
+          subsidiary cells. Guard cells are the only epidermal cells with substantial chloroplasts, and unlike
+          other epidermal cells they have no plasmodesmatal connection to their neighbours at maturity — they are
+          osmotically isolated, which is what lets them behave independently.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">blue light → H⁺-ATPase → hyperpolarise → K⁺ in → Ψ<sub>s</sub> ↓ → H₂O in → turgor ↑ → open</span>
+      <span class="fx__tag">the causal chain, in order; the pump moves protons, never potassium</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Radial micellation</dt>
+          <dd>The cellulose microfibrils of the guard-cell wall run as hoops around the cell's circumference, so
+              the cell cannot increase in girth, only in length. With the two ends attached to each other and the
+              inner (ventral) wall thicker and less extensible, the lengthening cell can only bow outwards —
+              and the pore opens.</dd>
+          <dt>The three opening signals</dt>
+          <dd><strong>Blue light</strong>, sensed by phototropins PHOT1/PHOT2 which phosphorylate and activate the
+              plasma-membrane H⁺-ATPase; <strong>low intercellular CO₂</strong>, which is the leaf's own signal
+              that photosynthesis is outrunning supply; and the <strong>circadian clock</strong>, which opens
+              stomata before dawn in anticipation.</dd>
+          <dt>The closing signal</dt>
+          <dd><strong>Abscisic acid (ABA)</strong>, made in roots and in leaf tissue under water stress. It binds
+              PYR/PYL receptors, which inhibit PP2C phosphatases, releasing SnRK2 kinases, which activate the
+              anion channel SLAC1. Anions leave, the membrane depolarises, outward K⁺ channels open, and turgor
+              collapses.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">guard-cell K⁺: ≈100 mM closed → 400–800 mM open</span><span class="fx__tag">with Cl⁻ and malate²⁻ as counter-ions; a swing of order 1.5 MPa in Ψ<sub>s</sub></span></div>
+          <div class="fx"><span class="fx__eq">starch + PEP → oxaloacetate → malate²⁻</span><span class="fx__tag">the guard cell's own counter-ion, made from stored starch — chloride is imported</span></div>
+          <div class="fx"><span class="fx__eq">closure: ABA ⊣ PP2C ⊣ SnRK2 → SLAC1 → anion efflux → depolarise → K⁺ efflux</span><span class="fx__tag">a double-negative signalling core: the receptor works by removing an inhibitor</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>H⁺-ATPase</b><span>P-type proton pump of the plasma membrane; hydrolyses ATP, exports H⁺, hyperpolarises to about −200 mV</span></div>
+          <div><b>KAT1</b><span>inward-rectifying K⁺ channel, Shaker family; opens on hyperpolarisation</span></div>
+          <div><b>GORK</b><span>outward-rectifying K⁺ channel; opens on depolarisation</span></div>
+          <div><b>SLAC1</b><span>slow anion channel; the effector of closure, carrying Cl⁻ and malate²⁻ out</span></div>
+          <div><b>ABA</b><span>abscisic acid; sesquiterpenoid hormone, active in the µmol·L⁻¹ range at the guard cell</span></div>
+          <div><b>g<sub>s</sub></b><span>stomatal conductance; mol H₂O m⁻²·s⁻¹ — typically 0.05–0.6</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 880 430" role="img" aria-label="A closed stoma and an open stoma compared. On the left the two guard cells are flaccid and lie against each other with no pore; potassium and chloride are leaving and water follows, driven by abscisic acid. On the right the guard cells are turgid and bowed apart, leaving an open pore; a proton pump has exported hydrogen ions, hyperpolarising the membrane so potassium enters through inward channels, chloride is co-imported and malate is made from starch, lowering the solute potential so water enters and turgor rises. Radial cellulose hoops and a thickened inner wall convert that swelling into bowing." style="font-family:var(--sans)">
+      <text x="230" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">CLOSED · low turgor</text>
+      <text x="650" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">OPEN · high turgor</text>
+
+      <path d="M130,190 C140,148 320,148 330,190 C310,186 150,186 130,190 Z" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2"/>
+      <path d="M130,190 C140,232 320,232 330,190 C310,194 150,194 130,190 Z" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2"/>
+      <path d="M132,187 C150,183 310,183 328,187" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M132,193 C150,197 310,197 328,193" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+      <g stroke="var(--ink-faint)" stroke-width="1.4" opacity="0.75">
+        <line x1="165" y1="158" x2="165" y2="186"/><line x1="200" y1="153" x2="200" y2="186"/>
+        <line x1="235" y1="152" x2="235" y2="186"/><line x1="270" y1="154" x2="270" y2="186"/>
+        <line x1="300" y1="161" x2="300" y2="186"/>
+        <line x1="165" y1="222" x2="165" y2="194"/><line x1="200" y1="227" x2="200" y2="194"/>
+        <line x1="235" y1="228" x2="235" y2="194"/><line x1="270" y1="226" x2="270" y2="194"/>
+        <line x1="300" y1="219" x2="300" y2="194"/>
+      </g>
+      <text x="230" y="258" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--bad)">no pore</text>
+
+      <path d="M540,190 C550,132 750,132 760,190 C726,172 574,172 540,190 Z" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2"/>
+      <path d="M540,190 C550,248 750,248 760,190 C726,208 574,208 540,190 Z" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2"/>
+      <path d="M545,186 C578,169 722,169 755,186" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M545,194 C578,211 722,211 755,194" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/>
+      <g stroke="var(--ink-faint)" stroke-width="1.4" opacity="0.75">
+        <line x1="580" y1="144" x2="580" y2="174"/><line x1="615" y1="139" x2="615" y2="171"/>
+        <line x1="650" y1="138" x2="650" y2="170"/><line x1="685" y1="139" x2="685" y2="171"/>
+        <line x1="718" y1="145" x2="718" y2="174"/>
+        <line x1="580" y1="236" x2="580" y2="206"/><line x1="615" y1="241" x2="615" y2="209"/>
+        <line x1="650" y1="242" x2="650" y2="210"/><line x1="685" y1="241" x2="685" y2="209"/>
+        <line x1="718" y1="235" x2="718" y2="206"/>
+      </g>
+      <text x="650" y="196" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ok)">PORE</text>
+
+      <g font-size="12.5">
+        <text x="230" y="286" text-anchor="middle" font-weight="700" fill="var(--accent-2)">ABA → SLAC1 opens</text>
+        <text x="230" y="306" text-anchor="middle" fill="var(--ink-soft)">Cl⁻ and malate²⁻ leave → membrane depolarises</text>
+        <text x="230" y="324" text-anchor="middle" fill="var(--ink-soft)">GORK opens → K⁺ leaves → Ψ<tspan baseline-shift="sub" font-size="9">s</tspan> rises</text>
+        <text x="230" y="342" text-anchor="middle" fill="var(--ink-soft)">water leaves → turgor falls → cells straighten</text>
+
+        <text x="650" y="286" text-anchor="middle" font-weight="700" fill="var(--accent)">blue light → H⁺-ATPase exports H⁺</text>
+        <text x="650" y="306" text-anchor="middle" fill="var(--ink-soft)">membrane hyperpolarises → KAT1 opens → K⁺ enters</text>
+        <text x="650" y="324" text-anchor="middle" fill="var(--ink-soft)">Cl⁻ co-imported · starch → malate²⁻ made in situ</text>
+        <text x="650" y="342" text-anchor="middle" fill="var(--ink-soft)">Ψ<tspan baseline-shift="sub" font-size="9">s</tspan> falls ≈1.5 MPa → water enters → turgor rises</text>
+      </g>
+
+      <line x1="360" y1="190" x2="510" y2="190" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="7 5"/>
+      <path d="M498,183 L512,190 L498,197 Z" fill="var(--ink-faint)"/>
+      <path d="M372,183 L358,190 L372,197 Z" fill="var(--ink-faint)"/>
+
+      <g font-size="11.5" fill="var(--ink-faint)">
+        <line x1="60" y1="386" x2="84" y2="386" stroke="var(--ink-faint)" stroke-width="1.4"/>
+        <text x="92" y="390">radial cellulose hoops — the cell can lengthen but not widen</text>
+        <line x1="500" y1="386" x2="524" y2="386" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/>
+        <text x="532" y="390">thickened, less extensible inner (ventral) wall</text>
+      </g>
+    </svg>
+    <figcaption>The mechanical trick is in the wall, not in the ion transport. Hoops of cellulose prevent the cell
+      swelling in girth, so the only way it can accommodate the incoming water is to get longer; and because the
+      wall facing the pore resists stretching more than the wall facing away, the two ends being anchored, the
+      cell bows. Reverse the ion movements and the whole thing runs backwards. Note that in grasses the guard
+      cells are dumbbell-shaped with bulbous ends and flanking subsidiary cells — the geometry differs, the
+      principle does not.</figcaption>
+  </figure>
+
+  <h3>Why the pump moves protons and not potassium</h3>
+  <p>This is the step most often garbled, and it is worth understanding rather than memorising. The guard cell's
+     plasma membrane carries a P-type <strong>H⁺-ATPase</strong> — the plant equivalent of the animal
+     Na⁺/K⁺-ATPase. Blue light, via phototropin, causes it to be phosphorylated and activated. It exports protons,
+     which does two things at once: it acidifies the wall space, and, because it moves charge, it drives the
+     membrane potential down to as much as −200 mV. That hyperpolarisation is the actual signal. Voltage-gated
+     inward-rectifying K⁺ channels (KAT1, a Shaker-family channel) open only when the membrane is sufficiently
+     negative, and K⁺ then floods in <em>passively</em>, down an electrical gradient the pump created.</p>
+  <p>So potassium accumulation is <strong>secondary</strong> active transport: no ATP is spent on K⁺ itself, only
+     on H⁺. Chloride follows, co-transported with protons running back down their gradient; and the guard cell
+     manufactures its own organic anion, <strong>malate²⁻</strong>, by breaking down stored starch. Every one of
+     those species lowers Ψ<sub>s</sub>, and water follows.</p>
+  <p>The magnitude is worth a moment. Going from about 100 mM to about 500 mM of a monovalent salt takes the
+     osmolarity from roughly 0.2 to 1.0 osmol·L⁻¹. At 20 °C that is
+     <span class="fi">Ψ<sub>s</sub>: −0.49 → −2.43 MPa</span>, a change of nearly 2 MPa. Guard cells run at
+     turgor pressures several times those of ordinary cells, which is why their walls are so heavily built.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The textbook sugar story is not wrong, but it is not the mechanism either</p>
+    <p style="margin:0 0 .4em">Older accounts say guard cells open because photosynthesis in their chloroplasts
+      makes sugar, which lowers Ψ<sub>s</sub>. Guard cells do have chloroplasts — unusually, since ordinary
+      epidermal cells do not — but the chloroplasts' main early contribution is <em>starch degradation</em>
+      supplying carbon skeletons for malate, not net photosynthetic sugar. The rapid morning opening is a K⁺ and
+      anion event; sucrose does accumulate and becomes the dominant osmoticum in the afternoon, by which time K⁺
+      has already declined. An option that says "guard cells open when photosynthesis raises their sugar
+      concentration" is describing the late phase of a mechanism whose trigger is something else.</p>
+    <p style="margin:0">Similarly, "stomata open in the light so the plant can photosynthesise" is teleology
+      standing in for a mechanism. The proximate signals are blue light on phototropin and a fall in the
+      intercellular CO₂ concentration. That second signal is the important one to be able to use: a leaf in
+      <em>darkness</em> will still open its stomata if you flush the intercellular spaces with CO₂-free air, and
+      a leaf in bright light will close them if you raise CO₂ — which is why rising atmospheric CO₂ is measurably
+      reducing stomatal conductance and stomatal density in modern plants.</p>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The order-of-events question</p>
+    <p style="margin:0">The commonest stomatal item on a paper of this type gives five steps and asks for the
+      correct sequence. Two orderings are wrong in ways that look right: putting <strong>water entry before
+      ion entry</strong> (water is always the last thing to move — it follows Ψ, it never leads), and putting
+      <strong>K⁺ uptake before H⁺ export</strong> (the proton pump creates the driving force; potassium is a
+      passenger). If you can only remember one thing, remember that the proton pump is step one and water is
+      step last.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper — why guard cells are the favourite cell of plant signalling research</summary>
+    <div class="disc__body">
+      <p style="margin:0 0 .6em">A guard cell is a single cell with a visible, quantifiable output — the pore
+        aperture, measurable under a microscope in micrometres — that integrates light quality, CO₂, humidity,
+        temperature, the circadian clock, hormone signals from a distant organ and pathogen-associated molecular
+        patterns. It is, in effect, a whole signalling network with a built-in readout, and the entire ABA core
+        was worked out on it.</p>
+      <p style="margin:0 0 .6em">The ABA core has an elegant logic: the receptor is a <em>negative regulator of a
+        negative regulator</em>. In the absence of ABA, PP2C phosphatases sit on the SnRK2 kinases and keep them
+        dephosphorylated and inactive. ABA binds a PYR/PYL receptor, and the receptor–ABA complex binds and
+        inhibits the PP2C. Freed from the phosphatase, SnRK2 autophosphorylates, becomes active, and
+        phosphorylates SLAC1 and the NADPH oxidase RBOHF. Anions pour out of the guard cell, the membrane
+        depolarises, GORK carries K⁺ out after them, and the cell deflates. The whole thing was reconstituted
+        <em>in vitro</em> from purified components — receptor, phosphatase, kinase, channel — which is why it is
+        cited as the cleanest hormone-signalling pathway known in plants.</p>
+      <p style="margin:0">There is also a genuine cross-disciplinary hook: KAT1 and GORK are Shaker-family
+        voltage-gated potassium channels, structurally homologous to the K<sub>v</sub> channels that repolarise a
+        cardiac action potential. The same protein architecture that opens a stoma at dawn terminates a
+        ventricular myocyte's plateau — a reminder that ion-channel physiology is one subject with several
+        literatures.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Transpiration and the trade it cannot avoid</h2>
+
+  <p class="idea"><b>The idea</b>A land plant needs carbon dioxide, and the only way to get it is to open holes in
+     an otherwise waterproof skin. Water immediately escapes through the same holes — far faster than CO₂ comes
+     in, because the outward gradient is a hundred times steeper. Every plant on land therefore lives with a
+     forced exchange rate: a few hundred molecules of water lost for each molecule of carbon gained. Nothing about
+     transpiration is a design feature; it is the unavoidable bill for photosynthesis on dry land, and most plant
+     adaptations are attempts to lower the price.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the exchange rate</p>
+    <dl class="def">
+      <dt>Transpiration</dt>
+      <dd>Evaporative loss of water vapour from a plant, overwhelmingly through the stomata. Stomatal pores cover
+          about 1–2 % of a leaf's surface yet account for more than 90 % of its water loss; the cuticle accounts
+          for the small remainder.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">E / A = 1.6 × <span class="mf" role="img" aria-label="delta w over delta c"><span>Δw</span><span>Δc</span></span></span>
+      <span class="fx__tag">water lost per CO₂ fixed; the 1.6 is how much faster water vapour diffuses in air</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Why 1.6</dt>
+          <dd>Both gases cross the same pore by diffusion, so both are proportional to stomatal conductance. Water
+              is the lighter, smaller molecule and its diffusion coefficient in air is 1.6 times that of CO₂, so
+              a pore that is open enough to admit one mole of CO₂ lets out 1.6 times as much water for a given
+              gradient. The factor is fixed by physics and cannot be engineered away.</dd>
+          <dt>Water-use efficiency (WUE)</dt>
+          <dd>Carbon fixed per water lost — the inverse of the ratio above. The old agronomic version is the
+              <strong>transpiration ratio</strong>, grams of water transpired per gram of dry matter accumulated:
+              roughly <strong>500 for C3, 250 for C4 and 50 for CAM</strong>.</dd>
+          <dt>Vapour pressure deficit (VPD)</dt>
+          <dd>The difference between the saturated vapour pressure at leaf temperature and the actual vapour
+              pressure of the air. It, not relative humidity alone, is what drives evaporation — and it rises
+              steeply with temperature, which is why a hot day costs far more water than a merely dry one.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">≈97 % of absorbed water transpired · ≈2 % retained in growth · ~1 % consumed chemically</span><span class="fx__tag">photosynthesis is a rounding error in a plant's water budget</span></div>
+          <div class="fx"><span class="fx__eq">e<sub>s</sub>(25 °C) = 3.17 kPa → internal mole fraction 0.0313</span><span class="fx__tag">the intercellular air space is essentially saturated at all times</span></div>
+          <div class="fx"><span class="fx__eq">boundary layer ↑ → transpiration ↓ · wind → boundary layer ↓ → transpiration ↑</span><span class="fx__tag">why trichomes, sunken stomata and leaf hairs work</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>E</b><span>transpiration rate; mol H₂O·m⁻²·s⁻¹ (typically 1–6 mmol·m⁻²·s⁻¹)</span></div>
+          <div><b>A</b><span>net CO₂ assimilation rate; µmol CO₂·m⁻²·s⁻¹ (5–35 typical)</span></div>
+          <div><b>Δw</b><span>leaf-to-air water vapour mole-fraction difference; mol·mol⁻¹, dimensionless</span></div>
+          <div><b>Δc</b><span>air-to-leaf CO₂ mole-fraction difference, C<sub>a</sub> − C<sub>i</sub>; dimensionless</span></div>
+          <div><b>C<sub>a</sub>, C<sub>i</sub></b><span>ambient and intercellular CO₂ mole fraction; µmol·mol⁻¹ (ppm)</span></div>
+          <div><b>VPD</b><span>vapour pressure deficit; kPa</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Take the two gradients seriously and the whole subject follows. Inside the leaf, the intercellular air space
+     sits against wet cell walls and is effectively <strong>saturated</strong> — at 25 °C that is a water vapour
+     mole fraction of about 0.031, or 31 000 ppm. Outside, at 50 % humidity, it is about 15 600 ppm. The outward
+     gradient for water is therefore around 15 000 ppm. For CO₂, ambient air offers about 420 ppm and the leaf
+     interior sits near 280 ppm in a C3 plant, so the inward gradient is a mere <strong>140 ppm</strong> — about a
+     hundredfold smaller. Multiply by the 1.6 diffusivity factor and you have the exchange rate. There is no
+     cleverness available: the same hole serves both fluxes.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — what does a molecule of CO₂ actually cost?</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A C3 leaf at 25 °C sits in air at 25 °C. C<sub>a</sub> = 420 ppm,
+      C<sub>i</sub> = 280 ppm. Compute the water lost per CO₂ fixed at (a) 50 % RH and (b) 20 % RH. Then, for a
+      plant with 0.6 m² of leaf transpiring at 4 mmol·m⁻²·s⁻¹ for 12 h, compute the daily water budget.</p>
+    <ol>
+      <li>Internal vapour mole fraction: saturated vapour pressure at 25 °C is 3.17 kPa, so
+          <span class="fi">w<sub>i</sub> = 3.17 / 101.3 = 0.0313</span>.</li>
+      <li><strong>(a)</strong> At 50 % RH, <span class="fi">w<sub>a</sub> = 0.0313 × 0.50 = 0.01565</span>, so
+          <span class="fi">Δw = 0.01565</span>. And <span class="fi">Δc = (420 − 280) × 10⁻⁶ = 1.40 × 10⁻⁴</span>.</li>
+      <li><span class="fi">Δw/Δc = 0.01565 / 1.40×10⁻⁴ = 111.8</span>, and multiplying by 1.6 gives
+          <strong>179 mol H₂O per mol CO₂</strong>.</li>
+      <li><strong>(b)</strong> At 20 % RH, <span class="fi">Δw = 0.0313 − 0.00626 = 0.02503</span>, so
+          <span class="fi">Δw/Δc = 178.8</span> and the cost is <strong>286 mol H₂O per mol CO₂</strong>. Drying
+          the air by 30 percentage points raised the bill by 60 % with no change in the plant at all.</li>
+      <li><strong>Daily budget.</strong> <span class="fi">4 × 10⁻³ × 0.6 × (12 × 3600) = 103.7 mol H₂O</span>
+          = <span class="fi">103.7 × 18.02 = 1868 g ≈ <strong>1.9 L per day</strong></span>. Over a 100-day
+          season that is roughly <strong>190 L</strong> — consistent with the classic measurement that a single
+          maize plant transpires of order 100–200 L in a season.</li>
+      <li>Carbon gained, at the 179 mol/mol rate: <span class="fi">103.7 / 179 = 0.58 mol CO₂</span>, which is
+          about <span class="fi">0.58 × 30 = 17 g</span> of carbohydrate. Seventeen grams of sugar for nearly two
+          litres of water — and the plant is a fully functioning, well-watered specimen. That is the trade.</li>
+      <li><strong>The non-obvious corollary.</strong> Halving stomatal conductance halves E immediately, but it
+          does <em>not</em> halve A: with the stomata narrowed, the Calvin cycle keeps drawing CO₂ down, so
+          C<sub>i</sub> falls, Δc widens, and assimilation is partly defended. Partial closure therefore
+          <em>improves</em> water-use efficiency. That is the whole logic of midday stomatal closure and of ABA
+          signalling — not shutting down, but trading a little carbon for a lot of water.</li>
+    </ol>
+    <span class="wex__ans">179 mol H₂O/mol CO₂ at 50 % RH · 286 at 20 % RH · ≈1.9 L per plant per day · ≈17 g carbohydrate</span>
+    </div>
+  </details>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Environmental factors and their effect on transpiration rate</caption>
+      <thead><tr><th>Factor increases…</th><th>Transpiration</th><th>Because</th><th>The trap</th></tr></thead>
+      <tbody>
+        <tr><td>Light</td><td>↑↑</td><td>Opens stomata (blue-light response) and warms the leaf</td><td>The effect is on conductance, not on the gradient — a leaf with fixed aperture responds far less</td></tr>
+        <tr><td>Temperature</td><td>↑↑↑</td><td>Saturated vapour pressure inside the leaf rises steeply and non-linearly; Δw widens even at constant RH</td><td>Reported as "humidity" in weak options; a hot humid day can still have a high VPD</td></tr>
+        <tr><td>Humidity</td><td>↓</td><td>Narrows Δw</td><td>Even 99 % RH still gives a leaf Ψ of −1.4 MPa (§ 04), so transpiration never reaches zero while stomata are open</td></tr>
+        <tr><td>Wind</td><td>↑ then plateaus</td><td>Thins the boundary layer, so the leaf sees drier air; it also cools the leaf, which partly opposes the effect</td><td>Very high wind can <em>reduce</em> transpiration by cooling the leaf and by triggering stomatal closure</td></tr>
+        <tr><td>Soil water deficit</td><td>↓</td><td>Roots produce ABA, which closes stomata <em>before</em> leaf water status has fallen much</td><td>The signal is chemical and anticipatory, not simply a loss of turgor — this is the point of the split-root experiment</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Transpiration is a cost, not a purpose</p>
+    <p style="margin:0 0 .4em">You will see it written that plants transpire "in order to" cool the leaf, or "in
+      order to" pull up minerals. Both put the causation backwards. Evaporative cooling is a genuine and useful
+      <em>consequence</em> — a leaf in full sun can be several degrees cooler than it would otherwise be, and
+      leaf temperature does rise sharply when stomata close — but a plant does not open stomata to cool itself,
+      and it will close them and overheat rather than dehydrate.</p>
+    <p style="margin:0">The mineral-uptake version is more clearly wrong. Mineral <em>uptake</em> happens at the
+      root and is active and selective (§ 05); transpiration only affects the rate at which already-absorbed ions
+      are swept to the shoot. Plants growing in saturated air with essentially no transpiration still accumulate
+      minerals perfectly well, and seedlings in a sealed humid chamber grow. If transpiration were the mechanism
+      of uptake, they could not.</p>
+  </div>
+
+  <p>The adaptations follow directly from the equation, and it is worth being able to derive rather than list
+     them. Reduce conductance: thick cuticles, fewer stomata, stomata sunk into pits, stomata lined with
+     trichomes, leaves rolled so the stomatal surface faces an enclosed humid chamber (the bulliform-cell
+     mechanism in grasses). Reduce Δw at the leaf surface: hairs and a thick boundary layer, reflective surfaces
+     to hold leaf temperature down, small or dissected leaves in hot dry air where a thin boundary layer allows
+     convective cooling instead. Or change the timing and the biochemistry entirely, which is what C4 and CAM
+     do — CAM opening stomata only at night, when Δw is at its smallest, and buying a transpiration ratio around
+     50 for the cost of storing carbon as malate overnight. That is note&nbsp;09's material, but it is the same
+     equation being solved.</p>
+</section>
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Phloem: pressure flow, source to sink</h2>
+
+  <p class="idea"><b>The idea</b>The sugar pipe works the opposite way round from the water pipe. Where the xylem
+     is pulled from the top, the phloem is <em>pushed</em> from wherever sugar is being made. Loading sugar into
+     one end of a tube makes water rush in after it and the pressure there shoot up; taking sugar out at the other
+     end lets water leave and the pressure there fall. A pressure difference along a tube full of liquid moves
+     everything in it, sugar included, at whatever speed the difference allows. The plant never pumps the sap —
+     it only pumps sugar, at the two ends, and lets the water do the rest.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; mechanism</p>
+    <dl class="def">
+      <dt>Pressure-flow (Münch mass-flow) hypothesis</dt>
+      <dd>Active loading of sugar at a source lowers Ψ<sub>s</sub> in the sieve tube; water enters from the
+          adjacent xylem, raising Ψ<sub>p</sub>. Unloading at a sink reverses this locally. Sap then moves by
+          <strong>bulk flow</strong> down the resulting hydrostatic pressure gradient, carrying its solutes with
+          it. The water is returned to the xylem at the sink.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">load at source → Ψ<sub>p</sub> ↑ · unload at sink → Ψ<sub>p</sub> ↓ · ΔΨ<sub>p</sub> ⇒ bulk flow</span>
+      <span class="fx__tag">the flow is passive; only the loading and unloading cost energy</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Source and sink</dt>
+          <dd>A <strong>source</strong> is any organ that is a net exporter of sugar — a mature photosynthesising
+              leaf, or a storage organ that is mobilising its reserves. A <strong>sink</strong> is a net importer:
+              a root, a fruit, a shoot tip, a developing leaf. The roles are not fixed: a potato tuber is a sink
+              all summer and a source the following spring, and a young leaf is a sink until it is roughly half
+              expanded.</dd>
+          <dt>Apoplastic loading</dt>
+          <dd>Sucrose exits the mesophyll into the apoplast (SWEET transporters), then is loaded into the
+              companion cell / sieve element by a <strong>sucrose–H⁺ symporter</strong> (SUC/SUT) driven by the
+              proton gradient the H⁺-ATPase maintains. Secondary active transport — sucrose is concentrated 2–3
+              orders of magnitude above the mesophyll.</dd>
+          <dt>Symplastic (polymer-trap) loading</dt>
+          <dd>Used by many trees. Sucrose diffuses through plasmodesmata into intermediary cells and is there
+              converted to <strong>raffinose and stachyose</strong>, which are too large to diffuse back through
+              the same plasmodesmata. A one-way valve made of molecular size rather than of pumps.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">phloem sap ≈ 0.3–0.9 M sucrose (10–30 % w/v) · xylem sap ≈ 0.01 M ions</span><span class="fx__tag">the concentration difference is what makes phloem the pressurised pipe</span></div>
+          <div class="fx"><span class="fx__eq">v(phloem) ≈ 0.3–1.5 m·h⁻¹ · v(xylem) ≈ 1–15 m·h⁻¹</span><span class="fx__tag">phloem is the slower of the two, by roughly ten-fold</span></div>
+          <div class="fx"><span class="fx__eq">translocation is bidirectional in the plant, unidirectional in any one sieve tube</span><span class="fx__tag">the sentence examiners split in half to make a distractor</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Ψ<sub>p</sub>(source)</b><span>sieve-tube turgor at a source; MPa, typically +0.6 to +1.0</span></div>
+          <div><b>Ψ<sub>p</sub>(sink)</b><span>sieve-tube turgor at a sink; MPa, typically +0.1 to +0.3</span></div>
+          <div><b>SUC/SUT</b><span>sucrose–proton symporter of the plasma membrane (no unit)</span></div>
+          <div><b>P-protein</b><span>phloem protein; plugs sieve pores within seconds of wounding, with callose</span></div>
+          <div><b>transfer cell</b><span>companion cell with wall ingrowths; large membrane area for apoplastic loading</span></div>
+          <div><b>sieve plate pore</b><span>0.5–1.5 µm across, plasma-membrane lined; the main hydraulic resistance of the pathway</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 880 470" role="img" aria-label="The pressure-flow mechanism. At the top, a source leaf loads sucrose into the sieve tube by proton-coupled active transport, which lowers the solute potential there; water then enters from the neighbouring xylem, raising the sieve-tube pressure potential to about plus 0.72 megapascals. At the bottom, a sink unloads sucrose, the solute potential rises, water leaves back into the xylem, and pressure falls to about plus 0.09 megapascals. The resulting pressure difference of about 0.62 megapascals drives bulk flow of sap down the sieve tube, while the xylem carries water back up." style="font-family:var(--sans)">
+      <text x="176" y="34" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">Organ</text>
+      <text x="373" y="34" text-anchor="middle" font-size="14" font-weight="700" fill="var(--accent-2)">Sieve tube (phloem)</text>
+      <text x="600" y="34" text-anchor="middle" font-size="14" font-weight="700" fill="var(--hbond)">Xylem</text>
+
+      <rect x="50" y="56" width="230" height="92" rx="10" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="165" y="86" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)">SOURCE</text>
+      <text x="165" y="106" text-anchor="middle" font-size="12" fill="var(--ink-soft)">mature leaf, or a tuber</text>
+      <text x="165" y="124" text-anchor="middle" font-size="12" fill="var(--ink-soft)">mobilising its starch</text>
+
+      <rect x="50" y="322" width="230" height="92" rx="10" fill="var(--line-soft)" stroke="var(--ink-soft)" stroke-width="2"/>
+      <text x="165" y="352" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)">SINK</text>
+      <text x="165" y="372" text-anchor="middle" font-size="12" fill="var(--ink-soft)">root, fruit, shoot tip,</text>
+      <text x="165" y="390" text-anchor="middle" font-size="12" fill="var(--ink-soft)">young expanding leaf</text>
+
+      <rect x="330" y="56" width="86" height="358" rx="6" fill="var(--accent-wash)" stroke="var(--accent-2)" stroke-width="2.5"/>
+      <g stroke="var(--accent-2)" stroke-width="2" stroke-dasharray="6 5">
+        <line x1="330" y1="146" x2="416" y2="146"/><line x1="330" y1="236" x2="416" y2="236"/>
+        <line x1="330" y1="326" x2="416" y2="326"/>
+      </g>
+      <text x="424" y="150" font-size="10.5" fill="var(--ink-faint)">sieve plate</text>
+
+      <rect x="560" y="56" width="80" height="358" rx="6" fill="var(--line-soft)" stroke="var(--hbond)" stroke-width="2.5"/>
+
+      <line x1="284" y1="96" x2="322" y2="96" stroke="var(--accent-2)" stroke-width="3"/>
+      <path d="M318,89 L332,96 L318,103 Z" fill="var(--accent-2)"/>
+      <text x="303" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-2)">sucrose</text>
+      <text x="303" y="118" text-anchor="middle" font-size="10" fill="var(--ink-faint)">H⁺ symport · ATP</text>
+
+      <line x1="556" y1="96" x2="426" y2="96" stroke="var(--hbond)" stroke-width="3"/>
+      <path d="M430,89 L416,96 L430,103 Z" fill="var(--hbond)"/>
+      <text x="491" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="var(--hbond)">water in</text>
+      <text x="491" y="118" text-anchor="middle" font-size="10" fill="var(--ink-faint)">osmosis, passive</text>
+
+      <line x1="322" y1="378" x2="284" y2="378" stroke="var(--accent-2)" stroke-width="3"/>
+      <path d="M288,371 L274,378 L288,385 Z" fill="var(--accent-2)"/>
+      <text x="303" y="364" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-2)">sucrose out</text>
+      <text x="303" y="400" text-anchor="middle" font-size="10" fill="var(--ink-faint)">used or stored</text>
+
+      <line x1="426" y1="378" x2="552" y2="378" stroke="var(--hbond)" stroke-width="3"/>
+      <path d="M548,371 L562,378 L548,385 Z" fill="var(--hbond)"/>
+      <text x="491" y="364" text-anchor="middle" font-size="11" font-weight="700" fill="var(--hbond)">water returns</text>
+
+      <line x1="373" y1="164" x2="373" y2="300" stroke="var(--accent-2)" stroke-width="9" opacity="0.5"/>
+      <path d="M361,296 L373,318 L385,296 Z" fill="var(--accent-2)" opacity="0.75"/>
+      <text x="373" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)" transform="rotate(-90 373 238)">bulk flow of sap</text>
+
+      <line x1="600" y1="380" x2="600" y2="140" stroke="var(--hbond)" stroke-width="9" opacity="0.45"/>
+      <path d="M588,144 L600,122 L612,144 Z" fill="var(--hbond)" opacity="0.75"/>
+      <text x="600" y="262" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)" transform="rotate(-90 600 262)">transpiration stream</text>
+
+      <g font-family="var(--mono)" font-size="12">
+        <text x="672" y="150" fill="var(--ink)">Ψ<tspan baseline-shift="sub" font-size="9">s</tspan> = −1.22 · Ψ<tspan baseline-shift="sub" font-size="9">p</tspan> = <tspan font-weight="700" fill="var(--accent-2)">+0.72</tspan></text>
+        <text x="672" y="330" fill="var(--ink)">Ψ<tspan baseline-shift="sub" font-size="9">s</tspan> = −0.24 · Ψ<tspan baseline-shift="sub" font-size="9">p</tspan> = <tspan font-weight="700" fill="var(--accent-2)">+0.09</tspan></text>
+      </g>
+      <line x1="666" y1="164" x2="666" y2="316" stroke="var(--ink-faint)" stroke-width="1.5"/>
+      <text x="676" y="244" font-size="12.5" font-weight="700" fill="var(--ink)">ΔΨ<tspan baseline-shift="sub" font-size="9">p</tspan> ≈ 0.62 MPa</text>
+      <text x="676" y="262" font-size="11" fill="var(--ink-faint)">this is what drives the flow</text>
+
+      <text x="440" y="446" text-anchor="middle" font-size="12" fill="var(--ink-faint)">Note the closed loop: the same water goes up the xylem, sideways into the phloem at the source, down the phloem, and back into the xylem at the sink.</text>
+    </svg>
+    <figcaption>Everything the plant spends energy on happens at the two horizontal sucrose arrows. The vertical
+      movement — the part that looks like the hard bit — is free. This is also why any answer option describing
+      "active transport of sap along the sieve tube" is wrong: there is no motor anywhere in the tube, and the
+      sieve elements have discarded most of the machinery that could have provided one.</figcaption>
+  </figure>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — where does the pressure come from?</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A sieve tube in a source leaf holds 0.50 M sucrose; the xylem
+      beside it is at Ψ = −0.50 MPa. In the root, the sieve tube holds 0.10 M sucrose and the local xylem is at
+      Ψ = −0.15 MPa. Temperature 20 °C. Find the turgor pressure at each end and the pressure difference driving
+      flow.</p>
+    <ol>
+      <li>Sucrose does not dissociate, so i = 1 and T = 293 K. At the source:
+          <span class="fi">Ψ<sub>s</sub> = −(0.50)(0.00831)(293) = <strong>−1.22 MPa</strong></span>.</li>
+      <li>Water exchanges freely between the sieve tube and the neighbouring xylem, so at steady state their water
+          potentials are equal: <span class="fi">Ψ<sub>sieve</sub> = Ψ<sub>xylem</sub> = −0.50 MPa</span>.</li>
+      <li>Therefore <span class="fi">Ψ<sub>p</sub> = Ψ − Ψ<sub>s</sub> = −0.50 − (−1.22) = <strong>+0.72
+          MPa</strong></span>. The turgor was not "pumped in" — it is what is left over once osmosis has equalised
+          the water potentials.</li>
+      <li>At the sink: <span class="fi">Ψ<sub>s</sub> = −(0.10)(0.00831)(293) = −0.24 MPa</span>, and
+          <span class="fi">Ψ<sub>p</sub> = −0.15 − (−0.24) = <strong>+0.09 MPa</strong></span>.</li>
+      <li><span class="fi">ΔΨ<sub>p</sub> = 0.72 − 0.09 = <strong>0.62 MPa</strong></span> from leaf to root. That
+          is the entire motive force, and it is generated by nothing more than a fourfold difference in sucrose
+          concentration between the two ends of a tube.</li>
+      <li><strong>Now test the mechanism.</strong> Poison the companion cells at the source so loading stops.
+          Sucrose in the sieve tube falls, Ψ<sub>s</sub> rises towards zero, water leaves back into the xylem,
+          Ψ<sub>p</sub> collapses — and flow stops within minutes, even though the tube is undamaged and the
+          xylem is working normally. This is precisely what chilling a short length of petiole, or applying a
+          metabolic inhibitor, is observed to do; and it is the sharpest contrast with the xylem, which keeps
+          transporting in a dead stem.</li>
+    </ol>
+    <span class="wex__ans">source Ψ<sub>p</sub> = +0.72 MPa · sink Ψ<sub>p</sub> = +0.09 MPa · ΔΨ<sub>p</sub> = 0.62 MPa</span>
+    </div>
+  </details>
+
+  <h3>What girdling actually demonstrates</h3>
+  <p>Cut a complete ring of bark from around a trunk, down to but not through the vascular cambium. Because bark
+     is <em>everything external to the cambium</em> (§&nbsp;02), you have removed the secondary phloem all the way
+     round while leaving every xylem conduit intact. Then watch, and be precise about what happens and when.</p>
+  <p><strong>Immediately: nothing.</strong> The leaves do not wilt. Water continues to rise through the untouched
+     xylem, transpiration continues, and the canopy looks healthy for weeks. This is the observation that carries
+     the argument — if sugar and water travelled in the same tissue, or if water travelled in the bark, the shoot
+     would collapse at once. <strong>Within days:</strong> a swelling develops on the <em>upper</em> lip of the
+     cut, where sugars arriving from the leaves have nowhere to go and accumulate as starch, and where the
+     resulting high sink strength stimulates local growth. <strong>Within weeks to months:</strong> the roots,
+     cut off from all photosynthate, exhaust their reserves, stop growing and die. Only then, with no functioning
+     root system, does the shoot finally wilt and the tree die.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The four conclusions a girdling question is testing</p>
+    <p style="margin:0 0 .4em">(1) <strong>Sugars move in the phloem, water in the xylem</strong> — two separate
+      pipes. (2) <strong>Sugar movement in a stem is predominantly downward, from leaf to root</strong>, since it
+      is the tissue below the ring that starves. (3) <strong>Roots are heterotrophic</strong> and entirely
+      dependent on shoot photosynthate. (4) <strong>Phloem requires tissue continuity</strong>: a gap of a few
+      centimetres in a tube that has no pump cannot be bridged.</p>
+    <p style="margin:0">The commonest wrong answer is that the tree wilts immediately or that the leaves die
+      first. The second commonest is that swelling appears below the cut. Both are the same error — assuming the
+      phloem carries water, or assuming the direction of flow is upward. Note also the practical corollary
+      exploited in horticulture: girdling a single fruiting branch traps sugar above the ring and produces larger
+      fruit on that branch, at the cost of eventually killing it.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Xylem and phloem transport compared</caption>
+      <thead><tr><th>&nbsp;</th><th>Xylem</th><th>Phloem</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Conducting cells</strong></td><td>Dead, hollow, lignified</td><td>Living, enucleate, supported by companion cells</td></tr>
+        <tr><td><strong>Contents</strong></td><td>Water + inorganic ions (~0.01 M), plus root-derived cytokinins</td><td>0.3–0.9 M sucrose plus amino acids, K⁺, hormones, RNAs</td></tr>
+        <tr><td><strong>Ψ<sub>p</sub></strong></td><td><strong>Negative</strong> — tension, −0.5 to −2 MPa</td><td><strong>Positive</strong> — turgor, +0.1 to +1.0 MPa</td></tr>
+        <tr><td><strong>Driving force</strong></td><td>Tension generated by evaporation at leaf cell walls</td><td>Pressure gradient generated by loading and unloading</td></tr>
+        <tr><td><strong>Energy source</strong></td><td>Solar (evaporation); no plant ATP</td><td>Plant ATP, but only at the two ends</td></tr>
+        <tr><td><strong>Direction</strong></td><td>Upward, essentially always</td><td>Source → sink; up, down, or both in different bundles</td></tr>
+        <tr><td><strong>Speed</strong></td><td>1–15 m·h⁻¹ (up to ~45 in ring-porous oak)</td><td>0.3–1.5 m·h⁻¹</td></tr>
+        <tr><td><strong>Stopped by</strong></td><td>Cutting the column; embolism; not by poisons</td><td>Chilling, anoxia, metabolic poisons, girdling</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three plausible-sounding phloem sentences to reject</p>
+    <p style="margin:0 0 .4em">"<em>Phloem transport is bidirectional: sap can move up and down the same sieve
+      tube simultaneously.</em>" The first half is right at the level of the whole plant — in spring a tuber
+      exports upward while leaves export downward — but <strong>within one sieve tube at one time there is one
+      pressure gradient and therefore one direction</strong>. Bulk flow cannot be two-way in a single tube.</p>
+    <p style="margin:0 0 .4em">"<em>Sugars are actively transported along the sieve tube from source to sink.</em>"
+      No. Loading and unloading are active; the transit is passive bulk flow. A sieve element has no nucleus, no
+      ribosomes and very few mitochondria — it is not equipped to pump anything along its own length.</p>
+    <p style="margin:0">"<em>Sucrose is used because it is the product of photosynthesis.</em>" The immediate
+      product is triose phosphate, and starch and glucose are commoner storage forms. Sucrose is chosen for three
+      specific reasons: it is a <strong>non-reducing</strong> disaccharide, so its carbonyl groups are tied up in
+      the glycosidic bond and it cannot glycate proteins or be attacked in transit; it is metabolically inert
+      until an invertase or sucrose synthase acts on it, so it is not consumed en route; and it delivers two
+      hexoses per osmotically active particle, which for a system that runs on osmotic pressure is exactly the
+      efficiency you want.</p>
+  </div>
+
+  <p>One more piece of evidence, because it is elegant and it is examinable. Let an <strong>aphid</strong> insert
+     its stylet into a single sieve tube, then anaesthetise the insect and cut the stylet off. Sap continues to
+     exude from the cut stump <em>on its own</em>, sometimes for days. That exudation under its own pressure is
+     direct proof that the sieve tube is positively pressurised, and the rate of exudation is highest near a
+     source and lowest near a sink — which is the pressure gradient itself, measured. Combine that with
+     <sup>14</sup>CO₂ fed to one leaf and autoradiography of the whole plant, and the source-to-sink pattern of
+     translocation can be watched directly.</p>
+</section>
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Mineral nutrition and deficiency</h2>
+
+  <p class="idea"><b>The idea</b>Almost all of a plant's dry weight comes out of the air and out of water, not out
+     of the soil — the soil supplies a short list of elements in tiny amounts, and every one of them is
+     indispensable. When one runs short, the plant does something very revealing: if it can move the element
+     internally, it strips it out of its old leaves to keep the new ones going, and the old leaves are the ones
+     that show the damage. If it cannot move it, the old leaves keep what they have and the new growth suffers
+     instead. So the <em>position</em> of a symptom on the plant tells you as much as its appearance.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the list</p>
+    <dl class="def">
+      <dt>Essential element</dt>
+      <dd>An element that satisfies the Arnon–Stout criteria: the plant <strong>cannot complete its life
+          cycle</strong> without it, and <strong>no other element can substitute</strong> for it. Note that this
+          is defined by an <em>experiment</em> — hydroponic culture in a defined solution with one element
+          omitted — not by whether the element is found in plant tissue.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">17 essential = 9 macronutrients + 8 micronutrients</span>
+      <span class="fx__tag">macros: CHNOPS + K, Ca, Mg · micros: Cl, B + the six metals Fe, Mn, Zn, Cu, Ni, Mo</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Macronutrient vs micronutrient</dt>
+          <dd>The distinction is <strong>quantity required, not importance</strong>. Macronutrients are needed in
+              relatively large amounts (≥0.1 % of dry mass); micronutrients in trace amounts, and mostly as
+              enzyme cofactors, where a few atoms turn over substrate repeatedly. A plant dies just as certainly
+              without molybdenum as without nitrogen.</dd>
+          <dt>Beneficial (but not essential) elements</dt>
+          <dd>Sodium — essential for C4 and CAM species only; silicon — strengthens grass and horsetail walls and
+              deters herbivores; cobalt — essential to the <em>rhizobia</em> in a nodule, and therefore
+              indirectly to a legume, but not to plants in general. These are the classic "which of these is
+              <em>not</em> essential" answers.</dd>
+          <dt>Chlorosis vs necrosis</dt>
+          <dd><strong>Chlorosis</strong> is yellowing from loss or failure of chlorophyll — the tissue is alive.
+              <strong>Necrosis</strong> is death of the tissue, brown and dry. Deficiencies typically produce
+              chlorosis first and necrosis later; toxicities more often go straight to necrosis.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">C ≈ 45 % · O ≈ 45 % · H ≈ 6 % of dry mass</span><span class="fx__tag">≈96 % of a plant comes from CO₂ and H₂O — van Helmont's willow, correctly interpreted</span></div>
+          <div class="fx"><span class="fx__eq">N ≈ 1.5 % · K ≈ 1.0 % · Ca ≈ 0.5 % · Mg ≈ 0.2 % · P ≈ 0.2 % · S ≈ 0.1 %</span><span class="fx__tag">the six soil-derived macronutrients, in order of abundance</span></div>
+          <div class="fx"><span class="fx__eq">NO₃⁻ →(nitrate reductase, Mo, cytosol)→ NO₂⁻ →(nitrite reductase, plastid)→ NH₄⁺ → glutamine</span><span class="fx__tag">why nitrate is easy to absorb but expensive to use — 8 electrons per nitrogen</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>chlorosis</b><span>loss of green colour; scored as interveinal or uniform (no unit)</span></div>
+          <div><b>phloem mobility</b><span>whether an element can be retranslocated out of an old leaf; determines symptom position</span></div>
+          <div><b>CEC</b><span>cation exchange capacity of soil; cmol<sub>c</sub>·kg⁻¹ — how many cations the soil can hold</span></div>
+          <div><b>hydroponics</b><span>growth in a defined nutrient solution; the method that established the list of 17</span></div>
+          <div><b>soil pH</b><span>dimensionless; most nutrients maximally available at pH 6–7</span></div>
+          <div><b>dry mass</b><span>mass after water removal; g or % — the basis of every nutrient percentage quoted here</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Start with the single most misread fact in the whole topic. A plant is roughly <strong>96 % carbon, oxygen
+     and hydrogen by dry mass</strong>, and all of that came from CO₂ and water. The soil contributes about four
+     per cent. Van Helmont's willow experiment — a tree that gained 74 kg while the soil in its pot lost 60 g —
+     is usually taught as showing that plants are "made of water"; what it really shows is that they are not made
+     of soil, and the carbon he could not account for came from the air. An exam option claiming that soil
+     minerals are the main source of plant biomass is drawing on an intuition almost everyone has and almost
+     nobody has checked.</p>
+
+  <h3>The one rule that makes deficiency diagnosis derivable</h3>
+  <p>A plant with a limited supply of a nutrient behaves like an organism triaging: it invests in the tissue with
+     the future. If an element can be loaded into the phloem and moved, the plant <strong>strips it out of mature
+     leaves and sends it to the growing tip</strong>. The old leaves are sacrificed, so <em>they</em> show the
+     symptom. If the element cannot be retranslocated — because it is locked into a structure, or has no phloem
+     transport system — the old leaves keep theirs and the <strong>new growth is starved</strong>.</p>
+
+  <div class="mnemo">
+    <h4>Old leaves or young leaves — read it as a mobility test</h4>
+    <p><strong>Symptoms in OLD leaves → the element is phloem-mobile</strong>: N, P, K, Mg, Cl, Mo.
+      <strong>Symptoms in YOUNG leaves → phloem-immobile</strong>: Ca, B, Fe, S, Mn, Zn, Cu. A useful check on
+      any answer you are unsure of: calcium is built into the middle lamella as calcium pectate and boron into
+      wall cross-links, so neither can be extracted from a finished wall — hence both kill the apical meristem
+      first. Nitrogen and magnesium are in chlorophyll and protein, which the plant dismantles routinely — hence
+      both show in old leaves.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The 2 by 2 chlorosis discriminator</caption>
+      <thead><tr><th>&nbsp;</th><th>Uniform chlorosis (whole leaf yellows)</th><th>Interveinal chlorosis (veins stay green)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>OLD leaves first</strong><br><span style="font-size:.85rem;color:var(--ink-faint)">mobile element</span></td>
+            <td><strong>Nitrogen.</strong> The commonest deficiency of all. Whole plant pale, stunted, oldest leaves yellow from the tip back along the midrib; in some species anthocyanin reddening.</td>
+            <td><strong>Magnesium.</strong> The one to know cold. Mg is the central ion of every chlorophyll molecule; without it chlorophyll cannot be assembled, and the plant strips Mg from the interveinal mesophyll of old leaves first, leaving a green net over a yellow ground.</td></tr>
+        <tr><td><strong>YOUNG leaves first</strong><br><span style="font-size:.85rem;color:var(--ink-faint)">immobile element</span></td>
+            <td><strong>Sulphur.</strong> Looks exactly like nitrogen deficiency except for the position — pale young leaves on a plant whose old leaves are still green. This pair is the classic discrimination.</td>
+            <td><strong>Iron.</strong> Fe is not part of chlorophyll, but it is required by the enzymes that <em>synthesise</em> it, and by every cytochrome. Immobile, so the youngest leaves go yellow between green veins while the old leaves stay dark.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Mg versus Fe — the item that comes back every year</p>
+    <p style="margin:0 0 .4em">Both produce interveinal chlorosis with green veins. They are told apart by
+      <strong>which leaves</strong>, and the reasoning is worth being able to reconstruct rather than recall.
+      Magnesium is <em>in</em> chlorophyll and is phloem-mobile, so the plant cannibalises old leaves →
+      <strong>lower, older leaves</strong>. Iron is a cofactor <em>for chlorophyll synthesis</em> and is
+      phloem-immobile once delivered, so it cannot be recovered → <strong>upper, younger leaves</strong>.</p>
+    <p style="margin:0">The clinical-flavoured version: iron chlorosis is common on <strong>calcareous, high-pH
+      soils</strong> even when total soil iron is abundant, because Fe³⁺ hydroxides are essentially insoluble
+      above about pH 7. Adding iron does not fix it; acidifying the soil or supplying a chelate does. The same
+      chemistry underlies iron handling in mammals — free Fe³⁺ is insoluble and toxic, so it must be chelated
+      (transferrin in us, phytosiderophores and reductase-based strategies in plants). Deficiency in the presence
+      of plenty is an availability problem, not a supply problem, in both kingdoms.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The seventeen essential elements, their roles and deficiency signs</caption>
+      <thead><tr><th>Element</th><th>Class</th><th>Absorbed as</th><th>Principal role</th><th>Deficiency</th></tr></thead>
+      <tbody>
+        <tr><td><strong>C, H, O</strong></td><td>Macro</td><td>CO₂, H₂O, O₂</td><td>≈96 % of dry mass; all organic skeletons</td><td>Not observed as a soil deficiency</td></tr>
+        <tr><td><strong>N</strong></td><td>Macro</td><td>NO₃⁻, NH₄⁺</td><td>Amino acids, nucleotides, chlorophyll, coenzymes</td><td>Uniform chlorosis, <strong>old</strong> leaves; stunting</td></tr>
+        <tr><td><strong>P</strong></td><td>Macro</td><td>H₂PO₄⁻, HPO₄²⁻</td><td>ATP, nucleic acids, phospholipids, phosphorylation</td><td><strong>Old</strong> leaves dark green then purplish (anthocyanin); stunted; delayed maturity</td></tr>
+        <tr><td><strong>K</strong></td><td>Macro</td><td>K⁺</td><td>Osmoticum for stomata and turgor; activates &gt;60 enzymes; <strong>never built into an organic molecule</strong></td><td>Marginal scorch and necrosis of <strong>old</strong> leaves; weak stems that lodge</td></tr>
+        <tr><td><strong>Ca</strong></td><td>Macro</td><td>Ca²⁺</td><td>Calcium pectate of the middle lamella; membrane stability; cytosolic second messenger</td><td><strong>Immobile</strong> — death of shoot and root tips; blossom-end rot of tomato, tip burn of lettuce, bitter pit of apple</td></tr>
+        <tr><td><strong>Mg</strong></td><td>Macro</td><td>Mg²⁺</td><td><strong>Central ion of chlorophyll</strong>; cofactor for RuBisCO and every kinase; holds ribosomal subunits together</td><td>Interveinal chlorosis of <strong>old</strong> leaves — the recurring exam item</td></tr>
+        <tr><td><strong>S</strong></td><td>Macro</td><td>SO₄²⁻</td><td>Cysteine, methionine, CoA, thiamine, Fe–S clusters</td><td>Uniform chlorosis of <strong>young</strong> leaves — the nitrogen look-alike</td></tr>
+        <tr><td><strong>Fe</strong></td><td>Micro</td><td>Fe³⁺, Fe²⁺ (chelated)</td><td>Cytochromes, Fe–S proteins, enzymes of <strong>chlorophyll synthesis</strong></td><td>Interveinal chlorosis of <strong>young</strong> leaves; classic on limestone soils</td></tr>
+        <tr><td><strong>Mn</strong></td><td>Micro</td><td>Mn²⁺</td><td>The Mn₄CaO₅ oxygen-evolving cluster of photosystem II; enzyme activation</td><td>Interveinal chlorosis of young leaves <em>with necrotic flecks</em> — the flecks separate it from Fe</td></tr>
+        <tr><td><strong>Zn</strong></td><td>Micro</td><td>Zn²⁺</td><td>Zinc-finger transcription factors, carbonic anhydrase, alcohol dehydrogenase, auxin synthesis</td><td>"Little leaf" and rosetting — short internodes, small distorted young leaves</td></tr>
+        <tr><td><strong>Cu</strong></td><td>Micro</td><td>Cu²⁺</td><td>Plastocyanin, cytochrome <em>c</em> oxidase, laccase, lignification</td><td>Dark green then wilting and dieback of shoot tips</td></tr>
+        <tr><td><strong>B</strong></td><td>Micro</td><td>H₃BO₃</td><td>Cross-links pectin (rhamnogalacturonan II) in the wall; pollen tube growth</td><td><strong>Immobile</strong> — death of apical meristems, hollow stem / heart rot, poor seed set</td></tr>
+        <tr><td><strong>Cl</strong></td><td>Micro</td><td>Cl⁻</td><td>Water splitting at PSII; osmotic and charge balance, including in guard cells</td><td>Wilting, stubby roots, chlorosis — almost never seen in nature</td></tr>
+        <tr><td><strong>Mo</strong></td><td>Micro</td><td>MoO₄²⁻</td><td>Cofactor of <strong>nitrate reductase</strong> and of <strong>nitrogenase</strong></td><td>Presents as nitrogen deficiency; "whiptail" in brassicas; nodules fail in legumes</td></tr>
+        <tr><td><strong>Ni</strong></td><td>Micro</td><td>Ni²⁺</td><td><strong>Urease</strong> — the only firmly established plant nickel enzyme; last element added to the list, in 1987</td><td>Urea accumulates to toxicity → necrosis of leaf tips</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three widely repeated statements that will not survive scrutiny</p>
+    <p style="margin:0 0 .4em">"<em>Magnesium deficiency causes chlorosis because magnesium is needed to make
+      chlorophyll.</em>" Too weak, and it makes Mg indistinguishable from Fe. Magnesium <strong>is</strong>
+      chlorophyll's central atom, coordinated by the four pyrrole nitrogens of the porphyrin ring — a chlorophyll
+      molecule without Mg is not chlorophyll. Iron is what is "needed to make" it. That precision is exactly what
+      separates the two answers.</p>
+    <p style="margin:0 0 .4em">"<em>Micronutrients are less important than macronutrients.</em>" The distinction
+      is dose, not importance. Both categories are defined by the same all-or-nothing criterion, and a
+      molybdenum-free plant dies as reliably as a nitrogen-free one — it simply takes about a thousandth as much
+      molybdenum to prevent it.</p>
+    <p style="margin:0">"<em>Yellow leaves indicate nitrogen deficiency.</em>" Only if the yellowing is uniform
+      <em>and</em> starts in old leaves. Uniform-but-young is sulphur; interveinal-and-old is magnesium;
+      interveinal-and-young is iron or manganese. Four different answers hide behind "yellow leaves", and the
+      question is normally set precisely to see whether you ask the two follow-up questions.</p>
+  </div>
+</section>
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Soil, nitrogen fixation and mycorrhizae</h2>
+
+  <p class="idea"><b>The idea</b>Nitrogen is the element plants need most of after the ones they get from air and
+     water, and the atmosphere is four-fifths nitrogen — yet almost every plant on Earth is nitrogen-limited. The
+     reason is a chemical one: the two atoms in N₂ are held together by a triple bond that no plant enzyme can
+     break. Only certain bacteria can, at enormous energetic cost, using an enzyme that is destroyed by oxygen.
+     Everything interesting in this section — root nodules, leghaemoglobin, mycorrhizal partnerships, even
+     carnivorous plants — is a different solution to the same shortage.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the reaction</p>
+    <dl class="def">
+      <dt>Biological nitrogen fixation</dt>
+      <dd>Reduction of atmospheric N₂ to ammonia by the bacterial enzyme <strong>nitrogenase</strong>. Only
+          prokaryotes can do it. No plant, fungus or animal has ever been found to fix nitrogen — a legume does
+          not fix nitrogen; the bacteria living inside it do.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">N₂ + 8 H⁺ + 8 e⁻ + 16 ATP → 2 NH₃ + H₂ + 16 ADP + 16 P<sub>i</sub></span>
+      <span class="fx__tag">note the obligatory H₂: one in four electron pairs is spent on hydrogen, unavoidably</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Nitrogenase</dt>
+          <dd>Two components: <strong>dinitrogenase</strong> (the MoFe protein, carrying the FeMo cofactor where
+              N₂ is bound) and <strong>dinitrogenase reductase</strong> (the Fe protein, which hydrolyses ATP to
+              deliver electrons one at a time). It is <strong>irreversibly inactivated by O₂</strong>, which is
+              the central engineering problem of the whole symbiosis.</dd>
+          <dt>Nodule</dt>
+          <dd>A root swelling built by the <em>plant</em> in response to <strong>Nod factors</strong>
+              (lipochito-oligosaccharides) secreted by a compatible <em>Rhizobium</em>. Inside, the bacteria
+              differentiate into non-dividing <strong>bacteroids</strong> enclosed by plant membrane in
+              <strong>symbiosomes</strong>.</dd>
+          <dt>Mycorrhiza</dt>
+          <dd>A mutualism between a fungus and a root. The fungal hyphae vastly extend the absorbing surface and
+              supply the plant mainly with <strong>phosphate</strong>; the plant supplies 4–20 % of its
+              photosynthate in return. Roughly 80–90 % of land plant species form them.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">ammonification → nitrification → (uptake) or → denitrification</span><span class="fx__tag">NH₄⁺ made, oxidised to NO₃⁻, then either absorbed or lost as N₂</span></div>
+          <div class="fx"><span class="fx__eq">NH₄⁺ →(<em>Nitrosomonas</em>)→ NO₂⁻ →(<em>Nitrobacter</em>, <em>Nitrospira</em>)→ NO₃⁻</span><span class="fx__tag">two chemoautotrophic steps, both aerobic</span></div>
+          <div class="fx"><span class="fx__eq">soil colloids are negatively charged → cations held, anions leach</span><span class="fx__tag">why NO₃⁻ washes into the water table and K⁺ does not</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>FeMo-co</b><span>iron–molybdenum cofactor of dinitrogenase; the N₂-binding site (no unit)</span></div>
+          <div><b>leghaemoglobin</b><span>plant-encoded globin of the nodule cytoplasm; buffers free O₂ to ~10 nmol·L⁻¹</span></div>
+          <div><b>Nod factor</b><span>bacterial lipochito-oligosaccharide signal; active at 10⁻¹²–10⁻⁹ mol·L⁻¹</span></div>
+          <div><b>arbuscule</b><span>branched hyphal structure inside a cortical cell of an endomycorrhiza; the exchange surface</span></div>
+          <div><b>Hartig net</b><span>hyphae growing <em>between</em> cortical cells in an ectomycorrhiza</span></div>
+          <div><b>CEC</b><span>cation exchange capacity; cmol<sub>c</sub>·kg⁻¹ soil</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Why soil chemistry decides what a root can get</h3>
+  <p>Clay particles and humus carry a net <strong>negative</strong> surface charge, so soil holds cations —
+     K⁺, Ca²⁺, Mg²⁺, NH₄⁺ — electrostatically, in an exchangeable pool. Roots pry them loose by
+     <strong>cation exchange</strong>: the plasma-membrane H⁺-ATPase pumps protons into the rhizosphere (and CO₂
+     from root respiration makes carbonic acid, which supplies more), and those protons displace nutrient cations
+     from the colloid surface into solution, where the root can take them up.</p>
+  <p>Anions have no such anchor. Nitrate, chloride and sulphate stay dissolved and move with the water, which has
+     two consequences that examiners like. First, nitrate reaches roots quickly by <strong>mass flow</strong>
+     with the transpiration stream, so nitrogen uptake is rarely diffusion-limited. Second, nitrate
+     <strong>leaches</strong> straight past the root zone into groundwater after heavy rain, which is why
+     nitrogen fertiliser has to be reapplied, why agricultural runoff eutrophies rivers, and why well water in
+     intensively farmed areas is monitored for nitrate — infants who drink it can develop
+     methaemoglobinaemia（變性血紅素血症), the "blue baby" syndrome, because gut flora reduce nitrate to nitrite
+     which oxidises haemoglobin iron to the ferric state. Phosphate is the opposite extreme: it binds tightly to
+     soil particles, barely moves, and creates a depletion zone within a millimetre or two of the root surface —
+     which is exactly the problem mycorrhizae solve.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Fixation, nitrification, denitrification — three words, three different reactions</p>
+    <p style="margin:0 0 .4em"><strong>Fixation</strong> converts N₂ to <strong>ammonia</strong>, not to nitrate.
+      It is a <em>reduction</em>, it is anaerobic in effect (nitrogenase dies in oxygen), and it is performed only
+      by prokaryotes. <strong>Nitrification</strong> is the aerobic <em>oxidation</em> of ammonium to nitrite and
+      then nitrate by chemoautotrophic bacteria, which gain energy from it. <strong>Denitrification</strong> is
+      the anaerobic reduction of nitrate back to N₂ by bacteria using nitrate as a terminal electron acceptor —
+      a loss of nitrogen from the soil, favoured by waterlogging.</p>
+    <p style="margin:0">The commonest distractor on this topic is "nitrogen fixation produces nitrates". The
+      second commonest is attributing fixation to the legume. The third is forgetting that
+      <strong>ammonification</strong> — decomposers releasing NH₄⁺ from dead organic matter — supplies far more
+      soil nitrogen in most ecosystems than fixation does.</p>
+  </div>
+
+  <h3>The nodule, and the oxygen paradox</h3>
+  <p>A compatible partnership begins with chemistry in both directions. The root secretes flavonoids; these
+     activate the bacterial regulator NodD, which switches on the <em>nod</em> genes; the bacterium secretes Nod
+     factors; the plant recognises them with a receptor kinase and responds. A root hair curls into a
+     "shepherd's crook" around the bacteria, an <strong>infection thread</strong> — a plant-made tube — carries
+     them inward, and cortical cells are triggered to divide and build a nodule around them. Specificity is
+     tight: a given <em>Rhizobium</em> strain nodulates a narrow range of legume hosts, which is why inoculants
+     are sold matched to the crop.</p>
+  <p>Then comes the contradiction the nodule has to solve. Nitrogenase is destroyed by oxygen. But fixing one N₂
+     costs 16 ATP, and the bacteroid makes that ATP by <em>aerobic respiration</em>. It needs a great deal of
+     oxygen and it needs almost none — simultaneously.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">What leghaemoglobin actually does</p>
+    <p style="margin:0 0 .4em">The textbook line is that leghaemoglobin "keeps oxygen out of the nodule" or "mops
+      up oxygen to protect nitrogenase". That is half the story and it makes the nodule look like a sealed
+      anaerobic box, which would starve the bacteroid.</p>
+    <p style="margin:0">Leghaemoglobin is a plant-encoded globin, present in the infected cell's cytoplasm at
+      millimolar concentrations, and it does what haemoglobin does: it binds O₂ reversibly with very high
+      affinity and <strong>carries</strong> it. The result is that <em>free</em> dissolved O₂ is buffered down to
+      roughly 10 nmol·L⁻¹ — some four orders of magnitude below air-saturated water — while the
+      <em>total</em> O₂ flux delivered to the bacteroid stays high, because the carrier shuttles it. Low
+      concentration, high flux. That is the same trick your blood plays, and the parallel is exact: dissolved O₂
+      in plasma is a small number; the delivery rate is large because haemoglobin carries it. A nodule is pink
+      for the same reason blood is red, and a nodule that is white or green is either immature or senescent and
+      is not fixing.</p>
+  </div>
+
+  <p>The exchange is then straightforward. The plant delivers dicarboxylic acids (malate, succinate) to the
+     bacteroid as fuel; the bacteroid releases NH₃/NH₄⁺ into the symbiosome space; the plant assimilates it
+     immediately through glutamine synthetase and exports the nitrogen up the xylem as <strong>amides</strong>
+     (asparagine, glutamine) in temperate legumes such as pea and clover, or as <strong>ureides</strong>
+     (allantoin, allantoic acid) in tropical legumes such as soybean and cowpea. Also worth noting: the whole
+     apparatus is switched off if the soil already contains plenty of nitrate. Nodulation is expensive, and a
+     legume with fertiliser available will not bother.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Nitrogen-fixing organisms and their arrangements</caption>
+      <thead><tr><th>Organism</th><th>Arrangement</th><th>How it protects nitrogenase</th><th>Host / setting</th></tr></thead>
+      <tbody>
+        <tr><td><em>Rhizobium</em>, <em>Bradyrhizobium</em>, <em>Sinorhizobium</em></td><td>Symbiotic, in root nodules as bacteroids</td><td>Leghaemoglobin buffering plus a diffusion barrier in the nodule cortex</td><td>Legumes (Fabaceae): soybean, pea, clover, alfalfa, peanut</td></tr>
+        <tr><td><em>Frankia</em> (an actinobacterium)</td><td>Symbiotic, actinorhizal nodules</td><td>Thick-walled vesicles with lipid envelopes</td><td>Alder, <em>Casuarina</em>, sea buckthorn — non-legume woody pioneers</td></tr>
+        <tr><td><em>Anabaena</em>, <em>Nostoc</em> (cyanobacteria)</td><td>Free-living or symbiotic</td><td><strong>Heterocysts</strong> — differentiated cells with thick walls that lack photosystem II, so they make no O₂</td><td>Paddy fields; <em>Anabaena</em> inside the water fern <em>Azolla</em> is a traditional rice green manure</td></tr>
+        <tr><td><em>Azotobacter</em></td><td>Free-living, aerobic soil</td><td>Very high respiration rate consumes O₂ locally; conformational protection of the enzyme</td><td>Soil and rhizosphere</td></tr>
+        <tr><td><em>Clostridium</em></td><td>Free-living, strictly anaerobic</td><td>Lives where there is no oxygen at all</td><td>Waterlogged and anoxic soils</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Mycorrhizae: the other half of almost every root</h3>
+  <p>Most roots you have ever seen were not operating alone. The association is ancient — fossil evidence puts it
+     at the origin of land plants around 400 million years ago, which suggests that colonising land was a joint
+     venture rather than something plants managed themselves. The fungus does one thing supremely well: its
+     hyphae are a fraction of the diameter of a root hair, they extend centimetres into the soil, and they cost
+     the plant far less carbon per unit of absorbing surface than root tissue would.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Ectomycorrhizae compared with arbuscular mycorrhizae</caption>
+      <thead><tr><th>&nbsp;</th><th>Arbuscular (endo-) mycorrhiza</th><th>Ectomycorrhiza</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Fungal group</strong></td><td>Glomeromycota — obligate symbionts, cannot be cultured alone</td><td>Basidiomycota and Ascomycota — the mushroom-forming fungi</td></tr>
+        <tr><td><strong>Penetrates the cell wall?</strong></td><td><strong>Yes</strong> — hyphae enter the wall and invaginate the plasma membrane to form branched <strong>arbuscules</strong>; the membrane is never breached</td><td><strong>No</strong> — hyphae stay between cells, forming the <strong>Hartig net</strong></td></tr>
+        <tr><td><strong>External structure</strong></td><td>None visible; the root looks normal</td><td>A dense <strong>mantle</strong> or sheath around the root; the root becomes short, thick and branched and loses its root hairs</td></tr>
+        <tr><td><strong>How common</strong></td><td>The great majority — ~80 % of plant species, including most crops</td><td>Perhaps 2–3 % of species, but they dominate temperate and boreal forest: pine, spruce, oak, birch, beech, eucalypt</td></tr>
+        <tr><td><strong>Familiar sign</strong></td><td>Invisible without staining</td><td>The mushrooms under a pine — <em>Boletus</em>, <em>Amanita</em>, truffles — are the fruiting bodies of ectomycorrhizal partners</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">What a mycorrhiza is actually for</p>
+    <p style="margin:0">It is easy to write "improves mineral uptake" and be marked wrong for a reason worth
+      understanding. The benefit is concentrated on <strong>immobile</strong> soil nutrients — above all
+      <strong>phosphate</strong>, and secondarily zinc, copper and ammonium. Phosphate diffuses so slowly in soil
+      that a root creates a depletion zone around itself within days; hyphae simply reach past it. Nitrate, by
+      contrast, arrives by mass flow with the water and needs no help, so mycorrhizal benefit for nitrate is
+      modest. And note the two things a mycorrhiza is <em>not</em>: it is not a nodule (no bacteria, no nitrogen
+      fixation, no leghaemoglobin), and it is not free — the plant pays 4–20 % of its photosynthate, which is why
+      colonisation is suppressed when soil phosphate is high.</p>
+  </div>
+
+  <h3>The plants that solve it differently</h3>
+  <p>Three categories get confused with each other, and the distinction is always about what is being taken and
+     from whom.</p>
+  <div class="grid grid--3">
+    <div class="card">
+      <h4>Epiphytes</h4>
+      <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Staghorn ferns, most orchids, bromeliads. They
+        grow <em>on</em> another plant purely for position — light, in a forest canopy — and take nothing from it.
+        They photosynthesise fully and absorb water and minerals from rain and debris.
+        <strong>Not parasites.</strong> This is a standard distractor.</p>
+    </div>
+    <div class="card">
+      <h4>Parasites</h4>
+      <p style="font-size:.92rem;color:var(--ink-soft);margin:0">They form <strong>haustoria</strong> that
+        penetrate the host and tap its vascular tissue. <em>Hemiparasites</em> such as mistletoe keep their
+        chlorophyll and tap the host's <strong>xylem</strong> for water and minerals. <em>Holoparasites</em> such
+        as dodder (<em>Cuscuta</em>), broomrape and <em>Rafflesia</em> have lost photosynthesis entirely and tap
+        the <strong>phloem</strong> for sugar as well.</p>
+    </div>
+    <div class="card">
+      <h4>Carnivores</h4>
+      <p style="font-size:.92rem;color:var(--ink-soft);margin:0">Venus flytrap, sundew, pitcher plants,
+        bladderwort. They live in acidic, waterlogged, <strong>nitrogen-poor</strong> bogs. Their leaves are
+        modified traps and they digest prey with secreted proteases and phosphatases — but for
+        <strong>nitrogen and phosphorus</strong>, not for carbon or energy. They photosynthesise normally.</p>
+    </div>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Two one-line traps in this last group</p>
+    <p style="margin:0 0 .4em">"<em>Carnivorous plants obtain energy from the insects they capture.</em>" No.
+      Their carbon and energy come from photosynthesis like any other plant; the prey supplies the mineral
+      nutrients their soil cannot. Grow a Venus flytrap in fertile soil and it does fine without ever catching
+      anything — trapping is expensive and it downregulates when nutrients are plentiful.</p>
+    <p style="margin:0">"<em>Indian pipe (</em>Monotropa<em>) is a parasitic plant that taps tree roots.</em>"
+      Almost, and the near-miss is the point. It is white, has no chlorophyll, and does take its carbon from a
+      tree — but <strong>indirectly, through a shared mycorrhizal fungus</strong>. It is a
+      <em>myco-heterotroph</em>: a plant parasitising a fungus that is in mutualism with a tree. Many orchids do
+      the same as seedlings, since orchid seeds carry almost no reserves and cannot germinate without a fungal
+      partner.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper — why nitrogen fixation is so expensive, and why it has never been engineered into a crop</summary>
+    <div class="disc__body">
+      <p style="margin:0 0 .6em">The N≡N bond dissociation energy is 941 kJ·mol⁻¹, among the strongest in
+        chemistry, and the difficulty is kinetic as much as thermodynamic: the first intermediates on the path
+        from N₂ to NH₃ are higher in energy than the reactants, so the reaction has an enormous barrier even
+        though it is downhill overall. Nitrogenase gets round this by binding N₂ at the FeMo cofactor and
+        delivering electrons one at a time, each delivery costing the hydrolysis of two ATP by the Fe protein.
+        Sixteen ATP per N₂ is the accounting price of moving eight electrons that way — and one electron pair is
+        unavoidably wasted producing H₂, which is why the balanced equation has an H₂ on the right that students
+        routinely drop.</p>
+      <p style="margin:0 0 .6em">Industrially, the Haber–Bosch process does the same job at 400–500 °C and
+        150–300 atm over an iron catalyst. It consumes a little over one per cent of world energy production and
+        it feeds, by most estimates, around half of humanity — a genuine claim for the most consequential
+        chemical process ever industrialised.</p>
+      <p style="margin:0">Transferring fixation into cereals has been an aspiration for fifty years and remains
+        unachieved, for reasons this section has already given: <em>nif</em> is not one gene but a cluster of
+        around twenty; the enzyme is destroyed by oxygen, so the host must build an oxygen-controlled compartment;
+        and the 16 ATP per N₂ has to be paid out of photosynthate that would otherwise become grain. The
+        successful strategies so far have gone sideways instead — engineering the <em>signalling</em> so that
+        cereals can be colonised by nitrogen-fixing bacteria, or improving the association with endophytes that
+        already do it loosely.</p>
+    </div>
+  </details>
+</section>
+<!-- =========================== 12 =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>These are part of the reading, not an appendix to it. Producing an answer from
+     your own head — even a wrong one — fixes the material far more firmly than reading the same paragraph again,
+     and the wrong options here are all mistakes that people genuinely make rather than filler. Being caught by
+     one of them now is worth more to you than getting it right by recognition.</p>
+  <p>Three of these need real arithmetic; do it, rather than eyeballing the options, because that is what the
+     paper will require and 66 seconds is enough time if you know which equation you are reaching for. Two more
+     are conceptual traps whose distractors are the sort of sentence you could find printed almost verbatim in a
+     textbook. Every explanation says why the right answer is right <em>and</em> why the tempting wrong one is
+     tempting.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="biology-07-microbes.html"><small>Previous</small><b>← Prokaryotes, Viruses, Protists and Fungi</b></a>
+  <a href="biology.html"><small>Index</small><b>All biology notes</b></a>
+  <a href="biology-09-plant-function.html"><small>Next</small><b>Photosynthesis, Plant Reproduction and Plant Responses →</b></a>
+</nav>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biology 08 · Plant structure, transport and nutrition</p>
+    <p>Representation used: water potential in megapascals throughout, with the sign convention that pure free
+      water at atmospheric pressure is zero. Anatomical and physiological values are standard textbook
+      approximations, given to build a sense of magnitude rather than for citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A plant cell has Ψ<sub>s</sub> = −0.85 MPa and a turgor pressure of +0.35 MPa. It is placed in an <b>open beaker</b> of 0.25 M sucrose at 20 °C. Which way does water move, and why? (R = 0.00831 L·MPa·mol⁻¹·K⁻¹)",
+    "options": [
+      "Into the cell — the cell's solute potential (−0.85 MPa) is more negative than the solution's (−0.61 MPa), so the cell pulls water in",
+      "No net movement — the cell is already at equilibrium with the solution",
+      "Out of the cell — Ψ<sub>solution</sub> = −0.61 MPa is lower than Ψ<sub>cell</sub> = −0.50 MPa",
+      "Into the cell — turgor pressure of +0.35 MPa drives water inward until the cell is fully turgid"
+    ],
+    "answer": 2,
+    "explain": "Score both sides. <b>Cell:</b> Ψ = Ψ<sub>s</sub> + Ψ<sub>p</sub> = −0.85 + 0.35 = <b>−0.50 MPa</b>. <b>Solution:</b> sucrose does not dissociate so i = 1, and Ψ<sub>s</sub> = −(0.25)(0.00831)(293) = −0.61 MPa; the beaker is open so Ψ<sub>p</sub> = 0 and Ψ = <b>−0.61 MPa</b>. Water flows high → low, so it leaves the cell. Option A is the classic error of comparing Ψ<sub>s</sub> values and ignoring turgor — that comparison would be valid only if both sides had the same pressure. Option D has the effect of turgor backwards: pressure <i>raises</i> Ψ, so turgor pushes water out, and a fully turgid cell (Ψ<sub>p</sub> = +0.85, Ψ = 0) gains nothing at all even from pure water."
+  },
+  {
+    "stem": "Which mechanism raises water to the crown of a 100 m tree?",
+    "options": [
+      "Root pressure, generated by active pumping of ions into the stele, which pushes sap upward",
+      "Capillary rise, driven by adhesion of water to the lignified walls of the xylem vessels",
+      "Atmospheric pressure, pushing sap up the xylem as transpiration creates a partial vacuum in the leaf",
+      "Negative pressure generated at curved air–water menisci in mesophyll cell walls, transmitted down an unbroken column by the cohesion of water"
+    ],
+    "answer": 3,
+    "explain": "Each wrong option fails a number you can compute. <b>Root pressure</b> is typically 0.05–0.2 MPa, worth 5–20 m of lift at best, and it is <i>absent</i> whenever the plant is transpiring — its real job is refilling embolised vessels in spring, which is why maples bleed in February. <b>Capillary rise</b> in a 20 µm vessel is h = 2γ/(ρgr) = 0.74 m. <b>Atmospheric push</b> is capped at P<sub>atm</sub>/ρg = 10.3 m — the barometric limit that also stops a hand pump drawing from a deep well, and the reason the ascent cannot be 'suction' in the ordinary sense. The menisci in 5 nm cell-wall pores, by contrast, can sustain ΔP = 2γ/r ≈ 29 MPa, which is an order of magnitude more than the ≈2 MPa a 100 m tree actually demands."
+  },
+  {
+    "stem": "A sieve tube in a source leaf contains 0.60 M sucrose. The xylem alongside it is at Ψ = −0.60 MPa, and the two exchange water freely. At 20 °C, what is the turgor pressure inside the sieve tube at steady state?",
+    "options": ["+0.60 MPa", "+0.86 MPa", "−1.46 MPa", "+2.06 MPa"],
+    "answer": 1,
+    "explain": "Ψ<sub>s</sub> = −(1)(0.60)(0.00831)(293) = <b>−1.46 MPa</b>. Because water moves freely between sieve tube and xylem, at steady state their <i>water potentials</i> equalise: Ψ<sub>sieve</sub> = −0.60 MPa. Therefore Ψ<sub>p</sub> = Ψ − Ψ<sub>s</sub> = −0.60 − (−1.46) = <b>+0.86 MPa</b>. Option C quotes Ψ<sub>s</sub> itself and calls it a pressure — a sign error and the wrong quantity. Option D adds the two magnitudes instead of subtracting. The conceptual point worth taking away is that nothing pumped that pressure in: turgor is simply what is left over once osmosis has equalised Ψ across the membrane, which is why stopping sucrose loading collapses it within minutes."
+  },
+  {
+    "stem": "A C3 leaf at 25 °C has an internal water-vapour mole fraction of 0.0313 and sits in air at 25 °C and 40 % relative humidity. C<sub>a</sub> = 400 ppm, C<sub>i</sub> = 250 ppm, and water vapour diffuses 1.6× faster than CO₂ in air. Roughly how many moles of water are lost per mole of CO₂ fixed?",
+    "options": ["≈200", "≈125", "≈330", "≈500"],
+    "answer": 0,
+    "explain": "Δw = 0.0313 × (1 − 0.40) = 0.01878. Δc = (400 − 250) × 10⁻⁶ = 1.50 × 10⁻⁴. So Δw/Δc = 125, and E/A = 1.6 × 125 = <b>≈200 mol H₂O per mol CO₂</b>. Option B is the single commonest slip — the concentration ratio with the <b>1.6 diffusivity factor forgotten</b>. Option C (330) is what you get by treating the outside air as completely dry, i.e. using Δw = 0.0313. Option D is a remembered number applied to the wrong quantity: 500 is the C3 <i>transpiration ratio</i> in grams of water per gram of dry matter, which is not a molar ratio and is not the same calculation. Note also that the ratio is fixed by physics: the 1.6 cannot be engineered away, which is why the only routes to better water-use efficiency are lowering C<sub>i</sub> (C4) or lowering Δw (CAM, opening at night)."
+  },
+  {
+    "stem": "Which statement about the Casparian strip is correct?",
+    "options": [
+      "It is a lignified band in the pericycle that restricts lateral-root initiation to positions opposite the xylem arms",
+      "It is a suberin band in the radial and transverse walls of the endodermis; it blocks the apoplast route into the stele, so every solute must cross at least one plasma membrane",
+      "It is a suberised layer of the root epidermis that prevents water loss from the root surface back into dry soil",
+      "It is a waterproof ring in the endodermis that prevents water from entering the stele, which is what generates root pressure"
+    ],
+    "answer": 1,
+    "explain": "The strip sits in the <b>anticlinal (radial and transverse) walls</b> of the endodermis and is fused to the plasma membrane, so the only route past it is through the endodermal cell. That is what makes a root <i>selective</i>: every ion in the xylem has been through a transport protein. Option D is the near-miss and it inverts the point — water very much does enter the stele, through the symplast; what the seal prevents is ions <i>leaking back out</i> through the apoplast, and it is that one-way property that lets root pressure build. Option A confuses the endodermis with the pericycle, which is the layer just inside it and is indeed where lateral roots begin. Option C puts the right substance in the wrong layer."
+  },
+  {
+    "stem": "Which sequence correctly describes stomatal opening at dawn?",
+    "options": [
+      "K⁺ is pumped into the guard cells by primary active transport → Ψ<sub>s</sub> falls → water follows → turgor rises → the pore opens",
+      "Guard-cell photosynthesis produces sucrose → Ψ<sub>s</sub> falls → water enters → the thin inner wall stretches and the pore opens",
+      "Blue light activates the H⁺-ATPase → the membrane hyperpolarises → K⁺ enters through inward-rectifying channels → Ψ<sub>s</sub> falls → water enters → the guard cells bow apart",
+      "Water enters the guard cells as the leaf rehydrates overnight → turgor rises → K⁺ is drawn in with the water → the pore opens"
+    ],
+    "answer": 2,
+    "explain": "The ATP is spent on <b>protons</b>, never on potassium. Blue light acting through phototropin activates the plasma-membrane H⁺-ATPase; proton export hyperpolarises the membrane to around −200 mV; the voltage-gated inward rectifier KAT1 then opens and K⁺ enters <i>passively</i> down the electrical gradient it created. So K⁺ accumulation is <b>secondary</b> active transport, which is what makes option A wrong. Option B is the older textbook story: guard cells do have chloroplasts, but early morning opening is a K⁺-and-anion event with malate made from <i>starch breakdown</i> — sucrose becomes the dominant osmoticum only later in the day — and the description of the inner wall is backwards, since the ventral wall is the <i>thicker</i>, less extensible one. Option D has water leading, which it never does: water follows Ψ, it never creates it."
+  },
+  {
+    "stem": "A complete ring of bark is stripped from the trunk of a mature maple, down to but not through the vascular cambium. Which set of observations is expected?",
+    "options": [
+      "The leaves wilt within hours, because the tissue that conducts water has been removed",
+      "A swelling develops immediately below the ring, where descending sap accumulates against the barrier",
+      "The roots continue to grow normally, since they can photosynthesise using their stored starch",
+      "The canopy stays healthy for weeks and a swelling forms above the ring; the roots then starve, and the tree dies months later"
+    ],
+    "answer": 3,
+    "explain": "Bark is <b>everything external to the vascular cambium</b> — secondary phloem plus periderm — so girdling removes the sugar pipe and leaves every xylem conduit intact. Hence no wilting: water still rises and the canopy looks fine. Sugars travel <i>downward</i> from leaves and pile up on the upper lip of the cut, so the swelling is <b>above</b> the ring, which is why option B is the second commonest wrong answer. Option A is the first commonest and assumes bark carries water — precisely the belief the experiment was designed to refute. Option C invents root photosynthesis; roots are heterotrophic and entirely dependent on shoot photosynthate, which is exactly why they are the tissue that dies first."
+  },
+  {
+    "stem": "A greenhouse tomato shows yellowing between the veins while the veins themselves stay green. The oldest, lowest leaves are affected; the growing tip looks normal. What is the most likely deficiency?",
+    "options": [
+      "Magnesium — it is the central ion of every chlorophyll molecule and it is phloem-mobile, so the plant strips it out of mature leaves to supply the new ones",
+      "Iron — it is required for chlorophyll synthesis, and interveinal chlorosis is its hallmark",
+      "Nitrogen — chlorophyll contains nitrogen, and nitrogen deficiency always shows in the oldest leaves first",
+      "Sulphur — it is needed for the Fe–S clusters of the photosynthetic electron transport chain"
+    ],
+    "answer": 0,
+    "explain": "Two questions settle every chlorosis: <b>interveinal or uniform</b>, and <b>old leaves or young</b>. Interveinal + old = magnesium; interveinal + young = iron (or manganese, which adds necrotic flecks); uniform + old = nitrogen; uniform + young = sulphur. Option B is the deliberate near-miss and it is right about the appearance and wrong about the position: iron is phloem-<b>immobile</b>, so it cannot be salvaged from old leaves and its symptoms therefore appear in the <i>youngest</i> ones. Options C and D name mobile-versus-immobile correctly but describe <i>uniform</i> chlorosis, not interveinal. The mechanistic distinction worth holding is that Mg <b>is</b> chlorophyll's coordinating atom while Fe is needed to <i>build</i> chlorophyll."
+  },
+  {
+    "stem": "Which statement about nitrogen fixation in a legume root nodule is correct?",
+    "options": [
+      "The legume's own nitrogenase reduces N₂ to nitrate, which is then exported to the shoot in the xylem",
+      "Bacteroids reduce N₂ to ammonia at a cost of 16 ATP per N₂; leghaemoglobin buffers free O₂ down to nanomolar levels while still delivering a high O₂ flux for bacteroid respiration",
+      "Leghaemoglobin excludes oxygen from the nodule entirely, creating the strictly anaerobic conditions that the bacteroid requires",
+      "Nodulation begins when the plant secretes Nod factors, which the bacteria detect using a receptor kinase"
+    ],
+    "answer": 1,
+    "explain": "No plant has ever been found to fix nitrogen, and the product is <b>ammonia, not nitrate</b> — so option A is wrong twice, and both halves are common exam distractors. Option C is the textbook simplification, and it is self-defeating: fixing one N₂ costs 16 ATP, which the bacteroid makes by <i>aerobic</i> respiration, so a strictly anaerobic nodule would fix nothing. Leghaemoglobin does what haemoglobin does — binds O₂ reversibly and carries it — giving a very low <i>free</i> concentration (~10 nmol·L⁻¹, four orders of magnitude below air-saturated water) alongside a high delivery <i>rate</i>. Option D reverses the signalling: the plant releases flavonoids, the bacterium responds by making Nod factors, and the plant detects those with a receptor kinase."
+  },
+  {
+    "stem": "Which of the following statements is <b>INCORRECT</b>?",
+    "options": [
+      "Tracheids occur in all vascular plants including angiosperms, whereas vessel elements are essentially confined to angiosperms",
+      "Wood is secondary xylem, and bark is everything external to the vascular cambium",
+      "A palm thickens its trunk year on year by means of a vascular cambium, which is why old palms are broader at the base than young ones",
+      "Sieve-tube elements are alive at maturity but have no nucleus, and depend on their companion cells"
+    ],
+    "answer": 2,
+    "explain": "Monocots have <b>no vascular cambium</b> and therefore no true secondary growth. A palm attains close to its final diameter from a <i>primary</i> thickening meristem near the apex before it elongates, and cannot widen afterwards — hence no annual rings, no bark in the technical sense, and no capacity to heal a girdle. 'Woody' and 'capable of secondary growth' are not synonyms. The other three are all true and are worth checking you agreed with each: angiosperms did not replace tracheids with vessels, they added them; conifers, having only tracheids, are safer but slower conductors."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

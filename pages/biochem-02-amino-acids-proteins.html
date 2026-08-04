@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biochem 02 · Amino Acids, Peptides and Protein Structure — PostMed Notebook</title>
+<meta name="description" content="Biochemistry note 02: side-chain pKa and net charge, Henderson–Hasselbalch and pI, peptide-bond geometry and Ramachandran space, helices, sheets and collagen, folding and misfolding, haemoglobin cooperativity, and protein purification.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biochemistry.html">Biochemistry</a>
+      <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Note 02</p>
+  <h1>Amino Acids, Peptides and Protein Structure</h1>
+  <p class="lede">
+    A polypeptide has far less freedom than it looks. The repeating backbone unit is <strong>flat and rigid</strong>,
+    so each residue contributes exactly <strong>two</strong> rotatable angles and nothing else; and the only chemistry
+    that varies along the chain is the side chain hanging off one carbon. Everything this paper asks about proteins
+    falls out of those two facts. The charge on a peptide at a stated pH is arithmetic on side-chain pK<sub>a</sub>
+    values. Which residues can sit in a helix, a sheet or a collagen triple helix is a question about which of those
+    two angles they are allowed to adopt. Why haemoglobin is sigmoid and myoglobin is not is a question about
+    whether the two angles can move <em>together</em>. And every purification column is just a device for sorting
+    on charge, on size or on surface. Learn to <em>derive</em> those, and you will not need to memorise much at all.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Titration curves &amp; Ramachandran space</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~50 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">One carbon, four things attached</a></li>
+      <li><a href="#s2">The twenty side chains, by what they do</a></li>
+      <li><a href="#s3">pK<sub>a</sub>, Henderson–Hasselbalch, buffering</a></li>
+      <li><a href="#s4">Titration curves, pI and net charge</a></li>
+      <li><a href="#s5">The peptide bond and the two angles left over</a></li>
+      <li><a href="#s6">Secondary structure: helix, sheet, turn, collagen</a></li>
+      <li><a href="#s7">Tertiary and quaternary structure</a></li>
+      <li><a href="#s8">Folding, chaperones and misfolding disease</a></li>
+      <li><a href="#s9">Haemoglobin: cooperativity and its two effectors</a></li>
+      <li><a href="#s10">Separating and measuring proteins</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§03</b> is the engine of this whole note: one equation, and the single idea
+        that a group is protonated when the pH is below its pK<sub>a</sub> and deprotonated when it is above.
+        Then <b>§05</b>: the peptide unit is planar, so a residue has only φ and ψ to play with. Those two sections
+        between them generate <b>§04</b> (charge and pI), <b>§06</b> (why a helix is a helix and why proline
+        wrecks it) and most of <b>§10</b> (why a column can separate anything at all).</li>
+      <li><b>Then be able to do</b> — <b>§04</b>: compute the net charge of a named peptide at a stated pH, and the
+        pI of an amino acid, without hesitating over which two pK<sub>a</sub> values to average. <b>§03</b>: turn a
+        pH and a pK<sub>a</sub> into a ratio and a percentage. <b>§06</b>: the α-helix arithmetic — residues per
+        turn, rise, pitch, and how many residues cross a membrane. <b>§09</b>: read an oxygen-binding curve, say
+        which way a named change shifts it, and say what that does to <em>delivery</em> rather than to saturation.
+        <b>§02</b>: place any named residue in its group and say whether it is charged at pH 7.4.</li>
+      <li><b>Leave for a second pass</b> — the full twenty-residue reference table in <b>§02</b> is lookup material,
+        not reading; learn the groups first and the table will fill itself in. <b>§07</b>'s catalogue of motifs and
+        folds, the amyloid-disease table in <b>§08</b>, and the sequencing and mass-spectrometry material folded
+        away in <b>§10</b> are all second-pass. Come back to <b>§05</b>'s Ramachandran plot once §06 has given you
+        a reason to care where the allowed regions are.</li>
+    </ol>
+  </div>
+
+  <section class="fsheet card">
+    <details class="disc disc--sheet">
+      <summary>Quick sheet<span class="disc__count">32 entries</span></summary>
+      <div class="disc__body">
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Henderson–Hasselbalch</b><code>pH = pK<sub>a</sub> + log([A⁻]/[HA])</code></div>
+      <div class="fsheet__item"><b>The one rule</b><code>pH &lt; pK<sub>a</sub> → protonated</code></div>
+      <div class="fsheet__item"><b>Buffer range</b><code>pK<sub>a</sub> ± 1 (ratio 10:1 → 1:10)</code></div>
+      <div class="fsheet__item"><b>α-COOH / α-NH₃⁺</b><code>≈2.3 / ≈9.6 free · ≈3.1 / ≈8–9 in a peptide</code></div>
+      <div class="fsheet__item"><b>Acidic side chains</b><code>Asp 3.65 · Glu 4.25</code></div>
+      <div class="fsheet__item"><b>Histidine</b><code>6.00 — the only physiological buffer</code></div>
+      <div class="fsheet__item"><b>Cys / Tyr</b><code>8.18 / 10.07</code></div>
+      <div class="fsheet__item"><b>Lys / Arg</b><code>10.53 / 12.48 ← highest of the 20</code></div>
+      <div class="fsheet__item"><b>pI</b><code>average the two pK<sub>a</sub> flanking net-zero</code></div>
+      <div class="fsheet__item"><b>pI examples</b><code>Gly 5.97 · Asp 2.77 · His 7.59 · Arg 10.76</code></div>
+      <div class="fsheet__item"><b>Electrophoresis</b><code>pH &gt; pI → net − → runs to the anode</code></div>
+      <div class="fsheet__item"><b>Peptide bond</b><code>C–N 1.32 Å · ≈40 % double-bond character</code></div>
+      <div class="fsheet__item"><b>Dihedrals</b><code>φ: N–Cα · ψ: Cα–C · ω: C–N ≈ 180°</code></div>
+      <div class="fsheet__item"><b>X–Pro bond</b><code>≈10 % <i>cis</i> · isomerised by PPIase</code></div>
+      <div class="fsheet__item"><b>α-helix</b><code>3.6 res/turn · 1.5 Å rise · 5.4 Å pitch</code></div>
+      <div class="fsheet__item"><b>Helix H-bond</b><code>C=O(i) ··· H–N(i+4)</code></div>
+      <div class="fsheet__item"><b>α-helix φ, ψ</b><code>−57°, −47° (right-handed)</code></div>
+      <div class="fsheet__item"><b>Membrane helix</b><code>30 Å ÷ 1.5 Å ≈ 20 residues</code></div>
+      <div class="fsheet__item"><b>β-sheet</b><code>φ,ψ ≈ −120°, +130° · rise ≈3.4 Å</code></div>
+      <div class="fsheet__item"><b>β-turn</b><code>4 residues · C=O(1) ··· H–N(4)</code></div>
+      <div class="fsheet__item"><b>Collagen</b><code>(Gly–X–Y)ₙ · X = Pro, Y = 4-Hyp</code></div>
+      <div class="fsheet__item"><b>Collagen helix</b><code>left-handed PPII · 3 res/turn · 2.9 Å rise</code></div>
+      <div class="fsheet__item"><b>ΔG of folding</b><code>−20 to −65 kJ·mol⁻¹ (marginal)</code></div>
+      <div class="fsheet__item"><b>Levinthal</b><code>3¹⁰⁰ ≈ 5 × 10⁴⁷ conformers</code></div>
+      <div class="fsheet__item"><b>Myoglobin</b><code>P₅₀ ≈ 2.8 torr · n<sub>H</sub> = 1 · hyperbolic</code></div>
+      <div class="fsheet__item"><b>Haemoglobin</b><code>P₅₀ ≈ 26 torr · n<sub>H</sub> ≈ 2.8 · sigmoid</code></div>
+      <div class="fsheet__item"><b>Hill equation</b><code>Y = pO₂ⁿ / (P₅₀ⁿ + pO₂ⁿ)</code></div>
+      <div class="fsheet__item"><b>Right shift</b><code>↑H⁺ ↑CO₂ ↑2,3-BPG ↑T → unload</code></div>
+      <div class="fsheet__item"><b>HbF</b><code>α₂γ₂ · Ser143 · P₅₀ ≈ 19 torr</code></div>
+      <div class="fsheet__item"><b>Gel filtration</b><code>LARGE elutes FIRST</code></div>
+      <div class="fsheet__item"><b>A₂₈₀</b><code>Trp ε 5500 · Tyr 1490 M⁻¹cm⁻¹</code></div>
+      <div class="fsheet__item"><b>Average residue</b><code>≈110 Da → 50 kDa ≈ 455 residues</code></div>
+    </div>
+      </div>
+    </details>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>One carbon, four things attached</h2>
+
+  <p class="idea"><b>The idea</b>Every one of the twenty building blocks is the same molecule with one part swapped out. A single central
+     carbon carries an acid group on one side, a base group on the other, a hydrogen, and one variable piece. Because
+     an acid and a base are bolted to the same carbon, they react with each other: in water the acid has already
+     given its proton away and the base has already taken one, so the molecule sits there carrying a positive and a
+     negative charge at the same time. That double-charged state is not an oddity — it is the normal condition, and
+     it is the reason amino acids behave like salts rather than like organic acids.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>α-Amino acid</dt>
+      <dd>A carboxylic acid bearing an amino group on the carbon <em>adjacent</em> to the carboxyl — the
+          α-carbon. That α-carbon also carries a hydrogen and a variable side chain R.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">⁺H₃N–CαH(R)–COO⁻</span>
+      <span class="fx__tag">the zwitterion — the form that actually exists in water at any pH between about 3 and 8</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Zwitterion（兩性離子）</dt>
+          <dd>A molecule carrying both a full positive and a full negative charge with <strong>zero</strong> net
+              charge. In water the zwitterion outnumbers the uncharged form by a factor of order 10⁵–10⁷.</dd>
+          <dt>Ampholyte / amphoteric</dt>
+          <dd>A species that can act as either an acid or a base. Every amino acid is one, which is why every one
+              of them has at least two pK<sub>a</sub> values and an isoelectric point.</dd>
+          <dt>Residue</dt>
+          <dd>What is left of an amino acid once it is in a chain — the free amino acid <em>minus</em> the elements
+              of water (−18 Da), because a peptide bond is a condensation. Average residue mass ≈ 110 Da.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">M<sub>r</sub>(protein) ≈ 110 × (number of residues)</span><span class="fx__tag">good to about ±10 %; lets you convert kDa to chain length in one step</span></div>
+          <div class="fx"><span class="fx__eq">19 of 20 are chiral · all are <b>L</b> · all are (S) except <b>Cys</b>, which is (R)</span><span class="fx__tag">Cys is (R) only because sulfur outranks the carboxyl carbon in CIP priority — the shape is unchanged</span></div>
+          <div class="fx"><span class="fx__eq">peptide direction: <b>N-terminus → C-terminus</b></span><span class="fx__tag">sequences are always written and numbered this way, as DNA is always 5′→3′</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>C<sub>α</sub></b><span>the α-carbon; stereocentre in 19 of 20</span></div>
+          <div><b>R</b><span>side chain — the only thing that varies</span></div>
+          <div><b>pK<sub>a</sub></b><span>−log₁₀K<sub>a</sub>; dimensionless</span></div>
+          <div><b>pI</b><span>isoelectric point — the pH of zero net charge</span></div>
+          <div><b>M<sub>r</sub></b><span>relative molecular mass (Da or g·mol⁻¹)</span></div>
+          <div><b>ε</b><span>molar extinction coefficient (M⁻¹·cm⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 330" role="img" aria-label="Left panel: a tetrahedral alpha carbon carrying a carboxyl group, an amino group, a hydrogen and a side chain R, with the CORN rule for assigning the L configuration. Right panel: the same amino acid drawn in three ionisation states — the cation at low pH with COOH and NH3 plus, the zwitterion at neutral pH with COO minus and NH3 plus, and the anion at high pH with COO minus and NH2 — linked by arrows labelled pKa1 about 2.3 and pKa2 about 9.6, with net charges plus one, zero and minus one." style="font-family:var(--sans)">
+      <text x="24" y="26" font-size="12.5" font-weight="700" fill="var(--accent)">A · the α-carbon</text>
+      <line x1="130" y1="150" x2="130" y2="88" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="130" y1="150" x2="130" y2="212" stroke="var(--ink-soft)" stroke-width="2"/>
+      <path d="M 130,150 L 62,182 L 68,172 Z" fill="var(--ink-soft)" stroke="var(--ink-soft)" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="130" y1="150" x2="198" y2="182" stroke="var(--ink-soft)" stroke-width="2" stroke-dasharray="4 3"/>
+      <circle cx="130" cy="150" r="21" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2.2"/>
+      <text x="130" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="var(--accent)">Cα</text>
+      <text x="130" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="var(--bad)">COO⁻</text>
+      <text x="130" y="63" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">carboxyl · acid</text>
+      <text x="130" y="232" text-anchor="middle" font-size="13" font-weight="700" fill="var(--vdw)">NH₃⁺</text>
+      <text x="130" y="247" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">amino · base</text>
+      <text x="52" y="196" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">H</text>
+      <text x="215" y="192" font-size="13" font-weight="700" fill="var(--hydrophobic)">R</text>
+      <text x="215" y="208" font-size="10.5" fill="var(--ink-faint)">the side chain</text>
+      <text x="24" y="286" font-size="11" fill="var(--ink-soft)">CORN rule: with <tspan font-weight="700">H toward you</tspan>, read</text>
+      <text x="24" y="302" font-size="11" fill="var(--ink-soft)"><tspan font-weight="700" fill="var(--accent)">CO → R → N</tspan> clockwise ⇒ <tspan font-weight="700">L</tspan>.</text>
+      <text x="24" y="318" font-size="11" fill="var(--ink-faint)">Proteins use only L. Glycine (R = H) is achiral.</text>
+
+      <line x1="286" y1="34" x2="286" y2="312" stroke="var(--line)" stroke-width="1.5"/>
+      <text x="310" y="26" font-size="12.5" font-weight="700" fill="var(--accent)">B · the three ionisation states</text>
+
+      <rect x="308" y="52" width="126" height="98" rx="9" fill="var(--card)" stroke="var(--bad)" stroke-width="1.8"/>
+      <text x="371" y="80" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">HOOC–CαH(R)</text>
+      <text x="371" y="100" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">–NH₃⁺</text>
+      <text x="371" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="var(--bad)">net +1</text>
+      <text x="371" y="140" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">cation · pH ≈ 1</text>
+
+      <line x1="440" y1="101" x2="486" y2="101" stroke="var(--accent)" stroke-width="2"/>
+      <path d="M 486,101 L 476,96 L 476,106 Z" fill="var(--accent)"/>
+      <text x="463" y="90" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent)">pK₁ ≈ 2.3</text>
+      <text x="463" y="120" text-anchor="middle" font-size="10" fill="var(--ink-faint)">−H⁺</text>
+
+      <rect x="492" y="52" width="126" height="98" rx="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2.4"/>
+      <text x="555" y="80" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">⁻OOC–CαH(R)</text>
+      <text x="555" y="100" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">–NH₃⁺</text>
+      <text x="555" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">net 0</text>
+      <text x="555" y="140" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">zwitterion · pH 7</text>
+
+      <line x1="624" y1="101" x2="670" y2="101" stroke="var(--accent)" stroke-width="2"/>
+      <path d="M 670,101 L 660,96 L 660,106 Z" fill="var(--accent)"/>
+      <text x="647" y="90" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent)">pK₂ ≈ 9.6</text>
+
+      <rect x="308" y="186" width="126" height="98" rx="9" fill="var(--card)" stroke="var(--vdw)" stroke-width="1.8"/>
+      <text x="371" y="214" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">⁻OOC–CαH(R)</text>
+      <text x="371" y="234" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">–NH₂</text>
+      <text x="371" y="258" text-anchor="middle" font-size="12" font-weight="700" fill="var(--vdw)">net −1</text>
+      <text x="371" y="274" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">anion · pH ≈ 12</text>
+      <path d="M 676,105 C 700,140 700,220 440,232" fill="none" stroke="var(--accent)" stroke-width="2"/>
+      <path d="M 440,232 L 452,227 L 450,237 Z" fill="var(--accent)"/>
+
+      <text x="470" y="196" font-size="11" fill="var(--ink-soft)">Between the two pK values only the</text>
+      <text x="470" y="212" font-size="11" fill="var(--ink-soft)">zwitterion is abundant. The <tspan font-style="italic">uncharged</tspan></text>
+      <text x="470" y="228" font-size="11" fill="var(--ink-soft)">form (COOH + NH₂ together) is</text>
+      <text x="470" y="244" font-size="11" fill="var(--ink-soft)">essentially never populated in water.</text>
+      <text x="470" y="268" font-size="11" font-weight="700" fill="var(--accent-2)">pI = ½(pK₁ + pK₂) = 5.97 for glycine</text>
+    </svg>
+    <figcaption>Only side chains that are themselves ionisable add a third step to panel B. For the
+      thirteen residues whose side chain is not ionisable, this two-step picture is the whole titration behaviour, and pI
+      is simply the mean of the two backbone pK<sub>a</sub> values — which is why all of them cluster near pH 6.</figcaption>
+  </figure>
+
+  <h3>Why the zwitterion, and what follows from it</h3>
+  <p>The α-carboxyl is a fairly strong organic acid (pK<sub>a</sub> ≈ 2.3, well below acetic acid's 4.76, because
+     the neighbouring –NH₃⁺ pulls electron density away and stabilises the carboxylate). The α-amino group is a
+     reasonably strong base (its conjugate acid has pK<sub>a</sub> ≈ 9.6). Put them on the same carbon and, at any
+     pH between roughly 3 and 8, the first is already deprotonated while the second is still protonated. There is
+     nothing left to decide: the molecule <em>must</em> carry both charges.</p>
+  <p>That single structural fact explains a set of properties the exam likes to test as a group. Amino acids are
+     crystalline solids that <strong>decompose rather than melt</strong>, typically above 200 °C, because the
+     crystal is held by full ionic forces, not by dipoles. They are <strong>freely soluble in water and nearly
+     insoluble in ether</strong>. They have no measurable vapour pressure. And their solutions have a large dipole
+     moment and a high dielectric increment. If a question offers you "amino acids are volatile liquids" or "they
+     dissolve well in nonpolar solvents", the zwitterion is the reason both are wrong.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two stereochemistry traps</p>
+    <p style="margin:0 0 .5em"><strong>L is not the same as (S), and L is not the same as (+).</strong> The
+      D/L system is a <em>relative</em> configuration, referred to glyceraldehyde; R/S is the absolute CIP
+      assignment; and (+)/(−) is an experimental measurement of optical rotation. Nineteen L-amino acids happen to
+      be (S); <strong>L-cysteine is (R)</strong>, purely because its side-chain sulfur outranks the carboxyl carbon
+      under CIP rules. Nothing about its three-dimensional shape differs from the others.</p>
+    <p style="margin:0"><strong>D-amino acids do exist in biology.</strong> D-Ala and D-Glu are structural elements
+      of bacterial peptidoglycan (which is precisely why they resist host proteases, and why vancomycin binds the
+      D-Ala–D-Ala terminus); D-Ser is a co-agonist at the NMDA receptor in mammalian brain; several peptide
+      antibiotics such as gramicidin contain them. What is true is that <strong>ribosomal</strong> protein
+      synthesis uses only L.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Reading a peptide name</h4>
+    <p>Ala–Gly–Ser means alanine's <em>free α-amino</em> group is the N-terminus and serine's <em>free
+      α-carboxyl</em> is the C-terminus; the middle residue has both of its α groups locked into peptide bonds and
+      therefore contributes <strong>no charge</strong>. Every net-charge calculation in §&nbsp;04 starts by
+      recognising that only the two ends plus the side chains are still titratable.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The twenty side chains, by what they do</h2>
+
+  <p class="idea"><b>The idea</b>Learning twenty structures as twenty separate facts is the slow way and it does not survive exam pressure.
+     There are really only about five questions you ever ask of a side chain: does it carry a charge at body pH,
+     can it make a hydrogen bond, is it greasy, is it bulky, and can it do something chemically special such as form
+     a bridge or be switched on and off. Sort the twenty by the answers and the groups almost draw themselves —
+     and each group then behaves as one thing, so a question about "the residue most likely to be buried in the
+     core" or "the residue most likely to be phosphorylated" has an obvious short list.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; grouping</p>
+    <dl class="def">
+      <dt>Side-chain classification</dt>
+      <dd>The standard grouping is by <strong>polarity and charge at pH 7</strong>: nonpolar aliphatic, aromatic,
+          polar uncharged, positively charged, negatively charged. It is a functional grouping, not a chemical
+          taxonomy — its whole purpose is to predict where a residue sits in a folded protein.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">charged at pH 7.4 → surface · greasy → core · polar → either</span>
+      <span class="fx__tag">the single most useful prediction a side-chain class buys you</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Hydropathy index</dt>
+          <dd>A numerical scale (Kyte–Doolittle) of the free-energy preference for a nonpolar environment. Ile
+              (+4.5), Val, Leu and Phe sit at the top; Arg (−4.5), Lys and Asp at the bottom. A running average over
+              a 19-residue window is the standard way to spot membrane-spanning helices.</dd>
+          <dt>Essential amino acid</dt>
+          <dd>One a human cannot synthesise, so it must come from diet. Nine strictly: <strong>His, Ile, Leu, Lys,
+              Met, Phe, Thr, Trp, Val</strong>. Arg is conditionally essential (growth, injury); Tyr and Cys are
+              conditionally essential because they are made <em>from</em> Phe and Met respectively.</dd>
+          <dt>Purely ketogenic</dt>
+          <dd><strong>Leucine and lysine</strong> — the only two that yield no glucogenic carbon at all.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">A₂₈₀ chromophores: <b>Trp</b> (ε 5500) ≫ <b>Tyr</b> (1490) ≫ cystine (125) · Phe negligible</span><span class="fx__tag">why protein concentration is read at 280 nm and why a Trp-free protein reads falsely low</span></div>
+          <div class="fx"><span class="fx__eq">peptide bond itself absorbs at ≈220 nm</span><span class="fx__tag">used in HPLC detection, where 280 nm would miss aromatic-free peptides</span></div>
+          <div class="fx"><span class="fx__eq">N-glycosylation sequon: <b>Asn–X–Ser/Thr</b>, X ≠ Pro</span><span class="fx__tag">the only sequence-level rule you are expected to recall for a post-translational modification</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>pK<sub>R</sub></b><span>pK<sub>a</sub> of the side chain (dimensionless)</span></div>
+          <div><b>ε₂₈₀</b><span>molar extinction coefficient at 280 nm (M⁻¹·cm⁻¹)</span></div>
+          <div><b>Kyte–Doolittle</b><span>hydropathy index, arbitrary units, −4.5 to +4.5</span></div>
+          <div><b>Sequon</b><span>a short recognition sequence for a modifying enzyme</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The five side-chain classes and what each is used for</caption>
+      <thead><tr><th>Class</th><th>Members</th><th>Chemistry</th><th>What it is for, and what gets asked</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Nonpolar aliphatic</strong></td>
+          <td>Gly, Ala, <strong>Val, Leu, Ile</strong>, Pro, Met</td>
+          <td>Hydrocarbon; no hydrogen-bond donor or acceptor</td>
+          <td>Build the hydrophobic core; drive folding (§&nbsp;08) and membrane insertion. Val/Leu/Ile are the
+              <strong>branched-chain</strong> trio — catabolised in muscle, and the substrates that accumulate in
+              maple syrup urine disease. Met carries the initiator codon and, as SAM, every methyl group in the cell.</td>
+        </tr>
+        <tr>
+          <td><strong>Aromatic</strong></td>
+          <td>Phe, <strong>Tyr</strong>, <strong>Trp</strong></td>
+          <td>Flat, polarisable rings; Tyr and Trp are weakly polar</td>
+          <td>Stacking and cation–π interactions; the <strong>A₂₈₀ signal</strong>. Tyr is a phosphorylation site and
+              the precursor of catecholamines, thyroid hormone and melanin; Trp of serotonin, melatonin and niacin.
+              Phe accumulates in PKU.</td>
+        </tr>
+        <tr>
+          <td><strong>Polar uncharged</strong></td>
+          <td>Ser, Thr, <strong>Cys</strong>, Asn, Gln</td>
+          <td>–OH, –SH or –CONH₂; hydrogen bond donors <em>and</em> acceptors</td>
+          <td>Surface and active sites. <strong>Ser/Thr/Tyr are the phosphorylation set</strong>; Ser and Thr also
+              carry O-linked sugars, Asn the N-linked ones. Cys makes disulfides. Gln is the blood's main
+              nitrogen carrier.</td>
+        </tr>
+        <tr>
+          <td><strong>Positively charged (basic)</strong></td>
+          <td><strong>Lys, Arg</strong>, His</td>
+          <td>Amine (10.5), guanidinium (12.5), imidazole (6.0)</td>
+          <td>Bind phosphates and nucleic acids (histones are Lys/Arg-rich); form salt bridges. <strong>His is the
+              exception in every sense</strong> — it is the only side chain that titrates near pH 7, which is why
+              it does the acid–base work in almost every enzyme active site and in the Bohr effect (§&nbsp;09).</td>
+        </tr>
+        <tr>
+          <td><strong>Negatively charged (acidic)</strong></td>
+          <td><strong>Asp, Glu</strong></td>
+          <td>Carboxylate, pK<sub>a</sub> 3.65 and 4.25</td>
+          <td>Metal binding (Ca²⁺, Mg²⁺, Zn²⁺), salt bridges, and general-base catalysis. Fully ionised at any
+              physiological pH — which is exactly why they dominate a net-charge calculation.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The three that break the pattern</h3>
+  <p><strong>Glycine</strong> has no side chain at all — just a second hydrogen. It is therefore achiral, the
+     smallest residue by a wide margin, and the most conformationally free: with no Cβ to collide with the backbone
+     it can adopt φ/ψ combinations that are forbidden to every other residue (§&nbsp;05). That freedom is why
+     glycine appears wherever a chain must turn sharply or pack impossibly tightly — the tight turns of §&nbsp;06,
+     and the every-third-residue position in collagen.</p>
+  <p><strong>Proline</strong> is the only one whose side chain loops back and bonds to its own backbone nitrogen.
+     The consequences are entirely structural and they are the most reliably examined facts on this page: the
+     nitrogen is a <em>secondary</em> amine, so in a peptide bond proline has <strong>no N–H to donate a hydrogen
+     bond</strong>; and the five-membered ring pins φ at about −60° so the residue cannot adopt most backbone
+     conformations. Together these make proline the classic helix and sheet breaker, and the residue of choice in
+     turns and in collagen.</p>
+  <p><strong>Cysteine</strong> is the only side chain that will form a covalent bond to another side chain
+     <em>spontaneously</em> — the lysine-derived cross-links of collagen and elastin (§&nbsp;06) are the other case,
+     and they need a dedicated enzyme to make them. Two thiols
+     <strong>oxidise</strong> — they do not condense — to a disulfide, and the resulting dimer is called cystine.
+     Because the reaction needs an oxidising environment, stable disulfides are a feature of <em>secreted</em> and
+     ER-lumen proteins (insulin, immunoglobulins, ribonuclease) and are rare in the reducing cytosol. Cysteine's
+     thiol is also unusually acidic for a "neutral" side chain (pK<sub>a</sub> 8.18), and in an enzyme active site
+     that value can fall to 4 or below, giving a permanently reactive thiolate nucleophile.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Short lists worth having ready</p>
+    <p style="margin:0 0 .4em"><strong>Sulfur-containing:</strong> Cys and Met — only two. <strong>Amide side
+      chains:</strong> Asn and Gln (uncharged; do <em>not</em> confuse with Asp and Glu). <strong>Alcohol side
+      chains:</strong> Ser, Thr, Tyr — and therefore the phosphorylation set. <strong>β-branched:</strong> Val, Ile,
+      Thr — sterically awkward, so they disfavour α-helix and favour β-sheet.</p>
+    <p style="margin:0"><strong>One-letter codes that catch people out:</strong> <code>W</code> = Trp,
+      <code>Y</code> = Tyr, <code>F</code> = Phe, <code>K</code> = Lys, <code>R</code> = Arg, <code>Q</code> = Gln,
+      <code>N</code> = Asn, <code>E</code> = Glu, <code>D</code> = Asp. Remember them as pairs:
+      <strong>D</strong>/<strong>N</strong> are the four-carbon acid and its amide, <strong>E</strong>/<strong>Q</strong>
+      the five-carbon pair.</p>
+  </div>
+
+  <div class="mnemo">
+    <h4>The nine essential amino acids</h4>
+    <p><strong>PVT TIM HaLL</strong> — <strong>P</strong>he, <strong>V</strong>al, <strong>T</strong>hr,
+      <strong>T</strong>rp, <strong>I</strong>le, <strong>M</strong>et, <strong>H</strong>is, <strong>L</strong>eu,
+      <strong>L</strong>ys. Add arginine when the question says growth, pregnancy or trauma; add tyrosine and
+      cysteine when the question says phenylketonuria or a diet lacking methionine.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the full twenty, with codes, side-chain pK<sub>a</sub> and what each is used for</summary>
+    <div class="disc__body">
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Reference table of the twenty proteinogenic amino acids</caption>
+      <thead><tr><th>Name</th><th>3-letter</th><th>1-letter</th><th>Side chain</th><th>pK<sub>R</sub></th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Glycine</td><td class="num">Gly</td><td class="num">G</td><td>–H</td><td class="num">—</td><td>Achiral; maximal backbone freedom; collagen and tight turns; inhibitory neurotransmitter in the cord</td></tr>
+        <tr><td>Alanine</td><td class="num">Ala</td><td class="num">A</td><td>–CH₃</td><td class="num">—</td><td>Best α-helix former; the glucose–alanine cycle carries muscle nitrogen to liver</td></tr>
+        <tr><td>Valine</td><td class="num">Val</td><td class="num">V</td><td>isopropyl</td><td class="num">—</td><td>β-branched; the residue substituted for Glu6 in sickle haemoglobin</td></tr>
+        <tr><td>Leucine</td><td class="num">Leu</td><td class="num">L</td><td>isobutyl</td><td class="num">—</td><td>Most abundant residue in proteins; purely ketogenic; leucine zipper</td></tr>
+        <tr><td>Isoleucine</td><td class="num">Ile</td><td class="num">I</td><td>sec-butyl</td><td class="num">—</td><td>Two stereocentres; most hydrophobic on the Kyte–Doolittle scale</td></tr>
+        <tr><td>Proline</td><td class="num">Pro</td><td class="num">P</td><td>pyrrolidine ring to N</td><td class="num">—</td><td>Secondary amine, no N–H; φ fixed ≈ −60°; helix breaker; hydroxylated in collagen</td></tr>
+        <tr><td>Methionine</td><td class="num">Met</td><td class="num">M</td><td>–CH₂CH₂–S–CH₃</td><td class="num">—</td><td>Initiator residue; SAM methyl donor; cleaved by cyanogen bromide</td></tr>
+        <tr><td>Phenylalanine</td><td class="num">Phe</td><td class="num">F</td><td>benzyl</td><td class="num">—</td><td>Purely hydrophobic aromatic; PKU substrate; converted to Tyr</td></tr>
+        <tr><td>Tyrosine</td><td class="num">Tyr</td><td class="num">Y</td><td>4-hydroxybenzyl</td><td class="num">10.07</td><td>Phosphorylation site; A₂₈₀; precursor of dopamine, adrenaline, melanin, T₃/T₄</td></tr>
+        <tr><td>Tryptophan</td><td class="num">Trp</td><td class="num">W</td><td>indole</td><td class="num">—</td><td>Largest; dominant A₂₈₀ chromophore; precursor of serotonin, melatonin, niacin</td></tr>
+        <tr><td>Serine</td><td class="num">Ser</td><td class="num">S</td><td>–CH₂OH</td><td class="num">≈13</td><td>Catalytic triad nucleophile; phosphorylation and O-glycosylation site</td></tr>
+        <tr><td>Threonine</td><td class="num">Thr</td><td class="num">T</td><td>–CH(OH)CH₃</td><td class="num">≈13</td><td>β-branched; phosphorylation site; two stereocentres</td></tr>
+        <tr><td>Cysteine</td><td class="num">Cys</td><td class="num">C</td><td>–CH₂SH</td><td class="num">8.18</td><td>Disulfide bridges; metal ligand; (R) configuration; often catalytic</td></tr>
+        <tr><td>Asparagine</td><td class="num">Asn</td><td class="num">N</td><td>–CH₂CONH₂</td><td class="num">—</td><td>N-glycosylation acceptor in Asn-X-Ser/Thr; uncharged, not acidic</td></tr>
+        <tr><td>Glutamine</td><td class="num">Gln</td><td class="num">Q</td><td>–CH₂CH₂CONH₂</td><td class="num">—</td><td>Main blood nitrogen carrier; amide donor in nucleotide synthesis</td></tr>
+        <tr><td>Aspartate</td><td class="num">Asp</td><td class="num">D</td><td>–CH₂COO⁻</td><td class="num">3.65</td><td>Catalytic triad; metal binding; urea cycle nitrogen donor</td></tr>
+        <tr><td>Glutamate</td><td class="num">Glu</td><td class="num">E</td><td>–CH₂CH₂COO⁻</td><td class="num">4.25</td><td>Principal excitatory neurotransmitter; γ-carboxylated in clotting factors (vitamin K)</td></tr>
+        <tr><td>Lysine</td><td class="num">Lys</td><td class="num">K</td><td>–(CH₂)₄NH₃⁺</td><td class="num">10.53</td><td>Acetylation and methylation site on histones; collagen cross-links; trypsin cleaves after it</td></tr>
+        <tr><td>Arginine</td><td class="num">Arg</td><td class="num">R</td><td>guanidinium</td><td class="num"><strong>12.48</strong></td><td><strong>Highest side-chain pK<sub>a</sub></strong>; always protonated in vivo; NO precursor; trypsin cleaves after it</td></tr>
+        <tr><td>Histidine</td><td class="num">His</td><td class="num">H</td><td>imidazole</td><td class="num">6.00</td><td>The only physiological buffer; proton shuttle in catalysis; heme ligand F8/E7 in globins</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin:1rem 0 0">Two residues are added co-translationally by recoding a stop codon and are sometimes
+     called the 21st and 22nd: <strong>selenocysteine</strong> (Sec, U) — read from UGA with a SECIS element, present
+     in glutathione peroxidase and the deiodinases — and <strong>pyrrolysine</strong> (Pyl, O), read from UAG in some
+     archaea. Everything else you meet (hydroxyproline, γ-carboxyglutamate, phosphoserine, cystine) is a
+     <em>post-translational modification</em> of one of the twenty, not a separate building block.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>pK<sub>a</sub>, Henderson–Hasselbalch and buffering</h2>
+
+  <p class="idea"><b>The idea</b>Every ionisable group has a number that says how tightly it holds its proton. Compare that number with the
+     pH of the solution and you know, without any calculation at all, which way the group is sitting: below the
+     number it keeps the proton, above the number it has lost it. The only time you need arithmetic is when the two
+     numbers are close together, and then a single equation converts the gap between them into a ratio. Everything
+     in the next section — charge, isoelectric point, which way a protein moves in an electric field — is this one
+     comparison repeated for each group in turn.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>pK<sub>a</sub></dt>
+      <dd>The negative logarithm of the acid dissociation constant, and — far more usefully — <strong>the pH at
+          which the group is exactly half dissociated</strong>. A low pK<sub>a</sub> means a strong acid, which
+          means it gives its proton away readily.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">pH = pK<sub>a</sub> + log<sub>10</sub><span class="mf" role="img" aria-label="concentration of A minus over concentration of H A"><span>[A⁻]</span><span>[HA]</span></span></span>
+      <span class="fx__tag">Henderson–Hasselbalch — conjugate base on top, always</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Acid dissociation</dt>
+          <dd>HA ⇌ H⁺ + A⁻, with K<sub>a</sub> = [H⁺][A⁻]/[HA]. Take −log₁₀ of both sides and rearrange to get
+              Henderson–Hasselbalch; the equation contains no new physics.</dd>
+          <dt>Buffer</dt>
+          <dd>A mixture of a weak acid and its conjugate base in comparable amounts. It resists pH change because
+              added H⁺ is mopped up by A⁻ and added OH⁻ by HA — but only while both partners are still present in
+              quantity.</dd>
+          <dt>Buffer capacity</dt>
+          <dd>Moles of strong acid or base absorbed per unit pH change. It is <strong>maximal at pH =
+              pK<sub>a</sub></strong>, where the ratio is 1:1 and the titration curve is flattest, and it collapses
+              beyond about one pH unit either side.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">fraction deprotonated = <span class="mf" role="img" aria-label="one over one plus ten to the power p K a minus p H"><span>1</span><span>1 + 10<sup>(pK<sub>a</sub> − pH)</sup></span></span></span><span class="fx__tag">the form to use for a net-charge calculation on an acidic group</span></div>
+          <div class="fx"><span class="fx__eq">fraction protonated = <span class="mf" role="img" aria-label="one over one plus ten to the power p H minus p K a"><span>1</span><span>1 + 10<sup>(pH − pK<sub>a</sub>)</sup></span></span></span><span class="fx__tag">use for a basic group — a protonated amine carries the charge</span></div>
+          <div class="fx"><span class="fx__eq">pH = pK<sub>a</sub> ± 1 ⇒ ratio 10:1 or 1:10 ⇒ ≈9 % / 91 %</span><span class="fx__tag">the working definition of the buffering range</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>K<sub>a</sub></b><span>acid dissociation constant (mol·L⁻¹)</span></div>
+          <div><b>[HA]</b><span>concentration of the protonated form (mol·L⁻¹)</span></div>
+          <div><b>[A⁻]</b><span>concentration of the conjugate base (mol·L⁻¹)</span></div>
+          <div><b>pH</b><span>−log₁₀[H⁺] (dimensionless)</span></div>
+          <div><b>β</b><span>buffer capacity (mol·L⁻¹ per pH unit)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>The only sentence you need to internalise is this: <strong>the pH tells the group what to do.</strong> Write
+     the pH and the pK<sub>a</sub> next to each other and subtract. If pH is <em>below</em> pK<sub>a</sub>, the
+     proton stays on — a carboxyl is –COOH (neutral), an amine is –NH₃⁺ (positive). If pH is <em>above</em>
+     pK<sub>a</sub>, the proton has gone — carboxyl is –COO⁻ (negative), amine is –NH₂ (neutral). Notice that
+     losing a proton always makes the group <em>more negative by one</em>, whether that means 0 → −1 or +1 → 0.
+     That is the whole of §&nbsp;04 in one sentence.</p>
+  <p>How far the pH has to be from the pK<sub>a</sub> before you can treat the group as fully switched is worth
+     fixing quantitatively, because examiners exploit the grey zone. One unit gives 10:1 — that is 91 % switched, so
+     treating it as complete introduces a 9 % error. Two units gives 100:1 (99 %), and three gives 1000:1 (99.9 %).
+     So for a calculation at pH 7, glutamate (4.25) is 2.75 units away and is <strong>99.8 % ionised</strong> —
+     safely counted as a full −1. Histidine (6.00) is only one unit away and is <strong>9 % protonated</strong> —
+     which is why the honest answer to "what charge does His carry at pH 7?" is "about +0.1, so call it zero, but
+     know that it is the one residue where that matters."</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The seven ionisable side chains ranked by pKa, with the reason for each value</caption>
+      <thead><tr><th>Side chain</th><th>Group</th><th>pK<sub>R</sub></th><th>State at pH 7.4</th><th>Why the value is what it is</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Asp</strong></td><td>β-carboxyl</td><td class="num">3.65</td><td><strong>−1</strong>, &gt;99.9 %</td><td>Carboxylate delocalises the charge over two equivalent oxygens. Asp is slightly stronger than Glu because its shorter chain leaves the anion nearer the electron-withdrawing backbone.</td></tr>
+        <tr><td><strong>Glu</strong></td><td>γ-carboxyl</td><td class="num">4.25</td><td><strong>−1</strong>, &gt;99.9 %</td><td>One CH₂ further from the backbone, so less inductive help; close to free acetic acid (4.76).</td></tr>
+        <tr><td><strong>His</strong></td><td>imidazolium</td><td class="num">6.00</td><td>≈4 % protonated → ≈<strong>0</strong></td><td>An aromatic ring nitrogen is a poor base; the ring can be neutral or cationic with the charge shared between both nitrogens. The value lands, uniquely, near physiological pH.</td></tr>
+        <tr><td><strong>Cys</strong></td><td>thiol</td><td class="num">8.18</td><td>≈14 % thiolate</td><td>Sulfur is large and polarisable, so RS⁻ spreads its charge far better than RO⁻. Compare serine's –OH at about 13: five orders of magnitude weaker as an acid.</td></tr>
+        <tr><td><strong>Tyr</strong></td><td>phenol</td><td class="num">10.07</td><td><strong>0</strong></td><td>The phenolate anion is stabilised by delocalisation into the ring — which makes phenol far more acidic than an aliphatic alcohol, but still not acidic at pH 7.</td></tr>
+        <tr><td><strong>Lys</strong></td><td>ε-ammonium</td><td class="num">10.53</td><td><strong>+1</strong>, &gt;99.9 %</td><td>An ordinary primary alkylammonium ion; nothing stabilises the neutral amine, so it holds its proton hard.</td></tr>
+        <tr><td><strong>Arg</strong></td><td>guanidinium</td><td class="num"><strong>12.48</strong></td><td><strong>+1</strong>, &gt;99.99 %</td><td><strong>The highest of the twenty.</strong> The cation's charge is delocalised symmetrically over <em>three</em> nitrogens in a Y-shaped resonance system. A cation that stable is extraordinarily reluctant to give up its proton — which is the definition of a very weak acid, i.e. a very high pK<sub>a</sub>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The two rankings that recur every year</p>
+    <p style="margin:0 0 .4em"><strong>Highest side-chain pK<sub>a</sub>: arginine (12.48).</strong> The tempting
+      wrong answer is lysine, because "amines are basic and lysine is the obvious base". The discriminator is the
+      guanidinium resonance argument above — and the practical consequence is that arginine is the one residue you
+      can assume is positively charged <em>under every condition a living cell ever sees</em>, which is why
+      arginine-rich patches are what bind DNA and phosphates.</p>
+    <p style="margin:0"><strong>Full ranking, low to high: Asp 3.65 &lt; Glu 4.25 &lt; His 6.00 &lt; Cys 8.18 &lt;
+      Tyr 10.07 &lt; Lys 10.53 &lt; Arg 12.48.</strong> Note the two near-misses examiners like: Cys is a
+      <em>stronger</em> acid than Tyr (thiol beats phenol), and Tyr is a stronger acid than Lys's conjugate acid by
+      only half a unit.</p>
+  </div>
+
+  <h3>Why histidine does all the work</h3>
+  <p>Look again at the table and notice how empty the middle is. Between glutamate at 4.25 and cysteine at 8.18
+     there is exactly one side chain, and it sits at 6.00. A group buffers — and, more importantly, can act as
+     both a proton donor and a proton acceptor within a single catalytic cycle — only when its pK<sub>a</sub> is
+     within about a unit of the working pH. At pH 7.4, aspartate and glutamate are locked as anions and lysine and
+     arginine are locked as cations; none of them can pick a proton up and put it down again. <strong>Histidine
+     can.</strong></p>
+  <p>That is why imidazole turns up wherever a proton has to be moved: the His57 of the chymotrypsin catalytic
+     triad, the proximal and distal histidines of the globins, the zinc ligands of carbonic anhydrase, the His146
+     that produces the Bohr effect in §&nbsp;09. It is also why histidine residues are the dominant protein buffer
+     in blood — haemoglobin, with 38 histidines per tetramer, does roughly as much buffering in whole blood as
+     bicarbonate does in plasma.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">pK<sub>a</sub> values are not constants</p>
+    <p style="margin:0">The tabulated numbers are for the free amino acid in dilute aqueous solution. Inside a
+      folded protein the local environment shifts them, sometimes enormously, and this is a genuine exam theme
+      rather than a technicality. Burying a carboxylate in an apolar pocket removes the water that stabilised the
+      anion and <strong>raises</strong> its pK<sub>a</sub>; placing a lysine next to another positive charge
+      destabilises its cation and <strong>lowers</strong> its pK<sub>a</sub>. The classic examples are the active-site
+      lysine of acetoacetate decarboxylase (pK<sub>a</sub> ≈ 5.9 instead of 10.5) and the catalytic cysteine of
+      papain (≈4 instead of 8.2, because an adjacent histidine stabilises the thiolate). The lesson: a pK<sub>a</sub>
+      is a property of a group <em>in its environment</em>, and enzymes tune it deliberately.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — three Henderson–Hasselbalch problems, done the fast way</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) What fraction of histidine side chains (pK<sub>a</sub> 6.00)
+      is protonated at blood pH, 7.40? (b) What fraction of glutamate side chains (4.25) is ionised at pH 7.00?
+      (c) You need 1.00 L of 0.100 M phosphate buffer at pH 7.40, using the H₂PO₄⁻/HPO₄²⁻ pair, pK<sub>a</sub> = 6.86.
+      How much of each? And what happens to the pH when 5.0 mmol of HCl is added?</p>
+    <ol>
+      <li><strong>(a)</strong> The gap is <span class="fi">pH − pK<sub>a</sub> = 7.40 − 6.00 = +1.40</span>. A
+          positive gap means the base form dominates, by <span class="fi">10<sup>1.40</sup> = 25.1 : 1</span>.</li>
+      <li>So the protonated (charged) form is <span class="fi">1/(1 + 25.1) = 0.0383</span> —
+          <strong>3.8 % protonated</strong>. Histidine is therefore essentially neutral in blood, but nearly 4 % of
+          it is available as a proton donor at any instant, which is exactly what a catalyst needs.</li>
+      <li><strong>(b)</strong> Gap = <span class="fi">7.00 − 4.25 = +2.75</span>, ratio
+          <span class="fi">10<sup>2.75</sup> = 562 : 1</span>, so ionised fraction =
+          <span class="fi">562/563 = 0.9982</span> — <strong>99.8 %</strong>. Count glutamate as a clean −1.</li>
+      <li><strong>(c)</strong> Gap = <span class="fi">7.40 − 6.86 = +0.54</span>, so
+          <span class="fi">[HPO₄²⁻]/[H₂PO₄⁻] = 10<sup>0.54</sup> = 3.467</span>.</li>
+      <li>Split the 0.100 M in that proportion:
+          <span class="fi">[HPO₄²⁻] = 0.100 × 3.467/4.467 = 0.0776 M</span> and
+          <span class="fi">[H₂PO₄⁻] = 0.0224 M</span>. Check: <span class="fi">6.86 + log(0.0776/0.0224) = 7.40</span> ✓</li>
+      <li>Adding 5.0 mmol H⁺ converts 5.0 mmol of base to acid: <span class="fi">77.6 → 72.6 mmol</span> and
+          <span class="fi">22.4 → 27.4 mmol</span>.</li>
+      <li>New pH = <span class="fi">6.86 + log(72.6/27.4) = 6.86 + 0.424 = 7.28</span> — a fall of only
+          <strong>0.12 units</strong>. The same 5 mmol of HCl added to a litre of pure water at pH 7 would give
+          [H⁺] = 5 × 10⁻³ M, i.e. <strong>pH 2.30</strong>. That five-order-of-magnitude difference is what a
+          buffer buys, and it is why blood pH is defended to ±0.05.</li>
+    </ol>
+    <span class="wex__ans">(a) 3.8 % protonated · (b) 99.8 % ionised · (c) 0.0776 M HPO₄²⁻ + 0.0224 M H₂PO₄⁻ → pH falls 7.40 → 7.28</span>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Titration curves, pI and net charge</h2>
+
+  <p class="idea"><b>The idea</b>If you add base to an amino acid solution drop by drop and plot the pH, the graph does not climb steadily.
+     It rises, stalls, rises, stalls again — one stall for each acidic group, each stall centred on that group's own
+     number. Somewhere between two of the stalls the molecule's positives and negatives exactly cancel, and at that
+     pH it will not move in an electric field at all. Finding that pH is not a new skill: it is just noticing which
+     two stalls the neutral form sits between, and taking their average.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Isoelectric point, pI</dt>
+      <dd>The pH at which a molecule carries <strong>zero net charge</strong>. It is a property of the molecule, not
+          of the solution, and at that pH the molecule does not migrate in an electric field — and, having no
+          charge to repel its neighbours, is at its <strong>least soluble</strong>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">pI = ½ (pK<sub>a</sub> below + pK<sub>a</sub> above)</span>
+      <span class="fx__tag">the two values that <em>flank the species of zero net charge</em> — never simply "the first two"</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Where the formula comes from</dt>
+          <dd>Call the neutral species Z, flanked by the cation HZ⁺ (governed by K₁) and the anion Z⁻ (K₂). At pI,
+              by definition [HZ⁺] = [Z⁻]. Substituting the two equilibrium expressions gives
+              [H⁺]² = K₁K₂, so pH = ½(pK₁ + pK₂). It is exact for a diprotic system and an excellent approximation
+              whenever the two flanking pK values are more than about two units apart.</dd>
+          <dt>Net charge of a peptide</dt>
+          <dd>Sum of the charges on the <strong>N-terminal α-amino group, the C-terminal α-carboxyl, and every
+              ionisable side chain</strong>. Internal α-amino and α-carboxyl groups are consumed in peptide bonds
+              and contribute nothing.</dd>
+          <dt>Isoelectric focusing (IEF)</dt>
+          <dd>Electrophoresis through an immobilised pH gradient. A protein migrates until it reaches the pH equal
+              to its pI, where it stops. It is a <em>steady-state</em> method: the final position does not depend on
+              where the sample was loaded, and resolution reaches ≈0.01 pH units.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">neutral side chain: pI = ½(pK<sub>α-COOH</sub> + pK<sub>α-NH₃⁺</sub>) ≈ 6</span><span class="fx__tag">the thirteen residues with no ionisable R group all sit between 5.4 (Asn) and 6.5 (Pro)</span></div>
+          <div class="fx"><span class="fx__eq">acidic (Asp, Glu): pI = ½(pK<sub>α-COOH</sub> + pK<sub>R</sub>)</span><span class="fx__tag">Asp 2.77 · Glu 3.22 — the neutral form is flanked by the two carboxyls</span></div>
+          <div class="fx"><span class="fx__eq">basic (Lys, Arg, His): pI = ½(pK<sub>R</sub> + pK<sub>α-NH₃⁺</sub>)</span><span class="fx__tag">His 7.59 · Lys 9.74 · Arg 10.76</span></div>
+          <div class="fx"><span class="fx__eq">pH &gt; pI ⇒ net negative ⇒ migrates to the <b>anode</b> (+)</span><span class="fx__tag">and pH &lt; pI ⇒ net positive ⇒ migrates to the cathode (−)</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>pI</b><span>isoelectric point (dimensionless pH value)</span></div>
+          <div><b>pK₁</b><span>pK<sub>a</sub> of the α-carboxyl</span></div>
+          <div><b>pK₂</b><span>pK<sub>a</sub> of the α-ammonium</span></div>
+          <div><b>pK<sub>R</sub></b><span>pK<sub>a</sub> of the side chain</span></div>
+          <div><b>Z</b><span>net charge (elementary charges, e)</span></div>
+          <div><b>equiv.</b><span>moles of OH⁻ added per mole of amino acid</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 430" role="img" aria-label="Titration curve of histidine: pH on the vertical axis from 0 to 14 against equivalents of hydroxide added from 0 to 3 on the horizontal axis. The curve shows three flat buffering regions centred on pKa 1.82 for the alpha carboxyl at half an equivalent, pKa 6.00 for the imidazolium at one and a half equivalents, and pKa 9.17 for the alpha ammonium at two and a half equivalents, separated by steep equivalence points. The isoelectric point of 7.59 lies at exactly two equivalents where the net charge passes through zero, midway between pKa 6.00 and pKa 9.17." style="font-family:var(--sans)">
+      <line x1="90" y1="44" x2="90" y2="352" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="90" y1="352" x2="700" y2="352" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <text x="30" y="36" font-size="12" font-weight="700" fill="var(--ink-soft)">pH</text>
+      <text x="395" y="404" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-soft)">equivalents of OH⁻ added</text>
+
+      <line x1="90" y1="352" x2="86" y2="352" stroke="var(--ink-soft)"/><text x="80" y="356" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">0</text>
+      <line x1="90" y1="308" x2="86" y2="308" stroke="var(--ink-soft)"/><text x="80" y="312" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">2</text>
+      <line x1="90" y1="264" x2="86" y2="264" stroke="var(--ink-soft)"/><text x="80" y="268" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">4</text>
+      <line x1="90" y1="220" x2="86" y2="220" stroke="var(--ink-soft)"/><text x="80" y="224" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">6</text>
+      <line x1="90" y1="176" x2="86" y2="176" stroke="var(--ink-soft)"/><text x="80" y="180" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">8</text>
+      <line x1="90" y1="132" x2="86" y2="132" stroke="var(--ink-soft)"/><text x="80" y="136" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">10</text>
+      <line x1="90" y1="88" x2="86" y2="88" stroke="var(--ink-soft)"/><text x="80" y="92" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">12</text>
+      <line x1="90" y1="44" x2="86" y2="44" stroke="var(--ink-soft)"/><text x="80" y="48" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">14</text>
+
+      <line x1="90" y1="352" x2="90" y2="358" stroke="var(--ink-soft)"/><text x="90" y="374" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">0</text>
+      <line x1="293" y1="352" x2="293" y2="358" stroke="var(--ink-soft)"/><text x="293" y="374" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">1</text>
+      <line x1="497" y1="352" x2="497" y2="358" stroke="var(--ink-soft)"/><text x="497" y="374" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">2</text>
+      <line x1="700" y1="352" x2="700" y2="358" stroke="var(--ink-soft)"/><text x="700" y="374" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">3</text>
+
+      <line x1="90" y1="312" x2="700" y2="312" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="90" y1="220" x2="700" y2="220" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="90" y1="150" x2="700" y2="150" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 4"/>
+
+      <polyline fill="none" stroke="var(--accent)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"
+        points="96,345 99,341 104,337 112,332 123,328 137,323 156,319 178,315 201,310 223,306 243,301 258,297 270,293 278,288 283,284 287,279 290,275 292,271 293,266 295,262 297,257 299,253 303,249 308,244 316,240 327,235 342,231 361,227 383,222 407,218 429,213 448,209 464,205 475,200 483,196 490,191 495,187 499,183 505,178 511,174 520,169 532,165 548,161 567,156 590,152 613,147 635,143 654,139 668,134 679,130 686,125 691,121 694,117 696,112 698,108 699,103 699,99 699,95 700,90 700,86 700,81 700,77 700,73 700,68 700,64 700,59"/>
+
+      <circle cx="192" cy="312" r="4.5" fill="var(--accent-2)"/>
+      <text x="192" y="302" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent-2)">pK₁ = 1.82</text>
+      <text x="192" y="290" text-anchor="middle" font-size="10" fill="var(--ink-faint)">α-COOH</text>
+      <circle cx="395" cy="220" r="4.5" fill="var(--accent-2)"/>
+      <text x="395" y="210" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent-2)">pK<tspan font-size="8.5">R</tspan> = 6.00</text>
+      <text x="395" y="198" text-anchor="middle" font-size="10" fill="var(--ink-faint)">imidazolium</text>
+      <circle cx="598" cy="150" r="4.5" fill="var(--accent-2)"/>
+      <text x="598" y="140" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent-2)">pK₂ = 9.17</text>
+      <text x="598" y="128" text-anchor="middle" font-size="10" fill="var(--ink-faint)">α-NH₃⁺</text>
+
+      <line x1="497" y1="352" x2="497" y2="185" stroke="var(--bad)" stroke-width="1.8" stroke-dasharray="5 4"/>
+      <circle cx="497" cy="185" r="6" fill="var(--bad)"/>
+      <text x="509" y="178" font-size="12" font-weight="700" fill="var(--bad)">pI = 7.59</text>
+      <text x="509" y="193" font-size="10.5" fill="var(--ink-soft)">= ½(6.00 + 9.17) · net charge 0</text>
+
+      <text x="120" y="342" font-size="11" font-weight="700" fill="var(--vdw)">+2</text>
+      <text x="330" y="288" font-size="11" font-weight="700" fill="var(--vdw)">+1</text>
+      <text x="540" y="200" font-size="11" font-weight="700" fill="var(--ink-soft)">0</text>
+      <text x="668" y="112" font-size="11" font-weight="700" fill="var(--bad)">−1</text>
+      <text x="120" y="60" font-size="11" fill="var(--ink-soft)">Each flat stretch is a buffering region: pK<tspan font-size="8.5">a</tspan> ± 1.</text>
+      <text x="120" y="76" font-size="11" fill="var(--ink-soft)">Each steep stretch is an equivalence point, where one</text>
+      <text x="120" y="92" font-size="11" fill="var(--ink-soft)">group is spent and the next has not yet started.</text>
+      <text x="120" y="112" font-size="11" font-weight="700" fill="var(--accent)">Histidine buffers usefully at pH 5–7 — alone among the twenty.</text>
+    </svg>
+    <figcaption>Curve computed from the three Henderson–Hasselbalch equilibria simultaneously
+      (pK 1.82, 6.00, 9.17). Read it in the direction that helps: the <em>flat</em> parts tell you where the molecule
+      buffers, the <em>steep</em> parts tell you where it does not, and the pH at 2.0 equivalents — one equivalent per
+      positive charge the fully protonated form started with — is the pI. Glycine's curve is the same picture with
+      the middle plateau removed, giving pI = ½(2.34 + 9.60) = 5.97.</figcaption>
+  </figure>
+
+  <h3>Computing pI without guessing which values to average</h3>
+  <p>Students lose marks here by memorising three separate formulas and then applying the wrong one. There is only
+     one rule, and it always works: <strong>write out the ionisation states in order of increasing pH, find the one
+     with net charge zero, and average the pK<sub>a</sub> values immediately on either side of it.</strong></p>
+  <p>Work it for aspartate. Fully protonated at pH 0 it is ⁺H₃N–CH(CH₂COOH)–COOH, net <strong>+1</strong>. Deprotonate
+     the α-carboxyl (pK 1.88) and you reach net <strong>0</strong>. Deprotonate the side-chain carboxyl (pK 3.65) and
+     you reach net <strong>−1</strong>. So the zero-charge species is flanked by 1.88 and 3.65:
+     pI = ½(1.88 + 3.65) = <strong>2.77</strong>. The α-amino group at 9.60 never enters the calculation, because by
+     the time you reach it the molecule is already at −1 and moving further negative. Do the same for lysine and you
+     will find the zero species flanked by 8.95 (α-NH₃⁺) and 10.53 (ε-NH₃⁺), giving <strong>9.74</strong> — and this
+     time the α-carboxyl at 2.18 is the value that never enters.</p>
+  <p>The pattern that emerges is the one worth carrying: <strong>an extra acidic group drags pI down, an extra
+     basic group drags it up.</strong> A protein rich in Asp and Glu (pepsin, pI ≈ 1) is acidic; one rich in Lys and
+     Arg (histones, cytochrome c, lysozyme, pI ≈ 10–11) is basic. That single sentence answers most ion-exchange
+     questions in §&nbsp;10 before you have looked at a column.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Net charge of a peptide — the method that does not fail</p>
+    <ol style="margin:0 0 0 1.1rem;padding:0">
+      <li>List the ionisable groups: <strong>N-terminal α-NH₃⁺</strong> (pK ≈ 8–9 in a peptide, lower than the 9.6
+          of the free amino acid; this page uses 9.0 throughout, and a question will always hand you the value),
+          <strong>C-terminal α-COOH</strong> (pK ≈ 3.1, <em>higher</em> than the free acid's 2.3), and every ionisable
+          <strong>side chain</strong>. Ignore
+          every internal α group — they are in peptide bonds.</li>
+      <li>For each group compare pH with pK<sub>a</sub>. Below → protonated. Above → deprotonated.</li>
+      <li>Assign the charge: a protonated amine is <strong>+1</strong>, a deprotonated amine <strong>0</strong>;
+          a protonated carboxyl is <strong>0</strong>, a deprotonated carboxyl <strong>−1</strong>.</li>
+      <li>Add them up. If any group is within one unit of the pH — in practice this means histidine — use the
+          fraction rather than a whole number, or state the answer as "approximately".</li>
+    </ol>
+    <p style="margin:.55em 0 0">Because the two termini contribute +1 and −1 at any pH between about 4 and 8, they
+      usually cancel. That is a useful shortcut but a dangerous habit: by pH 9 the N-terminus is at best half
+      protonated, above that it is largely neutral, and the cancellation fails. Check, do not assume.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — the isoelectric point of histidine, and the charge on a haemoglobin peptide</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) Compute the pI of histidine (pK values 1.82, 6.00, 9.17).
+      (b) The first eight residues of the β-globin chain are Val–His–Leu–Thr–Pro–Glu–Glu–Lys. Find the net charge
+      of this peptide at pH 7.0 and at pH 8.6. (c) In sickle-cell haemoglobin the sixth residue is valine instead of
+      glutamate. What does that do to the charge, and to the peptide's behaviour on electrophoresis at pH 8.6?
+      Use α-NH₃⁺ 9.0, α-COOH 3.1, Glu 4.25, His 6.00, Lys 10.53.</p>
+    <ol>
+      <li><strong>(a)</strong> States in order: net <span class="fi">+2</span> (all protonated) →
+          <span class="fi">+1</span> above 1.82 → <span class="fi">0</span> above 6.00 →
+          <span class="fi">−1</span> above 9.17. The zero species is flanked by 6.00 and 9.17, so
+          <span class="fi">pI = ½(6.00 + 9.17) = 7.585</span>. Histidine is the only amino acid whose pI sits inside
+          the physiological range — worth remembering as a sanity check on a multiple-choice list.</li>
+      <li><strong>(b)</strong> Ionisable groups in Val–His–Leu–Thr–Pro–Glu–Glu–Lys: the N-terminal α-amino of Val,
+          the imidazole of His2, the two Glu carboxyls, the ε-amino of Lys8, and the C-terminal α-carboxyl of Lys8.
+          Thr and Pro contribute nothing.</li>
+      <li>At <strong>pH 7.0</strong>, group by group:
+          α-COOH (3.1) → <span class="fi">−1.000</span>;
+          Glu6 (4.25) → <span class="fi">−0.998</span>;
+          Glu7 (4.25) → <span class="fi">−0.998</span>;
+          α-NH₃⁺ (9.0) → <span class="fi">+0.990</span>;
+          His2 (6.00) → <span class="fi">+0.091</span>;
+          Lys8 (10.53) → <span class="fi">+1.000</span>.</li>
+      <li>Sum: <span class="fi">−2.996 + 2.081 = −0.92</span> ≈ <strong>−1</strong>. The integer shortcut gives the
+          same thing at once: two carboxylates and the C-terminus make −3, the N-terminus and lysine make +2,
+          histidine is ≈0.</li>
+      <li>At <strong>pH 8.6</strong> only the amines change appreciably. The α-amino is now only 71.5 % protonated
+          and histidine has fallen to 0.25 %, so the sum is
+          <span class="fi">−3.000 + (0.715 + 0.003 + 0.988) = −1.29</span>. The peptide has become
+          <em>more</em> negative — as everything does when the pH rises.</li>
+      <li><strong>(c)</strong> Replacing Glu6 with Val removes one −1. At pH 7.0 the sickle peptide is
+          <span class="fi">+0.08</span> ≈ 0; at pH 8.6 it is <span class="fi">−0.29</span>. Either way the change is
+          <strong>exactly +1 per chain</strong>, and since haemoglobin is α₂β₂ with two β chains, <strong>+2 per
+          tetramer</strong>.</li>
+      <li>Consequence: at the pH 8.6 of a standard cellulose-acetate haemoglobin electrophoresis, both migrate
+          toward the anode, but HbS carries less negative charge and therefore <strong>migrates more slowly</strong>
+          than HbA. That single unit of charge is the entire diagnostic basis of the test, and it is a direct
+          consequence of a hydrophobic side chain replacing an ionisable one.</li>
+    </ol>
+    <span class="wex__ans">(a) pI(His) = 7.59 · (b) −0.92 at pH 7.0, −1.29 at pH 8.6 · (c) HbS is +1 per β chain, so it runs slower toward the anode</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three things pI does <em>not</em> tell you</p>
+    <p style="margin:0 0 .4em"><strong>It is not the pH of the solution.</strong> A protein of pI 4.5 sitting in
+      pH 7.4 buffer is not at its pI; it is 2.9 units above it and therefore substantially negative.</p>
+    <p style="margin:0 0 .4em"><strong>It is not a measure of how much charge a protein carries.</strong> Two
+      proteins can share a pI of 7.0 while one has four ionisable groups and the other four hundred. pI locates the
+      zero crossing; it says nothing about the slope through it.</p>
+    <p style="margin:0"><strong>A protein is least soluble at its pI, not most.</strong> With no net charge there is
+      no electrostatic repulsion between molecules, so they aggregate and precipitate — the principle behind
+      isoelectric precipitation, behind casein curdling as milk sours, and behind the practical rule that you do not
+      store a protein at its own pI.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>The peptide bond and the two angles left over</h2>
+
+  <p class="idea"><b>The idea</b>Joining two amino acids does not just make a longer molecule; it makes a <em>stiffer</em> one. The link that
+     forms is not a plain single bond — it is partly a double bond, and double bonds cannot be twisted. So each
+     joint in the chain arrives already locked flat, and the only places the chain can bend are the two bonds either
+     side of each central carbon. A protein backbone is therefore not a floppy string but a chain of rigid plates
+     connected by two hinges apiece. Once you know that, the whole of protein architecture becomes a question of
+     which hinge settings are physically possible.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; geometry</p>
+    <dl class="def">
+      <dt>Peptide bond</dt>
+      <dd>The amide link formed by condensation of one amino acid's α-carboxyl with the next one's α-amino group,
+          releasing water. Formation is thermodynamically <em>unfavourable</em> in water (ΔG°′ ≈ +21 kJ·mol⁻¹),
+          which is why the cell activates the carboxyl first — as an aminoacyl-tRNA ester.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">C–N = 1.32 Å · ≈40 % double-bond character · ω ≈ 180°</span>
+      <span class="fx__tag">shorter than a C–N single bond (1.49 Å), longer than C=N (1.27 Å) — resonance, not a typo</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>The planar unit</dt>
+          <dd><strong>Six atoms</strong> lie in one plane: C<sub>α</sub>(i), the carbonyl C and O, the amide N and
+              its H, and C<sub>α</sub>(i+1). The rotational barrier about C–N is roughly 80 kJ·mol⁻¹ — far more than
+              thermal energy at 310 K, so the plate does not flip.</dd>
+          <dt>φ (phi), ψ (psi), ω (omega)</dt>
+          <dd>φ is rotation about the <strong>N–C<sub>α</sub></strong> bond, ψ about <strong>C<sub>α</sub>–C</strong>,
+              and ω about the peptide <strong>C–N</strong> bond itself. Only φ and ψ are genuinely variable; ω is
+              fixed near 180° (<em>trans</em>). All three are measured in degrees, and a fully extended chain has
+              φ = ψ = 180°.</dd>
+          <dt>Ramachandran plot（拉氏圖）</dt>
+          <dd>A map of ψ against φ showing which combinations are sterically possible. Roughly
+              <strong>three quarters of the map is forbidden</strong> by simple atomic overlap, before any energetic
+              subtlety is considered.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">rotatable angles per residue = <b>2</b> (φ, ψ) + side-chain χ angles</span><span class="fx__tag">the backbone conformation of an n-residue protein is a point in 2n-dimensional space</span></div>
+          <div class="fx"><span class="fx__eq"><i>trans</i> : <i>cis</i> ≈ 1000 : 1 normally · ≈ 9 : 1 for X–<b>Pro</b></span><span class="fx__tag">proline is the only residue for which cis is common enough to matter</span></div>
+          <div class="fx"><span class="fx__eq">ΔG°′ (peptide-bond formation in water) ≈ +21 kJ·mol⁻¹</span><span class="fx__tag">hydrolysis is spontaneous; proteins are kinetically, not thermodynamically, stable</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>φ</b><span>dihedral C(i−1)–N–C<sub>α</sub>–C, in degrees</span></div>
+          <div><b>ψ</b><span>dihedral N–C<sub>α</sub>–C–N(i+1), in degrees</span></div>
+          <div><b>ω</b><span>dihedral C<sub>α</sub>–C–N–C<sub>α</sub>, in degrees</span></div>
+          <div><b>χ₁, χ₂…</b><span>side-chain dihedrals, in degrees</span></div>
+          <div><b>Å</b><span>ångström, 10⁻¹⁰ m</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 300" role="img" aria-label="A dipeptide backbone drawn as a zigzag showing two shaded planar peptide units. Each unit contains six coplanar atoms: the first alpha carbon, the carbonyl carbon and its oxygen, the amide nitrogen and its hydrogen, and the second alpha carbon. The rotation omega about the carbonyl carbon to nitrogen bond is fixed near 180 degrees, while phi about the nitrogen to alpha carbon bond and psi about the alpha carbon to carbonyl carbon bond are freely rotatable. Side chains R project from each alpha carbon." style="font-family:var(--sans)">
+      <polygon points="104,196 176,152 176,110 250,196 250,238 322,152" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.75"/>
+      <polygon points="322,152 394,196 394,238 466,152 466,110 538,196" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.75"/>
+      <text x="213" y="98" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent)">rigid planar unit</text>
+      <text x="430" y="264" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent)">rigid planar unit</text>
+
+      <line x1="104" y1="196" x2="176" y2="152" stroke="var(--ink-soft)" stroke-width="2.4"/>
+      <line x1="174" y1="150" x2="174" y2="112" stroke="var(--bad)" stroke-width="2.4"/>
+      <line x1="179" y1="150" x2="179" y2="112" stroke="var(--bad)" stroke-width="2.4"/>
+      <line x1="176" y1="152" x2="250" y2="196" stroke="var(--covalent)" stroke-width="3"/>
+      <line x1="250" y1="196" x2="250" y2="236" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="250" y1="196" x2="322" y2="152" stroke="var(--ink-soft)" stroke-width="2.4"/>
+      <line x1="322" y1="152" x2="394" y2="196" stroke="var(--ink-soft)" stroke-width="2.4"/>
+      <line x1="392" y1="198" x2="392" y2="236" stroke="var(--bad)" stroke-width="2.4"/>
+      <line x1="397" y1="198" x2="397" y2="236" stroke="var(--bad)" stroke-width="2.4"/>
+      <line x1="394" y1="196" x2="466" y2="152" stroke="var(--covalent)" stroke-width="3"/>
+      <line x1="466" y1="152" x2="466" y2="112" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="466" y1="152" x2="538" y2="196" stroke="var(--ink-soft)" stroke-width="2.4"/>
+
+      <line x1="322" y1="152" x2="322" y2="106" stroke="var(--hydrophobic)" stroke-width="2.4"/>
+      <text x="322" y="98" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--hydrophobic)">R</text>
+      <line x1="104" y1="196" x2="104" y2="242" stroke="var(--hydrophobic)" stroke-width="2.4"/>
+      <text x="104" y="258" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--hydrophobic)">R</text>
+      <line x1="538" y1="196" x2="538" y2="242" stroke="var(--hydrophobic)" stroke-width="2.4"/>
+      <text x="538" y="258" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--hydrophobic)">R</text>
+
+      <circle cx="104" cy="196" r="15" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/><text x="104" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">Cα</text>
+      <circle cx="176" cy="152" r="14" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="1.8"/><text x="176" y="157" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)">C</text>
+      <circle cx="176" cy="104" r="13" fill="var(--card)" stroke="var(--bad)" stroke-width="1.8"/><text x="176" y="109" text-anchor="middle" font-size="11" font-weight="700" fill="var(--bad)">O</text>
+      <circle cx="250" cy="196" r="14" fill="var(--card)" stroke="var(--vdw)" stroke-width="1.8"/><text x="250" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--vdw)">N</text>
+      <text x="250" y="252" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink-soft)">H</text>
+      <circle cx="322" cy="152" r="15" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2.4"/><text x="322" y="157" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">Cα</text>
+      <circle cx="394" cy="196" r="14" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="1.8"/><text x="394" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)">C</text>
+      <circle cx="394" cy="244" r="13" fill="var(--card)" stroke="var(--bad)" stroke-width="1.8"/><text x="394" y="249" text-anchor="middle" font-size="11" font-weight="700" fill="var(--bad)">O</text>
+      <circle cx="466" cy="152" r="14" fill="var(--card)" stroke="var(--vdw)" stroke-width="1.8"/><text x="466" y="157" text-anchor="middle" font-size="11" font-weight="700" fill="var(--vdw)">N</text>
+      <text x="466" y="102" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink-soft)">H</text>
+      <circle cx="538" cy="196" r="15" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/><text x="538" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">Cα</text>
+
+      <text x="213" y="188" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--covalent)">ω ≈ 180°</text>
+      <text x="213" y="203" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">locked</text>
+      <text x="286" y="164" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-2)">φ</text>
+      <text x="286" y="149" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">free</text>
+      <text x="358" y="192" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-2)">ψ</text>
+      <text x="358" y="207" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">free</text>
+      <text x="430" y="140" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--covalent)">ω ≈ 180°</text>
+
+      <text x="580" y="126" font-size="11" fill="var(--ink-soft)">Resonance puts ≈40 %</text>
+      <text x="580" y="142" font-size="11" fill="var(--ink-soft)">double-bond character</text>
+      <text x="580" y="158" font-size="11" fill="var(--ink-soft)">into C–N, so the six</text>
+      <text x="580" y="174" font-size="11" fill="var(--ink-soft)">shaded atoms cannot</text>
+      <text x="580" y="190" font-size="11" fill="var(--ink-soft)">rotate out of plane.</text>
+      <text x="580" y="214" font-size="11" font-weight="700" fill="var(--accent)">Two hinges per residue.</text>
+      <text x="580" y="230" font-size="11" font-weight="700" fill="var(--accent)">That is all there is.</text>
+      <text x="42" y="40" font-size="11.5" fill="var(--ink-soft)">Note that the C=O and the N–H of a single planar unit point in</text>
+      <text x="42" y="56" font-size="11.5" fill="var(--ink-soft)"><tspan font-weight="700">opposite</tspan> directions — the <tspan font-style="italic">trans</tspan> arrangement — which keeps successive side chains apart</text>
+      <text x="42" y="72" font-size="11.5" fill="var(--ink-soft)">and gives every secondary structure a ready-made donor and acceptor.</text>
+    </svg>
+    <figcaption>Bond lengths and angles are stylised for legibility. The two features that carry all the
+      consequences are the shaded planes and the two labelled hinges: a residue's entire backbone conformation is
+      the pair (φ, ψ), which is why a two-dimensional plot can describe every possible protein backbone.</figcaption>
+  </figure>
+
+  <h3>Why the amide is flat, and why it is <em>trans</em></h3>
+  <p>The nitrogen lone pair is not content to sit on the nitrogen. It delocalises into the adjacent carbonyl π*
+     orbital, producing a resonance form with C=N⁺ and O⁻. The real bond is a weighted average of the two, so C–N
+     comes out at 1.32 Å — measurably shorter than the 1.49 Å of the C<sub>α</sub>–N single bond in the same
+     molecule — and C=O comes out slightly longer than a ketone's. Partial double-bond character means a rotational
+     barrier, and 80 kJ·mol⁻¹ is far beyond what thermal collisions supply. The plate stays flat.</p>
+  <p>Flat leaves two arrangements: <em>trans</em>, with the two C<sub>α</sub> atoms on opposite sides of the C–N
+     bond, and <em>cis</em>, with them on the same side. In <em>cis</em> the two side chains are forced within van
+     der Waals contact of each other, which costs roughly 18 kJ·mol⁻¹ — and at 310 K a gap that size is exactly what
+     makes <em>trans</em> outnumber <em>cis</em> by about a thousand to one. <strong>Proline is the exception</strong>, and for a reason worth
+     understanding rather than memorising: because proline's side chain loops back onto its own nitrogen, the
+     "substituent" clashing with the preceding residue in the <em>cis</em> form is the ring's C<sub>δ</sub> — and a
+     C<sub>δ</sub> is about as bulky as the C<sub>α</sub> it would clash with in the <em>trans</em> form. The two
+     arrangements are therefore nearly equal in energy, and roughly 10 % of X–Pro bonds in real proteins are
+     <em>cis</em>.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Peptide-bond facts that get asked directly</p>
+    <p style="margin:0">The C–N bond has <strong>partial double-bond character (≈40 %)</strong> and therefore
+      <strong>no free rotation</strong>; the peptide group is <strong>planar</strong> and comprises <strong>six
+      atoms</strong>; it is <strong>uncharged but strongly polar</strong>, with a dipole of about 3.5 D, and it is
+      <strong>both a hydrogen-bond donor (N–H) and acceptor (C=O)</strong> — which is precisely what makes
+      backbone-only secondary structures possible. The configuration is <strong><em>trans</em></strong> except at
+      X–Pro. Free rotation exists only about N–C<sub>α</sub> (φ) and C<sub>α</sub>–C (ψ).</p>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 700 400" role="img" aria-label="Schematic Ramachandran plot with psi from minus 180 to plus 180 degrees on the vertical axis against phi on the horizontal axis. Three shaded allowed regions appear: a large beta-sheet region in the upper left, a right-handed alpha-helix region in the lower left, and a small left-handed alpha region in the upper right accessible mainly to glycine. Marked points show antiparallel beta sheet at minus 139 and plus 135, parallel beta sheet at minus 119 and plus 113, the collagen polyproline two conformation at minus 51 and plus 153, the right-handed alpha helix at minus 57 and minus 47, and the three-ten helix at minus 49 and minus 26. A dashed vertical band near phi equals minus 60 marks the only phi values proline can adopt." style="font-family:var(--sans)">
+      <rect x="70" y="40" width="540" height="300" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="340" y1="40" x2="340" y2="340" stroke="var(--line)" stroke-width="1"/>
+      <line x1="70" y1="190" x2="610" y2="190" stroke="var(--line)" stroke-width="1"/>
+
+      <rect x="212" y="40" width="76" height="300" fill="var(--accent-2)" opacity="0.09"/>
+      <line x1="212" y1="40" x2="212" y2="340" stroke="var(--accent-2)" stroke-width="1.4" stroke-dasharray="6 4"/>
+      <line x1="288" y1="40" x2="288" y2="340" stroke="var(--accent-2)" stroke-width="1.4" stroke-dasharray="6 4"/>
+      <text x="250" y="356" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-2)">proline: φ ≈ −60 ± 25° only</text>
+
+      <path d="M 74,44 L 300,44 L 300,86 Q 292,124 246,128 L 150,128 Q 82,124 74,96 Z" fill="var(--hbond)" opacity="0.3" stroke="var(--hbond)" stroke-width="1.6"/>
+      <ellipse cx="252" cy="226" rx="62" ry="46" fill="var(--accent-3)" opacity="0.3" stroke="var(--accent-3)" stroke-width="1.6"/>
+      <ellipse cx="426" cy="151" rx="36" ry="30" fill="var(--ok)" opacity="0.28" stroke="var(--ok)" stroke-width="1.6"/>
+
+      <text x="150" y="72" font-size="12" font-weight="700" fill="var(--hbond)">β region</text>
+      <text x="150" y="88" font-size="10" fill="var(--ink-soft)">sheets + polyproline II</text>
+      <text x="252" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-3)">α<tspan font-size="9">R</tspan></text>
+      <text x="252" y="238" text-anchor="middle" font-size="10" fill="var(--ink-soft)">right-handed helix</text>
+      <text x="426" y="148" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ok)">α<tspan font-size="9">L</tspan></text>
+      <text x="426" y="164" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">Gly (and Asn)</text>
+
+      <circle cx="132" cy="78" r="4.5" fill="var(--ink)"/><text x="140" y="74" font-size="9.5" fill="var(--ink)">antiparallel β (−139, +135)</text>
+      <circle cx="162" cy="96" r="4.5" fill="var(--ink)"/><text x="170" y="108" font-size="9.5" fill="var(--ink)">parallel β (−119, +113)</text>
+      <circle cx="264" cy="63" r="4.5" fill="var(--accent-2)"/><text x="272" y="59" font-size="9.5" font-weight="700" fill="var(--accent-2)">collagen / PPII (−51, +153)</text>
+      <circle cx="255" cy="229" r="5" fill="var(--bad)"/><text x="264" y="256" font-size="9.5" font-weight="700" fill="var(--bad)">α-helix (−57, −47)</text>
+      <circle cx="267" cy="212" r="4" fill="var(--ink)"/><text x="276" y="204" font-size="9.5" fill="var(--ink)">3₁₀ (−49, −26)</text>
+
+      <text x="70" y="374" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">−180</text>
+      <text x="205" y="374" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">−90</text>
+      <text x="340" y="374" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">0</text>
+      <text x="475" y="374" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">+90</text>
+      <text x="610" y="374" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">+180</text>
+      <text x="340" y="394" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-soft)">φ (degrees)</text>
+      <text x="62" y="44" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">+180</text>
+      <text x="62" y="118" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">+90</text>
+      <text x="62" y="194" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">0</text>
+      <text x="62" y="268" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">−90</text>
+      <text x="62" y="344" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">−180</text>
+      <text x="24" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-soft)" transform="rotate(-90 24 196)">ψ (degrees)</text>
+      <text x="618" y="60" font-size="10.5" fill="var(--ink-soft)">The white</text>
+      <text x="618" y="76" font-size="10.5" fill="var(--ink-soft)">area — about</text>
+      <text x="618" y="92" font-size="10.5" fill="var(--ink-soft)">three quarters</text>
+      <text x="618" y="108" font-size="10.5" fill="var(--ink-soft)">of the map —</text>
+      <text x="618" y="124" font-size="10.5" fill="var(--ink-soft)">is forbidden by</text>
+      <text x="618" y="140" font-size="10.5" fill="var(--ink-soft)">atomic overlap</text>
+      <text x="618" y="156" font-size="10.5" fill="var(--ink-soft)">alone.</text>
+      <text x="618" y="184" font-size="10.5" font-weight="700" fill="var(--ok)">Glycine has</text>
+      <text x="618" y="200" font-size="10.5" font-weight="700" fill="var(--ok)">no Cβ, so it</text>
+      <text x="618" y="216" font-size="10.5" font-weight="700" fill="var(--ok)">reaches most</text>
+      <text x="618" y="232" font-size="10.5" font-weight="700" fill="var(--ok)">of the white</text>
+      <text x="618" y="248" font-size="10.5" font-weight="700" fill="var(--ok)">area too.</text>
+    </svg>
+    <figcaption>Schematic; region boundaries are drawn generously and are not contoured energies. Read the plot as an
+      argument rather than a picture: everything a backbone can do lives in three small islands, all of them at
+      negative φ except the small left-handed one, because at positive φ a normal side chain's C<sub>β</sub> collides
+      with the preceding carbonyl. Two residues escape the argument — glycine, which has no C<sub>β</sub> to collide,
+      and proline, whose ring removes the freedom altogether.</figcaption>
+  </figure>
+
+  <p>The Ramachandran plot is not a lookup table; it is a steric argument you can reconstruct. Ask, for a given
+     (φ, ψ), whether any two non-bonded atoms would come closer than the sum of their van der Waals radii. Do that
+     for every combination and three islands survive. Their positions then <em>predict</em> secondary structure
+     rather than describe it: the lower-left island is the α-helix, the upper-left is the β-sheet, and the small
+     upper-right island is a mirror-image left-handed helix that is essentially glycine-only, since any side chain
+     at positive φ runs into the preceding residue's carbonyl.</p>
+  <p>Two practical readings follow. First, <strong>a real structure whose residues fall in the white area is
+     probably wrong</strong> — the Ramachandran plot is the standard validation tool for crystal structures, and
+     outliers other than glycine are treated as errors. Second, <strong>glycine and proline are the two residues
+     that break every rule below</strong>, and now you can see why: one has too much freedom, the other too little.
+     Everything in §&nbsp;06 about helix breakers and turn residues is a corollary of this single plot.</p>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · <i>cis</i>-proline, prolyl isomerases and why cyclosporin is an immunosuppressant</summary>
+    <div class="disc__body">
+      <p>Because <em>trans</em> → <em>cis</em> isomerisation of an X–Pro bond requires breaking the 80 kJ·mol⁻¹
+         resonance barrier, it is <strong>slow</strong> — seconds to minutes at 37 °C, while the rest of a small
+         protein folds in milliseconds. For any protein that needs a <em>cis</em>-proline in its native state, this
+         one step becomes the rate-limiting event of folding, producing the characteristic slow phase seen in
+         refolding kinetics.</p>
+      <p>Cells solve it with <strong>peptidyl-prolyl cis–trans isomerases (PPIases)</strong>, which catalyse the
+         rotation by stabilising the twisted transition state. Two families matter clinically:</p>
+      <ul style="margin:0 0 1rem 1.1rem;padding:0">
+        <li><strong>Cyclophilins</strong> — the receptor for <strong>cyclosporin A</strong>.</li>
+        <li><strong>FKBPs</strong> (FK506-binding proteins) — the receptor for <strong>tacrolimus (FK506)</strong>
+            and for <strong>sirolimus (rapamycin)</strong>.</li>
+      </ul>
+      <p>The clinically important twist is that these drugs do <em>not</em> work by inhibiting isomerase activity.
+         The drug–protein complex acquires a new surface: cyclosporin–cyclophilin and tacrolimus–FKBP12 both bind
+         and inhibit <strong>calcineurin</strong>, the phosphatase that activates NFAT and hence IL-2 transcription
+         in T cells. Rapamycin–FKBP12 instead inhibits <strong>mTOR</strong>. The isomerase is a carrier, not the
+         target — a genuinely elegant example of gain-of-function inhibition, and a favourite of examiners because
+         the naive answer ("it blocks protein folding") is wrong.</p>
+      <p>Proline's other structural role follows from the same rigidity: <strong>proline-rich sequences cannot form
+         regular secondary structure at all</strong>, so they adopt the extended polyproline II conformation, which
+         is exactly what SH3 domains and WW domains recognise in signalling, and what collagen exploits in
+         §&nbsp;06.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Secondary structure: helix, sheet, turn, collagen</h2>
+
+  <p class="idea"><b>The idea</b>The backbone comes with a hydrogen-bond donor and an acceptor on every unit, and leaving them unsatisfied in
+     water is wasteful. So the chain finds regular repeating shapes in which every donor is pointed at an acceptor.
+     There are only a few such shapes, because the hinges can only take a few settings. One coils the chain into a
+     spring and satisfies the bonds <em>within</em> the coil; another stretches it flat and satisfies them
+     <em>between</em> neighbouring stretches. A third makes a tight hairpin so the chain can double back. Which one a
+     stretch of sequence chooses is a question about which residues are in it.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; geometry</p>
+    <dl class="def">
+      <dt>Secondary structure</dt>
+      <dd>A local, regular backbone conformation stabilised by <strong>backbone-to-backbone hydrogen bonds</strong>,
+          in which every residue in the element repeats the same (φ, ψ). Side chains are not part of the definition —
+          they only decide which element a sequence prefers.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">α-helix: 3.6 residues/turn · 1.5 Å rise · 5.4 Å pitch · C=O(i)···H–N(i+4)</span>
+      <span class="fx__tag">the four numbers that generate every α-helix question on the paper</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Pitch</dt>
+          <dd>The axial distance for one complete turn: rise per residue × residues per turn = 1.5 × 3.6 = 5.4 Å.</dd>
+          <dt>3.6<sub>13</sub> notation</dt>
+          <dd>3.6 residues per turn, with <strong>13 atoms</strong> enclosed in the ring closed by each hydrogen
+              bond. By the same convention the 3₁₀ helix (i→i+3, tighter, found in short single turns and at the
+              ends of α-helices) and the π-helix (4.4₁₆, i→i+5, rare) are named.</dd>
+          <dt>Helix dipole</dt>
+          <dd>All the backbone C=O groups point the same way along the axis, so their dipoles add: the
+              <strong>N-terminus is δ+</strong> and the C-terminus δ−, worth roughly half a unit charge at each end.
+              Negatively charged groups — phosphates, and Asp/Glu residues acting as "N-caps" — are found
+              preferentially at helix N-termini for exactly this reason.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">length of an α-helix ≈ 1.5 Å × n<sub>residues</sub></span><span class="fx__tag">and turns = n / 3.6 — nearly every helix calculation is one of these two</span></div>
+          <div class="fx"><span class="fx__eq">β-strand rise ≈ 3.4 Å/residue (antiparallel 3.47, parallel 3.25)</span><span class="fx__tag">an extended chain covers 2.3× the distance per residue that a helix does</span></div>
+          <div class="fx"><span class="fx__eq">helical wheel: 360° / 3.6 = <b>100° per residue</b></span><span class="fx__tag">so residues i, i+3, i+4, i+7 share a face — the amphipathic repeat</span></div>
+          <div class="fx"><span class="fx__eq">collagen: 3 residues/turn · 2.9 Å rise · left-handed PPII strands · right-handed superhelix</span><span class="fx__tag">note the two opposite handednesses — a favourite discriminator</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>n</b><span>number of residues in the element</span></div>
+          <div><b>rise</b><span>axial translation per residue (Å)</span></div>
+          <div><b>pitch</b><span>axial distance per full turn (Å)</span></div>
+          <div><b>P<sub>α</sub></b><span>Chou–Fasman helix propensity (dimensionless)</span></div>
+          <div><b>Å</b><span>ångström, 10⁻¹⁰ m = 0.1 nm</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 380" role="img" aria-label="Left panel: a side view of an alpha helix drawn as eleven numbered residues along a horizontal axis with a sinusoidal transverse displacement, and four arcs showing hydrogen bonds from the carbonyl oxygen of residue i to the amide hydrogen of residue i plus four. Scale bars show a rise of 1.5 angstroms per residue and a pitch of 5.4 angstroms per 3.6 residues. Right panel: a helical wheel of the same eleven residues placed 100 degrees apart around a circle, with residues 1, 4, 5, 8 and 11 shaded as hydrophobic and clustering into a single shaded sector, illustrating an amphipathic helix." style="font-family:var(--sans)">
+      <text x="24" y="26" font-size="12.5" font-weight="700" fill="var(--accent)">A · side view — the i→i+4 ladder</text>
+
+      <path d="M 60,175 Q 120,100 180,192" fill="none" stroke="var(--hbond)" stroke-width="1.8" stroke-dasharray="5 4"/>
+      <path d="M 90,201 Q 150,118 210,192" fill="none" stroke="var(--hbond)" stroke-width="1.8" stroke-dasharray="5 4"/>
+      <path d="M 120,166 Q 180,88 240,153" fill="none" stroke="var(--hbond)" stroke-width="1.8" stroke-dasharray="5 4"/>
+      <path d="M 150,153 Q 210,96 270,166" fill="none" stroke="var(--hbond)" stroke-width="1.8" stroke-dasharray="5 4"/>
+      <text x="196" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="var(--hbond)">C=O(i) ··· H–N(i+4)</text>
+      <text x="196" y="87" text-anchor="middle" font-size="10" fill="var(--ink-faint)">parallel to the axis · 13-atom ring</text>
+
+      <polyline fill="none" stroke="var(--ink-soft)" stroke-width="2.2"
+        points="60,175 90,201 120,166 150,153 180,192 210,192 240,153 270,166 300,201 330,175 360,149"/>
+      <circle cx="60" cy="175" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="90" cy="201" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="120" cy="166" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="150" cy="153" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="180" cy="192" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="210" cy="192" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="240" cy="153" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="270" cy="166" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="300" cy="201" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="330" cy="175" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <circle cx="360" cy="149" r="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <text x="60" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">1</text>
+      <text x="90" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">2</text>
+      <text x="120" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">3</text>
+      <text x="150" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">4</text>
+      <text x="180" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">5</text>
+      <text x="210" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">6</text>
+      <text x="240" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">7</text>
+      <text x="270" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">8</text>
+      <text x="300" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">9</text>
+      <text x="330" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">10</text>
+      <text x="360" y="226" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">11</text>
+
+      <line x1="60" y1="252" x2="90" y2="252" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <line x1="60" y1="247" x2="60" y2="257" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <line x1="90" y1="247" x2="90" y2="257" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <text x="98" y="256" font-size="10.5" font-weight="700" fill="var(--accent-2)">1.5 Å rise per residue</text>
+      <line x1="60" y1="280" x2="168" y2="280" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <line x1="60" y1="275" x2="60" y2="285" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <line x1="168" y1="275" x2="168" y2="285" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <text x="176" y="284" font-size="10.5" font-weight="700" fill="var(--accent-3)">5.4 Å pitch = 3.6 residues = one turn</text>
+      <text x="24" y="316" font-size="11" fill="var(--ink-soft)">Right-handed. Side chains project <tspan font-weight="700">outwards</tspan> and slightly</text>
+      <text x="24" y="332" font-size="11" fill="var(--ink-soft)">back toward the N-terminus; the interior is solid backbone with</text>
+      <text x="24" y="348" font-size="11" fill="var(--ink-soft)">no room for anything, which is why bulk is a problem and</text>
+      <text x="24" y="364" font-size="11" fill="var(--ink-soft)">why the first four N–H groups have no partner (helix capping).</text>
+
+      <line x1="418" y1="34" x2="418" y2="366" stroke="var(--line)" stroke-width="1.5"/>
+      <text x="440" y="26" font-size="12.5" font-weight="700" fill="var(--accent)">B · helical wheel — 100° per residue</text>
+
+      <path d="M 590,190 L 509,204 A 82 82 0 0 1 653,137 Z" fill="var(--hydrophobic)" opacity="0.16"/>
+      <circle cx="590" cy="190" r="82" fill="none" stroke="var(--line)" stroke-width="1.4"/>
+      <circle cx="590" cy="108" r="13" fill="var(--hydrophobic)" opacity="0.85"/><text x="590" y="112" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--card)">1</text>
+      <circle cx="671" cy="204" r="13" fill="var(--card)" stroke="var(--hbond)" stroke-width="1.8"/><text x="671" y="208" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--hbond)">2</text>
+      <circle cx="562" cy="267" r="13" fill="var(--card)" stroke="var(--hbond)" stroke-width="1.8"/><text x="562" y="271" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--hbond)">3</text>
+      <circle cx="519" cy="149" r="13" fill="var(--hydrophobic)" opacity="0.85"/><text x="519" y="153" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--card)">4</text>
+      <circle cx="643" cy="127" r="13" fill="var(--hydrophobic)" opacity="0.85"/><text x="643" y="131" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--card)">5</text>
+      <circle cx="643" cy="253" r="13" fill="var(--card)" stroke="var(--hbond)" stroke-width="1.8"/><text x="643" y="257" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--hbond)">6</text>
+      <circle cx="519" cy="231" r="13" fill="var(--card)" stroke="var(--hbond)" stroke-width="1.8"/><text x="519" y="235" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--hbond)">7</text>
+      <circle cx="562" cy="113" r="13" fill="var(--hydrophobic)" opacity="0.85"/><text x="562" y="117" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--card)">8</text>
+      <circle cx="671" cy="176" r="13" fill="var(--card)" stroke="var(--hbond)" stroke-width="1.8"/><text x="671" y="180" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--hbond)">9</text>
+      <circle cx="590" cy="272" r="13" fill="var(--card)" stroke="var(--hbond)" stroke-width="1.8"/><text x="590" y="276" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--hbond)">10</text>
+      <circle cx="509" cy="176" r="13" fill="var(--hydrophobic)" opacity="0.85"/><text x="509" y="180" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--card)">11</text>
+      <text x="590" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="var(--hydrophobic)">hydrophobic face</text>
+      <text x="590" y="310" text-anchor="middle" font-size="11" font-weight="700" fill="var(--hbond)">polar face</text>
+      <text x="440" y="336" font-size="11" fill="var(--ink-soft)">Positions 1, 4, 5, 8, 11 — the i, i+3, i+4, i+7 repeat —</text>
+      <text x="440" y="352" font-size="11" fill="var(--ink-soft)">land in one 150° sector. That is an <tspan font-weight="700">amphipathic helix</tspan>:</text>
+      <text x="440" y="368" font-size="11" fill="var(--ink-soft)">apolipoproteins, antimicrobial peptides, coiled coils.</text>
+    </svg>
+    <figcaption>Panel A is a projection: the horizontal axis is the helix axis, so one step right is 1.5 Å.
+      Panel B looks down that axis. The two panels answer different questions — A gives you every length
+      calculation, B tells you which residues end up next to each other in space, which is what decides whether a
+      helix can sit in a membrane, wrap round a partner helix, or line a pore.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The α-helix, β-sheet and collagen triple helix compared</caption>
+      <thead><tr><th>Property</th><th>α-helix</th><th>β-sheet</th><th>Collagen triple helix</th></tr></thead>
+      <tbody>
+        <tr><td>Hydrogen bonds</td><td><strong>Within</strong> one chain, C=O(i)→H–N(i+4), parallel to the axis</td><td><strong>Between</strong> strands, perpendicular to the strand direction</td><td>Between the three chains — Gly N–H to the C=O of an X residue on a neighbour</td></tr>
+        <tr><td>Handedness</td><td>Right-handed</td><td>Strands have a slight right-handed twist</td><td><strong>Left-handed</strong> individual chains, wound into a <strong>right-handed</strong> superhelix</td></tr>
+        <tr><td>Residues per turn</td><td class="num">3.6</td><td class="num">2 (pleat repeat)</td><td class="num">3.0 (≈3.3 in the classic model)</td></tr>
+        <tr><td>Rise per residue</td><td class="num">1.5 Å</td><td class="num">3.47 Å antiparallel · 3.25 Å parallel</td><td class="num">2.9 Å</td></tr>
+        <tr><td>φ, ψ</td><td class="num">−57°, −47°</td><td class="num">−139°, +135° (anti) · −119°, +113° (par)</td><td class="num">−51°, +153°</td></tr>
+        <tr><td>Side chains</td><td>Project radially outward</td><td>Alternate above and below the sheet</td><td>Every third residue must be <strong>Gly</strong>, at the crowded axis; X and Y point outward</td></tr>
+        <tr><td>Favoured by</td><td>Ala, Leu, Met, Glu, Gln, Lys</td><td>β-branched (Val, Ile, Thr) and aromatics (Tyr, Trp, Phe)</td><td>Gly–Pro–4Hyp repeats</td></tr>
+        <tr><td>Broken by</td><td><strong>Pro</strong> (no N–H, φ locked), <strong>Gly</strong> (too flexible), runs of like charge</td><td>Pro; and long loops needed for parallel crossovers</td><td>Any substitution of the obligatory glycine — hence osteogenesis imperfecta</td></tr>
+        <tr><td>Examples</td><td>α-keratin, myoglobin (8 helices, ≈78 % helical), transmembrane segments</td><td>β-keratin/silk fibroin, immunoglobulin domains, porins, amyloid</td><td>Collagen types I–IV; ≈25–30 % of all protein in the body</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why proline and glycine both break helices, for opposite reasons</h3>
+  <p>This is the single most reliably examined distinction in the section, and the two halves must be kept apart.
+     <strong>Proline</strong> fails on two counts simultaneously: in a peptide bond its nitrogen carries no hydrogen,
+     so a proline residue simply <em>cannot donate</em> the i→i+4 hydrogen bond the helix requires; and its ring
+     fixes φ near −60°, which is close to the helical value but not free to adjust, so the residue cannot follow the
+     helix's slight variations. Add the steric clash of the ring's C<sub>δ</sub> with the carbonyl of residue i−4
+     and a proline in mid-helix costs several kJ·mol⁻¹.</p>
+  <p><strong>Glycine</strong> fails for the opposite reason: it has nothing wrong with it in a helix, but it is
+     equally happy almost everywhere else. Constraining a residue to one (φ, ψ) costs conformational entropy, and
+     the more conformations you take away, the higher the cost. Glycine has the most to lose, so ordering it into a
+     helix is entropically expensive and it is found preferentially in turns and loops where its freedom is an asset
+     rather than a liability.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Four helix traps</p>
+    <p style="margin:0 0 .4em"><strong>i→i+4, not i→i+3.</strong> The i→i+3 pattern describes the <em>3₁₀</em> helix,
+      which is tighter, less stable and mostly confined to single turns and helix termini. If an option says "hydrogen
+      bond between residue n and residue n+3" it is describing a different structure.</p>
+    <p style="margin:0 0 .4em"><strong>Proline is tolerated in the first turn.</strong> The first four N–H groups of
+      an α-helix have no i−4 partner anyway, so a proline there costs nothing — which is why proline is statistically
+      <em>common</em> at helix N-termini and in transmembrane helices where it introduces a functional kink.
+      "Proline is never found in a helix" is false as written.</p>
+    <p style="margin:0 0 .4em"><strong>The bonds are backbone-to-backbone.</strong> Side chains do not make the
+      helix; they only vote on whether it forms. A question that attributes helix stability to side-chain hydrogen
+      bonds is wrong.</p>
+    <p style="margin:0"><strong>The helix has a dipole and a direction.</strong> An α-helix is not symmetric
+      end-to-end: N-terminus δ+, C-terminus δ−.</p>
+  </div>
+
+  <h3>β-sheets, turns and the arithmetic of a hairpin</h3>
+  <p>A β-strand is a nearly fully extended chain (φ, ψ near −120°, +130°) whose backbone donors and acceptors point
+     sideways rather than along the chain. It therefore cannot satisfy itself and must pair with another strand —
+     which is why β-strands never occur alone and why a lone hydrophobic β-strand is an aggregation risk
+     (§&nbsp;08). Two arrangements are possible. <strong>Antiparallel</strong> strands run in opposite directions, so
+     the N–H and C=O of facing residues line up straight at each other; the hydrogen bonds are close to linear and
+     therefore stronger. <strong>Parallel</strong> strands run the same way, so each hydrogen bond is angled and
+     slightly weaker, and the connection between two parallel strands must cross the whole sheet, giving the
+     characteristic right-handed β-α-β crossover.</p>
+  <p>Because the side chains alternate above and below the sheet, an alternating polar/nonpolar sequence
+     (…Ser-Val-Thr-Ile-Ser-Val…) produces a strand with one polar and one greasy face — the design principle behind
+     β-barrels and porins. Between strands the chain must turn round in as few residues as possible, and the
+     standard device is the <strong>β-turn</strong>: four residues, with a hydrogen bond from the C=O of residue 1 to
+     the N–H of residue 4. Proline is common at position 2 and glycine at position 3 — the type II turn
+     <em>requires</em> glycine at position 3 because no other residue can take the necessary positive φ. Note how
+     both "helix breakers" are, in the turn, exactly the right residues.</p>
+
+  <h3>Collagen: a structure built out of the exceptions</h3>
+  <p>Collagen takes the two residues that ruin ordinary secondary structure and makes them obligatory. The repeating
+     unit is <strong>(Gly–X–Y)<sub>n</sub></strong>, with X most often proline and Y most often
+     <strong>4-hydroxyproline</strong>. Each chain adopts the extended, left-handed polyproline II conformation —
+     which proline enforces and which cannot make internal hydrogen bonds at all — and three such chains wind round
+     one another into a right-handed superhelix. In that arrangement one residue from each chain is jammed against
+     the central axis every third position, and the available space there is the size of a hydrogen atom.
+     <strong>Only glycine fits.</strong> That is the whole reason for the repeat, and it is why substituting even a
+     single glycine is catastrophic.</p>
+  <p>The hydroxyprolines are made <em>after</em> translation by <strong>prolyl 4-hydroxylase</strong>, which requires
+     Fe²⁺, molecular O₂, α-ketoglutarate and — critically — <strong>ascorbate (vitamin C)</strong> to keep the iron
+     reduced. Without them the triple helix is unstable at body temperature and collagen is degraded before it can be
+     secreted, which is <strong>scurvy</strong>: bleeding gums, perifollicular haemorrhage, poor wound healing,
+     re-opening of old scars. Downstream, <strong>lysyl oxidase</strong> — a copper enzyme — converts certain lysines
+     to allysine so that covalent cross-links can form between tropocollagen molecules; this step fails in Menkes
+     disease (copper transport) and is inhibited by β-aminopropionitrile in lathyrism.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Collagen diseases map onto specific steps</p>
+    <p style="margin:0"><strong>Osteogenesis imperfecta</strong> — a <em>glycine substitution</em> in COL1A1/COL1A2.
+      Because one defective chain poisons the whole trimer, the inheritance is dominant-negative: blue sclerae,
+      recurrent fractures, dentinogenesis imperfecta, hearing loss. <strong>Scurvy</strong> — failure of
+      <em>hydroxylation</em> (vitamin C). <strong>Ehlers–Danlos</strong> — many types, but note the two the exam
+      likes: the vascular type is COL3A1 (arterial and bowel rupture) and the kyphoscoliotic type is
+      <em>lysyl hydroxylase</em> (PLOD1) deficiency. <strong>Menkes</strong> — copper, therefore lysyl oxidase,
+      therefore <em>cross-linking</em>. Match the clinical picture to the biochemical step and these stop being a
+      list to memorise.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — helix arithmetic, and why a membrane-spanning segment is about 20 residues</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) A single α-helix contains 45 residues. How long is it, and how
+      many turns does it make? (b) The hydrophobic core of a lipid bilayer is about 30 Å thick. How many residues
+      does an α-helix need to cross it, and how many turns is that? (c) How far would those same residues reach in an
+      extended β-conformation? (d) A protein of 50 kDa — if it were one continuous helix, how long would it be, and
+      what does the answer tell you?</p>
+    <ol>
+      <li><strong>(a)</strong> Length = <span class="fi">45 × 1.5 Å = 67.5 Å = 6.75 nm</span>.
+          Turns = <span class="fi">45 / 3.6 = 12.5</span>.</li>
+      <li><strong>(b)</strong> <span class="fi">30 Å ÷ 1.5 Å per residue = 20 residues</span>, which is
+          <span class="fi">20 / 3.6 = 5.6 turns</span>. This is why hydropathy plots use a window of about 19–21
+          residues, and why "a run of ~20 hydrophobic residues" is the signature of a transmembrane helix in a
+          sequence.</li>
+      <li><strong>(c)</strong> At 3.4 Å per residue, 20 residues extended reach
+          <span class="fi">20 × 3.4 = 68 Å</span> — <strong>2.3 times further</strong>. The ratio 3.4/1.5 = 2.27 is
+          worth remembering: it is why the same number of residues gives a compact helix or a long strand, and why
+          β-rich proteins are flatter and more extended than α-rich ones.</li>
+      <li><strong>(d)</strong> <span class="fi">50 000 Da ÷ 110 Da per residue ≈ 455 residues</span>, so a single
+          helix would be <span class="fi">455 × 1.5 = 682 Å ≈ 68 nm</span> — a rod longer than a ribosome is wide.
+          Real 50 kDa globular proteins are 40–50 Å across. <strong>That gap is the whole reason tertiary structure
+          exists</strong>: helices and strands must be folded back on one another to make anything compact.</li>
+    </ol>
+    <span class="wex__ans">(a) 67.5 Å, 12.5 turns · (b) 20 residues, 5.6 turns · (c) 68 Å, 2.3× further · (d) ≈68 nm as a rod vs ≈4.5 nm folded</span>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Tertiary and quaternary structure</h2>
+
+  <p class="idea"><b>The idea</b>Helices and strands are local; they say nothing about what is next to what once the chain folds back on
+     itself. The next level is the complete three-dimensional shape of one chain, and it is decided almost entirely
+     by one thing: greasy side chains hate water and are driven into the middle, while charged ones stay on the wet
+     outside. Once a chain has folded, several folded chains may then stick together, and that last step buys
+     something a single chain cannot have — the ability for one part of the assembly to tell another part what has
+     just happened to it.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the four levels</p>
+    <dl class="def">
+      <dt>Tertiary structure</dt>
+      <dd>The complete three-dimensional arrangement of <strong>all</strong> atoms of <strong>one</strong>
+          polypeptide, including how distant parts of the sequence are packed together. Stabilised by noncovalent
+          interactions plus, in secreted proteins, disulfide bonds.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">1° sequence → 2° local backbone → 3° whole chain → 4° several chains</span>
+      <span class="fx__tag">only the first is covalent along the chain; the rest are (mostly) noncovalent</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Motif (supersecondary structure)</dt>
+          <dd>A recurring small combination of secondary elements with a defined geometry — β-α-β, β-hairpin,
+              Greek key, helix–turn–helix, coiled coil. A motif is a <em>shape</em>; it need not fold on its own and
+              need not have a single function.</dd>
+          <dt>Domain</dt>
+          <dd>A part of a chain that folds <strong>independently</strong> into a stable compact unit, typically
+              40–350 residues (most commonly 100–200). Domains are the units of evolution: they are shuffled between
+              proteins, and they usually carry one distinct function each.</dd>
+          <dt>Quaternary structure</dt>
+          <dd>The assembly of two or more folded polypeptides (subunits). It is what makes
+              <strong>allosteric regulation and cooperativity possible</strong>, because a change at one site can be
+              transmitted through the subunit interface to another.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">buried surface per interface ≈ 400–4000 Å² · mostly hydrophobic</span><span class="fx__tag">a real interface buries greasy surface; a crystal contact does not</span></div>
+          <div class="fx"><span class="fx__eq">globular protein: polar outside, apolar inside · membrane protein: <b>inverted</b></span><span class="fx__tag">the same rule, applied to a different solvent</span></div>
+          <div class="fx"><span class="fx__eq">disulfide: 2 R–SH + ½O₂ → R–S–S–R + H₂O (<b>oxidation</b>, not condensation)</span><span class="fx__tag">therefore ER lumen and extracellular, essentially never in the reducing cytosol</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Å²</b><span>buried surface area (10⁻²⁰ m²)</span></div>
+          <div><b>protomer</b><span>the repeating unit of an oligomer</span></div>
+          <div><b>α₂β₂</b><span>subunit composition notation</span></div>
+          <div><b>ΔG<sub>bind</sub></b><span>free energy of subunit association (kJ·mol⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Forces that stabilise tertiary and quaternary structure, ranked by contribution</caption>
+      <thead><tr><th>Interaction</th><th>Typical energy</th><th>Where it acts</th><th>What it actually contributes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hydrophobic effect</strong></td><td class="num">—</td><td>The core</td><td><strong>The dominant driving force.</strong> It is not an attraction between greasy groups but the entropy released by the water that no longer has to cage them. That is why this contribution is <em>entropy-driven</em> — and why, unlike every other term here, it gets <em>stronger</em> as temperature rises, up to about 60 °C.</td></tr>
+        <tr><td>Hydrogen bond</td><td class="num">4–20 kJ·mol⁻¹</td><td>Everywhere</td><td>Supplies <strong>specificity</strong> rather than bulk stability: an unsatisfied buried donor is heavily penalised, so hydrogen bonding decides which of many compact arrangements is chosen.</td></tr>
+        <tr><td>Ionic (salt bridge)</td><td class="num">4–20 kJ·mol⁻¹ in water</td><td>Mostly the surface</td><td>Weaker in practice than the textbook Coulomb figure suggests, because water at ε ≈ 78 screens the charges. A <em>buried</em> salt bridge, screened by nothing, is worth far more — which is exactly the situation in the haemoglobin T state.</td></tr>
+        <tr><td>Van der Waals</td><td class="num">0.4–4 kJ·mol⁻¹ each</td><td>The core</td><td>Individually trivial, collectively decisive, because a well-packed core makes thousands. This is why proteins pack as densely as organic crystals and why a "cavity-creating" mutation such as Leu→Ala destabilises.</td></tr>
+        <tr><td><strong>Disulfide</strong></td><td class="num">≈210 kJ·mol⁻¹ (covalent)</td><td>Secreted and ER proteins</td><td>Stabilises mainly by <strong>reducing the entropy of the unfolded state</strong> — it ties the chain into a loop so there are fewer ways to be unfolded. Formed by oxidation; broken by β-mercaptoethanol or DTT.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The ranking above is worth arguing over rather than memorising, because the exam's favourite question is
+     "which force is <em>most important</em> in stabilising tertiary structure?" and the answer is the hydrophobic
+     effect — but for a reason that is easy to state wrongly. Hydrogen bonds and salt bridges cost almost nothing
+     <em>net</em>, because in the unfolded state those same donors, acceptors and charges were already hydrogen
+     bonded or ion-paired with water; folding merely swaps one partner for another. The hydrophobic effect has no
+     such cancellation: the ordered water shell around an exposed apolar surface is released into bulk water, and
+     that entropy gain is pure profit. (Note 01 develops this in full.)</p>
+
+  <h3>Motifs, domains and why the distinction is examined</h3>
+  <p>A <strong>motif</strong> is geometry: β-α-β, a Greek key, a helix–turn–helix. It may be too small to fold on
+     its own, and the same motif appears in proteins with unrelated jobs. A <strong>domain</strong> is a folding
+     unit: cut it out of the chain and it will still fold, and it usually does one job — bind ATP, bind DNA,
+     catalyse a reaction. The practical test is independence, and the practical consequence is modularity: a
+     multidomain protein is a set of functions bolted together, and evolution rearranges them by exon shuffling
+     rather than by inventing new folds. Fewer than about a thousand distinct folds account for almost all known
+     structures.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">What each structural level survives</p>
+    <p style="margin:0"><strong>Primary structure is covalent along the backbone and survives everything short of a
+      protease or acid hydrolysis.</strong> Heat, urea, guanidinium chloride, SDS and extremes of pH destroy
+      secondary, tertiary and quaternary structure and leave the sequence intact. That is the mechanism behind
+      Anfinsen's experiment (§&nbsp;08) and behind SDS-PAGE (§&nbsp;10), and the statement "denaturation breaks
+      peptide bonds" is a guaranteed wrong option. Be careful with the disulfide, which is the one place the levels
+      blur: Lehninger defines primary structure as <em>all</em> the covalent bonds linking residues, so a disulfide
+      belongs to <strong>primary</strong> structure, even though what it does is stabilise a <strong>tertiary</strong>
+      or quaternary arrangement — and a reducing agent breaks it without touching a single peptide bond. If the
+      question asks which level a disulfide is part of, answer primary; if it asks what a disulfide stabilises, answer
+      tertiary.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the motifs and folds worth recognising by name</summary>
+    <div class="disc__body">
+      <div class="grid grid--2" style="margin:0 0 1rem">
+        <div class="card">
+          <h4>Coiled coil</h4>
+          <p style="font-size:.9rem;margin:0">Two or more amphipathic α-helices wound round each other. Driven by a
+            <strong>heptad repeat</strong> (abcdefg)<sub>n</sub> with hydrophobic residues at <strong>a</strong> and
+            <strong>d</strong> — a 3,4-spacing, which is exactly the helical-wheel periodicity of §&nbsp;06. Found in
+            α-keratin, tropomyosin, myosin tails, and the <strong>leucine zipper</strong> of bZIP transcription
+            factors. Because 3.5 residues per turn is slightly less than 3.6, the hydrophobic stripe slowly winds
+            round the helix — which is precisely why the two helices must supercoil to stay in contact.</p>
+        </div>
+        <div class="card">
+          <h4>β-α-β and the Rossmann fold</h4>
+          <p style="font-size:.9rem;margin:0">Two parallel strands joined by a helix packed against them. Repeated,
+            it gives the <strong>Rossmann fold</strong> — the nucleotide-binding module of essentially every
+            NAD(P)-dependent dehydrogenase, with a glycine-rich loop at the C-terminal edge of the strands where
+            the helix dipole's δ+ end meets the phosphates.</p>
+        </div>
+        <div class="card">
+          <h4>Greek key and β-barrel</h4>
+          <p style="font-size:.9rem;margin:0">Four antiparallel strands folded over one another. The
+            <strong>immunoglobulin fold</strong> is the classic example, and a closed barrel of β-strands with an
+            alternating polar/apolar sequence gives the <strong>porins</strong> — the only common membrane proteins
+            that are not helical.</p>
+        </div>
+        <div class="card">
+          <h4>DNA- and Ca²⁺-binding motifs</h4>
+          <p style="font-size:.9rem;margin:0"><strong>Helix–turn–helix</strong> (the recognition helix lies in the
+            major groove), <strong>zinc finger</strong> (Zn²⁺ held by Cys and His — structural, not catalytic),
+            <strong>leucine zipper</strong> and <strong>basic helix–loop–helix</strong>. The
+            <strong>EF hand</strong> is a helix–loop–helix that chelates Ca²⁺ through carboxylate oxygens —
+            calmodulin, troponin C, parvalbumin.</p>
+        </div>
+      </div>
+      <p style="margin:0"><strong>Fibrous versus globular</strong> is the other axis worth holding. Fibrous proteins
+        (α-keratin, collagen, elastin, silk fibroin) are dominated by a single repeating secondary structure, are
+        insoluble, and are structural. Globular proteins fold back on themselves, are soluble, and are functional —
+        enzymes, transporters, antibodies. Membrane proteins are a third class whose "inside" and "outside" are
+        swapped relative to a globular protein, since their solvent is lipid.</p>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Quaternary structure ≠ "more than one domain"</p>
+    <p style="margin:0">A single polypeptide with four domains has <strong>no quaternary structure at all</strong>;
+      a dimer of two identical 100-residue chains has quaternary structure and no multidomain architecture. The test
+      is whether there is more than one <em>chain</em>. This matters because allostery and cooperativity are
+      quaternary phenomena: myoglobin has one chain and cannot be cooperative no matter how many domains you give it,
+      while haemoglobin's four chains are exactly what makes §&nbsp;09 possible.</p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Folding, chaperones and misfolding disease</h2>
+
+  <p class="idea"><b>The idea</b>A folded protein is only just more stable than an unfolded one. Two enormous opposing effects — the gain from
+     burying greasy surfaces and making contacts, and the loss of all the shapes the chain could otherwise have
+     taken — very nearly cancel, and what is left over is about as much as a handful of hydrogen bonds. That is why
+     proteins are so easy to destroy with heat or a change of solvent, why a single wrong residue can be enough to
+     unpick one, and why cells keep a permanent staff of helpers whose only job is to stop half-folded chains from
+     sticking to each other.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; thermodynamics</p>
+    <dl class="def">
+      <dt>Anfinsen's principle</dt>
+      <dd>The native conformation is determined <strong>entirely by the amino-acid sequence</strong>, and it is the
+          thermodynamically most stable structure accessible under physiological conditions. Folding needs no
+          external information — only, sometimes, help going fast enough.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ΔG<sub>folding</sub> = ΔH − TΔS ≈ −20 to −65 kJ·mol⁻¹</span>
+      <span class="fx__tag">the small difference between two numbers of order hundreds — "marginal stability"</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Levinthal's paradox</dt>
+          <dd>If a 100-residue chain sampled even three conformations per residue it would have 3¹⁰⁰ ≈ 5 × 10⁴⁷
+              states; at 10⁻¹³ s per sample a random search takes ≈10²⁷ years. Real proteins fold in
+              milliseconds to seconds. Folding therefore cannot be a search — it must be
+              <strong>funnelled</strong>, with each partly correct contact biasing the next.</dd>
+          <dt>Molten globule</dt>
+          <dd>An early intermediate that already has near-native secondary structure and a collapsed hydrophobic
+              core, but no fixed side-chain packing. It is compact, it binds hydrophobic dyes such as ANS, and it is
+              the state chaperones recognise.</dd>
+          <dt>Chaperone vs chaperonin</dt>
+          <dd><strong>Chaperones</strong> (Hsp70/Hsp40, trigger factor) bind exposed hydrophobic patches on
+              extended or nascent chains and release them in ATP-driven cycles. <strong>Chaperonins</strong>
+              (GroEL/GroES in bacteria, TRiC/CCT in eukaryotes) are barrel-shaped cages that sequester one substrate
+              at a time and let it fold in isolation. Neither adds information; both suppress aggregation.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">K<sub>eq</sub> = e<sup>−ΔG/RT</sup> · ΔG = −40 kJ·mol⁻¹ at 310 K ⇒ K ≈ 5.5 × 10⁶</span><span class="fx__tag">so about 1 molecule in 5 million is unfolded at any instant — stable, but not by much</span></div>
+          <div class="fx"><span class="fx__eq">8 free cysteines pair randomly in 7 × 5 × 3 × 1 = <b>105</b> ways</span><span class="fx__tag">Anfinsen's scrambled ribonuclease recovered ≈1 % activity — exactly 1/105</span></div>
+          <div class="fx"><span class="fx__eq">amyloid = <b>cross-β</b>: strands ⟂ to the fibril axis, sheets ∥ to it</span><span class="fx__tag">a backbone-mediated fold, which is why unrelated proteins all reach the same end state</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>ΔG</b><span>Gibbs free-energy change (kJ·mol⁻¹)</span></div>
+          <div><b>ΔH</b><span>enthalpy change (kJ·mol⁻¹)</span></div>
+          <div><b>ΔS</b><span>entropy change (J·mol⁻¹·K⁻¹)</span></div>
+          <div><b>R</b><span>gas constant, 8.314 J·mol⁻¹·K⁻¹</span></div>
+          <div><b>T<sub>m</sub></b><span>melting temperature — 50 % unfolded (K or °C)</span></div>
+          <div><b>PDI</b><span>protein disulfide isomerase</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Why the stability is so small, and what follows from it</h3>
+  <p>Folding buries hundreds of square ångströms of apolar surface and makes hundreds of van der Waals contacts and
+     hydrogen bonds — a large favourable term. It also freezes every one of the chain's φ and ψ angles, an enormous
+     unfavourable conformational entropy term. Both are of order hundreds of kJ·mol⁻¹, and the residue is
+     20–65 kJ·mol⁻¹: <strong>the equivalent of two to ten hydrogen bonds for an entire protein.</strong></p>
+  <p>Three consequences follow directly, and each is examinable. First, proteins denature easily — a modest change in
+     temperature, solvent or pH can flip the sign of a number that small. Second, <strong>a single point mutation can
+     be enough</strong> to unfold a protein, which is why so many genetic diseases are misfolding diseases rather
+     than active-site diseases. Third, marginal stability is not an accident of chemistry but a design requirement:
+     a protein must be degradable and, for enzymes and receptors, must be able to move. A perfectly rigid protein
+     would be useless.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Anfinsen's experiment, and the detail the question turns on</p>
+    <p style="margin:0 0 .4em">Ribonuclease A (124 residues, four disulfides) was denatured with <strong>8 M urea
+      plus β-mercaptoethanol</strong> — the urea unfolds it, the thiol reduces the disulfides. Removing
+      <em>both</em> together let it refold with full catalytic activity: the sequence alone had specified the
+      structure.</p>
+    <p style="margin:0">The control is where marks are won. If β-mercaptoethanol is removed <em>first</em>, while
+      the chain is still unfolded in urea, the eight cysteines re-oxidise <strong>at random</strong> — and with
+      7 × 5 × 3 × 1 = <strong>105</strong> possible pairings, only about <strong>1 %</strong> of the molecules get all
+      four bridges right. Adding <strong>protein disulfide isomerase</strong> (or simply a trace of thiol) then lets
+      the wrong bonds be reshuffled and activity climbs back to 100 %. The moral is that disulfides <em>lock in</em>
+      a conformation; they do not <em>choose</em> it.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Denaturing agents and the interactions each one attacks</caption>
+      <thead><tr><th>Agent</th><th>What it attacks</th><th>Reversible?</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Heat</td><td>All noncovalent interactions; increases conformational entropy of the unfolded state</td><td>Sometimes</td><td>Cooperative, all-or-none transition at T<sub>m</sub>. Egg white is the everyday example — aggregation makes it irreversible.</td></tr>
+        <tr><td><strong>Urea, guanidinium chloride</strong></td><td>Hydrophobic effect and hydrogen bonds — chaotropes that solvate apolar surface</td><td><strong>Yes</strong></td><td>GuHCl is the stronger of the two (it is also ionic). These are the agents used in every folding experiment because dialysis reverses them.</td></tr>
+        <tr><td><strong>SDS</strong></td><td>Hydrophobic core — the detergent tail inserts into it</td><td>Poorly</td><td>Binds at ≈1.4 g per g of protein, giving a uniform charge-to-mass ratio. This is the whole basis of SDS-PAGE.</td></tr>
+        <tr><td>Extremes of pH</td><td>Ionic bonds and hydrogen bonds, by changing the charge on every ionisable group</td><td>Sometimes</td><td>Explains why acid or alkali precipitates protein, and why gastric acid begins protein digestion before pepsin acts.</td></tr>
+        <tr><td>Organic solvents, heavy metals</td><td>Hydrophobic core; thiol groups</td><td>No</td><td>70 % ethanol disinfects by denaturing microbial protein — and works better than 100 % because some water is needed for the denatured protein to stay accessible.</td></tr>
+        <tr><td><strong>β-mercaptoethanol, DTT</strong></td><td><strong>Disulfide bonds only</strong></td><td>Yes (by re-oxidation)</td><td>Not a denaturant on its own for a protein without disulfides. In SDS-PAGE it is what converts a disulfide-linked oligomer into its separate chains.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Misfolding: one wrong shape, reached by many routes</h3>
+  <p>The pathological alternative to the native fold is almost always the same structure: <strong>amyloid</strong>,
+     a fibril of β-sheets in which the strands run perpendicular to the fibril axis and the sheets stack along it.
+     Because that arrangement is held together by <em>backbone</em> hydrogen bonds — which every protein has — almost
+     any polypeptide can in principle form it, and that is why a couple of dozen chemically unrelated proteins all
+     end up causing the same kind of disease. Amyloid is extracellular or intracellular depending on the protein, is
+     resistant to proteolysis, binds Congo red and shows <strong>apple-green birefringence</strong> under polarised
+     light — the histological answer the exam wants.</p>
+  <p><strong>Prions</strong> take this one step further and make it transmissible. PrP<sup>C</sup> is a normal,
+     largely α-helical cell-surface glycoprotein; PrP<sup>Sc</sup> is the same sequence refolded into a
+     β-sheet-rich, protease-resistant, aggregation-prone form, and it acts as a <strong>template</strong> that
+     converts more PrP<sup>C</sup>. There is no nucleic acid involved at any point — which is exactly the fact that
+     gets tested, since "an unusually small virus" is always on the option list. Diseases: sporadic, familial and
+     iatrogenic Creutzfeldt–Jakob disease, kuru (ritual cannibalism), fatal familial insomnia,
+     Gerstmann–Sträussler–Scheinker; scrapie in sheep and BSE in cattle, the latter transmitting to humans as
+     variant CJD.</p>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the misfolding diseases, sorted by the protein that misfolds</summary>
+    <div class="disc__body">
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Protein misfolding and aggregation diseases</caption>
+      <thead><tr><th>Disease</th><th>Protein</th><th>Deposit</th><th>Key point</th></tr></thead>
+      <tbody>
+        <tr><td>Alzheimer disease</td><td>Amyloid-β, from APP cleaved by β- and γ-secretase; plus hyperphosphorylated tau</td><td>Extracellular plaques + intracellular neurofibrillary tangles</td><td>Two distinct aggregates in one disease. Trisomy 21 carries a third <em>APP</em> copy, hence early-onset dementia.</td></tr>
+        <tr><td>Parkinson disease, Lewy body dementia</td><td>α-Synuclein</td><td>Intracellular Lewy bodies</td><td>A natively <em>disordered</em> protein — misfolding does not always start from a folded state.</td></tr>
+        <tr><td>Huntington disease</td><td>Huntingtin with an expanded polyglutamine tract</td><td>Nuclear inclusions</td><td>CAG repeat expansion; anticipation. Aggregation propensity rises above ≈36 glutamines.</td></tr>
+        <tr><td>Type 2 diabetes</td><td>Islet amyloid polypeptide (amylin), co-secreted with insulin</td><td>Islet amyloid</td><td>Found in most long-standing type 2 diabetic pancreases.</td></tr>
+        <tr><td>AL amyloidosis</td><td>Immunoglobulin <strong>light chains</strong></td><td>Systemic — heart, kidney, nerve</td><td>A plasma-cell dyscrasia. Distinguish from AA amyloidosis (serum amyloid A, chronic inflammation).</td></tr>
+        <tr><td>ATTR amyloidosis</td><td><strong>Transthyretin</strong> — a normally tetrameric transport protein</td><td>Heart, peripheral nerve</td><td>Tetramer dissociation is the rate-limiting step, which is why <em>tafamidis</em> works by stabilising the tetramer.</td></tr>
+        <tr><td>α₁-Antitrypsin deficiency</td><td>α₁-Antitrypsin, Z variant (Glu342Lys)</td><td>Polymers retained in hepatocyte ER (PAS-positive globules)</td><td>The elegant double lesion: <strong>gain</strong> of toxic function in the liver (cirrhosis) and <strong>loss</strong> of function in the lung (panacinar emphysema, worse with smoking).</td></tr>
+        <tr><td>Cystic fibrosis</td><td>CFTR ΔF508</td><td>None — degraded before it arrives</td><td>The commonest allele is a <em>folding</em> mutation: the protein is recognised as misfolded and destroyed by ER-associated degradation. Correctors such as lumacaftor and elexacaftor are folding chaperones in drug form.</td></tr>
+        <tr><td>Prion diseases</td><td>PrP<sup>C</sup> → PrP<sup>Sc</sup></td><td>Spongiform change, PrP plaques</td><td>Infectious protein; <strong>no nucleic acid</strong>; resistant to formalin, autoclaving at standard cycles, and UV.</td></tr>
+      </tbody>
+    </table>
+  </div>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">What chaperones do and do not do</p>
+    <p style="margin:0">Chaperones <strong>do not contain folding information</strong> and do not make an incorrect
+      sequence fold correctly. They bind the exposed hydrophobic surfaces that a partly folded chain presents,
+      preventing those surfaces from finding each other and aggregating, and they release the chain in ATP-driven
+      cycles to give it repeated chances to reach the native state. This is why the heat-shock response exists at
+      all: raising the temperature increases the population of partly unfolded protein, so the cell makes more
+      Hsp70, Hsp60 and Hsp90. Two useful specifics: <strong>GroEL/GroES</strong> is a barrel that encloses a single
+      substrate — folding "in a cage" where there is no partner to aggregate with; and <strong>Hsp90</strong> is
+      specialised for holding signalling proteins (steroid-hormone receptors, kinases) in a ligand-ready state,
+      which is why Hsp90 inhibitors are anticancer agents.</p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Haemoglobin: cooperativity and its two effectors</h2>
+
+  <p class="idea"><b>The idea</b>A carrier that grabs oxygen tightly is good at picking it up and useless at putting it down. The trick
+     haemoglobin uses is to change its own mind: it starts out reluctant, and each oxygen it does manage to bind
+     makes the next one easier, so the molecule switches from reluctant to eager over a narrow range of oxygen
+     pressure. Arrange for that switch to happen between the pressure in the lung and the pressure in the tissue and
+     you get a carrier that fills completely in one place and empties substantially in the other. Everything else in
+     this section — acid, carbon dioxide, the red-cell phosphate, fetal haemoglobin — is a way of moving where the
+     switch happens.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Cooperative binding</dt>
+      <dd>Binding of a ligand at one site changes the affinity of the <em>other</em> sites on the same molecule.
+          It requires <strong>multiple binding sites on one assembly</strong> — which is why myoglobin, with one
+          chain and one heme, cannot be cooperative under any circumstances.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">Y = <span class="mf" role="img" aria-label="p O two to the power n, over P fifty to the power n plus p O two to the power n"><span>(pO₂)<sup>n</sup></span><span>(P₅₀)<sup>n</sup> + (pO₂)<sup>n</sup></span></span></span>
+      <span class="fx__tag">the Hill equation · n = 1 gives a hyperbola, n &gt; 1 gives a sigmoid</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Hill coefficient n<sub>H</sub></dt>
+          <dd>The slope of a plot of log[Y/(1−Y)] against log pO₂ at half saturation.
+              <strong>n<sub>H</sub> = 1</strong> is non-cooperative, <strong>&gt;1</strong> positive cooperativity,
+              <strong>&lt;1</strong> negative cooperativity. It is an empirical index of coupling, <em>not</em> a
+              count of subunits: haemoglobin has four sites but n<sub>H</sub> ≈ 2.8, because binding is strongly but
+              not perfectly coupled. n<sub>H</sub> can never exceed the number of sites.</dd>
+          <dt>P₅₀</dt>
+          <dd>The partial pressure at which the carrier is half saturated. A <strong>higher P₅₀ means lower
+              affinity</strong> — the curve has shifted right. Units: torr (mmHg) or kPa; 26 torr ≈ 3.5 kPa.</dd>
+          <dt>T and R states</dt>
+          <dd><strong>T (tense/taut)</strong> is the deoxy, low-affinity quaternary state, held by ion pairs at the
+              α₁β₂ interface. <strong>R (relaxed)</strong> is the oxy, high-affinity state. Everything that
+              stabilises T shifts the curve <em>right</em>; everything that stabilises R shifts it <em>left</em>.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">log <span class="mf" role="img" aria-label="Y over one minus Y"><span>Y</span><span>1 − Y</span></span> = n<sub>H</sub> log pO₂ − n<sub>H</sub> log P₅₀</span><span class="fx__tag">the Hill plot: slope gives n<sub>H</sub>, x-intercept gives log P₅₀</span></div>
+          <div class="fx"><span class="fx__eq">Mb: P₅₀ ≈ 2.8 torr, n<sub>H</sub> = 1 · HbA: P₅₀ ≈ 26 torr, n<sub>H</sub> ≈ 2.8 · HbF: P₅₀ ≈ 19 torr</span><span class="fx__tag">the three curves you must be able to sketch and rank</span></div>
+          <div class="fx"><span class="fx__eq">right shift ⇐ ↑[H⁺] (↓pH) · ↑pCO₂ · ↑2,3-BPG · ↑temperature</span><span class="fx__tag">every one of these marks a metabolically active tissue — the logic is unloading</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Y</b><span>fractional saturation, 0 to 1 (dimensionless)</span></div>
+          <div><b>pO₂</b><span>oxygen partial pressure (torr or kPa)</span></div>
+          <div><b>P₅₀</b><span>pO₂ at half saturation (torr)</span></div>
+          <div><b>n<sub>H</sub></b><span>Hill coefficient (dimensionless)</span></div>
+          <div><b>2,3-BPG</b><span>2,3-bisphosphoglycerate (mol·L⁻¹)</span></div>
+          <div><b>torr</b><span>1 mmHg = 133.3 Pa</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 400" role="img" aria-label="Oxygen-binding curves: fractional saturation from 0 to 1 on the vertical axis against oxygen partial pressure from 0 to 140 torr on the horizontal axis. Myoglobin gives a steep hyperbola reaching half saturation at 2.8 torr. Haemoglobin A gives a sigmoid curve with half saturation at 26 torr, fetal haemoglobin a sigmoid shifted left with half saturation at 19 torr, and a right-shifted haemoglobin curve half saturation at 36 torr. Vertical markers at 20 torr for tissue and 100 torr for lung show that haemoglobin unloads about 65 per cent of its capacity between them while myoglobin unloads only about 10 per cent." style="font-family:var(--sans)">
+      <line x1="78" y1="40" x2="78" y2="330" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="78" y1="330" x2="676" y2="330" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <text x="377" y="382" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-soft)">pO₂ (torr)</text>
+      <text x="22" y="188" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-soft)" transform="rotate(-90 22 188)">fractional saturation Y</text>
+      <line x1="78" y1="330" x2="74" y2="330" stroke="var(--ink-soft)"/><text x="68" y="334" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">0</text>
+      <line x1="78" y1="257" x2="74" y2="257" stroke="var(--ink-soft)"/><text x="68" y="261" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">0.25</text>
+      <line x1="78" y1="185" x2="74" y2="185" stroke="var(--ink-soft)"/><text x="68" y="189" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">0.50</text>
+      <line x1="78" y1="112" x2="74" y2="112" stroke="var(--ink-soft)"/><text x="68" y="116" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">0.75</text>
+      <line x1="78" y1="40" x2="74" y2="40" stroke="var(--ink-soft)"/><text x="68" y="44" text-anchor="end" font-size="10.5" fill="var(--ink-faint)">1.00</text>
+      <line x1="163" y1="330" x2="163" y2="336" stroke="var(--ink-soft)"/><text x="163" y="352" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">20</text>
+      <line x1="249" y1="330" x2="249" y2="336" stroke="var(--ink-soft)"/><text x="249" y="352" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">40</text>
+      <line x1="334" y1="330" x2="334" y2="336" stroke="var(--ink-soft)"/><text x="334" y="352" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">60</text>
+      <line x1="420" y1="330" x2="420" y2="336" stroke="var(--ink-soft)"/><text x="420" y="352" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">80</text>
+      <line x1="505" y1="330" x2="505" y2="336" stroke="var(--ink-soft)"/><text x="505" y="352" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">100</text>
+      <line x1="591" y1="330" x2="591" y2="336" stroke="var(--ink-soft)"/><text x="591" y="352" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">120</text>
+      <line x1="676" y1="330" x2="676" y2="336" stroke="var(--ink-soft)"/><text x="676" y="352" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">140</text>
+      <line x1="78" y1="185" x2="676" y2="185" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 4"/>
+
+      <rect x="163" y="40" width="342" height="290" fill="var(--accent)" opacity="0.05"/>
+      <line x1="163" y1="40" x2="163" y2="330" stroke="var(--accent-2)" stroke-width="1.6" stroke-dasharray="5 4"/>
+      <line x1="505" y1="40" x2="505" y2="330" stroke="var(--accent-2)" stroke-width="1.6" stroke-dasharray="5 4"/>
+      <text x="163" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent-2)">tissue ≈20</text>
+      <text x="505" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent-2)">lung ≈100</text>
+
+      <polyline fill="none" stroke="var(--ink-faint)" stroke-width="2.2" stroke-dasharray="6 4"
+        points="78,330 80,286 82,254 84,229 87,209 89,193 91,180 95,159 99,144 104,132 108,123 112,115 121,103 129,95 138,88 146,83 155,79 163,76 176,71 189,68 202,66 215,63 228,61 240,60 257,58 274,57 292,55 313,54 334,53 360,52 386,51 420,50 462,49 505,48 556,47 612,46 676,46"/>
+      <polyline fill="none" stroke="var(--accent)" stroke-width="3"
+        points="78,330 80,330 82,330 84,330 87,330 89,330 91,329 95,328 99,327 104,325 108,323 112,320 121,311 129,300 138,286 146,271 155,254 163,236 176,210 189,185 202,163 215,144 228,128 240,114 257,100 274,89 292,80 313,72 334,65 360,60 386,56 420,52 462,49 505,47 556,45 612,44 676,43"/>
+      <polyline fill="none" stroke="var(--accent-3)" stroke-width="2.2"
+        points="78,330 80,330 82,330 84,330 87,329 89,329 91,328 95,326 99,323 104,319 108,313 112,306 121,289 129,267 138,243 146,219 155,196 163,175 176,147 189,125 202,108 215,95 228,84 240,76 257,68 274,62 292,58 313,54 334,51 360,49 386,47 420,45 462,44 505,43 556,42 612,41 676,41"/>
+      <polyline fill="none" stroke="var(--bad)" stroke-width="2.2"
+        points="78,330 80,330 82,330 84,330 87,330 89,330 91,330 95,329 99,329 104,328 108,327 112,326 121,322 129,317 138,311 146,303 155,294 163,283 176,266 189,247 202,228 215,209 228,191 240,174 257,154 274,137 292,123 313,108 334,96 360,85 386,76 420,68 462,61 505,56 556,52 612,49 676,46"/>
+
+      <circle cx="189" cy="185" r="5" fill="var(--accent)"/>
+      <text x="196" y="196" font-size="10" font-weight="700" fill="var(--accent)">P₅₀ = 26</text>
+      <circle cx="90" cy="185" r="4.5" fill="var(--ink-faint)"/>
+      <text x="96" y="176" font-size="10" font-weight="700" fill="var(--ink-faint)">2.8</text>
+
+      <circle cx="163" cy="236" r="4.5" fill="var(--accent)"/><circle cx="505" cy="47" r="4.5" fill="var(--accent)"/>
+      <circle cx="163" cy="76" r="4.5" fill="var(--ink-faint)"/><circle cx="505" cy="48" r="4.5" fill="var(--ink-faint)"/>
+      <line x1="530" y1="47" x2="530" y2="236" stroke="var(--accent)" stroke-width="1.4"/>
+      <line x1="526" y1="47" x2="534" y2="47" stroke="var(--accent)" stroke-width="1.4"/>
+      <line x1="526" y1="236" x2="534" y2="236" stroke="var(--accent)" stroke-width="1.4"/>
+      <text x="540" y="130" font-size="11" font-weight="700" fill="var(--accent)">Hb delivers</text>
+      <text x="540" y="146" font-size="11" font-weight="700" fill="var(--accent)">≈65 % of its</text>
+      <text x="540" y="162" font-size="11" font-weight="700" fill="var(--accent)">capacity</text>
+      <text x="540" y="184" font-size="10.5" fill="var(--ink-faint)">Mb delivers ≈10 %</text>
+      <text x="540" y="200" font-size="10.5" fill="var(--ink-faint)">over the same range</text>
+
+      <rect x="98" y="52" width="14" height="3" fill="var(--ink-faint)"/><text x="118" y="58" font-size="10.5" fill="var(--ink-soft)">myoglobin · n<tspan font-size="8">H</tspan> = 1 · hyperbolic</text>
+      <rect x="98" y="72" width="14" height="3.5" fill="var(--accent)"/><text x="118" y="78" font-size="10.5" font-weight="700" fill="var(--ink)">HbA · n<tspan font-size="8">H</tspan> ≈ 2.8 · P₅₀ 26</text>
+      <rect x="98" y="92" width="14" height="3" fill="var(--accent-3)"/><text x="118" y="98" font-size="10.5" fill="var(--ink-soft)">HbF · P₅₀ 19 · left shift</text>
+      <rect x="98" y="112" width="14" height="3" fill="var(--bad)"/><text x="118" y="118" font-size="10.5" fill="var(--ink-soft)">↑H⁺ ↑CO₂ ↑BPG ↑T · P₅₀ 36 · right shift</text>
+    </svg>
+    <figcaption>Curves computed from the Hill equation with the stated P₅₀ and n<sub>H</sub>. Read the
+      <em>vertical gap</em> between the two dashed lines, not the height of the curve: saturation in the lung is
+      excellent for every carrier shown, and what distinguishes them is entirely how much they let go in the tissue.
+      Myoglobin's curve is steep and early — it is an oxygen <em>store</em> in muscle, not a transporter, and it
+      only surrenders oxygen when pO₂ falls very low, which is exactly what a reserve should do.</figcaption>
+  </figure>
+
+  <h3>The mechanism, in the order the molecule performs it</h3>
+  <p>In deoxyhaemoglobin the Fe²⁺ is slightly <em>out</em> of the porphyrin plane, pulled toward the proximal
+     histidine (His F8) that is its fifth ligand. When O₂ binds at the sixth position, the iron's electronic state
+     changes and it moves about 0.6 Å <strong>into</strong> the plane. It drags His F8 with it; His F8 drags helix F;
+     helix F shifts the α₁β₂ interface; and the ion pairs that held the <strong>T</strong> state break, letting the
+     αβ dimer pairs rotate by about 15° into the <strong>R</strong> state. Every other subunit is now in the
+     high-affinity conformation. That is cooperativity: a mechanical linkage, not magic — and its indispensable
+     requirement is a subunit interface, which is why §&nbsp;07 insisted on the distinction between domains and
+     chains.</p>
+  <p>Two models describe it. The <strong>concerted (MWC)</strong> model says the whole tetramer flips between T and
+     R together, so intermediate hybrids are rare; it explains positive cooperativity elegantly but cannot produce
+     negative cooperativity. The <strong>sequential (KNF)</strong> model lets subunits change one at a time, which
+     accommodates negative cooperativity but is less economical. Haemoglobin behaves mostly like MWC. Note the
+     related definition the exam reuses: a <strong>homotropic</strong> effector is the substrate acting on its own
+     binding (O₂ on haemoglobin), a <strong>heterotropic</strong> effector is a different molecule (H⁺, CO₂,
+     2,3-BPG).</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">What shifts the oxygen dissociation curve, and why</caption>
+      <thead><tr><th>Change</th><th>Shift</th><th>P₅₀</th><th>Mechanism</th></tr></thead>
+      <tbody>
+        <tr><td>↑ [H⁺] (↓ pH) — <strong>Bohr effect</strong></td><td><strong>Right</strong></td><td>↑</td><td>Protonation of β-chain His146 (HC3) lets it form a salt bridge with Asp94, <strong>stabilising T</strong>. Working muscle is acidic, so oxygen is released exactly where it is needed. In the lung the reverse happens and H⁺ is released as O₂ binds.</td></tr>
+        <tr><td>↑ pCO₂</td><td><strong>Right</strong></td><td>↑</td><td>Two routes: CO₂ + H₂O → HCO₃⁻ + H⁺ (carbonic anhydrase) feeds the Bohr effect; and CO₂ reacts directly with N-terminal α-amino groups to form <strong>carbamates</strong>, which are negatively charged and make new T-state salt bridges. About 15–20 % of CO₂ is carried this way.</td></tr>
+        <tr><td>↑ 2,3-BPG</td><td><strong>Right</strong></td><td>↑</td><td>One BPG binds in the <strong>central cavity of the T state only</strong>, bridging the two β chains via His2, Lys82 and His143. It is a T-state clamp. Raised in chronic hypoxia, anaemia and at altitude.</td></tr>
+        <tr><td>↑ temperature</td><td><strong>Right</strong></td><td>↑</td><td>Oxygen binding is exothermic, so heat drives it backwards. Fever and exercising muscle unload more.</td></tr>
+        <tr><td><strong>HbF</strong> (α₂γ₂)</td><td>Left</td><td>↓ (≈19)</td><td>The γ chain has <strong>Ser143 instead of His143</strong>, removing two positive charges from the BPG pocket. HbF therefore binds BPG weakly, sits further toward R, and can strip oxygen from maternal HbA across the placenta.</td></tr>
+        <tr><td>Stored blood</td><td>Left</td><td>↓</td><td>2,3-BPG falls during storage. The unit saturates perfectly in the lung and <em>unloads poorly</em> — a transfusion can raise oxygen content while delivering less. Restored over 12–24 h in vivo.</td></tr>
+        <tr><td><strong>CO</strong></td><td>Left <em>and</em> lowers capacity</td><td>↓</td><td>Binds ≈<strong>250×</strong> more tightly than O₂ (the distal His E7 has already reduced free heme's ~20 000-fold preference). Worse, CO on one subunit pushes the rest into <strong>R</strong>, so the remaining oxygen is held tighter. Cherry-red skin; pulse oximetry falsely normal because it cannot distinguish HbCO from HbO₂; treat with 100 % O₂ or hyperbaric.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Two distinctions that decide the mark</p>
+    <p style="margin:0 0 .4em"><strong>Saturation is not delivery.</strong> A left shift raises saturation at every
+      pO₂ and yet <em>reduces</em> the amount handed over, because delivery is the difference between arterial and
+      venous saturation. Almost every clinical scenario in this topic — stored blood, HbF, carbon monoxide,
+      alkalosis — is testing whether you read the gap rather than the height.</p>
+    <p style="margin:0"><strong>The Hill coefficient is not the number of subunits.</strong> n<sub>H</sub> ≈ 2.8 for
+      a four-site protein means strong but incomplete coupling; if the four sites were all-or-none, n<sub>H</sub>
+      would be 4, and if they were independent it would be 1. Quoting "n<sub>H</sub> = 4 because haemoglobin has four
+      chains" is a standard wrong option.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two haemoglobins that are not simply "shifted"</p>
+    <p style="margin:0 0 .4em"><strong>Methaemoglobin</strong> has iron in the <strong>Fe³⁺</strong> state, which
+      cannot bind oxygen at all. Blood is chocolate-brown; the patient is cyanosed and does <em>not</em> improve with
+      supplemental oxygen; the causes are congenital cytochrome b5 reductase deficiency or oxidant drugs (dapsone,
+      nitrites, local anaesthetics). Treatment is <strong>methylene blue</strong> — except in G6PD deficiency, where
+      it fails and can cause haemolysis, because it needs NADPH.</p>
+    <p style="margin:0"><strong>Sickle haemoglobin</strong> is a solubility problem, not an affinity problem. The
+      β6 Glu→Val substitution (GAG→GTG) puts a hydrophobic valine on the surface, which fits a complementary
+      hydrophobic pocket on an adjacent tetramer — <strong>but only in the T (deoxy) conformation</strong>, because
+      only then is the pocket exposed. Hence: polymerisation is triggered by deoxygenation, so hypoxia, acidosis,
+      dehydration and fever precipitate crises, and anything that keeps HbF high (hydroxyurea) is protective.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — how much oxygen actually gets delivered</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">Take arterial pO₂ = 100 torr and resting tissue pO₂ = 20 torr.
+      (a) Using the Hill equation with P₅₀ = 26 torr and n<sub>H</sub> = 2.8, find HbA's saturation at each and the
+      fraction delivered. (b) Repeat for myoglobin, P₅₀ = 2.8 torr, n<sub>H</sub> = 1. (c) A right shift raises HbA's
+      P₅₀ to 36 torr. What happens to delivery? (d) What is the saturation at a mixed-venous pO₂ of 40 torr?</p>
+    <ol>
+      <li><strong>(a)</strong> At 100 torr:
+          <span class="fi">(100/26)<sup>2.8</sup> = 43.5</span>, so
+          <span class="fi">Y = 43.5/44.5 = 0.978</span> — <strong>97.8 %</strong>.</li>
+      <li>At 20 torr: <span class="fi">(20/26)<sup>2.8</sup> = 0.480</span>, so
+          <span class="fi">Y = 0.480/1.480 = 0.324</span> — <strong>32.4 %</strong>.</li>
+      <li>Delivered = <span class="fi">97.8 − 32.4 = 65.4 %</span> of capacity.</li>
+      <li><strong>(b)</strong> Myoglobin, n = 1: <span class="fi">Y(100) = 100/102.8 = 97.3 %</span> and
+          <span class="fi">Y(20) = 20/22.8 = 87.7 %</span>. Delivered = <strong>9.6 %</strong>. Both molecules
+          saturate almost identically in the lung; the transporter hands over nearly <strong>seven times</strong> as
+          much. That single comparison is the entire argument for cooperativity.</li>
+      <li><strong>(c)</strong> With P₅₀ = 36: <span class="fi">Y(100) = 94.6 %</span>,
+          <span class="fi">Y(20) = 16.2 %</span>, delivered = <strong>78.4 %</strong>. The right shift cost 3.2
+          percentage points of arterial saturation and bought 13 points of extra delivery — a very good trade, and
+          the reason acidotic, hot, hard-working tissue extracts more oxygen.</li>
+      <li><strong>(d)</strong> At 40 torr: <span class="fi">(40/26)<sup>2.8</sup> = 3.35</span>, so
+          <span class="fi">Y = 3.35/4.35 = 0.770</span> — <strong>77 %</strong>, which is the familiar mixed-venous
+          figure. Note what happens if you carelessly use n<sub>H</sub> = 1: you get 60.6 %, and every clinical
+          conclusion drawn from it is wrong.</li>
+    </ol>
+    <span class="wex__ans">(a) 97.8 % → 32.4 %, delivers 65 % · (b) Mb delivers 9.6 % · (c) right shift → 78 % delivered · (d) 77 % at 40 torr</span>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Separating and measuring proteins</h2>
+
+  <p class="idea"><b>The idea</b>A cell contains thousands of different proteins mixed together, and every method for pulling one of them out
+     works the same way: find a property on which your protein differs from the rest, and build a column or a gel
+     that sorts on that property alone. There are only about four such properties worth using — how big it is, what
+     charge it carries, how greasy its surface is, and what it specifically binds — so there are only about four
+     families of method. Because each step sorts on something different, their effects multiply, and three or four
+     steps chosen sensibly will do what a hundred repetitions of one step never could.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the figure of merit</p>
+    <dl class="def">
+      <dt>Specific activity</dt>
+      <dd>Enzyme activity per milligram of total protein (U·mg⁻¹). It is <strong>the</strong> measure of purity:
+          total activity can only fall as you purify, and total protein certainly falls, so the ratio rises.
+          Purification fold = specific activity ÷ starting specific activity; yield = total activity ÷ starting
+          total activity.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">fold purification = <span class="mf" role="img" aria-label="specific activity now over specific activity at the start"><span>specific activity now</span><span>specific activity at the start</span></span></span>
+      <span class="fx__tag">rising specific activity with falling yield is what a good purification looks like</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Enzyme unit (U)</dt>
+          <dd>The amount of enzyme converting 1 µmol of substrate per minute under defined conditions. The SI
+              alternative, the katal, is 1 mol·s⁻¹ and is rarely used in practice.</dd>
+          <dt>Ion exchange</dt>
+          <dd>A resin bearing fixed charges. A <strong>cation exchanger</strong> (carboxymethyl, sulfopropyl) is
+              negatively charged and retains <em>positively</em> charged proteins; an <strong>anion exchanger</strong>
+              (DEAE, quaternary ammonium) is positively charged and retains <em>negatively</em> charged proteins.
+              Elution is by raising the salt concentration or by moving the pH past the protein's pI.</dd>
+          <dt>Size-exclusion (gel-filtration) chromatography</dt>
+          <dd>Porous beads. Small molecules enter the pores and take a long path; large molecules are excluded and
+              travel only in the space between beads. <strong>Large elutes first.</strong> It separates on
+              hydrodynamic (Stokes) radius, so shape matters as well as mass.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">A = ε c l  (Beer–Lambert)</span><span class="fx__tag">A₂₈₀ with ε from Trp and Tyr content gives concentration without a standard curve</span></div>
+          <div class="fx"><span class="fx__eq">SDS-PAGE: log M<sub>r</sub> is linear in relative mobility</span><span class="fx__tag">read an unknown off a standard curve of markers on the same gel</span></div>
+          <div class="fx"><span class="fx__eq">bind to a cation exchanger when running pH &lt; pI · to an anion exchanger when pH &gt; pI</span><span class="fx__tag">the single rule behind every ion-exchange question</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>U</b><span>enzyme unit, µmol·min⁻¹</span></div>
+          <div><b>ε</b><span>molar extinction coefficient (M⁻¹·cm⁻¹)</span></div>
+          <div><b>l</b><span>path length, normally 1 cm</span></div>
+          <div><b>M<sub>r</sub></b><span>relative molecular mass (Da)</span></div>
+          <div><b>R<sub>f</sub></b><span>relative mobility on a gel (dimensionless)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Separation methods and the property each one sorts on</caption>
+      <thead><tr><th>Method</th><th>Sorts on</th><th>Order / behaviour</th><th>What the exam asks</th></tr></thead>
+      <tbody>
+        <tr><td>Ammonium sulfate precipitation ("salting out")</td><td>Solubility</td><td>Crude, high-capacity first step</td><td>High salt competes for the water that solvated the protein surface. Cheap and gentle — used to concentrate, not to purify.</td></tr>
+        <tr><td><strong>Ion exchange</strong></td><td><strong>Net charge at the running pH</strong></td><td>Bound protein eluted by a salt or pH gradient</td><td>Choose the resin from pI vs pH. A protein of pI 5 at pH 8 is <em>negative</em> and binds an <strong>anion</strong> exchanger. Note the deliberately confusing naming: a cation exchanger binds cations.</td></tr>
+        <tr><td><strong>Gel filtration</strong></td><td><strong>Size (Stokes radius)</strong></td><td><strong>Largest elutes FIRST</strong></td><td>The most-tested counter-intuitive fact on this page. Also the only chromatographic method that gives a <em>native</em> mass, since nothing is denatured.</td></tr>
+        <tr><td><strong>Affinity</strong></td><td>Specific binding</td><td>Eluted with free ligand or a competitor</td><td>Highest resolution of all — often a single step. His-tag on Ni²⁺-NTA eluted with imidazole; antibody columns; substrate analogues.</td></tr>
+        <tr><td>HPLC / FPLC</td><td>Any of the above, at high pressure</td><td>Very sharp peaks</td><td>Small, uniform, rigid beads shorten diffusion distances, so resolution rises. <strong>Reverse-phase</strong> HPLC uses a C18 apolar phase and sorts on <em>hydrophobicity</em>, eluting with increasing acetonitrile — but it denatures, so it is for peptides and analysis, not for recovering active enzyme.</td></tr>
+        <tr><td><strong>SDS-PAGE</strong></td><td><strong>Subunit mass only</strong></td><td>Small runs fastest, toward the anode</td><td>SDS binds ≈1.4 g per g, swamping native charge so every chain has the same charge-to-mass ratio. Add β-mercaptoethanol and disulfide-linked chains separate too. It reports the mass of a <em>chain</em>, never of the assembly.</td></tr>
+        <tr><td>Native (non-denaturing) PAGE</td><td>Charge, size <em>and</em> shape together</td><td>Not interpretable as mass</td><td>Keeps the protein folded and active — used when you need to recover activity from the gel, or to see a complex.</td></tr>
+        <tr><td><strong>Isoelectric focusing</strong></td><td><strong>pI</strong></td><td>Each protein stops where pH = pI</td><td>A steady-state method: the final position is independent of where the sample was loaded, and resolution reaches ≈0.01 pH units. Combine with SDS-PAGE in the second dimension and you get a <strong>2-D gel</strong> — pI horizontally, mass vertically.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The two reversals people get wrong under time pressure</p>
+    <p style="margin:0 0 .4em"><strong>Gel filtration: big first.</strong> The intuition that says "small things go
+      through faster" is describing a sieve; a gel-filtration column is the opposite of a sieve. The beads are the
+      slow lane and only small molecules can enter them, so large proteins are excluded, travel the short route
+      between beads, and come off in the void volume.</p>
+    <p style="margin:0"><strong>A cation exchanger binds cations.</strong> The resin is named for what it
+      <em>exchanges</em>, i.e. what it binds and releases — so a negatively charged resin is a cation exchanger.
+      Work from the protein instead: decide its sign from pI versus pH, then pick the resin of opposite sign.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — reading a purification table, and deducing a subunit structure</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .5rem;font-size:.92rem">(a) Complete the table below: specific activity, fold purification
+      and percentage yield at each step. Which single step was most effective, and is the final 25 % yield a failure?
+      (b) The purified protein runs at <strong>60 kDa</strong> on SDS-PAGE with β-mercaptoethanol, at
+      <strong>120 kDa</strong> on SDS-PAGE without it, and at <strong>240 kDa</strong> on a calibrated gel-filtration
+      column. What is its quaternary structure?</p>
+    <div class="table-scroll">
+      <table class="data">
+        <caption class="sr-only">Worked purification table</caption>
+        <thead><tr><th>Step</th><th>Total protein (mg)</th><th>Total activity (U)</th><th>Specific activity (U·mg⁻¹)</th><th>Fold</th><th>Yield</th></tr></thead>
+        <tbody>
+          <tr><td>Crude extract</td><td class="num">20 000</td><td class="num">4 000 000</td><td class="num">200</td><td class="num">1.0</td><td class="num">100 %</td></tr>
+          <tr><td>Ammonium sulfate 40–60 %</td><td class="num">5 000</td><td class="num">3 000 000</td><td class="num">600</td><td class="num">3.0</td><td class="num">75 %</td></tr>
+          <tr><td>DEAE ion exchange</td><td class="num">500</td><td class="num">2 000 000</td><td class="num">4 000</td><td class="num">20</td><td class="num">50 %</td></tr>
+          <tr><td>Gel filtration</td><td class="num">90</td><td class="num">1 350 000</td><td class="num">15 000</td><td class="num">75</td><td class="num">33.8 %</td></tr>
+          <tr><td>Affinity (substrate analogue)</td><td class="num">8</td><td class="num">1 000 000</td><td class="num">125 000</td><td class="num">625</td><td class="num">25 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ol>
+      <li><strong>(a)</strong> Specific activity is activity ÷ protein: <span class="fi">4 000 000/20 000 = 200</span>,
+          then 600, 4000, 15 000 and <span class="fi">1 000 000/8 = 125 000 U·mg⁻¹</span>.</li>
+      <li>Fold is each specific activity ÷ 200: <span class="fi">3, 20, 75, 625</span>. Yield is activity ÷ 4 000 000:
+          <span class="fi">75 %, 50 %, 33.8 %, 25 %</span>.</li>
+      <li>Judge each <em>step</em> by its own increment, not by the running total. Ion exchange multiplied purity by
+          <span class="fi">20/3 = 6.7</span>; gel filtration by <span class="fi">75/20 = 3.75</span>; the affinity
+          step by <span class="fi">625/75 = 8.3</span>, while losing only a quarter of the remaining activity.
+          <strong>Affinity was the most effective step</strong> — as it usually is, because it uses a property unique
+          to the protein rather than one it shares with thousands of others.</li>
+      <li>A 25 % yield is normal and is not a failure: purity rose 625-fold. In fact the enrichment implies the
+          enzyme was about <span class="fi">1/625 = 0.16 %</span> of the starting protein, and you have recovered a
+          quarter of it in essentially pure form.</li>
+      <li><strong>(b)</strong> Gel filtration is non-denaturing, so <strong>the native protein is 240 kDa</strong>.
+          SDS-PAGE with reductant gives the mass of a single chain: <strong>60 kDa</strong>. So there are
+          <span class="fi">240/60 = 4</span> chains.</li>
+      <li>Without reductant, SDS still dissociates noncovalent contacts but leaves disulfides intact, and the band is
+          at 120 kDa — <span class="fi">120/60 = 2</span> chains held together covalently.</li>
+      <li>Therefore the protein is a <strong>tetramer built as a dimer of disulfide-linked dimers</strong>. Note how
+          each of the three measurements answers a different question: native assembly, covalent subassembly, and
+          single-chain mass. Quoting the SDS-PAGE figure as "the molecular weight of the protein" would have been
+          wrong by a factor of four.</li>
+    </ol>
+    <span class="wex__ans">(a) 200 → 600 → 4000 → 15 000 → 125 000 U·mg⁻¹; 625-fold at 25 % yield; affinity was the best step · (b) α₄, arranged as two disulfide-linked dimers</span>
+    </div>
+  </details>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · sequencing, cleavage reagents and mass spectrometry</summary>
+    <div class="disc__body">
+      <p><strong>Edman degradation</strong> removes one residue at a time from the <em>N-terminus</em>:
+         phenyl isothiocyanate reacts with the free α-amino group, mild acid cleaves off the derivatised residue as a
+         phenylthiohydantoin, and the shortened peptide is ready for the next round. Two limitations are examinable:
+         it fails on a <strong>blocked N-terminus</strong> (acetylated or pyroglutamate, which is common), and yields
+         decay so that in practice it reads no more than about 50 residues. Longer chains must therefore be cut into
+         pieces first — and with <em>two different</em> reagents, so that the overlapping fragments can be ordered.</p>
+      <div class="table-scroll">
+        <table class="data">
+          <caption class="sr-only">Specific cleavage reagents used in protein sequencing</caption>
+          <thead><tr><th>Reagent</th><th>Cuts on the C-side of</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Trypsin</strong></td><td><strong>Lys, Arg</strong></td><td>Not before proline. The workhorse of mass spectrometry, because it leaves a basic residue at every C-terminus and so gives well-ionising peptides.</td></tr>
+            <tr><td><strong>Chymotrypsin</strong></td><td><strong>Phe, Trp, Tyr</strong> (and slowly Leu, Met)</td><td>Aromatic specificity — the complement to trypsin.</td></tr>
+            <tr><td><strong>Cyanogen bromide</strong></td><td><strong>Met</strong></td><td>Chemical, not enzymatic; methionine is rare, so it gives a few large fragments — ideal for building overlaps.</td></tr>
+            <tr><td>Glu-C (V8 protease)</td><td>Glu (and Asp in phosphate buffer)</td><td>Acidic specificity.</td></tr>
+            <tr><td>Pepsin</td><td>Broad, prefers hydrophobic/aromatic</td><td>Acid pH optimum — the reason it works in the stomach and not in the duodenum.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Mass spectrometry</strong> has largely replaced Edman for identification. Proteins are ionised
+         without fragmentation by <strong>MALDI</strong> (matrix-assisted laser desorption/ionisation, usually with a
+         time-of-flight analyser) or <strong>ESI</strong> (electrospray, which produces a ladder of multiply charged
+         ions and so brings large proteins within the range of a modest analyser). Digest with trypsin and the set of
+         fragment masses is a <strong>peptide mass fingerprint</strong> that identifies the protein against a
+         database; fragment a selected peptide inside the instrument (<strong>MS/MS</strong>) and the mass
+         differences between successive fragment ions read out the sequence directly, one residue at a time. Mass
+         spectrometry is also how post-translational modifications are located, since each adds a characteristic mass
+         (phosphate +80, acetyl +42).</p>
+      <p><strong>Quantitation.</strong> A₂₈₀ needs no reagent and is non-destructive, but depends on Trp and Tyr
+         content — a protein with no tryptophan reads far too low, and nucleic acid contamination reads far too high
+         (which is what the A₂₆₀/A₂₈₀ ratio checks). The <strong>Bradford</strong> assay (Coomassie brilliant blue,
+         binding mostly to Arg) and the <strong>BCA</strong> assay (Cu²⁺ reduction by peptide bonds) both need a
+         standard curve, usually against bovine serum albumin, and both carry their own biases. A worked example:
+         a 25 kDa protein with 2 Trp and 4 Tyr has ε₂₈₀ = 2(5500) + 4(1490) = <strong>16 960 M⁻¹cm⁻¹</strong>, so
+         A₂₈₀ = 0.85 in a 1 cm cell corresponds to 0.85/16 960 = <strong>50.1 µM</strong>, i.e.
+         <strong>1.25 mg·mL⁻¹</strong>.</p>
+    </div>
+  </details>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Design a purification in the order the exam expects</p>
+    <p style="margin:0">Start with a <strong>high-capacity, low-resolution</strong> step that tolerates a large dirty
+      volume (ammonium sulfate), move to <strong>medium resolution with high capacity</strong> (ion exchange), and
+      finish with <strong>high resolution and low capacity</strong> (affinity, then gel filtration as a polishing
+      step that also removes aggregates and exchanges the buffer). Putting gel filtration first is the classic wrong
+      answer: its capacity is limited to a few per cent of the column volume, so it is wasted on a crude extract. And
+      remember that ion exchange and gel filtration sort on different properties, which is why using both multiplies
+      the purification while running two ion-exchange columns barely improves on one.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 11</span>
+  <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>Pulling an answer out of your own head, even a wrong one, fixes it far better than reading the same paragraph
+     again. The wrong options below are not filler: each one is a mistake that people genuinely make, so being caught
+     by one is worth more to you than a lucky guess would have been.</p>
+  <p>Four of these need real arithmetic — do it on paper rather than recognising the answer, because that is what
+     the paper will require and because the wrong options are exactly the numbers a shortcut produces. Three more
+     are conceptual reversals that are answered wrongly year after year. Every explanation says why the right answer
+     is right <em>and</em> why the tempting one is tempting.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="biochem-01-bonds-lipids.html"><small>Previous</small><b>← Bonds, functional groups &amp; the hydrophobic effect</b></a>
+  <a href="biochemistry.html"><small>Index</small><b>All biochemistry notes</b></a>
+  <a href="biochem-03-enzymes.html"><small>Next</small><b>Enzymes: Kinetics, Inhibition and Regulation →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry 02 · Amino Acids, Peptides and Protein Structure</p>
+    <p>Representation used: titration curves and Ramachandran space, with every charge and saturation figure computed
+      from the Henderson–Hasselbalch and Hill equations rather than quoted. pK<sub>a</sub> values follow the standard
+      Lehninger table for free amino acids; peptide termini are taken as α-COOH 3.1 and α-NH₃⁺ 9.0, which is stated
+      wherever it is used. Structural and binding values are standard textbook approximations, given to build a sense
+      of magnitude rather than for citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "What is the net charge of the peptide <span class=\"fi\">Gly–Glu–Tyr–His–Lys–Asp–Ala</span> at pH 7.0? (α-COOH 3.1, α-NH₃⁺ 9.0, Glu 4.25, Tyr 10.07, His 6.00, Lys 10.53, Asp 3.65)",
+    "options": ["+1", "0", "−1", "−2"],
+    "answer": 2,
+    "explain": "Take the groups one at a time and compare pH with pK<sub>a</sub>. Below pK<sub>a</sub> the proton stays on. Negatives: C-terminal COOH (3.1) −1, Glu (4.25) −1, Asp (3.65) −1 → <b>−3</b>. Positives: N-terminal NH₃⁺ (9.0) +1, Lys (10.53) +1 → <b>+2</b>. Histidine at 6.00 is one unit below the pH, so it is only 9 % protonated — about +0.09, i.e. effectively zero. Tyrosine at 10.07 is three units above the pH and is <b>not</b> ionised. Total −3 + 2 = <b>−1</b> (exact calculation: −0.92). Option B is what you get by counting histidine as a full +1 — the single commonest slip, and precisely why examiners put histidine in these peptides. Option D comes from treating tyrosine's phenol as an acid at pH 7; it is a weak acid (pK<sub>a</sub> 10.07) and at pH 7 it is over 99.9 % protonated and neutral."
+  },
+  {
+    "stem": "Which statement about ionisable side chains is correct?",
+    "options": ["Arginine's guanidinium group has the highest side-chain pK<sub>a</sub> of the twenty, at ≈12.5, because the positive charge of its conjugate acid is delocalised symmetrically over three nitrogens", "Lysine's ε-amino group has the highest side-chain pK<sub>a</sub>, at ≈10.5", "Cysteine's thiol is a weaker acid than serine's hydroxyl, because sulfur is less electronegative than oxygen", "Histidine's imidazole is essentially fully protonated at pH 7.4, which is why it is the body's main protein buffer"],
+    "answer": 0,
+    "explain": "A high pK<sub>a</sub> means a <i>reluctant</i> acid, which means an unusually stable conjugate acid. The guanidinium cation is stabilised by a Y-shaped resonance system spreading the charge over three nitrogens — so it holds its proton to pK<sub>a</sub> 12.48 and is positively charged under every condition a cell ever sees. Option B is the standard wrong answer, chosen because lysine \"looks like the base\"; it is second at 10.53. Option C is backwards twice over: the thiol is <b>more</b> acidic (8.18 versus about 13), because the large polarisable sulfur delocalises the thiolate charge far better than oxygen does. Option D confuses \"buffers well\" with \"is protonated\": at pH 7.4 histidine is only ≈4 % protonated — it buffers precisely <i>because</i> it sits near the crossover, not because it is charged."
+  },
+  {
+    "stem": "The imidazole side chain of histidine has pK<sub>a</sub> 6.00. What fraction of histidine side chains carries a positive charge at blood pH, 7.40?",
+    "options": ["about 25 %", "about 4 %", "about 50 %", "about 96 %"],
+    "answer": 1,
+    "explain": "The gap is pH − pK<sub>a</sub> = +1.40, so the <i>deprotonated</i> (neutral) form outnumbers the protonated one by 10<sup>1.40</sup> = <b>25.1 : 1</b>. The charged fraction is therefore 1/(1 + 25.1) = <b>3.8 %</b>. Option A is the trap: it takes the ratio 25 and reports it as a percentage — the commonest Henderson–Hasselbalch error. Option D inverts the ratio, i.e. gets the direction of the equation backwards; remember that the conjugate <i>base</i> sits on top of the log, so a pH above the pK<sub>a</sub> always means the base form dominates. Option C would be correct only at pH exactly 6.00, which is the definition of pK<sub>a</sub>."
+  },
+  {
+    "stem": "The hydrophobic core of a lipid bilayer is about 30 Å thick. How many residues does a single α-helix need in order to span it?",
+    "options": ["≈6 — one residue per 5.4 Å of pitch", "≈9 — 30 Å divided by the 3.4 Å rise of an extended chain", "≈20", "≈45"],
+    "answer": 2,
+    "explain": "An α-helix rises <b>1.5 Å per residue</b>, so 30 ÷ 1.5 = <b>20 residues</b>, which is 20/3.6 ≈ 5.6 turns. This is why hydropathy plots use a window of about 19–21 residues and why a run of ~20 apolar residues is the sequence signature of a transmembrane helix. Option B uses the β-strand rise of 3.4 Å — the right arithmetic on the wrong structure, and an extended chain is exactly what a membrane will not accommodate. Option A divides by the pitch (5.4 Å), which is the distance per <i>turn</i>, not per residue; that calculation gives the number of turns, not residues. Option D is roughly the length of a typical whole helix in a globular protein, not a membrane span."
+  },
+  {
+    "stem": "Proline and glycine are both described as α-helix breakers. Why?",
+    "options": ["Proline lacks a backbone N–H and so cannot donate the i→i+4 hydrogen bond, and its ring locks φ near −60°; glycine, having no side chain, is so conformationally free that ordering it into a helix costs too much entropy", "Both have side chains too bulky to pack against the helix surface", "Both carry a charge at pH 7 and the like charges along the helix repel one another", "Proline is too flexible to hold a fixed φ and ψ, while glycine's ring makes it too rigid"],
+    "answer": 0,
+    "explain": "The two residues fail for opposite reasons, and stating them the right way round is the whole point of the question. Proline is <b>over-constrained and chemically deficient</b>: its nitrogen is a secondary amine, so in a peptide bond it has no hydrogen to donate, and its pyrrolidine ring fixes φ. Glycine is <b>under-constrained</b>: with no C<sub>β</sub> it reaches regions of the Ramachandran plot no other residue can, and freezing all that freedom into one conformation is entropically expensive. Option D is the same two facts with the residues swapped — the most tempting distractor precisely because it sounds symmetric. Option B is false: glycine is the smallest residue of all. Note also that proline is well tolerated in the <i>first</i> turn of a helix, where the N–H groups have no i−4 partner in any case."
+  },
+  {
+    "stem": "Four proteins — 400, 150, 45 and 12 kDa — are applied to a gel-filtration (size-exclusion) column. In what order do they elute?",
+    "options": ["12, 45, 150, 400 kDa — small proteins slip through the matrix fastest", "45, 12, 150, 400 kDa", "150, 400, 45, 12 kDa", "400, 150, 45, 12 kDa"],
+    "answer": 3,
+    "explain": "The beads are <b>porous</b>, and only molecules small enough to enter the pores take the long, tortuous path inside them. Large proteins are excluded, travel only through the space between beads, and come off first — in the void volume. So elution runs <b>large to small</b>. Option A is the sieve intuition, which is right for SDS-PAGE (where small proteins do migrate fastest through a gel mesh) and exactly wrong here; the two are constantly confused because both involve a porous polymer. Worth adding: gel filtration is non-denaturing, so it reports the mass of the <i>native assembly</i>, whereas SDS-PAGE reports the mass of a single chain."
+  },
+  {
+    "stem": "Your protein of interest has pI 5.2. You want it to bind the column at pH 8.0 while most contaminants wash through. Which do you choose?",
+    "options": ["A cation exchanger such as carboxymethyl-cellulose, because the protein is positively charged at pH 8.0", "An anion exchanger such as DEAE-cellulose, because pH 8.0 is above the pI so the protein is net negative", "Gel filtration, because charge is irrelevant to this separation", "An anion exchanger, but run at pH 4.0 to maximise the protein's negative charge"],
+    "answer": 1,
+    "explain": "Compare pH with pI exactly as you compare pH with pK<sub>a</sub>: at pH 8.0, which is 2.8 units <i>above</i> pI 5.2, the protein has given up more protons than it has taken and is <b>net negative</b>. A negative protein binds a positively charged resin, and a positively charged resin is by definition an <b>anion</b> exchanger (DEAE, or a quaternary ammonium Q resin). Option A gets the sign backwards. Option D gets the resin right but the pH wrong: at pH 4.0 the protein is <i>below</i> its pI and therefore positive, so it would not bind an anion exchanger at all. Option C describes a real method but not one that can be tuned to make a chosen protein stick."
+  },
+  {
+    "stem": "A unit of red cells has been stored for three weeks. Which statement best describes its oxygen-carrying behaviour on transfusion?",
+    "options": ["2,3-BPG accumulates during storage, shifting the curve right and improving tissue delivery", "P₅₀ rises, so the tissues receive more oxygen per unit of haemoglobin", "The Hill coefficient falls toward 1, so the curve becomes hyperbolic and delivery is unchanged", "2,3-BPG is depleted, so the curve shifts left and P₅₀ falls; the cells saturate fully in the lung but unload less in the tissue until BPG is regenerated over 12–24 hours"],
+    "answer": 3,
+    "explain": "2,3-BPG is a glycolytic intermediate that is consumed and not replaced in stored cells. Because BPG binds only the central cavity of the <b>T</b> state, losing it removes a T-state clamp, pushes the equilibrium toward R, raises affinity and shifts the curve <b>left</b> (P₅₀ falls). The clinically important consequence is the one the question is testing: a left shift <i>raises</i> saturation at every pO₂ while <i>reducing</i> delivery, because delivery is the arterial-minus-venous difference, not the height of the curve. Options A and B state the correct physiological logic attached to the wrong direction of BPG change. Option C invents a change in cooperativity: BPG depletion moves P₅₀, not n<sub>H</sub>."
+  },
+  {
+    "stem": "Haemoglobin A has P₅₀ = 26 torr and n<sub>H</sub> = 2.8. Using <span class=\"fi\">Y = pO₂ⁿ / (P₅₀ⁿ + pO₂ⁿ)</span>, what is its fractional saturation at a mixed-venous pO₂ of 40 torr?",
+    "options": ["≈77 %", "≈61 %", "≈50 %", "≈95 %"],
+    "answer": 0,
+    "explain": "(40/26) = 1.538, and 1.538<sup>2.8</sup> = 3.35. So Y = 3.35/(1 + 3.35) = <b>0.770</b>, i.e. 77 % — the familiar mixed-venous saturation. Option B, 60.6 %, is what you get by leaving the exponent out, i.e. treating haemoglobin as non-cooperative with n = 1; that is the single commonest error with the Hill equation and it under-estimates saturation on the upper limb of the sigmoid. Option C would require pO₂ to equal P₅₀, which is 26 torr, not 40. Option D is roughly the arterial figure at 100 torr (97.8 %)."
+  },
+  {
+    "stem": "Which statement about protein folding and denaturation is correct?",
+    "options": ["Chaperones supply three-dimensional information that the amino-acid sequence does not contain", "Denaturation by 8 M urea destroys activity because it hydrolyses peptide bonds in the unstructured regions", "The native state is typically only 20–65 kJ·mol⁻¹ more stable than the unfolded ensemble — a few hydrogen bonds' worth — because a large favourable enthalpic and hydrophobic term very nearly cancels a large unfavourable conformational-entropy term", "Prion diseases are transmitted by a small nucleic acid genome packaged inside the PrP protein coat"],
+    "answer": 2,
+    "explain": "That near-cancellation of two large opposing terms is what \"marginal stability\" means, and three examinable consequences follow from it: proteins denature easily, a single point mutation can unfold one, and proteins remain degradable and mobile enough to work. Option A contradicts Anfinsen — the sequence determines the structure, and chaperones only prevent aggregation by binding exposed hydrophobic surfaces in ATP-driven cycles. Option B is the classic wrong statement about denaturation: urea and guanidinium are chaotropes that disrupt noncovalent interactions, and <b>primary structure survives intact</b>, which is exactly why refolding is possible. Option D is the pre-Prusiner assumption; the defining feature of a prion is that it is an infectious <i>protein</i> with no nucleic acid at all."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

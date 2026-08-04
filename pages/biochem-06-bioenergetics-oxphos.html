@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biochem 06 · Bioenergetics, the TCA Cycle and Oxidative Phosphorylation — PostMed Notebook</title>
+<meta name="description" content="Biochemistry note 06: free energy and coupling, redox potentials, pyruvate dehydrogenase, the citric acid cycle and anaplerosis, the electron-transport chain, the proton-motive force, ATP synthase, inhibitors and uncouplers, and the modern ATP ledger.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biochemistry.html">Biochemistry</a>
+      <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Note 06</p>
+  <h1>Bioenergetics, the TCA Cycle and Oxidative Phosphorylation</h1>
+  <p class="lede">
+    One quantity organises this entire note: <strong>free energy, and the fact that it can only be moved from
+    one process to another through something the two processes share</strong>. Catabolism does not "make energy";
+    it strips electrons off fuel and lets them fall down a potential ladder to oxygen, and the fall is harnessed
+    twice — first into a proton gradient across a membrane, then into ATP. Get that two-step conversion clear and
+    almost everything else on this page is arithmetic: why the citric acid cycle contains only one direct
+    phosphorylation and yet supplies most of the ATP, why an uncoupler makes a cell burn <em>faster</em> while
+    making less ATP, why the same NADH is worth 2.5 ATP in a heart cell and its cytosolic twin only 1.5 in a
+    muscle fibre, and why the numbers 36 and 38 that everyone memorised turned out to be wrong.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Energy ledgers &amp; redox arithmetic</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~50 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Free energy, coupling and why ATP works</a></li>
+      <li><a href="#s2">Redox potentials: volts into kilojoules</a></li>
+      <li><a href="#s3">Pyruvate dehydrogenase: the one-way gate</a></li>
+      <li><a href="#s4">The citric acid cycle</a></li>
+      <li><a href="#s5">Anaplerosis and the cycle as a biosynthetic hub</a></li>
+      <li><a href="#s6">The electron-transport chain, complex by complex</a></li>
+      <li><a href="#s7">The proton-motive force and chemiosmosis</a></li>
+      <li><a href="#s8">ATP synthase and rotational catalysis</a></li>
+      <li><a href="#s9">Inhibitors, uncouplers and what goes wrong</a></li>
+      <li><a href="#s10">Shuttles, transport and the honest ATP ledger</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§01</b>: a reaction that will not go on its own can be dragged forward by
+        one that will, provided the two share a molecule; ATP is that shared molecule, and its usefulness comes
+        from sitting <em>in the middle</em> of a ranking, not at the top. Then <b>§02</b>: an electron falling
+        from a reluctant donor to a greedy acceptor releases a calculable amount of energy, and one equation
+        turns volts into kilojoules. Then <b>§06–§07</b>: that energy is not captured as a molecule at all but
+        as a <em>gradient</em>, and the gradient is the real intermediate. Those four sections generate the rest.</li>
+      <li><b>Then be able to do</b> — <b>§02</b>: run <span class="fi">ΔG°′ = −nFΔE°′</span> in both directions
+        without a sign error. <b>§01</b>: correct a ΔG°′ to the actual ΔG at real concentrations. <b>§07</b>:
+        turn a membrane potential and a pH difference into kilojoules per mole of protons. <b>§09</b>: predict,
+        for any named agent, what happens to oxygen consumption, to ATP output and to the gradient — this is the
+        single most reliably examined thing on the page. <b>§10</b>: build the ATP ledger for one glucose with
+        either shuttle and quote the P/O ratios that produced it. <b>§04</b>: say which carbons leave as CO₂.</li>
+      <li><b>Leave for a second pass</b> — the eight cycle steps with their individual ΔG°′ values (the table
+        folded into <b>§04</b>), the full anaplerotic and cataplerotic inventory in <b>§05</b>, the Q-cycle
+        bookkeeping in <b>§06</b>, and the mitochondrial genetics in <b>§09</b>. All four are reference material
+        that reads far better once the four core sections are secure.</li>
+    </ol>
+  </div>
+
+  <section class="fsheet card">
+    <details class="disc disc--sheet">
+      <summary>Quick sheet<span class="disc__count">30 entries</span></summary>
+      <div class="disc__body">
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Free energy</b><code>ΔG = ΔH − TΔS</code></div>
+      <div class="fsheet__item"><b>Actual vs standard</b><code>ΔG = ΔG°′ + RT ln Q</code></div>
+      <div class="fsheet__item"><b>At equilibrium</b><code>ΔG°′ = −RT ln K′<sub>eq</sub></code></div>
+      <div class="fsheet__item"><b>Per 10× in K′<sub>eq</sub></b><code>5.7 kJ·mol⁻¹ (25 °C)</code></div>
+      <div class="fsheet__item"><b>ATP → ADP + P<sub>i</sub></b><code>ΔG°′ = −30.5 kJ·mol⁻¹</code></div>
+      <div class="fsheet__item"><b>ATP in the cell</b><code>ΔG<sub>p</sub> ≈ −50 to −65 kJ·mol⁻¹</code></div>
+      <div class="fsheet__item"><b>ATP → AMP + PP<sub>i</sub></b><code>ΔG°′ = −45.6 kJ·mol⁻¹</code></div>
+      <div class="fsheet__item"><b>Redox → energy</b><code>ΔG°′ = −nFΔE°′</code></div>
+      <div class="fsheet__item"><b>Faraday constant</b><code>F = 96.5 kJ·V⁻¹·mol⁻¹</code></div>
+      <div class="fsheet__item"><b>E°′ NAD⁺/NADH</b><code>−0.320 V</code></div>
+      <div class="fsheet__item"><b>E°′ ½O₂/H₂O</b><code>+0.816 V</code></div>
+      <div class="fsheet__item"><b>NADH → O₂</b><code>ΔE°′ = 1.14 V → −219 kJ·mol⁻¹</code></div>
+      <div class="fsheet__item"><b>Succinate → O₂</b><code>ΔE°′ = 0.79 V → −152 kJ·mol⁻¹</code></div>
+      <div class="fsheet__item"><b>PDH reaction</b><code>pyruvate + CoA + NAD⁺ → acetyl-CoA + CO₂ + NADH</code></div>
+      <div class="fsheet__item"><b>PDH cofactors</b><code>TPP · lipoamide · CoA · FAD · NAD⁺</code></div>
+      <div class="fsheet__item"><b>TCA per acetyl-CoA</b><code>3 NADH · 1 FADH₂ · 1 GTP · 2 CO₂</code></div>
+      <div class="fsheet__item"><b>TCA control points</b><code>citrate synthase · IDH · α-KGDH</code></div>
+      <div class="fsheet__item"><b>Main anaplerosis</b><code>pyruvate + HCO₃⁻ + ATP → OAA (biotin)</code></div>
+      <div class="fsheet__item"><b>H⁺ pumped per 2 e⁻</b><code>I 4 · II 0 · III 4 · IV 2</code></div>
+      <div class="fsheet__item"><b>Totals</b><code>NADH 10 H⁺ · FADH₂ 6 H⁺</code></div>
+      <div class="fsheet__item"><b>H⁺ per ATP</b><code>8/3 synthase + 1 export ≈ 4</code></div>
+      <div class="fsheet__item"><b>P/O ratios</b><code>NADH 2.5 · FADH₂ 1.5</code></div>
+      <div class="fsheet__item"><b>Proton-motive force</b><code>ΔG = FΔψ + 2.303RT·ΔpH</code></div>
+      <div class="fsheet__item"><b>Δp typical</b><code>0.15 V + 0.05 V ≈ 0.20 V ≈ 19 kJ per mol H⁺</code></div>
+      <div class="fsheet__item"><b>Glucose · malate–aspartate</b><code>32 ATP</code></div>
+      <div class="fsheet__item"><b>Glucose · glycerol-3-P</b><code>30 ATP</code></div>
+      <div class="fsheet__item"><b>Per pyruvate · per acetyl-CoA</b><code>12.5 · 10 ATP</code></div>
+      <div class="fsheet__item"><b>Efficiency</b><code>32 × 30.5 / 2840 ≈ 34 %</code></div>
+      <div class="fsheet__item"><b>ATP synthase</b><code>360° = 3 ATP · mammalian c₈ ring</code></div>
+      <div class="fsheet__item"><b>Uncoupler vs oligomycin</b><code>O₂↑ ATP↓ Δp↓ · O₂↓ ATP↓ Δp↑</code></div>
+    </div>
+      </div>
+    </details>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Free energy, coupling and why ATP works</h2>
+
+  <p class="idea"><b>The idea</b>Some changes happen by themselves and some do not, and a cell is mostly made of the second kind. The only way
+     to make an unwilling change happen is to bolt it onto a willing one so that the two become a single event
+     with a single balance sheet. That bolt is always a shared molecule. Nearly every unwilling reaction in the
+     body is bolted, through one shared molecule, to the one reaction the cell keeps permanently willing — and
+     that molecule is ATP. The useful thing about ATP turns out not to be that it holds a lot of energy, but that
+     it holds a <em>middling</em> amount, so it can be filled by strong donors and emptied into weak acceptors.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Gibbs free-energy change, ΔG</dt>
+      <dd>The energy available from a process to do work at constant temperature and pressure. Negative ΔG means
+          the process runs forward as written (<strong>exergonic</strong>); positive means it runs backward
+          (<strong>endergonic</strong>); zero means equilibrium. ΔG says nothing whatever about <em>rate</em> —
+          that is the enzyme's business.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ΔG = ΔG°′ + RT ln Q</span>
+      <span class="fx__tag">the standard value plus a correction for how far the actual concentrations sit from standard</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Standard transformed free-energy change, ΔG°′</dt>
+          <dd>ΔG when every reactant and product is at 1 M, at 25 °C, 1 atm, <strong>pH 7</strong> and 55.5 M
+              water. The prime is what makes it biochemical: [H⁺] is fixed at 10⁻⁷ M rather than 1 M, and water
+              is left out of Q. A tabulated constant, not a measurement of the cell.</dd>
+          <dt>Phosphorylation potential, ΔG<sub>p</sub></dt>
+          <dd>The <em>actual</em> ΔG of ATP hydrolysis in a living cell, given the real [ATP], [ADP] and
+              [P<sub>i</sub>]. Roughly −50 to −65 kJ·mol⁻¹ — considerably more negative than −30.5, because
+              cells hold ATP far above its equilibrium level.</dd>
+          <dt>Coupled reaction</dt>
+          <dd>Two reactions joined by a <strong>shared intermediate</strong>, so that they proceed as one. Their
+              ΔG°′ values simply add. Without a genuinely shared chemical species there is no coupling, only
+              wishful bookkeeping.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">ΔG = ΔH − TΔS</span><span class="fx__tag">enthalpy minus the entropy term; a reaction can be driven by either</span></div>
+          <div class="fx"><span class="fx__eq">ΔG°′ = −RT ln K′<sub>eq</sub>  ⇔  K′<sub>eq</sub> = e<sup>−ΔG°′/RT</sup></span><span class="fx__tag">ΔG°′ and the equilibrium constant carry exactly the same information</span></div>
+          <div class="fx"><span class="fx__eq">Q = <span class="mf" role="img" aria-label="product of product concentrations over product of reactant concentrations"><span>∏[products]</span><span>∏[reactants]</span></span></span><span class="fx__tag">the mass-action ratio, evaluated at the concentrations that actually exist</span></div>
+          <div class="fx"><span class="fx__eq">2.303 RT = 5.71 kJ·mol⁻¹ (25 °C) · 5.94 kJ·mol⁻¹ (37 °C)</span><span class="fx__tag">one factor of ten in K′<sub>eq</sub> per this many kJ·mol⁻¹</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>ΔG</b><span>actual free-energy change, kJ·mol⁻¹</span></div>
+          <div><b>ΔG°′</b><span>standard transformed value at pH 7, kJ·mol⁻¹</span></div>
+          <div><b>ΔH</b><span>enthalpy change, kJ·mol⁻¹</span></div>
+          <div><b>ΔS</b><span>entropy change, J·mol⁻¹·K⁻¹</span></div>
+          <div><b>R</b><span>gas constant, 8.315 J·mol⁻¹·K⁻¹</span></div>
+          <div><b>T</b><span>absolute temperature, K (310 K = 37 °C)</span></div>
+          <div><b>Q</b><span>mass-action ratio, dimensionless</span></div>
+          <div><b>K′<sub>eq</sub></b><span>equilibrium constant at pH 7, dimensionless</span></div>
+          <div><b>ΔG<sub>p</sub></b><span>cellular phosphorylation potential, kJ·mol⁻¹</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">What this paper actually asks — and it is not what you expect</p>
+    <p>Most people revise the citric acid cycle hard and oxidative phosphorylation lightly. On this paper the
+       emphasis runs the other way. The cycle gets asked as a small number of stable facts — which step makes
+       GTP, which enzymes are regulated, where the CO₂ carbons came from — and once you have those, extra
+       revision buys you very little. Oxidative phosphorylation gets asked <em>mechanistically</em>, and the
+       question can come from many angles: what each complex contains, which ones pump, where each named
+       inhibitor binds, what an uncoupler does to oxygen consumption, what the P/O ratio is and why it is not a
+       whole number. That is why §§06–10 of this page are longer and harder than §04. Spend your time
+       accordingly.</p>
+  </div>
+
+  <h3>ΔG°′ tells you where equilibrium is; ΔG tells you which way the reaction is going right now</h3>
+  <p>This distinction is worth more marks than any single fact on the page, because examiners build distractors
+     out of it. A tabulated ΔG°′ is a statement about a hypothetical solution in which everything is at 1 M. No
+     cell has ever looked like that. What decides the direction of a real reaction is ΔG, and ΔG contains the
+     concentration term.</p>
+  <p>The cleanest illustration is the last step of the citric acid cycle. Malate dehydrogenase catalyses</p>
+  <div class="fx"><span class="fx__eq">malate + NAD⁺ → oxaloacetate + NADH + H⁺   ΔG°′ = +29.7 kJ·mol⁻¹</span><span class="fx__tag">strongly endergonic under standard conditions — K′<sub>eq</sub> ≈ 6 × 10⁻⁶</span></div>
+  <p>Under standard conditions almost none of it would proceed. In a mitochondrion it proceeds continuously,
+     every second of your life, because citrate synthase consumes oxaloacetate the instant it appears and holds
+     it at a few micromolar. Push [oxaloacetate] down by five orders of magnitude and the <span class="fi">RT ln Q</span>
+     term goes about −30 kJ·mol⁻¹ negative, which is exactly enough. <strong>A large positive ΔG°′ is not a
+     barrier; it is a statement about how far from equilibrium the cell must hold the products.</strong></p>
+
+  <h3>Coupling requires a shared intermediate, and ΔG°′ values add</h3>
+  <p>Phosphorylating glucose is uphill:</p>
+  <div class="fx-grid">
+    <div class="fx"><span class="fx__eq">glucose + P<sub>i</sub> → glucose 6-phosphate + H₂O   ΔG°′ = +13.8</span><span class="fx__tag">K′<sub>eq</sub> = 3.8 × 10⁻³ — essentially nothing at equilibrium</span></div>
+    <div class="fx"><span class="fx__eq">ATP + H₂O → ADP + P<sub>i</sub>   ΔG°′ = −30.5</span><span class="fx__tag">the willing reaction</span></div>
+    <div class="fx fx--hero"><span class="fx__eq">glucose + ATP → glucose 6-phosphate + ADP   ΔG°′ = −16.7</span><span class="fx__tag">sum of the two; K′<sub>eq</sub> = 845, a shift of 2.2 × 10⁵</span></div>
+  </div>
+  <p>Notice what hexokinase does <em>not</em> do. It does not hydrolyse ATP and then use the released heat. It
+     transfers the γ-phosphoryl group directly onto glucose in one active site. The shared intermediate is the
+     <strong>phosphoryl group itself</strong>, and there is never any free P<sub>i</sub>. This is the general
+     pattern: biological coupling is group transfer, not heat transfer.</p>
+
+  <h3>Why ATP hydrolysis is exergonic — and why "high-energy bond" is a misnomer</h3>
+  <p>Nothing is stored inside the P–O–P linkage. What is large is the free energy of the <em>reaction</em>, and
+     three product-side effects account for it:</p>
+  <ol>
+    <li><strong>Electrostatic relief.</strong> At pH 7 the triphosphate tail carries three to four negative
+        charges crowded within a few ångströms. Splitting it lets them move apart.</li>
+    <li><strong>Resonance stabilisation of P<sub>i</sub>.</strong> Free inorganic phosphate spreads its charge
+        over four equivalent oxygens. The same phosphorus locked in an anhydride cannot; the two ends compete
+        for the bridging oxygen's electrons.</li>
+    <li><strong>Solvation and ionisation.</strong> Two separate products are hydrated better than one joined
+        molecule, and the proton released is mopped up at pH 7.</li>
+  </ol>
+  <p>Add a fourth, purely kinetic point that matters biologically: the reaction is enormously favourable and
+     also enormously <em>slow</em> without a catalyst. ATP is stable in a test tube for days. That combination —
+     thermodynamically poised, kinetically inert — is precisely what a controllable energy currency requires.</p>
+
+  <h3>The ranking is the whole point</h3>
+  <p>Rank compounds by their <strong>phosphoryl-group transfer potential</strong>, which is just the negative of
+     the ΔG°′ of hydrolysis. ATP sits in the middle:</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Standard free energies of hydrolysis of phosphorylated compounds and thioesters</caption>
+      <thead><tr><th>Compound</th><th>ΔG°′ of hydrolysis (kJ·mol⁻¹)</th><th>Where it appears</th></tr></thead>
+      <tbody>
+        <tr><td>Phosphoenolpyruvate</td><td class="num">−61.9</td><td>Glycolysis step 10 → makes ATP</td></tr>
+        <tr><td>1,3-Bisphosphoglycerate</td><td class="num">−49.3</td><td>Glycolysis step 7 → makes ATP</td></tr>
+        <tr><td>ATP → AMP + PP<sub>i</sub></td><td class="num">−45.6</td><td>Activation steps that must be irreversible</td></tr>
+        <tr><td>Phosphocreatine</td><td class="num">−43.0</td><td>Muscle ~P buffer → recharges ATP in seconds</td></tr>
+        <tr><td>Succinyl-CoA (thioester)</td><td class="num">−36.0</td><td>TCA step 5 → makes GTP</td></tr>
+        <tr><td>Acetyl-CoA (thioester)</td><td class="num">−31.4</td><td>Drives citrate synthase</td></tr>
+        <tr><td><strong>ATP → ADP + P<sub>i</sub></strong></td><td class="num"><strong>−30.5</strong></td><td><strong>The currency — deliberately mid-table</strong></td></tr>
+        <tr><td>Glucose 1-phosphate</td><td class="num">−20.9</td><td>Glycogen breakdown product</td></tr>
+        <tr><td>PP<sub>i</sub> → 2 P<sub>i</sub></td><td class="num">−19.2</td><td>The second pull on activation reactions</td></tr>
+        <tr><td>Fructose 6-phosphate</td><td class="num">−15.9</td><td>Glycolysis intermediate</td></tr>
+        <tr><td>Glucose 6-phosphate</td><td class="num">−13.8</td><td>Made <em>by</em> ATP</td></tr>
+        <tr><td>Glycerol 3-phosphate</td><td class="num">−9.2</td><td>Made <em>by</em> ATP</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Everything above ATP in that list has enough transfer potential to drive the phosphorylation of ADP;
+     everything below it has to be phosphorylated <em>by</em> ATP.
+     If ATP sat at the top it would be a superb store and a useless currency, because nothing could recharge it.
+     <strong>ATP is a currency precisely because it is not the richest compound in the cell.</strong> Note also
+     that two entries are not phosphates at all: the thioesters. A thioester is high-energy for a related reason
+     — sulfur's 3p orbitals overlap poorly with carbon's 2p, so the C=O of a thioester gets far less resonance
+     donation than an ordinary ester does, and hydrolysis therefore releases much more. That single fact is why
+     acetyl-CoA can drive citrate synthase and why succinyl-CoA can pay for a GTP.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three phrasings that lose marks</p>
+    <p><strong>"ATP stores energy in its high-energy bonds."</strong> Bonds cost energy to break, always. The
+       large negative value belongs to the overall reaction, products included.<br>
+       <strong>"ΔG°′ is negative, so the reaction goes forward in the cell."</strong> Not necessarily — check Q.
+       And the converse trap is commoner: a positive ΔG°′ does not forbid a reaction.<br>
+       <strong>"ATP is the cell's energy store."</strong> It is the currency; the store is glycogen and
+       triacylglycerol. A resting adult holds only a few tens of grams of ATP at any instant and turns over
+       something on the order of its own body mass per day.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — what coupling actually buys you</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">For <span class="fi">glucose + P<sub>i</sub> → glucose 6-phosphate + H₂O</span>,
+      ΔG°′ = +13.8 kJ·mol⁻¹. (a) What is K′<sub>eq</sub> at 25 °C? (b) What is K′<sub>eq</sub> for the
+      hexokinase reaction, in which the phosphoryl group comes from ATP? (c) By what factor has coupling shifted
+      the equilibrium? Take R = 8.315 × 10⁻³ kJ·mol⁻¹·K⁻¹, T = 298 K.</p>
+    <ol>
+      <li><strong>(a)</strong> <span class="fi">K′<sub>eq</sub> = e<sup>−ΔG°′/RT</sup> = e<sup>−13.8/(0.008315 × 298)</sup> = e<sup>−5.57</sup></span>.</li>
+      <li><span class="fi">K′<sub>eq</sub> = 3.8 × 10⁻³</span> — at equilibrium fewer than four glucose molecules
+          in a thousand carry a phosphate. Useless.</li>
+      <li><strong>(b)</strong> Add the two ΔG°′ values, because the reactions share P<sub>i</sub>:
+          <span class="fi">+13.8 + (−30.5) = −16.7 kJ·mol⁻¹</span>.</li>
+      <li><span class="fi">K′<sub>eq</sub> = e<sup>+16.7/2.478</sup> = e<sup>6.74</sup> = 8.4 × 10²</span>.</li>
+      <li><strong>(c)</strong> <span class="fi">845 ÷ 3.8 × 10⁻³ = 2.2 × 10⁵</span>.</li>
+      <li>Sanity check on the shortcut: 5.71 kJ·mol⁻¹ buys one factor of ten at 25 °C, so 30.5 kJ·mol⁻¹ should
+          buy about <span class="fi">30.5/5.71 = 5.3</span> orders of magnitude. It does: 2.2 × 10⁵.</li>
+    </ol>
+    <span class="wex__ans">(a) 3.8 × 10⁻³ · (b) 8.4 × 10² · (c) a 2.2 × 10⁵-fold shift</span>
+    </div>
+  </details>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — the real ΔG of ATP hydrolysis in a cell</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">In a human erythrocyte the measured concentrations are
+      [ATP] = 2.25 mM, [ADP] = 0.25 mM, [P<sub>i</sub>] = 1.65 mM. Calculate ΔG for ATP hydrolysis at 37 °C,
+      given ΔG°′ = −30.5 kJ·mol⁻¹.</p>
+    <ol>
+      <li>Write Q with concentrations in <strong>molar</strong>, water omitted (it is the solvent, already in the
+          prime):
+          <span class="fi">Q = ([ADP][P<sub>i</sub>]) / [ATP] = (2.5 × 10⁻⁴ × 1.65 × 10⁻³) / (2.25 × 10⁻³)</span>.</li>
+      <li><span class="fi">Q = 1.83 × 10⁻⁴</span>. It is far below 1 because the cell keeps ATP high and its
+          products low — that is the whole point of a phosphorylation potential.</li>
+      <li><span class="fi">RT = 0.008315 × 310 = 2.578 kJ·mol⁻¹</span>;
+          <span class="fi">ln(1.83 × 10⁻⁴) = −8.60</span>.</li>
+      <li><span class="fi">RT ln Q = 2.578 × (−8.60) = −22.2 kJ·mol⁻¹</span>.</li>
+      <li><span class="fi">ΔG = −30.5 − 22.2 = −52.7 kJ·mol⁻¹</span>.</li>
+      <li>Read the meaning: the tabulated −30.5 understates the driving force by about 70 %. Every ATP-consuming
+          process in the cell is working against a real ΔG<sub>p</sub> nearer −50 to −65 kJ·mol⁻¹, and that is
+          the number to use in §&nbsp;07 when asking whether four protons can pay for one ATP.</li>
+    </ol>
+    <span class="wex__ans">ΔG ≈ −52.7 kJ·mol⁻¹ · about 1.7 × the standard value</span>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Redox potentials: volts into kilojoules</h2>
+
+  <p class="idea"><b>The idea</b>Molecules differ in how tightly they hold their outermost electrons. Put a loose holder next to a greedy
+     grabber and electrons move, and moving charge downhill releases energy — exactly as it does in a battery.
+     Chemists measure that greed as a voltage, so a table of voltages is really a table of how much energy each
+     electron transfer can pay out. One short equation converts the volts into kilojoules, and once you have it,
+     the whole respiratory chain becomes a single calculation done in three instalments.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Standard reduction potential, E°′</dt>
+      <dd>The voltage a half-reaction generates against the standard hydrogen electrode when every species is at
+          1 M, 25 °C, pH 7. <strong>Always written as a reduction</strong> — as electrons being accepted. A more
+          positive E°′ means a greater appetite for electrons.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ΔG°′ = −nF ΔE°′   with   ΔE°′ = E°′<sub>(acceptor)</sub> − E°′<sub>(donor)</sub></span>
+      <span class="fx__tag">the single most useful equation on this page; get the subtraction the right way round</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Conjugate redox pair</dt>
+          <dd>The oxidised and reduced forms of one species, e.g. NAD⁺/NADH, written together because a potential
+              belongs to the pair and never to one member alone.</dd>
+          <dt>Electron donor / acceptor</dt>
+          <dd>The donor is oxidised, the acceptor is reduced. Electrons flow spontaneously from the pair with the
+              <strong>more negative</strong> E°′ to the pair with the more positive E°′ — which is why NADH
+              (−0.320 V) reduces oxygen (+0.816 V) and never the reverse.</dd>
+          <dt>Actual versus standard potential</dt>
+          <dd>Like ΔG, E is concentration-dependent (Nernst). A matrix NADH/NAD⁺ ratio far from 1 shifts the real
+              potential, which is why complex I can run <em>backwards</em> under some conditions.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">E = E°′ + <span class="mf" role="img" aria-label="R T over n F"><span>RT</span><span>nF</span></span> ln <span class="mf" role="img" aria-label="concentration of electron acceptor over concentration of electron donor"><span>[oxidised]</span><span>[reduced]</span></span></span><span class="fx__tag">the Nernst equation, in the biochemists' sign convention</span></div>
+          <div class="fx"><span class="fx__eq">1 V across 2 electrons  =  −193 kJ·mol⁻¹</span><span class="fx__tag">2 × 96.485; a fast mental check on any answer</span></div>
+          <div class="fx"><span class="fx__eq">NADH → ½O₂:  ΔE°′ = 0.816 − (−0.320) = 1.136 V  →  ΔG°′ = −219 kJ·mol⁻¹</span><span class="fx__tag">the total budget for one NADH; about 7 ATP's worth at standard state</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>E°′</b><span>standard reduction potential at pH 7, volts (V)</span></div>
+          <div><b>ΔE°′</b><span>potential difference across a transfer, V</span></div>
+          <div><b>n</b><span>number of electrons transferred, dimensionless</span></div>
+          <div><b>F</b><span>Faraday constant, 96 485 C·mol⁻¹ = 96.485 kJ·V⁻¹·mol⁻¹</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change, kJ·mol⁻¹</span></div>
+          <div><b>E</b><span>actual potential at real concentrations, V</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>The sign convention is where marks are lost, so fix it with a sentence you can recite: <strong>acceptor minus
+     donor</strong>. If electrons are flowing from NADH to ubiquinone, the acceptor is ubiquinone (+0.045) and
+     the donor pair is NAD⁺/NADH (−0.320), so ΔE°′ = 0.045 − (−0.320) = +0.365 V, positive, and ΔG°′ comes out
+     negative because of the minus sign in front of <em>nF</em>. <strong>A spontaneous electron transfer always
+     has ΔE°′ positive and ΔG°′ negative.</strong> If your answer has both positive, you subtracted backwards.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 740 470" role="img" aria-label="A redox tower: a vertical scale of standard reduction potential from minus 0.4 volts at the top to plus 0.8 volts at the bottom, with electron carriers plotted as dots. NAD plus over NADH sits near the top at minus 0.32 volts, ubiquinone at plus 0.045 volts, cytochrome c at plus 0.254 volts and the oxygen water couple at the bottom at plus 0.816 volts. Fumarate over succinate is marked just above ubiquinone, showing why succinate dehydrogenase feeds the chain in the middle. Three shaded bars on the right mark the three large free-energy drops spanned by complex one, complex three and complex four, labelled minus 70, minus 40 and minus 109 kilojoules per mole." style="font-family:var(--sans)">
+      <rect x="0" y="0" width="740" height="470" fill="none"/>
+      <!-- axis -->
+      <line x1="96" y1="50" x2="96" y2="430" stroke="var(--ink-faint)" stroke-width="1.5"/>
+      <g font-size="11" fill="var(--ink-faint)" text-anchor="end">
+        <line x1="90" y1="65.7" x2="96" y2="65.7" stroke="var(--ink-faint)" stroke-width="1.2"/><text x="86" y="69.5">−0.4</text>
+        <line x1="90" y1="122.9" x2="96" y2="122.9" stroke="var(--ink-faint)" stroke-width="1.2"/><text x="86" y="126.7">−0.2</text>
+        <line x1="90" y1="180" x2="96" y2="180" stroke="var(--ink-faint)" stroke-width="1.2"/><text x="86" y="183.8">0.0</text>
+        <line x1="90" y1="237.1" x2="96" y2="237.1" stroke="var(--ink-faint)" stroke-width="1.2"/><text x="86" y="240.9">+0.2</text>
+        <line x1="90" y1="294.3" x2="96" y2="294.3" stroke="var(--ink-faint)" stroke-width="1.2"/><text x="86" y="298.1">+0.4</text>
+        <line x1="90" y1="351.4" x2="96" y2="351.4" stroke="var(--ink-faint)" stroke-width="1.2"/><text x="86" y="355.2">+0.6</text>
+        <line x1="90" y1="408.6" x2="96" y2="408.6" stroke="var(--ink-faint)" stroke-width="1.2"/><text x="86" y="412.4">+0.8</text>
+      </g>
+      <text x="34" y="240" font-size="12" font-weight="700" fill="var(--ink-soft)" transform="rotate(-90 34 240)" text-anchor="middle">E°′ / volts</text>
+      <text x="118" y="42" font-size="11.5" fill="var(--ink-faint)">electrons are held loosely up here — high energy</text>
+      <text x="118" y="450" font-size="11.5" fill="var(--ink-faint)">electrons are held tightly down here — low energy</text>
+
+      <!-- carriers -->
+      <g font-size="11.5" fill="var(--ink)">
+        <circle cx="150" cy="71.4" r="5" fill="var(--accent-3)"/><text x="164" y="75">α-ketoglutarate / isocitrate  −0.38</text>
+        <circle cx="150" cy="88.6" r="6.5" fill="var(--accent)"/><text x="164" y="92" font-weight="700">NAD⁺ / NADH  −0.320</text>
+        <circle cx="150" cy="117.4" r="5" fill="var(--ink-faint)"/><text x="164" y="121">free FAD / FADH₂  −0.219</text>
+        <circle cx="150" cy="132.6" r="5" fill="var(--accent-3)"/><text x="164" y="136">oxaloacetate / malate  −0.166</text>
+        <circle cx="150" cy="188.9" r="5.5" fill="var(--accent-2)"/><text x="164" y="185" font-weight="700">fumarate / succinate  +0.031</text>
+        <circle cx="150" cy="192.9" r="6.5" fill="var(--hbond)"/><text x="164" y="206" font-weight="700">ubiquinone / ubiquinol (Q)  +0.045</text>
+        <circle cx="150" cy="202" r="4.5" fill="var(--ink-faint)"/><text x="164" y="221">cytochrome b  +0.077</text>
+        <circle cx="150" cy="242.9" r="4.5" fill="var(--ink-faint)"/><text x="164" y="240">cytochrome c₁  +0.22</text>
+        <circle cx="150" cy="252.6" r="6.5" fill="var(--vdw)"/><text x="164" y="257" font-weight="700">cytochrome c  +0.254</text>
+        <circle cx="150" cy="280" r="4.5" fill="var(--ink-faint)"/><text x="164" y="277">cytochrome a₃ · Cu<tspan baseline-shift="sub" font-size="8">B</tspan>  +0.35</text>
+        <circle cx="150" cy="413.3" r="7" fill="var(--bad)"/><text x="164" y="417" font-weight="700">½O₂ + 2H⁺ / H₂O  +0.816</text>
+      </g>
+      <!-- the falling electron -->
+      <path d="M 138,88.6 C 118,120 118,165 138,192.9" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+      <path d="M 138,192.9 C 118,215 118,235 138,252.6" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+      <path d="M 138,252.6 C 112,300 112,370 138,413.3" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+      <polygon points="134,406 142,406 138,415" fill="var(--accent)"/>
+
+      <!-- drop bars -->
+      <g>
+        <rect x="512" y="88.6" width="20" height="104.3" rx="5" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5"/>
+        <text x="540" y="128" font-size="12" font-weight="700" fill="var(--accent)">Complex I</text>
+        <text x="540" y="144" font-size="11" fill="var(--ink-soft)">ΔE°′ = 0.365 V → −70 kJ·mol⁻¹</text>
+        <text x="540" y="159" font-size="11" fill="var(--ink-faint)">pumps 4 H⁺</text>
+
+        <rect x="512" y="192.9" width="20" height="59.7" rx="5" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5"/>
+        <text x="540" y="212" font-size="12" font-weight="700" fill="var(--accent)">Complex III</text>
+        <text x="540" y="228" font-size="11" fill="var(--ink-soft)">ΔE°′ = 0.209 V → −40 kJ·mol⁻¹</text>
+        <text x="540" y="243" font-size="11" fill="var(--ink-faint)">moves 4 H⁺ (Q cycle)</text>
+
+        <rect x="512" y="252.6" width="20" height="160.7" rx="5" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5"/>
+        <text x="540" y="322" font-size="12" font-weight="700" fill="var(--accent)">Complex IV</text>
+        <text x="540" y="338" font-size="11" fill="var(--ink-soft)">ΔE°′ = 0.562 V → −109 kJ·mol⁻¹</text>
+        <text x="540" y="353" font-size="11" fill="var(--ink-faint)">pumps 2 H⁺</text>
+      </g>
+      <!-- complex II annotation -->
+      <path d="M 300,188.9 L 470,188.9" stroke="var(--accent-2)" stroke-width="1.4" stroke-dasharray="3 3"/>
+      <text x="474" y="177" font-size="11" font-weight="700" fill="var(--accent-2)">Complex II enters here</text>
+      <text x="474" y="192" font-size="10.5" fill="var(--ink-faint)">only 0.014 V to Q → −2.7 kJ·mol⁻¹, no pumping</text>
+    </svg>
+    <figcaption>A redox tower is drawn with the <em>negative</em> potentials at the top, because that is where
+      electrons carry the most free energy. The dashed line is the path of one electron pair from NADH to
+      oxygen; the three bars are the three drops big enough to pump protons, and their lengths are drawn to the
+      same scale as the axis, so the visual proportions are the energy proportions. The critical observation is
+      the near-coincidence of fumarate/succinate (+0.031) with ubiquinone (+0.045): succinate is simply not a
+      strong enough reductant to enter at complex I, which is the whole reason FADH₂-linked substrates yield
+      less ATP.</figcaption>
+  </figure>
+
+  <h3>Why NADH and FADH₂ are worth different amounts</h3>
+  <p>Not because "FADH₂ carries less energy" in some intrinsic sense, but because of <em>where each one is able
+     to hand its electrons over</em>. NADH is a freely diffusible, two-electron (hydride) carrier with E°′ =
+     −0.320 V, comfortably above ubiquinone, so it can reduce complex I and its electrons traverse all three
+     pumping sites: 10 H⁺. Succinate sits at +0.031 V, essentially level with Q, so its electrons can only be
+     delivered <em>to</em> the Q pool and skip complex I entirely: 6 H⁺. The 2.5-versus-1.5 ATP difference is
+     nothing more than 10 ÷ 4 versus 6 ÷ 4.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">"FAD's E°′ is −0.219 V, so how can it accept electrons from succinate at +0.031 V?"</p>
+    <p>Because −0.219 V is the potential of <strong>free</strong> FAD in solution, and no flavin in the
+      respiratory chain is free. A flavin's potential is tuned by the protein around it across a range of about
+      −0.4 V to +0.06 V. The FAD of succinate dehydrogenase is <em>covalently</em> attached to a histidine and
+      its protein raises its potential to near 0 V, which is exactly what is needed to sit between succinate and
+      Q. The same logic applies to iron–sulfur clusters, whose potentials span roughly −0.7 to +0.4 V despite
+      being built from the same iron and sulfur, and to the hemes of the cytochromes, which run from +0.077 V
+      (cyt b) to +0.35 V (cyt a₃) with chemically similar iron–porphyrins. <strong>A tabulated E°′ describes a
+      cofactor in a beaker; the protein decides its real value.</strong></p>
+  </div>
+
+  <h3>NAD⁺ and NADP⁺: same chemistry, opposite jobs</h3>
+  <p>Their potentials are almost identical (−0.320 and −0.324 V) and they differ by one phosphate on the 2′-OH of
+     the adenosine ribose — a group that takes no part in the chemistry at all. It is a <strong>recognition
+     handle</strong>: dehydrogenases select one or the other, and cells therefore maintain the two pools in
+     opposite redox states. NAD⁺ is kept oxidised (cytosolic NAD⁺/NADH ≈ 700) so it is always ready to accept
+     electrons from catabolism; NADPH is kept reduced (NADP⁺/NADPH ≈ 0.01) so it is always ready to donate them
+     to biosynthesis and to antioxidant defence. Same voltage, opposite direction of flow, enforced entirely by
+     concentration. This is the Nernst equation doing physiology.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — the whole chain, and then in three instalments</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">Using E°′(NAD⁺/NADH) = −0.320 V, E°′(Q/QH₂) = +0.045 V,
+      E°′(cyt c Fe³⁺/Fe²⁺) = +0.254 V, E°′(½O₂/H₂O) = +0.816 V and F = 96.485 kJ·V⁻¹·mol⁻¹, find ΔG°′ for the
+      complete oxidation of one NADH by oxygen, and for each of complexes I, III and IV separately. Then check
+      whether the parts sum to the whole.</p>
+    <ol>
+      <li><strong>Whole span.</strong> Acceptor − donor: <span class="fi">ΔE°′ = 0.816 − (−0.320) = +1.136 V</span>.
+          Two electrons, so <span class="fi">ΔG°′ = −2 × 96.485 × 1.136 = −219 kJ·mol⁻¹</span>.</li>
+      <li><strong>Complex I</strong> (NADH → Q): <span class="fi">ΔE°′ = 0.045 + 0.320 = 0.365 V</span>;
+          <span class="fi">ΔG°′ = −2 × 96.485 × 0.365 = −70.4 kJ·mol⁻¹</span>.</li>
+      <li><strong>Complex III</strong> (QH₂ → cyt c): <span class="fi">ΔE°′ = 0.254 − 0.045 = 0.209 V</span>;
+          <span class="fi">ΔG°′ = −40.3 kJ·mol⁻¹</span>.</li>
+      <li><strong>Complex IV</strong> (cyt c → O₂): <span class="fi">ΔE°′ = 0.816 − 0.254 = 0.562 V</span>;
+          <span class="fi">ΔG°′ = −108.4 kJ·mol⁻¹</span>.</li>
+      <li><strong>Check:</strong> <span class="fi">70.4 + 40.3 + 108.4 = 219.1</span> ✓ (the last digit is rounding
+          in E°′). Free energy is a state
+          function, so it had to add up — but doing the check catches sign errors instantly.</li>
+      <li><strong>Now complex II for contrast</strong> (succinate → Q):
+          <span class="fi">ΔE°′ = 0.045 − 0.031 = 0.014 V</span>, so
+          <span class="fi">ΔG°′ = −2 × 96.485 × 0.014 = −2.7 kJ·mol⁻¹</span>. Moving a single proton against a
+          typical gradient costs about 19 kJ·mol⁻¹ (§&nbsp;07). Complex II is short by a factor of seven — which
+          is <em>why</em> it pumps nothing. The answer to "why does complex II not pump?" is a number, not a
+          fact to be memorised.</li>
+    </ol>
+    <span class="wex__ans">total −219 kJ·mol⁻¹ = I (−70) + III (−40) + IV (−109) · complex II only −2.7</span>
+    </div>
+  </details>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the full table of standard reduction potentials, and how to use it as a lookup</summary>
+    <div class="disc__body">
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Standard reduction potentials of biologically important half-reactions at pH 7</caption>
+      <thead><tr><th>Half-reaction (written as a reduction)</th><th>E°′ (V)</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>2 H⁺ + 2 e⁻ → H₂</td><td class="num">−0.414</td><td>Reference point for "strongly reducing"</td></tr>
+        <tr><td>α-Ketoglutarate + CO₂ + 2 H⁺ + 2 e⁻ → isocitrate</td><td class="num">−0.38</td><td>Why isocitrate dehydrogenase is comfortably exergonic</td></tr>
+        <tr><td>NADP⁺ + H⁺ + 2 e⁻ → NADPH</td><td class="num">−0.324</td><td>Kept <em>reduced</em>: the biosynthetic donor</td></tr>
+        <tr><td><strong>NAD⁺ + H⁺ + 2 e⁻ → NADH</strong></td><td class="num"><strong>−0.320</strong></td><td>Kept <em>oxidised</em>: the catabolic acceptor</td></tr>
+        <tr><td>Free FAD + 2 H⁺ + 2 e⁻ → FADH₂</td><td class="num">−0.219</td><td>Bound flavins range −0.4 to +0.06</td></tr>
+        <tr><td>Acetaldehyde + 2 H⁺ + 2 e⁻ → ethanol</td><td class="num">−0.197</td><td>Alcohol dehydrogenase</td></tr>
+        <tr><td>Pyruvate + 2 H⁺ + 2 e⁻ → lactate</td><td class="num">−0.185</td><td>Anaerobic NAD⁺ regeneration</td></tr>
+        <tr><td>Oxaloacetate + 2 H⁺ + 2 e⁻ → malate</td><td class="num">−0.166</td><td>Malate dehydrogenase, both shuttles</td></tr>
+        <tr><td>Fumarate + 2 H⁺ + 2 e⁻ → succinate</td><td class="num">+0.031</td><td>Complex II's substrate couple</td></tr>
+        <tr><td>Ubiquinone + 2 H⁺ + 2 e⁻ → ubiquinol</td><td class="num">+0.045</td><td>The chain's junction box</td></tr>
+        <tr><td>Cytochrome b (Fe³⁺ → Fe²⁺)</td><td class="num">+0.077</td><td>Two hemes, b<sub>L</sub> and b<sub>H</sub>, in complex III</td></tr>
+        <tr><td>Cytochrome c₁</td><td class="num">+0.22</td><td>Complex III output</td></tr>
+        <tr><td>Cytochrome c</td><td class="num">+0.254</td><td>Mobile, one electron at a time</td></tr>
+        <tr><td>Cytochrome a</td><td class="num">+0.29</td><td>Complex IV</td></tr>
+        <tr><td>Cytochrome a₃ · Cu<sub>B</sub></td><td class="num">+0.35</td><td>Where O₂ binds — and where cyanide binds</td></tr>
+        <tr><td>½O₂ + 2 H⁺ + 2 e⁻ → H₂O</td><td class="num">+0.816</td><td>The terminal sink</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-bottom:0">Used as a lookup, this table answers a large family of questions in one line each.
+     <em>Will lactate dehydrogenase run towards lactate under standard conditions?</em> Acceptor pyruvate
+     (−0.185) minus donor NAD⁺/NADH (−0.320) = +0.135 V, so ΔG°′ = −26.1 kJ·mol⁻¹ — yes.
+     <em>Can NADH reduce fumarate?</em> 0.031 + 0.320 = +0.351 V → −67.7 kJ·mol⁻¹ — yes, and some parasites live
+     on exactly that reaction, which is why fumarate reductase is a drug target.
+     <em>Can ubiquinol reduce NAD⁺?</em> ΔE°′ = −0.365 V, ΔG°′ = +70.4 kJ·mol⁻¹ — not spontaneously, but if a
+     large proton-motive force pushes on complex I it happens anyway. That is <strong>reverse electron
+     transport</strong>, and it is a major source of superoxide in ischaemia–reperfusion injury.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Pyruvate dehydrogenase: the one-way gate</h2>
+
+  <p class="idea"><b>The idea</b>Sugar arrives at the mitochondrion as a three-carbon molecule; the cycle that will burn it only accepts a
+     two-carbon one. A single enormous assembly does the conversion: it snips off one carbon as carbon dioxide,
+     oxidises what is left, and hands the product over on a carrier. Two things about it matter more than the
+     mechanism. It is completely irreversible, which is why the carbons of an ordinary fatty acid can never come
+     back as sugar. And it is
+     switched on and off by phosphorylation, which makes it the point where hormones decide whether the body is
+     burning carbohydrate or sparing it.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; reaction</p>
+    <dl class="def">
+      <dt>Pyruvate dehydrogenase complex (PDH, PDC)</dt>
+      <dd>A multienzyme assembly of three catalytic activities (E1, E2, E3) and five cofactors that performs
+          <strong>oxidative decarboxylation</strong> — losing CO₂ and generating a thioester in one committed
+          step. It is <em>not</em> part of the citric acid cycle; it is the reaction that feeds it.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">pyruvate + CoA-SH + NAD⁺ → acetyl-CoA + CO₂ + NADH + H⁺   ΔG°′ = −33.4 kJ·mol⁻¹</span>
+      <span class="fx__tag">strongly exergonic and physiologically irreversible — the point of no return for carbohydrate</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>E1 — pyruvate dehydrogenase (decarboxylase)</dt>
+          <dd>Uses <strong>thiamine pyrophosphate (TPP)</strong>. Its thiazolium C2 loses a proton to give a
+              carbanion (ylide) that attacks pyruvate's keto carbon; CO₂ leaves and the resulting carbanion is
+              stabilised by the positively charged ring. Vitamin B<sub>1</sub>.</dd>
+          <dt>E2 — dihydrolipoyl transacetylase</dt>
+          <dd>Carries a <strong>lipoyl</strong> group amide-linked to a lysine, giving a ~14 Å swinging arm. The
+              lipoamide disulfide oxidises the two-carbon unit to an acetyl group and then passes it to
+              <strong>coenzyme A</strong> (vitamin B<sub>5</sub>, pantothenate). Forms the structural core: 60
+              copies in mammals, arranged as a pentagonal dodecahedron.</dd>
+          <dt>E3 — dihydrolipoyl dehydrogenase</dt>
+          <dd>Reoxidises the dihydrolipoamide using tightly bound <strong>FAD</strong> (B<sub>2</sub>), then
+              passes the electrons to <strong>NAD⁺</strong> (B<sub>3</sub>, niacin). The same E3 protein is
+              shared with α-ketoglutarate dehydrogenase, the branched-chain complex and the glycine cleavage
+              system, so an E3 mutation disables four pathways at once.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">five cofactors: TPP · lipoamide · CoA-SH · FAD · NAD⁺</span><span class="fx__tag">B₁ · lipoate · B₅ · B₂ · B₃ — four of the five are vitamins</span></div>
+          <div class="fx"><span class="fx__eq">TPP and lipoamide stay bound · CoA and NAD⁺ come and go</span><span class="fx__tag">prosthetic groups versus cosubstrates — a standard one-mark distinction</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>TPP</b><span>thiamine pyrophosphate, prosthetic group of E1</span></div>
+          <div><b>CoA-SH</b><span>coenzyme A, the acetyl carrier (cosubstrate)</span></div>
+          <div><b>PDK</b><span>pyruvate dehydrogenase kinase — switches PDH off</span></div>
+          <div><b>PDP</b><span>PDH phosphatase — switches PDH on</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change, kJ·mol⁻¹</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>The mechanism, in the order the cofactors appear</h3>
+  <p>Five steps, five cofactors, in sequence — which is why the mnemonic works and why a question about "the
+     third cofactor" has a defensible answer:</p>
+  <ol>
+    <li><strong>TPP</strong> attacks pyruvate; CO₂ leaves, giving hydroxyethyl-TPP.</li>
+    <li><strong>Lipoamide</strong> (oxidised, a cyclic disulfide) accepts the two-carbon unit and is reduced in
+        the process — this is the actual oxidation step. Product: acetyl-dihydrolipoamide.</li>
+    <li><strong>CoA-SH</strong> takes the acetyl group by transthioesterification, releasing acetyl-CoA and
+        leaving dihydrolipoamide.</li>
+    <li><strong>FAD</strong> on E3 reoxidises the dihydrolipoamide back to the disulfide.</li>
+    <li><strong>NAD⁺</strong> reoxidises FADH₂ and leaves as NADH — the only product that goes to the chain.</li>
+  </ol>
+  <p>The reason for building all this into one particle is <strong>substrate channelling</strong>: the lipoyl arm
+     swings between the three active sites without ever letting the intermediate into free solution. Nothing is
+     lost by diffusion, nothing side-reacts, and the whole sequence runs at the rate of the slowest step rather
+     than at the rate of three separate diffusive encounters.</p>
+
+  <div class="mnemo">
+    <h4>The five cofactors, in order</h4>
+    <p><strong>T</strong>ender <strong>L</strong>oving <strong>C</strong>are <strong>F</strong>or
+       <strong>N</strong>ancy → <strong>T</strong>PP, <strong>L</strong>ipoamide, <strong>C</strong>oA,
+       <strong>F</strong>AD, <strong>N</strong>AD⁺. And the vitamins in the same order: B₁, (lipoate — not a
+       vitamin), B₅, B₂, B₃.</p>
+  </div>
+
+  <h3>Regulation: two layers, both reading the same thing</h3>
+  <p>PDH is regulated more tightly than almost any enzyme in metabolism, because switching it on commits
+     carbohydrate irreversibly to oxidation.</p>
+  <ul>
+    <li><strong>Product inhibition.</strong> Acetyl-CoA and NADH inhibit E2 and E3 directly. Both accumulate when
+        fatty acid oxidation is running hard — so β-oxidation switches PDH off, which is precisely the
+        glucose-sparing behaviour you want during fasting.</li>
+    <li><strong>Covalent modification.</strong> <strong>PDH kinase</strong> phosphorylates three serines on E1α
+        and inactivates the complex. PDK is <em>activated</em> by high ratios of NADH/NAD⁺, acetyl-CoA/CoA and
+        ATP/ADP — the same signals, one layer up. <strong>PDH phosphatase</strong> reverses it and is activated
+        by <strong>Ca²⁺</strong> and by insulin. Pyruvate itself inhibits the kinase, so plenty of substrate
+        keeps the enzyme on.</li>
+  </ul>
+  <p>Read the logic rather than the list: the complex asks one question — <em>does this cell need to oxidise
+     carbohydrate right now?</em> — and every input is a proxy for the answer. Ca²⁺ is the most elegant of them.
+     Muscle contraction releases Ca²⁺; Ca²⁺ simultaneously activates PDH phosphatase, isocitrate dehydrogenase
+     and α-ketoglutarate dehydrogenase (§&nbsp;04). The signal that says "start contracting" is the same signal
+     that says "start making ATP", with no intervening messenger.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The clinical hooks that get written into vignettes</p>
+    <p><strong>Thiamine deficiency.</strong> No TPP means E1 cannot work, and neither can α-ketoglutarate
+       dehydrogenase, transketolase (pentose phosphate pathway) or the branched-chain complex. Pyruvate backs up
+       and is reduced to lactate: <em>lactic acidosis with a normal or high pyruvate</em>. Clinically this is
+       wet and dry beriberi, and Wernicke encephalopathy (confusion, ophthalmoplegia, ataxia) in chronic alcohol
+       use or hyperemesis. <strong>Giving intravenous glucose before thiamine can precipitate it</strong>,
+       because the glucose load demands exactly the enzyme that has no cofactor — a favourite vignette.<br>
+       <strong>Arsenite (As³⁺)</strong> chelates the two adjacent thiols of dihydrolipoamide, forming a stable
+       ring and locking E2. It therefore knocks out every lipoamide-dependent complex at once. (Arsen<em>ate</em>,
+       As⁵⁺, is different: it substitutes for phosphate in glycolysis and uncouples substrate-level
+       phosphorylation.)<br>
+       <strong>Inherited PDH deficiency</strong> — usually X-linked, in the E1α subunit — presents as congenital
+       lactic acidosis with neurological damage; a ketogenic diet helps because ketone bodies bypass PDH
+       entirely. <strong>Dichloroacetate</strong> inhibits PDH kinase and so forces the complex on.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">PDH is not a step of the citric acid cycle</p>
+    <p>It is the reaction <em>before</em> it, and the distinction is examined. A question that asks "how many
+      NADH are produced per turn of the citric acid cycle" wants <strong>three</strong>, not four. A question
+      that asks "per pyruvate oxidised" wants four. Note also that the CO₂ released by PDH is the
+      <em>carboxyl</em> carbon of pyruvate — which is why [1-¹⁴C]pyruvate delivers no label to the cycle at all,
+      while [2-¹⁴C] and [3-¹⁴C]pyruvate do.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The three α-keto acid dehydrogenase complexes compared</caption>
+      <thead><tr><th>Complex</th><th>Substrate → product</th><th>Cofactors</th><th>Clinical failure</th></tr></thead>
+      <tbody>
+        <tr><td>Pyruvate dehydrogenase</td><td>pyruvate → acetyl-CoA + CO₂</td><td>TPP, lipoamide, CoA, FAD, NAD⁺</td><td>Congenital lactic acidosis; thiamine deficiency</td></tr>
+        <tr><td>α-Ketoglutarate dehydrogenase</td><td>α-KG → succinyl-CoA + CO₂</td><td>Identical five</td><td>Impaired early in thiamine deficiency and in several neurodegenerations</td></tr>
+        <tr><td>Branched-chain α-keto acid dehydrogenase</td><td>keto acids of Val, Leu, Ile → acyl-CoAs</td><td>Identical five</td><td><strong>Maple syrup urine disease</strong> — sweet-smelling urine, some cases thiamine-responsive</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Three complexes, one blueprint. If an exam gives you an unfamiliar oxidative decarboxylation, assume the
+     same five cofactors and you will almost always be right. The shared E3 subunit also explains why an E3
+     defect (dihydrolipoamide dehydrogenase deficiency) produces a combined picture with lactic acidosis
+     <em>and</em> elevated branched-chain amino acids <em>and</em> hyperglycinaemia.</p>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>The citric acid cycle</h2>
+
+  <p class="idea"><b>The idea</b>A two-carbon fragment is handed to a four-carbon acceptor, and over eight reactions the six-carbon product is
+     stripped back down to the same four-carbon acceptor, releasing two carbons as carbon dioxide on the way.
+     Because the acceptor is regenerated, it is never used up — a catalyst on a grand scale. Almost none of the
+     energy comes out as ATP directly; what comes out is <em>reduced electron carriers</em>, and they are the
+     real product. The cycle is a machine for turning carbon into carbon dioxide and, in the process, loading
+     four carriers with electrons for §§06–08 to spend.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; net reaction</p>
+    <dl class="def">
+      <dt>Citric acid cycle (TCA cycle, Krebs cycle, 檸檬酸循環)</dt>
+      <dd>Eight enzymes in the mitochondrial matrix — with one exception embedded in the inner membrane — that
+          completely oxidise the acetyl group of acetyl-CoA to two CO₂, regenerating oxaloacetate each turn. It
+          is <strong>amphibolic</strong>（兩性代謝）: catabolic and biosynthetic at the same time (§&nbsp;05).</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">acetyl-CoA + 3 NAD⁺ + FAD + GDP + P<sub>i</sub> + 2 H₂O → 2 CO₂ + 3 NADH + FADH₂ + GTP + CoA-SH + 3 H⁺</span>
+      <span class="fx__tag">ΔG°′ ≈ −38 kJ·mol⁻¹ per turn (the eight step values below, added); oxaloacetate appears on neither side</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Substrate-level phosphorylation</dt>
+          <dd>ATP or GTP made by direct transfer of a phosphoryl group from a high-energy substrate, without any
+              involvement of a membrane or a gradient. The cycle contains exactly <strong>one</strong>, at
+              succinyl-CoA synthetase.</dd>
+          <dt>Oxidative decarboxylation</dt>
+          <dd>Loss of CO₂ coupled to oxidation of the remaining fragment. The cycle contains
+              <strong>two</strong>, at isocitrate dehydrogenase and α-ketoglutarate dehydrogenase — and they are
+              the two CO₂.</dd>
+          <dt>Why oxygen is required although it never appears</dt>
+          <dd>Every NAD⁺ and FAD the cycle needs is regenerated by the respiratory chain. Remove O₂ and the
+              carriers stay reduced, NAD⁺ runs out, and the cycle stops within seconds — even though no step
+              uses O₂ as a reactant.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">per acetyl-CoA: 3 NADH + 1 FADH₂ + 1 GTP + 2 CO₂</span><span class="fx__tag">worth 3(2.5) + 1.5 + 1 = 10 ATP once the chain has spent them</span></div>
+          <div class="fx"><span class="fx__eq">per glucose: 2 turns → 6 NADH + 2 FADH₂ + 2 GTP + 4 CO₂</span><span class="fx__tag">one glucose gives two acetyl-CoA, so everything doubles</span></div>
+          <div class="fx"><span class="fx__eq">carbon balance: 2 C in (acetyl) · 2 C out (CO₂) · 4 C conserved (OAA)</span><span class="fx__tag">no net synthesis of anything four-carbon — the key to §&nbsp;05</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>OAA</b><span>oxaloacetate, the four-carbon acceptor</span></div>
+          <div><b>α-KG</b><span>α-ketoglutarate, the five-carbon intermediate</span></div>
+          <div><b>GTP</b><span>guanosine triphosphate, interconvertible with ATP</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change, kJ·mol⁻¹</span></div>
+          <div><b>Fe–S</b><span>iron–sulfur cluster (aconitase, complex II)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 570" role="img" aria-label="The citric acid cycle drawn as a wheel. Acetyl-CoA enters at the top left and condenses with oxaloacetate to give citrate. Going clockwise the intermediates are citrate, isocitrate, alpha-ketoglutarate, succinyl-CoA, succinate, fumarate, malate and back to oxaloacetate. Labels outside the wheel name each enzyme and its output: citrate synthase, aconitase, isocitrate dehydrogenase producing carbon dioxide and NADH, alpha-ketoglutarate dehydrogenase producing carbon dioxide and NADH, succinyl-CoA synthetase producing GTP, succinate dehydrogenase producing FADH2, fumarase, and malate dehydrogenase producing NADH. Three enzymes are marked as regulated control points." style="font-family:var(--sans)">
+      <circle cx="350" cy="300" r="150" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 6"/>
+      <!-- arcs with arrowheads -->
+      <g fill="none" stroke="var(--accent)" stroke-width="2.4">
+        <path d="M 383.9,155.8 A 150,150 0 0 1 447.6,209.6"/>
+        <path d="M 494.5,266.8 A 150,150 0 0 1 494.5,333.2"/>
+        <path d="M 447.6,390.4 A 150,150 0 0 1 383.9,444.2"/>
+        <path d="M 316.1,444.2 A 150,150 0 0 1 252.4,390.4"/>
+        <path d="M 205.5,333.2 A 150,150 0 0 1 205.5,266.8"/>
+        <path d="M 252.4,209.6 A 150,150 0 0 1 316.1,155.8"/>
+      </g>
+      <g fill="var(--accent)">
+        <polygon points="443,203 455,212 442,218"/>
+        <polygon points="492,328 500,340 486,340"/>
+        <polygon points="389,441 379,452 375,438"/>
+        <polygon points="257,397 246,388 258,381"/>
+        <polygon points="208,272 200,260 214,260"/>
+        <polygon points="311,159 321,148 325,162"/>
+      </g>
+      <!-- nodes -->
+      <g font-size="12.5" font-weight="700" text-anchor="middle">
+        <rect x="300" y="136" width="100" height="28" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.6"/><text x="350" y="155" fill="var(--ink)">citrate</text>
+        <rect x="408" y="180" width="96" height="28" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="456" y="199" fill="var(--ink)">isocitrate</text>
+        <rect x="446" y="286" width="108" height="28" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="500" y="305" fill="var(--ink)">α-ketoglutarate</text>
+        <rect x="402" y="392" width="108" height="28" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="456" y="411" fill="var(--ink)">succinyl-CoA</text>
+        <rect x="302" y="436" width="96" height="28" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="350" y="455" fill="var(--ink)">succinate</text>
+        <rect x="196" y="392" width="96" height="28" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="244" y="411" fill="var(--ink)">fumarate</text>
+        <rect x="156" y="286" width="88" height="28" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="200" y="305" fill="var(--ink)">malate</text>
+        <rect x="188" y="180" width="112" height="28" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.6"/><text x="244" y="199" fill="var(--ink)">oxaloacetate</text>
+      </g>
+      <!-- acetyl-CoA entry -->
+      <path d="M 92,120 C 150,120 190,140 224,168" fill="none" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <polygon points="226,171 211,167 219,157" fill="var(--accent-2)"/>
+      <text x="88" y="108" font-size="13" font-weight="700" fill="var(--accent-2)" text-anchor="start">acetyl-CoA (2 C)</text>
+      <text x="88" y="92" font-size="11" fill="var(--ink-faint)" text-anchor="start">from PDH, β-oxidation, ketones, amino acids</text>
+
+      <!-- outer labels -->
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="268" y="112" text-anchor="middle" font-weight="700" fill="var(--accent)">citrate synthase ✦</text>
+        <text x="268" y="127" text-anchor="middle">releases CoA-SH · ΔG°′ = −32.2</text>
+
+        <text x="428" y="112" text-anchor="middle">aconitase (Fe–S)</text>
+        <text x="428" y="127" text-anchor="middle" fill="var(--ink-faint)">isomerisation only, no redox</text>
+
+        <text x="546" y="216" text-anchor="start" font-weight="700" fill="var(--accent)">isocitrate DH ✦</text>
+        <text x="546" y="231" text-anchor="start" fill="var(--bad)">→ CO₂ ①  → NADH</text>
+
+        <text x="546" y="368" text-anchor="start" font-weight="700" fill="var(--accent)">α-KG dehydrogenase ✦</text>
+        <text x="546" y="383" text-anchor="start" fill="var(--bad)">→ CO₂ ②  → NADH</text>
+
+        <text x="470" y="500" text-anchor="middle">succinyl-CoA synthetase</text>
+        <text x="470" y="515" text-anchor="middle" fill="var(--accent-2)">→ GTP (the only direct one)</text>
+
+        <text x="238" y="500" text-anchor="middle">succinate DH = complex II</text>
+        <text x="238" y="515" text-anchor="middle" fill="var(--accent-3)">→ FADH₂ · in the membrane</text>
+
+        <text x="152" y="368" text-anchor="end">fumarase</text>
+        <text x="152" y="383" text-anchor="end" fill="var(--ink-faint)">hydration, trans-specific</text>
+
+        <text x="152" y="216" text-anchor="end">malate dehydrogenase</text>
+        <text x="152" y="231" text-anchor="end" fill="var(--accent-3)">→ NADH · ΔG°′ = +29.7</text>
+      </g>
+      <text x="350" y="292" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink-faint)">per turn</text>
+      <text x="350" y="312" text-anchor="middle" font-size="12" fill="var(--ink-soft)">3 NADH · 1 FADH₂ · 1 GTP · 2 CO₂</text>
+      <text x="350" y="330" text-anchor="middle" font-size="11" fill="var(--ink-faint)">✦ = regulated step</text>
+      <text x="350" y="548" text-anchor="middle" font-size="11" fill="var(--ink-faint)">succinate and fumarate are symmetric four-carbon acids (malate and OAA are not): succinate is where isotopic labels scramble</text>
+    </svg>
+    <figcaption>Read the wheel as four moves rather than eight steps: <strong>build a six-carbon acid</strong>
+      (citrate synthase, aconitase), <strong>burn two carbons off it</strong> (the two oxidative
+      decarboxylations, giving both CO₂ and two of the three NADH), <strong>collect the payment</strong>
+      (succinyl-CoA synthetase, the only substrate-level phosphorylation), then <strong>re-oxidise the
+      four-carbon skeleton</strong> back to oxaloacetate (succinate dehydrogenase, fumarase, malate
+      dehydrogenase — an oxidation, a hydration and an oxidation, exactly the pattern β-oxidation uses on a
+      fatty acid). The three ✦ enzymes are the control points, and all three read the same signals.</figcaption>
+  </figure>
+
+  <h3>Where the energy actually comes out</h3>
+  <p>One GTP per turn is almost nothing — about 1 ATP out of the 10 that a turn eventually yields. Roughly 90 %
+     of the yield is in the four reduced carriers, and none of it is realised until §§06–08. This is the reason
+     the cycle is worth so little as a standalone exam topic and so much as the supplier for oxidative
+     phosphorylation: <strong>the citric acid cycle is not where ATP is made; it is where electrons are
+     collected.</strong></p>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the eight steps in full, with ΔG°′, cofactors and inhibitors</summary>
+    <div class="disc__body">
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The eight reactions of the citric acid cycle</caption>
+      <thead><tr><th>#</th><th>Enzyme</th><th>Reaction type</th><th>ΔG°′ (kJ·mol⁻¹)</th><th>Output / note</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td><strong>Citrate synthase</strong></td><td>Aldol condensation + thioester hydrolysis</td><td class="num">−32.2</td><td>Acetyl-CoA + OAA → citrate. Induced fit: OAA binding creates the acetyl-CoA site, so the enzyme cannot waste acetyl-CoA. Inhibited by citrate, succinyl-CoA, NADH, ATP; in mammals largely controlled by OAA supply.</td></tr>
+        <tr><td class="num">2</td><td>Aconitase</td><td>Dehydration then rehydration (isomerisation)</td><td class="num">+13.3</td><td>Citrate ⇌ <em>cis</em>-aconitate ⇌ isocitrate. A <strong>4Fe–4S</strong> cluster acts as a Lewis acid, not a redox centre. Inhibited by <strong>fluorocitrate</strong>, made from fluoroacetate by citrate synthase itself — "lethal synthesis". Pulled forward because step 3 removes isocitrate.</td></tr>
+        <tr><td class="num">3</td><td><strong>Isocitrate dehydrogenase</strong></td><td>Oxidation + β-decarboxylation</td><td class="num">−8.4</td><td><strong>First CO₂, first NADH.</strong> The principal rate-limiting step. The cycle enzyme is the <strong>NAD⁺-linked IDH3</strong>: activated by <strong>ADP and Ca²⁺</strong>, inhibited by ATP and NADH. (The cancer mutations are in the separate <strong>NADP⁺</strong>-linked isoforms IDH1 and IDH2, which make the oncometabolite 2-hydroxyglutarate — §&nbsp;05 — not in this one.)</td></tr>
+        <tr><td class="num">4</td><td><strong>α-Ketoglutarate dehydrogenase</strong></td><td>Oxidative decarboxylation</td><td class="num">−33.5</td><td><strong>Second CO₂, second NADH.</strong> Structurally the twin of PDH: same five cofactors, same E3. Inhibited by its products succinyl-CoA and NADH, and by ATP; activated by Ca²⁺. No kinase.</td></tr>
+        <tr><td class="num">5</td><td>Succinyl-CoA synthetase</td><td>Substrate-level phosphorylation</td><td class="num">−2.9</td><td>The thioester's −36 kJ·mol⁻¹ pays for GTP via a phosphohistidine intermediate. Mammals have a GTP-forming isoform (liver, anabolic) and an ADP-forming one (muscle, catabolic). Nucleoside diphosphate kinase makes GTP ≡ ATP.</td></tr>
+        <tr><td class="num">6</td><td>Succinate dehydrogenase</td><td>FAD-linked oxidation</td><td class="num">0</td><td>The only cycle enzyme in the <strong>inner membrane</strong>, and simultaneously <strong>complex II</strong>. FAD is <em>covalently</em> bound to a histidine; three Fe–S clusters relay to Q. Classic <strong>competitive</strong> inhibition by <strong>malonate</strong> (a substrate look-alike).</td></tr>
+        <tr><td class="num">7</td><td>Fumarase</td><td>Stereospecific hydration</td><td class="num">−3.8</td><td>Adds water <em>trans</em> across the double bond, giving only L-malate. One of the fastest enzymes known.</td></tr>
+        <tr><td class="num">8</td><td>Malate dehydrogenase</td><td>NAD-linked oxidation</td><td class="num"><strong>+29.7</strong></td><td><strong>Third NADH.</strong> Strongly endergonic under standard conditions; runs only because citrate synthase keeps [OAA] at ~1–10 µM. The textbook demonstration that ΔG°′ does not decide direction.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-bottom:0">Notice the two-step rhythm the cycle shares with β-oxidation: an
+     <em>oxidation</em> that makes FADH₂, a <em>hydration</em>, then an <em>oxidation</em> that makes NADH
+     (steps 6–8 here; the identical trio in each round of fatty-acid oxidation). Metabolism reuses a very small
+     number of chemical moves.</p>
+    </div>
+  </details>
+
+  <h3>Regulation: one question, asked at three points</h3>
+  <p>Citrate synthase, isocitrate dehydrogenase and α-ketoglutarate dehydrogenase are the control points, and
+     every one of them responds to the same three families of signal:</p>
+  <div class="grid grid--3">
+    <div class="card">
+      <h4>Energy charge</h4>
+      <p style="font-size:.9rem;color:var(--ink-soft);margin:0">High ATP/ADP inhibits; ADP activates isocitrate
+        dehydrogenase directly. The cycle asks whether ATP is already plentiful.</p>
+    </div>
+    <div class="card">
+      <h4>Redox state</h4>
+      <p style="font-size:.9rem;color:var(--ink-soft);margin:0">NADH inhibits all three. If the chain is not
+        consuming NADH, there is no point making more. This is the feedback that carries respiratory control
+        backwards into the cycle.</p>
+    </div>
+    <div class="card">
+      <h4>Ca²⁺ and product build-up</h4>
+      <p style="font-size:.9rem;color:var(--ink-soft);margin:0">Ca²⁺ activates the last two (and PDH
+        phosphatase): contraction and oxidation are switched on together. Succinyl-CoA inhibits both citrate
+        synthase and α-KGDH.</p>
+    </div>
+  </div>
+  <p style="margin-top:1rem">Follow the causal chain to its root and it is startlingly simple. ADP availability
+     controls ATP synthase; ATP synthase controls the proton gradient; the gradient controls electron flow;
+     electron flow controls NADH/NAD⁺; NADH/NAD⁺ controls the cycle and PDH. <strong>Everything on this page is
+     ultimately governed by whether there is ADP to phosphorylate.</strong> Nothing in metabolism is regulated
+     by "the amount of energy" — it is regulated by ratios, and the ratio that matters most is ADP to ATP.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The cycle details that are actually asked</p>
+    <p><strong>GTP, not ATP</strong>, at succinyl-CoA synthetase — and it is the only substrate-level
+       phosphorylation in the cycle. <strong>Succinate dehydrogenase is complex II</strong>, is the only
+       membrane-bound enzyme of the cycle, and is the only one whose flavin is covalently attached.
+       <strong>Three NADH, one FADH₂, one GTP, two CO₂</strong> per turn — per <em>acetyl-CoA</em>, so double
+       everything per glucose. <strong>No oxygen appears anywhere in the cycle</strong>, yet the cycle is
+       strictly aerobic. <strong>Aconitase does no redox chemistry</strong> despite having an Fe–S cluster.
+       And the two carbons entering are <em>not</em> the two leaving.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The carbon-tracing trap</p>
+    <p>"Acetyl-CoA is oxidised to two CO₂" is true of the <em>net</em> process and false of any single turn.
+      Citrate is a symmetric-looking molecule, but aconitase grips it at three points and therefore acts only on
+      the arm that came from <strong>oxaloacetate</strong> (Ogston's three-point attachment, 1948). The
+      consequence is exact: <strong>both CO₂ released in the first turn come from oxaloacetate carbons</strong>,
+      and the acetyl carbons survive into the regenerated four-carbon acid. Then succinate and fumarate
+      <em>are</em> genuinely symmetric, so a label scrambles between the two ends before oxaloacetate re-forms.
+      Work the next example rather than memorising a conclusion.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — where does the labelled carbon go?</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">Acetyl-CoA labelled with ¹⁴C in its <strong>carbonyl
+      (thioester) carbon</strong> condenses with unlabelled oxaloacetate. How much of the label is released as
+      CO₂ during (a) the first turn and (b) the second turn? What would be different if the
+      <strong>methyl</strong> carbon had been labelled instead?</p>
+    <ol>
+      <li>Write citrate with its origins marked. Citrate synthase makes the acetyl <em>methyl</em> carbon attack
+          the oxaloacetate carbonyl, so citrate is
+          <span class="fi">HOOC(C<sup>*</sup>)–CH₂(Cm)–C(OH)(COOH from OAA-C1)–CH₂(OAA-C3)–COOH(OAA-C4)</span>,
+          where C<sup>*</sup> is our label.</li>
+      <li>Aconitase acts on the <strong>oxaloacetate-derived arm</strong>, so the hydroxyl ends up on OAA-C3.</li>
+      <li>Isocitrate dehydrogenase removes the carboxyl attached to the old central carbon: that is
+          <strong>OAA-C1</strong>. <em>First CO₂ is unlabelled.</em></li>
+      <li>α-Ketoglutarate dehydrogenase removes the carboxyl next to the keto group: that is
+          <strong>OAA-C4</strong>. <em>Second CO₂ is unlabelled.</em> <strong>(a) = 0 %.</strong></li>
+      <li>The label C<sup>*</sup> is now a <em>carboxyl</em> carbon of succinate. Succinate is symmetric, so it
+          is read from either end with equal probability — but both ends are carboxyls, so the label lands on
+          oxaloacetate C1 or C4 either way.</li>
+      <li>In the next turn, steps 3 and 4 release exactly OAA-C1 and OAA-C4. So <strong>(b) = 100 %</strong>: the
+          carboxyl-derived label comes out completely during the second turn.</li>
+      <li><strong>Methyl label instead.</strong> Trace it the same way: it becomes a <em>methylene</em> carbon of
+          succinate, and therefore OAA-C2 or OAA-C3. Neither is released in turn 2 either — so 0 % in the first
+          <em>and</em> second turns. Half of it then moves to a carboxyl position and is released in turn 3 (50 %),
+          with the rest dribbling out over later turns.</li>
+    </ol>
+    <span class="wex__ans">carboxyl label: 0 % in turn 1, 100 % in turn 2 · methyl label: 0 %, 0 %, then 50 % in turn 3</span>
+    <p style="margin:.7rem 0 0;font-size:.9rem;color:var(--ink-soft)">The general rule to carry into an exam:
+      <strong>first turn, both CO₂ come from oxaloacetate</strong>; after succinate the molecule is symmetric, so
+      any label distributes between the two halves; and a label on a carboxyl carbon is released one turn
+      earlier than a label on an interior carbon.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Anaplerosis and the cycle as a biosynthetic hub</h2>
+
+  <p class="idea"><b>The idea</b>The wheel is also a warehouse. Cells constantly take intermediates out of it to build fats, amino acids,
+     haem, glucose and nucleotides — and the moment an intermediate leaves, the wheel has less material to turn
+     with. So there must be reactions whose only job is to top the wheel back up. Once you see the cycle as
+     something with a stock level rather than a fixed loop, several confusing facts resolve at once: why a
+     four-carbon intermediate can be withdrawn but a two-carbon acetyl group cannot replace it, and therefore
+     why fat cannot become sugar.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; reaction</p>
+    <dl class="def">
+      <dt>Anaplerotic reaction（回補反應）</dt>
+      <dd>Literally "filling up" — a reaction that produces a cycle intermediate <em>de novo</em>, restoring the
+          pool after withdrawals. It must add net carbon at the four-, five- or six-carbon level.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">pyruvate + HCO₃⁻ + ATP → oxaloacetate + ADP + P<sub>i</sub></span>
+      <span class="fx__tag">pyruvate carboxylase · biotin · allosterically <em>activated by acetyl-CoA</em> · the dominant anaplerotic route</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Cataplerotic reaction</dt>
+          <dd>The opposite: withdrawal of an intermediate for biosynthesis. Citrate → cytosolic acetyl-CoA,
+              α-ketoglutarate → glutamate, succinyl-CoA → haem, oxaloacetate → aspartate or
+              phosphoenolpyruvate.</dd>
+          <dt>Amphibolic pathway</dt>
+          <dd>One that serves catabolism and anabolism simultaneously. The citric acid cycle is the standard
+              example; glycolysis is another.</dd>
+          <dt>Biotin</dt>
+          <dd>Vitamin B₇, the CO₂ carrier of every ATP-dependent carboxylase: pyruvate carboxylase, acetyl-CoA
+              carboxylase, propionyl-CoA carboxylase, methylcrotonyl-CoA carboxylase. Attached through an amide
+              bond to a lysine, giving another swinging arm.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">glutamate + NAD(P)⁺ + H₂O ⇌ α-ketoglutarate + NH₄⁺ + NAD(P)H</span><span class="fx__tag">glutamate dehydrogenase — anaplerotic in one direction, nitrogen disposal in the other</span></div>
+          <div class="fx"><span class="fx__eq">propionyl-CoA → D-methylmalonyl-CoA → L- → succinyl-CoA</span><span class="fx__tag">biotin then vitamin B₁₂; the one genuinely glucogenic route out of a fatty acid</span></div>
+          <div class="fx"><span class="fx__eq">citrate + CoA + ATP → acetyl-CoA + OAA + ADP + P<sub>i</sub></span><span class="fx__tag">ATP-citrate lyase in the cytosol — how acetyl groups reach fatty-acid synthesis</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>PC</b><span>pyruvate carboxylase (mitochondrial, biotin-dependent)</span></div>
+          <div><b>PEPCK</b><span>phosphoenolpyruvate carboxykinase — the exit to gluconeogenesis</span></div>
+          <div><b>ALAS</b><span>δ-aminolevulinate synthase — succinyl-CoA + glycine → haem</span></div>
+          <div><b>2-HG</b><span>2-hydroxyglutarate, an oncometabolite</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Why acetyl-CoA can never make net glucose</h3>
+  <p>This is the most examined consequence in the whole of metabolism, and it has two independent reasons — quote
+     both:</p>
+  <ol>
+    <li><strong>PDH is irreversible.</strong> ΔG°′ = −33.4 kJ·mol⁻¹, and there is no enzyme in animals that runs
+        it backwards. Acetyl-CoA cannot become pyruvate.</li>
+    <li><strong>The cycle has no net carbon gain.</strong> Two carbons enter as acetyl; two leave as CO₂. Every
+        four-carbon intermediate withdrawn for gluconeogenesis must therefore have been supplied by an
+        <em>anaplerotic</em> reaction, not by the acetyl group. Feeding the cycle acetyl-CoA raises its
+        <em>flux</em>, never its <em>stock</em>.</li>
+  </ol>
+  <p>The apparent exceptions prove the rule and are worth knowing precisely. <strong>Odd-chain fatty acids</strong>
+     finish β-oxidation with a three-carbon propionyl-CoA, which is carboxylated (biotin) and rearranged
+     (vitamin B₁₂) to succinyl-CoA — four carbons entering the cycle at the succinate level, genuinely
+     anaplerotic and genuinely glucogenic. The <strong>glycerol backbone</strong> of a triacylglycerol is
+     likewise glucogenic, entering as dihydroxyacetone phosphate. Neither is a route from an acetyl group. In
+     plants, the glyoxylate cycle bypasses both decarboxylations and so does convert acetyl units into
+     four-carbon acids — which is why seedlings can turn stored oil into sugar and we cannot.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Pyruvate carboxylase and the two readings of one signal</p>
+    <p>Pyruvate carboxylase is <strong>allosterically activated by acetyl-CoA</strong>, and this is elegant
+      rather than arbitrary. Acetyl-CoA piling up means one of two things. If the cycle is <em>stalled for want
+      of oxaloacetate</em>, making oxaloacetate restarts it. If the cell is instead <em>fuel-replete</em> —
+      fasting liver, plenty of fatty acid oxidation — the extra oxaloacetate is drawn off by PEPCK into
+      gluconeogenesis. Same enzyme, same activator, two useful outcomes depending on demand. Note the trap in
+      the wording, though: acetyl-CoA is the <em>activator</em>, never the <em>substrate</em>. Pyruvate
+      carboxylase carboxylates pyruvate. Any option that has it carboxylating acetyl-CoA is wrong, and it is a
+      distractor examiners reuse.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Anaplerotic entries and biosynthetic exits from the citric acid cycle</caption>
+      <thead><tr><th>Intermediate</th><th>Filled up by (anaplerotic)</th><th>Drawn off for (cataplerotic)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Oxaloacetate</strong></td><td><strong>Pyruvate carboxylase</strong> (biotin, ATP); transamination of aspartate</td><td>Gluconeogenesis via PEPCK; aspartate → pyrimidines, purines, urea cycle</td></tr>
+        <tr><td>Malate</td><td>Malic enzyme (pyruvate + CO₂ + NADPH)</td><td>Exported to cytosol; malic enzyme there generates NADPH for lipogenesis</td></tr>
+        <tr><td><strong>Citrate</strong></td><td>—</td><td><strong>Exported to the cytosol</strong> and cleaved by ATP-citrate lyase: the source of acetyl-CoA for <strong>fatty acid and cholesterol synthesis</strong>. Also inhibits PFK-1, linking fuel excess to reduced glycolysis</td></tr>
+        <tr><td><strong>α-Ketoglutarate</strong></td><td>Glutamate dehydrogenase; transamination of glutamate (ALT, AST)</td><td>Glutamate → glutamine, proline, arginine; nitrogen handling; collagen prolyl hydroxylase cosubstrate</td></tr>
+        <tr><td><strong>Succinyl-CoA</strong></td><td><strong>Propionyl-CoA</strong> from odd-chain fatty acids and from Val, Ile, Met, Thr (biotin + B₁₂)</td><td><strong>Haem synthesis</strong>: + glycine → δ-aminolevulinate (ALA synthase, PLP; the rate-limiting step)</td></tr>
+        <tr><td>Fumarate</td><td>Phenylalanine and tyrosine catabolism; the urea cycle (argininosuccinate lyase)</td><td>—</td></tr>
+        <tr><td>Succinate</td><td>—</td><td>Signalling: accumulates in hypoxia, stabilises HIF-1α</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · when cycle enzymes become tumour suppressors and oncometabolites</summary>
+    <div class="disc__body">
+      <p>Three cycle enzymes are bona-fide cancer genes, and the mechanism is metabolic rather than mitogenic —
+        which is why this material has migrated into clinical vignettes.</p>
+      <ul>
+        <li><strong>Succinate dehydrogenase (SDHA/B/C/D).</strong> Germline loss-of-function causes hereditary
+          <em>paraganglioma and phaeochromocytoma</em>, and gastrointestinal stromal tumours. Succinate builds
+          up, leaks to the cytosol and inhibits the α-ketoglutarate–dependent dioxygenases — including the prolyl
+          hydroxylases that mark HIF-1α for destruction. HIF-1α therefore survives even in normoxia
+          ("pseudohypoxia") and switches on angiogenesis and glycolysis. Note the inheritance point: complex II
+          is the only respiratory complex encoded <strong>entirely by nuclear DNA</strong>, so these syndromes
+          are autosomal, not maternal.</li>
+        <li><strong>Fumarate hydratase (FH).</strong> Germline loss causes hereditary leiomyomatosis and renal
+          cell carcinoma. Fumarate accumulates and does the same thing to the dioxygenases, plus it succinates
+          cysteine residues non-enzymatically.</li>
+        <li><strong>IDH1 and IDH2.</strong> These are the <strong>NADP⁺</strong>-linked isocitrate
+          dehydrogenases — cytosolic and mitochondrial respectively — and <em>not</em> the NAD⁺-linked IDH3 that
+          runs step 3 of the cycle. The lesions are <em>gain</em>-of-function point mutations (classically
+          IDH1 R132H) found in low-grade gliomas, secondary glioblastoma and about 15 % of acute myeloid
+          leukaemia. The mutant enzyme stops making α-ketoglutarate and instead reduces it to
+          <strong>(R)-2-hydroxyglutarate</strong>, an <em>oncometabolite</em> that competitively inhibits the
+          same α-KG-dependent dioxygenases — here the TET DNA demethylases and the histone demethylases,
+          producing a hypermethylated epigenome. Ivosidenib and enasidenib are licensed mutant-IDH inhibitors.</li>
+      </ul>
+      <p style="margin-bottom:0">The unifying idea is worth more than the list: a family of dioxygenases uses
+        α-ketoglutarate as a cosubstrate, and any cycle lesion that alters the α-KG / succinate / fumarate
+        balance reprogrammes them. Metabolism and epigenetics are the same subject seen from two ends.</p>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Two clinical confusions worth separating</p>
+    <p><strong>B₁₂ deficiency</strong> blocks methylmalonyl-CoA mutase, so <em>methylmalonic acid rises</em> —
+      and that is what distinguishes it from folate deficiency, which produces the same megaloblastic anaemia
+      and the same raised homocysteine but a <em>normal</em> methylmalonate. <strong>Biotin</strong> deficiency
+      (or biotinidase deficiency) hits four carboxylases at once, giving lactic acidosis, alopecia and a
+      periorificial rash; raw egg white contains avidin, which binds biotin — the classic dietary cause.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>The electron-transport chain, complex by complex</h2>
+
+  <p class="idea"><b>The idea</b>Hydrogen burning in oxygen releases a great deal of energy all at once, as heat, which a cell cannot use. So
+     the cell takes the same electrons and lets them down a staircase of carriers instead, each one slightly
+     greedier than the last. At three of the steps the drop is big enough to do mechanical work, and the work is
+     always the same: shoving protons from one side of a membrane to the other. Nothing here makes ATP. This is
+     the part of the machine that converts a chemical fall into a physical gradient.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; net reaction</p>
+    <dl class="def">
+      <dt>Respiratory chain（電子傳遞鏈）</dt>
+      <dd>Four membrane-bound complexes plus two mobile carriers in the <strong>inner mitochondrial
+          membrane</strong>, which pass electrons from NADH or FADH₂ to O₂ and use the free energy released to
+          translocate protons from the matrix into the intermembrane space.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">NADH + H⁺ + ½O₂ → NAD⁺ + H₂O   ΔG°′ = −219 kJ·mol⁻¹   ·   10 H⁺ translocated</span>
+      <span class="fx__tag">the entire chain in one line; succinate gives −152 kJ·mol⁻¹ and 6 H⁺</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Mobile carriers</dt>
+          <dd><strong>Ubiquinone (coenzyme Q₁₀)</strong> — small, lipid-soluble, diffuses within the bilayer,
+              carries <em>two</em> electrons and <em>two</em> protons; and <strong>cytochrome c</strong> — a
+              small water-soluble protein loosely attached to the outer face of the inner membrane, carrying
+              <em>one</em> electron on a covalently bound haem c.</dd>
+          <dt>Why the chain needs a two-to-one converter</dt>
+          <dd>NADH delivers electrons in pairs; cytochromes accept them singly. Ubiquinone bridges the two
+              regimes because it has a stable one-electron intermediate, the <strong>semiquinone</strong>
+              (Q<sup>•−</sup>). That intermediate is also the chain's principal source of superoxide.</dd>
+          <dt>Cristae and supercomplexes</dt>
+          <dd>The inner membrane is folded into cristae to multiply the area available; the complexes are
+              partly organised into "respirasomes" (I+III₂+IV) that improve substrate channelling. The
+              <em>outer</em> membrane is freely permeable to small molecules through porin, so the gradient can
+              only exist across the inner one.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">I: NADH + 5H⁺<sub>(matrix)</sub> + Q → NAD⁺ + QH₂ + 4H⁺<sub>(IMS)</sub></span><span class="fx__tag">four pumped; one matrix proton goes onto Q</span></div>
+          <div class="fx"><span class="fx__eq">III: QH₂ + 2 cyt c<sub>ox</sub> + 2H⁺<sub>(matrix)</sub> → Q + 2 cyt c<sub>red</sub> + 4H⁺<sub>(IMS)</sub></span><span class="fx__tag">the Q cycle; two of the four rode across on QH₂</span></div>
+          <div class="fx"><span class="fx__eq">IV: 2 cyt c<sub>red</sub> + ½O₂ + 4H⁺<sub>(matrix)</sub> → 2 cyt c<sub>ox</sub> + H₂O + 2H⁺<sub>(IMS)</sub></span><span class="fx__tag">two pumped, two consumed chemically in making water</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Q / QH₂</b><span>ubiquinone / ubiquinol, the lipid-phase carrier</span></div>
+          <div><b>IMS</b><span>intermembrane space (the "P", positive side)</span></div>
+          <div><b>FMN</b><span>flavin mononucleotide, complex I's entry cofactor</span></div>
+          <div><b>Fe–S</b><span>iron–sulfur cluster, a one-electron relay</span></div>
+          <div><b>Cu<sub>A</sub>, Cu<sub>B</sub></b><span>copper centres of cytochrome c oxidase</span></div>
+          <div><b>ROS</b><span>reactive oxygen species (O₂<sup>•−</sup>, H₂O₂, HO<sup>•</sup>)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 800 450" role="img" aria-label="Cross-section of the inner mitochondrial membrane showing the respiratory chain. From left to right: complex one receiving electrons from NADH and pumping four protons, complex two receiving electrons from succinate and pumping none, a mobile ubiquinone pool inside the membrane, complex three pumping four protons, mobile cytochrome c on the outer face, complex four reducing oxygen to water and pumping two protons, and ATP synthase at the right with protons flowing back down through it to make ATP. Inhibitor labels mark rotenone at complex one, malonate at complex two, antimycin A at complex three, cyanide and carbon monoxide at complex four, and oligomycin at ATP synthase. A dinitrophenol arrow crosses the bare bilayer, short-circuiting the gradient." style="font-family:var(--sans)">
+      <!-- membrane -->
+      <rect x="20" y="160" width="760" height="95" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1.4"/>
+      <text x="30" y="150" font-size="12" font-weight="700" fill="var(--ink-soft)">intermembrane space — high H⁺, positive (P side)</text>
+      <text x="30" y="278" font-size="12" font-weight="700" fill="var(--ink-soft)">matrix — low H⁺, negative and alkaline (N side)</text>
+
+      <!-- complexes -->
+      <g stroke-width="1.8">
+        <rect x="42" y="150" width="86" height="150" rx="9" fill="var(--accent-wash)" stroke="var(--accent)"/>
+        <rect x="176" y="196" width="74" height="104" rx="9" fill="var(--card)" stroke="var(--accent-2)"/>
+        <rect x="318" y="150" width="86" height="115" rx="9" fill="var(--accent-wash)" stroke="var(--accent)"/>
+        <rect x="470" y="150" width="90" height="115" rx="9" fill="var(--accent-wash)" stroke="var(--accent)"/>
+        <rect x="668" y="150" width="60" height="105" rx="9" fill="var(--accent-wash)" stroke="var(--accent-3)"/>
+      </g>
+      <g text-anchor="middle" font-weight="700" fill="var(--ink)">
+        <text x="85" y="205" font-size="19">I</text><text x="85" y="224" font-size="9.5" font-weight="400" fill="var(--ink-soft)">NADH:Q</text><text x="85" y="236" font-size="9.5" font-weight="400" fill="var(--ink-soft)">oxidoreductase</text>
+        <text x="213" y="238" font-size="19">II</text><text x="213" y="256" font-size="9.5" font-weight="400" fill="var(--ink-soft)">succinate DH</text>
+        <text x="361" y="205" font-size="19">III</text><text x="361" y="224" font-size="9.5" font-weight="400" fill="var(--ink-soft)">cyt bc₁</text><text x="361" y="236" font-size="9.5" font-weight="400" fill="var(--ink-soft)">Q cycle</text>
+        <text x="515" y="205" font-size="19">IV</text><text x="515" y="224" font-size="9.5" font-weight="400" fill="var(--ink-soft)">cyt c oxidase</text><text x="515" y="236" font-size="9.5" font-weight="400" fill="var(--ink-soft)">a · a₃ · Cu</text>
+      </g>
+      <!-- ATP synthase F1 head + stalk -->
+      <line x1="698" y1="255" x2="698" y2="286" stroke="var(--accent-3)" stroke-width="7"/>
+      <ellipse cx="698" cy="322" rx="55" ry="38" fill="var(--accent-wash)" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <text x="698" y="205" font-size="15" font-weight="700" text-anchor="middle" fill="var(--ink)">F₀</text>
+      <text x="698" y="320" font-size="15" font-weight="700" text-anchor="middle" fill="var(--ink)">F₁</text>
+      <text x="698" y="338" font-size="10" text-anchor="middle" fill="var(--ink-soft)">V · ATP synthase</text>
+
+      <!-- Q and cyt c -->
+      <ellipse cx="284" cy="215" rx="26" ry="19" fill="var(--card)" stroke="var(--hbond)" stroke-width="1.8"/>
+      <text x="284" y="220" font-size="13" font-weight="700" text-anchor="middle" fill="var(--hbond)">Q</text>
+      <text x="284" y="252" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">lipid pool</text>
+      <circle cx="437" cy="140" r="19" fill="var(--card)" stroke="var(--vdw)" stroke-width="1.8"/>
+      <text x="437" y="145" font-size="12" font-weight="700" text-anchor="middle" fill="var(--vdw)">c</text>
+      <text x="437" y="118" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">1 e⁻ at a time</text>
+
+      <!-- electron path -->
+      <g fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-dasharray="6 4">
+        <path d="M 30,330 L 60,330 L 60,300"/>
+        <path d="M 128,215 L 258,215"/>
+        <path d="M 176,240 L 150,240 L 150,330 L 120,330"/>
+        <path d="M 310,215 L 318,215"/>
+        <path d="M 404,190 L 418,190 L 418,152"/>
+        <path d="M 456,152 L 470,152 L 470,190"/>
+        <path d="M 560,215 L 600,215"/>
+      </g>
+      <text x="26" y="345" font-size="11.5" font-weight="700" fill="var(--accent)">NADH</text>
+      <text x="150" y="352" font-size="11.5" font-weight="700" fill="var(--accent-2)" text-anchor="middle">succinate</text>
+      <text x="612" y="212" font-size="11.5" font-weight="700" fill="var(--bad)">½O₂ + 2H⁺</text>
+      <text x="612" y="228" font-size="11.5" fill="var(--bad)">→ H₂O</text>
+
+      <!-- proton arrows up -->
+      <g stroke="var(--accent-3)" stroke-width="2.6" fill="var(--accent-3)">
+        <line x1="85" y1="150" x2="85" y2="112"/><polygon points="79,118 91,118 85,104"/>
+        <line x1="361" y1="150" x2="361" y2="112"/><polygon points="355,118 367,118 361,104"/>
+        <line x1="515" y1="150" x2="515" y2="112"/><polygon points="509,118 521,118 515,104"/>
+      </g>
+      <g font-size="13" font-weight="700" fill="var(--accent-3)" text-anchor="middle">
+        <text x="85" y="96">4 H⁺</text>
+        <text x="361" y="96">4 H⁺</text>
+        <text x="515" y="96">2 H⁺</text>
+      </g>
+      <text x="213" y="176" font-size="13" font-weight="700" fill="var(--accent-2)" text-anchor="middle">0 H⁺</text>
+      <text x="213" y="160" font-size="10" fill="var(--ink-faint)" text-anchor="middle">no pumping</text>
+
+      <!-- proton return through synthase -->
+      <line x1="698" y1="112" x2="698" y2="150" stroke="var(--accent-3)" stroke-width="3.4"/>
+      <polygon points="691,142 705,142 698,158" fill="var(--accent-3)"/>
+      <text x="698" y="96" font-size="13" font-weight="700" fill="var(--accent-3)" text-anchor="middle">≈4 H⁺ back</text>
+      <text x="762" y="322" font-size="12" font-weight="700" fill="var(--ok)" text-anchor="end">ATP</text>
+      <text x="762" y="338" font-size="10.5" fill="var(--ink-faint)" text-anchor="end">ADP + Pᵢ</text>
+
+      <!-- DNP shortcut -->
+      <line x1="620" y1="112" x2="620" y2="300" stroke="var(--bad)" stroke-width="2.2" stroke-dasharray="5 4"/>
+      <polygon points="614,290 626,290 620,304" fill="var(--bad)"/>
+      <text x="628" y="128" font-size="11" font-weight="700" fill="var(--bad)">DNP · UCP1</text>
+      <text x="628" y="142" font-size="10" fill="var(--ink-faint)">a leak that bypasses F₀</text>
+
+      <!-- inhibitor flags -->
+      <g font-size="10.5" fill="var(--bad)" font-weight="700">
+        <text x="42" y="390">✕ rotenone · MPP⁺ · amytal</text>
+        <text x="42" y="404" font-weight="400" fill="var(--ink-faint)">block the Q site of complex I</text>
+        <text x="252" y="390">✕ malonate</text>
+        <text x="252" y="404" font-weight="400" fill="var(--ink-faint)">competes with succinate</text>
+        <text x="400" y="390">✕ antimycin A · atovaquone</text>
+        <text x="400" y="404" font-weight="400" fill="var(--ink-faint)">Q<tspan baseline-shift="sub" font-size="8">i</tspan> and Q<tspan baseline-shift="sub" font-size="8">o</tspan> sites of complex III</text>
+        <text x="620" y="390">✕ CN⁻ · CO · H₂S · N₃⁻</text>
+        <text x="620" y="404" font-weight="400" fill="var(--ink-faint)">bind haem a₃–Cu<tspan baseline-shift="sub" font-size="8">B</tspan></text>
+        <text x="620" y="424">✕ oligomycin</text>
+        <text x="620" y="438" font-weight="400" fill="var(--ink-faint)">plugs the F₀ proton channel</text>
+      </g>
+    </svg>
+    <figcaption>Everything above the membrane is at low pH and positive; everything below is alkaline and
+      negative. Three complexes pump; complex II does not, and neither do the other flavoprotein entry points
+      (ETF:Q oxidoreductase from β-oxidation, mitochondrial glycerol-3-phosphate dehydrogenase, dihydroorotate
+      dehydrogenase) — every one of them delivers to the same Q pool and therefore yields 6 H⁺, not 10. Note
+      where the two mobile carriers sit: Q inside the bilayer, cytochrome c on the outer face. That is why
+      cytochrome c can escape into the cytosol when the outer membrane is permeabilised, and why its escape
+      triggers apoptosis.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The four respiratory complexes compared</caption>
+      <thead><tr><th>Complex</th><th>Proper name</th><th>Prosthetic groups</th><th>From → to</th><th>H⁺ per 2 e⁻</th><th>Inhibited by</th></tr></thead>
+      <tbody>
+        <tr><td class="num">I</td><td>NADH:ubiquinone oxidoreductase</td><td>1 FMN + 8 Fe–S clusters; ~45 subunits, 7 mtDNA-encoded; L-shaped</td><td>NADH → Q</td><td class="num"><strong>4</strong></td><td>Rotenone, piericidin A, amytal, <strong>MPP⁺</strong>, metformin (weakly)</td></tr>
+        <tr><td class="num">II</td><td>Succinate:ubiquinone oxidoreductase (succinate dehydrogenase)</td><td>Covalently bound FAD, 3 Fe–S clusters, haem b₅₆₀; 4 subunits, <strong>all nuclear-encoded</strong></td><td>Succinate → Q</td><td class="num"><strong>0</strong></td><td>Malonate (competitive), carboxin, TTFA</td></tr>
+        <tr><td class="num">III</td><td>Ubiquinone:cytochrome c oxidoreductase (cytochrome bc₁)</td><td>Haems b<sub>L</sub> and b<sub>H</sub>, haem c₁, Rieske 2Fe–2S; 11 subunits, functions as a dimer</td><td>QH₂ → cyt c</td><td class="num"><strong>4</strong></td><td><strong>Antimycin A</strong> (Q<sub>i</sub>); myxothiazol, stigmatellin, <strong>atovaquone</strong> (Q<sub>o</sub>)</td></tr>
+        <tr><td class="num">IV</td><td>Cytochrome c oxidase</td><td>Cu<sub>A</sub> binuclear centre, haem a, haem a₃–Cu<sub>B</sub> binuclear centre; 13 subunits, 3 mtDNA-encoded</td><td>Cyt c → O₂</td><td class="num"><strong>2</strong> pumped (+2 consumed as substrate)</td><td><strong>Cyanide, CO, H₂S, azide</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>What each complex is actually doing</h3>
+  <p><strong>Complex I</strong> is the largest and the least intuitive. Its L-shape has a hydrophilic arm sticking
+     into the matrix, where NADH hands its hydride to FMN and a chain of eight iron–sulfur clusters relays the
+     electrons one at a time over about 95 Å to a quinone bound at the junction with the membrane arm. Nothing
+     in that arm touches the protons. The pumping happens in the membrane arm, through three or four
+     antiporter-like modules driven by a long horizontal helix acting as a mechanical <em>coupling rod</em> —
+     electron transfer at one end, conformational changes propagating along the arm. That architecture is why
+     complex I is reversible: push hard enough on the proton side and electrons run backwards from Q to NAD⁺,
+     generating superoxide on the way.</p>
+  <p><strong>Complex II</strong> is the citric acid cycle enzyme wearing a second hat. It contributes electrons
+     but no protons, for the reason computed in §&nbsp;02: the succinate → Q drop is worth 2.7 kJ·mol⁻¹ against
+     the ~19 kJ·mol⁻¹ it costs to move one proton. Everything it does is at the Q pool.</p>
+  <p><strong>Complex III</strong> solves the two-to-one problem. Ubiquinol arrives with two electrons; cytochrome
+     c can only take one. So the complex splits them: one goes "up" the high-potential route (Rieske Fe–S →
+     cyt c₁ → cyt c), and the other goes "down" the low-potential route (cyt b<sub>L</sub> → cyt b<sub>H</sub>)
+     to reduce another quinone at a second site on the matrix face. That branching is the <strong>Q cycle</strong>,
+     and it is the reason the complex's proton count is 4 rather than 2.</p>
+  <p><strong>Complex IV</strong> performs the single most dangerous reaction in the cell: the four-electron
+     reduction of O₂ to two water molecules. Partially reduced oxygen species — superoxide, peroxide, hydroxyl
+     radical — are all far more reactive than O₂ itself, so the enzyme must accumulate four electrons before
+     releasing anything. It does this at the binuclear haem a₃–Cu<sub>B</sub> centre, which holds every
+     intermediate covalently bound until the reduction is complete. That is why complex IV, despite handling all
+     the oxygen, leaks almost no ROS — while complexes I and III, which handle none, produce most of it.</p>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the Q cycle, and where the "4 H⁺" of complex III really comes from</summary>
+    <div class="disc__body">
+      <p>Complex III has two quinone-binding sites on opposite sides of the membrane:
+        <strong>Q<sub>o</sub></strong> facing the intermembrane space and <strong>Q<sub>i</sub></strong> facing
+        the matrix. One full cycle consumes two QH₂ at Q<sub>o</sub> and regenerates one at Q<sub>i</sub>, so the
+        net is one QH₂ oxidised per two cytochrome c reduced.</p>
+      <ol>
+        <li>QH₂ binds Q<sub>o</sub> and releases <strong>2 H⁺ into the intermembrane space</strong>. Its first
+          electron goes to the Rieske centre → cyt c₁ → cyt c. It leaves behind an unstable semiquinone.</li>
+        <li>The semiquinone's second electron takes the other route: cyt b<sub>L</sub> → cyt b<sub>H</sub> →
+          a quinone waiting at Q<sub>i</sub>, making a semiquinone there.</li>
+        <li>A second QH₂ repeats step 1, releasing <strong>2 more H⁺</strong> and sending another electron down
+          the b chain. That electron completes the reduction at Q<sub>i</sub>, which now takes
+          <strong>2 H⁺ from the matrix</strong> to become QH₂ again.</li>
+      </ol>
+      <div class="fx"><span class="fx__eq">QH₂ + 2 cyt c<sub>ox</sub> + 2H⁺<sub>(N)</sub> → Q + 2 cyt c<sub>red</sub> + 4H⁺<sub>(P)</sub></span><span class="fx__tag">net per QH₂ oxidised, after the two half-cycles are added</span></div>
+      <p>Now the honest bookkeeping. Four protons appear on the P side, but only <strong>two of them were taken
+        from the matrix by complex III itself</strong>; the other two rode across on the QH₂, having been loaded
+        onto Q down in the matrix by complex I or complex II. Ubiquinone is therefore not merely an electron
+        carrier — it is a <em>proton</em> carrier, and the conventional "4 at complex III" includes its cargo.
+        This is why the standard-state arithmetic looks tight: complex III's own redox span of −40 kJ·mol⁻¹ is
+        paying for two protons, not four.</p>
+      <p style="margin-bottom:0">Two consequences worth carrying. First, the Q<sub>o</sub> semiquinone is
+        long-lived enough to hand an electron directly to O₂, which makes it — alongside complex I — one of the
+        two major sources of mitochondrial superoxide, and explains why <strong>antimycin A</strong> (which
+        blocks Q<sub>i</sub> and
+        so strands electrons on the b chain) massively increases ROS production. Second, the two sites are
+        pharmacologically distinct: atovaquone blocks Q<sub>o</sub> of <em>Plasmodium</em> and <em>Pneumocystis</em>
+        cytochrome b selectively enough to be a useful drug, because those parasites' cytochrome b differs from
+        ours at the binding pocket.</p>
+    </div>
+  </details>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The three things this section is asked about</p>
+    <p><strong>Which complexes pump.</strong> I, III and IV — 4, 4 and 2 — giving 10 per NADH and 6 per FADH₂.
+      Complex II never. <strong>What each complex contains.</strong> FMN and Fe–S in I; covalently bound FAD in
+      II; cytochromes b and c₁ plus the Rieske centre in III; two haems and two coppers in IV. <strong>Where an
+      inhibitor acts and what happens downstream.</strong> Carriers <em>upstream</em> of a block become fully
+      reduced and carriers <em>downstream</em> become fully oxidised — the <strong>crossover</strong>
+      observation, and historically the way the order of the chain was worked out. If a question tells you cyt b
+      is reduced while cyt c is oxidised, the block is between them: complex III.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>The proton-motive force and chemiosmosis</h2>
+
+  <p class="idea"><b>The idea</b>For thirty years people looked for a molecule that carried energy from the electron chain to the ATP-making
+     enzyme, and never found one, because there is no such molecule. What connects them is not a substance but a
+     <em>situation</em>: protons piled up on one side of a sealed membrane, which are both more concentrated and
+     more positive over there than over here. Two separate forces therefore push them back, and the machine that
+     makes ATP simply stands in the doorway and takes a toll. This is why an intact membrane is a chemical
+     requirement, and why a hole anywhere in it wrecks the whole system.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; formula</p>
+    <dl class="def">
+      <dt>Proton-motive force, Δp（質子驅動力）</dt>
+      <dd>The total free energy stored per mole of protons displaced across the inner membrane, expressed either
+          as a voltage (V) or, multiplied by F, as an energy (kJ·mol⁻¹). It has two components that
+          <strong>add</strong>, because the matrix is both negative and alkaline.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ΔG = F Δψ + 2.303 RT ΔpH</span>
+      <span class="fx__tag">per mole of H⁺ returning to the matrix; Δψ and ΔpH taken as magnitudes</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Electrical component, Δψ</dt>
+          <dd>The membrane potential, about <strong>0.15–0.18 V</strong> with the matrix negative. It exists
+              because pumping a proton moves a <em>charge</em>, and the membrane is a capacitor.</dd>
+          <dt>Chemical component, ΔpH</dt>
+          <dd>About <strong>0.75 pH unit</strong>, matrix alkaline (matrix ≈ 7.75, intermembrane space ≈ 7.0). At
+              37 °C one pH unit is worth 0.0615 V, so this term contributes only about 0.046 V.</dd>
+          <dt>Δp as a voltage</dt>
+          <dd>Δp = Δψ + (2.303RT/F)ΔpH ≈ 0.15 + 0.05 ≈ <strong>0.20 V</strong>, i.e. about
+              <strong>19 kJ per mole of protons</strong>. In chloroplasts the split is the other way round:
+              almost no Δψ and a huge ΔpH of about 3.5 units.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Δp = Δψ + <span class="mf" role="img" aria-label="2.303 R T over F"><span>2.303RT</span><span>F</span></span> ΔpH = 0.15 + 0.0615 × 0.75 = 0.196 V</span><span class="fx__tag">the voltage form; the two terms are in the same units and simply add</span></div>
+          <div class="fx"><span class="fx__eq">ΔG = F Δp = 96.485 × 0.196 = 18.9 kJ·mol⁻¹ per H⁺</span><span class="fx__tag">the number to quote whenever asked "is that enough energy?"</span></div>
+          <div class="fx"><span class="fx__eq">2.303RT/F = 0.0615 V per pH unit at 37 °C (0.059 V at 25 °C)</span><span class="fx__tag">the same constant that appears in every pH electrode</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>Δp</b><span>proton-motive force, V</span></div>
+          <div><b>Δψ</b><span>membrane potential, V (matrix negative)</span></div>
+          <div><b>ΔpH</b><span>pH difference, dimensionless (matrix alkaline)</span></div>
+          <div><b>F</b><span>Faraday constant, 96.485 kJ·V⁻¹·mol⁻¹</span></div>
+          <div><b>R, T</b><span>8.315 J·mol⁻¹·K⁻¹ · 310 K</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>The electrical term does most of the work — and that is not an accident</h3>
+  <p>Of the ~19 kJ·mol⁻¹, roughly <strong>three-quarters comes from Δψ</strong> and only a quarter from ΔpH.
+     The reason is physical. A membrane is a very thin capacitor, so displacing a tiny number of protons — far
+     too few to register as a pH change — already builds a large voltage. To shift matrix pH by a whole unit you
+     would have to move orders of magnitude more protons, against buffering. The mitochondrion therefore banks
+     its energy mostly as charge.</p>
+  <p>The immediate consequence is diagnostic. Anything that <em>dissipates the voltage</em> uncouples just as
+     effectively as something that carries protons. <strong>Valinomycin</strong> is a K⁺ ionophore that moves no
+     protons at all, yet it collapses Δψ and abolishes ATP synthesis. That single observation is a favourite exam
+     item, because it separates people who have understood Δp from people who have memorised "uncouplers carry
+     protons".</p>
+
+  <h3>The evidence that convinced everyone</h3>
+  <p>Mitchell proposed chemiosmosis in 1961 and it was resisted for a decade, largely because it made a
+     structural claim rather than a chemical one. Four lines of evidence settled it, and each of them is the kind
+     of thing an examiner turns into "which observation supports…":</p>
+  <ol>
+    <li><strong>No high-energy intermediate has ever been isolated</strong>, despite an enormous search. The
+        chemical-coupling hypothesis predicted one; chemiosmosis predicts none.</li>
+    <li><strong>A sealed, intact inner membrane is required.</strong> Puncture the vesicle and electron transport
+        continues while ATP synthesis stops. No purely chemical mechanism would care about a hole.</li>
+    <li><strong>The Jagendorf–Uribe acid-bath experiment (1966).</strong> Chloroplast thylakoids were soaked in
+        pH 4 buffer until their interiors equilibrated, then jumped into pH 8 buffer containing ADP and
+        P<sub>i</sub>. They made ATP <em>in the dark, with no electron transfer at all</em>. A pH gradient alone
+        was sufficient.</li>
+    <li><strong>The Racker–Stoeckenius reconstitution (1974).</strong> Artificial vesicles were built from just
+        two proteins: <em>bacteriorhodopsin</em>, a light-driven proton pump from a halophilic archaeon, and
+        <em>mitochondrial ATP synthase</em> from beef heart. Shine a light and the vesicles made ATP. Two
+        proteins from utterly unrelated organisms, with no chemistry in common and no shared intermediate,
+        coupled solely by a proton gradient. This is the decisive one.</li>
+  </ol>
+  <p>Mitchell received the 1978 Nobel Prize in Chemistry for the hypothesis; Boyer and Walker shared the 1997
+     prize for the mechanism of the enzyme it predicted.</p>
+
+  <h3>Respiratory control: why mitochondria only burn when asked</h3>
+  <p>Isolated mitochondria given substrate and oxygen but no ADP consume oxygen very slowly (<em>state 4</em>).
+     Add ADP and consumption jumps several-fold (<em>state 3</em>) until the ADP is used up, then falls back.
+     The ratio of the two rates is the <strong>respiratory control ratio</strong>, and a high one is the standard
+     assay of intact, well-coupled mitochondria.</p>
+  <p>The mechanism is pure back-pressure, and it is worth stating precisely because it explains half of
+     §&nbsp;09. Without ADP, ATP synthase cannot turn; protons cannot return; Δp rises until the free energy of
+     pumping one more proton exceeds what the redox drops can supply. At that point the pumps stall, and because
+     the pumps have stalled, electron flow stops, and because electron flow has stopped, oxygen is not consumed.
+     <strong>The gradient is not just a store — it is also the signal that tells the chain to slow down.</strong>
+     Nothing measures ATP demand; the demand measures itself.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — is the gradient strong enough to pay for an ATP?</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A respiring mitochondrion at 37 °C has Δψ = 0.15 V (matrix
+      negative) and a matrix pH 0.75 units above that of the intermembrane space. (a) Express Δp in volts.
+      (b) How much free energy is released when one mole of protons returns to the matrix? (c) Making one ATP
+      inside the matrix requires 8/3 protons through the synthase plus about 1 more to export it; the cellular
+      cost of ATP synthesis is about 50 kJ·mol⁻¹. Does the budget balance?</p>
+    <ol>
+      <li><strong>(a)</strong> Convert the pH term to volts:
+          <span class="fi">(2.303RT/F) × ΔpH = 0.0615 × 0.75 = 0.046 V</span>.</li>
+      <li>The matrix is negative <em>and</em> alkaline, so both terms push protons inward and they add:
+          <span class="fi">Δp = 0.150 + 0.046 = 0.196 V ≈ 0.20 V</span>.</li>
+      <li><strong>(b)</strong> <span class="fi">ΔG = FΔp = 96.485 × 0.196 = 18.9 kJ·mol⁻¹</span> per mole of
+          protons. Note how small that is — <span class="fi">18.9 / 50 ≈ 0.38</span>, so a single proton carries
+          only about <strong>two-fifths</strong> of what one ATP costs in the cell. Several are needed per ATP,
+          which is exactly why the stoichiometry comes out where it does.</li>
+      <li><strong>(c)</strong> Protons required: <span class="fi">8/3 + 1 = 3.67 ≈ 4</span>.</li>
+      <li>Energy delivered: <span class="fi">4 × 18.9 = 75.6 kJ·mol⁻¹</span>.</li>
+      <li>Energy required: about <strong>50 kJ·mol⁻¹</strong> (the ΔG<sub>p</sub> of Worked example 2, not the
+          standard −30.5).</li>
+      <li><strong>Yes, comfortably</strong> — the margin is roughly 1.5×, which is what lets the reaction run at
+          a useful <em>rate</em> rather than sitting at equilibrium. Note the trap: if you had used −30.5 as the
+          cost you would have concluded the cell wastes most of the gradient, which is wrong.</li>
+    </ol>
+    <span class="wex__ans">Δp ≈ 0.20 V · 18.9 kJ per mol H⁺ · 4 H⁺ deliver ≈ 76 kJ against a ≈50 kJ cost</span>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>ATP synthase and rotational catalysis</h2>
+
+  <p class="idea"><b>The idea</b>The enzyme that makes ATP is not a conventional catalyst at all — it is a rotary motor, the smallest one
+     known. Protons flowing back through a channel spin a ring embedded in the membrane, the ring turns a bent
+     shaft, and the shaft pushes in turn against three catalytic sites so that each one is squeezed and released
+     once per revolution. The surprising part is what the energy is spent on. Making the bond between ADP and
+     phosphate costs almost nothing once both are held tightly enough; what costs energy is prising the finished
+     ATP off the enzyme. The motor is there to open the hand, not to close it.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; mechanism</p>
+    <dl class="def">
+      <dt>F₁F₀-ATP synthase (Complex V)</dt>
+      <dd>A reversible rotary motor spanning the inner membrane. <strong>F₀</strong> is the membrane sector that
+          conducts protons; <strong>F₁</strong> is the matrix-side knob that contains the three catalytic sites.
+          "F₀" was named for its sensitivity to <strong>o</strong>ligomycin, not for a zero.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">360° rotation = 3 ATP · mammalian c-ring = 8 subunits · 8/3 ≈ 2.7 H⁺ per ATP</span>
+      <span class="fx__tag">the stoichiometry is set by a structure, and structures have no reason to give whole numbers</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Rotor and stator</dt>
+          <dd><strong>Rotor</strong> = the c-ring + the γ and ε subunits. <strong>Stator</strong> = subunit a,
+              the b₂ dimer, the δ subunit and the α₃β₃ hexamer they hold still. Without the stator the whole
+              enzyme would simply spin and no work would be done — the same requirement as in any motor.</dd>
+          <dt>Binding-change mechanism (Boyer)</dt>
+          <dd>The three β subunits cycle through three conformations: <strong>O</strong> (open, weak binding,
+              releases ATP), <strong>L</strong> (loose, binds ADP and P<sub>i</sub>), <strong>T</strong> (tight,
+              where ATP forms with ΔG ≈ 0). Rotation of γ by 120° converts each site into the next.</dd>
+          <dt>Reversibility</dt>
+          <dd>Run it backwards and it is an ATPase that pumps protons. In anoxia the enzyme does exactly that,
+              hydrolysing glycolytic ATP to defend Δψ; the inhibitor protein <strong>IF1</strong> binds and
+              blocks this when the matrix becomes acidic.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">F₁ = α₃β₃γδε  ·  F₀ = ab₂c<sub>8–15</sub></span><span class="fx__tag">catalysis is on β; the α subunits are structural but bind nucleotide too</span></div>
+          <div class="fx"><span class="fx__eq">c-ring size: mammal 8 · yeast and E. coli 10 · chloroplast 14</span><span class="fx__tag">H⁺/ATP = c/3, so 2.7, 3.3 and 4.7 respectively — organisms tune it to their Δp</span></div>
+          <div class="fx"><span class="fx__eq">one proton = one c subunit = 360°/c of rotation</span><span class="fx__tag">the gearing that converts a proton count into an ATP count</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>F₁</b><span>soluble catalytic sector, α₃β₃γδε</span></div>
+          <div><b>F₀</b><span>membrane proton-conducting sector, ab₂c<sub>n</sub></span></div>
+          <div><b>γ</b><span>asymmetric central shaft; its rotation drives the conformational cycle</span></div>
+          <div><b>c-ring</b><span>rotor ring; n subunits, each with one essential carboxylate</span></div>
+          <div><b>IF1</b><span>ATPase inhibitory factor 1 — blocks the reverse reaction</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 780 350" role="img" aria-label="Left: a cross-section of ATP synthase. Protons enter a half-channel in subunit a, load onto carboxylates of the c-ring inside the membrane, travel round the ring and exit through a second half-channel into the matrix, turning the ring and the gamma shaft attached to it. The gamma shaft passes into the alpha-three-beta-three head, which is held still by the b2 stator arm. Right: the binding-change mechanism drawn as three catalytic sites around a rotating gamma shaft, labelled Open which releases ATP, Loose which binds ADP and phosphate, and Tight where ATP forms spontaneously. A 120 degree rotation converts each site into the next." style="font-family:var(--sans)">
+      <!-- LEFT: machine -->
+      <rect x="24" y="86" width="330" height="86" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1.4"/>
+      <text x="30" y="78" font-size="11" font-weight="700" fill="var(--ink-soft)">intermembrane space</text>
+      <text x="30" y="196" font-size="11" font-weight="700" fill="var(--ink-soft)">matrix</text>
+
+      <!-- subunit a -->
+      <rect x="140" y="88" width="34" height="82" rx="6" fill="var(--card)" stroke="var(--accent-2)" stroke-width="1.8"/>
+      <text x="157" y="134" font-size="13" font-weight="700" text-anchor="middle" fill="var(--accent-2)">a</text>
+      <!-- c ring -->
+      <rect x="176" y="88" width="118" height="82" rx="10" fill="var(--accent-wash)" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <g fill="var(--accent-3)">
+        <circle cx="189" cy="129" r="5.6"/><circle cx="202" cy="129" r="5.6"/><circle cx="215" cy="129" r="5.6"/><circle cx="228" cy="129" r="5.6"/>
+        <circle cx="241" cy="129" r="5.6"/><circle cx="254" cy="129" r="5.6"/><circle cx="267" cy="129" r="5.6"/><circle cx="280" cy="129" r="5.6"/>
+      </g>
+      <text x="235" y="106" font-size="11.5" font-weight="700" text-anchor="middle" fill="var(--ink)">c-ring (8 subunits)</text>
+      <text x="235" y="160" font-size="10" text-anchor="middle" fill="var(--ink-faint)">each carries one essential Glu/Asp</text>
+
+      <!-- proton path -->
+      <line x1="157" y1="52" x2="157" y2="86" stroke="var(--accent-3)" stroke-width="3"/>
+      <polygon points="151,78 163,78 157,92" fill="var(--accent-3)"/>
+      <text x="157" y="44" font-size="11.5" font-weight="700" text-anchor="middle" fill="var(--accent-3)">H⁺ in</text>
+      <path d="M 168,120 L 186,120" stroke="var(--accent-3)" stroke-width="2" stroke-dasharray="3 3"/>
+      <path d="M 186,140 L 168,140" stroke="var(--accent-3)" stroke-width="2" stroke-dasharray="3 3"/>
+      <line x1="157" y1="172" x2="157" y2="206" stroke="var(--accent-3)" stroke-width="3"/>
+      <polygon points="151,198 163,198 157,212" fill="var(--accent-3)"/>
+      <text x="157" y="226" font-size="11.5" font-weight="700" text-anchor="middle" fill="var(--accent-3)">H⁺ out</text>
+      <text x="235" y="145" font-size="10" text-anchor="middle" fill="var(--ink-soft)">↻ ring turns</text>
+
+      <!-- gamma shaft -->
+      <line x1="235" y1="172" x2="235" y2="212" stroke="var(--accent)" stroke-width="8"/>
+      <text x="252" y="196" font-size="12" font-weight="700" fill="var(--accent)">γ</text>
+      <!-- F1 head -->
+      <ellipse cx="235" cy="262" rx="82" ry="48" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+      <text x="235" y="258" font-size="13" font-weight="700" text-anchor="middle" fill="var(--ink)">α₃β₃ head</text>
+      <text x="235" y="276" font-size="10.5" text-anchor="middle" fill="var(--ink-soft)">three catalytic sites on β</text>
+      <!-- stator -->
+      <path d="M 130,92 L 108,92 L 108,262 L 153,262" fill="none" stroke="var(--ink-faint)" stroke-width="3"/>
+      <text x="76" y="180" font-size="11" font-weight="700" fill="var(--ink-faint)">b₂ + δ</text>
+      <text x="76" y="194" font-size="10" fill="var(--ink-faint)">stator: holds</text>
+      <text x="76" y="207" font-size="10" fill="var(--ink-faint)">the head still</text>
+      <!-- oligomycin -->
+      <text x="300" y="70" font-size="11" font-weight="700" fill="var(--bad)">✕ oligomycin · DCCD</text>
+      <text x="300" y="84" font-size="10" fill="var(--ink-faint)">block the a–c interface</text>
+      <text x="330" y="320" font-size="11.5" font-weight="700" text-anchor="middle" fill="var(--ok)">ATP</text>
+
+      <!-- RIGHT: binding change -->
+      <line x1="392" y1="30" x2="392" y2="330" stroke="var(--line)" stroke-width="1.2"/>
+      <circle cx="592" cy="180" r="96" fill="none" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="5 5"/>
+      <g stroke-width="1.8">
+        <ellipse cx="592" cy="96" rx="60" ry="34" fill="var(--card)" stroke="var(--ink-faint)"/>
+        <ellipse cx="665" cy="222" rx="60" ry="34" fill="var(--card)" stroke="var(--accent-2)"/>
+        <ellipse cx="519" cy="222" rx="60" ry="34" fill="var(--accent-wash)" stroke="var(--accent)"/>
+      </g>
+      <g text-anchor="middle">
+        <text x="592" y="92" font-size="13" font-weight="700" fill="var(--ink)">O — open</text>
+        <text x="592" y="108" font-size="10" fill="var(--ink-soft)">releases ATP · binds nothing</text>
+        <text x="665" y="218" font-size="13" font-weight="700" fill="var(--ink)">L — loose</text>
+        <text x="665" y="234" font-size="10" fill="var(--ink-soft)">binds ADP + Pᵢ</text>
+        <text x="519" y="218" font-size="13" font-weight="700" fill="var(--ink)">T — tight</text>
+        <text x="519" y="234" font-size="10" fill="var(--ink-soft)">ATP forms here, ΔG ≈ 0</text>
+      </g>
+      <circle cx="592" cy="180" r="17" fill="var(--accent)"/>
+      <text x="592" y="185" font-size="13" font-weight="700" text-anchor="middle" fill="var(--on-accent)">γ</text>
+      <g fill="none" stroke="var(--accent)" stroke-width="2.4">
+        <path d="M 655,132 A 78,78 0 0 1 664,168"/>
+        <path d="M 645,251 A 78,78 0 0 1 606,257"/>
+        <path d="M 528,151 A 78,78 0 0 1 545,124"/>
+      </g>
+      <g fill="var(--accent)">
+        <polygon points="658,162 670,168 660,176"/>
+        <polygon points="612,251 604,262 600,249"/>
+        <polygon points="540,130 544,118 552,128"/>
+      </g>
+      <text x="592" y="316" font-size="11.5" text-anchor="middle" fill="var(--ink-soft)">each 120° step converts O→L, L→T, T→O</text>
+      <text x="592" y="332" font-size="11.5" text-anchor="middle" fill="var(--ink-faint)">one full turn = three ATP released</text>
+    </svg>
+    <figcaption>Two half-channels in subunit a, offset so that they never connect directly: a proton can only
+      cross by loading onto a c-subunit carboxylate, riding almost all the way round the ring in the lipid, and
+      leaving through the second half-channel. That is the trick that converts a proton flux into torque. On the
+      right, the three β sites are never in the same state at the same time, which is what a single asymmetric
+      shaft passing through a threefold-symmetric head guarantees.</figcaption>
+  </figure>
+
+  <h3>The energy is spent on release, not on synthesis</h3>
+  <p>This is the counter-intuitive core of the mechanism and it is examined precisely because it is
+     counter-intuitive. Boyer's isotope-exchange experiments showed that when ADP and P<sub>i</sub> are bound at
+     the tight site, ATP forms and reverses many times over before anything is released — the equilibrium
+     constant at the enzyme surface is close to 1, so <strong>ΔG for the chemical step is nearly zero</strong>.
+     Enzyme-bound ATP is not a high-energy species; it is stabilised by the protein far more than ADP and
+     P<sub>i</sub> are. What that stabilisation costs is the ability to let go. So the proton-motive force is
+     spent turning γ, which forces the tight site open and evicts an ATP that would otherwise never leave.</p>
+  <p>Two experiments nailed it. <strong>Walker's 1994 crystal structure</strong> of F₁ found the three β subunits
+     in three different conformations with three different ligand states in a single crystal — exactly what the
+     binding-change model demanded and what a conventional enzyme would never show. <strong>Noji and Kinosita
+     (1997)</strong> stuck an F₁ head to a glass slide, attached a fluorescent actin filament to the γ subunit,
+     added ATP, and filmed the filament rotating in discrete <strong>120° steps</strong>, always
+     anticlockwise viewed from the membrane. The motor had been watched running backwards.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Why the ATP yield is not a whole number</p>
+    <p>Every old textbook said 3 ATP per NADH because it assumed the coupling had to be integral — that some
+      fixed number of ATP was produced per pair of electrons. Chemiosmosis removes that assumption entirely.
+      Electrons and ATP are connected only through a common pool of protons, and <strong>there is no reason
+      whatever for the proton cost of an ATP and the proton yield of an NADH to share a common factor.</strong>
+      In mammals the c-ring has 8 subunits, so 3 ATP cost 8 protons; a further ~1 proton pays to import
+      P<sub>i</sub> and swap ATP for ADP (§&nbsp;10); 10 protons per NADH divided by ~4 per exported ATP gives
+      2.5. If a question asks <em>why</em> the modern figures are non-integral, the answer is one sentence:
+      because the intermediate is a gradient rather than a molecule.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Oligomycin blocks F₀, and that is why it stops respiration too</p>
+    <p>Oligomycin does not touch the electron-transport chain. It plugs the proton channel at the a–c interface
+      (DCCD does the same by covalently modifying the c-subunit carboxylate). Yet adding oligomycin to
+      respiring mitochondria makes <em>oxygen consumption fall</em>. Students often mark this wrong. The reason
+      is respiratory control from §&nbsp;07: with no return path the gradient rises until the pumps cannot push
+      against it, so electron flow stalls. <strong>Blocking the exit blocks the entrance.</strong> The
+      distinguishing observation is the gradient itself — an oligomycin-treated mitochondrion is
+      <em>hyperpolarised</em>, whereas an inhibitor of complex III or IV leaves it depolarised.</p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Inhibitors, uncouplers and what goes wrong</h2>
+
+  <p class="idea"><b>The idea</b>There are exactly three ways to break this machine, and they look completely different from the outside.
+     You can block the electron path, in which case nothing moves and nothing is made. You can block the ATP
+     exit, in which case pressure builds up and, because of the back-pressure, the electron path stops too. Or
+     you can poke a hole in the container, in which case the electrons rush through faster than ever, the
+     pressure never builds, no ATP appears and all of the energy comes out as heat. Learning to tell those three
+     signatures apart is the single highest-yield thing on this page.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; mechanism</p>
+    <dl class="def">
+      <dt>Uncoupler（解偶聯劑）</dt>
+      <dd>An agent that dissipates the proton-motive force without passing through ATP synthase, so that
+          electron transport and phosphorylation become independent of each other. Classically a
+          <strong>lipophilic weak acid</strong>: it picks up a proton on the acidic side, crosses the bilayer in
+          its neutral form, and releases the proton in the alkaline matrix — a <em>protonophore</em>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">uncoupler:  O₂ consumption ↑↑ · ATP ↓ · Δp ↓ · heat ↑</span>
+      <span class="fx__tag">the only class that makes respiration go <em>faster</em> while making less ATP</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Ionophore versus protonophore</dt>
+          <dd>A protonophore (DNP, FCCP, CCCP) carries H⁺ and collapses both components of Δp. An ionophore such
+              as <strong>valinomycin</strong> carries K⁺ and collapses only Δψ — which, since Δψ supplies about
+              three-quarters of Δp, is enough to uncouple on its own.</dd>
+          <dt>Physiological uncoupling: UCP1 / thermogenin</dt>
+          <dd>A regulated proton channel of the inner membrane of <strong>brown adipose tissue</strong>.
+              Noradrenaline → β₃ receptor → lipolysis → free fatty acids activate UCP1 → protons return without
+              making ATP → heat. Essential in neonates (who cannot shiver) and hibernators; adult humans retain
+              active brown fat, chiefly supraclavicular.</dd>
+          <dt>Crossover point</dt>
+          <dd>Add an inhibitor and read the redox state of each carrier spectroscopically: everything
+              <em>upstream</em> of the block becomes reduced, everything <em>downstream</em> oxidised. The
+              boundary locates the block. This is how the order of the chain was determined.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">chain inhibitor:  O₂ ↓ · ATP ↓ · Δp ↓</span><span class="fx__tag">rotenone, antimycin A, cyanide, CO</span></div>
+          <div class="fx"><span class="fx__eq">ATP synthase inhibitor:  O₂ ↓ · ATP ↓ · Δp <strong>↑</strong></span><span class="fx__tag">oligomycin — the hyperpolarised signature</span></div>
+          <div class="fx"><span class="fx__eq">uncoupler:  O₂ <strong>↑</strong> · ATP ↓ · Δp ↓</span><span class="fx__tag">DNP, FCCP, UCP1, salicylate in overdose</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>DNP</b><span>2,4-dinitrophenol, the archetypal protonophore</span></div>
+          <div><b>UCP1</b><span>uncoupling protein 1 (thermogenin), brown fat</span></div>
+          <div><b>ANT</b><span>adenine nucleotide translocase (SLC25A4)</span></div>
+          <div><b>RCR</b><span>respiratory control ratio, state 3 rate ÷ state 4 rate</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Agents acting on oxidative phosphorylation, their sites and their signatures</caption>
+      <thead><tr><th>Agent</th><th>Site of action</th><th>O₂ consumption</th><th>ATP</th><th>Δp</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Rotenone</strong>, piericidin A, amytal, <strong>MPP⁺</strong></td><td>Complex I, Q-binding site</td><td>↓ on NAD-linked substrates only</td><td>↓</td><td>↓</td><td>Succinate still respires — the classic way to demonstrate two entry points. MPP⁺, from the contaminant MPTP, destroys nigral neurons and causes parkinsonism</td></tr>
+        <tr><td>Malonate</td><td>Complex II, <em>competitive</em> with succinate</td><td>↓ on succinate only</td><td>↓</td><td>↓</td><td>Overcome by raising [succinate] — the textbook demonstration of competitive inhibition inside a working pathway</td></tr>
+        <tr><td><strong>Antimycin A</strong></td><td>Complex III, Q<sub>i</sub> site</td><td>↓↓</td><td>↓</td><td>↓</td><td>Massively increases superoxide production by stranding the Q<sub>o</sub> semiquinone</td></tr>
+        <tr><td>Myxothiazol, stigmatellin, <strong>atovaquone</strong></td><td>Complex III, Q<sub>o</sub> site</td><td>↓↓</td><td>↓</td><td>↓</td><td>Atovaquone is selective for <em>Plasmodium</em> and <em>Pneumocystis</em> cytochrome b</td></tr>
+        <tr><td><strong>Cyanide, azide</strong> (Fe³⁺); <strong>CO</strong> (Fe²⁺); <strong>H₂S</strong></td><td>Complex IV, haem a₃–Cu<sub>B</sub></td><td>↓↓↓</td><td>↓↓</td><td>↓</td><td>The fastest lethal blocks in toxicology. Note the oxidation-state difference: cyanide binds ferric a₃, CO binds ferrous</td></tr>
+        <tr><td><strong>Oligomycin</strong>, DCCD</td><td>F₀ proton channel of complex V</td><td><strong>↓</strong> (respiratory control)</td><td>↓↓</td><td><strong>↑</strong></td><td>The only class that <em>raises</em> Δp. DCCD is covalent</td></tr>
+        <tr><td>Atractyloside; bongkrekic acid</td><td>Adenine nucleotide translocase (cytosolic / matrix face)</td><td>↓</td><td>↓ in cytosol</td><td>↑</td><td>Behaves like oligomycin because the export step is part of the coupled cost</td></tr>
+        <tr><td><strong>2,4-Dinitrophenol</strong>, FCCP, CCCP</td><td>Bilayer — protonophore</td><td><strong>↑↑</strong></td><td>↓↓</td><td>↓↓</td><td>Sold as a slimming drug 1933–1938; still kills people who buy it online. Hyperthermia, sweating, tachycardia, death</td></tr>
+        <tr><td>Valinomycin (+ K⁺)</td><td>Bilayer — K⁺ ionophore</td><td>↑</td><td>↓</td><td>↓ (Δψ only)</td><td>Uncouples without carrying a single proton — the discriminating example</td></tr>
+        <tr><td><strong>UCP1 / thermogenin</strong></td><td>Inner membrane, regulated</td><td>↑</td><td>↓</td><td>↓</td><td>Physiological, not toxic: non-shivering thermogenesis in brown fat</td></tr>
+        <tr><td>Salicylate (overdose)</td><td>Bilayer — weak acid</td><td>↑</td><td>↓</td><td>↓</td><td>Explains the hyperthermia and the metabolic acidosis on top of the respiratory alkalosis</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The oligomycin-then-uncoupler experiment</h3>
+  <p>If one experiment appears on this topic, it is this one, usually as an oxygen-electrode trace. Mitochondria
+     are respiring on succinate with ADP and P<sub>i</sub> present, consuming oxygen briskly. Add
+     <strong>oligomycin</strong>: consumption slows to a crawl, because the protons have nowhere to return to and
+     the gradient stalls the pumps. Now add <strong>DNP</strong>: consumption resumes and in fact overshoots the
+     original rate, because the protons now have a completely free path home and the pumps face no back-pressure
+     at all. ATP synthesis, however, does not return — it stopped when oligomycin went in and the uncoupler
+     cannot restore it, since the protons bypass the enzyme entirely.</p>
+  <p>The take-home is that <strong>an uncoupler relieves an ATP-synthase inhibitor's effect on respiration but
+     not on phosphorylation</strong>. An uncoupler cannot, however, rescue a chain inhibitor: if the electrons
+     cannot reach oxygen, opening a hole in the membrane changes nothing. That asymmetry is the discriminator
+     examiners build the question around.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Cyanide, carbon monoxide and the arterialised venous blood</p>
+    <p>A smoke-inhalation victim with severe lactic acidosis, a normal PaO₂ and an <em>abnormally high</em> venous
+      oxygen saturation has a <strong>histotoxic</strong> problem, not a delivery problem: oxygen is arriving but
+      the tissues cannot reduce it, so it returns unused in the venous blood. That is cytochrome c oxidase
+      inhibition. Cyanide binds the <strong>ferric</strong> haem a₃; treatment is
+      <strong>hydroxocobalamin</strong> (which chelates CN⁻ to give cyanocobalamin), or sodium
+      <strong>nitrite</strong> to generate methaemoglobin whose Fe³⁺ acts as a decoy sink, plus sodium
+      <strong>thiosulfate</strong> as sulfur donor for rhodanese, which converts cyanide to thiocyanate. Carbon
+      monoxide is different in an examinable way: it binds the <strong>ferrous</strong> form of both haemoglobin
+      and a₃, so it impairs carriage <em>and</em> utilisation, and its pulse-oximetry reading is falsely normal.
+      Hydrogen sulfide, from sewers and slurry pits, inhibits the same site and is the reason confined-space
+      rescuers so often become the second casualty.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · mitochondrial genetics, heteroplasmy and the OXPHOS diseases</summary>
+    <div class="disc__body">
+      <p>Human mtDNA is a 16.6 kb circle carrying <strong>13 polypeptides, 22 tRNAs and 2 rRNAs</strong>. Every
+        one of the 13 is a subunit of an oxidative-phosphorylation complex: 7 of complex I (ND1–6, ND4L),
+        1 of complex III (cytochrome b), 3 of complex IV (COI–III) and 2 of ATP synthase (ATP6, ATP8).
+        <strong>Complex II is the exception — entirely nuclear-encoded</strong>, which is why SDH disease is
+        Mendelian while the rest can be maternal.</p>
+      <p>Three genetic ideas do most of the work in a vignette:</p>
+      <ul>
+        <li><strong>Maternal inheritance.</strong> Sperm mitochondria are eliminated after fertilisation, so an
+          affected mother transmits to all her children and an affected father to none.</li>
+        <li><strong>Heteroplasmy and the threshold effect.</strong> A cell contains thousands of mtDNA copies;
+          mutant and wild-type coexist. Symptoms appear only above a mutant load threshold, which differs by
+          tissue — highest demand tissues (CNS, retina, cardiac and skeletal muscle, cochlea, β cells) fail
+          first. This explains the variable expressivity that looks so unlike Mendelian disease.</li>
+        <li><strong>The germline bottleneck.</strong> Only a small sample of mtDNAs is passed to each oocyte, so
+          sibling mutant loads — and therefore severities — can differ wildly.</li>
+      </ul>
+      <div class="table-scroll">
+        <table class="data">
+          <caption class="sr-only">Representative mitochondrial diseases</caption>
+          <thead><tr><th>Disease</th><th>Lesion</th><th>Clinical signature</th></tr></thead>
+          <tbody>
+            <tr><td>LHON — Leber hereditary optic neuropathy</td><td>Complex I (ND1, ND4, ND6)</td><td>Painless subacute bilateral central vision loss in young men; incomplete penetrance</td></tr>
+            <tr><td>MELAS</td><td>tRNA<sup>Leu(UUR)</sup>, m.3243A&gt;G</td><td>Mitochondrial encephalomyopathy, <strong>lactic acidosis</strong>, stroke-like episodes not respecting vascular territories</td></tr>
+            <tr><td>MERRF</td><td>tRNA<sup>Lys</sup></td><td>Myoclonic epilepsy with <strong>ragged red fibres</strong> on Gomori trichrome</td></tr>
+            <tr><td>NARP / maternally inherited Leigh syndrome</td><td>ATP6 (complex V)</td><td>Neuropathy, ataxia, retinitis pigmentosa; higher mutant load gives Leigh's necrotising encephalopathy</td></tr>
+            <tr><td>Kearns–Sayre syndrome</td><td>Large mtDNA deletion, usually sporadic</td><td>Progressive external ophthalmoplegia, pigmentary retinopathy, heart block before age 20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-bottom:0">One laboratory clue ties them together: a defect in oxidative phosphorylation
+        forces the cell back onto glycolysis, so <strong>lactate rises</strong> — in blood and often
+        conspicuously in CSF. Any multisystem disorder with unexplained lactic acidosis, deafness, diabetes and
+        myopathy in a maternal pedigree should raise the question.</p>
+    </div>
+  </details>
+
+  <h3>Reactive oxygen species: the unavoidable side reaction</h3>
+  <p>Roughly 0.1–2 % of the oxygen consumed by mitochondria is reduced by only one electron, giving superoxide.
+     The culprits are the sites where an electron sits on a carrier long enough to meet O₂: the flavin and the
+     Q-binding site of <strong>complex I</strong>, especially during reverse electron transport, and the
+     <strong>Q<sub>o</sub> semiquinone of complex III</strong>. Complex IV, counter-intuitively, contributes
+     almost nothing, because it never lets a partially reduced oxygen species go.</p>
+  <p>The defence is a cascade: <strong>superoxide dismutase</strong> — MnSOD (SOD2) in the matrix, Cu/Zn-SOD
+     (SOD1) in the cytosol and intermembrane space — converts O₂<sup>•−</sup> to H₂O₂; then
+     <strong>catalase</strong> and <strong>glutathione peroxidase</strong> (a selenoenzyme) remove the peroxide,
+     the latter at the cost of NADPH regenerated by glutathione reductase and ultimately by the pentose phosphate
+     pathway. Note the connection this creates: a red cell with G6PD deficiency cannot make NADPH fast enough,
+     so an oxidant challenge causes haemolysis. What looks like a haematology fact is a consequence of the
+     chemistry on this page.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Malignant hyperthermia is not uncoupling</p>
+    <p>It is tempting to file every hyperthermic crisis under "uncoupler", but the mechanisms differ and
+      examiners exploit that. <strong>Malignant hyperthermia</strong> is uncontrolled Ca²⁺ release through a
+      mutant ryanodine receptor after volatile anaesthetics or suxamethonium; the heat comes from frantic
+      <em>ATP hydrolysis</em> by the SERCA pump and by actomyosin, so ATP falls and rigidity is prominent —
+      treated with dantrolene. <strong>DNP or salicylate</strong> uncouple genuinely: ATP falls because it is
+      never made, and the tissue is not rigid. <strong>Thyroid hormone</strong> raises basal metabolic rate
+      partly by increasing proton leak and partly by inducing more Na⁺/K⁺-ATPase — physiological, gradual, and
+      not a crisis. Same symptom, three different places in the machine.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Shuttles, transport and the honest ATP ledger</h2>
+
+  <p class="idea"><b>The idea</b>Glycolysis happens outside the mitochondrion and loads two carriers with electrons there; the machinery that
+     can spend them is inside, behind a membrane the carriers cannot cross. So the electrons are moved across
+     without the carrier: something reducible is reduced on the outside, ferried in, and re-oxidised on the
+     inside. There are two ways of doing it, they deposit the electrons at different points in the chain, and
+     that is the entire reason the famous ATP totals differ between tissues. Add the cost of exporting the
+     finished ATP, and the honest total for one glucose is 30 or 32 — not 36 or 38.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the two shuttles</p>
+    <dl class="def">
+      <dt>Substrate shuttle</dt>
+      <dd>A pair of dehydrogenases on opposite sides of the inner membrane plus a transporter for the reduced
+          metabolite. The <em>electrons</em> cross; the NADH does not. There is no NADH transporter in the inner
+          membrane, and there never was.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">cytosolic NADH → 2.5 ATP (malate–aspartate)   ·   → 1.5 ATP (glycerol 3-phosphate)</span>
+      <span class="fx__tag">the difference is only <em>where</em> the electrons enter: complex I versus the Q pool</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Malate–aspartate shuttle</dt>
+          <dd>Liver, kidney, heart. Cytosolic malate dehydrogenase reduces oxaloacetate to malate; the
+              malate/α-ketoglutarate antiporter carries malate in; matrix malate dehydrogenase regenerates NADH
+              <em>inside</em>. Oxaloacetate cannot cross, so it is transaminated to aspartate and exported on
+              the electrogenic glutamate/aspartate carrier. Fully reversible — it can run backwards when the
+              cytosol needs NAD⁺.</dd>
+          <dt>Glycerol 3-phosphate shuttle</dt>
+          <dd>Skeletal muscle, brain, brown fat, insect flight muscle. Cytosolic NAD-linked glycerol-3-phosphate
+              dehydrogenase reduces DHAP; the mitochondrial isoform is a <strong>flavoprotein on the outer face
+              of the inner membrane</strong> that hands electrons straight to ubiquinone. Effectively
+              irreversible and fast, because it never needs the matrix NAD⁺/NADH ratio to cooperate.</dd>
+          <dt>Adenine nucleotide translocase (ANT)</dt>
+          <dd>Antiports ADP³⁻ in for ATP⁴⁻ out. Because the charges differ, the exchange is
+              <strong>electrogenic</strong> and is driven by Δψ — it costs part of the gradient. With the
+              H₂PO₄⁻/H⁺ symporter that brings phosphate in, the export of one ATP costs about
+              <strong>one extra proton</strong>.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">2.67 H⁺ (synthase) + 1 H⁺ (export) ≈ 4 H⁺ per cytosolic ATP</span><span class="fx__tag">the denominator of every P/O ratio</span></div>
+          <div class="fx"><span class="fx__eq">P/O = 10/4 = 2.5 (NADH) · 6/4 = 1.5 (FADH₂ and every other Q-linked donor)</span><span class="fx__tag">P/O counts phosphorylations per oxygen <em>atom</em>, i.e. per electron pair</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>DHAP</b><span>dihydroxyacetone phosphate, glycolytic intermediate</span></div>
+          <div><b>OAA</b><span>oxaloacetate — cannot cross the inner membrane</span></div>
+          <div><b>ANT</b><span>adenine nucleotide translocase</span></div>
+          <div><b>P/O</b><span>ATP made per oxygen atom reduced (dimensionless)</span></div>
+          <div><b>AST</b><span>aspartate aminotransferase — the transamination step of the shuttle</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The two NADH shuttles compared</caption>
+      <thead><tr><th>Feature</th><th>Malate–aspartate</th><th>Glycerol 3-phosphate</th></tr></thead>
+      <tbody>
+        <tr><td>Tissues</td><td>Liver, kidney, heart</td><td>Skeletal muscle, brain, brown adipose tissue</td></tr>
+        <tr><td>Cytosolic reaction</td><td>OAA + NADH → malate + NAD⁺</td><td>DHAP + NADH → glycerol 3-P + NAD⁺</td></tr>
+        <tr><td>Carrier across the membrane</td><td>Malate (antiport for α-ketoglutarate); aspartate out for glutamate in</td><td>Nothing crosses — the mitochondrial enzyme faces the intermembrane space</td></tr>
+        <tr><td>Where electrons enter the chain</td><td><strong>Matrix NAD⁺ → complex I</strong></td><td><strong>FAD → ubiquinone, bypassing complex I</strong></td></tr>
+        <tr><td>H⁺ translocated</td><td class="num">10</td><td class="num">6</td></tr>
+        <tr><td>ATP per cytosolic NADH</td><td class="num"><strong>2.5</strong></td><td class="num"><strong>1.5</strong></td></tr>
+        <tr><td>Reversible?</td><td>Yes — can run either way depending on redox demand</td><td>No — effectively one-way</td></tr>
+        <tr><td>Why a tissue chooses it</td><td>Maximum yield; needed when the cytosol may need NAD⁺ regenerated in either direction</td><td>Maximum <em>rate</em>, and works even when matrix NADH is already high. Muscle buys speed with two ATP per glucose</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The reason for the difference is worth saying in one sentence, because it is the whole of the answer to a
+     common question: <strong>the shuttles do not differ in how much energy they carry, only in where they put
+     it down.</strong> Malate–aspartate rebuilds a genuine NADH inside the matrix, so its electrons traverse all
+     three pumping sites (10 H⁺). The glycerol-3-phosphate shuttle hands its electrons to a flavoprotein that
+     reduces ubiquinone directly, so they skip complex I entirely (6 H⁺). Divide each by the ~4 H⁺ an exported
+     ATP costs and you get 2.5 and 1.5.</p>
+
+  <h3>Why 36 and 38 were retired</h3>
+  <p>The old figures came from assuming 3 ATP per NADH and 2 per FADH₂, and those in turn came from an era that
+     assumed the coupling had to be a whole number. Four separate corrections turned them into 30 and 32:</p>
+  <ol>
+    <li><strong>Measured proton stoichiometries</strong> are 10 per NADH and 6 per succinate, not the values that
+        would give whole-number ATP.</li>
+    <li><strong>The c-ring has 8 subunits in mammals</strong>, so the synthase itself charges 8/3 = 2.67 H⁺ per
+        ATP, not 3.</li>
+    <li><strong>Export is not free.</strong> ANT and the phosphate carrier together cost about one more proton
+        per ATP delivered to the cytosol, bringing the total to ~4.</li>
+    <li><strong>There is a proton leak.</strong> Real membranes are not perfectly sealed, so the effective yield
+        is lower still, and it is not a constant — it varies with tissue, with thyroid status and with how hard
+        the mitochondrion is working.</li>
+  </ol>
+  <p>Point 4 is the one to internalise. <strong>2.5 and 1.5 are themselves approximations, not new constants.</strong>
+     The honest statement is "about 2.5", and the honest total for glucose is "about 30–32". Write the modern
+     number, and if a paper's options are built on 36/38, notice that it is testing recall of an old textbook and
+     answer accordingly — but be able to explain why the newer figure is right.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">ATP ledger for the complete oxidation of one glucose</caption>
+      <thead><tr><th>Stage</th><th>Direct ATP/GTP</th><th>Carriers made</th><th>ATP from carriers</th></tr></thead>
+      <tbody>
+        <tr><td>Glycolysis (cytosol)</td><td class="num">+2 net</td><td class="num">2 NADH (cytosolic)</td><td class="num">5.0 (malate–aspartate) <em>or</em> 3.0 (glycerol-3-P)</td></tr>
+        <tr><td>Pyruvate → acetyl-CoA (×2)</td><td class="num">0</td><td class="num">2 NADH (matrix)</td><td class="num">5.0</td></tr>
+        <tr><td>Citric acid cycle (2 turns)</td><td class="num">+2 GTP</td><td class="num">6 NADH + 2 FADH₂</td><td class="num">15.0 + 3.0 = 18.0</td></tr>
+        <tr><td><strong>Total, malate–aspartate</strong></td><td class="num">4</td><td class="num">—</td><td class="num"><strong>28 → grand total 32</strong></td></tr>
+        <tr><td><strong>Total, glycerol 3-phosphate</strong></td><td class="num">4</td><td class="num">—</td><td class="num"><strong>26 → grand total 30</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The numbers to have automatic</p>
+    <p><strong>Per NADH 2.5 · per FADH₂ 1.5 · per acetyl-CoA 10 · per pyruvate 12.5 · per glucose 30 or 32.</strong>
+      Two of these are asked far more often than the glucose total, because they are harder to have memorised
+      without understanding: <em>per pyruvate</em> is 4 NADH (one from PDH, three from the cycle) + 1 FADH₂ +
+      1 GTP = 4(2.5) + 1.5 + 1 = <strong>12.5</strong>; <em>per acetyl-CoA</em> drops the PDH NADH and gives
+      <strong>10</strong>. And remember that P/O is per oxygen <strong>atom</strong>: if an experiment reports
+      micromoles of <em>O₂</em>, double it before dividing.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 6 — the full ledger, and how efficient the process really is</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">One glucose is completely oxidised in a hepatocyte. (a) Build
+      the ATP ledger using P/O = 2.5 and 1.5. (b) Repeat for a skeletal muscle fibre. (c) Given that complete
+      combustion of glucose has ΔG°′ = −2840 kJ·mol⁻¹, what fraction of the available energy is conserved — at
+      standard state, and under cellular conditions where ATP synthesis costs ~50 kJ·mol⁻¹?</p>
+    <ol>
+      <li><strong>(a)</strong> Substrate-level: 2 from glycolysis + 2 GTP from the cycle = <span class="fi">4</span>.</li>
+      <li>Matrix NADH: 2 (PDH) + 6 (cycle) = 8, so <span class="fi">8 × 2.5 = 20</span>.</li>
+      <li>FADH₂: 2 × 1.5 = <span class="fi">3</span>.</li>
+      <li>Cytosolic NADH via malate–aspartate: <span class="fi">2 × 2.5 = 5</span>.
+          Total <span class="fi">4 + 20 + 3 + 5 = 32</span>.</li>
+      <li><strong>(b)</strong> Only the last line changes: <span class="fi">2 × 1.5 = 3</span>, so
+          <span class="fi">4 + 20 + 3 + 3 = 30</span>.</li>
+      <li><strong>(c)</strong> Standard state: <span class="fi">32 × 30.5 = 976 kJ·mol⁻¹</span>;
+          <span class="fi">976 / 2840 = 34.4 %</span>.</li>
+      <li>Cellular: <span class="fi">32 × 50 = 1600 kJ·mol⁻¹</span>;
+          <span class="fi">1600 / 2840 = 56.3 %</span>.</li>
+      <li>Read the second figure carefully. Better than half the chemical energy of glucose ends up in ATP, which
+          is far better than any heat engine you own. The remainder is not "lost" — it is the entropy production
+          that makes the whole sequence run forward instead of sitting at equilibrium.</li>
+    </ol>
+    <span class="wex__ans">(a) 32 ATP · (b) 30 ATP · (c) ≈34 % at standard state, ≈56 % in the cell</span>
+    </div>
+  </details>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 7 — reading a P/O ratio off an oxygen-electrode experiment</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A suspension of isolated mitochondria is given a substrate and
+      excess P<sub>i</sub>. A pulse of <strong>25 µmol ADP</strong> is added, and the electrode records the
+      consumption of <strong>5 µmol O₂</strong> before respiration returns to the slow resting rate. (a) What is
+      the P/O ratio? (b) Which substrate was it? (c) What would the same experiment give with succinate, and
+      what would happen if 2,4-dinitrophenol were present throughout?</p>
+    <ol>
+      <li><strong>(a)</strong> P/O is defined per oxygen <em>atom</em>. 5 µmol O₂ = <span class="fi">10 µmol O</span>.</li>
+      <li><span class="fi">P/O = 25 / 10 = 2.5</span>.</li>
+      <li><strong>(b)</strong> 2.5 is the NAD-linked value, so the substrate fed electrons in at complex I —
+          malate, pyruvate, glutamate or β-hydroxybutyrate. (Had you divided by 5 instead of 10 you would have
+          got 5.0, an impossible number, which is the built-in check.)</li>
+      <li><strong>(c)</strong> Succinate enters at the Q pool: <span class="fi">P/O = 1.5</span>, so the same
+          25 µmol ADP would require <span class="fi">25 / 1.5 = 16.7 µmol O = 8.3 µmol O₂</span> — two-thirds
+          more oxygen for the same ATP.</li>
+      <li>With <strong>DNP</strong> present, oxygen would be consumed rapidly and continuously, the ADP pulse
+          would produce no jump at all because respiration was never controlled in the first place, and the
+          measured P/O would fall towards <strong>zero</strong>. A P/O ratio is only meaningful in coupled
+          mitochondria.</li>
+    </ol>
+    <span class="wex__ans">(a) P/O = 2.5 · (b) an NAD-linked substrate · (c) 1.5 with succinate; ≈0 with an uncoupler</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three arithmetic slips that cost whole questions</p>
+    <p><strong>Per glucose versus per pyruvate versus per acetyl-CoA.</strong> Read which the question asks;
+      they are 30–32, 12.5 and 10. <strong>P/O₂ instead of P/O.</strong> Doubling errors here look like a
+      factor-of-two misunderstanding of the whole chain. <strong>Counting the cytosolic NADH twice</strong> —
+      once as 2 NADH from glycolysis and again as part of the "10 NADH per glucose": there are 10 NADH in total,
+      of which 2 are cytosolic and therefore discounted by the shuttle.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 11</span>
+  <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>These questions are part of the reading rather than a test bolted onto the end of it. Pulling an answer out of
+     your own head — even a wrong one — fixes the material far more firmly than reading the same paragraph again.
+     Every wrong option here is a mistake people genuinely make, so being caught by one is worth more to you than
+     a lucky guess.</p>
+  <p>Four of these require arithmetic: do it on paper rather than recognising the answer, because that is what the
+     paper will demand and because a calculation you can perform is a fact you cannot forget. Two more turn on
+     distinctions that are widely answered wrongly — the uncoupler-versus-inhibitor signature, and what the
+     proton gradient's energy is actually spent on. Every explanation says why the right answer is right
+     <em>and</em> why the tempting wrong one is tempting.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="biochem-05-nucleic-acids.html"><small>Previous</small><b>← Nucleic Acids: DNA, RNA and the Central Dogma</b></a>
+  <a href="biochemistry.html"><small>Index</small><b>All biochemistry notes</b></a>
+  <a href="biochem-07-lipid-metabolism.html"><small>Next</small><b>Lipid Metabolism, Cholesterol and Lipoproteins →</b></a>
+</nav>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry 06 · Bioenergetics, the TCA cycle and oxidative phosphorylation</p>
+    <p>Representation used: explicit free-energy and redox arithmetic, with every worked figure recomputed.
+      Standard reduction potentials, ΔG°′ values and proton stoichiometries follow the conventional textbook
+      set (Lehninger); they are approximations chosen to build a sense of magnitude rather than for citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "Given E°′(oxaloacetate/malate) = −0.166 V and E°′(NAD⁺/NADH) = −0.320 V, calculate ΔG°′ for <span class=\"fi\">oxaloacetate + NADH + H⁺ → malate + NAD⁺</span>. Take n = 2 and F = 96.5 kJ·V⁻¹·mol⁻¹.",
+    "options": ["+29.7 kJ·mol⁻¹ — the reaction is endergonic under standard conditions", "−14.9 kJ·mol⁻¹", "−29.7 kJ·mol⁻¹", "−59.4 kJ·mol⁻¹"],
+    "answer": 2,
+    "explain": "Acceptor minus donor: the electron acceptor here is oxaloacetate, so <b>ΔE°′ = −0.166 − (−0.320) = +0.154 V</b>, and <span class=\"fi\">ΔG°′ = −nFΔE°′ = −2 × 96.5 × 0.154 = −29.7 kJ·mol⁻¹</span>. Option A is the sign trap and is worth studying rather than dismissing: +29.7 is the correct ΔG°′ for the <i>reverse</i> reaction, which is malate dehydrogenase running in the citric acid cycle — strongly endergonic at standard state, yet it proceeds continuously because citrate synthase keeps [oxaloacetate] at a few micromolar. Option B forgets that a hydride transfer moves <b>two</b> electrons; option D uses n = 4."
+  },
+  {
+    "stem": "In a cell at 37 °C, [ATP] = 3.0 mM, [ADP] = 0.30 mM and [P<sub>i</sub>] = 5.0 mM. Given ΔG°′ = −30.5 kJ·mol⁻¹ and RT = 2.58 kJ·mol⁻¹, what is the actual ΔG of ATP hydrolysis?",
+    "options": ["≈ −50 kJ·mol⁻¹", "≈ −30.5 kJ·mol⁻¹, because ΔG°′ is a thermodynamic constant", "≈ −11 kJ·mol⁻¹", "≈ −36 kJ·mol⁻¹"],
+    "answer": 0,
+    "explain": "<span class=\"fi\">Q = [ADP][P<sub>i</sub>]/[ATP] = (3.0 × 10⁻⁴ × 5.0 × 10⁻³)/(3.0 × 10⁻³) = 5.0 × 10⁻⁴</span>; <span class=\"fi\">RT ln Q = 2.58 × (−7.60) = −19.6</span>; <b>ΔG = −30.5 − 19.6 = −50.1 kJ·mol⁻¹</b>. Option B is the conceptual error the question exists to catch: ΔG°′ is a constant, but it is not the driving force in a cell — cells hold ATP far above its equilibrium level, and that is precisely what a phosphorylation potential means. Option C inverts Q (adding 19.6 instead of subtracting). Option D leaves P<sub>i</sub> out of the mass-action ratio. The number matters downstream: use −30.5 rather than ≈−50 when asking whether four protons can pay for an ATP and you will wrongly conclude the mitochondrion is wasteful."
+  },
+  {
+    "stem": "One pyruvate molecule enters a cardiac mitochondrion and is oxidised completely to CO₂ and H₂O. Using P/O ratios of 2.5 for NADH and 1.5 for FADH₂, how much ATP is obtained?",
+    "options": ["15", "10", "11.5", "12.5"],
+    "answer": 3,
+    "explain": "Count the carriers: pyruvate dehydrogenase gives <b>1 NADH</b>, and one turn of the cycle gives <b>3 NADH + 1 FADH₂ + 1 GTP</b>. So <span class=\"fi\">4 × 2.5 + 1 × 1.5 + 1 = 10 + 1.5 + 1 = 12.5</span>. Option A is the classical figure using the retired 3-and-2 values (4 × 3 + 2 + 1 = 15). Option B is the commonest slip and the reason the question is worth asking: 10 is the yield per <b>acetyl-CoA</b>, which omits the NADH made by PDH — read whether the question says pyruvate or acetyl-CoA. Option C forgets the substrate-level GTP."
+  },
+  {
+    "stem": "A skeletal-muscle fibre oxidises one glucose completely, using the glycerol 3-phosphate shuttle. Using modern P/O ratios, what is the net ATP yield and why does it differ from a hepatocyte's?",
+    "options": ["32 ATP; the shuttle makes no difference, since NADH is NADH wherever it is made", "30 ATP; two fewer, because each cytosolic NADH delivers its electrons to the ubiquinone pool and so bypasses complex I", "36 ATP; the classical muscle figure", "38 ATP"],
+    "answer": 1,
+    "explain": "The ledger: 4 by substrate-level phosphorylation, 8 matrix NADH × 2.5 = 20, 2 FADH₂ × 1.5 = 3, and 2 cytosolic NADH × <b>1.5</b> = 3, giving <b>30</b>. With the malate–aspartate shuttle the last term becomes 2 × 2.5 = 5 and the total is 32. Option A is the misconception the shuttles exist to correct — the electrons are not devalued, they are simply <i>deposited further down the chain</i>, at the Q pool, so they drive 6 protons rather than 10. Options C and D are the pre-chemiosmotic figures, which assumed 3 ATP per NADH and 2 per FADH₂; they were retired because the c-ring stoichiometry (8/3 H⁺ per ATP) and the cost of exporting ATP make the coupling non-integral."
+  },
+  {
+    "stem": "Isolated mitochondria are respiring rapidly on succinate with ADP and P<sub>i</sub> present. Oligomycin is added; a few minutes later, 2,4-dinitrophenol. What happens to oxygen consumption and to ATP synthesis?",
+    "options": ["O₂ consumption falls after oligomycin and falls further after DNP; no ATP is made after either addition", "O₂ consumption is unaffected by oligomycin, then rises with DNP; ATP synthesis continues throughout", "O₂ consumption falls after oligomycin, then rises above the original rate after DNP; ATP synthesis stops at oligomycin and does not return", "O₂ consumption rises after oligomycin because electrons are diverted to oxygen directly, then falls with DNP"],
+    "answer": 2,
+    "explain": "Oligomycin plugs the F₀ channel, so protons have no way home; the gradient rises until the pumps cannot push against it and electron flow stalls — this is <b>respiratory control</b>, and it is why blocking the exit blocks the entrance. DNP then opens a completely unregulated return path, so the pumps face no back-pressure at all and run <i>faster</i> than in the original coupled state. But the protons bypass ATP synthase, so no ATP reappears. Option A is the belief that anything stopping phosphorylation must also stop respiration, which confuses an uncoupler with a chain inhibitor. Note the asymmetry worth carrying away: an uncoupler rescues an oligomycin block on <i>respiration</i> but never on <i>phosphorylation</i>, and it rescues nothing at all if the block is upstream, at complex I, III or IV."
+  },
+  {
+    "stem": "Why does complex II translocate no protons?",
+    "options": ["The succinate → ubiquinone span is only about 0.014 V, worth ≈2.7 kJ·mol⁻¹ — roughly one-seventh of the ≈19 kJ·mol⁻¹ needed to move a single proton against a typical gradient", "It sits in the outer mitochondrial membrane, where there is no gradient to pump against", "Its FAD is covalently bound, and covalently bound flavins cannot support proton translocation", "It pumps two protons, but they are immediately consumed in reducing ubiquinone to ubiquinol"],
+    "answer": 0,
+    "explain": "The answer is a number, not a fact to memorise. <span class=\"fi\">ΔE°′ = 0.045 − 0.031 = 0.014 V</span>, so <span class=\"fi\">ΔG°′ = −2 × 96.5 × 0.014 = −2.7 kJ·mol⁻¹</span>, while Δp ≈ 0.20 V means each proton costs <span class=\"fi\">96.5 × 0.196 ≈ 19 kJ·mol⁻¹</span>. There is simply no budget. Option B is wrong on anatomy — complex II is in the <b>inner</b> membrane, and it is the only citric acid cycle enzyme that is membrane-bound. Option C states a true fact (the FAD is attached to a histidine) and draws a false conclusion from it. Option D invents a cancellation; ubiquinone does take up two protons, but from the matrix, and they are released again on the other side by complex III, which is exactly why they count."
+  },
+  {
+    "stem": "In the binding-change mechanism of ATP synthase, what is the proton-motive force principally spent on?",
+    "options": ["Forming the phosphoanhydride bond between ADP and P<sub>i</sub>, which is strongly endergonic at the active site", "Driving a covalent modification of the β subunits by γ", "Transporting P<sub>i</sub> and ADP into the matrix; the catalytic step itself is spontaneous and needs no input", "Rotating γ so that the tight site — where ATP forms with ΔG close to zero — is forced open and the bound ATP released"],
+    "answer": 3,
+    "explain": "Boyer's isotope-exchange work showed that ADP and P<sub>i</sub> bound at the tight site condense and re-hydrolyse many times over: at the enzyme surface K ≈ 1 and the chemical step costs essentially nothing. What is expensive is <b>release</b>, because the site that stabilises ATP so well is the site that cannot let go of it. So the gradient turns γ, each 120° step converting T→O and evicting an ATP. Option A is the intuitive answer and is exactly wrong — it is the one the mechanism was proposed to overturn. Option C is tempting because ANT and the phosphate carrier genuinely do cost about one proton per ATP, but that is roughly a quarter of the ~4 H⁺ budget; the bulk pays for the conformational cycle."
+  },
+  {
+    "stem": "Acetyl-CoA labelled with ¹⁴C in its <b>carbonyl (thioester) carbon</b> condenses with unlabelled oxaloacetate. Where does the label go?",
+    "options": ["Into the CO₂ released by isocitrate dehydrogenase during the same turn", "Into both CO₂ molecules of the first turn, since the acetyl group is what is being oxidised", "Into neither CO₂ of the first turn: it ends up on a carboxyl carbon of the regenerated oxaloacetate and is released as CO₂ during the second turn", "It is retained indefinitely, because citrate is a symmetric molecule and aconitase cannot distinguish its two arms"],
+    "answer": 2,
+    "explain": "Aconitase grips citrate at three points and therefore acts only on the arm derived from <b>oxaloacetate</b> (Ogston, 1948). Trace it: isocitrate dehydrogenase releases the carboxyl that came from OAA-C1, and α-ketoglutarate dehydrogenase releases OAA-C4 — so <b>both first-turn CO₂ are unlabelled</b>. The label is now a carboxyl carbon of succinate; succinate is symmetric, but since both its ends are carboxyls the label reaches oxaloacetate C1 or C4 either way, and those are exactly the two carbons released next turn — hence 100 % in turn 2. Option D quotes the prochirality point correctly and then draws the opposite conclusion from it: citrate is symmetric on paper, but the <i>enzyme</i> is not, which is the whole content of Ogston's insight. (Had the <b>methyl</b> carbon been labelled instead it would have become an interior carbon and survived turn 2 as well, with half emerging in turn 3.)"
+  },
+  {
+    "stem": "A man rescued from a house fire is confused and tachypnoeic. PaO₂ is normal, lactate is 14 mmol/L, and a central venous sample is unusually bright red with an oxygen saturation of 92 %. What best explains the picture?",
+    "options": ["Carbon monoxide bound to haemoglobin; oxygen carriage is reduced but mitochondrial function is intact", "Cyanide bound to the ferric haem a₃–Cu<sub>B</sub> centre of cytochrome c oxidase, so tissues receive oxygen they cannot reduce", "Methaemoglobinaemia; the haem iron is oxidised and cannot bind oxygen", "Uncoupling by smoke-derived phenols, which increases oxygen consumption and therefore lowers venous saturation"],
+    "answer": 1,
+    "explain": "A high venous oxygen saturation with a severe lactic acidosis and a normal PaO₂ is the signature of <b>histotoxic hypoxia</b>: delivery is fine, extraction has failed. Burning polyurethane and wool release hydrogen cyanide, which binds the ferric a₃ centre of complex IV. Treatment is hydroxocobalamin, or nitrite (generating methaemoglobin as an Fe³⁺ decoy) plus thiosulfate for rhodanese. Option A is the trap, since CO is certainly present in a fire — but CO-haemoglobin alone impairs <i>carriage</i>, and note the examinable chemistry: CO binds the <b>ferrous</b> form of a₃, cyanide the <b>ferric</b>. Option D has the sign backwards: an uncoupler increases extraction and would <i>lower</i> venous saturation."
+  },
+  {
+    "stem": "Pyruvate carboxylase is allosterically activated by acetyl-CoA. Which statement best captures why that is sensible, and what it does <b>not</b> imply?",
+    "options": ["Accumulating acetyl-CoA means either that the cycle is short of oxaloacetate or that the cell is fuel-replete, so making oxaloacetate either restarts the cycle or feeds gluconeogenesis — but it does not make fatty acids glucogenic, because the acetyl carbons are still balanced by the two decarboxylations", "It allows the two carbons of acetyl-CoA to be converted directly into oxaloacetate and hence into glucose", "It is a biotin-independent carboxylation, so it still works when biotin is limiting", "It replenishes oxaloacetate by carboxylating acetyl-CoA itself, using CO₂ and ATP"],
+    "answer": 0,
+    "explain": "The enzyme carboxylates <b>pyruvate</b>, using biotin and ATP; acetyl-CoA is the <i>signal</i>, never the substrate — which disposes of options C and D, and D is a distractor examiners reuse. Option B is the classic misconception: two carbons enter the cycle as acetyl and two leave as CO₂, so acetyl-CoA raises the cycle's <i>flux</i> and never its <i>stock</i>, and pyruvate dehydrogenase is irreversible in any case. The genuine exceptions are worth quoting alongside the rule: propionyl-CoA from odd-chain fatty acids enters as succinyl-CoA (four carbons in, via biotin and vitamin B₁₂) and is therefore truly anaplerotic and truly glucogenic, as is the glycerol backbone of a triacylglycerol."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

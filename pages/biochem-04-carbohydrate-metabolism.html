@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biochem 04 · Carbohydrate Metabolism: Glycolysis, Gluconeogenesis, Glycogen and the PPP — PostMed Notebook</title>
+<meta name="description" content="Biochemistry note 04: glycolysis step by step, its three irreversible control points, the honest ATP ledger, carbon bookkeeping, fructose and galactose, gluconeogenesis, fructose 2,6-bisphosphate, glycogen and the pentose phosphate pathway.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biochemistry.html">Biochemistry</a>
+      <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Note 04</p>
+  <h1>Carbohydrate Metabolism: Glycolysis, Gluconeogenesis, Glycogen and the PPP</h1>
+  <p class="lede">
+    One principle organises the whole of this note: <strong>a pathway is controlled where it is irreversible</strong>.
+    Ten glycolytic reactions run, seven of them so close to equilibrium that they slide either way depending on which
+    side is being drained. Three do not. Those three are the only steps a cell can usefully regulate, they are exactly
+    the steps that carry hormones and allosteric signals, and they are exactly the steps that a reverse pathway must
+    replace with different enzymes. Once you see that, gluconeogenesis stops being a list of four odd reactions and
+    becomes an inevitability; reciprocal control through fructose 2,6-bisphosphate stops being a fact and becomes an
+    engineering solution; and glycogen synthesis and breakdown stop being mirror images and become two separately
+    switchable machines. The second thread running through the note is <strong>carbon bookkeeping</strong> — knowing
+    which atom of glucose ends up where, because the paper asks it directly.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Pathway maps + carbon tracing</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~50 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Getting glucose in, and the crossroads at G6P</a></li>
+      <li><a href="#s2">Glycolysis, step by step</a></li>
+      <li><a href="#s3">The three irreversible steps, and their control</a></li>
+      <li><a href="#s4">The ATP ledger, and the fates of pyruvate</a></li>
+      <li><a href="#s5">Carbon bookkeeping: which carbon ends up where</a></li>
+      <li><a href="#s6">Fructose, galactose and the inborn errors</a></li>
+      <li><a href="#s7">Gluconeogenesis: four bypasses, not a reversal</a></li>
+      <li><a href="#s8">Reciprocal control and fructose 2,6-bisphosphate</a></li>
+      <li><a href="#s9">Glycogen: structure, synthesis, breakdown</a></li>
+      <li><a href="#s10">The phosphorylase cascade and the storage diseases</a></li>
+      <li><a href="#s11">The pentose phosphate pathway and G6PD deficiency</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§01</b>: phosphorylating glucose traps it inside the cell and creates a
+        junction with four exits, and the two enzymes that do the trapping are tuned to completely different jobs.
+        Then <b>§03</b>: only three of the ten glycolytic reactions are irreversible, and those three are the only
+        places control can act. Hold those two ideas and <b>§07</b>, <b>§08</b> and <b>§10</b> are all the same idea
+        applied three times — opposing pathways must use <em>different</em> enzymes at the irreversible steps, and a
+        single signal then switches one on while switching the other off.</li>
+      <li><b>Then be able to do</b> — <b>§04</b>: produce the ATP ledger from scratch, both shuttles, and from a
+        glycogen residue rather than free glucose. <b>§05</b>: place any labelled glucose carbon in pyruvate,
+        in CO<sub>2</sub>, or in the pentose phosphate pathway — this is a recurring exam format and the bookkeeping
+        is entirely mechanical once you have seen it done. <b>§07</b>: name the four bypass enzymes and cost the
+        pathway in ATP. <b>§08</b>: state which way fructose 2,6-bisphosphate moves after glucagon, and why.
+        <b>§11</b>: balance the carbons of the non-oxidative arm.</li>
+      <li><b>Leave for a second pass</b> — the full ten-step table with standard free energies in <b>§02</b> is
+        lookup material; learn the three irreversible steps first and let the other seven come later. The glycogen
+        storage disease table in <b>§10</b> repays a second visit once §09 is secure — try to <em>derive</em> each
+        phenotype from the missing enzyme rather than memorising the list. Everything behind a "Go deeper" line is
+        second-pass depth by design.</li>
+    </ol>
+  </div>
+
+  <section class="fsheet card">
+    <details class="disc disc--sheet">
+      <summary>Quick sheet<span class="disc__count">30 entries</span></summary>
+      <div class="disc__body">
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Net glycolysis</b><code>glc + 2NAD⁺ + 2ADP + 2P<sub>i</sub> → 2 pyr + 2NADH + 2ATP</code></div>
+      <div class="fsheet__item"><b>Irreversible steps</b><code>hexokinase · PFK-1 · pyruvate kinase</code></div>
+      <div class="fsheet__item"><b>Committed step</b><code>PFK-1: F6P + ATP → F1,6BP</code></div>
+      <div class="fsheet__item"><b>PFK-1 on / off</b><code>on: AMP, ADP, F2,6BP · off: ATP, citrate, H⁺</code></div>
+      <div class="fsheet__item"><b>Pyruvate kinase</b><code>on: F1,6BP · off: ATP, Ala, acetyl-CoA, PKA-P</code></div>
+      <div class="fsheet__item"><b>Hexokinase vs glucokinase</b><code>K<sub>m</sub> ≈ 0.1 mM vs [S]<sub>0.5</sub> ≈ 10 mM</code></div>
+      <div class="fsheet__item"><b>Substrate-level phosphorylation</b><code>phosphoglycerate kinase · pyruvate kinase</code></div>
+      <div class="fsheet__item"><b>Transfer potential (kJ·mol⁻¹)</b><code>PEP −61.9 · 1,3-BPG −49.3 · PCr −43.0 · ATP −30.5</code></div>
+      <div class="fsheet__item"><b>Aerobic ATP per glucose</b><code>30 (glycerol-3-P) · 32 (malate–aspartate)</code></div>
+      <div class="fsheet__item"><b>Anaerobic ATP</b><code>2 from glucose · 3 from a glycogen residue</code></div>
+      <div class="fsheet__item"><b>Shuttle yields</b><code>G3P → FADH₂ = 1.5 · Mal–Asp → NADH = 2.5</code></div>
+      <div class="fsheet__item"><b>Cori cycle</b><code>muscle +2 ATP · liver −6 ATP · net −4</code></div>
+      <div class="fsheet__item"><b>Gluconeogenic bypasses</b><code>PC · PEPCK · FBPase-1 · G6Pase</code></div>
+      <div class="fsheet__item"><b>Gluconeogenesis cost</b><code>4 ATP + 2 GTP + 2 NADH per glucose</code></div>
+      <div class="fsheet__item"><b>Pyruvate carboxylase</b><code>biotin + ATP; needs acetyl-CoA to work at all</code></div>
+      <div class="fsheet__item"><b>Glucose 6-phosphatase</b><code>liver, kidney, intestine — never muscle</code></div>
+      <div class="fsheet__item"><b>Fructose 2,6-bisphosphate</b><code>⊕ PFK-1 · ⊖ FBPase-1</code></div>
+      <div class="fsheet__item"><b>Glucagon on liver</b><code>PKA-P of PFK-2/FBPase-2 → F2,6BP ↓</code></div>
+      <div class="fsheet__item"><b>Fructose entry</b><code>F1P → DHAP + glyceraldehyde, below PFK-1</code></div>
+      <div class="fsheet__item"><b>Glycogen linkages</b><code>α(1→4) chain · α(1→6) branch every 8–12</code></div>
+      <div class="fsheet__item"><b>Phosphorylase</b><code>phosphorolysis with P<sub>i</sub>; cofactor PLP (B6) → G1P</code></div>
+      <div class="fsheet__item"><b>Branching enzyme</b><code>moves 6–7 residues from a chain ≥ 11</code></div>
+      <div class="fsheet__item"><b>Debranching enzyme</b><code>4:4 transferase moves 3 · glucosidase frees 1</code></div>
+      <div class="fsheet__item"><b>The a / b trap</b><code>phosphorylase a = P-ylated · synthase a = de-P-ylated</code></div>
+      <div class="fsheet__item"><b>PPP oxidative arm</b><code>G6P + 2NADP⁺ → Ru5P + CO₂ + 2NADPH</code></div>
+      <div class="fsheet__item"><b>PPP non-oxidative arm</b><code>3 × C5 → 2 × C6 + 1 × C3</code></div>
+      <div class="fsheet__item"><b>Transketolase / transaldolase</b><code>2C (needs TPP) · 3C (Schiff base)</code></div>
+      <div class="fsheet__item"><b>Carbon map</b><code>C1,C6 → CH₃ · C2,C5 → C=O · C3,C4 → COO⁻</code></div>
+      <div class="fsheet__item"><b>CO₂ origins</b><code>PPP releases C1 · PDH releases C3 and C4</code></div>
+      <div class="fsheet__item"><b>Blood glucose</b><code>fasting 3.9–5.5 mM = 70–100 mg·dL⁻¹</code></div>
+    </div>
+      </div>
+    </details>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Getting glucose in, and the crossroads at G6P</h2>
+
+  <p class="idea"><b>The idea</b>Sugar cannot simply be left lying around inside a cell, because the same doorway it came in through would
+     let it straight back out. So the first thing every cell does to glucose is stick a phosphate on it. That one
+     move does three jobs at once: it puts a charge on the molecule so it can no longer cross the membrane, it keeps
+     the concentration inside the cell low so more sugar keeps flowing in, and it produces the single compound from
+     which four different pathways depart. Which of those four a cell chooses is what the rest of this page is about.
+     And the enzyme that adds the phosphate is not the same enzyme everywhere — the liver uses a deliberately clumsy
+     version, and the reason it is clumsy is the whole point.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Metabolic trapping</dt>
+      <dd>Phosphorylation converts a neutral, transportable sugar into a charged phosphate ester that no
+          facilitative transporter will carry. The cell keeps what it has taken up, and free intracellular glucose
+          stays low, so the inward concentration gradient never collapses.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">glucose + ATP → glucose 6-phosphate + ADP     ΔG°′ = −16.7 kJ·mol⁻¹</span>
+      <span class="fx__tag">hexokinase or glucokinase; Mg²⁺-dependent, physiologically irreversible</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>GLUT transporters</dt>
+          <dd>A family of 12-transmembrane-helix uniporters carrying out <strong>facilitated diffusion</strong> — no
+              ATP, no ion coupling, net flux always down the concentration gradient. Their tissue distribution and
+              K<sub>m</sub> values are what specialise each tissue.</dd>
+          <dt>SGLT symporters</dt>
+          <dd>Sodium–glucose cotransporters in intestinal and renal epithelium. These are <strong>secondary
+              active</strong>: they ride the inward Na⁺ gradient made by the Na⁺/K⁺-ATPase, so they can move glucose
+              <em>against</em> its gradient.</dd>
+          <dt>Cooperative saturation</dt>
+          <dd>For an enzyme whose velocity curve is sigmoidal, the fraction of maximal rate is described by a Hill
+              expression rather than a rectangular hyperbola. Glucokinase behaves this way despite being a single
+              polypeptide with one active site.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq"><span class="mf" role="img" aria-label="v over V max"><span>v</span><span>V<sub>max</sub></span></span> = <span class="mf" role="img" aria-label="S to the power h, over S naught point five to the power h plus S to the power h"><span>[S]<sup>h</sup></span><span>[S]<sub>0.5</sub><sup>h</sup> + [S]<sup>h</sup></span></span></span><span class="fx__tag">h = 1 gives Michaelis–Menten; glucokinase has h ≈ 1.7</span></div>
+          <div class="fx"><span class="fx__eq">glucose (mg·dL⁻¹) = glucose (mmol·L⁻¹) × 18.0</span><span class="fx__tag">M<sub>r</sub> = 180.16; 5.0 mM ≈ 90 mg·dL⁻¹</span></div>
+          <div class="fx"><span class="fx__eq">G6P → glycolysis · glycogen · pentose phosphate pathway · free glucose</span><span class="fx__tag">the four exits from the crossroads</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>K<sub>m</sub></b><span>substrate concentration giving half V<sub>max</sub> (mol·L⁻¹, quoted here in mmol·L⁻¹)</span></div>
+          <div><b>[S]<sub>0.5</sub></b><span>half-saturating concentration for a cooperative enzyme (mmol·L⁻¹)</span></div>
+          <div><b>h</b><span>Hill coefficient — dimensionless</span></div>
+          <div><b>V<sub>max</sub></b><span>maximal velocity (mol·s⁻¹, or µmol·min⁻¹ per mg enzyme)</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change at pH 7, 25 °C, 1 mol·L⁻¹ (kJ·mol⁻¹)</span></div>
+          <div><b>G6P</b><span>glucose 6-phosphate</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>The transporters, and why their K<sub>m</sub> values are the interesting part</h3>
+  <p>All GLUTs move glucose downhill. What distinguishes them is affinity, and affinity is how the body decides who
+     gets served first when supply is short. A transporter with a K<sub>m</sub> well below the blood concentration is
+     already saturated and delivers a constant flow whatever happens; one with a K<sub>m</sub> above it tracks the
+     blood level in proportion. Neurons take the first arrangement, the liver takes the second, and that is exactly
+     the physiology you would design.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Glucose transporters, their tissues and their affinities</caption>
+      <thead><tr><th>Transporter</th><th>Where</th><th>K<sub>m</sub></th><th>What that buys</th></tr></thead>
+      <tbody>
+        <tr><td><strong>GLUT1</strong></td><td>Erythrocytes, blood–brain barrier, most cells</td><td class="num">≈ 1 mM</td><td>Saturated at all normal blood levels — constant basal uptake. Loss-of-function gives GLUT1 deficiency syndrome: infantile seizures with a low CSF glucose, treated with a ketogenic diet.</td></tr>
+        <tr><td><strong>GLUT2</strong></td><td>Liver, β-cell, kidney, intestinal basolateral membrane</td><td class="num">≈ 15–20 mM</td><td>Low affinity, very high capacity, and bidirectional. Flux tracks blood glucose, so the liver is a <em>sensor</em> as well as a sink — and can also release glucose outwards.</td></tr>
+        <tr><td><strong>GLUT3</strong></td><td>Neurons</td><td class="num">≈ 1.4 mM</td><td>High affinity — the brain is served first and continues to take up glucose as blood levels fall.</td></tr>
+        <tr><td><strong>GLUT4</strong></td><td>Skeletal muscle, heart, adipose</td><td class="num">≈ 5 mM</td><td>The only <strong>insulin-responsive</strong> one: stored in intracellular vesicles that fuse with the membrane on insulin signalling. Muscle contraction translocates it too, by an AMPK/Ca²⁺ route that needs no insulin.</td></tr>
+        <tr><td><strong>GLUT5</strong></td><td>Small intestine, spermatozoa</td><td>—</td><td>A <strong>fructose</strong> transporter, not a glucose one. This is why fructose absorption is insulin-independent and capacity-limited.</td></tr>
+        <tr><td><strong>SGLT1 / SGLT2</strong></td><td>Intestinal brush border / renal proximal tubule</td><td>—</td><td>Na⁺-coupled and therefore uphill. SGLT2 reclaims ~90 % of filtered glucose; blocking it (the gliflozins) deliberately produces glycosuria as a treatment for type 2 diabetes.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Insulin-independent tissues</p>
+    <p style="margin:0">Only <strong>muscle and adipose tissue</strong> need insulin for glucose uptake, because only
+      they rely on GLUT4. Brain, liver, erythrocyte, kidney, intestine, cornea and the pancreatic β-cell take glucose
+      up regardless. Two clinical consequences follow immediately: in untreated diabetes those insulin-independent
+      tissues are flooded with glucose (which is where the polyol-pathway damage of §&nbsp;06 comes from), and
+      exercise lowers blood glucose even in a patient with almost no circulating insulin, because contraction
+      recruits GLUT4 by a separate route.</p>
+  </div>
+
+  <h3>Two enzymes, one reaction, opposite jobs</h3>
+  <p>Hexokinases I–III are found in essentially every cell. Their K<sub>m</sub> for glucose is about 0.1 mM, roughly
+     fiftyfold <em>below</em> resting blood glucose, so they run flat out all the time and they are switched off by
+     their own product, glucose 6-phosphate. That is precisely what a cell wants: take what you need, stop when you
+     have enough, and do not compete with your neighbours.</p>
+  <p>Glucokinase — hexokinase IV — sits in the liver parenchyma and the pancreatic β-cell and is built to do the
+     opposite. Its half-saturating concentration is about 10 mM, it is <strong>not</strong> inhibited by glucose
+     6-phosphate, and its velocity curve is sigmoidal (Hill coefficient ≈ 1.7) even though the enzyme is a monomer
+     with a single active site — the cooperativity is kinetic, arising from a slow conformational change rather than
+     from subunit interactions. The result is an enzyme whose rate is nearly proportional to how much glucose has
+     just arrived. The liver therefore stores the surplus after a meal and leaves the rest of the body alone between
+     meals, which is exactly the behaviour a buffer organ requires.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — why a K<sub>m</sub> of 10 mM is a design feature</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">Fasting portal glucose is 4.5 mM; after a carbohydrate meal it
+      reaches 12 mM. Compare the fractional saturation of an erythrocyte hexokinase
+      (K<sub>m</sub> = 0.1 mM, hyperbolic) with hepatic glucokinase ([S]<sub>0.5</sub> = 10 mM, h = 1.7).</p>
+    <ol>
+      <li>Hexokinase at 4.5 mM: <span class="fi">v/V<sub>max</sub> = 4.5/(0.1 + 4.5) = 0.978</span>.</li>
+      <li>Hexokinase at 12 mM: <span class="fi">12/(0.1 + 12) = 0.992</span>. A 2.7-fold rise in substrate changes the
+          rate by <strong>1.4 %</strong>.</li>
+      <li>Glucokinase at 4.5 mM: <span class="fi">4.5<sup>1.7</sup> = 12.9</span> and
+          <span class="fi">10<sup>1.7</sup> = 50.1</span>, so
+          <span class="fi">v/V<sub>max</sub> = 12.9/(50.1 + 12.9) = 0.205</span>.</li>
+      <li>Glucokinase at 12 mM: <span class="fi">12<sup>1.7</sup> = 68.3</span>, so
+          <span class="fi">v/V<sub>max</sub> = 68.3/(50.1 + 68.3) = 0.577</span>.</li>
+      <li>Ratio: the hepatic enzyme speeds up <span class="fi">0.577/0.205 = 2.8×</span> over exactly the same
+          excursion that leaves the red cell's enzyme unmoved.</li>
+    </ol>
+    <p style="margin:.5rem 0 0;font-size:.92rem">The lesson generalises: an enzyme with a K<sub>m</sub> far below its
+      substrate concentration is a <em>constant supplier</em>; an enzyme with a K<sub>m</sub> near or above it is a
+      <em>sensor</em>. Any exam question that gives you a K<sub>m</sub> and a physiological concentration is asking
+      you to make that judgement.</p>
+    <span class="wex__ans">hexokinase 0.978 → 0.992 (×1.01) · glucokinase 0.205 → 0.577 (×2.8)</span>
+    </div>
+  </details>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Hexokinase compared with glucokinase</caption>
+      <thead><tr><th>Property</th><th>Hexokinase I–III</th><th>Glucokinase (hexokinase IV)</th></tr></thead>
+      <tbody>
+        <tr><td>Tissue</td><td>Ubiquitous — muscle, brain, erythrocyte</td><td>Liver parenchyma, pancreatic β-cell</td></tr>
+        <tr><td>K<sub>m</sub> / [S]<sub>0.5</sub> for glucose</td><td class="num">≈ 0.1 mM</td><td class="num">≈ 10 mM</td></tr>
+        <tr><td>V<sub>max</sub></td><td>Low</td><td>High</td></tr>
+        <tr><td>Kinetics</td><td>Hyperbolic</td><td>Sigmoidal, h ≈ 1.7</td></tr>
+        <tr><td>Inhibited by glucose 6-phosphate</td><td><strong>Yes</strong> — product feedback</td><td><strong>No</strong></td></tr>
+        <tr><td>Other regulation</td><td>—</td><td>Sequestered in the nucleus by the glucokinase regulatory protein; fructose 6-phosphate keeps it there, <strong>fructose 1-phosphate releases it</strong>. Transcriptionally induced by insulin.</td></tr>
+        <tr><td>Substrate range</td><td>Glucose, fructose, mannose</td><td>Glucose (and mannose) only</td></tr>
+        <tr><td>Clinical</td><td>—</td><td>Loss-of-function <em>GCK</em> mutation → <strong>MODY type 2</strong>: mild, stable fasting hyperglycaemia present from birth, rarely needing treatment. Gain-of-function → congenital hyperinsulinism.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The β-cell version explains insulin secretion in a single chain. Glucose enters (the transport step is fast and
+     not rate-limiting), glucokinase phosphorylates it at a rate proportional to blood glucose, glycolysis and
+     oxidation raise the ATP/ADP ratio, the ATP-sensitive K⁺ channel closes, the membrane depolarises, voltage-gated
+     Ca²⁺ channels open, and insulin granules fuse. Glucokinase is therefore <em>the</em> glucose sensor of the
+     β-cell — which is why a mutation that shifts its [S]<sub>0.5</sub> shifts the entire set point at which insulin
+     is released, and why sulfonylureas, which close the same K⁺ channel directly, bypass the sensor altogether.</p>
+
+  <div class="callout">
+    <p class="callout__title">The four exits from glucose 6-phosphate</p>
+    <p style="margin:0">G6P is the busiest junction in carbohydrate metabolism, and almost every question in this note
+      is really a question about which exit is open. <strong>(1) Glycolysis</strong>, via phosphohexose isomerase, for
+      ATP. <strong>(2) Glycogen</strong>, via phosphoglucomutase, for storage. <strong>(3) The pentose phosphate
+      pathway</strong>, via glucose 6-phosphate dehydrogenase, for NADPH and ribose. <strong>(4) Free glucose</strong>,
+      via glucose 6-phosphatase — but <em>only</em> in liver, kidney cortex and intestinal epithelium. Note the
+      consequence of exit 4 being missing in muscle: muscle glycogen can never raise blood glucose, no matter how much
+      of it there is. Note also that because G6P has four fates, the hexokinase reaction is not the
+      <em>committed</em> step of glycolysis.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Glycolysis, step by step</h2>
+
+  <p class="idea"><b>The idea</b>Glycolysis is a business that spends before it earns. The first half of the pathway <em>uses up</em> two units
+     of the cell's energy currency in order to put a handle on each end of the sugar; only then is the six-carbon
+     molecule cut cleanly in half, and each half is marched through the second stage, which pays back twice what was
+     spent. Because the cut is in the middle and both halves are made identical, everything after the split happens
+     twice — which is the single commonest source of arithmetic mistakes on this topic. It is also worth noticing
+     what glycolysis does <em>not</em> need: no oxygen, no mitochondrion, no membrane. It is the oldest pathway we
+     have, and every cell in the body still runs it.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Glycolysis</dt>
+      <dd>The cytosolic conversion of one glucose to two pyruvate in ten enzymatic steps, conserving part of the
+          released free energy as two ATP and two NADH. It <strong>ends at pyruvate</strong>: the pyruvate
+          dehydrogenase reaction is not part of glycolysis, and neither is lactate formation.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">glucose + 2 NAD⁺ + 2 ADP + 2 P<sub>i</sub> → 2 pyruvate + 2 NADH + 2 H⁺ + 2 ATP + 2 H₂O</span>
+      <span class="fx__tag">the whole pathway on one line; everything downstream of the aldolase step happens twice</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Preparatory (investment) phase — steps 1–5</dt>
+          <dd>Glucose is phosphorylated twice at the expense of 2 ATP, isomerised to a ketose so that it can be cut
+              symmetrically, and cleaved into two interconvertible triose phosphates. Net so far: <strong>−2 ATP</strong>.</dd>
+          <dt>Payoff phase — steps 6–10</dt>
+          <dd>Each triose phosphate is oxidised once (making NADH) and gives up two phosphoryl groups to ADP. Per
+              glucose: <strong>+4 ATP, +2 NADH</strong>.</dd>
+          <dt>Substrate-level phosphorylation（受質層次磷酸化）</dt>
+          <dd>ATP formed by direct transfer of a phosphoryl group from a metabolite whose phosphoryl-transfer
+              potential exceeds that of ATP. No membrane, no proton gradient, no oxygen required.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">investment −2 ATP · payoff +4 ATP · net +2 ATP + 2 NADH</span><span class="fx__tag">the ledger you must be able to write without looking</span></div>
+          <div class="fx"><span class="fx__eq">glucose → 2 lactate     ΔG°′ = −196 kJ·mol⁻¹  ·  coupled to 2 ATP: −135 kJ·mol⁻¹</span><span class="fx__tag">anaerobic fermentation; 2 × 30.5 / 196 ≈ 31 % of the released free energy conserved as ATP</span></div>
+          <div class="fx"><span class="fx__eq">ΔG°′ (hydrolysis): PEP −61.9 &gt; 1,3-BPG −49.3 &gt; PCr −43.0 &gt; ATP −30.5 &gt; G6P −13.8</span><span class="fx__tag">phosphoryl-transfer potential: anything above ATP can phosphorylate ADP</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>P<sub>i</sub></b><span>inorganic phosphate (mol·L⁻¹)</span></div>
+          <div><b>1,3-BPG</b><span>1,3-bisphosphoglycerate — an acyl phosphate (mixed anhydride)</span></div>
+          <div><b>PEP</b><span>phosphoenolpyruvate — an enol phosphate</span></div>
+          <div><b>PCr</b><span>phosphocreatine, the muscle phosphagen</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change, pH 7 (kJ·mol⁻¹)</span></div>
+          <div><b>ΔG</b><span>actual free-energy change at cellular concentrations (kJ·mol⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 672" role="img" aria-label="Vertical map of the ten reactions of glycolysis. The preparatory phase runs from glucose through glucose 6-phosphate, fructose 6-phosphate and fructose 1,6-bisphosphate, consuming one ATP at hexokinase and one at phosphofructokinase-1, then aldolase cleaves the six-carbon sugar into dihydroxyacetone phosphate and glyceraldehyde 3-phosphate, which triose phosphate isomerase interconverts. The payoff phase then runs twice: glyceraldehyde 3-phosphate dehydrogenase makes two NADH, phosphoglycerate kinase makes two ATP, phosphoglycerate mutase and enolase rearrange the molecule, and pyruvate kinase makes two more ATP, giving two pyruvate. The three irreversible steps, hexokinase, phosphofructokinase-1 and pyruvate kinase, are highlighted." style="font-family:var(--sans)">
+      <defs>
+        <marker id="gAh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-soft)"/></marker>
+        <marker id="gAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-2)"/></marker>
+      </defs>
+
+      <path d="M 32,22 L 24,22 L 24,308 L 32,308" fill="none" stroke="var(--accent-3)" stroke-width="1.6"/>
+      <text transform="rotate(-90 15 165)" x="15" y="165" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent-3)">INVESTMENT · −2 ATP</text>
+      <path d="M 32,322 L 24,322 L 24,650 L 32,650" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+      <text transform="rotate(-90 15 486)" x="15" y="486" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent)">PAYOFF · +4 ATP, +2 NADH · everything ×2</text>
+
+      <g font-size="12.5" text-anchor="middle" fill="var(--ink)">
+        <rect x="52" y="22"  width="240" height="28" rx="7" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.6"/><text x="172" y="41">Glucose</text>
+        <rect x="52" y="82"  width="240" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="172" y="101">Glucose 6-phosphate</text>
+        <rect x="52" y="142" width="240" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="172" y="161">Fructose 6-phosphate</text>
+        <rect x="52" y="202" width="240" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="172" y="221">Fructose 1,6-bisphosphate</text>
+        <rect x="40" y="262" width="112" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="96" y="281" font-size="11.5">DHAP</text>
+        <rect x="200" y="262" width="112" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="256" y="281" font-size="11.5">GAP</text>
+        <rect x="52" y="322" width="240" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="172" y="341">2 × Glyceraldehyde 3-P</text>
+        <rect x="52" y="382" width="240" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="172" y="401">2 × 1,3-Bisphosphoglycerate</text>
+        <rect x="52" y="442" width="240" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="172" y="461">2 × 3-Phosphoglycerate</text>
+        <rect x="52" y="502" width="240" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="172" y="521">2 × 2-Phosphoglycerate</text>
+        <rect x="52" y="562" width="240" height="28" rx="7" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="172" y="581">2 × Phosphoenolpyruvate</text>
+        <rect x="52" y="622" width="240" height="28" rx="7" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.6"/><text x="172" y="641">2 × Pyruvate</text>
+      </g>
+
+      <g stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#gAh)">
+        <line x1="172" y1="112" x2="172" y2="138"/>
+        <line x1="172" y1="352" x2="172" y2="378"/>
+        <line x1="172" y1="412" x2="172" y2="438"/>
+        <line x1="172" y1="472" x2="172" y2="498"/>
+        <line x1="172" y1="532" x2="172" y2="558"/>
+        <line x1="172" y1="232" x2="172" y2="258"/>
+      </g>
+      <g stroke="var(--accent-2)" stroke-width="3" marker-end="url(#gAr)">
+        <line x1="172" y1="52" x2="172" y2="78"/>
+        <line x1="172" y1="172" x2="172" y2="198"/>
+        <line x1="172" y1="592" x2="172" y2="618"/>
+      </g>
+      <g stroke="var(--ink-soft)" stroke-width="1.6" fill="none" marker-end="url(#gAh)">
+        <path d="M 96,292 L 130,318"/>
+        <path d="M 256,292 L 214,318"/>
+      </g>
+      <line x1="156" y1="276" x2="196" y2="276" stroke="var(--ink-soft)" stroke-width="1.6" marker-end="url(#gAh)" marker-start="url(#gAh)"/>
+
+      <g font-size="11.5" fill="var(--ink)">
+        <text x="330" y="72" font-weight="700" fill="var(--accent-2)">hexokinase / glucokinase</text>
+        <text x="330" y="132">phosphohexose isomerase</text>
+        <text x="330" y="192" font-weight="700" fill="var(--accent-2)">phosphofructokinase-1</text>
+        <text x="330" y="252">aldolase</text>
+        <text x="330" y="282">triose phosphate isomerase</text>
+        <text x="330" y="372">glyceraldehyde 3-P dehydrogenase</text>
+        <text x="330" y="432">phosphoglycerate kinase</text>
+        <text x="330" y="492">phosphoglycerate mutase</text>
+        <text x="330" y="552">enolase</text>
+        <text x="330" y="612" font-weight="700" fill="var(--accent-2)">pyruvate kinase</text>
+      </g>
+      <g font-size="10.8" fill="var(--ink-soft)" text-anchor="end">
+        <text x="746" y="72">ATP → ADP</text>
+        <text x="746" y="132">aldose ⇌ ketose</text>
+        <text x="746" y="192">ATP → ADP · committed step</text>
+        <text x="746" y="252">C₆ → 2 × C₃</text>
+        <text x="746" y="282">both halves become GAP</text>
+        <text x="746" y="372">2 NAD⁺ + 2 P<tspan dy="3" font-size="8">i</tspan><tspan dy="-3"> → 2 NADH</tspan></text>
+        <text x="746" y="432">2 ADP → 2 ATP</text>
+        <text x="746" y="492">phosphate moves C3 → C2</text>
+        <text x="746" y="552">− 2 H₂O · makes the enol phosphate</text>
+        <text x="746" y="612">2 ADP → 2 ATP</text>
+      </g>
+      <text x="746" y="662" text-anchor="end" font-size="10.5" fill="var(--accent-2)">bold arrows = irreversible = the three control points</text>
+    </svg>
+    <figcaption>Read the diagram as a balance sheet. Two ATP go out at the top; four come back at the bottom of a
+      pathway that is running twice. The one oxidation in the whole of glycolysis is the
+      glyceraldehyde 3-phosphate dehydrogenase step — every NADH that glycolysis makes comes from there, which is why
+      regenerating NAD<sup>+</sup> is the only thing anaerobic metabolism actually has to solve.</figcaption>
+  </figure>
+
+  <h3>What each phase is really for</h3>
+  <p>Step 2 looks like a pointless shuffle — an aldose to a ketose, ΔG°′ of just +1.7 kJ·mol⁻¹. It is not. Glucose
+     6-phosphate has its carbonyl at C1; cleaving it in half would give two <em>different</em> three-carbon
+     fragments, and the cell would need two separate sets of enzymes downstream. Isomerising to fructose
+     6-phosphate moves the carbonyl to C2, and now a cut between C3 and C4 yields two fragments that can be made
+     identical. The isomerase also frees the C1 hydroxyl so that PFK-1 has somewhere to put the second phosphate.
+     One small reaction, two structural preconditions for everything that follows.</p>
+  <p>Step 4, the aldolase reaction, has a standard free-energy change of <strong>+23.8 kJ·mol⁻¹</strong> — strongly
+     endergonic. It still runs, briskly, in the forward direction, because ΔG°′ describes a hypothetical state with
+     every species at 1 mol·L⁻¹ and the cell is nowhere near it: the triose phosphates are consumed as fast as they
+     appear, so the mass-action ratio holds the actual ΔG close to zero. This is the cleanest illustration in all of
+     metabolism that <strong>ΔG°′ tells you nothing about direction in a cell</strong>; only ΔG does. Examiners like
+     it precisely because students confuse the two.</p>
+
+  <h3>The GAPDH step, which is the whole trick</h3>
+  <p>Making ATP out of a sugar requires getting a phosphate onto something whose phosphoryl-transfer potential
+     exceeds ATP's. Glyceraldehyde 3-phosphate dehydrogenase does it by coupling an <em>oxidation</em> to a
+     <em>phosphorylation</em> in one active site. The aldehyde attacks an active-site cysteine thiol to form a
+     thiohemiacetal; NAD⁺ oxidises that to a <strong>thioester</strong>, which is a high-energy linkage; inorganic
+     phosphate then attacks the thioester and the acyl group is displaced as an <strong>acyl phosphate</strong>,
+     1,3-bisphosphoglycerate, ΔG°′ of hydrolysis −49.3 kJ·mol⁻¹. The energy of the oxidation has been trapped in a
+     chemical bond instead of being lost as heat. Phosphoglycerate kinase then hands that phosphate to ADP.</p>
+  <p>Two classical inhibitors fall straight out of the mechanism. <strong>Iodoacetate</strong> alkylates the
+     active-site cysteine and stops the enzyme dead. <strong>Arsenate</strong> is more interesting: it substitutes
+     for phosphate, giving 1-arseno-3-phosphoglycerate, which hydrolyses spontaneously before any kinase can reach
+     it. Glycolysis continues, NADH is still made — but the ATP is silently lost. Arsenate <em>uncouples</em>
+     substrate-level phosphorylation, and the distinction between an inhibitor and an uncoupler is a favourite
+     single-best-answer discrimination.</p>
+  <p>Step 9 deserves the same attention. Enolase does not add energy to 2-phosphoglycerate; it removes a water
+     molecule. The resulting <strong>enol phosphate</strong> has a hydrolysis ΔG°′ of −61.9 kJ·mol⁻¹, twice that of
+     ATP, not because the phosphate bond is unusual but because the product of hydrolysis — enolpyruvate — tautomerises
+     immediately and irreversibly to the far more stable keto form. The driving force lives in the
+     <em>tautomerisation</em>, downstream of the bond being broken. That is also why the pyruvate kinase reaction is
+     irreversible: you cannot run a tautomerisation backwards by handing the phosphate back.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three inhibitors that are constantly confused</p>
+    <p style="margin:0"><strong>Arsen<em>ate</em></strong> (AsO<sub>4</sub><sup>3−</sup>) mimics phosphate and
+      uncouples the GAPDH step — glycolysis runs, no ATP. <strong>Arsen<em>ite</em></strong>
+      (AsO<sub>3</sub><sup>3−</sup>) is a different ion: it chelates the vicinal thiols of <strong>lipoamide</strong>
+      and therefore poisons pyruvate dehydrogenase and α-ketoglutarate dehydrogenase — a mitochondrial, not a
+      glycolytic, lesion. <strong>Fluoride</strong> inhibits <strong>enolase</strong>, which is why the grey-topped
+      blood tube used for glucose measurement contains sodium fluoride: it stops the red cells in the sample eating
+      the analyte. One letter, one anion and one tube-top separate three different answers.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · all ten steps with their standard free-energy changes</summary>
+    <div class="disc__body">
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The ten reactions of glycolysis</caption>
+      <thead><tr><th>#</th><th>Reaction</th><th>Enzyme</th><th>ΔG°′ / kJ·mol⁻¹</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Glucose → G6P</td><td>Hexokinase / glucokinase</td><td class="num">−16.7</td><td><strong>Irreversible.</strong> Costs 1 ATP</td></tr>
+        <tr><td class="num">2</td><td>G6P ⇌ F6P</td><td>Phosphohexose isomerase</td><td class="num">+1.7</td><td>Moves the carbonyl so the cut can be symmetric</td></tr>
+        <tr><td class="num">3</td><td>F6P → F1,6BP</td><td>Phosphofructokinase-1</td><td class="num">−14.2</td><td><strong>Irreversible, committed, rate-limiting.</strong> Costs 1 ATP</td></tr>
+        <tr><td class="num">4</td><td>F1,6BP ⇌ DHAP + GAP</td><td>Aldolase (Schiff-base, class I)</td><td class="num">+23.8</td><td>Endergonic on paper; pulled by removal of products</td></tr>
+        <tr><td class="num">5</td><td>DHAP ⇌ GAP</td><td>Triose phosphate isomerase</td><td class="num">+7.5</td><td>A near-perfect catalyst — diffusion-limited</td></tr>
+        <tr><td class="num">6</td><td>GAP + P<sub>i</sub> + NAD⁺ ⇌ 1,3-BPG + NADH</td><td>GAP dehydrogenase</td><td class="num">+6.3</td><td>The <em>only</em> oxidation. Iodoacetate, arsenate</td></tr>
+        <tr><td class="num">7</td><td>1,3-BPG + ADP ⇌ 3-PG + ATP</td><td>Phosphoglycerate kinase</td><td class="num">−18.5</td><td><strong>Substrate-level phosphorylation 1</strong></td></tr>
+        <tr><td class="num">8</td><td>3-PG ⇌ 2-PG</td><td>Phosphoglycerate mutase</td><td class="num">+4.4</td><td>Needs catalytic 2,3-bisphosphoglycerate</td></tr>
+        <tr><td class="num">9</td><td>2-PG ⇌ PEP + H₂O</td><td>Enolase</td><td class="num">+7.5</td><td>Dehydration creates the enol phosphate. Fluoride</td></tr>
+        <tr><td class="num">10</td><td>PEP + ADP → pyruvate + ATP</td><td>Pyruvate kinase</td><td class="num">−31.4</td><td><strong>Irreversible. Substrate-level phosphorylation 2</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.9rem">These ΔG°′ values are individually measured under slightly different conditions and are
+     not meant to be added up to an overall figure; treat them as a ranking, not an arithmetic series. The number that
+     actually matters is the <em>sign pattern</em>: three strongly negative values at steps 1, 3 and 10, everything
+     else within a few kJ·mol⁻¹ of zero. In an intact erythrocyte, measured with real concentrations, those seven
+     middle reactions sit essentially at equilibrium while the three outliers run far downhill — which is the
+     experimental basis of the claim that only three steps are regulated.</p>
+    </div>
+  </details>
+
+  <div class="mnemo">
+    <h4>Where the ATP happens</h4>
+    <p>The two <em>costs</em> are both <strong>kinases acting on a hexose</strong> (hexokinase, phosphofructokinase).
+      The two <em>gains</em> are both <strong>kinases named after their product</strong> (phospho<em>glycerate</em>
+      kinase, <em>pyruvate</em> kinase) — and because both sit after the split, each pays twice. Note the naming
+      convention that trips people up: a "kinase" is named for the molecule that receives the phosphate, so
+      pyruvate kinase in the direction written actually takes a phosphate <em>off</em> PEP.</p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>The three irreversible steps, and their control</h2>
+
+  <p class="idea"><b>The idea</b>If a reaction runs easily in both directions, a cell cannot use it as a switch — push on one side and it simply
+     slides back. Control has to be placed where a reaction runs strongly downhill, because only there does changing
+     the enzyme change the flow through the whole line. Glycolysis has exactly three such places, and all three of
+     them listen to the same kind of message: is this cell short of energy, or does it have plenty? A fourth,
+     separate message reaches the liver only — <em>the body</em> is short of sugar, whatever your own cell happens to
+     need — and that is why liver control looks different from muscle control.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Committed step（承諾步驟）</dt>
+      <dd>The first irreversible reaction after which the intermediate has <em>no other fate</em>. For glycolysis
+          that is <strong>phosphofructokinase-1</strong>: fructose 1,6-bisphosphate can go nowhere but on down the
+          pathway. Hexokinase is irreversible but not committed, because glucose 6-phosphate has four exits.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">PFK-1:  F6P + ATP → F1,6BP + ADP     ⊕ AMP, ADP, F2,6BP   ⊖ ATP, citrate, H⁺</span>
+      <span class="fx__tag">the rate-limiting step of glycolysis and the single most examined regulatory point in metabolism</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Feedback inhibition</dt>
+          <dd>A downstream product slows an upstream enzyme. ATP on PFK-1 and citrate on PFK-1 are both of this kind:
+              citrate is the signal that the citric acid cycle already has more carbon than it can process.</dd>
+          <dt>Feed-forward activation（前饋活化）</dt>
+          <dd>An upstream product accelerates a downstream enzyme, so a surge of flux is anticipated rather than
+              chased. Fructose 1,6-bisphosphate activating pyruvate kinase is the textbook case.</dd>
+          <dt>Energy charge</dt>
+          <dd>A single number summarising how much of the adenine nucleotide pool is charged, defined below. It is the
+              quantity all three glycolytic control points are really sensing.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">energy charge = <span class="mf" role="img" aria-label="ATP plus one half ADP, over ATP plus ADP plus AMP"><span>[ATP] + ½[ADP]</span><span>[ATP] + [ADP] + [AMP]</span></span></span><span class="fx__tag">held near 0.85–0.95 in a healthy cell; dimensionless</span></div>
+          <div class="fx"><span class="fx__eq">2 ADP ⇌ ATP + AMP     K ≈ 0.44 (adenylate kinase)</span><span class="fx__tag">how a small fall in ATP becomes a large rise in AMP</span></div>
+          <div class="fx"><span class="fx__eq">pyruvate kinase:  PEP + ADP → pyruvate + ATP    ⊕ F1,6BP  ⊖ ATP, alanine, acetyl-CoA</span><span class="fx__tag">liver isoenzyme additionally switched off by PKA phosphorylation</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>[ATP], [ADP], [AMP]</b><span>adenine nucleotide concentrations (mmol·L⁻¹)</span></div>
+          <div><b>K</b><span>equilibrium constant — dimensionless here (equal numbers of species each side)</span></div>
+          <div><b>F2,6BP</b><span>fructose 2,6-bisphosphate — a signal, not an intermediate (µmol·L⁻¹)</span></div>
+          <div><b>F1,6BP</b><span>fructose 1,6-bisphosphate — the pathway intermediate (mmol·L⁻¹)</span></div>
+          <div><b>PKA</b><span>cAMP-dependent protein kinase</span></div>
+          <div><b>flux</b><span>rate of throughput of a pathway (mol·s⁻¹, or µmol·min⁻¹·g⁻¹ tissue)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Why AMP is the alarm signal and ATP is not</h3>
+  <p>It would seem natural for a cell to monitor ATP directly. It does not, and the reason is arithmetic. ATP is
+     abundant — several millimolar — so even a serious energy crisis moves it by only a few per cent, and a few per
+     cent is not a signal you can build a switch on. AMP is scarce, tens of micromolar, and it is coupled to the
+     others by <strong>adenylate kinase</strong>, <span class="fi">2 ADP ⇌ ATP + AMP</span>. Convert a little ATP to
+     ADP and the equilibrium dumps the surplus into the small AMP pool, where it registers as a large fractional
+     change. This is signal amplification by choosing a low-abundance reporter, and it is exactly why AMP — not ATP —
+     activates PFK-1 and why AMP-activated protein kinase, not "ATP-inhibited protein kinase", is the cell's master
+     fuel sensor.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — hydrolysing 10 % of the ATP is a 3.5-fold rise in AMP</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">Take a resting muscle cell with [ATP] = 5.00 mM and [ADP] = 0.50 mM,
+      and let adenylate kinase be at equilibrium with K = [ATP][AMP]/[ADP]² = 0.44. Hydrolyse 10 % of the ATP to ADP,
+      then let adenylate kinase re-equilibrate. What happens to AMP?</p>
+    <ol>
+      <li>Resting AMP: <span class="fi">[AMP] = K[ADP]²/[ATP] = 0.44 × 0.25 / 5.00 = 0.0220 mM</span>. So the pool is
+          about 91 % ATP, 9 % ADP, 0.4 % AMP.</li>
+      <li>Hydrolyse 0.50 mM of ATP: immediately [ATP] = 4.50, [ADP] = 1.00, [AMP] = 0.0220. The total pool
+          (5.522 mM) is unchanged — adenylate kinase moves nucleotides between forms, it does not create them.</li>
+      <li>Re-equilibrate. Let <span class="fi">x</span> mM of the reaction <span class="fi">2 ADP → ATP + AMP</span>
+          occur: solve <span class="fi">(4.50 + x)(0.0220 + x)/(1.00 − 2x)² = 0.44</span>, giving
+          <span class="fi">x = 0.0546</span>.</li>
+      <li>Final: <span class="fi">[ATP] = 4.555</span>, <span class="fi">[ADP] = 0.891</span>,
+          <span class="fi">[AMP] = 0.0766 mM</span>.</li>
+      <li>Compare with the start. ATP has fallen by <strong>8.9 %</strong>. ADP has risen <strong>1.8-fold</strong>.
+          AMP has risen <strong>3.5-fold</strong>.</li>
+    </ol>
+    <p style="margin:.5rem 0 0;font-size:.92rem">Nothing about the chemistry changed; only the choice of reporter did.
+      A sensor reading ATP would see a 9 % wobble. A sensor reading AMP sees the alarm go off. That is the design
+      principle behind every AMP-responsive enzyme in metabolism.</p>
+    <span class="wex__ans">ATP −8.9 % · ADP ×1.78 · AMP ×3.48</span>
+    </div>
+  </details>
+
+  <h3>The three control points, one at a time</h3>
+  <p><strong>Hexokinase</strong> is inhibited by its own product. If glucose 6-phosphate is piling up — because
+     PFK-1 downstream has been shut, or because glycogen synthesis is saturated — there is no point in phosphorylating
+     more glucose, so the enzyme stops. This is local housekeeping, not a policy decision. Glucokinase, having no
+     G6P site, ignores the argument entirely: the liver keeps taking glucose up even when its own G6P is high,
+     because its job is to clear the blood, not to serve itself.</p>
+  <p><strong>PFK-1</strong> is where the real decision is made. ATP is both a substrate and an inhibitor, binding at
+     a second, low-affinity allosteric site that converts the F6P saturation curve from hyperbolic to sigmoidal —
+     that is, high ATP does not lower V<sub>max</sub>, it raises the apparent K<sub>m</sub> for fructose
+     6-phosphate. AMP and ADP compete that inhibition away. <strong>Citrate</strong> reinforces ATP inhibition and is
+     the message from the mitochondrion that carbon, not just energy, is already in surplus. <strong>H⁺</strong>
+     inhibits too, which is a protective circuit: in an anoxic muscle, falling pH throttles glycolysis before lactic
+     acidosis becomes dangerous. And <strong>fructose 2,6-bisphosphate</strong>, the hormonal signal of §&nbsp;08,
+     overrides all of it in the liver.</p>
+  <p><strong>Pyruvate kinase</strong> is activated by fructose 1,6-bisphosphate, the product of PFK-1 — a
+     feed-forward loop that ensures the exit gate opens as soon as the entry gate does, so intermediates do not pile
+     up in the middle of the pathway. It is inhibited by ATP, by acetyl-CoA and by alanine (which is one
+     transamination away from pyruvate, and therefore a proxy for "there is plenty of pyruvate already"). In liver
+     only, the L isoenzyme is phosphorylated and inactivated by PKA in response to glucagon; the M1 isoenzyme of
+     muscle has no such site, because muscle has no business shutting down glycolysis when blood sugar is low.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Regulators of the three irreversible glycolytic enzymes</caption>
+      <thead><tr><th>Enzyme</th><th>Activated by</th><th>Inhibited by</th><th>Tissue difference that gets examined</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hexokinase</strong></td><td>—</td><td>Glucose 6-phosphate (product)</td><td>Glucokinase is the liver/β-cell form: high [S]<sub>0.5</sub>, sigmoidal, <em>not</em> inhibited by G6P, induced by insulin</td></tr>
+        <tr><td><strong>PFK-1</strong></td><td>AMP, ADP, <strong>fructose 2,6-bisphosphate</strong></td><td>ATP, citrate, H⁺</td><td>F2,6BP is under hormonal control in liver; in muscle the AMP/ATP ratio dominates. Muscle PFK-1 deficiency = GSD VII (Tarui)</td></tr>
+        <tr><td><strong>Pyruvate kinase</strong></td><td><strong>Fructose 1,6-bisphosphate</strong> (feed-forward)</td><td>ATP, acetyl-CoA, alanine, long-chain fatty acids</td><td>Liver L form inactivated by PKA phosphorylation (glucagon); muscle M1 form is not. R form deficiency → haemolytic anaemia</td></tr>
+        <tr><td colspan="4" style="background:var(--line-soft)"><em>For contrast — the step immediately after glycolysis</em></td></tr>
+        <tr><td><strong>Pyruvate dehydrogenase</strong></td><td>Dephosphorylation by PDH phosphatase: Ca²⁺, insulin, Mg²⁺; allosterically by pyruvate, ADP, NAD⁺, CoA</td><td>Phosphorylation by PDH kinase, which is switched on by acetyl-CoA, NADH and ATP; product inhibition by acetyl-CoA and NADH</td><td>Not a glycolytic enzyme at all — mitochondrial, and irreversible, which is why fat cannot become glucose (§&nbsp;07)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Read the direction of the signal, not the name of the molecule</p>
+    <p style="margin:0">Almost every distractor on this topic is a real regulator pointed the wrong way. ATP inhibits
+      PFK-1 (it is <em>also</em> the substrate — both facts are true and the question usually hinges on which one it
+      is asking about). Citrate inhibits, it does not activate; it is the "carbon is abundant" signal.
+      Fructose <strong>2,6</strong>-bisphosphate activates PFK-1; fructose <strong>1,6</strong>-bisphosphate activates
+      pyruvate kinase — swap the numbers and both statements become false. AMP activates; ATP inhibits. And
+      alanine inhibits pyruvate kinase, which surprises people until they notice that alanine <em>is</em> pyruvate
+      wearing an amino group.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the three time-scales of control, and why they do not compete</summary>
+    <div class="disc__body">
+      <p>Metabolic regulation runs on three clocks at once, and a question that seems to have two right answers is
+         usually asking about a different clock than you assumed.</p>
+      <ul>
+        <li><strong>Allosteric, in seconds.</strong> A ligand binds, the enzyme's conformation shifts, flux changes
+            immediately and reverses the moment the ligand leaves. AMP on PFK-1, G6P on hexokinase, F1,6BP on
+            pyruvate kinase. No new protein, no signalling cascade.</li>
+        <li><strong>Covalent and hormonal, in minutes.</strong> A kinase or phosphatase modifies the enzyme, and the
+            modification persists until it is reversed. Glucagon → cAMP → PKA → phosphorylated liver pyruvate kinase
+            and phosphorylated PFK-2/FBPase-2. This layer exists so that <em>whole-body</em> priorities can override
+            a single cell's local reading of its own energy charge.</li>
+        <li><strong>Transcriptional, in hours to days.</strong> The amount of enzyme changes. Insulin induces
+            glucokinase, PFK-1 and pyruvate kinase; glucagon and cortisol induce PEPCK, glucose 6-phosphatase and
+            fructose 1,6-bisphosphatase. PEPCK is the pure case — it has essentially no allosteric regulation at all
+            and is controlled almost entirely at this level, which is why steroid excess produces hyperglycaemia over
+            days rather than minutes.</li>
+      </ul>
+      <p>The layers do not conflict because they answer different questions. Allosteric control asks "does
+         <em>this cell</em> need ATP right now?"; hormonal control asks "does the <em>organism</em> need blood glucose
+         right now?"; transcriptional control asks "what kind of metabolic life is this cell going to be living next
+         week?"</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>The ATP ledger, and the fates of pyruvate</h2>
+
+  <p class="idea"><b>The idea</b>Glycolysis produces two things: a small amount of usable energy, and a used-up carrier that must be handed back
+     before the line can run again. The energy is almost trivial — the great majority of what a sugar is worth is
+     still locked in the pyruvate at the end. But the carrier problem is urgent. There is only a tiny stock of it in
+     the cell, and if it is not restored within seconds the whole pathway stops. Everything a cell does with pyruvate
+     — burn it, turn it into lactate, turn it into alcohol — is at bottom a solution to that one problem, and which
+     solution it picks decides how much energy it eventually gets.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>The real constraint on glycolysis</dt>
+      <dd>NAD⁺ is present at only about 10<sup>−5</sup>–10<sup>−4</sup> mol·L⁻¹ and is consumed once per triose at
+          the GAPDH step. Unless NADH is reoxidised at the same rate, glycolysis stops within seconds — not for want
+          of glucose or ADP, but for want of NAD⁺.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">glucose → 30 ATP (glycerol 3-phosphate shuttle)  ·  32 ATP (malate–aspartate shuttle)</span>
+      <span class="fx__tag">with the modern consensus P/O ratios: NADH → 2.5 ATP, FADH₂ → 1.5 ATP</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>P/O ratio</dt>
+          <dd>ATP made per pair of electrons delivered to the respiratory chain. Modern measurements give
+              <strong>2.5</strong> for NADH (entering at complex I) and <strong>1.5</strong> for FADH₂ (entering at
+              coenzyme Q, bypassing complex I's proton pumping). The older integers 3 and 2 give the familiar
+              38 and 36 and are still seen on some papers.</dd>
+          <dt>Redox shuttle</dt>
+          <dd>The inner mitochondrial membrane is impermeable to NADH. Cytosolic reducing equivalents must be carried
+              in on a metabolite. Which shuttle a tissue uses determines whether cytosolic NADH is worth 2.5 or 1.5 ATP.</dd>
+          <dt>Cori cycle（乳酸循環）</dt>
+          <dd>Lactate made anaerobically in muscle or erythrocytes travels to the liver, is reconverted to glucose,
+              and returns. It does not create energy; it <em>relocates</em> the energetic cost from muscle to liver.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">2 + 2(2.5) + 2(2.5) + [6(2.5) + 2(1.5) + 2] = 7 + 5 + 20 = 32</span><span class="fx__tag">glycolysis · PDH · two turns of the citric acid cycle</span></div>
+          <div class="fx"><span class="fx__eq">glucose + 6 O₂ → 6 CO₂ + 6 H₂O     ΔG°′ = −2840 kJ·mol⁻¹</span><span class="fx__tag">efficiency <span class="mf" role="img" aria-label="976 over 2840"><span>32 × 30.5</span><span>2840</span></span> ≈ 34 % under standard conditions</span></div>
+          <div class="fx"><span class="fx__eq">pyruvate + NADH + H⁺ ⇌ lactate + NAD⁺     ΔG°′ ≈ −25 kJ·mol⁻¹</span><span class="fx__tag">lactate dehydrogenase; the point is the NAD⁺, not the lactate</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>P/O</b><span>ATP synthesised per atom of oxygen reduced — dimensionless</span></div>
+          <div><b>NAD⁺ / NADH</b><span>nicotinamide adenine dinucleotide, oxidised / reduced (mol·L⁻¹)</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change at pH 7 (kJ·mol⁻¹)</span></div>
+          <div><b>LDH</b><span>lactate dehydrogenase</span></div>
+          <div><b>PDH</b><span>pyruvate dehydrogenase complex</span></div>
+          <div><b>MCT</b><span>monocarboxylate transporter — carries lactate across membranes</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Doing the ledger honestly</h3>
+  <p>Three habits keep the arithmetic right. First, remember that the payoff phase runs <strong>twice</strong>.
+     Second, state which shuttle you are using, because the answer differs by two. Third, state which P/O convention
+     you are using — 30/32 with the modern non-integer values, 36/38 with the old integers. A well-set question will
+     tell you; a badly set one will accept either, and the way to protect yourself is to write the convention down.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — the complete ATP ledger, three ways</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">Using NADH = 2.5 ATP and FADH₂ = 1.5 ATP, calculate the yield from
+      (a) one glucose in a hepatocyte, (b) one glucose in a skeletal muscle fibre, and (c) one glucosyl residue
+      released from muscle glycogen. Then (d) the anaerobic yields.</p>
+    <ol>
+      <li><strong>Common accounting.</strong> Glycolysis: net 2 ATP + 2 cytosolic NADH. Pyruvate dehydrogenase, twice:
+          2 NADH. Citric acid cycle, two turns: 6 NADH + 2 FADH₂ + 2 GTP.</li>
+      <li>Mitochondrial part, identical in every tissue:
+          <span class="fi">2(2.5) + 6(2.5) + 2(1.5) + 2 = 5 + 15 + 3 + 2 = 25 ATP</span>.</li>
+      <li><strong>(a) Liver</strong> uses the <em>malate–aspartate</em> shuttle, so each cytosolic NADH is delivered
+          as matrix NADH: <span class="fi">2 + 2(2.5) + 25 = 2 + 5 + 25 = 32 ATP</span>.</li>
+      <li><strong>(b) Skeletal muscle</strong> (and brain) uses the <em>glycerol 3-phosphate</em> shuttle, which
+          hands electrons to FAD: <span class="fi">2 + 2(1.5) + 25 = 2 + 3 + 25 = 30 ATP</span>.</li>
+      <li><strong>(c) From glycogen</strong>, phosphorolysis delivers glucose 1-phosphate directly, so the hexokinase
+          ATP is never spent. Add one: <span class="fi">30 + 1 = 31 ATP</span> in muscle
+          (33 with the malate–aspartate shuttle).</li>
+      <li><strong>(d) Anaerobically</strong>, only the substrate-level phosphorylations count:
+          <span class="fi">4 − 2 = 2 ATP</span> from free glucose, and <span class="fi">4 − 1 = 3 ATP</span> from a
+          glycogen residue. Lactate dehydrogenase yields no ATP at all — it exists to regenerate NAD⁺.</li>
+      <li><strong>Sanity check on the old convention:</strong> with NADH = 3 and FADH₂ = 2 the same accounting gives
+          38 and 36. If a paper quotes 36/38 it is using the integers; the structure of the calculation is unchanged.</li>
+    </ol>
+    <p style="margin:.5rem 0 0;font-size:.92rem">Two comparisons are worth keeping. Anaerobic glycolysis captures
+      <span class="fi">2/32 = 6.25 %</span> of the ATP that full oxidation of the same glucose would give. And in free
+      energy terms it captures <span class="fi">61/2840 = 2.1 %</span> of what the molecule is worth; of the rest, only
+      about 5 % is dissipated as heat and roughly <span class="fi">2644/2840 = 93 %</span> is still chemically intact
+      inside the two lactates, which is precisely why the liver can make glucose back out of them.</p>
+    <span class="wex__ans">(a) 32 · (b) 30 · (c) 31 (33 with mal–asp) · (d) 2 from glucose, 3 from glycogen</span>
+    </div>
+  </details>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The two cytosolic NADH shuttles compared</caption>
+      <thead><tr><th></th><th>Glycerol 3-phosphate shuttle</th><th>Malate–aspartate shuttle</th></tr></thead>
+      <tbody>
+        <tr><td>Tissues</td><td>Skeletal muscle, brain, brown adipose</td><td>Liver, kidney, heart</td></tr>
+        <tr><td>Carrier</td><td>DHAP ⇌ glycerol 3-phosphate</td><td>Oxaloacetate ⇌ malate, plus aspartate/glutamate exchange</td></tr>
+        <tr><td>Where the electrons land</td><td>FAD of the inner-membrane glycerol 3-phosphate dehydrogenase, then ubiquinone</td><td>Matrix NAD⁺, via mitochondrial malate dehydrogenase</td></tr>
+        <tr><td>ATP per cytosolic NADH</td><td class="num">1.5</td><td class="num">2.5</td></tr>
+        <tr><td>Total per glucose</td><td class="num">30</td><td class="num">32</td></tr>
+        <tr><td>Reversible?</td><td>Effectively one-way — works even when matrix NADH is high</td><td>Reversible; needs cytosolic NADH/NAD⁺ to exceed the matrix ratio</td></tr>
+        <tr><td>Why the tissue chose it</td><td>Speed and unconditional operation matter more than yield in a muscle sprinting</td><td>The liver's gluconeogenesis needs the shuttle to run <em>backwards</em>, exporting reducing equivalents (§&nbsp;07)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>What can happen to pyruvate</h3>
+  <p>Pyruvate is a junction, like glucose 6-phosphate, and the question "which fate?" always resolves to "is there
+     oxygen, and does this cell have mitochondria?"</p>
+  <ul>
+    <li><strong>Oxidative decarboxylation.</strong> The mitochondrial pyruvate carrier brings pyruvate into the
+        matrix, and the <strong>pyruvate dehydrogenase complex</strong> converts it to acetyl-CoA + CO₂ + NADH. Five
+        cofactors, four of them vitamins: <strong>thiamine pyrophosphate (B1), lipoamide, coenzyme A (B5),
+        FAD (B2), NAD⁺ (B3)</strong>. The reaction is <strong>irreversible</strong>, and that single fact is the
+        reason fatty acids cannot be turned into glucose.</li>
+    <li><strong>Reduction to lactate.</strong> Lactate dehydrogenase reoxidises NADH and hands the electrons to
+        pyruvate. Obligatory in erythrocytes, which have no mitochondria at all; obligatory in any cell during
+        hypoxia; and used routinely by fast-twitch muscle whose glycolytic rate exceeds its mitochondrial capacity
+        even in full oxygen.</li>
+    <li><strong>Carboxylation to oxaloacetate.</strong> Pyruvate carboxylase, in the matrix — the gateway to
+        gluconeogenesis and the main anaplerotic top-up of the citric acid cycle (§&nbsp;07).</li>
+    <li><strong>Transamination to alanine.</strong> Alanine aminotransferase, reversible. This is how muscle exports
+        nitrogen and carbon together, in the glucose–alanine cycle.</li>
+    <li><strong>Decarboxylation to ethanol.</strong> Pyruvate decarboxylase (a TPP enzyme) then alcohol
+        dehydrogenase. Yeast and some bacteria only — <em>humans have no pyruvate decarboxylase</em>, and any option
+        claiming otherwise is wrong.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Lactate is not a waste product, and it is not the acid</p>
+    <p style="margin:0">Two corrections that examiners increasingly test. First, lactate is a <strong>fuel</strong>:
+      it leaves the fast-twitch fibre on a monocarboxylate transporter and is oxidised by heart, slow-twitch muscle
+      and brain, or reconverted to glucose by liver. During hard exercise the heart prefers it to glucose. Second,
+      the protons of "lactic acidosis" do not come from lactate dehydrogenase, which actually <em>consumes</em> a
+      proton. Written with its coupled ATP synthesis, glycolysis to lactate is proton-neutral; the H⁺ appears when
+      that ATP is hydrolysed faster than oxidative phosphorylation can resynthesise it. The acidosis reports
+      <em>ATP turnover outrunning oxygen supply</em>, and lactate is simply the most convenient thing to measure.</p>
+  </div>
+
+  <h3>The Cori cycle, and what it actually buys</h3>
+  <p>An erythrocyte or an anoxic muscle fibre exports lactate. The liver takes it up, oxidises it back to pyruvate
+     (regenerating the NADH it will need), and rebuilds glucose. Count the cost: the muscle gained <strong>2
+     ATP</strong> per glucose; the liver spends <strong>6 nucleoside triphosphates</strong> per glucose remade
+     (§&nbsp;07). Every turn of the cycle therefore costs the body a net <strong>4 ATP</strong>.</p>
+  <p>That looks like a bad deal until you see what it is for. The cycle does not create energy — it
+     <em>moves the bill</em>. Muscle gets ATP now, at the moment it cannot wait for oxygen, and the liver pays later,
+     aerobically, out of fat oxidation. It also prevents lactic acidosis and recycles carbon that would otherwise be
+     lost. The same architecture runs in the <strong>glucose–alanine cycle</strong>, which carries amino nitrogen to
+     the liver along with the carbon skeleton and therefore costs an additional 4 ATP per urea molecule made. In
+     both cases the liver is acting as the body's metabolic bank.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Clinical hooks worth having ready</p>
+    <p style="margin:0"><strong>Thiamine deficiency</strong> blocks pyruvate dehydrogenase, so pyruvate and lactate
+      accumulate — wet beriberi, and Wernicke encephalopathy in chronic alcohol use. Give thiamine
+      <em>before</em> glucose in a malnourished patient, or the glucose load precipitates the deficit.
+      <strong>Pyruvate kinase deficiency</strong> is the second commonest enzyme cause of hereditary
+      non-spherocytic haemolytic anaemia after G6PD deficiency: the erythrocyte has no other ATP source, so its
+      membrane pumps fail — but the block also raises 2,3-bisphosphoglycerate upstream, which right-shifts the
+      oxygen dissociation curve and makes the anaemia far better tolerated than the haemoglobin figure suggests.
+      <strong>The Warburg effect</strong> — tumours running high glycolysis and lactate production even in oxygen,
+      partly through the M2 pyruvate kinase isoenzyme — is the physiological basis of the FDG-PET scan, since
+      <sup>18</sup>F-fluorodeoxyglucose is phosphorylated by hexokinase and then cannot be isomerised, so it is
+      trapped in proportion to glycolytic flux.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Carbon bookkeeping: which carbon ends up where</h2>
+
+  <p class="idea"><b>The idea</b>If you mark one atom of a sugar and then let the cell take the sugar apart, you can follow the mark and find out
+     which route the molecule actually took. Experimenters have done this for a century, and exam papers ask you to
+     predict the result. It sounds forbidding and it is not: the whole thing rests on one geometric fact. The
+     six-carbon molecule is cut exactly down the middle, and then the two halves are made identical — but to make
+     them identical, one of them has to be turned round. Work out which way round, once, and every labelling question
+     in this topic becomes bookkeeping you can do on the back of the question paper.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>The pairing rule</dt>
+      <dd>After the aldolase cut and the triose phosphate isomerase step, glucose carbons pair up in the two
+          pyruvates so that <strong>every pair sums to 7</strong>: C1 with C6, C2 with C5, C3 with C4. Each pair lands
+          on the same position of pyruvate.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">C1, C6 → CH₃  ·  C2, C5 → C=O  ·  C3, C4 → COO⁻</span>
+      <span class="fx__tag">methyl, carbonyl and carboxyl carbons of pyruvate, respectively</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Where the cut falls</dt>
+          <dd>Aldolase cleaves fructose 1,6-bisphosphate between <strong>C3 and C4</strong>. C1–C3 become
+              dihydroxyacetone phosphate; C4–C6 become glyceraldehyde 3-phosphate.</dd>
+          <dt>The reversal</dt>
+          <dd>Triose phosphate isomerase converts DHAP to GAP without moving the phosphate. Since the phosphate sat
+              on glucose C1 and in GAP the phosphate is on C3, glucose <strong>C1 becomes GAP C3</strong> and glucose
+              <strong>C3 becomes GAP C1</strong>. The bottom half is not reversed: glucose C4 is already GAP C1.</dd>
+          <dt>Downstream, nothing moves</dt>
+          <dd>From GAP to pyruvate, carbon positions are preserved: GAP C1 → pyruvate C1 (carboxyl), C2 → C2
+              (carbonyl), C3 → C3 (methyl).</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">pyruvate dehydrogenase removes pyruvate C1 → glucose C3 and C4 leave first, as CO₂</span><span class="fx__tag">the two carbons lost before the citric acid cycle is even entered</span></div>
+          <div class="fx"><span class="fx__eq">6-phosphogluconate dehydrogenase removes G6P C1 → only glucose C1 leaves as CO₂</span><span class="fx__tag">the pentose phosphate pathway, §&nbsp;11 — and the basis of the classic flux assay</span></div>
+          <div class="fx"><span class="fx__eq">acetyl-CoA carbons = pyruvate C2 (carbonyl) and C3 (methyl) = glucose C2, C5, C1, C6</span><span class="fx__tag">what actually enters citrate</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>C1…C6</b><span>glucose carbons, numbered from the aldehyde end</span></div>
+          <div><b><sup>14</sup>C</b><span>radioactive carbon tracer; activity in becquerel (Bq) or counts·min⁻¹</span></div>
+          <div><b><sup>13</sup>C</b><span>stable isotope tracer, read by NMR or mass spectrometry</span></div>
+          <div><b>DHAP</b><span>dihydroxyacetone phosphate</span></div>
+          <div><b>GAP</b><span>glyceraldehyde 3-phosphate</span></div>
+          <div><b>specific activity</b><span>tracer per unit substance (Bq·mol⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 740 424" role="img" aria-label="Carbon map of glycolysis. Glucose carbons one to six are shown in a row; aldolase cuts between carbon three and carbon four, so carbons one to three become dihydroxyacetone phosphate and carbons four to six become glyceraldehyde 3-phosphate. Triose phosphate isomerase reverses the top half, so glucose carbon one occupies the phosphate end and glucose carbon three the aldehyde end. Six arrows then show that glucose carbons three and four both become the carboxyl carbon of pyruvate, carbons two and five both become the carbonyl carbon, and carbons one and six both become the methyl carbon. Each pair sums to seven." style="font-family:var(--sans)">
+      <defs>
+        <marker id="cAh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker>
+      </defs>
+      <text x="16" y="26" font-size="12" font-weight="700" fill="var(--ink)">Glucose, drawn as fructose 1,6-bisphosphate — the skeleton is the same</text>
+
+      <line x1="305" y1="38" x2="305" y2="96" stroke="var(--bad)" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="305" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="var(--bad)">aldolase cuts here</text>
+
+      <g font-size="15" font-weight="700" text-anchor="middle">
+        <circle cx="95"  cy="64" r="18" fill="var(--accent-wash)" stroke="var(--accent-3)" stroke-width="2.4"/><text x="95"  y="70" fill="var(--ink)">1</text>
+        <circle cx="175" cy="64" r="18" fill="var(--accent-wash)" stroke="var(--accent-2)" stroke-width="2.4"/><text x="175" y="70" fill="var(--ink)">2</text>
+        <circle cx="255" cy="64" r="18" fill="var(--accent-wash)" stroke="var(--accent)"   stroke-width="2.4"/><text x="255" y="70" fill="var(--ink)">3</text>
+        <circle cx="355" cy="64" r="18" fill="var(--accent-wash)" stroke="var(--accent)"   stroke-width="2.4"/><text x="355" y="70" fill="var(--ink)">4</text>
+        <circle cx="435" cy="64" r="18" fill="var(--accent-wash)" stroke="var(--accent-2)" stroke-width="2.4"/><text x="435" y="70" fill="var(--ink)">5</text>
+        <circle cx="515" cy="64" r="18" fill="var(--accent-wash)" stroke="var(--accent-3)" stroke-width="2.4"/><text x="515" y="70" fill="var(--ink)">6</text>
+      </g>
+      <text x="70" y="44" text-anchor="end" font-size="11" fill="var(--ink-faint)">P–</text>
+      <text x="540" y="44" font-size="11" fill="var(--ink-faint)">–P</text>
+
+      <path d="M 72,128 L 72,120 L 278,120 L 278,128" fill="none" stroke="var(--ink-faint)" stroke-width="1.3"/>
+      <text x="175" y="144" text-anchor="middle" font-size="11" fill="var(--ink-soft)">C1–C3 → DHAP (top half)</text>
+      <path d="M 332,128 L 332,120 L 538,120 L 538,128" fill="none" stroke="var(--ink-faint)" stroke-width="1.3"/>
+      <text x="435" y="144" text-anchor="middle" font-size="11" fill="var(--ink-soft)">C4–C6 → GAP (bottom half)</text>
+
+      <text x="16" y="178" font-size="12" font-weight="700" fill="var(--ink)">After triose phosphate isomerase — both halves are now glyceraldehyde 3-phosphate</text>
+      <g font-size="13" text-anchor="middle" fill="var(--ink-faint)">
+        <text x="95"  y="200">GAP C1</text><text x="175" y="200">C2</text><text x="255" y="200">C3</text>
+        <text x="355" y="200">GAP C1</text><text x="435" y="200">C2</text><text x="515" y="200">C3</text>
+      </g>
+      <g font-size="15" font-weight="700" text-anchor="middle">
+        <circle cx="95"  cy="228" r="18" fill="var(--card)" stroke="var(--accent)"   stroke-width="2.4"/><text x="95"  y="234" fill="var(--ink)">3</text>
+        <circle cx="175" cy="228" r="18" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2.4"/><text x="175" y="234" fill="var(--ink)">2</text>
+        <circle cx="255" cy="228" r="18" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2.4"/><text x="255" y="234" fill="var(--ink)">1</text>
+        <circle cx="355" cy="228" r="18" fill="var(--card)" stroke="var(--accent)"   stroke-width="2.4"/><text x="355" y="234" fill="var(--ink)">4</text>
+        <circle cx="435" cy="228" r="18" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2.4"/><text x="435" y="234" fill="var(--ink)">5</text>
+        <circle cx="515" cy="228" r="18" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2.4"/><text x="515" y="234" fill="var(--ink)">6</text>
+      </g>
+      <text x="175" y="264" text-anchor="middle" font-size="10.8" fill="var(--bad)">turned round — 1 and 3 have swapped ends</text>
+      <text x="435" y="264" text-anchor="middle" font-size="10.8" fill="var(--ink-faint)">unchanged</text>
+
+      <g fill="none" stroke-width="1.7" marker-end="url(#cAh)">
+        <path d="M 95,248  C 120,296 220,300 258,326" stroke="var(--accent)"   color="var(--accent)"/>
+        <path d="M 355,248 C 340,296 300,300 278,326" stroke="var(--accent)"   color="var(--accent)"/>
+        <path d="M 175,248 C 200,296 320,300 344,326" stroke="var(--accent-2)" color="var(--accent-2)"/>
+        <path d="M 435,248 C 430,296 380,300 358,326" stroke="var(--accent-2)" color="var(--accent-2)"/>
+        <path d="M 255,248 C 300,296 400,300 424,326" stroke="var(--accent-3)" color="var(--accent-3)"/>
+        <path d="M 515,248 C 510,296 460,300 438,326" stroke="var(--accent-3)" color="var(--accent-3)"/>
+      </g>
+
+      <g font-size="12" font-weight="700" text-anchor="middle">
+        <circle cx="268" cy="348" r="20" fill="var(--accent-wash)" stroke="var(--accent)"   stroke-width="2.6"/><text x="268" y="353" fill="var(--ink)">COO⁻</text>
+        <circle cx="351" cy="348" r="20" fill="var(--accent-wash)" stroke="var(--accent-2)" stroke-width="2.6"/><text x="351" y="353" fill="var(--ink)">C=O</text>
+        <circle cx="431" cy="348" r="20" fill="var(--accent-wash)" stroke="var(--accent-3)" stroke-width="2.6"/><text x="431" y="353" fill="var(--ink)">CH₃</text>
+      </g>
+      <line x1="288" y1="348" x2="331" y2="348" stroke="var(--ink-soft)" stroke-width="2"/>
+      <line x1="371" y1="348" x2="411" y2="348" stroke="var(--ink-soft)" stroke-width="2"/>
+      <text x="351" y="396" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">2 × pyruvate (C1 – C2 – C3)</text>
+      <text x="351" y="413" text-anchor="middle" font-size="10.8" fill="var(--bad)">PDH removes C1 — so glucose C3 and C4 are the first carbons lost as CO₂</text>
+
+      <g font-size="11.5" font-weight="700">
+        <text x="574" y="304" fill="var(--accent)">C3 + C4 → carboxyl</text>
+        <text x="574" y="330" fill="var(--accent-2)">C2 + C5 → carbonyl</text>
+        <text x="574" y="356" fill="var(--accent-3)">C1 + C6 → methyl</text>
+        <text x="574" y="384" fill="var(--ink-faint)" font-weight="400">every pair sums to 7</text>
+      </g>
+    </svg>
+    <figcaption>The only step that needs thought is the isomerase. It moves the carbonyl, not the phosphate — so the
+      phosphorylated end of the top half stays the phosphorylated end, and since that carbon was glucose C1 while the
+      phosphate in glyceraldehyde 3-phosphate sits on C3, the top half is effectively read backwards. The bottom half
+      is not. That asymmetry is the entire content of every labelling question on this topic.</figcaption>
+  </figure>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — three tracer experiments</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) [1-<sup>14</sup>C]glucose is given to a muscle working
+      anaerobically. Which carbon of lactate is labelled? (b) [3,4-<sup>14</sup>C]glucose is given to a well-oxygenated
+      cell. Where does the label first appear? (c) A liver is offered [1-<sup>14</sup>C]glucose in one flask and
+      [6-<sup>14</sup>C]glucose in another, and released <sup>14</sup>CO₂ is collected. What does a ratio greater than
+      one tell you?</p>
+    <ol>
+      <li><strong>(a)</strong> C1 is in the top half, and the top half is reversed, so C1 → GAP C3 → pyruvate C3, the
+          <strong>methyl</strong> carbon. Lactate dehydrogenase reduces the C2 carbonyl to a hydroxyl and touches
+          nothing else, so the label is on the <strong>methyl carbon of lactate</strong>. (Had you forgotten the
+          reversal you would have said the carboxyl carbon — that is the intended trap.)</li>
+      <li><strong>(b)</strong> C3 is in the top half and reversed, so C3 → GAP C1. C4 is in the bottom half and is
+          already GAP C1. Both therefore become <strong>pyruvate C1, the carboxyl carbon</strong> — one in each of
+          the two pyruvates. Pyruvate dehydrogenase removes exactly that carbon. The label appears in
+          <strong>CO₂</strong>, and it does so <em>before</em> anything enters the citric acid cycle: acetyl-CoA is
+          unlabelled.</li>
+      <li><strong>(c)</strong> In glycolysis followed by full oxidation, C1 and C6 are equivalent — both are methyl
+          carbons of pyruvate — so they must eventually give equal <sup>14</sup>CO₂. In the <strong>pentose
+          phosphate pathway</strong> they are not equivalent at all: 6-phosphogluconate dehydrogenase decarboxylates
+          C1 and only C1. So <span class="fi"><sup>14</sup>CO₂ from [1-<sup>14</sup>C] &gt; <sup>14</sup>CO₂ from
+          [6-<sup>14</sup>C]</span> is direct evidence of flux through the pentose phosphate pathway, and the size of
+          the excess estimates how much. This is the classical assay, and the reasoning — not the number — is what
+          gets examined.</li>
+      <li><strong>Check the first turn of the citric acid cycle.</strong> Acetyl-CoA carries glucose C1, C2, C5 and
+          C6. Neither CO₂ released on the first turn comes from the acetyl group; both come from carbons that were
+          already in oxaloacetate. So labelled acetyl carbon survives the first turn and only starts appearing as CO₂
+          on the second — another standard question, and it follows purely from bookkeeping.</li>
+    </ol>
+    <span class="wex__ans">(a) methyl carbon · (b) CO₂ from PDH, acetyl-CoA unlabelled · (c) pentose phosphate flux</span>
+    </div>
+  </details>
+
+  <div class="mnemo">
+    <h4>Two lines that carry the whole section</h4>
+    <p><strong>Pairs sum to seven</strong> (1+6, 2+5, 3+4), and <strong>the innermost pair goes to the carboxyl
+      end</strong> — C3 and C4, the two carbons the aldolase cut separates, both become carboxyl carbons, which is also
+      why they are the first to leave as CO₂. Everything else can be reconstructed from those two statements plus the
+      fact that the pentose phosphate pathway takes C1 alone.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Fructose, galactose and the inborn errors</h2>
+
+  <p class="idea"><b>The idea</b>Glucose is not the only sugar arriving from a meal, and the other two common ones do not simply queue up behind
+     it. Each has its own short private entrance into the main pathway, and each entrance joins the main road at a
+     different place. Fructose joins <em>below</em> the checkpoint that decides how fast sugar is burned — so it walks
+     straight past the traffic control, which is why a large fructose load behaves so differently from the same amount
+     of glucose. Galactose joins right at the top. The diseases in this section are all the same story: one enzyme in
+     a short private entrance is missing, and the queue backs up behind it. What the backed-up compound happens to be
+     decides whether the child is perfectly healthy or critically ill.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Where each sugar enters</dt>
+      <dd>Fructose enters the liver pathway at the <strong>triose</strong> level, downstream of
+          phosphofructokinase-1. Galactose enters at <strong>glucose 1-phosphate</strong>, upstream of everything.
+          That single difference explains almost all of the physiology and all of the pathology.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">fructose → F1P → DHAP + glyceraldehyde → 2 × GAP</span>
+      <span class="fx__tag">fructokinase, then aldolase B, then triose kinase — PFK-1 is bypassed entirely</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>The dietary disaccharides</dt>
+          <dd><strong>Sucrose</strong> = glucose + fructose, α1→β2, split by sucrase. <strong>Lactose</strong> =
+              galactose + glucose, β1→4, split by lactase. <strong>Maltose</strong> = glucose + glucose, α1→4, split
+              by maltase. So a sucrose load is half a fructose load, and a milk feed is half a galactose load.</dd>
+          <dt>Leloir pathway</dt>
+          <dd>Galactose → galactose 1-phosphate (galactokinase) → glucose 1-phosphate, by exchange with UDP-glucose
+              (GALT) and epimerisation of the resulting UDP-galactose (GALE, an NAD⁺-dependent enzyme).</dd>
+          <dt>Polyol (sorbitol) pathway</dt>
+          <dd>Aldose reductase reduces glucose to sorbitol using NADPH; sorbitol dehydrogenase oxidises sorbitol to
+              fructose using NAD⁺. Tissues that have the first enzyme but little of the second accumulate the polyol
+              osmotically.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">galactose + ATP → Gal-1-P;  Gal-1-P + UDP-glucose → UDP-galactose + Glc-1-P</span><span class="fx__tag">galactokinase, then GALT — the step lost in classic galactosaemia</span></div>
+          <div class="fx"><span class="fx__eq">glucose + NADPH → sorbitol + NADP⁺ → fructose + NADH</span><span class="fx__tag">aldose reductase, then sorbitol dehydrogenase</span></div>
+          <div class="fx"><span class="fx__eq">galactose + NADPH → galactitol  (no dehydrogenase exists for it)</span><span class="fx__tag">a dead end — which is exactly why it accumulates and clouds the lens</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>F1P</b><span>fructose 1-phosphate (mmol·L⁻¹)</span></div>
+          <div><b>GALT</b><span>galactose 1-phosphate uridylyltransferase</span></div>
+          <div><b>GALE</b><span>UDP-galactose 4-epimerase</span></div>
+          <div><b>UDP</b><span>uridine diphosphate — the activating carrier for sugars</span></div>
+          <div><b>P<sub>i</sub></b><span>inorganic phosphate (mmol·L⁻¹) — the limiting quantity in hereditary fructose intolerance</span></div>
+          <div><b>osmolality</b><span>osmol·kg⁻¹ — what a trapped polyol raises inside a cell</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Fructose: fast, unregulated, and lipogenic for a reason</h3>
+  <p>In the liver, fructokinase phosphorylates fructose at C1. Fructokinase has a low K<sub>m</sub>, a high
+     V<sub>max</sub> and no allosteric regulation whatever — so essentially all fructose reaching the liver is
+     phosphorylated on first pass. Aldolase B then splits fructose 1-phosphate into dihydroxyacetone phosphate and
+     free glyceraldehyde, and triose kinase phosphorylates the glyceraldehyde to glyceraldehyde 3-phosphate. Both
+     products are glycolytic intermediates <em>below</em> PFK-1.</p>
+  <p>That is the whole story of why fructose is metabolically different. PFK-1 is the step that says "stop, there is
+     enough ATP and enough citrate". Fructose walks past it. The trioses arrive whether or not the cell wants them,
+     pyruvate and then acetyl-CoA accumulate, and the surplus acetyl-CoA is exported as citrate for fatty-acid
+     synthesis and packaged into VLDL. A large fructose load therefore raises triglycerides in a way an equivalent
+     glucose load does not — and, because fructokinase consumes ATP faster than the cell can replace it, the
+     transient AMP surge is degraded to <strong>urate</strong>, which is why fructose raises serum uric acid.</p>
+  <p>Muscle and adipose tissue take a different route: their hexokinase will phosphorylate fructose to fructose
+     6-phosphate, but with a K<sub>m</sub> far above physiological fructose concentrations, so it is a minor pathway
+     that is easily outcompeted by glucose. Fructose metabolism is essentially a hepatic story.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Inborn errors of fructose and galactose metabolism</caption>
+      <thead><tr><th>Disorder</th><th>Missing enzyme</th><th>What accumulates</th><th>Presentation</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Essential fructosuria</strong></td><td>Fructokinase</td><td>Fructose (blood, urine)</td><td><strong>Benign.</strong> Found incidentally: urine reduces Benedict's reagent but is negative on a glucose-oxidase dipstick. No treatment. Present it to yourself as the control case — a substrate that simply leaves in the urine does no harm.</td></tr>
+        <tr><td><strong>Hereditary fructose intolerance</strong></td><td><strong>Aldolase B</strong></td><td>Fructose 1-phosphate, which sequesters P<sub>i</sub></td><td>Severe. Vomiting, hypoglycaemia, hepatomegaly, jaundice, lactic acidosis, hyperuricaemia and renal tubular dysfunction, all beginning when fruit, sucrose or sorbitol is introduced at weaning. Older children develop a strong aversion to sweets and, notably, excellent teeth. Treat by excluding fructose, sucrose and sorbitol.</td></tr>
+        <tr><td><strong>Galactokinase deficiency</strong></td><td>Galactokinase</td><td>Galactose → <strong>galactitol</strong></td><td><strong>Cataracts only</strong>, appearing in the first months. No liver disease, no intellectual disability, no sepsis risk. The lens damage is purely osmotic.</td></tr>
+        <tr><td><strong>Classic galactosaemia</strong></td><td><strong>GALT</strong></td><td><strong>Galactose 1-phosphate</strong> plus galactitol</td><td>Severe. Vomiting and failure to thrive on milk, jaundice, hepatomegaly progressing to cirrhosis, cataracts, renal Fanconi syndrome, intellectual disability, and a characteristic vulnerability to <em>E. coli</em> neonatal sepsis. On newborn screening. Even on a lactose-free diet, ovarian failure and speech delay are common, because the body makes its own galactose 1-phosphate endogenously.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The pattern behind all four</p>
+    <p style="margin:0">Compare them in pairs and the principle jumps out. In each pair, blocking the
+      <strong>first</strong> enzyme is mild and blocking the <strong>second</strong> is severe — because the first
+      block leaves an innocuous sugar that the kidney can excrete, while the second block leaves a
+      <strong>phosphorylated</strong> intermediate that is charged, cannot leave the cell, and holds a phosphate
+      hostage. Fructose 1-phosphate and galactose 1-phosphate are the toxic species; fructose and galactose
+      themselves are not. Note also that <em>cataract</em> appears in both galactose disorders, because both
+      accumulate galactose upstream and aldose reductase turns it into galactitol; but only GALT deficiency has the
+      liver, kidney, brain and sepsis picture, because only GALT deficiency accumulates the phosphate.</p>
+  </div>
+
+  <h3>Why hereditary fructose intolerance causes hypoglycaemia</h3>
+  <p>This is worth deriving rather than remembering, because it is a favourite vignette. Fructokinase is
+     unregulated, so it keeps converting fructose to fructose 1-phosphate. Aldolase B cannot clear it, so
+     fructose 1-phosphate accumulates to millimolar concentrations, and every molecule of it is holding one
+     <strong>inorganic phosphate</strong> out of circulation. Cytosolic P<sub>i</sub> falls. Now three things fail at
+     once. ADP cannot be rephosphorylated to ATP, so the energy charge collapses and AMP is degraded to urate.
+     <strong>Glycogen phosphorylase requires P<sub>i</sub> as its co-substrate</strong> (§&nbsp;09), so
+     glycogenolysis stops. And accumulated fructose 1-phosphate directly inhibits the aldolase and phosphorylase
+     steps. The liver therefore cannot release glucose by either route — which is why an injection of glucagon during
+     an attack produces no rise in blood glucose at all, a finding that neatly separates this from a simple fasting
+     hypoglycaemia.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Fructose 1-phosphate has a second, non-pathological job</p>
+    <p style="margin:0">In a healthy liver, fructose 1-phosphate is the ligand that <strong>releases glucokinase from
+      its nuclear regulatory protein</strong>, while fructose 6-phosphate keeps it sequestered. A small amount of
+      dietary fructose therefore <em>primes</em> the liver to take up glucose — which is the physiological reason
+      that fruit sugar and starch arriving together are handled better than either alone, and a nice example of one
+      metabolite doing signalling work in one context and damage in another.</p>
+  </div>
+
+  <h3>The polyol pathway, and why diabetes damages the tissues it does</h3>
+  <p>Aldose reductase reduces glucose to sorbitol, consuming NADPH; sorbitol dehydrogenase then oxidises sorbitol to
+     fructose. In most tissues both enzymes are present and nothing accumulates. But <strong>lens, retina, kidney,
+     erythrocyte and Schwann cell</strong> have plenty of the reductase and little or none of the dehydrogenase.
+     Sorbitol is a polyol: it does not cross membranes and it is osmotically active. In chronic hyperglycaemia —
+     and remember from §&nbsp;01 that all of these are insulin-independent tissues, so their intracellular glucose
+     tracks the blood level directly — sorbitol accumulates, water follows, and the cell swells. Add the depletion
+     of NADPH, which weakens glutathione-based antioxidant defence (§&nbsp;11), and you have a mechanistic account of
+     diabetic cataract, retinopathy and peripheral neuropathy. Galactitol does the same thing in galactose disorders,
+     only faster, because <em>no</em> dehydrogenase acts on it at all. The same chemistry is put to legitimate use in
+     the seminal vesicle, where the polyol pathway makes the fructose that sperm use as fuel.</p>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Gluconeogenesis: four bypasses, not a reversal</h2>
+
+  <p class="idea"><b>The idea</b>Most of the reactions that break sugar down will happily run the other way if you push on them, because they
+     barely release any energy in the first place. Three will not: they gave up so much energy going forwards that
+     pushing them backwards is like pushing water uphill. So the cell does not push. It builds three
+     <em>detours</em> — four enzymes in all, because one detour needs two steps — each of which spends extra energy
+     to get around the obstacle. This is not wasteful design, it is the only design that works: if the same enzyme
+     ran both ways, the cell could never make one direction go while the other stopped, and the two pathways would
+     simply spin against each other burning fuel for nothing.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Gluconeogenesis（糖質新生）</dt>
+      <dd>The synthesis of glucose from non-carbohydrate precursors — lactate, pyruvate, glycerol, glucogenic amino
+          acids and propionate. Seven glycolytic enzymes are used in reverse; the three irreversible steps are
+          replaced by four separate enzymes. Occurs mainly in <strong>liver</strong>, with the
+          <strong>renal cortex</strong> contributing perhaps a tenth at rest and far more in prolonged starvation.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">2 pyruvate + 4 ATP + 2 GTP + 2 NADH + 2 H⁺ + 4 H₂O → glucose + 4 ADP + 2 GDP + 6 P<sub>i</sub> + 2 NAD⁺</span>
+      <span class="fx__tag">ΔG°′ ≈ −38 kJ·mol⁻¹ — six nucleoside triphosphates buy an exergonic pathway in the uphill direction</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Why four enzymes for three bypasses</dt>
+          <dd>The pyruvate → phosphoenolpyruvate obstacle is too large for one reaction, so it is split:
+              <strong>pyruvate carboxylase</strong> adds a carboxyl group (spending ATP), then
+              <strong>PEP carboxykinase</strong> removes it again (spending GTP). The decarboxylation supplies part
+              of the free energy for making the enol phosphate.</dd>
+          <dt>Substrate cycle（受質循環）</dt>
+          <dd>A forward and a reverse enzyme both active at once, so the net effect is ATP hydrolysed to heat.
+              Reciprocal regulation (§&nbsp;08) exists to prevent it — although bumblebees deliberately run the
+              PFK-1/FBPase-1 cycle in flight muscle to warm up before take-off.</dd>
+          <dt>Glucogenic vs ketogenic</dt>
+          <dd>A precursor is glucogenic if its carbon can reach oxaloacetate or pyruvate. Acetyl-CoA cannot, so
+              <strong>even-chain fatty acids yield no net glucose</strong>. Only <strong>leucine and lysine</strong>
+              are purely ketogenic among the amino acids.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">pyruvate + HCO₃⁻ + ATP → oxaloacetate + ADP + P<sub>i</sub></span><span class="fx__tag">pyruvate carboxylase — biotin; requires acetyl-CoA as an obligatory activator</span></div>
+          <div class="fx"><span class="fx__eq">oxaloacetate + GTP → PEP + CO₂ + GDP</span><span class="fx__tag">PEP carboxykinase — the CO₂ added a moment ago is taken straight back off</span></div>
+          <div class="fx"><span class="fx__eq">F1,6BP + H₂O → F6P + P<sub>i</sub>   ·   G6P + H₂O → glucose + P<sub>i</sub></span><span class="fx__tag">the two phosphatases: hydrolysis, not reverse kinase — no ATP is regained</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>PC</b><span>pyruvate carboxylase (mitochondrial matrix)</span></div>
+          <div><b>PEPCK</b><span>phosphoenolpyruvate carboxykinase (cytosolic and mitochondrial isoforms)</span></div>
+          <div><b>FBPase-1</b><span>fructose 1,6-bisphosphatase</span></div>
+          <div><b>G6Pase</b><span>glucose 6-phosphatase, in the endoplasmic reticulum lumen</span></div>
+          <div><b>GTP</b><span>guanosine triphosphate; equivalent in energy to ATP (ΔG°′ ≈ −30.5 kJ·mol⁻¹)</span></div>
+          <div><b>HCO₃⁻</b><span>bicarbonate — the carboxyl donor, at ~24 mmol·L⁻¹ in plasma</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The three irreversible glycolytic steps and their gluconeogenic bypasses</caption>
+      <thead><tr><th>Glycolytic step (irreversible)</th><th>Gluconeogenic bypass</th><th>Cost</th><th>Where, and what regulates it</th></tr></thead>
+      <tbody>
+        <tr><td>Pyruvate kinase<br><span style="color:var(--ink-faint)">PEP → pyruvate</span></td><td><strong>Pyruvate carboxylase</strong> → oxaloacetate, then <strong>PEP carboxykinase</strong> → PEP</td><td class="num">1 ATP + 1 GTP<br>per pyruvate</td><td>PC in the mitochondrial matrix — biotin cofactor, and <strong>completely inactive without acetyl-CoA</strong>. PEPCK mostly cytosolic; regulated almost entirely by transcription (up: glucagon, cortisol; down: insulin)</td></tr>
+        <tr><td>Phosphofructokinase-1<br><span style="color:var(--ink-faint)">F6P → F1,6BP</span></td><td><strong>Fructose 1,6-bisphosphatase</strong></td><td>—<br>(a hydrolysis; the ATP is lost as heat)</td><td>Cytosol. <strong>Inhibited by AMP and by fructose 2,6-bisphosphate</strong>, activated by citrate — the exact mirror of PFK-1, which is the point of §&nbsp;08</td></tr>
+        <tr><td>Hexokinase / glucokinase<br><span style="color:var(--ink-faint)">glucose → G6P</span></td><td><strong>Glucose 6-phosphatase</strong></td><td>—</td><td>In the <strong>lumen of the endoplasmic reticulum</strong>; G6P must be carried in by a separate transporter. Present only in liver, kidney cortex and intestine — hence no glucose export from muscle</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why the carboxylate-then-decarboxylate detour</h3>
+  <p>Pyruvate kinase released 31 kJ·mol⁻¹ going forward, and one GTP is not enough to push it back. So the cell
+     raises pyruvate to a higher-energy intermediate first. Pyruvate carboxylase, a biotin enzyme, spends one ATP to
+     attach CO₂ and make oxaloacetate. PEP carboxykinase then spends a GTP and, in the same step, removes the CO₂
+     again — and it is the decarboxylation, thermodynamically very favourable, that supplies the extra push needed to
+     create the enol phosphate. Adding a group in order to remove it is a recurring trick in biochemistry: the same
+     device appears in fatty-acid synthesis, where acetyl-CoA is carboxylated to malonyl-CoA only so that the same
+     carboxyl can be lost again as CO₂ to drive the condensation.</p>
+  <p>Two details that get examined. First, <strong>pyruvate carboxylase is switched on by acetyl-CoA</strong>, and
+     essentially dead without it. That is a beautiful piece of logic: acetyl-CoA piles up when fat is being oxidised,
+     which is exactly the situation in which the liver needs to make glucose. Fat cannot supply the carbon, but it
+     supplies the <em>signal</em> and the ATP. Second, oxaloacetate cannot cross the inner mitochondrial membrane. It
+     is reduced to malate, exported, and reoxidised in the cytosol — which conveniently also delivers one cytosolic
+     NADH, exactly what the reverse GAPDH step will need.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — the price of gluconeogenesis, and the Cori cycle balance sheet</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) Count the high-energy phosphates needed to make one glucose from
+      two pyruvate. (b) Compare with what a simple reversal of glycolysis would have cost. (c) Close the Cori cycle:
+      what is the net whole-body ATP balance per turn?</p>
+    <ol>
+      <li><strong>(a) Per pyruvate:</strong> pyruvate carboxylase 1 ATP, PEP carboxykinase 1 GTP, and the reverse of
+          phosphoglycerate kinase 1 ATP. That is <span class="fi">3</span> nucleoside triphosphates. For two
+          pyruvate: <span class="fi">2 × 3 = 6</span> — conventionally written as
+          <strong>4 ATP + 2 GTP</strong>, plus 2 NADH for the reverse GAPDH step. Note that the two
+          <em>phosphatase</em> bypasses cost nothing extra: they hydrolyse rather than transfer, so the phosphate
+          energy is simply lost as heat.</li>
+      <li><strong>(b)</strong> Glycolysis made 2 ATP going forward, so a naive reversal would need to put 2 back.
+          The real cost is 6. The extra <span class="fi">6 − 2 = 4</span> high-energy phosphates are the
+          thermodynamic surcharge for making the pathway exergonic in <em>both</em> directions — which is the price
+          of being able to control it. A pathway that is reversible cannot be regulated.</li>
+      <li><strong>(c)</strong> Muscle: glucose → 2 lactate yields <span class="fi">+2 ATP</span>.
+          Liver: 2 lactate → glucose costs <span class="fi">−6</span>. Net per turn:
+          <span class="fi">2 − 6 = −4 ATP</span>, paid by the liver, aerobically, out of fatty-acid oxidation.</li>
+      <li><strong>Where do the 2 NADH come from when the substrate is lactate?</strong> From lactate dehydrogenase
+          running in reverse: <span class="fi">lactate + NAD⁺ → pyruvate + NADH + H⁺</span>. Lactate arrives
+          pre-loaded with its own reducing equivalents. Starting from <em>alanine</em> instead, no NADH is generated,
+          so the malate shuttle described above has to supply it — which is why alanine and lactate are not
+          interchangeable substrates at the level of detail an exam may probe.</li>
+    </ol>
+    <span class="wex__ans">(a) 4 ATP + 2 GTP + 2 NADH · (b) 4 extra · (c) net −4 ATP per Cori turn</span>
+    </div>
+  </details>
+
+  <h3>What can and cannot become glucose</h3>
+  <ul>
+    <li><strong>Lactate</strong> — via LDH to pyruvate. The Cori cycle.</li>
+    <li><strong>Glucogenic amino acids</strong> — all of them except leucine and lysine. Alanine and glutamine are
+        quantitatively the most important; alanine enters as pyruvate, most others enter the citric acid cycle and
+        leave it as oxaloacetate.</li>
+    <li><strong>Glycerol</strong> — from triacylglycerol lipolysis. Glycerol kinase (a liver enzyme; adipose tissue
+        has almost none, which is why adipocytes cannot recycle their own glycerol) makes glycerol 3-phosphate, and
+        glycerol 3-phosphate dehydrogenase makes DHAP. This is the <em>only</em> part of a fat molecule that yields
+        glucose.</li>
+    <li><strong>Propionate</strong> — from odd-chain fatty acids and from the branched-chain amino acids: propionyl-CoA
+        → (biotin) → methylmalonyl-CoA → (vitamin B12) → succinyl-CoA → oxaloacetate. Numerically minor in humans,
+        conceptually important because it is the exception that proves the rule about fatty acids.</li>
+    <li><strong>Not acetyl-CoA.</strong> Pyruvate dehydrogenase is irreversible, so acetyl-CoA cannot go back to
+        pyruvate; and entering the citric acid cycle does not help, because the two carbons that enter as acetyl are
+        matched by two carbons leaving as CO₂. Plants and bacteria escape this with the <strong>glyoxylate
+        cycle</strong> (isocitrate lyase and malate synthase); animals have neither enzyme. Hence: no net conversion
+        of even-chain fatty acid or ketone-body carbon into glucose, ever.</li>
+  </ul>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Three clinical stories that are really this section in disguise</p>
+    <p style="margin:0"><strong>Alcoholic hypoglycaemia.</strong> Ethanol is oxidised by alcohol dehydrogenase and
+      aldehyde dehydrogenase, both of which reduce NAD⁺. The cytosolic NADH/NAD⁺ ratio rises steeply, pulling
+      lactate away from pyruvate and malate away from oxaloacetate — removing <em>both</em> gluconeogenic substrates
+      at once. A fasting, glycogen-depleted drinker therefore becomes hypoglycaemic and lactic-acidotic, and the same
+      surplus NADH pushes DHAP towards glycerol 3-phosphate, favouring triglyceride synthesis: hepatic steatosis in
+      the same mechanism.
+      <strong>Von Gierke disease (GSD I)</strong> is loss of glucose 6-phosphatase — so neither gluconeogenesis nor
+      glycogenolysis can deliver free glucose, and G6P backs up into glycolysis (lactic acidosis), into the pentose
+      phosphate pathway (NADPH → lipogenesis → hyperlipidaemia, and increased purine turnover → hyperuricaemia,
+      compounded by lactate competing with urate for renal excretion). Glucagon produces no glycaemic response.
+      <strong>Metformin</strong> suppresses hepatic gluconeogenesis, in part by mildly inhibiting mitochondrial
+      respiration and thus lowering hepatic energy charge and activating AMPK — which is also why its rare serious
+      toxicity is lactic acidosis, and why it is withheld in renal failure.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · biotin, compartments, and the two routes out of the mitochondrion</summary>
+    <div class="disc__body">
+      <p><strong>Biotin</strong> is the CO₂ carrier for every carboxylase in human metabolism, attached through an
+         amide bond to a lysine residue (the conjugate is called biocytin). There are four:
+         <strong>p</strong>yruvate carboxylase, <strong>a</strong>cetyl-CoA carboxylase (fatty-acid synthesis),
+         <strong>p</strong>ropionyl-CoA carboxylase and <strong>m</strong>ethylcrotonyl-CoA carboxylase. Biotinidase
+         deficiency, which prevents biotin being recycled, therefore presents as a multiple carboxylase deficiency
+         with lactic acidosis, alopecia and a seborrhoeic rash — and responds dramatically to oral biotin.</p>
+      <p><strong>The compartment problem.</strong> Pyruvate carboxylase is in the matrix; the cytosolic isoform of
+         PEP carboxykinase is not. Oxaloacetate cannot cross the inner membrane, so it must be disguised. Which
+         disguise the liver uses depends on the substrate, and this is the sort of detail Lehninger draws as a
+         figure:</p>
+      <ul>
+        <li><strong>From lactate:</strong> lactate dehydrogenase has already made cytosolic NADH, so the cell does
+            not need any more. Oxaloacetate is transaminated to <strong>aspartate</strong> and exported on the
+            glutamate–aspartate carrier, then transaminated back. No redox equivalents are moved.</li>
+        <li><strong>From pyruvate or alanine:</strong> no cytosolic NADH has been generated, and the reverse GAPDH
+            step needs it. Oxaloacetate is reduced to <strong>malate</strong> by matrix malate dehydrogenase,
+            exported, and reoxidised in the cytosol — exporting one NADH per oxaloacetate as a side effect. The
+            malate–aspartate shuttle of §&nbsp;04, run backwards.</li>
+      </ul>
+      <p>Notice how this dovetails with §&nbsp;04: the tissues that do gluconeogenesis are exactly the tissues that
+         use the malate–aspartate shuttle, because they need it to run in both directions.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Reciprocal control and fructose 2,6-bisphosphate</h2>
+
+  <p class="idea"><b>The idea</b>Two opposing pathways run through the same cell at the same time. If both were switched on at once, the cell
+     would build sugar and take it apart simultaneously, achieving nothing except turning food into heat. So the cell
+     needs a switch that cannot possibly leave both on — one signal that says "go" to one pathway and, with the same
+     breath, "stop" to the other. The liver's solution is a small molecule that is not a building block at all. It is
+     manufactured purely to be a message, it speeds up the breakdown enzyme and slows the building enzyme, and its
+     concentration is set by a single unusual protein that is a maker and a destroyer in one, with a switch on top
+     of it that hormones can flip.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Fructose 2,6-bisphosphate</dt>
+      <dd>A regulatory molecule, <strong>not a metabolic intermediate</strong>: nothing consumes it as a substrate
+          and it lies on no pathway. It is made from fructose 6-phosphate and destroyed back to fructose
+          6-phosphate, purely so that its concentration can carry information.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">[F2,6BP] ↑ → PFK-1 ON and FBPase-1 OFF → glycolysis</span>
+      <span class="fx__tag">one ligand, two enzymes, opposite effects — this is what "reciprocal" means</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>PFK-2 / FBPase-2</dt>
+          <dd>A single <strong>bifunctional polypeptide</strong> with two catalytic domains: an N-terminal kinase
+              that makes F2,6BP and a C-terminal bisphosphatase that destroys it. Which domain is active depends on
+              the phosphorylation state of one serine residue.</dd>
+          <dt>How F2,6BP acts on PFK-1</dt>
+          <dd>It is an allosteric activator that increases the enzyme's affinity for fructose 6-phosphate and
+              simultaneously relieves the inhibition by ATP. It does not raise V<sub>max</sub>; it moves the
+              saturation curve leftwards.</dd>
+          <dt>Isoenzyme direction reversal</dt>
+          <dd>The liver isoenzyme is phosphorylated by PKA on Ser32 and this <em>inactivates</em> the kinase domain.
+              The heart isoenzyme is phosphorylated on a different residue and this <em>activates</em> it. Same
+              hormone, opposite outcome, by design.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">F6P + ATP → F2,6BP + ADP   (PFK-2)  ·  F2,6BP + H₂O → F6P + P<sub>i</sub>   (FBPase-2)</span><span class="fx__tag">two domains of one protein, running a controlled futile loop</span></div>
+          <div class="fx"><span class="fx__eq">glucagon → cAMP ↑ → PKA → enzyme–P → PFK-2 off, FBPase-2 on → [F2,6BP] ↓</span><span class="fx__tag">the liver chain, and the direction most often got backwards</span></div>
+          <div class="fx"><span class="fx__eq">insulin → phosphoprotein phosphatase → enzyme dephosphorylated → [F2,6BP] ↑</span><span class="fx__tag">glycolysis and lipogenesis in the fed liver</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>[F2,6BP]</b><span>fructose 2,6-bisphosphate concentration (µmol·L⁻¹ — far below the pathway intermediates)</span></div>
+          <div><b>cAMP</b><span>cyclic AMP, second messenger (µmol·L⁻¹)</span></div>
+          <div><b>PKA</b><span>cAMP-dependent protein kinase, an R₂C₂ tetramer that releases active C subunits</span></div>
+          <div><b>Ser32</b><span>the regulated serine of the hepatic bifunctional enzyme</span></div>
+          <div><b>PP2A</b><span>protein phosphatase 2A, the insulin-activated opposing enzyme</span></div>
+          <div><b>flux ratio</b><span>net forward flux divided by cycling flux — dimensionless</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 740 412" role="img" aria-label="Two parallel chains of control in the liver. On the left, glucagon in the fasted state raises cyclic AMP, protein kinase A phosphorylates the bifunctional PFK-2 slash FBPase-2 enzyme, which switches the kinase domain off and the phosphatase domain on, so fructose 2,6-bisphosphate falls, phosphofructokinase-1 loses its activator and fructose 1,6-bisphosphatase loses its inhibitor, and the net direction is gluconeogenesis. On the right, insulin in the fed state causes dephosphorylation, the kinase domain switches on, fructose 2,6-bisphosphate rises, phosphofructokinase-1 is activated and fructose 1,6-bisphosphatase is inhibited, and the net direction is glycolysis." style="font-family:var(--sans)">
+      <defs>
+        <marker id="rAh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker>
+      </defs>
+      <line x1="370" y1="20" x2="370" y2="400" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="5 5"/>
+
+      <g font-size="11.5" text-anchor="middle">
+        <rect x="30" y="26" width="316" height="40" rx="8" fill="color-mix(in srgb, var(--accent-2) 16%, transparent)" stroke="var(--accent-2)" stroke-width="1.8"/>
+        <text x="188" y="44" font-weight="700" fill="var(--ink)">FASTED · glucagon (and adrenaline)</text>
+        <text x="188" y="59" fill="var(--ink-soft)">cAMP rises, PKA is released</text>
+
+        <rect x="30" y="90" width="316" height="40" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/>
+        <text x="188" y="108" fill="var(--ink)">PKA <tspan font-weight="700">phosphorylates</tspan> Ser32 of the</text>
+        <text x="188" y="123" fill="var(--ink)">bifunctional PFK-2 / FBPase-2</text>
+
+        <rect x="30" y="154" width="316" height="40" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/>
+        <text x="188" y="172" fill="var(--ink)">kinase domain <tspan font-weight="700" fill="var(--bad)">OFF</tspan> ·</text>
+        <text x="188" y="187" fill="var(--ink)">phosphatase domain <tspan font-weight="700" fill="var(--ok)">ON</tspan></text>
+
+        <rect x="30" y="218" width="316" height="40" rx="8" fill="var(--accent-wash)" stroke="var(--accent-2)" stroke-width="1.8"/>
+        <text x="188" y="243" font-size="14" font-weight="700" fill="var(--ink)">[fructose 2,6-bisphosphate] ↓</text>
+
+        <rect x="30" y="282" width="316" height="40" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/>
+        <text x="188" y="300" fill="var(--ink)">PFK-1 loses its activator → <tspan font-weight="700" fill="var(--bad)">slow</tspan></text>
+        <text x="188" y="315" fill="var(--ink)">FBPase-1 loses its inhibitor → <tspan font-weight="700" fill="var(--ok)">fast</tspan></text>
+
+        <rect x="30" y="350" width="316" height="44" rx="8" fill="color-mix(in srgb, var(--accent-2) 16%, transparent)" stroke="var(--accent-2)" stroke-width="1.8"/>
+        <text x="188" y="370" font-size="13" font-weight="700" fill="var(--ink)">NET: GLUCONEOGENESIS</text>
+        <text x="188" y="386" fill="var(--ink-soft)">liver exports glucose to the blood</text>
+      </g>
+
+      <g font-size="11.5" text-anchor="middle">
+        <rect x="394" y="26" width="316" height="40" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+        <text x="552" y="44" font-weight="700" fill="var(--ink)">FED · insulin</text>
+        <text x="552" y="59" fill="var(--ink-soft)">cAMP falls, phosphatases dominate</text>
+
+        <rect x="394" y="90" width="316" height="40" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/>
+        <text x="552" y="108" fill="var(--ink)">PP2A <tspan font-weight="700">dephosphorylates</tspan> the same</text>
+        <text x="552" y="123" fill="var(--ink)">bifunctional PFK-2 / FBPase-2</text>
+
+        <rect x="394" y="154" width="316" height="40" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/>
+        <text x="552" y="172" fill="var(--ink)">kinase domain <tspan font-weight="700" fill="var(--ok)">ON</tspan> ·</text>
+        <text x="552" y="187" fill="var(--ink)">phosphatase domain <tspan font-weight="700" fill="var(--bad)">OFF</tspan></text>
+
+        <rect x="394" y="218" width="316" height="40" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+        <text x="552" y="243" font-size="14" font-weight="700" fill="var(--ink)">[fructose 2,6-bisphosphate] ↑</text>
+
+        <rect x="394" y="282" width="316" height="40" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/>
+        <text x="552" y="300" fill="var(--ink)">PFK-1 activated → <tspan font-weight="700" fill="var(--ok)">fast</tspan></text>
+        <text x="552" y="315" fill="var(--ink)">FBPase-1 inhibited → <tspan font-weight="700" fill="var(--bad)">slow</tspan></text>
+
+        <rect x="394" y="350" width="316" height="44" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/>
+        <text x="552" y="370" font-size="13" font-weight="700" fill="var(--ink)">NET: GLYCOLYSIS</text>
+        <text x="552" y="386" fill="var(--ink-soft)">and onward to fatty-acid synthesis</text>
+      </g>
+
+      <g stroke-width="2" fill="none" marker-end="url(#rAh)">
+        <g stroke="var(--accent-2)" color="var(--accent-2)">
+          <line x1="188" y1="68" x2="188" y2="86"/><line x1="188" y1="132" x2="188" y2="150"/>
+          <line x1="188" y1="196" x2="188" y2="214"/><line x1="188" y1="260" x2="188" y2="278"/>
+          <line x1="188" y1="324" x2="188" y2="346"/>
+        </g>
+        <g stroke="var(--accent)" color="var(--accent)">
+          <line x1="552" y1="68" x2="552" y2="86"/><line x1="552" y1="132" x2="552" y2="150"/>
+          <line x1="552" y1="196" x2="552" y2="214"/><line x1="552" y1="260" x2="552" y2="278"/>
+          <line x1="552" y1="324" x2="552" y2="346"/>
+        </g>
+      </g>
+      <text x="370" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink-faint)">THE LIVER — one molecule decides the direction</text>
+    </svg>
+    <figcaption>Read the two columns as the same machine in its two states. The step people most often invert is the
+      second row: in the <em>liver</em>, phosphorylation switches the kinase domain <strong>off</strong>. Anchor it to
+      the physiology rather than the chemistry — glucagon means "the body needs blood glucose", and a liver that
+      responded by burning glucose faster would be useless.</figcaption>
+  </figure>
+
+  <h3>Glucagon shuts hepatic glycolysis at two points, not one</h3>
+  <p>The same PKA that phosphorylates the bifunctional enzyme also phosphorylates the <strong>liver isoenzyme of
+     pyruvate kinase</strong>, inactivating it. So a single hormone closes the pathway at PFK-1 (indirectly, by
+     lowering F2,6BP) and again at pyruvate kinase (directly). Meanwhile PEP, no longer being consumed, is available
+     for gluconeogenesis, and transcription of PEPCK and glucose 6-phosphatase is being induced in the background.
+     Four mechanisms, one message. Muscle receives none of this: <strong>skeletal muscle has no glucagon
+     receptor</strong>, and its pyruvate kinase (M1) has no PKA site, because a muscle has no reason to stop using
+     glucose merely because the blood level has fallen.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The heart does the opposite, deliberately</p>
+    <p style="margin:0">Adrenaline acting on cardiac muscle raises cAMP just as glucagon does in liver — but the
+      cardiac isoenzyme of the bifunctional protein carries its regulatory serine in a different place, and
+      phosphorylating it <strong>activates</strong> the kinase domain. F2,6BP therefore <em>rises</em> in a
+      stimulated heart, and glycolysis accelerates. This is not an exception to the rule; it is the rule applied
+      correctly. The rule is "serve the organism's need", and the organism's need from a heart under adrenaline is
+      more ATP, not more exported glucose. Any question that asks about adrenaline and F2,6BP is asking whether you
+      know which tissue you are in.</p>
+  </div>
+
+  <h3>Substrate cycles are not simply waste</h3>
+  <p>PFK-1 and FBPase-1 can in principle run at the same time, hydrolysing one ATP per cycle and producing nothing
+     but heat. Reciprocal regulation exists to stop that. But a small amount of cycling is deliberately tolerated,
+     and it buys <strong>sensitivity</strong>: if forward and reverse fluxes are both large and nearly equal, a small
+     percentage change in either produces a large percentage change in the <em>net</em> rate. The cell trades some
+     ATP for a more responsive control system, exactly as an engineer trades power for gain. Bumblebees push the
+     trade to its limit — they run the cycle openly in flight muscle to warm the thorax before take-off, and a bee
+     lacking flight-muscle FBPase-1 cannot warm up at all.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The reciprocal-regulation checklist</p>
+    <p style="margin:0">Three opposing enzyme pairs on this page follow the identical template, and knowing the
+      template is worth more than knowing any one of them: <strong>PFK-1 / FBPase-1</strong> at fructose
+      6-phosphate; <strong>pyruvate kinase / (PC + PEPCK)</strong> at pyruvate; and, in §&nbsp;10,
+      <strong>glycogen phosphorylase / glycogen synthase</strong>. In every case: (1) the two directions use
+      different enzymes; (2) a single second messenger reaches both; (3) the modification that activates one
+      inactivates the other; (4) the tissue distribution of the isoenzymes decides who obeys which hormone. If a
+      question describes a novel regulator, apply the template and you can usually derive the answer without having
+      met the molecule before.</p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Glycogen: structure, synthesis, breakdown</h2>
+
+  <p class="idea"><b>The idea</b>A cell that stored its sugar as loose sugar would burst: thousands of small molecules exert an osmotic pull that
+     would drag water in. Stringing them into one enormous molecule solves that at a stroke — one particle instead of
+     fifty thousand. But a plain string has only one loose end, and one loose end means one place to add or remove a
+     unit, which is far too slow for a muscle that needs fuel in a second. So the string is made bushy. Every dozen
+     units or so a new side branch starts, and after twelve rounds of that there are thousands of loose ends, all of
+     them available at once. Almost every fact in this section — including the two extra enzymes nobody remembers —
+     exists to create or dismantle those branches.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Glycogen</dt>
+      <dd>A branched homopolymer of α-D-glucose. Linear stretches are joined <strong>α(1→4)</strong>; branches leave
+          through <strong>α(1→6)</strong> linkages roughly every 8–12 residues. A mature particle holds up to
+          ~55 000 residues in about 12 tiers, and because each tier carries twice the chains of the one inside it,
+          <strong>about half of all the glucose sits in the outermost tier</strong>, immediately available.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">glycogen(n) + P<sub>i</sub> → glycogen(n−1) + glucose 1-phosphate</span>
+      <span class="fx__tag">phosphorolysis, not hydrolysis — the product leaves already phosphorylated, so no ATP is spent</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Reducing and non-reducing ends</dt>
+          <dd>A particle has exactly <strong>one reducing end</strong>, covalently attached to the protein
+              <strong>glycogenin</strong> at its core, and thousands of <strong>non-reducing ends</strong>. Both
+              synthesis and degradation act only at non-reducing ends, which is why branching multiplies the rate.</dd>
+          <dt>UDP-glucose</dt>
+          <dd>The activated donor for glycogen synthesis, made from glucose 1-phosphate and UTP with release of
+              pyrophosphate. Hydrolysis of that pyrophosphate is what makes the step irreversible.</dd>
+          <dt>Tissue stores</dt>
+          <dd>Liver ≈ 10 % of wet weight, about <strong>100 g</strong> in an adult, and freely exportable as blood
+              glucose. Muscle ≈ 1–2 % of wet weight but about <strong>400 g</strong> in total, and
+              <strong>not</strong> exportable — muscle has no glucose 6-phosphatase.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">G1P + UTP → UDP-glucose + PP<sub>i</sub>;  PP<sub>i</sub> + H₂O → 2 P<sub>i</sub></span><span class="fx__tag">UDP-glucose pyrophosphorylase; the second reaction pulls the first</span></div>
+          <div class="fx"><span class="fx__eq">storage cost ≈ 2 ATP equivalents per glucose residue</span><span class="fx__tag">1 for hexokinase, 1 to regenerate UTP from UDP</span></div>
+          <div class="fx"><span class="fx__eq">G1P ⇌ G6P     (phosphoglucomutase, via glucose 1,6-bisphosphate)</span><span class="fx__tag">the hinge between glycogen and everything else</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>n</b><span>number of glucosyl residues in the particle — dimensionless</span></div>
+          <div><b>G1P / G6P</b><span>glucose 1- and 6-phosphate (mmol·L⁻¹)</span></div>
+          <div><b>UTP / UDP</b><span>uridine tri- and diphosphate</span></div>
+          <div><b>PP<sub>i</sub></b><span>pyrophosphate</span></div>
+          <div><b>PLP</b><span>pyridoxal 5′-phosphate, the vitamin B6 coenzyme of phosphorylase</span></div>
+          <div><b>M<sub>r</sub></b><span>relative molecular mass; a glucosyl <em>residue</em> is 162.14, free glucose is 180.16</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Synthesis: four steps, and a protein that starts itself</h3>
+  <ol>
+    <li><strong>Phosphoglucomutase</strong> moves the phosphate: glucose 6-phosphate ⇌ glucose 1-phosphate, through
+        a glucose 1,6-bisphosphate intermediate. Freely reversible, and used in both directions.</li>
+    <li><strong>UDP-glucose pyrophosphorylase</strong> activates it: glucose 1-phosphate + UTP → UDP-glucose +
+        pyrophosphate. The reaction itself is near equilibrium; <strong>inorganic pyrophosphatase</strong> then
+        hydrolyses the pyrophosphate, and that strongly exergonic step is what commits the glucose. The same device
+        drives DNA synthesis, RNA synthesis and fatty-acid activation.</li>
+    <li><strong>Glycogen synthase</strong> transfers the glucosyl group from UDP-glucose to the C4 hydroxyl of a
+        non-reducing end, making α(1→4). This is the <strong>rate-limiting and regulated</strong> step. It cannot
+        start a chain from nothing and it cannot make a branch.</li>
+    <li><strong>Branching enzyme</strong> (amylo-(1,4→1,6)-transglycosylase) takes a block of <strong>6 or 7
+        residues</strong> from the end of a chain that is <strong>at least 11 residues</strong> long and reattaches
+        it through an α(1→6) bond to a C6 hydroxyl further in, at least four residues from any existing branch.</li>
+  </ol>
+  <p>The primer problem is solved by <strong>glycogenin</strong>, a small protein that glucosylates <em>itself</em> on
+     an active-site tyrosine using UDP-glucose, then extends the chain to about eight residues by its own
+     glucosyltransferase activity. Only then does glycogen synthase take over. Glycogenin remains buried at the
+     centre of the finished particle, which is why every glycogen molecule has exactly one reducing end — it is
+     spoken for.</p>
+
+  <h3>Breakdown: phosphorolysis, and the two jobs of the debranching enzyme</h3>
+  <p><strong>Glycogen phosphorylase</strong> attacks α(1→4) bonds at non-reducing ends using inorganic phosphate
+     rather than water. The distinction matters twice over. The product, glucose 1-phosphate, is already
+     phosphorylated — so the cell skips the hexokinase step and its ATP, which is exactly why a glycogen residue is
+     worth 3 anaerobic ATP rather than 2. And being charged, it cannot leak out of the cell. The enzyme's cofactor
+     is <strong>pyridoxal phosphate</strong>, used in a way seen nowhere else in metabolism: not as a Schiff-base
+     partner for an amino group, but for its own <em>phosphate</em> group, which acts as a general acid–base catalyst.
+     Phosphorylase holds about 80 % of the body's vitamin B6.</p>
+  <p>Phosphorylase cannot pass a branch. It stops <strong>four residues short</strong> of an α(1→6) point, leaving a
+     structure called a <strong>limit dextrin</strong>. Clearing it takes one polypeptide with two different
+     catalytic activities:</p>
+  <ul>
+    <li><strong>Oligo-α(1,4)→α(1,4) glucantransferase</strong> lifts the outer <strong>three</strong> residues off
+        as a block and reattaches them, still α(1→4), to the non-reducing end of a nearby chain.</li>
+    <li><strong>Amylo-α(1,6)-glucosidase</strong> then <em>hydrolyses</em> the single remaining α(1→6)-linked
+        residue, releasing <strong>free glucose</strong>.</li>
+  </ul>
+  <p>Hence the standard figure: glycogenolysis yields roughly <strong>90 % glucose 1-phosphate and about 8–10 % free
+     glucose</strong>, one free glucose per branch point. Phosphoglucomutase converts the glucose 1-phosphate to
+     glucose 6-phosphate, and there the two tissues part company — the liver hydrolyses it to glucose and exports it,
+     while muscle sends it into glycolysis.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 740 300" role="img" aria-label="Three stages of glycogen debranching. In the first panel, glycogen phosphorylase removes glucose residues one at a time from the non-reducing end of a branch, releasing glucose 1-phosphate. In the second panel the branch has been shortened to four residues, counting the one attached by an alpha one to six bond, and phosphorylase can go no further; this is the limit dextrin. In the third panel the debranching enzyme's transferase activity has moved the outer three residues onto the non-reducing end of the main chain as an alpha one to four extension, and its glucosidase activity has hydrolysed the last alpha one to six residue to give one molecule of free glucose." style="font-family:var(--sans)">
+      <defs>
+        <marker id="yAh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker>
+      </defs>
+
+      <g stroke="var(--accent)" stroke-width="2" fill="var(--card)">
+        <line x1="36" y1="228" x2="124" y2="228" stroke-width="2.4"/>
+        <circle cx="36" cy="228" r="9"/><circle cx="58" cy="228" r="9"/><circle cx="80" cy="228" r="9"/><circle cx="102" cy="228" r="9"/><circle cx="124" cy="228" r="9"/>
+      </g>
+      <g stroke="var(--accent-3)" stroke-width="2" fill="var(--card)">
+        <line x1="58" y1="220" x2="58" y2="86" stroke-width="2.4"/>
+        <circle cx="58" cy="206" r="9" stroke="var(--accent-2)" stroke-width="3"/>
+        <circle cx="58" cy="184" r="9"/><circle cx="58" cy="162" r="9"/><circle cx="58" cy="140" r="9"/><circle cx="58" cy="118" r="9"/><circle cx="58" cy="96" r="9"/>
+      </g>
+      <line x1="58" y1="82" x2="58" y2="58" stroke="var(--bad)" stroke-width="2" marker-end="url(#yAh)" color="var(--bad)"/>
+      <text x="72" y="60" font-size="11" font-weight="700" fill="var(--bad)">→ glucose 1-P</text>
+      <text x="14" y="30" font-size="11.5" font-weight="700" fill="var(--ink)">1 · Phosphorylase + P<tspan dy="3" font-size="8">i</tspan></text>
+      <text x="14" y="46" font-size="10.5" fill="var(--ink-soft)">works only at non-reducing ends</text>
+      <text x="14" y="264" font-size="10.5" fill="var(--ink-faint)">α(1→4) chain, α(1→6) branch (amber)</text>
+
+      <g stroke="var(--accent)" stroke-width="2" fill="var(--card)">
+        <line x1="282" y1="228" x2="370" y2="228" stroke-width="2.4"/>
+        <circle cx="282" cy="228" r="9"/><circle cx="304" cy="228" r="9"/><circle cx="326" cy="228" r="9"/><circle cx="348" cy="228" r="9"/><circle cx="370" cy="228" r="9"/>
+      </g>
+      <g stroke="var(--accent-3)" stroke-width="2" fill="var(--card)">
+        <line x1="304" y1="220" x2="304" y2="130" stroke-width="2.4"/>
+        <circle cx="304" cy="206" r="9" stroke="var(--accent-2)" stroke-width="3"/>
+        <circle cx="304" cy="184" r="9"/><circle cx="304" cy="162" r="9"/><circle cx="304" cy="140" r="9"/>
+      </g>
+      <text x="322" y="166" font-size="11" font-weight="700" fill="var(--bad)">phosphorylase stops</text>
+      <text x="322" y="181" font-size="10.5" fill="var(--ink-soft)">4 residues remain, counting</text>
+      <text x="322" y="195" font-size="10.5" fill="var(--ink-soft)">the α(1→6)-linked one</text>
+      <text x="260" y="30" font-size="11.5" font-weight="700" fill="var(--ink)">2 · Limit dextrin</text>
+      <text x="260" y="46" font-size="10.5" fill="var(--ink-soft)">the branch cannot be passed</text>
+      <text x="260" y="264" font-size="10.5" fill="var(--ink-faint)">this is where GSD III (Cori) stalls</text>
+
+      <g stroke="var(--accent)" stroke-width="2" fill="var(--card)">
+        <line x1="528" y1="228" x2="682" y2="228" stroke-width="2.4"/>
+        <circle cx="528" cy="228" r="9"/><circle cx="550" cy="228" r="9"/><circle cx="572" cy="228" r="9"/><circle cx="594" cy="228" r="9"/><circle cx="616" cy="228" r="9"/>
+        <circle cx="638" cy="228" r="9" stroke="var(--accent-3)"/><circle cx="660" cy="228" r="9" stroke="var(--accent-3)"/><circle cx="682" cy="228" r="9" stroke="var(--accent-3)"/>
+      </g>
+      <path d="M 560,196 C 590,166 626,182 638,214" fill="none" stroke="var(--accent-3)" stroke-width="1.8" marker-end="url(#yAh)" color="var(--accent-3)"/>
+      <text x="600" y="160" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent-3)">transferase moves 3</text>
+      <circle cx="528" cy="150" r="9" fill="var(--card)" stroke="var(--accent-2)" stroke-width="3"/>
+      <text x="544" y="146" font-size="11" font-weight="700" fill="var(--accent-2)">free glucose</text>
+      <text x="544" y="160" font-size="10.5" fill="var(--ink-soft)">α(1→6)-glucosidase</text>
+      <text x="506" y="30" font-size="11.5" font-weight="700" fill="var(--ink)">3 · Debranching enzyme</text>
+      <text x="506" y="46" font-size="10.5" fill="var(--ink-soft)">one protein, two activities</text>
+      <text x="506" y="264" font-size="10.5" fill="var(--ink-faint)">≈ 90 % G1P · ≈ 10 % free glucose</text>
+    </svg>
+    <figcaption>The two activities are on one polypeptide and are often set as separate answer options, which is the
+      trap: the transferase makes a new α(1→4) bond and releases nothing, while the glucosidase makes free glucose.
+      That single free glucose per branch point is the entire reason glycogenolysis is not 100 % glucose
+      1-phosphate.</figcaption>
+  </figure>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 6 — how long does liver glycogen last?</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">An adult liver holds about 100 g of glycogen. The brain alone
+      consumes roughly 120 g of glucose per day. Ignoring gluconeogenesis, how long could hepatic glycogen support
+      the brain — and how does that compare with the glucose actually circulating?</p>
+    <ol>
+      <li>A glucosyl <em>residue</em> in a polymer has M<sub>r</sub> = 162.14, not 180.16: a molecule of water is
+          lost at each linkage. So 100 g of glycogen is
+          <span class="fi">100 / 162.14 = 0.617 mol = 617 mmol</span> of residues.</li>
+      <li>Released as free glucose, that is <span class="fi">0.617 × 180.16 = 111 g</span> of glucose — the mass
+          <em>increases</em> on hydrolysis, which is a small but genuine trap in stoichiometry questions.</li>
+      <li>Duration: <span class="fi">111 / 120 = 0.93 day ≈ 22 h</span>.</li>
+      <li>Compare the circulating pool: 5 mmol·L⁻¹ across ~5 L of blood is
+          <span class="fi">25 mmol = 4.5 g</span>; over the whole extracellular volume of ~15 L, about 13.5 g. That
+          is <strong>under three hours' supply for the brain alone</strong>, and the blood pool by itself is barely one hour.</li>
+      <li>So blood glucose is a buffer measured in minutes, hepatic glycogen a reserve measured in hours, and
+          anything longer must come from gluconeogenesis. This is exactly the clinical timeline: hepatic glycogen is
+          substantially depleted by 24 h of fasting, and gluconeogenesis is already supplying about half of hepatic
+          glucose output by 16 h.</li>
+      <li>Muscle holds four times as much glycogen — about 400 g, roughly 444 g of glucose equivalents — and
+          <strong>none of it can reach the blood directly</strong>, for want of glucose 6-phosphatase. It reaches the
+          blood only the long way round, as lactate through the Cori cycle.</li>
+    </ol>
+    <span class="wex__ans">≈ 111 g glucose equivalents ≈ 22 h of brain supply · circulating pool ≈ 4.5 g in blood</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Phosphorolysis is not hydrolysis, and the two glucosidases are not the same</p>
+    <p style="margin:0"><strong>Phosphorylase</strong> uses P<sub>i</sub> and produces glucose 1-phosphate; the
+      <strong>debranching glucosidase</strong> uses water and produces free glucose. A third enzyme entirely,
+      <strong>lysosomal acid α-glucosidase (acid maltase)</strong>, hydrolyses glycogen that has been swallowed by
+      autophagy — only a few per cent of the total, and in a completely separate compartment. That is why its
+      deficiency, Pompe disease, produces massive lysosomal glycogen accumulation and cardiomyopathy while leaving
+      blood glucose entirely normal. If a stem mentions normal blood sugar with a severe glycogen phenotype, the
+      answer is lysosomal.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>The phosphorylase cascade and the storage diseases</h2>
+
+  <p class="idea"><b>The idea</b>A hormone arriving at a liver cell is present in vanishingly small amounts — a few thousand molecules against a
+     cell containing billions of sugar units. It cannot possibly act on the store directly. What it does instead is
+     start a relay in which each runner activates many of the next, so that a whisper at the surface becomes a shout
+     inside. And because the same relay both switches breakdown on and switches storage off, the cell can never end
+     up doing both at once. The muscle version of the relay has an extra input that the liver version lacks: the same
+     calcium signal that makes the muscle contract also, without any hormone at all, tells it to start burning its
+     own store — so the fuel arrives at the same instant as the demand.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>The cascade</dt>
+      <dd>Hormone → G<sub>s</sub> → adenylyl cyclase → cAMP → protein kinase A → phosphorylase kinase →
+          <strong>glycogen phosphorylase b → a</strong>. Three catalytic tiers in series; textbook estimates put the
+          overall amplification in the region of 10<sup>7</sup>–10<sup>8</sup> molecules of glucose 1-phosphate per
+          hormone molecule bound.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">phosphorylase <b>a</b> = phosphorylated = ACTIVE   ·   glycogen synthase <b>a</b> = <em>de</em>phosphorylated = ACTIVE</span>
+      <span class="fx__tag">the letters mean "more active", but the phosphorylation states are opposite — the classic trap</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Phosphorylase kinase</dt>
+          <dd>An (αβγδ)<sub>4</sub> complex. γ is catalytic; <strong>δ is calmodulin itself</strong>, permanently
+              bound. PKA phosphorylates the α and β subunits. So the enzyme has two independent activating inputs —
+              phosphorylation and Ca²⁺ — and needs neither one exclusively.</dd>
+          <dt>Protein phosphatase 1 (PP1)</dt>
+          <dd>The opposing enzyme: it dephosphorylates phosphorylase, phosphorylase kinase and glycogen synthase,
+              thereby switching breakdown off and synthesis on in one move. PKA phosphorylates
+              <strong>inhibitor-1</strong>, which then blocks PP1 — so the cascade also disables its own reversal.</dd>
+          <dt>Allosteric overrides</dt>
+          <dd><strong>AMP</strong> activates <em>muscle</em> phosphorylase b directly, without any phosphorylation;
+              ATP and glucose 6-phosphate oppose it. <strong>Glucose</strong> inactivates <em>liver</em>
+              phosphorylase a. Neither override exists in the other tissue.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">glucagon (liver only) · adrenaline (liver β₂ and α₁, muscle β₂) → cAMP ↑</span><span class="fx__tag">skeletal muscle has no glucagon receptor at all</span></div>
+          <div class="fx"><span class="fx__eq">Ca²⁺ + calmodulin (the δ subunit) → phosphorylase kinase partly active</span><span class="fx__tag">contraction and glycogenolysis triggered by the same ion</span></div>
+          <div class="fx"><span class="fx__eq">insulin → PKB/Akt → GSK3 inhibited → glycogen synthase stays dephosphorylated = active</span><span class="fx__tag">plus activation of PP1; two routes to the same end</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>cAMP</b><span>3′,5′-cyclic AMP (µmol·L⁻¹)</span></div>
+          <div><b>PKA</b><span>protein kinase A — R₂C₂ inactive, releases 2 active C subunits on binding 4 cAMP</span></div>
+          <div><b>PP1</b><span>protein phosphatase 1</span></div>
+          <div><b>GSK3</b><span>glycogen synthase kinase 3 — the enzyme insulin switches off</span></div>
+          <div><b>Ca²⁺</b><span>cytosolic calcium, resting ~10⁻⁷ mol·L⁻¹, rising ~100-fold on contraction</span></div>
+          <div><b>Ser14</b><span>the phosphorylated residue of glycogen phosphorylase</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>One signal, both switches</h3>
+  <p>Follow protein kinase A once activated and you find it doing four things, all pointing the same way.
+     It phosphorylates <strong>phosphorylase kinase</strong>, which activates it, which converts phosphorylase b to
+     phosphorylase a — breakdown on. It phosphorylates <strong>glycogen synthase</strong> directly, which inactivates
+     it — storage off. It phosphorylates <strong>inhibitor-1</strong>, which shuts down PP1, so neither of the first
+     two modifications can be undone while the signal lasts. And in the liver it phosphorylates <strong>pyruvate
+     kinase</strong> and the <strong>PFK-2/FBPase-2</strong> enzyme of §&nbsp;08, so the glucose being liberated is
+     not immediately burnt. Reciprocal regulation is not a special property of glycogen metabolism; it is what any
+     well-designed control system looks like.</p>
+
+  <h3>The liver's glucose sensor is phosphorylase a itself</h3>
+  <p>This is the most elegant mechanism in the section and it is frequently examined. Free <strong>glucose</strong>
+     binds to liver phosphorylase a and shifts it towards the inactive T conformation. That conformational change
+     exposes the phosphorylated Ser14 to PP1, which had been bound to the enzyme and held inert. PP1 removes the
+     phosphate, converting a back to b, and glycogenolysis stops. But now PP1 is <em>released</em> — and the first
+     thing it does is dephosphorylate glycogen synthase, switching storage on. So the arrival of glucose in the
+     hepatocyte automatically stops breakdown and starts synthesis, in that order, with a built-in delay between
+     them and no hormone required. Phosphorylase a is functioning as a glucose receptor.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Liver and muscle glycogen metabolism compared</caption>
+      <thead><tr><th></th><th>Liver</th><th>Skeletal muscle</th></tr></thead>
+      <tbody>
+        <tr><td>Purpose of the store</td><td>Maintain <strong>blood</strong> glucose for the rest of the body</td><td>Fuel for <strong>this fibre only</strong></td></tr>
+        <tr><td>Glucose 6-phosphatase</td><td>Present</td><td><strong>Absent</strong> — glucose can never be exported</td></tr>
+        <tr><td>Hormone receptors</td><td>Glucagon, adrenaline (β₂ and α₁), insulin</td><td>Adrenaline (β₂) and insulin. <strong>No glucagon receptor</strong></td></tr>
+        <tr><td>Ca²⁺ input</td><td>Via α₁-adrenergic IP₃ signalling</td><td><strong>Directly from contraction</strong> — the same Ca²⁺ transient</td></tr>
+        <tr><td>AMP activation of phosphorylase b</td><td>No</td><td><strong>Yes</strong> — an exhausted fibre mobilises glycogen with no hormone at all</td></tr>
+        <tr><td>Inhibited by</td><td><strong>Glucose</strong> (on phosphorylase a)</td><td>ATP and glucose 6-phosphate (on phosphorylase b)</td></tr>
+        <tr><td>Insulin's effect</td><td>Store glycogen; suppress gluconeogenesis</td><td>Recruit GLUT4 <em>and</em> store glycogen</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Why muscle glycogen cannot treat hypoglycaemia</p>
+    <p style="margin:0">This single fact generates a family of questions. Muscle lacks glucose 6-phosphatase, so its
+      glucose 6-phosphate has exactly one exit: glycolysis. A 400 g muscle store is therefore invisible to the blood
+      sugar. It contributes indirectly — as lactate through the Cori cycle, and as alanine through the
+      glucose–alanine cycle — but never directly. The corollary is diagnostic: a patient whose glycogen disorder
+      affects <em>muscle only</em> (McArdle, Tarui) has normal fasting glucose and normal glucagon responses, while a
+      patient whose disorder affects the <em>liver</em> (von Gierke, Hers, phosphorylase kinase deficiency) presents
+      with fasting hypoglycaemia and hepatomegaly and no myopathy. Ask which organ before you ask which enzyme.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The glycogen storage diseases</caption>
+      <thead><tr><th>Type</th><th>Enzyme lost</th><th>Fasting glucose</th><th>Distinguishing features</th></tr></thead>
+      <tbody>
+        <tr><td><strong>0</strong></td><td>Glycogen synthase (liver)</td><td>Low, with ketosis</td><td>Little or <em>no</em> liver glycogen. Fasting hypoglycaemia but postprandial hyperglycaemia and lactataemia — a distinctive swing in both directions.</td></tr>
+        <tr><td><strong>I</strong> · von Gierke</td><td>Glucose 6-phosphatase (Ia) or its ER transporter (Ib)</td><td><strong>Severely low</strong></td><td>Hepatomegaly, doll-like face, <strong>lactic acidosis, hyperuricaemia, hyperlipidaemia</strong>. No glycaemic response to glucagon. Type Ib adds <strong>neutropenia</strong> and recurrent infection. Managed with continuous feeds and uncooked cornstarch.</td></tr>
+        <tr><td><strong>II</strong> · Pompe</td><td>Lysosomal acid α-glucosidase</td><td><strong>Normal</strong></td><td>A lysosomal storage disease, not a metabolic one. Infantile form: hypotonia, macroglossia, <strong>cardiomegaly</strong>, death in infancy without enzyme replacement. "Pompe trashes the pump."</td></tr>
+        <tr><td><strong>III</strong> · Cori/Forbes</td><td>Debranching enzyme</td><td>Low, milder than I</td><td>Hepatomegaly and myopathy, but <strong>normal lactate and normal urate</strong> — because gluconeogenesis is intact. Glycogen has abnormally short outer branches (accumulated limit dextrin).</td></tr>
+        <tr><td><strong>IV</strong> · Andersen</td><td>Branching enzyme</td><td>Usually normal early</td><td>Long, poorly branched, amylopectin-like glycogen that behaves as a foreign body: progressive <strong>cirrhosis</strong> and death in early childhood without transplant.</td></tr>
+        <tr><td><strong>V</strong> · McArdle</td><td><strong>Muscle</strong> glycogen phosphorylase</td><td><strong>Normal</strong></td><td>Exercise intolerance, cramps, <strong>myoglobinuria</strong> after brief intense effort, and a characteristic <strong>second wind</strong> as fatty acids and blood glucose take over. Ischaemic forearm exercise: <strong>no rise in venous lactate</strong>, but a normal rise in ammonia.</td></tr>
+        <tr><td><strong>VI</strong> · Hers &amp; <strong>IX</strong></td><td>Liver phosphorylase (VI) · phosphorylase kinase (IX, usually X-linked)</td><td>Mildly low, ketotic</td><td>Hepatomegaly and growth delay, normal lactate and urate, good long-term prognosis. Type IX is the commonest hepatic form of all.</td></tr>
+        <tr><td><strong>VII</strong> · Tarui</td><td>Muscle phosphofructokinase-1</td><td><strong>Normal</strong></td><td>Like McArdle <em>plus</em> a compensated haemolytic anaemia, because erythrocyte PFK-1 shares the muscle subunit. Distinctively, symptoms are <strong>worse</strong> after a carbohydrate meal — glucose suppresses the free fatty acids the muscle would otherwise burn — so there is no second wind.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemo">
+    <h4>Reasoning your way through the table</h4>
+    <p>Ask three questions in order. <strong>Is blood glucose affected?</strong> If no, the lesion is muscle-only
+      (V, VII) or lysosomal (II). <strong>Is lactate high or low?</strong> High points to type I, where G6P cannot
+      leave and floods glycolysis; normal or low points to III, VI and IX, where gluconeogenesis still works and the
+      child compensates with ketones. <strong>Is the glycogen structurally abnormal?</strong> Short outer branches =
+      debranching (III); long unbranched chains = branching (IV). Almost every vignette resolves on those three.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · why a cascade, and how much amplification it really buys</summary>
+    <div class="disc__body">
+      <p>A cascade multiplies because every tier is <em>catalytic</em>. One occupied receptor activates many G
+         proteins over its lifetime; one adenylyl cyclase makes many cAMP; one PKA catalytic subunit phosphorylates
+         many phosphorylase kinase molecules; one phosphorylase kinase activates many phosphorylase molecules; and
+         one phosphorylase a releases glucose 1-phosphate for as long as it stays phosphorylated. Multiply three or
+         four modest gains of a few hundred each and the product runs into the tens of millions — which is the
+         figure textbooks quote, and it is a product of estimates rather than a measured constant, so treat the order
+         of magnitude as the teaching point rather than the digits.</p>
+      <p>Amplification is not the only thing the architecture buys, and the other benefits are the ones worth being
+         able to state:</p>
+      <ul>
+        <li><strong>Multiple inputs at one node.</strong> Phosphorylase kinase integrates PKA phosphorylation
+            (hormonal) and Ca²⁺ binding (electrical). Neither alone is maximal; together they are synergistic. A
+            frightened, sprinting animal gets both.</li>
+        <li><strong>Sensitivity and threshold.</strong> Because PKA must bind four cAMP molecules to release its
+            catalytic subunits, the response to cAMP is sigmoidal, not linear — small fluctuations are ignored and a
+            real signal produces a near-complete switch.</li>
+        <li><strong>A fast off-switch.</strong> Phosphodiesterase destroys cAMP within seconds, and PP1 reverses
+            every phosphorylation. Caffeine and theophylline inhibit the phosphodiesterase, which is why they
+            prolong adrenergic effects.</li>
+        <li><strong>Coordination.</strong> One kinase reaching many substrates guarantees that opposing pathways
+            cannot both be active — a property no amount of independent allosteric regulation could deliver.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>The pentose phosphate pathway and G6PD deficiency</h2>
+
+  <p class="idea"><b>The idea</b>A cell needs two completely different things that both look like "hydrogen carriers". One kind collects
+     electrons from fuel being burnt and takes them to be turned into ATP. The other kind hands electrons out — to
+     build fat, to build cholesterol, and above all to keep the cell's own repair chemistry stocked so that oxygen
+     does not slowly destroy it from the inside. The two carriers are chemically almost identical; they differ by a
+     single phosphate that acts purely as a label, so that enzymes can tell them apart and the cell can keep one pool
+     empty and the other full. This pathway is the factory for the second kind. It makes no ATP and it costs none;
+     it exists to supply reducing power and, as a side product, the five-carbon sugar that nucleotides are built on.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Pentose phosphate pathway（磷酸戊糖途徑）</dt>
+      <dd>Also called the hexose monophosphate shunt. Entirely <strong>cytosolic</strong>. An irreversible
+          <strong>oxidative arm</strong> that makes 2 NADPH and loses one carbon as CO₂, followed by a fully
+          reversible <strong>non-oxidative arm</strong> that reshuffles five-carbon sugars back into glycolytic
+          intermediates. <strong>No ATP is made or consumed anywhere in it.</strong></dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">3 G6P + 6 NADP⁺ + 3 H₂O → 2 F6P + GAP + 3 CO₂ + 6 NADPH + 6 H⁺</span>
+      <span class="fx__tag">carbon balance: 3 × 6 = 18 in; 2 × 6 + 3 + 3 = 18 out (the 3 H₂O are the lactonase step)</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>The oxidative arm</dt>
+          <dd>G6P → 6-phosphoglucono-δ-lactone (<strong>glucose 6-phosphate dehydrogenase</strong>, the committed and
+              rate-limiting step) → 6-phosphogluconate (lactonase) → ribulose 5-phosphate + CO₂
+              (6-phosphogluconate dehydrogenase). Two NADPH; the CO₂ is glucose <strong>C1</strong>.</dd>
+          <dt>The non-oxidative arm</dt>
+          <dd>Ribulose 5-phosphate is isomerised to <strong>ribose 5-phosphate</strong> or epimerised to
+              <strong>xylulose 5-phosphate</strong>; then <strong>transketolase</strong> (thiamine pyrophosphate,
+              moves 2 carbons) and <strong>transaldolase</strong> (a lysine Schiff base, moves 3 carbons) shuffle the
+              skeletons into fructose 6-phosphate and glyceraldehyde 3-phosphate. Every step is reversible.</dd>
+          <dt>How the pathway is regulated</dt>
+          <dd>Almost entirely by the availability of <strong>NADP⁺</strong>. The cytosolic NADPH/NADP⁺ ratio is
+              about 100:1, so G6PD is normally starved of its cosubstrate and accelerates the instant NADPH is
+              consumed. Demand-driven control, with no hormone and no allosteric effector needed.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">G6P + 2 NADP⁺ + H₂O → ribulose 5-P + CO₂ + 2 NADPH + 2 H⁺</span><span class="fx__tag">the oxidative arm alone — irreversible</span></div>
+          <div class="fx"><span class="fx__eq">GSSG + NADPH + H⁺ → 2 GSH     (glutathione reductase)</span><span class="fx__tag">the reaction the erythrocyte cannot live without</span></div>
+          <div class="fx"><span class="fx__eq">G6P + 12 NADP⁺ + 7 H₂O → 6 CO₂ + 12 NADPH + 12 H⁺ + P<sub>i</sub></span><span class="fx__tag">full recycling mode: six passes, five G6P regenerated</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>NADP⁺ / NADPH</b><span>the 2′-phosphorylated dinucleotide, oxidised / reduced (mol·L⁻¹)</span></div>
+          <div><b>Ru5P · R5P · Xu5P</b><span>ribulose, ribose and xylulose 5-phosphate</span></div>
+          <div><b>S7P · E4P</b><span>sedoheptulose 7-phosphate (C7) and erythrose 4-phosphate (C4)</span></div>
+          <div><b>GSH / GSSG</b><span>reduced / oxidised glutathione (mmol·L⁻¹; ~2 mmol·L⁻¹ GSH in a red cell)</span></div>
+          <div><b>TPP</b><span>thiamine pyrophosphate, the vitamin B1 coenzyme of transketolase</span></div>
+          <div><b>G6PD</b><span>glucose 6-phosphate dehydrogenase</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 740 424" role="img" aria-label="The pentose phosphate pathway. The oxidative arm converts glucose 6-phosphate through 6-phosphogluconate to ribulose 5-phosphate, producing two NADPH and losing carbon one as carbon dioxide. Ribulose 5-phosphate is then converted either to ribose 5-phosphate by an isomerase or to xylulose 5-phosphate by an epimerase. The non-oxidative arm then runs three group transfers: transketolase moves two carbons from a five-carbon sugar to another five-carbon sugar giving seven plus three; transaldolase moves three carbons from the seven-carbon sugar to the three-carbon sugar giving four plus six; and transketolase again moves two carbons from a five-carbon sugar to the four-carbon sugar giving six plus three. Overall three five-carbon sugars become two six-carbon fructose 6-phosphates and one three-carbon glyceraldehyde 3-phosphate." style="font-family:var(--sans)">
+      <defs>
+        <marker id="pAh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker>
+      </defs>
+      <text x="16" y="22" font-size="12" font-weight="700" fill="var(--ink)">Oxidative arm — irreversible, the only place NADPH is made</text>
+
+      <g font-size="11.5" text-anchor="middle" fill="var(--ink)">
+        <rect x="24" y="44" width="124" height="38" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.8"/><text x="86" y="68">G6P · C6</text>
+        <rect x="200" y="44" width="174" height="38" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="287" y="68">6-phosphogluconate · C6</text>
+        <rect x="426" y="44" width="130" height="38" rx="8" fill="var(--accent-wash)" stroke="var(--accent-3)" stroke-width="1.8"/><text x="491" y="68">Ru5P · C5</text>
+      </g>
+      <g stroke="var(--ink-soft)" stroke-width="2" marker-end="url(#pAh)" color="var(--ink-soft)">
+        <line x1="152" y1="63" x2="194" y2="63"/><line x1="378" y1="63" x2="420" y2="63"/>
+      </g>
+      <text x="173" y="38" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--accent-2)">G6PD</text>
+      <text x="173" y="98" text-anchor="middle" font-size="9.5" fill="var(--ok)">+NADPH</text>
+      <text x="399" y="38" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">6PG dehydrog.</text>
+      <text x="399" y="98" text-anchor="middle" font-size="9.5" fill="var(--ok)">+NADPH, −CO₂</text>
+      <text x="600" y="58" font-size="10.5" font-weight="700" fill="var(--bad)">the CO₂ is</text>
+      <text x="600" y="72" font-size="10.5" font-weight="700" fill="var(--bad)">glucose C1</text>
+      <text x="600" y="88" font-size="10" fill="var(--ink-faint)">— not C6</text>
+
+      <g stroke="var(--ink-soft)" stroke-width="1.7" fill="none" marker-end="url(#pAh)" color="var(--ink-soft)">
+        <path d="M 470,86 L 400,124"/><path d="M 512,86 L 578,124"/>
+      </g>
+      <g font-size="11" text-anchor="middle" fill="var(--ink)">
+        <rect x="286" y="128" width="180" height="34" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="376" y="150">R5P · C5 (isomerase)</text>
+        <rect x="500" y="128" width="180" height="34" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/><text x="590" y="150">Xu5P · C5 (epimerase)</text>
+      </g>
+      <text x="16" y="140" font-size="10.5" fill="var(--ink-soft)">R5P → nucleotides,</text>
+      <text x="16" y="154" font-size="10.5" fill="var(--ink-soft)">NAD⁺, FAD, CoA</text>
+
+      <text x="16" y="196" font-size="12" font-weight="700" fill="var(--ink)">Non-oxidative arm — fully reversible, no NADPH, pure carbon arithmetic</text>
+
+      <g font-size="15" font-weight="700" text-anchor="middle">
+        <circle cx="80"  cy="235" r="17" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2.4"/><text x="80"  y="241" fill="var(--ink)">5</text>
+        <text x="112" y="241" font-size="14" fill="var(--ink-faint)">+</text>
+        <circle cx="144" cy="235" r="17" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2.4"/><text x="144" y="241" fill="var(--ink)">5</text>
+        <circle cx="264" cy="235" r="17" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2.4"/><text x="264" y="241" fill="var(--ink)">7</text>
+        <text x="296" y="241" font-size="14" fill="var(--ink-faint)">+</text>
+        <circle cx="328" cy="235" r="17" fill="var(--card)" stroke="var(--ink-faint)" stroke-width="2.4"/><text x="328" y="241" fill="var(--ink)">3</text>
+
+        <circle cx="80"  cy="295" r="17" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2.4"/><text x="80"  y="301" fill="var(--ink)">7</text>
+        <text x="112" y="301" font-size="14" fill="var(--ink-faint)">+</text>
+        <circle cx="144" cy="295" r="17" fill="var(--card)" stroke="var(--ink-faint)" stroke-width="2.4"/><text x="144" y="301" fill="var(--ink)">3</text>
+        <circle cx="264" cy="295" r="17" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2.4"/><text x="264" y="301" fill="var(--ink)">4</text>
+        <text x="296" y="301" font-size="14" fill="var(--ink-faint)">+</text>
+        <circle cx="328" cy="295" r="17" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2.6"/><text x="328" y="301" fill="var(--ink)">6</text>
+
+        <circle cx="80"  cy="355" r="17" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2.4"/><text x="80"  y="361" fill="var(--ink)">5</text>
+        <text x="112" y="361" font-size="14" fill="var(--ink-faint)">+</text>
+        <circle cx="144" cy="355" r="17" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2.4"/><text x="144" y="361" fill="var(--ink)">4</text>
+        <circle cx="264" cy="355" r="17" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2.6"/><text x="264" y="361" fill="var(--ink)">6</text>
+        <text x="296" y="361" font-size="14" fill="var(--ink-faint)">+</text>
+        <circle cx="328" cy="355" r="17" fill="var(--card)" stroke="var(--ink-faint)" stroke-width="2.4"/><text x="328" y="361" fill="var(--ink)">3</text>
+      </g>
+      <g stroke="var(--ink-soft)" stroke-width="2" marker-end="url(#pAh)" color="var(--ink-soft)">
+        <line x1="176" y1="235" x2="234" y2="235"/><line x1="176" y1="295" x2="234" y2="295"/><line x1="176" y1="355" x2="234" y2="355"/>
+      </g>
+      <g font-size="11" fill="var(--ink)">
+        <text x="376" y="231" font-weight="700" fill="var(--accent-3)">transketolase · moves 2 C</text>
+        <text x="376" y="247" font-size="10" fill="var(--ink-soft)">needs thiamine pyrophosphate · Xu5P + R5P</text>
+        <text x="376" y="291" font-weight="700" fill="var(--accent-2)">transaldolase · moves 3 C</text>
+        <text x="376" y="307" font-size="10" fill="var(--ink-soft)">lysine Schiff base, no cofactor · S7P + GAP</text>
+        <text x="376" y="351" font-weight="700" fill="var(--accent-3)">transketolase · moves 2 C</text>
+        <text x="376" y="367" font-size="10" fill="var(--ink-soft)">again · Xu5P + E4P</text>
+      </g>
+      <line x1="16" y1="386" x2="724" y2="386" stroke="var(--line)" stroke-width="1"/>
+      <text x="16" y="408" font-size="11.5" font-weight="700" fill="var(--ink)">Net: 3 × C5 (15 carbons) → 2 × fructose 6-P (12) + 1 × glyceraldehyde 3-P (3) — straight back into glycolysis</text>
+    </svg>
+    <figcaption>The non-oxidative arm is nothing but carbon arithmetic, and it is far easier to reconstruct than to
+      memorise: transketolase always moves two carbons and transaldolase always moves three, and each row must
+      balance. A useful unifier — every thiamine pyrophosphate enzyme in metabolism handles a
+      <strong>two-carbon</strong> unit, whether it is transketolase moving a glycolaldehyde group or pyruvate
+      dehydrogenase generating an acetyl group.</figcaption>
+  </figure>
+
+  <h3>NADPH and NADH: one chemistry, two pools, opposite jobs</h3>
+  <p>NADPH differs from NADH by a phosphate on the 2′-hydroxyl of the adenosine ribose — a position nowhere near the
+     nicotinamide ring that actually does the redox chemistry. The phosphate is therefore not chemistry, it is a
+     <strong>label</strong>. Catabolic dehydrogenases have binding sites that recognise NAD⁺; the reductases of
+     biosynthesis and antioxidant defence recognise NADP⁺. That lets the cell hold the two pools in opposite states:
+     the NAD pool is kept largely <strong>oxidised</strong> (NADH/NAD⁺ ≈ 10<sup>−3</sup>), poised to accept electrons
+     from fuel; the NADP pool is kept largely <strong>reduced</strong> (≈ 100:1), poised to donate them. Two
+     thermodynamic reservoirs, chemically interchangeable, kept apart by a recognition tag. It is one of the most
+     elegant ideas in metabolism and it is regularly examined as a straight comparison.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">NADH compared with NADPH</caption>
+      <thead><tr><th></th><th>NADH</th><th>NADPH</th></tr></thead>
+      <tbody>
+        <tr><td>Structural difference</td><td>—</td><td>2′-phosphate on the adenosine ribose</td></tr>
+        <tr><td>Typical state of the pool</td><td>Mostly oxidised (NAD⁺)</td><td>Mostly reduced (NADPH), ~100:1</td></tr>
+        <tr><td>Made by</td><td>Glycolysis, PDH, citric acid cycle, β-oxidation</td><td><strong>PPP oxidative arm</strong>, malic enzyme, cytosolic isocitrate dehydrogenase</td></tr>
+        <tr><td>Used for</td><td>Oxidative phosphorylation — ATP</td><td>Fatty-acid and cholesterol synthesis, steroidogenesis, glutathione reductase, NADPH oxidase, cytochrome P450, nitric oxide synthase, aldose reductase</td></tr>
+        <tr><td>Direction of flow</td><td>Fuel → electron transport chain</td><td>Pathway → biosynthesis and reduction</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 7 — costing NADPH, and balancing the shuffle</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) Synthesising one palmitate consumes 14 NADPH. If all of it comes
+      from the oxidative arm, how many glucose 6-phosphate must be committed and how much CO₂ is released?
+      (b) Verify the carbon balance of the non-oxidative arm. (c) How much NADPH can one G6P yield if the pathway
+      runs in full recycling mode?</p>
+    <ol>
+      <li><strong>(a)</strong> The oxidative arm gives <strong>2 NADPH per G6P</strong> and releases
+          <strong>1 CO₂ per G6P</strong>. So <span class="fi">14 / 2 = 7</span> molecules of glucose 6-phosphate,
+          releasing <span class="fi">7</span> CO₂. The commonest error is to assume one NADPH per G6P (giving 14) or
+          two CO₂ per G6P (giving 14 CO₂) — count the two dehydrogenase steps and note that only the second one
+          decarboxylates.</li>
+      <li><strong>(b)</strong> Row by row:
+          <span class="fi">5 + 5 = 10 = 7 + 3</span> ✓ (transketolase moves 2, so 5−2 = 3 and 5+2 = 7);
+          <span class="fi">7 + 3 = 10 = 4 + 6</span> ✓ (transaldolase moves 3, so 7−3 = 4 and 3+3 = 6);
+          <span class="fi">5 + 4 = 9 = 6 + 3</span> ✓ (transketolase again).
+          Totals: in <span class="fi">5 + 5 + 5 = 15</span>, out <span class="fi">6 + 6 + 3 = 15</span> ✓.
+          Three pentoses become two hexoses and one triose.</li>
+      <li><strong>(c)</strong> Send six G6P through the oxidative arm: <span class="fi">6 × 2 = 12 NADPH</span>,
+          6 CO₂, and 6 Ru5P holding <span class="fi">6 × 5 = 30</span> carbons. The non-oxidative arm plus
+          fructose 1,6-bisphosphatase converts those 30 carbons back into <span class="fi">30/6 = 5</span> molecules
+          of G6P. Net: <strong>one</strong> G6P has been completely oxidised to 6 CO₂ with a yield of
+          <strong>12 NADPH</strong> and not a single ATP. Check the carbons: 36 in, 6 + 30 out ✓.</li>
+      <li><strong>Why this matters clinically.</strong> Adipose tissue, lactating mammary gland, adrenal cortex,
+          testis and liver — the tissues that reduce things for a living — have high PPP activity. A red cell has
+          almost none of that biosynthetic demand, but it has an enormous oxidant load, and glutathione reductase is
+          its only customer for NADPH.</li>
+    </ol>
+    <span class="wex__ans">(a) 7 G6P, 7 CO₂ · (b) 15 C in = 15 C out · (c) 12 NADPH, 6 CO₂, no ATP</span>
+    </div>
+  </details>
+
+  <h3>G6PD deficiency: why the red cell in particular</h3>
+  <p>Reactive oxygen species are made continuously, and the cell's front line against them is
+     <strong>glutathione</strong>: glutathione peroxidase uses two GSH to destroy a peroxide, producing GSSG, and
+     <strong>glutathione reductase regenerates GSH using NADPH</strong>. Cut the NADPH supply and that cycle stops
+     within minutes of an oxidant challenge.</p>
+  <p>An erythrocyte is uniquely exposed. It has <strong>no mitochondria</strong>, so it has no alternative
+     NADPH-generating route. It does carry cytosolic catalase — plenty of it — but catalase holds bound NADPH to
+     keep itself from being inactivated, so even that second line of defence leans on the same supply. It has
+     <strong>no nucleus and no ribosomes</strong>, so it cannot replace an enzyme as that enzyme ages over the cell's
+     120-day life. And it spends its entire existence carrying oxygen, the largest oxidant load in the body. G6PD is
+     effectively its only source of NADPH — which is why a deficiency that other tissues shrug off destroys red
+     cells.</p>
+  <p>The failure sequence is worth being able to recite: NADPH falls → GSH cannot be regenerated → haemoglobin is
+     oxidised and denatures → it precipitates as <strong>Heinz bodies</strong> (visible only with a supravital stain
+     such as crystal violet, <em>not</em> on a routine film) → splenic macrophages pluck the inclusions out of
+     passing cells → <strong>bite cells</strong> and blister cells appear → acute haemolysis, jaundice and
+     haemoglobinuria.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">G6PD deficiency, the details that decide the question</p>
+    <p style="margin:0"><strong>Inheritance is X-linked</strong>, so affected patients are overwhelmingly male;
+      heterozygous females are mosaics by lyonisation and carry two red-cell populations. It is the commonest
+      enzymopathy in the world, and its geography — Africa, the Mediterranean, the Middle East, Southeast Asia —
+      matches endemic <em>Plasmodium falciparum</em>, because the deficiency is protective, the same evolutionary
+      bargain as sickle trait and thalassaemia. The <strong>A− variant</strong> makes a normal enzyme with a short
+      half-life, so only <em>old</em> red cells are deficient and haemolysis is self-limiting; the
+      <strong>Mediterranean variant</strong> has low activity in cells of every age, is more severe, and is the one
+      in which favism occurs. <strong>Triggers</strong>: infection (the commonest of all), primaquine and other
+      8-aminoquinolines, sulfonamides, dapsone, nitrofurantoin, rasburicase, naphthalene mothballs, and fava beans.
+      Methylene blue is contraindicated for methaemoglobinaemia here, because its own action requires the NADPH the
+      patient cannot make. And the diagnostic trap: <strong>an enzyme assay taken during an acute crisis can be
+      falsely normal</strong>, because the most deficient cells have already lysed and the surviving
+      reticulocyte-rich population has the highest residual activity — repeat it two to three months later.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the four modes, and the thiamine assay</summary>
+    <div class="disc__body">
+      <p>Because the non-oxidative arm is fully reversible, the pathway is not one route but four, and the cell
+         selects by demand alone:</p>
+      <ol>
+        <li><strong>Much ribose, little NADPH</strong> — a rapidly dividing cell needs nucleotides but not reducing
+            power. It runs the non-oxidative arm <em>backwards</em>: fructose 6-phosphate and glyceraldehyde
+            3-phosphate from glycolysis are converted into ribose 5-phosphate without touching G6PD at all. Worth
+            remembering because it disproves the common belief that ribose can only come from the oxidative arm.</li>
+        <li><strong>Balanced needs</strong> — the oxidative arm alone: G6P → R5P + 2 NADPH + CO₂.</li>
+        <li><strong>Much NADPH, little ribose</strong> — adipose tissue and lactating mammary gland. Full recycling
+            mode, as in worked example 7: up to 12 NADPH per G6P completely oxidised.</li>
+        <li><strong>NADPH and ATP both wanted</strong> — the pentoses are converted to fructose 6-phosphate and
+            glyceraldehyde 3-phosphate and carried on down glycolysis to pyruvate.</li>
+      </ol>
+      <p><strong>Transketolase and thiamine.</strong> Transketolase is one of only four thiamine pyrophosphate
+         enzymes in human metabolism, alongside pyruvate dehydrogenase, α-ketoglutarate dehydrogenase and the
+         branched-chain α-keto acid dehydrogenase. Because it is easy to sample, <strong>erythrocyte transketolase
+         activity measured with and without added TPP</strong> is the classical functional assay for thiamine
+         deficiency: a large activation by added cofactor means the enzyme in the patient's cells was sitting there
+         empty.</p>
+      <p><strong>A link back to §&nbsp;08.</strong> Xylulose 5-phosphate from this pathway activates protein
+         phosphatase 2A, which dephosphorylates the bifunctional PFK-2/FBPase-2 enzyme and therefore raises fructose
+         2,6-bisphosphate. So flux through the pentose phosphate pathway itself signals "carbohydrate is abundant"
+         and pushes the liver towards glycolysis and lipogenesis — the two pathways are not as separate as the maps
+         suggest.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 12 =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>Answering from memory, even wrongly, fixes material far better than reading the same paragraph again. These
+     questions are part of the note, not an appendix to it. Every wrong option here is a mistake somebody actually
+     makes, so being caught by one is more useful to you than a lucky guess would have been.</p>
+  <p>Four of these need real arithmetic — do it on paper rather than recognising the answer, because that is what the
+     paper will require and 66 seconds is not long. Three are conceptual traps that reverse a direction or swap two
+     similar molecules. Every explanation says why the right answer is right <em>and</em> why the tempting wrong one
+     is tempting.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="biochem-03-enzymes.html"><small>Previous</small><b>← Enzymes: Kinetics, Inhibition and Regulation</b></a>
+  <a href="biochemistry.html"><small>Index</small><b>All biochemistry notes</b></a>
+  <a href="biochem-05-nucleic-acids.html"><small>Next</small><b>Nucleic Acids: DNA, RNA and the Central Dogma →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry 04 · Carbohydrate metabolism</p>
+    <p>Representation used: pathway maps drawn as balance sheets, plus explicit carbon tracing from glucose to
+      pyruvate and CO₂. ATP yields follow the modern consensus P/O ratios (NADH = 2.5, FADH₂ = 1.5); the older
+      integer convention gives 38 and 36 by the same arithmetic. Standard free-energy changes, K<sub>m</sub> values
+      and tissue store sizes are textbook approximations given to build a sense of magnitude rather than for
+      citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "Portal blood glucose falls from 12 mM after a meal to 4.5 mM in the fasted state. Which statement correctly compares hepatic <b>glucokinase</b> with the <b>hexokinase</b> of an erythrocyte across that range?",
+    "options": [
+      "Glucokinase has the lower K<sub>m</sub>, so it is the enzyme that remains saturated throughout",
+      "Both are inhibited by glucose 6-phosphate, so both slow down as G6P accumulates in the fed state",
+      "Hexokinase is about 98 % saturated at both concentrations and its rate barely moves, whereas glucokinase runs at roughly 21 % of V<sub>max</sub> at 4.5 mM and 58 % at 12 mM — so hepatic uptake tracks the blood level",
+      "Glucokinase is the high-affinity enzyme, so the liver takes glucose up first when supply is short"
+    ],
+    "answer": 2,
+    "explain": "Put the numbers in. Hexokinase, K<sub>m</sub> ≈ 0.1 mM: <span class=\"fi\">4.5/(0.1+4.5) = 0.978</span> and <span class=\"fi\">12/(0.1+12) = 0.992</span> — a 1.4 % change. Glucokinase, [S]<sub>0.5</sub> ≈ 10 mM with h ≈ 1.7: 0.205 rising to 0.577, a 2.8-fold change. An enzyme whose K<sub>m</sub> lies far <i>below</i> the physiological concentration is a constant supplier; one whose K<sub>m</sub> lies near or above it is a <b>sensor</b>. Options A and D are the same error with the inequality reversed — glucokinase has the <i>higher</i> half-saturating concentration, which is precisely the point. Option B is the other classic slip: glucokinase carries <b>no</b> glucose 6-phosphate site, which is why the liver keeps clearing glucose even when its own G6P is high."
+  },
+  {
+    "stem": "A skeletal muscle fibre completely oxidises <b>one glucosyl residue released from its own glycogen</b> by phosphorolysis. Taking NADH = 2.5 ATP and FADH₂ = 1.5 ATP, and using the redox shuttle this tissue actually employs, what is the ATP yield?",
+    "options": ["30 ATP", "31 ATP", "32 ATP", "33 ATP"],
+    "answer": 1,
+    "explain": "Two adjustments to the familiar figure, and you must make both. (i) Skeletal muscle uses the <b>glycerol 3-phosphate</b> shuttle, so each cytosolic NADH is worth 1.5 rather than 2.5: the free-glucose yield is 30, not 32. (ii) Phosphorolysis delivers glucose 1-phosphate directly, so the hexokinase ATP is never spent — add one, giving <b>31</b>. Option A forgets the glycogen saving; option C uses the liver's malate–aspartate shuttle in a muscle; option D makes both of those substitutions at once and is the yield for a <i>hepatic</i> glycogen residue. Anaerobically the same logic gives 3 ATP from a glycogen residue against 2 from free glucose."
+  },
+  {
+    "stem": "[3,4-<sup>14</sup>C]Glucose is supplied to a well-oxygenated hepatocyte. In which compound does the <sup>14</sup>C label <b>first</b> appear?",
+    "options": [
+      "The methyl carbon of acetyl-CoA",
+      "The carbonyl (thioester) carbon of acetyl-CoA",
+      "The methyl carbon of lactate",
+      "The CO₂ released by the pyruvate dehydrogenase reaction"
+    ],
+    "answer": 3,
+    "explain": "Aldolase cuts between C3 and C4, so C3 heads the top half and C4 heads the bottom half. Triose phosphate isomerase reverses the top half, so glucose C3 becomes GAP C1 — and glucose C4 is <i>already</i> GAP C1. Both therefore become <b>pyruvate C1, the carboxyl carbon</b>, one in each of the two pyruvates, and pyruvate dehydrogenase removes exactly that carbon as CO₂. Acetyl-CoA is entirely unlabelled here, so options A and B are both wrong: acetyl carbons come from glucose C1, C2, C5 and C6. Option C is the answer for [1-<sup>14</sup>C] or [6-<sup>14</sup>C]glucose under anaerobic conditions, not for this label. Remember the pairing rule — pairs sum to 7, and 3 with 4 is the innermost pair, cut apart and both becoming carboxyl carbons."
+  },
+  {
+    "stem": "A hepatocyte is exposed to glucagon. Which statement about fructose 2,6-bisphosphate is correct?",
+    "options": [
+      "PKA phosphorylates the bifunctional PFK-2/FBPase-2 protein, switching the kinase domain off and the phosphatase domain on; [F2,6BP] falls, so PFK-1 loses its activator and fructose 1,6-bisphosphatase loses its inhibitor",
+      "PKA phosphorylates the same protein and thereby activates its kinase domain; [F2,6BP] rises and accelerates hepatic glycolysis",
+      "F2,6BP is an intermediate of glycolysis that is consumed by aldolase, and glucagon raises the flux through it",
+      "The identical cascade operates in skeletal muscle, which is why glucagon also suppresses muscle glycolysis"
+    ],
+    "answer": 0,
+    "explain": "Anchor the direction to the physiology rather than the chemistry: glucagon means <i>the body needs blood glucose</i>, so a liver that responded by burning glucose faster would be useless. Hence phosphorylation must shut hepatic glycolysis down, and it does so by lowering the one ligand that activates PFK-1 and inhibits FBPase-1. Option B is the correct mechanism pointed the wrong way — and it is genuinely true of the <b>cardiac</b> isoenzyme, whose regulatory serine sits elsewhere and whose kinase domain is <i>activated</i> by phosphorylation, so read which tissue you are in before answering. Option C is a common misconception: F2,6BP lies on no pathway and nothing consumes it as a substrate; it exists purely as a signal. Option D fails because skeletal muscle has <b>no glucagon receptor</b> at all."
+  },
+  {
+    "stem": "During a sprint a muscle converts one glucose to two lactate; the liver then rebuilds one glucose from that lactate. What is the net whole-body ATP balance for one complete turn of the Cori cycle?",
+    "options": [
+      "Zero — a cycle cannot consume energy overall",
+      "Muscle +2, liver −2, net zero",
+      "Muscle +2, liver −6, net −4",
+      "Muscle +2, liver −4, net −2"
+    ],
+    "answer": 2,
+    "explain": "Anaerobic glycolysis nets the muscle <b>+2 ATP</b>. Gluconeogenesis costs the liver three nucleoside triphosphates per pyruvate — pyruvate carboxylase (ATP), PEP carboxykinase (GTP) and the reverse of phosphoglycerate kinase (ATP) — so <span class=\"fi\">2 × 3 = 6</span>, conventionally written 4 ATP + 2 GTP. Net <b>−4 ATP</b> per turn. Option D is the trap: it counts only the 4 ATP and forgets that the two GTP are equally high-energy phosphates. Option A misreads what the cycle is for — it does not create energy, it <i>relocates the bill</i>, giving muscle ATP now and letting the liver pay later out of fatty-acid oxidation."
+  },
+  {
+    "stem": "A patient has fasted for 36 hours and is mobilising adipose triacylglycerol. Which carbon source can contribute to <b>net</b> synthesis of glucose?",
+    "options": [
+      "The acetyl-CoA produced by β-oxidation of palmitate",
+      "The glycerol backbone released when the triacylglycerol is hydrolysed",
+      "Leucine released from muscle protein",
+      "Acetoacetate taken up from the blood"
+    ],
+    "answer": 1,
+    "explain": "Glycerol is phosphorylated by hepatic glycerol kinase and oxidised to dihydroxyacetone phosphate, entering gluconeogenesis directly — it is the <i>only</i> part of a triacylglycerol that can become glucose. Options A and D fail for the same reason: acetyl-CoA cannot go back to pyruvate because pyruvate dehydrogenase is irreversible, and running it through the citric acid cycle gains nothing because the two carbons entering as acetyl are matched by two leaving as CO₂. Animals lack the glyoxylate cycle enzymes (isocitrate lyase, malate synthase) that let plants and bacteria escape this. Option C names one of the only <b>two purely ketogenic amino acids</b>, leucine and lysine — every other amino acid is at least partly glucogenic. Note the exception that proves the rule: odd-chain fatty acids do yield a little glucose, via propionyl-CoA → methylmalonyl-CoA → succinyl-CoA, which needs biotin and vitamin B12."
+  },
+  {
+    "stem": "A 7-month-old was thriving on milk but now vomits and becomes profoundly hypoglycaemic whenever fruit purée is given. There is hepatomegaly, lactic acidosis and hyperuricaemia, and intramuscular glucagon during an episode produces <b>no</b> rise in blood glucose. Which enzyme is deficient, and by what mechanism?",
+    "options": [
+      "Fructokinase — free fructose accumulates and osmotically injures the hepatocyte",
+      "Galactose 1-phosphate uridylyltransferase — galactose 1-phosphate is directly hepatotoxic",
+      "Glucose 6-phosphatase — glucose 6-phosphate cannot be dephosphorylated for export",
+      "Aldolase B — fructose 1-phosphate accumulates and sequesters inorganic phosphate, so ATP cannot be regenerated and glycogen phosphorylase, which requires P<sub>i</sub>, cannot mobilise glycogen"
+    ],
+    "answer": 3,
+    "explain": "This is hereditary fructose intolerance, and the timing is the clue: symptoms begin exactly when fructose or sucrose is introduced at weaning, having been absent on milk. Because fructokinase is unregulated, fructose 1-phosphate accumulates to millimolar levels and each molecule holds one phosphate hostage; falling cytosolic P<sub>i</sub> blocks ATP regeneration (hence AMP degradation to urate) and blocks phosphorylase, which is why glucagon fails. Option A is <b>essential fructosuria</b> — the same sugar, the enzyme one step earlier, and completely benign, because unphosphorylated fructose simply leaves in the urine. That contrast is the whole lesson: the phosphorylated intermediate is the toxic species. Option B would have presented on milk from birth, not on fruit at weaning. Option C (von Gierke) causes hypoglycaemia whenever feeds are spaced, with no specific relation to fruit."
+  },
+  {
+    "stem": "Synthesis of one palmitate consumes 14 NADPH. If all of it is supplied by the <b>oxidative arm</b> of the pentose phosphate pathway, how many glucose 6-phosphate must be committed and how many CO₂ released?",
+    "options": ["7 G6P and 7 CO₂", "14 G6P and 14 CO₂", "7 G6P and 14 CO₂", "12 G6P and 12 CO₂"],
+    "answer": 0,
+    "explain": "The oxidative arm has <b>two</b> dehydrogenase steps but only <b>one</b> decarboxylation: G6PD makes one NADPH, and 6-phosphogluconate dehydrogenase makes a second NADPH while releasing CO₂. So each G6P yields 2 NADPH and 1 CO₂, and <span class=\"fi\">14/2 = 7</span> molecules are needed, releasing 7 CO₂. Option B assumes one NADPH per G6P; option C correctly gets 7 G6P but then doubles the CO₂, which would require both dehydrogenases to decarboxylate. Option D confuses this with the <i>full recycling mode</i>, in which one G6P is completely oxidised to 6 CO₂ over six passes with a yield of 12 NADPH. Note also which carbon leaves: the CO₂ is glucose <b>C1</b>, and only C1, which is why comparing <sup>14</sup>CO₂ from [1-<sup>14</sup>C]glucose with that from [6-<sup>14</sup>C]glucose measures flux through this pathway."
+  },
+  {
+    "stem": "A 22-year-old gets severe calf cramps and passes dark urine after sprinting, but can walk comfortably for an hour once he has pushed through the first ten minutes. Ischaemic forearm exercise produces <b>no</b> rise in venous lactate but a normal rise in venous ammonia. Fasting glucose and liver size are normal. Which enzyme is deficient?",
+    "options": [
+      "Liver glycogen phosphorylase",
+      "Glucose 6-phosphatase",
+      "Muscle glycogen phosphorylase",
+      "Lysosomal acid α-glucosidase"
+    ],
+    "answer": 2,
+    "explain": "McArdle disease (GSD V). Muscle cannot mobilise its own glycogen, so brief intense effort — which depends on it — causes cramp and rhabdomyolysis, while sustained gentle effort produces the characteristic <b>second wind</b> once fatty acids and blood glucose take over. The <i>normal ammonia rise</i> matters: it proves the exercise was hard enough, so the flat lactate is a true negative rather than a poorly performed test. Option A (Hers, GSD VI) is the same enzyme in the wrong organ and gives hepatomegaly with ketotic hypoglycaemia and no myopathy. Option B (von Gierke, GSD I) gives severe fasting hypoglycaemia with lactic acidosis and hyperuricaemia — here fasting glucose is normal, which excludes it immediately. Option D (Pompe, GSD II) is lysosomal: hypotonia and cardiomegaly in infancy, not exercise-triggered cramps. Ask <i>which organ</i> before you ask which enzyme."
+  },
+  {
+    "stem": "A 26-year-old man of Sardinian descent develops jaundice and dark urine two days after starting trimethoprim–sulfamethoxazole. The film shows bite cells, and a supravital stain shows Heinz bodies. A G6PD enzyme assay sent the same day is reported as <b>normal</b>. What is the correct interpretation?",
+    "options": [
+      "The normal assay excludes G6PD deficiency; this is most likely autoimmune haemolysis",
+      "The assay is falsely normal because the most deficient — that is, the oldest — cells have already lysed, leaving a young, reticulocyte-rich population with the highest residual activity; repeat it in 2–3 months",
+      "Heinz bodies with bite cells are specific for pyruvate kinase deficiency, so the enzyme assay is irrelevant",
+      "Enzyme assays are unreliable in males because the gene is X-linked; only genotyping is valid"
+    ],
+    "answer": 1,
+    "explain": "This is the single most useful practical fact about the condition. Enzyme activity declines as a red cell ages, so an acute haemolytic episode selectively destroys the cells with the least activity and the survivors flatter the result. Test after the reticulocytosis has resolved. Option A is the trap the falsely normal assay is designed to spring; autoimmune haemolysis would be Coombs-positive with spherocytes, not bite cells and Heinz bodies. Option C misassigns the morphology: pyruvate kinase deficiency causes a chronic non-spherocytic haemolytic anaemia with echinocytes and a raised 2,3-bisphosphoglycerate, not oxidative inclusions. Option D is false — hemizygous males are exactly the group in whom the assay is most straightforward, once timed correctly. Sardinian ancestry points to the <b>Mediterranean variant</b>, in which activity is low in cells of every age and haemolysis is therefore more severe than with the African A− variant."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

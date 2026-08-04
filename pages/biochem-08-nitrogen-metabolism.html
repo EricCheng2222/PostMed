@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biochem 08 · Nitrogen Metabolism: Amino Acids, the Urea Cycle and Nucleotides — PostMed Notebook</title>
+<meta name="description" content="Biochemistry note 08: nitrogen balance and ammonia toxicity, transamination and PLP, glutamate dehydrogenase, the urea cycle and its defects, glucogenic and ketogenic skeletons, the classic inborn errors, one-carbon metabolism, nucleotide synthesis, salvage and gout.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biochemistry.html">Biochemistry</a>
+      <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Note 08</p>
+  <h1>Nitrogen Metabolism: Amino Acids, the Urea Cycle and Nucleotides</h1>
+  <p class="lede">
+    One asymmetry organises this whole note: <strong>carbon and nitrogen have completely different exits</strong>.
+    Burn a fat or a sugar and the carbon leaves as CO₂, which is a gas, is buffered, and needs no machinery.
+    Burn an amino acid and you are left holding a nitrogen atom that becomes ammonia — a small, membrane-permeant,
+    neurotoxic base that no tissue can store and only one organ can dispose of. Every pathway on this page is a
+    consequence of that problem: nitrogen is <em>never</em> released where it is produced, it is handed along a
+    chain of carriers to the liver, and there four high-energy phosphates are spent to lock it into urea.
+    The same logic runs the other way for nucleotides, where nitrogen is not waste but the most expensive raw
+    material in the cell — which is why almost every drug that kills a dividing cell attacks this chemistry.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Compartment maps + atom-by-atom accounting</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~50 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Nitrogen balance and the ammonia problem</a></li>
+      <li><a href="#s2">Transamination, PLP and the clinical aminotransferases</a></li>
+      <li><a href="#s3">Deamination: releasing the nitrogen at last</a></li>
+      <li><a href="#s4">Carrying nitrogen in the blood: glutamine and alanine</a></li>
+      <li><a href="#s5">The urea cycle, step by step</a></li>
+      <li><a href="#s6">Regulating the cycle, and what happens when it breaks</a></li>
+      <li><a href="#s7">The carbon skeletons: glucogenic and ketogenic</a></li>
+      <li><a href="#s8">The classic inborn errors of amino-acid catabolism</a></li>
+      <li><a href="#s9">One-carbon metabolism, SAM and the folate trap</a></li>
+      <li><a href="#s10">Building nucleotides: de novo, salvage and the drugs</a></li>
+      <li><a href="#s11">Purine catabolism, uric acid and gout</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§01</b>: why nitrogen cannot simply be exhaled, and what makes ammonia
+        toxic. Then <b>§02–§03</b>: the two-step trick the body uses everywhere — <em>move</em> the nitrogen onto
+        glutamate without releasing anything (transamination), and only then <em>release</em> it, in one place,
+        inside one organelle (oxidative deamination). Almost every remaining fact in §04–§06 is an answer to the
+        question "where is the nitrogen right now, and what is carrying it?" Get those three sections solid and
+        the urea cycle stops being five names in a ring.</li>
+      <li><b>Then be able to do</b> — <b>§05</b>: write the urea cycle out from memory with the mitochondrial /
+        cytosolic line drawn in the right place, name where each of the two nitrogens came from, and total the
+        ATP cost. <b>§06</b>: take a hyperammonaemic newborn plus one extra laboratory value (orotate, citrulline,
+        argininosuccinate) and name the blocked enzyme. <b>§07</b>: classify any amino acid as glucogenic,
+        ketogenic or both. <b>§09</b>: explain why folate corrects the anaemia of B₁₂ deficiency but not the
+        neuropathy. <b>§10–§11</b>: name the committed step of each nucleotide pathway and the drug that hits it.</li>
+      <li><b>Leave for a second pass</b> — the full PLP mechanism in §02, the complete entry-point table in §07,
+        the transsulfuration arm in §09 and the pyrimidine pathway detail in §10 are all folded behind
+        "Go deeper" lines; they are worth reading, but not before the compartment logic of §05 is automatic.
+        The pyrimidine catabolism paragraph in §11 exists mainly so you can answer "why is there no pyrimidine
+        equivalent of gout?" — one sentence, one second pass.</li>
+    </ol>
+  </div>
+
+  <section class="fsheet card">
+    <details class="disc disc--sheet">
+      <summary>Quick sheet<span class="disc__count">32 entries</span></summary>
+      <div class="disc__body">
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Protein → nitrogen</b><code>protein ≈ 16 % N · 1 g N ≡ 6.25 g protein</code></div>
+      <div class="fsheet__item"><b>Urea</b><code>CO(NH₂)₂ · M = 60 · 2 N · 47 % N by mass</code></div>
+      <div class="fsheet__item"><b>Plasma ammonia</b><code>normal ≈ 10–40 µmol/L · pK<sub>a</sub> NH₄⁺ = 9.25</code></div>
+      <div class="fsheet__item"><b>Transamination</b><code>AA + α-KG ⇌ α-keto acid + Glu · PLP · ΔG°′ ≈ 0</code></div>
+      <div class="fsheet__item"><b>ALT (GPT)</b><code>Ala + α-KG ⇌ pyruvate + Glu</code></div>
+      <div class="fsheet__item"><b>AST (GOT)</b><code>Asp + α-KG ⇌ oxaloacetate + Glu</code></div>
+      <div class="fsheet__item"><b>No transamination</b><code>lysine · threonine</code></div>
+      <div class="fsheet__item"><b>Glutamate dehydrogenase</b><code>Glu + H₂O + NAD⁺ ⇌ α-KG + NH₄⁺ + NADH</code></div>
+      <div class="fsheet__item"><b>GDH control</b><code>ADP, GDP, Leu activate · GTP, ATP inhibit</code></div>
+      <div class="fsheet__item"><b>Glutamine synthetase</b><code>Glu + NH₄⁺ + ATP → Gln + ADP + P<sub>i</sub></code></div>
+      <div class="fsheet__item"><b>Urea cycle, net</b><code>NH₄⁺ + HCO₃⁻ + Asp + 3 ATP → urea + fumarate</code></div>
+      <div class="fsheet__item"><b>Energy cost</b><code>4 ~P per urea = 2 ~P per nitrogen</code></div>
+      <div class="fsheet__item"><b>The two nitrogens</b><code>N1 = free NH₄⁺ · N2 = aspartate · C = HCO₃⁻</code></div>
+      <div class="fsheet__item"><b>CPS I</b><code>matrix · NH₄⁺ · obligate N-acetylglutamate</code></div>
+      <div class="fsheet__item"><b>CPS II</b><code>cytosol · Gln amide N · pyrimidines · UTP inhibits</code></div>
+      <div class="fsheet__item"><b>NAG synthase</b><code>AcCoA + Glu → NAG · activated by arginine</code></div>
+      <div class="fsheet__item"><b>Compartments</b><code>CPS I + OTC in matrix · ASS, ASL, arginase cytosolic</code></div>
+      <div class="fsheet__item"><b>Only X-linked UCD</b><code>OTC deficiency → orotic aciduria, no anaemia</code></div>
+      <div class="fsheet__item"><b>Purely ketogenic</b><code>leucine · lysine</code></div>
+      <div class="fsheet__item"><b>Both</b><code>Ile · Phe · Thr · Trp · Tyr</code></div>
+      <div class="fsheet__item"><b>Succinyl-CoA entry</b><code>Met, Val, Ile, Thr · biotin + B₁₂</code></div>
+      <div class="fsheet__item"><b>PKU</b><code>phenylalanine hydroxylase · BH₄ + O₂ · Tyr essential</code></div>
+      <div class="fsheet__item"><b>MSUD</b><code>BCKD · TPP, lipoate, CoA, FAD, NAD⁺</code></div>
+      <div class="fsheet__item"><b>Homocystinuria</b><code>cystathionine β-synthase · PLP · lens down</code></div>
+      <div class="fsheet__item"><b>Alkaptonuria</b><code>homogentisate 1,2-dioxygenase</code></div>
+      <div class="fsheet__item"><b>Thymidylate synthase</b><code>dUMP + methylene-THF → dTMP + DHF</code></div>
+      <div class="fsheet__item"><b>Folate trap</b><code>only B₁₂ methionine synthase frees N⁵-methyl-THF</code></div>
+      <div class="fsheet__item"><b>B₁₂ vs folate</b><code>both ↑ homocysteine · only B₁₂ ↑ methylmalonate</code></div>
+      <div class="fsheet__item"><b>Purine committed step</b><code>glutamine–PRPP amidotransferase</code></div>
+      <div class="fsheet__item"><b>Purine ring atoms</b><code>N1 Asp · C2,C8 formyl-THF · N3,N9 Gln · C4,C5,N7 Gly · C6 CO₂</code></div>
+      <div class="fsheet__item"><b>Cross-regulation</b><code>GTP drives IMP→AMP · ATP drives IMP→GMP</code></div>
+      <div class="fsheet__item"><b>Urate</b><code>no uricase in humans · limit ≈ 6.8 mg/dL ≈ 404 µmol/L</code></div>
+    </div>
+      </div>
+    </details>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Nitrogen balance and the ammonia problem</h2>
+
+  <p class="idea"><b>The idea</b>When you burn sugar or fat, the leftovers are water and a gas you breathe out, and nothing has to be
+     organised. When you burn protein there is one extra atom per building block that has nowhere to go. Left to
+     itself it turns into a small molecule that slips through every membrane, poisons the brain, and cannot be
+     stored anywhere. So the body never lets it loose. It is passed from hand to hand on carrier molecules, all
+     the way to the liver, and only there is it converted — at real expense — into something bland and soluble
+     that the kidney can throw away.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; key facts</p>
+    <dl class="def">
+      <dt>Nitrogen balance</dt>
+      <dd>Nitrogen taken in as dietary protein minus nitrogen lost in urine, faeces and skin. <strong>Positive</strong>
+          in growth, pregnancy and recovery; <strong>negative</strong> in starvation, trauma, sepsis, burns and
+          any state where an essential amino acid is missing.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">protein ≈ 16 % nitrogen by mass  →  1 g N ≡ 6.25 g protein</span>
+      <span class="fx__tag">the conversion factor behind every clinical nitrogen calculation</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Amino acid pool</dt>
+          <dd>The free amino acids of the body — roughly 100 g in an adult, turning over completely in hours. There
+              is <strong>no storage form of protein</strong>: every amino acid in the pool is either being built
+              into protein, being used to make something (haem, nucleotides, neurotransmitters), or being taken
+              apart. An excess is not saved; it is deaminated and the skeleton burnt or stored as fat.</dd>
+          <dt>Ammonia / ammonium</dt>
+          <dd>NH₃ and NH₄⁺ are the same substance in two protonation states, in equilibrium with pK<sub>a</sub>
+              9.25. Clinical assays report the sum ("ammonia"). Only the uncharged NH₃ crosses membranes freely,
+              which makes the toxicity <strong>pH-dependent</strong>.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">N balance = N<sub>in</sub> − (N<sub>urine</sub> + N<sub>faeces</sub> + N<sub>skin</sub>)</span><span class="fx__tag">zero in a healthy weight-stable adult</span></div>
+          <div class="fx"><span class="fx__eq">pH = 9.25 + log₁₀ <span class="mf" role="img" aria-label="concentration of N H 3 over concentration of N H 4 plus"><span>[NH₃]</span><span>[NH₄⁺]</span></span></span><span class="fx__tag">at pH 7.4 only ≈1.4 % is the membrane-permeant NH₃</span></div>
+          <div class="fx"><span class="fx__eq">urea: 60 g·mol⁻¹, 2 N per molecule, 47 % N by mass</span><span class="fx__tag">carries ≈85 % of urinary nitrogen</span></div>
+          <div class="fx"><span class="fx__eq">obligatory N loss ≈ 54 mg N·kg⁻¹·day⁻¹ → ≈24 g protein·day⁻¹ at 70 kg</span><span class="fx__tag">why a protein-free diet still runs you down</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>N</b><span>mass of nitrogen (g)</span></div>
+          <div><b>NH₄⁺</b><span>ammonium ion, the dominant species at pH 7.4 (mol·L⁻¹)</span></div>
+          <div><b>NH₃</b><span>free ammonia, the membrane-permeant form (mol·L⁻¹)</span></div>
+          <div><b>pK<sub>a</sub></b><span>−log₁₀ of the acid dissociation constant (dimensionless)</span></div>
+          <div><b>UUN</b><span>urinary urea nitrogen (g·day⁻¹)</span></div>
+          <div><b>~P</b><span>one high-energy phosphoanhydride bond (mol)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Why there is a problem at all</h3>
+  <p>Compare the three fuels honestly. Glucose is C₆H₁₂O₆: oxidise it completely and you get CO₂ and H₂O.
+     Palmitate is C₁₆H₃₂O₂: same two products. Alanine is C₃H₇NO₂, and that single nitrogen is the whole story.
+     It cannot be oxidised to a gas, it cannot be stored, and in its simplest free form — ammonia — it is a base
+     that is toxic at micromolar concentrations. Every other waste product of metabolism is either volatile or
+     inert; this one is neither.</p>
+  <p>So evolution took the expensive route. Terrestrial mammals are <strong>ureotelic</strong>: they spend ATP to
+     condense two nitrogens and one carbon into urea, a small, uncharged, extremely soluble, chemically inert
+     molecule that the kidney filters freely. Fish are <strong>ammonotelic</strong> — they simply let ammonia
+     diffuse into the surrounding water, which is free but requires an infinite sink. Birds and reptiles are
+     <strong>uricotelic</strong>, excreting uric acid as a semi-solid paste, which costs the most energy but the
+     least water — the right answer if you must develop inside a shell with no way to dispose of a liquid, or if
+     every gram of carried water costs you flight. That last choice comes back to haunt us in §&nbsp;11.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The one number that pays for itself</p>
+    <p style="margin:0">Protein is <strong>16 % nitrogen</strong>, so 1 g of urinary nitrogen came from 6.25 g of
+      protein. That factor turns a 24-hour urine collection into a measurement of protein catabolism, and it is
+      the basis of every nitrogen-balance question you will meet. The partner number is that <strong>urea is
+      47 % nitrogen</strong> (28 of 60 g·mol⁻¹) — so a gram of urea is not a gram of nitrogen, and the commonest
+      arithmetic slip on this topic is treating them as if they were.</p>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — from a plate of food to a molecule of urea</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A 70 kg adult eats 1.2 g protein per kg per day and is in
+      nitrogen balance. (a) How much nitrogen must he excrete? (b) If essentially all of it left as urea, how many
+      grams and how many moles would that be? (c) What does making it cost, and how does that compare with his
+      total daily ATP turnover of roughly 60 kg?</p>
+    <ol>
+      <li><strong>(a)</strong> Protein intake = <span class="fi">70 × 1.2 = 84 g/day</span>. Nitrogen =
+          <span class="fi">84 × 0.16 = 13.44 g N/day</span> — identically <span class="fi">84 / 6.25</span>.</li>
+      <li><strong>(b)</strong> Urea carries 2 N, so moles of urea =
+          <span class="fi">13.44 / (2 × 14.01) = 0.480 mol/day</span>.</li>
+      <li>Mass of urea = <span class="fi">0.480 × 60.06 = 28.8 g/day</span>. Note it is <em>more</em> than twice
+          the nitrogen mass, because urea is only 47 % N.</li>
+      <li><strong>(c)</strong> The urea cycle spends 4 high-energy phosphates per urea (§&nbsp;05), so
+          <span class="fi">4 × 0.480 = 1.92 mol ~P/day</span>.</li>
+      <li>At 507 g·mol⁻¹ that is <span class="fi">1.92 × 507 ≈ 973 g</span> of ATP equivalents — about
+          <span class="fi">973 / 60 000 ≈ 1.6 %</span> of daily turnover.</li>
+      <li>Reality check: about 2 g of nitrogen leaves in faeces and skin, and urea is ≈85 % of what the kidney
+          excretes, so the real figure is nearer 21 g of urea, 347 mmol, per day. The order of magnitude is what
+          matters — <strong>a few hundred millimoles of urea a day, costing one to two per cent of the body's
+          entire energy budget</strong>. Nitrogen disposal is not free, but it is not ruinous either; the cell
+          buys safety cheaply.</li>
+    </ol>
+    <span class="wex__ans">13.4 g N → 0.48 mol = 28.8 g urea · 1.9 mol ~P ≈ 1.6 % of daily ATP turnover</span>
+    </div>
+  </details>
+
+  <h3>What ammonia actually does to the brain</h3>
+  <p>"Ammonia is neurotoxic" is a statement, not an explanation. The mechanism is worth knowing because it is
+     built entirely out of reactions you already have, and because it is examined as a vignette rather than as a
+     fact.</p>
+  <ol>
+    <li><strong>It drains the citric acid cycle.</strong> Brain has no urea cycle. Its only large-capacity
+        ammonia sink is to run glutamate dehydrogenase <em>backwards</em> — reductive amination of α-ketoglutarate
+        — and then glutamine synthetase. Every ammonia fixed consumes one α-ketoglutarate, which is a citric acid
+        cycle intermediate. Deplete α-ketoglutarate and oxaloacetate cannot be regenerated, flux through the cycle
+        falls, and ATP production drops in the organ least able to tolerate it.</li>
+    <li><strong>It swells the astrocytes.</strong> Glutamine synthetase in the brain lives almost exclusively in
+        astrocytes. Glutamine accumulates there and is osmotically active; water follows; astrocytes swell.
+        In acute hyperammonaemia this is frank <strong>cerebral oedema</strong>, and it is what kills.</li>
+    <li><strong>It distorts neurotransmission.</strong> Glutamate is the principal excitatory transmitter and the
+        precursor of GABA, the principal inhibitory one. Consuming glutamate to make glutamine perturbs both.</li>
+    <li><strong>It makes itself worse.</strong> Ammonia stimulates the respiratory centre → hyperventilation →
+        <strong>respiratory alkalosis</strong> → a higher blood pH → a larger fraction of the total ammonia
+        existing as the freely diffusible NH₃ → more entering the brain. Worked example 2 puts numbers on that
+        loop, and it also explains why an acute hyperammonaemic neonate has an alkalosis while an organic
+        acidaemia presents with an anion-gap <em>acidosis</em> — a discriminator that is worth marks.</li>
+  </ol>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — why alkalosis makes hyperammonaemia worse</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A patient with cirrhosis has a plasma total ammonia of
+      200 µmol/L (normal ≈10–40). He hyperventilates and arterial pH rises from 7.40 to 7.70. Given
+      pK<sub>a</sub>(NH₄⁺/NH₃) = 9.25, what happens to the concentration of the species that can actually cross
+      the blood–brain barrier?</p>
+    <ol>
+      <li>Henderson–Hasselbalch, rearranged for the ratio:
+          <span class="fi">[NH₄⁺]/[NH₃] = 10<sup>(pK<sub>a</sub> − pH)</sup></span>.</li>
+      <li>At pH 7.40: <span class="fi">10<sup>1.85</sup> = 70.8</span>, so the NH₃ fraction is
+          <span class="fi">1/(1 + 70.8) = 1.393 %</span>, i.e. <span class="fi">200 × 0.01393 = 2.79 µmol/L</span>
+          of free NH₃.</li>
+      <li>At pH 7.70: <span class="fi">10<sup>1.55</sup> = 35.5</span>, so the fraction is
+          <span class="fi">1/36.5 = 2.741 %</span>, i.e. <span class="fi">5.48 µmol/L</span>.</li>
+      <li>Ratio: <span class="fi">2.741 / 1.393 = 1.97</span>. The permeant species has <strong>almost
+          exactly doubled</strong> while the measured "ammonia" has not changed at all.</li>
+      <li>The general rule falls out of the algebra: well below the pK<sub>a</sub>, the free-base fraction is
+          proportional to <span class="fi">10<sup>pH</sup></span>, so <strong>every 0.3 pH units doubles it</strong>.</li>
+    </ol>
+    <p style="margin:.6rem 0 0;font-size:.92rem">This is not a curiosity. It is why <strong>lactulose</strong>
+      works in hepatic encephalopathy: colonic bacteria ferment it to short-chain acids, the luminal pH falls,
+      NH₃ diffusing in from the blood is protonated to NH₄⁺, and a charged ion cannot diffuse back out — a
+      classic ion trap, plus a cathartic effect. It is also why correcting the alkalosis matters, and why
+      a gastrointestinal bleed (a large protein meal delivered to urease-producing gut flora) precipitates
+      encephalopathy in a cirrhotic.</p>
+    <span class="wex__ans">free NH₃ 2.79 → 5.48 µmol/L, a 1.97-fold rise, on an unchanged total</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Total ammonia is not free ammonia</p>
+    <p style="margin:0">A laboratory "ammonia" of 200 µmol/L sounds enormous next to a normal of 40, and it is —
+      but it is a <em>total</em>. Only about 1.4 % of it is the neutral molecule that moves. Two questions turn on
+      keeping those apart: why the toxicity is pH-sensitive when the measured value is not, and why the kidney can
+      trap ammonium in acid urine and excrete it (which is also how the kidney exports acid — see §&nbsp;04).</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Transamination, PLP and the clinical aminotransferases</h2>
+
+  <p class="idea"><b>The idea</b>The first thing that happens to an amino acid being taken apart is not that its nitrogen is set free — it is
+     that the nitrogen is <em>handed over</em> to a different molecule. Nothing is released, nothing is oxidised,
+     nothing is spent; an amino group and a carbonyl group simply swap places between two partners. The point of
+     the exercise is bookkeeping: whatever amino acid you started with, the nitrogen ends up on one particular
+     carrier, so the cell only ever needs one machine for the dangerous step that follows. The enzymes that do
+     this are also the ones on a liver-function test, which is why they show up in clinical questions.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; reaction</p>
+    <dl class="def">
+      <dt>Transamination（轉胺作用）</dt>
+      <dd>Reversible transfer of an α-amino group from an amino acid to an α-keto acid, catalysed by an
+          <strong>aminotransferase</strong> (transaminase) using <strong>pyridoxal 5′-phosphate</strong> as
+          cofactor. No nitrogen is released and no net oxidation occurs.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">amino acid + α-ketoglutarate  ⇌  α-keto acid + glutamate</span>
+      <span class="fx__tag">α-ketoglutarate is the universal acceptor; glutamate is the universal collector</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Pyridoxal 5′-phosphate (PLP)</dt>
+          <dd>The active form of vitamin B₆ (pyridoxine). An aldehyde that forms a Schiff base with substrate
+              amines and acts as an <strong>electron sink</strong>: the protonated pyridine ring nitrogen
+              delocalises the negative charge of the carbanion intermediate, which is what makes the α-carbon
+              chemistry possible at all.</dd>
+          <dt>Ping-pong bi-bi kinetics</dt>
+          <dd>The mechanistic signature of transamination. The first substrate binds, leaves the enzyme modified
+              (as pyridoxamine phosphate) and departs <em>before</em> the second substrate binds. On a
+              double-reciprocal plot this gives a family of <strong>parallel</strong> lines.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">ALT: alanine + α-KG ⇌ pyruvate + glutamate</span><span class="fx__tag">also called GPT; the liver-selective one</span></div>
+          <div class="fx"><span class="fx__eq">AST: aspartate + α-KG ⇌ oxaloacetate + glutamate</span><span class="fx__tag">also called GOT; liver, heart, muscle, red cells</span></div>
+          <div class="fx"><span class="fx__eq">K<sub>eq</sub> ≈ 1 · ΔG°′ ≈ 0 kJ·mol⁻¹</span><span class="fx__tag">direction is set entirely by concentrations, not by thermodynamics</span></div>
+          <div class="fx"><span class="fx__eq">PLP + R–NH₂ ⇌ aldimine (Schiff base) + H₂O</span><span class="fx__tag">the covalent intermediate common to every PLP enzyme</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>α-KG</b><span>α-ketoglutarate, 2-oxoglutarate (mol·L⁻¹)</span></div>
+          <div><b>PLP</b><span>pyridoxal 5′-phosphate, from vitamin B₆</span></div>
+          <div><b>PMP</b><span>pyridoxamine 5′-phosphate — PLP carrying the transferred nitrogen</span></div>
+          <div><b>ALT / GPT</b><span>alanine aminotransferase (U·L⁻¹ in serum)</span></div>
+          <div><b>AST / GOT</b><span>aspartate aminotransferase (U·L⁻¹ in serum)</span></div>
+          <div><b>K<sub>eq</sub></b><span>equilibrium constant (dimensionless here — equal numbers of species each side)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Why funnel everything through glutamate?</h3>
+  <p>There are nineteen amino acids to dismantle and one dangerous product. If each were deaminated directly, the
+     cell would need nineteen deaminases, nineteen places where free ammonia appears, and nineteen chances to
+     poison itself. Instead it uses a <strong>collector</strong>. Transamination is thermodynamically free
+     (ΔG°′ ≈ 0, K<sub>eq</sub> ≈ 1), so a whole family of aminotransferases can run either way at no energetic
+     cost, all converging on the same acceptor, α-ketoglutarate. The nitrogen arrives on glutamate, and glutamate
+     — one molecule, one enzyme, one organelle — is where the actual release happens (§&nbsp;03).</p>
+  <p>That is the entire architecture: <strong>collect reversibly and everywhere; release irreversibly and in one
+     place</strong>. It is worth noticing how much of metabolism is built this way.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Transamination does not produce ammonia</p>
+    <p style="margin:0">This is the single most reliable trap on the topic and it appears in some form most years.
+      A transaminase moves a nitrogen atom from one carbon skeleton to another; the total number of amino groups
+      in the room is unchanged, nothing is oxidised, and <strong>no NH₄⁺ appears</strong>. Free ammonia is
+      produced by <em>deaminases</em> and <em>dehydrogenases</em> — glutamate dehydrogenase, glutaminase,
+      serine and threonine dehydratase, histidase, AMP deaminase. If an option says "transamination releases
+      ammonia", it is wrong however plausible the rest of the sentence is.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · what PLP is actually doing, step by step</summary>
+    <div class="disc__body">
+    <p>PLP appears in this note four separate times — transamination, serine and threonine dehydratase (§&nbsp;03),
+      serine hydroxymethyltransferase (§&nbsp;09) and cystathionine β-synthase (§&nbsp;08) — so the mechanism is
+      worth one careful read rather than four separate memorisations. Every PLP enzyme exploits the same trick.</p>
+    <ol>
+      <li><strong>Resting state: the internal aldimine.</strong> In the free enzyme, PLP is already bound as a
+        Schiff base to the ε-amino group of an active-site <strong>lysine</strong>. It is not floating loose.</li>
+      <li><strong>Transaldimination.</strong> The incoming amino acid's α-amino group attacks that Schiff base
+        and displaces the lysine, giving the <strong>external aldimine</strong> — now PLP is covalently attached
+        to the substrate, and the freed lysine is perfectly placed to act as the general base for the next step.</li>
+      <li><strong>Carbanion formation.</strong> The lysine abstracts the α-hydrogen. Ordinarily a carbanion on
+        that carbon would be impossibly unstable; here the negative charge delocalises into the conjugated
+        pyridine ring, whose <strong>protonated ring nitrogen</strong> is the ultimate electron sink. The
+        resonance-stabilised species is the <strong>quinonoid intermediate</strong>, and it is the branch point of
+        all PLP chemistry.</li>
+      <li><strong>Reprotonation, then hydrolysis.</strong> Reprotonate the quinonoid at the cofactor's
+        <em>C4′</em> (the carbon that was the aldehyde) instead of at the α-carbon and you get a
+        <strong>ketimine</strong>; hydrolyse that and out comes the
+        α-keto acid, leaving the nitrogen behind on the cofactor as <strong>pyridoxamine phosphate (PMP)</strong>.
+        The first half-reaction is complete and the first product has left — this is why the kinetics are
+        ping-pong.</li>
+      <li><strong>The second half-reaction</strong> runs the identical chemistry backwards with α-ketoglutarate,
+        regenerating PLP and releasing glutamate.</li>
+    </ol>
+    <p style="margin-bottom:0">The reason this matters conceptually: the quinonoid intermediate can be resolved in
+      more than one way, and <em>which bond around the α-carbon is broken is decided by the enzyme, not by the
+      cofactor</em> — by which bond is held perpendicular to the ring plane, where orbital overlap is best. Break
+      the C–H bond and you get transamination or racemisation; break the C–COOH bond and you get
+      <strong>decarboxylation</strong> (histidine → histamine, DOPA → dopamine, glutamate → GABA, serine →
+      ethanolamine); break the C–R bond and you get a side-chain cleavage (serine → glycine). One cofactor, one
+      intermediate, four reaction classes. That is also why isoniazid, which reacts with pyridoxal, causes both
+      a peripheral neuropathy and — in overdose — seizures from failed GABA synthesis, and why the antidote is
+      pyridoxine.</p>
+    </div>
+  </details>
+
+  <h3>ALT and AST: why these two, on every liver panel</h3>
+  <p>Aminotransferases are cytosolic (AST also has a mitochondrial isoform) and are present in cells at
+     concentrations enormously higher than in plasma. They are not secreted. So a raised serum activity means one
+     thing: <strong>cells have leaked or died</strong>. The clinical value is not the enzyme's function but its
+     tissue distribution and its half-life.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">ALT compared with AST as clinical markers</caption>
+      <thead><tr><th>Feature</th><th>ALT (GPT)</th><th>AST (GOT)</th></tr></thead>
+      <tbody>
+        <tr><td>Reaction</td><td>Ala + α-KG ⇌ pyruvate + Glu</td><td>Asp + α-KG ⇌ OAA + Glu</td></tr>
+        <tr><td>Tissue distribution</td><td>Largely <strong>liver</strong> (some kidney)</td><td>Liver, cardiac and skeletal muscle, kidney, brain, red cells</td></tr>
+        <tr><td>Compartment</td><td>Cytosolic only</td><td>Cytosolic <em>and</em> mitochondrial isoforms</td></tr>
+        <tr><td>Plasma half-life</td><td class="num">≈47 h</td><td class="num">≈17 h</td></tr>
+        <tr><td>Specificity for liver</td><td>High — the more useful single test</td><td>Lower; rises with rhabdomyolysis, haemolysis, myocardial injury</td></tr>
+        <tr><td>Metabolic role</td><td>Receives nitrogen from muscle as alanine (§&nbsp;04)</td><td>Loads nitrogen onto aspartate for the urea cycle (§&nbsp;05) and works the malate–aspartate shuttle</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The <strong>De Ritis ratio</strong> (AST/ALT) is the piece examiners actually use. A ratio below 1 with both
+     enzymes high in the hundreds or thousands is the pattern of viral or toxic hepatitis and of non-alcoholic
+     fatty liver. A ratio <strong>above 2, with both enzymes only modestly raised</strong>, is close to
+     characteristic of <strong>alcoholic liver disease</strong>. Two reasons are usually given, and both are
+     mechanistic rather than arbitrary: alcohol injures mitochondria, releasing the mitochondrial AST isoform that
+     ALT has no counterpart for; and chronic alcohol use depletes pyridoxal phosphate, which limits ALT more than
+     AST. Note also what a <em>falling</em> transaminase means in fulminant hepatic failure — often not recovery
+     but that there are few hepatocytes left to leak.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The exceptions worth carrying</p>
+    <p style="margin:0"><strong>Lysine and threonine do not undergo transamination.</strong> Lysine's α-amino group
+      is committed in the first step of its own degradation (saccharopine pathway), and threonine is handled by a
+      dehydratase or an aldolase instead. Everything else feeds the glutamate collector. A second exception worth
+      the same shelf space: the branched-chain amino acids are transaminated in <em>muscle</em>, not liver
+      (liver has little branched-chain aminotransferase), which is why BCAAs are the one group whose catabolism
+      begins peripherally — and why maple syrup urine disease in §&nbsp;08 blocks the step <em>after</em> that.</p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Deamination: releasing the nitrogen at last</h2>
+
+  <p class="idea"><b>The idea</b>Sooner or later the nitrogen has to come off, and that step really does make free ammonia. The cell arranges
+     for it to happen at one enzyme, on one molecule, inside the mitochondrion — the same compartment as the first
+     step of the disposal machinery, so the ammonia is born a few nanometres from the enzyme that will lock it
+     away. The enzyme is also reversible, and which way it runs depends on how much energy the cell has: short of
+     ATP, it dismantles the carrier and feeds the skeleton into the citric acid cycle; flush with ATP, it stops.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; reaction</p>
+    <dl class="def">
+      <dt>Oxidative deamination</dt>
+      <dd>Removal of an amino group <em>as free ammonia</em>, with the carbon being oxidised in the same step. In
+          mammals essentially one enzyme matters: <strong>glutamate dehydrogenase (GDH)</strong>, in the
+          mitochondrial matrix.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">glutamate + H₂O + NAD(P)⁺  ⇌  α-ketoglutarate + NH₄⁺ + NAD(P)H + H⁺</span>
+      <span class="fx__tag">the only high-capacity route from an amino group to free ammonia</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Transdeamination</dt>
+          <dd>The two-step combination that actually happens in vivo: aminotransferase moves the nitrogen onto
+              glutamate, then GDH releases it. The net effect is deamination of the <em>original</em> amino acid
+              without any enzyme ever touching it with an oxidant.</dd>
+          <dt>Non-oxidative deamination</dt>
+          <dd>A handful of amino acids release ammonia by elimination rather than oxidation:
+              <strong>serine and threonine dehydratase</strong> (PLP), <strong>histidase</strong>, and the
+              amidases <strong>glutaminase</strong> and <strong>asparaginase</strong>, which hydrolyse a side-chain
+              amide.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">activators: ADP, GDP, leucine · inhibitors: GTP, ATP</span><span class="fx__tag">GDH is an energy-charge sensor, not a substrate-driven enzyme</span></div>
+          <div class="fx"><span class="fx__eq">glutaminase: glutamine + H₂O → glutamate + NH₄⁺</span><span class="fx__tag">mitochondrial; liver periportal and renal tubule</span></div>
+          <div class="fx"><span class="fx__eq">serine dehydratase: serine → pyruvate + NH₄⁺ (PLP)</span><span class="fx__tag">deamination and dehydration in one step, no oxidant</span></div>
+          <div class="fx"><span class="fx__eq">AMP deaminase: AMP + H₂O → IMP + NH₄⁺</span><span class="fx__tag">the purine nucleotide cycle of working muscle — §&nbsp;11</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>GDH</b><span>glutamate dehydrogenase, gene <em>GLUD1</em></span></div>
+          <div><b>NAD⁺ / NADH</b><span>catabolic redox couple (mol·L⁻¹)</span></div>
+          <div><b>NADPH</b><span>anabolic reductant — the cofactor GDH prefers running <em>backwards</em></span></div>
+          <div><b>α-KG</b><span>α-ketoglutarate; a citric acid cycle intermediate (mol·L⁻¹)</span></div>
+          <div><b>GTP</b><span>guanosine triphosphate — allosteric inhibitor, made by the citric acid cycle</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <p>Two features of GDH repay attention. First, it is <strong>freely reversible and uses either
+     nicotinamide cofactor</strong>: NAD⁺ in the oxidative, catabolic direction, NADPH in the reductive direction
+     that fixes ammonia back onto α-ketoglutarate. That is not sloppiness — it is the standard biochemical
+     signature of an enzyme that must serve both a catabolic and an anabolic pathway, and it is exactly how the
+     brain disposes of ammonia in §&nbsp;01 and how bacteria and plants assimilate it.</p>
+  <p>Second, its allosteric regulation is by <strong>purine nucleotides</strong>, not by amino acids: GTP and ATP
+     inhibit, GDP and ADP activate. Read that as an energy-charge sensor. When ATP is plentiful the cell has no
+     reason to burn amino acids for fuel, so GDH is switched off and the nitrogen stays on glutamate. When ADP
+     accumulates, GDH opens and the carbon skeleton is delivered into the citric acid cycle as α-ketoglutarate.
+     The GTP signal is particularly neat, because GTP is made by succinyl-CoA synthetase <em>within</em> the citric
+     acid cycle — a direct report from the cycle that it does not need more substrate.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Leucine, GDH and a real disease</p>
+    <p style="margin:0">Leucine is an allosteric <em>activator</em> of GDH. Gain-of-function mutations in
+      <em>GLUD1</em> that abolish GTP inhibition cause the <strong>hyperinsulinism–hyperammonaemia syndrome</strong>:
+      unrestrained GDH in the pancreatic β-cell raises the ATP/ADP ratio, closes the K<sub>ATP</sub> channel and
+      drives insulin release — so the child has <em>protein-induced</em>, specifically leucine-induced,
+      hypoglycaemia — while unrestrained GDH in the liver produces ammonia faster than the urea cycle is set up to
+      take it. One enzyme, two organs, two apparently unrelated symptoms, both derivable. This is the shape of a
+      good Part II vignette.</p>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 400" role="img" aria-label="Diagram of nitrogen collection and transport. On the left, amino acids being degraded in a peripheral tissue hand their amino groups by aminotransferases using pyridoxal phosphate to alpha-ketoglutarate, forming glutamate, drawn as a central collection box. Glutamate then branches two ways: with pyruvate via alanine aminotransferase it forms alanine, and with ammonium and ATP via glutamine synthetase it forms glutamine. Both alanine and glutamine travel in the blood to the liver panel on the right, where alanine is converted back to pyruvate and then glucose, glutamine is hydrolysed by glutaminase to ammonium, and glutamate is oxidatively deaminated by glutamate dehydrogenase, all three converging on a pool of ammonium that is committed to urea." style="font-family:var(--sans)">
+      <text x="360" y="24" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)">Nitrogen is collected once, carried twice, and released only in the liver</text>
+
+      <rect x="26" y="140" width="140" height="52" rx="9" fill="var(--card)" stroke="var(--line)" stroke-width="1.5"/>
+      <text x="96" y="163" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">amino acids</text>
+      <text x="96" y="180" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">muscle, gut, most tissues</text>
+
+      <line x1="168" y1="166" x2="204" y2="166" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="204,160 216,166 204,172" fill="var(--ink-soft)"/>
+      <text x="192" y="128" text-anchor="middle" font-size="10.5" fill="var(--accent)">aminotransferase</text>
+      <text x="192" y="142" text-anchor="middle" font-size="10.5" fill="var(--accent)">PLP · + α-KG</text>
+
+      <rect x="220" y="138" width="140" height="56" rx="9" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2.2"/>
+      <text x="290" y="162" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">GLUTAMATE</text>
+      <text x="290" y="180" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">the collection point</text>
+
+      <line x1="362" y1="152" x2="392" y2="112" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="386,105 398,104 393,116" fill="var(--ink-soft)"/>
+      <line x1="362" y1="182" x2="392" y2="240" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="387,235 398,246 386,247" fill="var(--ink-soft)"/>
+
+      <rect x="398" y="70" width="126" height="44" rx="8" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2"/>
+      <text x="461" y="97" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent-2)">ALANINE</text>
+      <text x="461" y="58" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">ALT · + pyruvate</text>
+
+      <rect x="398" y="248" width="126" height="44" rx="8" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2"/>
+      <text x="461" y="275" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent-3)">GLUTAMINE</text>
+      <text x="461" y="308" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">glutamine synthetase</text>
+      <text x="461" y="322" text-anchor="middle" font-size="10.5" fill="var(--ink-soft)">+ NH₄⁺ + ATP</text>
+
+      <line x1="386" y1="44" x2="386" y2="356" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="5 5"/>
+      <line x1="540" y1="44" x2="540" y2="356" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="5 5"/>
+      <text x="463" y="38" text-anchor="middle" font-size="10.5" letter-spacing=".08em" fill="var(--ink-faint)">CARRIED IN BLOOD</text>
+
+      <rect x="552" y="52" width="152" height="290" rx="12" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="6 5"/>
+      <text x="628" y="74" text-anchor="middle" font-size="11.5" font-weight="700" letter-spacing=".1em" fill="var(--accent)">LIVER</text>
+
+      <line x1="526" y1="92" x2="566" y2="104" stroke="var(--accent-2)" stroke-width="2"/>
+      <polygon points="559,98 572,106 558,110" fill="var(--accent-2)"/>
+      <line x1="526" y1="270" x2="566" y2="248" stroke="var(--accent-3)" stroke-width="2"/>
+      <polygon points="559,254 572,246 561,242" fill="var(--accent-3)"/>
+
+      <text x="628" y="112" text-anchor="middle" font-size="11" fill="var(--ink)">alanine → pyruvate</text>
+      <text x="628" y="127" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">ALT run backwards → glucose</text>
+      <text x="628" y="152" text-anchor="middle" font-size="11" fill="var(--ink)">glutamate → α-KG</text>
+      <text x="628" y="167" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">GDH, matrix, NAD⁺</text>
+      <text x="628" y="238" text-anchor="middle" font-size="11" fill="var(--ink)">glutamine → glutamate</text>
+      <text x="628" y="253" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">glutaminase, matrix</text>
+
+      <rect x="568" y="178" width="120" height="42" rx="8" fill="var(--accent-wash)" stroke="var(--accent-2)" stroke-width="2.2"/>
+      <text x="628" y="205" text-anchor="middle" font-size="14" font-weight="700" fill="var(--accent-2)">NH₄⁺</text>
+
+      <line x1="628" y1="278" x2="628" y2="300" stroke="var(--accent)" stroke-width="2.4"/>
+      <polygon points="621,296 628,310 635,296" fill="var(--accent)"/>
+      <rect x="568" y="312" width="120" height="38" rx="8" fill="var(--card)" stroke="var(--accent)" stroke-width="2.2"/>
+      <text x="628" y="337" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--accent)">UREA</text>
+
+      <text x="360" y="378" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">nowhere outside the liver does free ammonia accumulate on purpose — that is the whole design</text>
+    </svg>
+    <figcaption>Read this diagram left to right as a chain of custody. The nitrogen of any amino acid is
+      transferred (never released) onto α-ketoglutarate to make glutamate; glutamate then either loads it onto
+      pyruvate to make alanine or onto its own side chain to make glutamine; those two carriers travel in blood;
+      and only inside the hepatocyte are the bonds broken. Alanine is the carrier that also delivers a
+      gluconeogenic skeleton, which is why it dominates leaving muscle; glutamine is the carrier that moves two
+      nitrogens per molecule and is the most abundant free amino acid in plasma.</figcaption>
+  </figure>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Carrying nitrogen in the blood: glutamine and alanine</h2>
+
+  <p class="idea"><b>The idea</b>Muscle has no way of making urea, so when muscle protein is broken down the nitrogen has to travel. It does
+     so on two molecules, chosen for different reasons. One of them is a pure courier that happens to carry two
+     nitrogens at once and is also the fuel of the gut and the acid-handling substrate of the kidney. The other
+     is cleverer: it carries one nitrogen to the liver <em>and</em> the carbon skeleton of a glucose precursor,
+     so the liver can send back the very sugar the muscle needs. Nothing is wasted except energy, and the energy
+     is spent by the organ that can afford it.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; reactions</p>
+    <dl class="def">
+      <dt>Glutamine as the nitrogen carrier</dt>
+      <dd>Glutamate plus ammonia plus ATP gives glutamine, whose <strong>amide</strong> nitrogen is a chemically
+          inert, uncharged, non-toxic package. Glutamine is the most abundant free amino acid in plasma
+          (≈0.5–0.6 mmol/L, about a fifth of the total) and carries <strong>two</strong> nitrogens per molecule.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">glutamate + NH₄⁺ + ATP  →  glutamine + ADP + P<sub>i</sub></span>
+      <span class="fx__tag">glutamine synthetase — cytosolic, and the brain's principal ammonia sink</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Glucose–alanine cycle (Cahill cycle)</dt>
+          <dd>Muscle transaminates glutamate onto pyruvate to make alanine; alanine travels to the liver; ALT runs
+              in reverse to give back pyruvate and glutamate; the pyruvate becomes glucose and the nitrogen becomes
+              urea. Nitrogen and a gluconeogenic skeleton move together in one molecule.</dd>
+          <dt>Hepatic zonation</dt>
+          <dd><strong>Periportal</strong> hepatocytes carry the urea cycle — high capacity, low affinity, and they
+              see portal blood first. <strong>Perivenous</strong> hepatocytes carry glutamine synthetase — low
+              capacity, high affinity — and mop up whatever ammonia escaped, immediately before blood leaves the
+              liver. A coarse filter followed by a fine one.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">glutaminase: glutamine + H₂O → glutamate + NH₄⁺</span><span class="fx__tag">unloads the amide nitrogen; mitochondrial</span></div>
+          <div class="fx"><span class="fx__eq">2 alanine + 6 ~P → 1 glucose (liver) → 2 ATP (muscle glycolysis)</span><span class="fx__tag">the liver pays 6 and the muscle recovers 2 — a net 4 ~P transfer</span></div>
+          <div class="fx"><span class="fx__eq">renal: glutamine → 2 NH₄⁺ + α-KG → 2 HCO₃⁻</span><span class="fx__tag">excreting NH₄⁺ regenerates bicarbonate — the kidney's acid response</span></div>
+          <div class="fx"><span class="fx__eq">plasma glutamine ≈ 0.5–0.6 mmol·L⁻¹ · alanine ≈ 0.3–0.4 mmol·L⁻¹</span><span class="fx__tag">the two most abundant free amino acids in blood</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>GS</b><span>glutamine synthetase (cytosolic)</span></div>
+          <div><b>Gln / Glu</b><span>glutamine / glutamate (mol·L⁻¹)</span></div>
+          <div><b>~P</b><span>high-energy phosphate bond (mol)</span></div>
+          <div><b>ALT</b><span>alanine aminotransferase — the enzyme of the Cahill cycle</span></div>
+          <div><b>HCO₃⁻</b><span>bicarbonate regenerated by renal glutamine metabolism (mol·L⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Why two carriers rather than one</h3>
+  <p>Glutamine is the general-purpose answer. Its amide nitrogen is uncharged and unreactive, it moves two
+     nitrogens for the price of one carrier, and — crucially — glutamine is also a <em>biosynthetic</em> nitrogen
+     donor in its own right: the amide nitrogen ends up in purines (N3 and N9, §&nbsp;10), in pyrimidines, in
+     amino sugars, in asparagine, and in NAD⁺. It is simultaneously the safest way to store nitrogen and the
+     currency in which nitrogen is spent. That dual role is why rapidly dividing tissues — enterocytes, activated
+     lymphocytes, and tumours — consume glutamine avidly, and why <strong>asparaginase</strong>, used in acute
+     lymphoblastic leukaemia, has hyperammonaemia as a predictable side effect.</p>
+  <p>Alanine solves a narrower and more elegant problem. Exercising muscle produces pyruvate from glycolysis and
+     needs to dispose of amino groups from protein breakdown. Loading one onto the other costs nothing (ΔG°′ ≈ 0)
+     and produces a molecule that carries both cargoes to the same destination. The liver strips the nitrogen for
+     urea and returns the carbon as glucose. The arithmetic is deliberately unfair: gluconeogenesis from two
+     pyruvates costs 6 high-energy phosphates in the liver, while the muscle recovers only 2 ATP from glycolysis.
+     The liver is subsidising the muscle, exactly as it does in the Cori cycle — the difference being that the
+     Cori cycle returns lactate and no nitrogen, while the Cahill cycle returns alanine and clears one nitrogen
+     per turn.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Comparison of the Cori and glucose–alanine cycles</caption>
+      <thead><tr><th></th><th>Cori cycle</th><th>Glucose–alanine (Cahill) cycle</th></tr></thead>
+      <tbody>
+        <tr><td>Carrier from muscle</td><td>Lactate</td><td>Alanine</td></tr>
+        <tr><td>Nitrogen moved</td><td>None</td><td>One N per molecule, to urea</td></tr>
+        <tr><td>Muscle problem solved</td><td>Regenerating NAD⁺ under anaerobic conditions</td><td>Disposing of amino groups without making ammonia</td></tr>
+        <tr><td>Liver cost per glucose</td><td class="num">6 ~P</td><td class="num">6 ~P + 4 ~P for the urea</td></tr>
+        <tr><td>Redox</td><td>Delivers reducing equivalents to liver as lactate</td><td>Redox-neutral (transamination)</td></tr>
+        <tr><td>Dominant when</td><td>Sprinting, hypoxia</td><td>Fasting, prolonged exercise, sepsis</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The kidney's version, and why acidosis changes it</p>
+    <p style="margin:0">Renal tubular cells take up glutamine and run <strong>glutaminase</strong> then
+      <strong>glutamate dehydrogenase</strong>, releasing two NH₄⁺ and leaving α-ketoglutarate, which is
+      metabolised to bicarbonate. Secreting the NH₄⁺ into the tubular lumen exports a proton in a form that cannot
+      diffuse back (the ion trap of §&nbsp;01 again) while the bicarbonate is returned to blood. In chronic
+      metabolic acidosis renal glutamine extraction is strongly upregulated — which is why "the kidney excretes
+      acid as ammonium" and "the liver detoxifies ammonia as urea" are not in conflict: they are two organs using
+      the same substrate for two different jobs, and in acidosis the split shifts towards the kidney, because urea
+      synthesis <em>consumes</em> bicarbonate.</p>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>The urea cycle, step by step</h2>
+
+  <p class="idea"><b>The idea</b>The disposal machine is a loop of five reactions that starts and ends with the same molecule, so nothing is
+     used up except the two nitrogens, a carbon, and some ATP. What makes it more than a list is that the loop is
+     cut in half by a membrane: the first two reactions happen inside the mitochondrion, where the ammonia is
+     made, and the last three happen outside it. Everything awkward about the pathway — why two transporters
+     exist, why one inherited defect causes a strange urinary metabolite, why the cycle is welded to the citric
+     acid cycle — follows from that one line drawn across the middle.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; overall equation</p>
+    <dl class="def">
+      <dt>Urea cycle（尿素循環）</dt>
+      <dd>Five enzymes, discovered by Krebs and Henseleit in 1932 — the first metabolic cycle ever described.
+          Only the liver expresses the complete set. Ornithine and citrulline are intermediates that are
+          <strong>not</strong> found in protein.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">NH₄⁺ + HCO₃⁻ + aspartate + 3 ATP + H₂O → urea + fumarate + 2 ADP + AMP + 2 P<sub>i</sub> + PP<sub>i</sub></span>
+      <span class="fx__tag">3 ATP hydrolysed = <strong>4 high-energy phosphates</strong>, because one goes to AMP</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>The two nitrogens</dt>
+          <dd>The first arrives as <strong>free NH₄⁺</strong>, fixed by CPS I inside the matrix. The second
+              arrives as the <strong>α-amino group of aspartate</strong>, condensed onto citrulline in the
+              cytosol. The carbon and oxygen come from <strong>bicarbonate</strong>.</dd>
+          <dt>Aspartate–argininosuccinate shunt</dt>
+          <dd>The fumarate released by argininosuccinate lyase is hydrated to malate and oxidised to oxaloacetate,
+              which is transaminated back to aspartate. The urea cycle and the citric acid cycle therefore share
+              a four-carbon intermediate pool — the "Krebs bicycle".</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">CPS I: NH₄⁺ + HCO₃⁻ + 2 ATP → carbamoyl-P + 2 ADP + P<sub>i</sub></span><span class="fx__tag">matrix · committed step · requires N-acetylglutamate</span></div>
+          <div class="fx"><span class="fx__eq">OTC: carbamoyl-P + ornithine → citrulline + P<sub>i</sub></span><span class="fx__tag">matrix · the only X-linked step</span></div>
+          <div class="fx"><span class="fx__eq">ASS: citrulline + Asp + ATP → argininosuccinate + AMP + PP<sub>i</sub></span><span class="fx__tag">cytosol · flux-limiting for the cytosolic half</span></div>
+          <div class="fx"><span class="fx__eq">ASL: argininosuccinate → arginine + fumarate</span><span class="fx__tag">cytosol · the link to the citric acid cycle</span></div>
+          <div class="fx"><span class="fx__eq">arginase-1: arginine + H₂O → urea + ornithine</span><span class="fx__tag">cytosol · the only step that actually makes urea</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>CPS I</b><span>carbamoyl phosphate synthetase I (mitochondrial)</span></div>
+          <div><b>OTC</b><span>ornithine transcarbamoylase</span></div>
+          <div><b>ASS / ASL</b><span>argininosuccinate synthetase / lyase</span></div>
+          <div><b>NAG</b><span>N-acetylglutamate, the obligate activator of CPS I (mol·L⁻¹)</span></div>
+          <div><b>ORNT1</b><span>SLC25A15, the ornithine/citrulline antiporter of the inner membrane</span></div>
+          <div><b>~P</b><span>high-energy phosphate bond consumed (mol per mol urea)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 500" role="img" aria-label="Compartment map of the urea cycle. Inside the mitochondrial matrix, ammonium and bicarbonate plus two ATP are converted by carbamoyl phosphate synthetase one, which requires N-acetylglutamate, into carbamoyl phosphate; ornithine transcarbamoylase then joins carbamoyl phosphate to ornithine to give citrulline. Citrulline crosses the inner membrane through the ORNT1 antiporter into the cytosol. There, argininosuccinate synthetase adds aspartate, the source of the second nitrogen, using one ATP that is hydrolysed to AMP and pyrophosphate; argininosuccinate lyase then splits the product into arginine and fumarate, and arginase one hydrolyses arginine to urea and ornithine. Ornithine returns across the inner membrane to the matrix, completing the loop. A ledger box records that the cycle consumes four high-energy phosphates per urea." style="font-family:var(--sans)">
+      <text x="176" y="42" text-anchor="middle" font-size="11.5" font-weight="700" letter-spacing=".1em" fill="var(--accent-3)">MITOCHONDRIAL MATRIX</text>
+      <text x="552" y="42" text-anchor="middle" font-size="11.5" font-weight="700" letter-spacing=".1em" fill="var(--accent)">CYTOSOL</text>
+      <rect x="22" y="54" width="310" height="356" rx="14" fill="none" stroke="var(--accent-3)" stroke-width="1.6" stroke-dasharray="6 5"/>
+      <rect x="336" y="54" width="22" height="356" fill="var(--line-soft)" stroke="var(--line)" stroke-width="1.2"/>
+      <rect x="362" y="54" width="376" height="356" rx="14" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="6 5"/>
+
+      <text x="40" y="88" font-size="12.5" font-weight="700" fill="var(--ink)">NH₄⁺ + HCO₃⁻ + 2 ATP</text>
+      <text x="204" y="88" font-size="11" font-weight="700" fill="var(--accent-2)">← nitrogen ①</text>
+      <line x1="60" y1="96" x2="60" y2="132" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="54,128 60,142 66,128" fill="var(--ink-soft)"/>
+      <text x="76" y="110" font-size="11" fill="var(--ink)">CPS I — committed step</text>
+      <text x="76" y="124" font-size="10.5" fill="var(--accent-2)">obligate activator: N-acetylglutamate</text>
+
+      <text x="40" y="160" font-size="12.5" fill="var(--ink)">carbamoyl phosphate</text>
+      <line x1="60" y1="168" x2="60" y2="196" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="54,192 60,206 66,192" fill="var(--ink-soft)"/>
+      <text x="76" y="180" font-size="11" fill="var(--ink)">OTC · + ornithine, − Pᵢ</text>
+      <text x="76" y="194" font-size="10.5" fill="var(--ink-faint)">ornithine transcarbamoylase</text>
+
+      <text x="40" y="228" font-size="12.5" font-weight="700" fill="var(--accent)">citrulline</text>
+      <line x1="108" y1="223" x2="322" y2="223" stroke="var(--accent)" stroke-width="2"/>
+      <polygon points="318,217 332,223 318,229" fill="var(--accent)"/>
+      <text x="222" y="212" text-anchor="middle" font-size="10.5" fill="var(--ink-faint)">ORNT1 antiport · citrulline out, ornithine in</text>
+
+      <text x="380" y="228" font-size="12.5" font-weight="700" fill="var(--accent)">citrulline</text>
+      <line x1="400" y1="236" x2="400" y2="266" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="394,262 400,276 406,262" fill="var(--ink-soft)"/>
+      <text x="414" y="248" font-size="11" fill="var(--ink)">argininosuccinate synthetase</text>
+      <text x="414" y="262" font-size="10.5" fill="var(--ok)">+ aspartate ← nitrogen ② · ATP → AMP + PPᵢ</text>
+
+      <text x="380" y="296" font-size="12.5" fill="var(--ink)">argininosuccinate</text>
+      <line x1="400" y1="304" x2="400" y2="332" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="394,328 400,342 406,328" fill="var(--ink-soft)"/>
+      <text x="414" y="318" font-size="11" fill="var(--ink)">argininosuccinate lyase</text>
+      <line x1="400" y1="326" x2="556" y2="326" stroke="var(--ink-faint)" stroke-width="1.6" stroke-dasharray="4 3"/>
+      <polygon points="552,321 564,326 552,331" fill="var(--ink-faint)"/>
+      <text x="570" y="322" font-size="11" fill="var(--ink)">fumarate</text>
+      <text x="570" y="336" font-size="10" fill="var(--ink-faint)">→ malate → OAA → Asp</text>
+
+      <text x="380" y="362" font-size="12.5" font-weight="700" fill="var(--ink)">arginine</text>
+      <line x1="446" y1="357" x2="500" y2="357" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="496,351 510,357 496,363" fill="var(--ink-soft)"/>
+      <text x="474" y="346" text-anchor="middle" font-size="10.5" fill="var(--ink)">arginase-1</text>
+      <rect x="518" y="336" width="112" height="42" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2.4"/>
+      <text x="574" y="364" text-anchor="middle" font-size="15" font-weight="700" fill="var(--accent)">UREA</text>
+
+      <path d="M 474,364 L 474,400 L 128,400" fill="none" stroke="var(--accent-3)" stroke-width="2"/>
+      <polygon points="132,394 118,400 132,406" fill="var(--accent-3)"/>
+      <text x="484" y="382" font-size="11" fill="var(--accent-3)">ornithine</text>
+      <text x="40" y="404" font-size="12.5" font-weight="700" fill="var(--accent-3)">ornithine</text>
+      <path d="M 40,396 L 32,396 L 32,180 L 52,180" fill="none" stroke="var(--accent-3)" stroke-width="1.6" stroke-dasharray="4 3"/>
+      <polygon points="48,175 60,180 48,185" fill="var(--accent-3)"/>
+
+      <rect x="596" y="74" width="134" height="118" rx="9" fill="var(--card)" stroke="var(--line)" stroke-width="1.4"/>
+      <text x="663" y="94" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing=".07em" fill="var(--ink-faint)">ATP LEDGER</text>
+      <text x="608" y="114" font-size="10.5" fill="var(--ink)">CPS I  2 ATP → 2 ADP</text>
+      <text x="608" y="129" font-size="10.5" fill="var(--ink-faint)">= 2 ~P</text>
+      <text x="608" y="148" font-size="10.5" fill="var(--ink)">ASS  ATP → AMP + PPᵢ</text>
+      <text x="608" y="163" font-size="10.5" fill="var(--ink-faint)">= 2 ~P</text>
+      <text x="608" y="183" font-size="11" font-weight="700" fill="var(--accent-2)">total 4 ~P = 2 per N</text>
+
+      <circle cx="42" cy="446" r="7" fill="none" stroke="var(--accent-2)" stroke-width="2.5"/>
+      <text x="56" y="450" font-size="11" fill="var(--ink-soft)">nitrogen ① — free ammonium, fixed by CPS I in the matrix</text>
+      <circle cx="42" cy="470" r="7" fill="none" stroke="var(--ok)" stroke-width="2.5"/>
+      <text x="56" y="474" font-size="11" fill="var(--ink-soft)">nitrogen ② — α-amino group of aspartate, added in the cytosol</text>
+    </svg>
+    <figcaption>Draw the membrane before you draw the enzymes. Two reactions are in the matrix (CPS I, OTC) and
+      three are in the cytosol (ASS, ASL, arginase), so two metabolites must cross: citrulline out and ornithine
+      in, on the same antiporter, ORNT1. Note where each nitrogen enters — this is the detail most often asked,
+      and the second nitrogen entering as <em>aspartate</em> rather than as ammonia is what welds this cycle onto
+      the citric acid cycle through fumarate.</figcaption>
+  </figure>
+
+  <h3>Reading the five steps as a story, not a list</h3>
+  <p><strong>Step 1 — CPS I</strong> is the only step that touches free ammonia, and it is deliberately expensive:
+     two ATP to make one carbamoyl phosphate. Why two? Because the reaction has to be irreversible. Fixing a toxic
+     metabolite is not a place for an equilibrium; the cell pays double to make sure the ammonia never comes back.
+     This is the <strong>committed step</strong>, and — see §&nbsp;06 — the only one under acute allosteric
+     control.</p>
+  <p><strong>Step 2 — OTC</strong> attaches the carbamoyl group to ornithine, giving citrulline. Ornithine is
+     doing the same job as oxaloacetate in the citric acid cycle or CoA in β-oxidation: a carrier that comes back
+     unchanged. The name to fix is that this is a <em>trans</em>carbamoylase, a group transfer, not a synthesis;
+     the energy was already paid in step 1.</p>
+  <p><strong>Step 3 — ASS</strong> is where the second nitrogen arrives, and it arrives on aspartate, not as
+     ammonia. Look at the cost: ATP → AMP + PP<sub>i</sub>, which is two high-energy phosphates, not one, and the
+     pyrophosphate is then hydrolysed by inorganic pyrophosphatase to make the step effectively irreversible —
+     the identical trick used by aminoacyl-tRNA synthetases and fatty acyl-CoA synthetase. This is the slowest of
+     the cytosolic steps and the one that limits flux there.</p>
+  <p><strong>Step 4 — ASL</strong> cleaves argininosuccinate into arginine and fumarate. That fumarate is the
+     hinge of the whole page: hydrate it to malate, oxidise it to oxaloacetate, transaminate it with glutamate
+     (by AST) and you have regenerated aspartate. Nitrogen therefore enters the cycle twice from the same
+     glutamate pool — once as ammonia via GDH, once as aspartate via AST — and the four-carbon skeleton is simply
+     borrowed and returned.</p>
+  <p><strong>Step 5 — arginase</strong> hydrolyses the guanidinium group off arginine, releasing urea and
+     regenerating ornithine. Only this last step actually produces urea; the other four are construction. Arginase
+     is why arginine is the one urea-cycle intermediate that is also a dietary amino acid, and why arginine
+     supplementation is used in most urea cycle defects (§&nbsp;06).</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — counting the cost of a urea molecule properly</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">How many high-energy phosphates does one urea cost? How many per
+      nitrogen disposed of? And is the usual figure an overestimate?</p>
+    <ol>
+      <li>CPS I: <span class="fi">2 ATP → 2 ADP + P<sub>i</sub></span>. Each ATP loses one phosphoanhydride bond,
+          so this is <strong>2 ~P</strong>.</li>
+      <li>ASS: <span class="fi">ATP → AMP + PP<sub>i</sub></span>. Going to AMP breaks <em>two</em> anhydride
+          bonds, so this is <strong>2 ~P</strong>, not 1 — and the PP<sub>i</sub> is then hydrolysed, which is
+          what pulls the reaction over.</li>
+      <li>Total: <span class="fi">2 + 2 = 4 ~P per urea</span>. Only <strong>3 ATP molecules</strong> are
+          consumed, which is why the overall equation shows 3 ATP but the answer to "how many high-energy
+          phosphates" is 4. Both numbers are correct answers to different questions — read the stem.</li>
+      <li>Per nitrogen: urea carries 2 N, so <span class="fi">4 / 2 = 2 ~P per nitrogen</span>.</li>
+      <li><strong>Is 4 the true cost?</strong> Not quite. The fumarate leaving step 4 becomes malate and then
+          oxaloacetate, and that oxidation makes one NADH, worth about 2.5 ATP. If those electrons reach the
+          respiratory chain, the net cost falls to roughly <span class="fi">4 − 2.5 = 1.5 ~P</span> per urea.</li>
+      <li>So the honest statement is: <strong>4 high-energy phosphates are spent, up to 2.5 ATP can be
+          recovered</strong>, and the cell is not paying nearly as much as the bare stoichiometry suggests. On a
+          single-best-answer paper, though, "4 high-energy phosphate bonds per urea" is the expected answer unless
+          the stem explicitly mentions the fumarate.</li>
+    </ol>
+    <span class="wex__ans">4 ~P per urea (3 ATP hydrolysed) = 2 ~P per nitrogen · net ≈1.5 ~P after the NADH</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three things to keep straight about this cycle</p>
+    <p style="margin:0"><strong>(1)</strong> "Three ATP" and "four high-energy phosphates" are both right; the
+      difference is whether you count the ATP → AMP step once or twice. <strong>(2)</strong> Ornithine and
+      citrulline are <em>not</em> proteinogenic amino acids — they have no codon and appear in no protein.
+      <strong>(3)</strong> The urea cycle is not a way of making energy or a way of making arginine for protein;
+      it is a detoxification pathway, and the only tissue with all five enzymes is the liver. The kidney expresses
+      ASS and ASL, which is why it can make arginine from the citrulline the gut exports but cannot make urea from
+      ammonia.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Regulating the cycle, and what happens when it breaks</h2>
+
+  <p class="idea"><b>The idea</b>A pathway that only has to run when there is protein to get rid of needs a signal that means "protein is
+     being eaten". The cell uses a beautifully indirect one: a small molecule that is made from the very things
+     that pile up when amino acids are abundant, and which does nothing at all except switch on the first enzyme.
+     When one of the five steps is missing from birth, the picture is always the same — a well baby who begins
+     feeding, accumulates ammonia over a day or two, and collapses — and the only way to tell the defects apart
+     is by asking which intermediate is stuck <em>behind</em> the block.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; control</p>
+    <dl class="def">
+      <dt>N-acetylglutamate (NAG)</dt>
+      <dd>An obligate allosteric activator of CPS I — without it the enzyme is essentially inactive. NAG is made
+          by <strong>N-acetylglutamate synthase</strong> from acetyl-CoA and glutamate, and that synthase is
+          itself <strong>activated by arginine</strong>.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">acetyl-CoA + glutamate  →<sup>arginine ↑</sup>  N-acetylglutamate  →  CPS I on</span>
+      <span class="fx__tag">a feed-forward signal built out of the pathway's own substrates</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Long-term regulation</dt>
+          <dd>All five urea-cycle enzymes are <strong>induced together</strong> over days by a high-protein diet
+              and by starvation (glucagon and glucocorticoids), and repressed on a low-protein diet. Enzyme
+              induction sets the ceiling; NAG sets the minute-to-minute rate.</dd>
+          <dt>Hyperammonaemia</dt>
+          <dd>Plasma ammonia above roughly 100 µmol/L. <strong>Primary</strong> causes are the inherited enzyme
+              defects; <strong>secondary</strong> causes are liver failure, portosystemic shunting, valproate,
+              asparaginase and organic acidaemias that deplete NAG or acetyl-CoA.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">glutamate ↑ (transamination) + acetyl-CoA ↑ → NAG ↑</span><span class="fx__tag">both rise exactly when amino acids are being catabolised</span></div>
+          <div class="fx"><span class="fx__eq">arginine ↑ → NAG synthase ↑ → CPS I ↑</span><span class="fx__tag">arginine accumulates when the cycle is backed up — pull, not push</span></div>
+          <div class="fx"><span class="fx__eq">benzoate + glycine → hippurate  (1 N removed)</span><span class="fx__tag">an alternative excretion route, bypassing the cycle entirely</span></div>
+          <div class="fx"><span class="fx__eq">phenylacetate + glutamine → phenylacetylglutamine  (2 N removed)</span><span class="fx__tag">twice as efficient; given orally as phenylbutyrate</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>NAG</b><span>N-acetylglutamate (mol·L⁻¹)</span></div>
+          <div><b>NAGS</b><span>N-acetylglutamate synthase</span></div>
+          <div><b>UCD</b><span>urea cycle disorder</span></div>
+          <div><b>[NH₃]<sub>plasma</sub></b><span>total plasma ammonia (µmol·L⁻¹)</span></div>
+          <div><b>orotate</b><span>a pyrimidine intermediate; the marker of carbamoyl phosphate spilling into the cytosol (µmol·mmol⁻¹ creatinine in urine)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Why arginine is the signal</h3>
+  <p>It looks strange at first that a <em>product</em> of the cycle should stimulate its first step — feedback is
+     usually inhibitory. But arginine is not the end product; urea is. Arginine is the last intermediate before
+     the exit, so arginine rising means substrate is queueing inside the loop, which means nitrogen is arriving
+     faster than it is leaving. Turning up CPS I is the correct response. Meanwhile the two substrates of NAG
+     synthase, glutamate and acetyl-CoA, are precisely the molecules that accumulate when amino acids are being
+     catabolised in quantity. So NAG concentration is a direct, chemically honest readout of "there is a lot of
+     nitrogen about", and CPS I reads it. This is a good example of a general principle: allosteric signals in
+     metabolism are usually molecules whose concentration <em>already</em> reports the thing being sensed, not
+     dedicated messengers.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The orotic acid logic — learn this as a mechanism, not a fact</p>
+    <p style="margin:0">Block <strong>OTC</strong> and carbamoyl phosphate has nowhere to go. It builds up in the
+      matrix, leaks into the cytosol, and there it meets the pyrimidine pathway, which uses carbamoyl phosphate as
+      its own first intermediate (§&nbsp;10). It is pushed straight through to <strong>orotate</strong>, which
+      spills into the urine. So: <em>hyperammonaemia + orotic aciduria = the block is at or below OTC</em>.
+      Block <strong>CPS I</strong> instead and there is no carbamoyl phosphate to leak, so orotate is
+      <em>low</em>. That one contrast separates the two commonest urea cycle defects using a single urine test,
+      and it is exactly the sort of two-pathway link examiners like. The third member of the set —
+      <strong>hereditary orotic aciduria</strong> from UMP synthase deficiency — has orotic aciduria with
+      <strong>megaloblastic anaemia and no hyperammonaemia</strong>, because the lesion is inside pyrimidine
+      synthesis itself.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Inherited urea cycle defects and their discriminating findings</caption>
+      <thead><tr><th>Enzyme missing</th><th>Inheritance</th><th>Metabolite that accumulates</th><th>Discriminating feature</th></tr></thead>
+      <tbody>
+        <tr><td><strong>NAG synthase</strong></td><td>AR</td><td>—</td><td>Indistinguishable from CPS I deficiency biochemically; uniquely treatable with <strong>carglumic acid</strong> (an NAG analogue)</td></tr>
+        <tr><td><strong>CPS I</strong></td><td>AR</td><td>Glutamine ↑, ammonia ↑↑</td><td>Orotate <strong>low</strong>; citrulline low — the most severe neonatal presentation</td></tr>
+        <tr><td><strong>OTC</strong></td><td><strong>X-linked</strong></td><td>Carbamoyl phosphate → <strong>orotate</strong></td><td>Commonest UCD. Orotic aciduria <em>without</em> anaemia; heterozygous girls may present later or only under stress</td></tr>
+        <tr><td><strong>ASS</strong> (citrullinaemia I)</td><td>AR</td><td><strong>Citrulline ↑↑↑</strong></td><td>Citrulline is enormously raised — 50–100× normal</td></tr>
+        <tr><td><strong>ASL</strong> (argininosuccinic aciduria)</td><td>AR</td><td><strong>Argininosuccinate</strong> in blood and urine</td><td>Brittle hair (<em>trichorrhexis nodosa</em>) from arginine deficiency; citrulline moderately raised</td></tr>
+        <tr><td><strong>Arginase-1</strong> (argininaemia)</td><td>AR</td><td><strong>Arginine ↑</strong></td><td>Least severe hyperammonaemia; presents as progressive <strong>spastic diplegia</strong> rather than neonatal coma</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The clinical shape is worth carrying because it recurs. A term baby is normal at birth — the placenta was
+     clearing ammonia — feeds for 24 to 72 hours, then becomes lethargic, vomits, hyperventilates and
+     progresses to coma. The blood gas shows a <strong>respiratory alkalosis</strong> (ammonia driving the
+     respiratory centre), which is the single best discriminator from an organic acidaemia, where you would find a
+     high-anion-gap metabolic acidosis. Glutamine is raised before ammonia is, because glutamine synthetase is the
+     first buffer. Treatment is: stop all protein, give calories as glucose and lipid to stop endogenous protein
+     breakdown, give intravenous <strong>arginine</strong> (which restores the cycle intermediate <em>and</em>
+     stimulates NAG synthase — except in arginase deficiency), give <strong>benzoate and phenylbutyrate</strong>
+     to open alternative nitrogen exits, and haemodialyse if ammonia is very high, because these small solutes
+     clear well.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Why phenylbutyrate beats benzoate on paper</p>
+    <p style="margin:0">Benzoate is conjugated with <strong>glycine</strong> → hippurate, which is excreted; that
+      removes <strong>one</strong> nitrogen per molecule of drug. Phenylacetate (given orally as the prodrug
+      phenylbutyrate) is conjugated with <strong>glutamine</strong> → phenylacetylglutamine; glutamine carries
+      <strong>two</strong> nitrogens, so the same molar dose removes twice as much. Both work by creating an
+      excretable nitrogen-containing molecule that the kidney will filter — they do not fix the enzyme, they build
+      a bypass. That is the general principle behind treating a metabolic block: divert the substrate to a
+      harmless, excretable derivative.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>The carbon skeletons: glucogenic and ketogenic</h2>
+
+  <p class="idea"><b>The idea</b>Strip the nitrogen off an amino acid and what is left is an ordinary carbon compound that has to be fed into
+     metabolism somewhere. There are only seven places it can go, and which one it goes to decides everything.
+     Land in the part of the map that can be run backwards to sugar, and that amino acid can keep your blood
+     glucose up when you are starving. Land in the part that cannot — because one particular reaction in the body
+     is irreversible — and the carbon can only become fat or ketone bodies. That single irreversible step is the
+     whole reason the classification exists.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the seven exits</p>
+    <dl class="def">
+      <dt>Glucogenic vs ketogenic</dt>
+      <dd><strong>Glucogenic</strong>: the skeleton enters as pyruvate or as a citric acid cycle intermediate, so
+          it can be converted to oxaloacetate and thence to glucose. <strong>Ketogenic</strong>: the skeleton
+          enters as acetyl-CoA or acetoacetyl-CoA, which cannot become glucose.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">pyruvate dehydrogenase is irreversible  ⇒  acetyl-CoA can never become glucose</span>
+      <span class="fx__tag">one enzyme's irreversibility generates the entire classification</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>The seven entry points</dt>
+          <dd><strong>Glucogenic:</strong> pyruvate, α-ketoglutarate, succinyl-CoA, fumarate, oxaloacetate.
+              <strong>Ketogenic:</strong> acetyl-CoA, acetoacetyl-CoA. Every one of the twenty amino acids
+              funnels into one or more of these seven.</dd>
+          <dt>Why acetyl-CoA is a dead end for glucose</dt>
+          <dd>Its two carbons enter the citric acid cycle as citrate and two carbons leave as CO₂ in the same
+              turn, so there is <em>no net gain</em> of oxaloacetate. Animals lack the glyoxylate cycle, which is
+              exactly the pathway plants and bacteria use to get around this.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">purely ketogenic: <strong>leucine, lysine</strong></span><span class="fx__tag">the only two — both begin with L</span></div>
+          <div class="fx"><span class="fx__eq">both: <strong>Ile, Phe, Thr, Trp, Tyr</strong></span><span class="fx__tag">split skeletons — part becomes glucose, part becomes acetyl-CoA</span></div>
+          <div class="fx"><span class="fx__eq">Met, Val, Ile, Thr → propionyl-CoA → succinyl-CoA</span><span class="fx__tag">needs biotin (carboxylase) then B₁₂ (mutase)</span></div>
+          <div class="fx"><span class="fx__eq">Phe → Tyr → fumarate + acetoacetate</span><span class="fx__tag">why tyrosine is both, and where alkaptonuria sits</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>OAA</b><span>oxaloacetate — the gateway to gluconeogenesis (mol·L⁻¹)</span></div>
+          <div><b>α-KG</b><span>α-ketoglutarate (mol·L⁻¹)</span></div>
+          <div><b>PEPCK</b><span>phosphoenolpyruvate carboxykinase — the step that pulls oxaloacetate out of the cycle towards glucose</span></div>
+          <div><b>anaplerosis</b><span>refilling the cycle with a four- or five-carbon intermediate</span></div>
+          <div><b>BCAA</b><span>branched-chain amino acids: leucine, isoleucine, valine</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Derive it rather than memorise it</h3>
+  <p>The question "is this amino acid glucogenic?" is really the question "does its skeleton give a net increase
+     in oxaloacetate?" Everything that arrives as pyruvate, α-ketoglutarate, succinyl-CoA, fumarate or
+     oxaloacetate does, because all of those can be carried round to oxaloacetate and then pulled out by PEPCK.
+     Anything arriving as acetyl-CoA does not, because acetyl-CoA's two carbons are matched by two CO₂ released in
+     the same turn of the cycle. So the classification is a statement about <strong>anaplerosis</strong>, and if
+     you can say which of the seven doorways an amino acid uses, you never need the list.</p>
+  <p>Two consequences follow immediately and both are examinable. First, the <strong>odd-chain fatty acid</strong>
+     story is the same story: propionyl-CoA is a three-carbon unit that becomes succinyl-CoA and is therefore
+     glucogenic, which is why odd-chain fatty acids are the exception to "fat cannot become sugar". Second, the
+     four amino acids that reach succinyl-CoA through propionyl-CoA — <strong>methionine, valine, isoleucine,
+     threonine</strong> — require <strong>biotin</strong> for propionyl-CoA carboxylase and
+     <strong>vitamin B₁₂</strong> for methylmalonyl-CoA mutase. That is where the methylmalonic acid of
+     §&nbsp;09 comes from, and it is why B₁₂ deficiency and propionic acidaemia end up in the same place.</p>
+
+  <div class="mnemo">
+    <h4>The two exclusively ketogenic amino acids</h4>
+    <p>Only <strong>L</strong>eucine and <strong>L</strong>ysine — the two <strong>L</strong>s. Everything else
+      can contribute at least some carbon to glucose. The five that are <em>both</em> are
+      <strong>Ile · Phe · Thr · Trp · Tyr</strong>: their skeletons are cut in two, and the halves go to different
+      doorways.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the full entry-point table, and what each grouping is really telling you</summary>
+    <div class="disc__body">
+    <div class="table-scroll">
+      <table class="data">
+        <caption class="sr-only">Amino acids grouped by the metabolic intermediate they are degraded to</caption>
+        <thead><tr><th>Enters as</th><th>Amino acids</th><th>Class</th><th>Why the group hangs together</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Pyruvate</strong></td><td>Ala, Cys, Gly, Ser, Thr, Trp</td><td>Glucogenic</td><td>All are three-carbon or easily trimmed to three carbons; Ala is one transamination away</td></tr>
+          <tr><td><strong>α-Ketoglutarate</strong></td><td>Glu, Gln, Pro, Arg, His</td><td>Glucogenic</td><td>The "glutamate family" — all five are converted to glutamate first, so they are five carbons or a ring that opens to five</td></tr>
+          <tr><td><strong>Succinyl-CoA</strong></td><td>Met, Val, Ile, Thr</td><td>Glucogenic</td><td>All route through <strong>propionyl-CoA</strong>: biotin then B₁₂</td></tr>
+          <tr><td><strong>Fumarate</strong></td><td>Phe, Tyr, Asp</td><td>Glucogenic</td><td>Asp is one transamination from OAA; Phe/Tyr split off fumarate in the final step of their pathway</td></tr>
+          <tr><td><strong>Oxaloacetate</strong></td><td>Asp, Asn</td><td>Glucogenic</td><td>Asn is deamidated to Asp, Asp transaminated to OAA — two steps, no cofactors of note</td></tr>
+          <tr><td><strong>Acetyl-CoA</strong></td><td>Ile, Leu, Thr, Trp</td><td>Ketogenic</td><td>The tail ends of split skeletons</td></tr>
+          <tr><td><strong>Acetoacetyl-CoA</strong></td><td>Leu, Lys, Phe, Tyr, Trp</td><td>Ketogenic</td><td>Four-carbon ketone-body precursor; Leu and Lys have nothing but this</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-bottom:0">Read the table by column and it stops being a list of twenty-odd entries. Threonine
+      and tryptophan appear three times each because their skeletons are large and get cut up; aspartate appears
+      twice because fumarate and oxaloacetate are one hydration and one oxidation apart. The only genuinely
+      arbitrary-looking facts are the ketogenic assignments of leucine and lysine, and those are worth the
+      mnemonic. Note also the practical consequence: on a prolonged fast, muscle protein is broken down largely to
+      supply <em>glucogenic</em> carbon, and the fact that leucine cannot contribute is part of why branched-chain
+      amino acids are unusually good at signalling (through mTOR) rather than at feeding gluconeogenesis.</p>
+    </div>
+  </details>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Where this appears on the paper</p>
+    <p style="margin:0">Rarely as "list the ketogenic amino acids". Usually as an <strong>isotope-labelling</strong>
+      question — "a rat is given <sup>14</sup>C-labelled leucine; can it be used to make glucose?" (no <em>net</em>
+      glucose, because its skeleton arrives only as acetyl-CoA and acetoacetyl-CoA — but see the caveat at the end
+      of this box before answering a stem phrased in terms of individual labelled atoms) — or embedded in a
+      starvation-physiology stem, or as part of a vitamin question about propionyl-CoA. The version that catches
+      people is
+      <em>"can label from acetyl-CoA ever appear in glucose?"</em>: strictly, individual <em>carbon atoms</em> can,
+      because acetyl-CoA carbons scramble into the cycle's four-carbon intermediates, but there is no
+      <strong>net</strong> conversion. If the option says "no net synthesis of glucose from acetyl-CoA", it is
+      right; if it says "no carbon atom from acetyl-CoA can ever be found in glucose", it is wrong.</p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>The classic inborn errors of amino-acid catabolism</h2>
+
+  <p class="idea"><b>The idea</b>Each of these diseases is one missing enzyme in a pathway you have just learnt, and each of them makes the
+     same argument: when a step is blocked, the substrate backs up, spills into whatever side reaction can take
+     it, and the products of that side reaction are what you see, smell or measure. The product downstream of the
+     block is missing, so anything the body needed it for must now be supplied in the diet. Every treatment is
+     one of three moves — take the substrate out of the diet, put the missing product back, or open a bypass.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the general rule</p>
+    <dl class="def">
+      <dt>Inborn error of metabolism</dt>
+      <dd>An inherited deficiency of a single enzyme or transporter. Almost all are <strong>autosomal
+          recessive</strong>, because one working copy of a gene usually makes enough enzyme — which is also why
+          the exceptions (OTC deficiency, X-linked) are worth flagging.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">block a step  ⇒  substrate ↑ (and its side products) · product ↓ (and everything made from it)</span>
+      <span class="fx__tag">every sign of every one of these diseases is on one side of that arrow or the other</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Phenylalanine hydroxylase (PAH)</dt>
+          <dd>An aromatic amino-acid hydroxylase: it uses molecular O₂ and <strong>tetrahydrobiopterin
+              (BH₄)</strong>, inserting one oxygen atom into phenylalanine and reducing the other to water. BH₄ is
+              regenerated by dihydropteridine reductase using NADH — <em>not</em> by DHFR, and BH₄ is
+              <em>not</em> a folate.</dd>
+          <dt>Branched-chain α-keto acid dehydrogenase (BCKD)</dt>
+          <dd>The second step of branched-chain amino-acid catabolism, and the third member of a family with
+              pyruvate dehydrogenase and α-ketoglutarate dehydrogenase — same architecture, same five cofactors,
+              and a shared E3 subunit.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">Phe + O₂ + BH₄ → Tyr + H₂O + BH₂  (PAH)</span><span class="fx__tag">blocked in PKU; tyrosine then becomes essential</span></div>
+          <div class="fx"><span class="fx__eq">BCKD cofactors: TPP · lipoate · CoA · FAD · NAD⁺</span><span class="fx__tag">identical to PDH and α-KGDH — one fact covers three enzymes</span></div>
+          <div class="fx"><span class="fx__eq">homocysteine + serine → cystathionine  (CBS, PLP)</span><span class="fx__tag">blocked in classical homocystinuria</span></div>
+          <div class="fx"><span class="fx__eq">homogentisate → maleylacetoacetate  (HGD, Fe²⁺, O₂)</span><span class="fx__tag">blocked in alkaptonuria</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>BH₄</b><span>tetrahydrobiopterin (mol·L⁻¹)</span></div>
+          <div><b>PAH</b><span>phenylalanine hydroxylase</span></div>
+          <div><b>BCKD</b><span>branched-chain α-keto acid dehydrogenase complex</span></div>
+          <div><b>CBS</b><span>cystathionine β-synthase (PLP-dependent)</span></div>
+          <div><b>HGD</b><span>homogentisate 1,2-dioxygenase</span></div>
+          <div><b>TPP</b><span>thiamine pyrophosphate, from vitamin B₁</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The four classic inborn errors of amino acid catabolism</caption>
+      <thead><tr><th>Disease</th><th>Enzyme blocked</th><th>What accumulates</th><th>Clinical signature</th><th>Treatment logic</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Phenylketonuria</strong></td>
+          <td>Phenylalanine hydroxylase (or BH₄ metabolism, ~2 %)</td>
+          <td>Phenylalanine; overflow to <strong>phenylpyruvate</strong>, phenyllactate, phenylacetate</td>
+          <td>Untreated: severe intellectual disability, seizures, <strong>hypopigmentation</strong>, musty odour. Newborn-screened everywhere</td>
+          <td>Low-Phe diet + <strong>tyrosine supplement</strong> (now essential); sapropterin (BH₄) if responsive; avoid aspartame</td>
+        </tr>
+        <tr>
+          <td><strong>Maple syrup urine disease</strong></td>
+          <td>BCKD complex</td>
+          <td>Leucine, isoleucine, valine and their <strong>α-keto acids</strong></td>
+          <td>Neonatal encephalopathy, ketoacidosis, urine and cerumen smelling of burnt sugar. <strong>Leucine</strong> is the neurotoxic one</td>
+          <td>Restrict all three BCAAs (not zero — they are essential); high-dose <strong>thiamine</strong> in responsive variants; dialysis in crisis</td>
+        </tr>
+        <tr>
+          <td><strong>Homocystinuria</strong> (classical)</td>
+          <td>Cystathionine β-synthase (PLP)</td>
+          <td><strong>Homocysteine</strong> and <strong>methionine</strong> both ↑</td>
+          <td>Marfanoid habitus, <strong>downward</strong> lens dislocation, osteoporosis, arterial and venous <strong>thrombosis</strong>, intellectual disability</td>
+          <td>Pyridoxine (B₆) — about half respond; low methionine, cysteine supplement, <strong>betaine</strong> to remethylate homocysteine</td>
+        </tr>
+        <tr>
+          <td><strong>Alkaptonuria</strong></td>
+          <td>Homogentisate 1,2-dioxygenase</td>
+          <td><strong>Homogentisic acid</strong>, which oxidises and polymerises to a black pigment</td>
+          <td>Urine darkens on standing; <strong>ochronosis</strong> — blue-black cartilage, sclerae, ear — and degenerative arthritis of the spine in adulthood</td>
+          <td>Largely supportive; the mildest of the four. Nitisinone (see below) reduces homogentisate production</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>PKU, and why the pathway matters more than the name</h3>
+  <p>Phenylalanine hydroxylase converts phenylalanine to tyrosine. Block it and three things follow, and you can
+     derive all of them. <strong>(1)</strong> Phenylalanine accumulates and is transaminated into the phenylketones
+     — phenylpyruvate and its relatives — which is what "phenylketonuria" refers to and what gives the musty,
+     mousy odour. <strong>(2)</strong> Phenylalanine competes with the other large neutral amino acids for the
+     LAT1 transporter at the blood–brain barrier, starving the brain of tyrosine and tryptophan; that competition,
+     more than direct toxicity, is what damages the developing brain. <strong>(3)</strong> Tyrosine can no longer
+     be made, so it becomes a <em>dietary essential</em>, and everything downstream of tyrosine is short —
+     including melanin, which is why untreated children are fair-haired and pale-skinned.</p>
+  <p>The 2 % of cases caused by defects in <strong>BH₄</strong> rather than in PAH itself are the ones that
+     matter conceptually, because BH₄ serves three hydroxylases: phenylalanine hydroxylase, tyrosine hydroxylase
+     (making L-DOPA and thence catecholamines) and tryptophan hydroxylase (making serotonin). So-called malignant
+     PKU therefore adds a neurotransmitter deficiency that a low-phenylalanine diet cannot touch — the child needs
+     BH₄, L-DOPA and 5-hydroxytryptophan. If a stem describes a screen-positive infant who deteriorates
+     <em>despite</em> good dietary control, that is the answer.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 4 — reading a newborn screening result in two unit systems</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A newborn screening laboratory reports blood phenylalanine as
+      20 mg/dL, with a cutoff for referral of 2 mg/dL and a normal of about 1 mg/dL. Phenylalanine has
+      M = 165.2 g/mol. Express these in µmol/L, and say what the numbers imply.</p>
+    <ol>
+      <li>Conversion: <span class="fi">1 mg/dL = 10 mg/L</span>, so
+          <span class="fi">10 / 165.2 = 0.0605 mmol/L = 60.5 µmol/L</span>. Useful to know as a single
+          factor: <strong>1 mg/dL Phe ≈ 60 µmol/L</strong>.</li>
+      <li>Cutoff: <span class="fi">2 × 60.5 = 121 µmol/L</span>. Normal: <span class="fi">≈60 µmol/L</span>.</li>
+      <li>This infant: <span class="fi">20 × 60.5 ≈ 1210 µmol/L</span> — about
+          <span class="fi">1210 / 60 = 20-fold</span> the normal concentration. That is the classical PKU range
+          (conventionally &gt;1200 µmol/L, or &gt;20 mg/dL).</li>
+      <li>Why the timing of the sample matters: the placenta cleared phenylalanine <em>in utero</em>, so a sample
+          taken before feeding has begun can be falsely normal. Screening is done at 24–72 hours after milk
+          feeding is established, for the same reason a urea cycle defect declares itself only after feeding.</li>
+      <li>The therapeutic target is usually 120–360 µmol/L, i.e. <span class="fi">2–6 mg/dL</span> — deliberately
+          not zero, because phenylalanine is an <strong>essential</strong> amino acid and a diet containing none
+          of it is lethal. This is the general rule for every one of these diseases: restrict, never abolish.</li>
+    </ol>
+    <span class="wex__ans">1 mg/dL ≈ 60 µmol/L · this infant ≈ 1210 µmol/L ≈ 20× normal · target 120–360 µmol/L</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Four pairs that are constantly confused</p>
+    <p style="margin:0"><strong>Homocystinuria vs Marfan syndrome:</strong> both marfanoid, both with dislocated
+      lenses — but homocystinuria dislocates the lens <em>downwards</em> and adds thrombosis and intellectual
+      disability, while Marfan dislocates it <em>upwards</em> and adds aortic root dilatation.
+      <strong>Homocystinuria vs cystinuria:</strong> completely unrelated — cystinuria is a defect of the renal
+      tubular transporter for the dibasic amino acids (COLA: cystine, ornithine, lysine, arginine), producing
+      hexagonal crystals and stones, with no systemic metabolic disease. <strong>Alkaptonuria vs porphyria:</strong>
+      both darken urine on standing, but alkaptonuria is painless in childhood and gives ochronosis.
+      <strong>Tyrosinaemia type I vs alkaptonuria:</strong> both are in the tyrosine pathway, but tyrosinaemia I
+      (fumarylacetoacetate hydrolase) causes liver failure and renal Fanconi syndrome and is treated with
+      <strong>nitisinone</strong>, which blocks 4-hydroxyphenylpyruvate dioxygenase higher up so that the toxic
+      fumarylacetoacetate is never formed — deliberately converting a lethal disease into a chemically induced
+      tyrosinaemia type III, which is comparatively benign. (Note the direction: nitisinone acts <em>above</em>
+      homogentisate, so it lowers homogentisate rather than causing alkaptonuria — which is exactly why the same
+      drug is also used in alkaptonuria.)</p>
+  </div>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>One-carbon metabolism, SAM and the folate trap</h2>
+
+  <p class="idea"><b>The idea</b>Some jobs need a single carbon atom moved from one molecule to another — building the ring of a nucleotide,
+     putting a methyl group onto DNA. A bare carbon fragment cannot be allowed to float around, so the cell keeps
+     one on a carrier and hands it over directly. There are two such carriers, and the difference between them is
+     the whole section: one is a general handler that can carry the carbon at three different levels of
+     oxidation, and the other carries it only in the most reduced form but hands it over far more forcefully.
+     Between them sits a single reaction that is one-way — and because it is one-way, a vitamin deficiency two
+     steps downstream can strand the entire folate supply in a form nothing can use.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the two carriers</p>
+    <dl class="def">
+      <dt>Tetrahydrofolate (THF)</dt>
+      <dd>The general one-carbon carrier, made from dietary folate by <strong>dihydrofolate reductase</strong>
+          acting twice (folate → DHF → THF, both using NADPH). It carries the carbon on N5, on N10, or bridging
+          both, at <strong>three oxidation levels</strong>: methyl (most reduced), methylene, and formyl/methenyl
+          (most oxidised).</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">N⁵-methyl-THF  ⟵  N⁵,N¹⁰-methylene-THF  ⇌  N¹⁰-formyl-THF</span>
+      <span class="fx__tag">left = most reduced; the leftmost step (MTHFR) is effectively irreversible in vivo</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>S-adenosylmethionine (SAM)</dt>
+          <dd>Methionine plus ATP, with <em>all three</em> phosphates lost (P<sub>i</sub> + PP<sub>i</sub>). The
+              resulting sulfonium ion is a far better methyl donor than N⁵-methyl-THF because the positive charge
+              on sulfur makes the methyl group strongly electrophilic. SAM is the universal biological methyl
+              donor: DNA and histone methylation, noradrenaline → adrenaline, phosphatidylethanolamine →
+              phosphatidylcholine, creatine, and the inactivation of catecholamines by COMT.</dd>
+          <dt>The methionine cycle</dt>
+          <dd>SAM → (donate methyl) → S-adenosylhomocysteine → (hydrolase) → homocysteine + adenosine.
+              Homocysteine has two fates: <strong>remethylation</strong> back to methionine, or
+              <strong>transsulfuration</strong> to cysteine.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">serine + THF → glycine + N⁵,N¹⁰-methylene-THF  (SHMT, PLP)</span><span class="fx__tag">the principal source of one-carbon units</span></div>
+          <div class="fx"><span class="fx__eq">dUMP + methylene-THF → dTMP + <strong>DHF</strong></span><span class="fx__tag">the only reaction that oxidises THF to DHF — hence the DHFR dependence</span></div>
+          <div class="fx"><span class="fx__eq">homocysteine + N⁵-methyl-THF → methionine + THF  (B₁₂)</span><span class="fx__tag">the sole exit from N⁵-methyl-THF in mammals</span></div>
+          <div class="fx"><span class="fx__eq">methylmalonyl-CoA → succinyl-CoA  (mutase, adenosylcobalamin)</span><span class="fx__tag">the <em>other</em> B₁₂ enzyme — the neurological one</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>THF / DHF</b><span>tetrahydrofolate / dihydrofolate (mol·L⁻¹)</span></div>
+          <div><b>DHFR</b><span>dihydrofolate reductase (NADPH-dependent)</span></div>
+          <div><b>SHMT</b><span>serine hydroxymethyltransferase (PLP)</span></div>
+          <div><b>MTHFR</b><span>methylenetetrahydrofolate reductase</span></div>
+          <div><b>SAM / SAH</b><span>S-adenosylmethionine / S-adenosylhomocysteine</span></div>
+          <div><b>MMA</b><span>methylmalonic acid (µmol·L⁻¹ in serum)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Where the carbons come from and where they go</h3>
+  <p>The dominant source is <strong>serine</strong>: serine hydroxymethyltransferase, another PLP enzyme, takes the
+     β-carbon off serine to give glycine and loads it onto THF as N⁵,N¹⁰-methylene-THF. Smaller contributions come
+     from the glycine cleavage system, from formate, and from histidine (whose intermediate FIGLU accumulates in
+     folate deficiency — the basis of the old FIGLU excretion test).</p>
+  <p>The three destinations are worth memorising as a set, because each is a drug target:</p>
+  <ul>
+    <li><strong>N¹⁰-formyl-THF → purine C2 and C8.</strong> Two of the nine ring atoms of every purine come from
+        folate (§&nbsp;10).</li>
+    <li><strong>N⁵,N¹⁰-methylene-THF → dTMP</strong>, by thymidylate synthase. This is the reaction that makes
+        DNA's thymine, and it is unique: the folate is not merely a carrier here, it is also the
+        <em>reductant</em>, so it leaves oxidised as <strong>DHF</strong> and must be reduced back by DHFR before
+        it can be used again. That is why blocking DHFR starves the cell of thymidylate specifically.</li>
+    <li><strong>N⁵-methyl-THF → methionine</strong>, by methionine synthase, which requires
+        <strong>methylcobalamin</strong>. This is the only reaction in human metabolism that consumes
+        N⁵-methyl-THF.</li>
+  </ul>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 400" role="img" aria-label="Diagram of the folate trap. On the left, N5 N10 methylene tetrahydrofolate supplies thymidylate and, via formyl tetrahydrofolate, the purine ring. It is converted downwards by the enzyme MTHFR, an effectively irreversible step, into N5 methyl tetrahydrofolate. The only consumer of N5 methyl tetrahydrofolate is methionine synthase, drawn as a central box requiring vitamin B12 as methylcobalamin, which takes homocysteine from below and releases methionine above while regenerating free tetrahydrofolate that recycles back to the methylene form. A red bar across the input arrow marks the block in B12 deficiency, with folate piling up as N5 methyl tetrahydrofolate. On the right, methionine is converted to S-adenosylmethionine, which donates methyl groups to become S-adenosylhomocysteine and then homocysteine, closing the cycle; homocysteine also exits downward to cystathionine and cysteine through cystathionine beta synthase, a PLP enzyme." style="font-family:var(--sans)">
+      <line x1="90" y1="56" x2="90" y2="36" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <polygon points="85,40 90,28 95,40" fill="var(--accent-3)"/>
+      <text x="90" y="22" text-anchor="middle" font-size="10.5" fill="var(--accent-3)">→ dTMP (thymidylate synthase)</text>
+      <line x1="196" y1="56" x2="196" y2="36" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <polygon points="191,40 196,28 201,40" fill="var(--accent-3)"/>
+      <text x="240" y="22" text-anchor="middle" font-size="10.5" fill="var(--accent-3)">→ formyl-THF → purine C2, C8</text>
+
+      <rect x="34" y="58" width="196" height="48" rx="9" fill="var(--card)" stroke="var(--line)" stroke-width="1.6"/>
+      <text x="132" y="79" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">N⁵,N¹⁰-methylene-THF</text>
+      <text x="132" y="96" text-anchor="middle" font-size="10" fill="var(--ink-faint)">from serine, via SHMT (PLP)</text>
+
+      <line x1="132" y1="108" x2="132" y2="164" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <polygon points="125,160 132,176 139,160" fill="var(--accent-2)"/>
+      <text x="146" y="130" font-size="11" font-weight="700" fill="var(--accent-2)">MTHFR</text>
+      <text x="146" y="145" font-size="10" fill="var(--accent-2)">effectively one-way</text>
+
+      <rect x="34" y="178" width="196" height="48" rx="9" fill="var(--accent-wash)" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <text x="132" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">N⁵-methyl-THF</text>
+      <text x="132" y="217" text-anchor="middle" font-size="10" fill="var(--ink-soft)">the main circulating form</text>
+      <text x="132" y="244" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--bad)">folate piles up here — the trap</text>
+
+      <line x1="232" y1="196" x2="282" y2="196" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="278,190 292,196 278,202" fill="var(--ink-soft)"/>
+      <line x1="258" y1="180" x2="258" y2="212" stroke="var(--bad)" stroke-width="4.5"/>
+      <text x="258" y="172" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--bad)">✕ no B₁₂</text>
+
+      <rect x="296" y="164" width="152" height="66" rx="10" fill="var(--card)" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <text x="372" y="188" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">methionine synthase</text>
+      <text x="372" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-2)">requires vitamin B₁₂</text>
+      <text x="372" y="220" text-anchor="middle" font-size="9.5" fill="var(--ink-faint)">(methylcobalamin)</text>
+
+      <line x1="372" y1="292" x2="372" y2="240" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="366,244 372,230 378,244" fill="var(--ink-soft)"/>
+      <line x1="372" y1="160" x2="372" y2="120" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="366,124 372,110 378,124" fill="var(--ink-soft)"/>
+
+      <rect x="300" y="66" width="144" height="42" rx="8" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="372" y="92" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">methionine</text>
+      <rect x="300" y="294" width="144" height="42" rx="8" fill="var(--card)" stroke="var(--accent-3)" stroke-width="2"/>
+      <text x="372" y="320" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent-3)">homocysteine</text>
+
+      <path d="M 300,222 L 250,268" fill="none" stroke="var(--ok)" stroke-width="1.8" stroke-dasharray="4 3"/>
+      <polygon points="256,260 244,274 254,272" fill="var(--ok)"/>
+      <rect x="118" y="272" width="122" height="36" rx="8" fill="var(--card)" stroke="var(--ok)" stroke-width="1.8"/>
+      <text x="179" y="295" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ok)">THF, free again</text>
+      <path d="M 116,290 L 22,290 L 22,82 L 30,82" fill="none" stroke="var(--ok)" stroke-width="1.6" stroke-dasharray="4 3"/>
+      <polygon points="26,77 38,82 26,87" fill="var(--ok)"/>
+
+      <line x1="446" y1="87" x2="500" y2="87" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="496,81 510,87 496,93" fill="var(--ink-soft)"/>
+      <text x="478" y="76" text-anchor="middle" font-size="10" fill="var(--ink-faint)">+ ATP</text>
+      <rect x="516" y="66" width="130" height="42" rx="8" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="581" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent)">SAM</text>
+      <line x1="581" y1="112" x2="581" y2="152" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="575,148 581,162 587,148" fill="var(--ink-soft)"/>
+      <text x="593" y="136" font-size="10" fill="var(--ink-faint)">methyl transfers</text>
+      <rect x="516" y="166" width="130" height="40" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.6"/>
+      <text x="581" y="191" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">SAH</text>
+      <path d="M 581,208 L 581,315 L 458,315" fill="none" stroke="var(--ink-soft)" stroke-width="2"/>
+      <polygon points="462,309 448,315 462,321" fill="var(--ink-soft)"/>
+      <text x="593" y="256" font-size="10" fill="var(--ink-faint)">hydrolase</text>
+      <text x="593" y="270" font-size="10" fill="var(--ink-faint)">− adenosine</text>
+
+      <line x1="372" y1="338" x2="372" y2="360" stroke="var(--ink-soft)" stroke-width="1.8"/>
+      <polygon points="366,356 372,370 378,356" fill="var(--ink-soft)"/>
+      <text x="386" y="368" font-size="10.5" fill="var(--ink-soft)">→ cystathionine → cysteine (CBS, PLP · vitamin B₆)</text>
+      <text x="132" y="392" text-anchor="middle" font-size="10" fill="var(--ink-faint)">MTX blocks DHFR upstream · 5-FU blocks thymidylate synthase</text>
+    </svg>
+    <figcaption>The trap in one picture. MTHFR pushes folate into the N⁵-methyl form and does not pull it back;
+      the only door out is methionine synthase, and that door needs vitamin B₁₂. Remove B₁₂ and folate accumulates
+      as N⁵-methyl-THF — plentiful in the blood, useless to the cell — so DNA synthesis fails for want of
+      thymidylate and purines, exactly as in true folate deficiency. Homocysteine rises because it cannot be
+      remethylated; that is why homocysteine is raised in <em>both</em> deficiencies.</figcaption>
+  </figure>
+
+  <h3>The folate trap, and the one test that separates the two vitamins</h3>
+  <p>Now put the mechanism to work. B₁₂ has exactly <strong>two</strong> jobs in human metabolism:</p>
+  <ol>
+    <li>As <strong>methylcobalamin</strong>, cofactor of <strong>methionine synthase</strong> — the folate door.</li>
+    <li>As <strong>adenosylcobalamin</strong>, cofactor of <strong>methylmalonyl-CoA mutase</strong> — the step
+        that converts methylmalonyl-CoA to succinyl-CoA on the propionyl-CoA route of §&nbsp;07.</li>
+  </ol>
+  <p>Lose B₁₂ and both fail. The first failure produces a <strong>megaloblastic anaemia indistinguishable from
+     folate deficiency</strong>, because it is functionally a folate deficiency: dividing cells cannot make dTMP,
+     DNA replication stalls while RNA and protein synthesis carry on, and the result is a large cell with an
+     immature nucleus. The second failure allows <strong>methylmalonyl-CoA</strong> to accumulate; it is thought
+     to disturb the synthesis of myelin lipids, and it produces the subacute combined degeneration of the
+     posterior and lateral columns.</p>
+  <p>Hence the clinically decisive point. Give a B₁₂-deficient patient large doses of <strong>folic acid</strong>
+     and you bypass the trap — enough folate enters the pool as reduced forms other than N⁵-methyl-THF that
+     thymidylate synthesis restarts, and <strong>the anaemia corrects</strong>. But nothing you have done touches
+     methylmalonyl-CoA mutase, so <strong>the neurological damage continues, now without its warning sign</strong>.
+     That is why folate is not given blind for megaloblastic anaemia, why fortified flour was debated, and why the
+     laboratory discriminator is <strong>methylmalonic acid</strong>: raised in B₁₂ deficiency, normal in folate
+     deficiency, while <strong>homocysteine is raised in both</strong>.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Distinguishing vitamin B12 deficiency from folate deficiency</caption>
+      <thead><tr><th></th><th>Folate deficiency</th><th>Vitamin B₁₂ deficiency</th></tr></thead>
+      <tbody>
+        <tr><td>Megaloblastic anaemia</td><td>Yes</td><td>Yes — mechanistically identical (the folate trap)</td></tr>
+        <tr><td>Serum homocysteine</td><td class="num">↑</td><td class="num">↑</td></tr>
+        <tr><td><strong>Methylmalonic acid</strong></td><td class="num">normal</td><td class="num"><strong>↑</strong></td></tr>
+        <tr><td>Neurological signs</td><td>No</td><td>Subacute combined degeneration; peripheral neuropathy; dementia</td></tr>
+        <tr><td>Body stores</td><td>3–4 months</td><td>3–5 years (hepatic)</td></tr>
+        <tr><td>Effect of giving folate alone</td><td>Corrects everything</td><td>Corrects the anaemia only — <strong>masks</strong> a progressing neuropathy</td></tr>
+        <tr><td>Typical cause</td><td>Poor diet, alcohol, pregnancy, methotrexate, phenytoin</td><td>Pernicious anaemia (intrinsic factor), gastrectomy, ileal disease, strict veganism, metformin, nitrous oxide</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the transsulfuration arm, and why homocysteine is measured at all</summary>
+    <div class="disc__body">
+    <p>Homocysteine sits at a genuine three-way junction, and each branch has a vitamin attached — which is the
+      real reason a raised homocysteine is a useful screening result rather than merely a risk marker.</p>
+    <ul>
+      <li><strong>Remethylation by methionine synthase</strong> — needs <strong>B₁₂</strong> and
+        N⁵-methyl-THF (i.e. <strong>folate</strong>). Deficiency of either raises homocysteine.</li>
+      <li><strong>Remethylation by betaine–homocysteine methyltransferase</strong> — liver and kidney only, uses
+        betaine (from choline) as the methyl donor and needs no vitamin at all. This is why
+        <strong>betaine</strong> is a treatment for homocystinuria: it opens a vitamin-independent exit.</li>
+      <li><strong>Transsulfuration</strong> — cystathionine β-synthase then cystathionine γ-lyase, both
+        <strong>PLP</strong> (vitamin B₆) enzymes, converting homocysteine irreversibly to cysteine plus
+        α-ketobutyrate. This is the only route by which the sulfur of methionine becomes cysteine, and it is why
+        <strong>cysteine is conditionally essential</strong> when methionine is short.</li>
+    </ul>
+    <p>Read the pattern backwards and you have a diagnostic algorithm. Homocysteine raised with
+      <em>high</em> methionine points to a block <em>below</em> methionine, i.e. classical
+      <strong>CBS deficiency</strong>. Homocysteine raised with <em>low or normal</em> methionine points to a
+      block in remethylation — B₁₂ deficiency, methionine synthase deficiency, or severe MTHFR deficiency. The
+      common <em>C677T</em> MTHFR polymorphism produces a thermolabile enzyme and a mildly raised homocysteine,
+      especially when folate intake is low; it is a textbook example of a gene–nutrient interaction rather than a
+      disease.</p>
+    <p style="margin-bottom:0">One more mechanistic thread worth pulling: SAH is a <strong>product inhibitor</strong>
+      of almost every SAM-dependent methyltransferase. So anything that raises homocysteine also raises SAH (the
+      hydrolase reaction is readily reversible) and therefore inhibits methylation globally — which is a plausible
+      link between hyperhomocysteinaemia and vascular disease, and the reason nitrous oxide, which irreversibly
+      oxidises the cobalt of methylcobalamin, can precipitate a myeloneuropathy in someone with marginal B₁₂
+      stores after a single long anaesthetic.</p>
+    </div>
+  </details>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Antifolates, and why each is selective</p>
+    <p style="margin:0"><strong>Methotrexate</strong> inhibits human DHFR with picomolar affinity, so THF cannot be
+      regenerated after thymidylate synthase has oxidised it — the cell dies of "thymineless death", and the
+      selectivity is only that tumour cells divide faster. <strong>Leucovorin</strong> (folinic acid, N⁵-formyl-THF)
+      rescues normal tissue because it is already reduced and does not need DHFR. <strong>Trimethoprim</strong>
+      inhibits <em>bacterial</em> DHFR some tens of thousands of times more tightly than the human enzyme, and
+      <strong>pyrimethamine</strong> does the same for protozoal DHFR — same target, selectivity from the enzyme's
+      sequence. <strong>Sulfonamides</strong> act one step earlier still, on dihydropteroate synthase, an enzyme
+      humans do not possess at all because we absorb folate rather than synthesise it: that is the cleanest
+      selective toxicity in the whole of chemotherapy. Note the trap in the other direction — with
+      <strong>5-fluorouracil</strong>, leucovorin does not rescue, it <em>potentiates</em>, because the folate
+      is part of the inhibitory complex (§&nbsp;10).</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Building nucleotides: de novo, salvage and the drugs</h2>
+
+  <p class="idea"><b>The idea</b>Now the argument runs the other way. Nitrogen stops being waste and becomes the most expensive material the
+     cell buys: a single purine ring costs four nitrogen atoms, two folate-carried carbons and a handful of ATP.
+     Because it is so expensive, there are two routes — build the ring from scratch, or pick up a discarded base
+     and re-attach it to a sugar for a fraction of the price — and the cell prefers the cheap one whenever it can.
+     And because a dividing cell cannot divide without dNTPs, this is the pathway that almost every cancer drug,
+     immunosuppressant and antiviral attacks. The two rings are built in <em>opposite orders</em>, and that single
+     structural fact explains most of what follows.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the two strategies</p>
+    <dl class="def">
+      <dt>Purine vs pyrimidine construction</dt>
+      <dd><strong>Purines are built on the sugar</strong>: the ring is assembled atom by atom on top of a
+          pre-formed PRPP, so the first true intermediate already carries ribose-5-phosphate.
+          <strong>Pyrimidines are built first and attached afterwards</strong>: the ring (orotate) is completed
+          free in solution and only then joined to PRPP.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">PRPP + glutamine → 5-phosphoribosylamine + glutamate + PP<sub>i</sub></span>
+      <span class="fx__tag">glutamine–PRPP amidotransferase — the <strong>committed step</strong> of purine synthesis</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>PRPP</dt>
+          <dd>5-Phosphoribosyl-1-pyrophosphate, made by <strong>PRPP synthetase</strong> from ribose-5-phosphate
+              (the pentose phosphate pathway) plus ATP → AMP. It is the activated sugar donor for purine
+              synthesis, pyrimidine synthesis <em>and</em> both salvage pathways — a single molecule at the head
+              of four routes, which is why its concentration is such a powerful driver.</dd>
+          <dt>Salvage</dt>
+          <dd>Re-attaching a free base to PRPP in one step. <strong>HGPRT</strong> handles hypoxanthine and
+              guanine; <strong>APRT</strong> handles adenine. The brain has very little de novo capacity and
+              depends on salvage — which is the key to Lesch–Nyhan in §&nbsp;11.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">HGPRT: hypoxanthine + PRPP → IMP + PP<sub>i</sub></span><span class="fx__tag">one step, ≈2 ~P, versus ten steps and ≈6 ~P de novo</span></div>
+          <div class="fx"><span class="fx__eq">IMP → AMP needs <strong>GTP</strong> · IMP → GMP needs <strong>ATP</strong></span><span class="fx__tag">reciprocal cross-regulation keeps the two pools balanced</span></div>
+          <div class="fx"><span class="fx__eq">CPS II: glutamine + 2 ATP + HCO₃⁻ → carbamoyl-P  (cytosol)</span><span class="fx__tag">the regulated step of pyrimidine synthesis in animals</span></div>
+          <div class="fx"><span class="fx__eq">NDP + NADPH → dNDP  (ribonucleotide reductase, thioredoxin)</span><span class="fx__tag">the only route to deoxyribose; substrates are di-, not tri-phosphates</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>PRPP</b><span>5-phosphoribosyl-1-pyrophosphate (mol·L⁻¹)</span></div>
+          <div><b>IMP</b><span>inosine monophosphate — the branch-point purine nucleotide</span></div>
+          <div><b>HGPRT</b><span>hypoxanthine–guanine phosphoribosyltransferase</span></div>
+          <div><b>CAD</b><span>the trifunctional CPS II / aspartate transcarbamoylase / dihydroorotase protein</span></div>
+          <div><b>RNR</b><span>ribonucleotide reductase (subunits RRM1, RRM2)</span></div>
+          <div><b>UMP synthase</b><span>bifunctional orotate phosphoribosyltransferase + OMP decarboxylase</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 350" role="img" aria-label="Diagram of the purine ring showing the metabolic origin of each of its nine atoms. The bicyclic ring is drawn with the six-membered pyrimidine ring fused to the five-membered imidazole ring. Nitrogen 1 comes from aspartate; carbons 2 and 8 come from N10-formyl-tetrahydrofolate; nitrogens 3 and 9 come from the amide nitrogen of glutamine; carbons 4 and 5 and nitrogen 7 come from a single intact glycine molecule; and carbon 6 comes from carbon dioxide or bicarbonate. Nitrogen 9 is drawn bonded to a ribose 5-phosphate, because the ring is assembled on top of the sugar rather than attached to it afterwards." style="font-family:var(--sans)">
+      <text x="380" y="26" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)">Every atom of a purine ring, and where it came from</text>
+
+      <g stroke="var(--ink-soft)" stroke-width="2">
+        <line x1="186.3" y1="139" x2="186.3" y2="201"/>
+        <line x1="186.3" y1="201" x2="240" y2="232"/>
+        <line x1="240" y1="232" x2="293.7" y2="201"/>
+        <line x1="293.7" y1="201" x2="293.7" y2="139"/>
+        <line x1="293.7" y1="139" x2="240" y2="108"/>
+        <line x1="240" y1="108" x2="186.3" y2="139"/>
+        <line x1="293.7" y1="139" x2="352.7" y2="119.9"/>
+        <line x1="352.7" y1="119.9" x2="389.1" y2="170"/>
+        <line x1="389.1" y1="170" x2="352.7" y2="220.1"/>
+        <line x1="352.7" y1="220.1" x2="293.7" y2="201"/>
+      </g>
+
+      <line x1="352.7" y1="220.1" x2="407.3" y2="264" stroke="var(--accent)" stroke-width="2"/>
+      <path d="M 432,246 L 456.7,264 L 447.3,293 L 416.7,293 L 407.3,264 Z" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+      <text x="432" y="316" text-anchor="middle" font-size="11" fill="var(--accent)">ribose 5-phosphate</text>
+
+      <g font-size="12.5" font-weight="700" text-anchor="middle">
+        <circle cx="186.3" cy="139" r="16" fill="var(--card)" stroke="var(--accent-2)" stroke-width="3"/><text x="186.3" y="144" fill="var(--accent-2)">N1</text>
+        <circle cx="186.3" cy="201" r="16" fill="var(--card)" stroke="var(--accent-3)" stroke-width="3"/><text x="186.3" y="206" fill="var(--accent-3)">C2</text>
+        <circle cx="240" cy="232" r="16" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/><text x="240" y="237" fill="var(--ok)">N3</text>
+        <circle cx="293.7" cy="201" r="16" fill="var(--card)" stroke="var(--bad)" stroke-width="3"/><text x="293.7" y="206" fill="var(--bad)">C4</text>
+        <circle cx="293.7" cy="139" r="16" fill="var(--card)" stroke="var(--bad)" stroke-width="3"/><text x="293.7" y="144" fill="var(--bad)">C5</text>
+        <circle cx="240" cy="108" r="16" fill="var(--card)" stroke="var(--hydrophobic)" stroke-width="3"/><text x="240" y="113" fill="var(--hydrophobic)">C6</text>
+        <circle cx="352.7" cy="119.9" r="16" fill="var(--card)" stroke="var(--bad)" stroke-width="3"/><text x="352.7" y="124.9" fill="var(--bad)">N7</text>
+        <circle cx="389.1" cy="170" r="16" fill="var(--card)" stroke="var(--accent-3)" stroke-width="3"/><text x="389.1" y="175" fill="var(--accent-3)">C8</text>
+        <circle cx="352.7" cy="220.1" r="16" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/><text x="352.7" y="225.1" fill="var(--ok)">N9</text>
+      </g>
+
+      <circle cx="490" cy="80" r="8" fill="none" stroke="var(--accent-2)" stroke-width="3"/>
+      <text x="508" y="85" font-size="11.5" fill="var(--ink)">aspartate → N1</text>
+      <circle cx="490" cy="112" r="8" fill="none" stroke="var(--accent-3)" stroke-width="3"/>
+      <text x="508" y="117" font-size="11.5" fill="var(--ink)">N¹⁰-formyl-THF → C2, C8</text>
+      <circle cx="490" cy="144" r="8" fill="none" stroke="var(--ok)" stroke-width="3"/>
+      <text x="508" y="149" font-size="11.5" fill="var(--ink)">glutamine amide N → N3, N9</text>
+      <circle cx="490" cy="176" r="8" fill="none" stroke="var(--bad)" stroke-width="3"/>
+      <text x="508" y="181" font-size="11.5" fill="var(--ink)">glycine, whole → C4, C5, N7</text>
+      <circle cx="490" cy="208" r="8" fill="none" stroke="var(--hydrophobic)" stroke-width="3"/>
+      <text x="508" y="213" font-size="11.5" fill="var(--ink)">CO₂ / HCO₃⁻ → C6</text>
+
+      <text x="490" y="252" font-size="10.5" fill="var(--ink-faint)">Four nitrogens per ring — two from glutamine,</text>
+      <text x="490" y="267" font-size="10.5" fill="var(--ink-faint)">one from aspartate, one from an intact glycine.</text>
+      <text x="490" y="288" font-size="10.5" fill="var(--ink-faint)">Two carbons come from folate, which is why</text>
+      <text x="490" y="303" font-size="10.5" fill="var(--ink-faint)">antifolates starve purine synthesis as well as</text>
+      <text x="490" y="318" font-size="10.5" fill="var(--ink-faint)">thymidylate.</text>
+    </svg>
+    <figcaption>The classic isotope-labelling diagram. Note the two features that generate exam questions: glycine
+      enters <strong>intact</strong>, contributing three consecutive ring atoms (C4, C5, N7), and the two
+      folate-derived carbons are the ones flanked by nitrogens (C2 and C8) — which is exactly where a one-carbon
+      unit at the formate oxidation level belongs. Nitrogen 9 is bonded to C1′ of the ribose from the very first
+      committed step, because the ring is built <em>onto</em> the sugar.</figcaption>
+  </figure>
+
+  <h3>Regulation: three layers, all of them worth knowing</h3>
+  <p><strong>(1) The committed step.</strong> Glutamine–PRPP amidotransferase is inhibited by the end products
+     IMP, AMP and GMP, and activated by its substrate PRPP. Classic feedback. <strong>(2) The branch point.</strong>
+     IMP sits at a fork: adenylosuccinate synthetase takes it to AMP, IMP dehydrogenase takes it to GMP. AMP
+     inhibits the first branch and GMP inhibits the second, so each product limits its own production.
+     <strong>(3) The cross-regulation</strong>, which is the elegant part and the one examiners like: making AMP
+     from IMP consumes <strong>GTP</strong>, while making GMP from IMP consumes <strong>ATP</strong>. Each branch
+     is therefore driven by the <em>other</em> nucleotide. If adenine nucleotides are abundant, GMP synthesis is
+     favoured; if guanine nucleotides are abundant, AMP synthesis is favoured. The pools self-balance without any
+     dedicated sensor.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Carbamoyl phosphate synthetase I compared with II</caption>
+      <thead><tr><th></th><th>CPS I</th><th>CPS II</th></tr></thead>
+      <tbody>
+        <tr><td>Pathway</td><td>Urea cycle</td><td>Pyrimidine synthesis</td></tr>
+        <tr><td>Location</td><td><strong>Mitochondrial matrix</strong></td><td><strong>Cytosol</strong></td></tr>
+        <tr><td>Nitrogen source</td><td>Free <strong>NH₄⁺</strong></td><td><strong>Glutamine</strong> amide nitrogen</td></tr>
+        <tr><td>Protein</td><td>Stand-alone enzyme (<em>CPS1</em>)</td><td>Domain of the trifunctional <strong>CAD</strong> protein</td></tr>
+        <tr><td>Activated by</td><td><strong>N-acetylglutamate</strong> (obligate)</td><td>PRPP, ATP</td></tr>
+        <tr><td>Inhibited by</td><td>—</td><td><strong>UTP</strong> (end-product feedback)</td></tr>
+        <tr><td>Tissue</td><td>Liver (and intestine)</td><td>All cells, up in proliferating tissue</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the pyrimidine pathway in full, and ribonucleotide reductase</summary>
+    <div class="disc__body">
+    <p>Six steps take bicarbonate to UMP, and it is worth walking them because three drugs and two diseases sit on
+      them.</p>
+    <ol>
+      <li><strong>CPS II</strong> (cytosolic): glutamine + 2 ATP + HCO₃⁻ → carbamoyl phosphate. The regulated step
+        in animals.</li>
+      <li><strong>Aspartate transcarbamoylase</strong>: + aspartate → carbamoyl aspartate. In <em>E. coli</em> this
+        is the committed and allosterically regulated step — inhibited by CTP, activated by ATP — and it is the
+        textbook example of allostery. In mammals it is simply a domain of CAD and the control has moved to
+        CPS II. Both statements are true of different organisms, and options exploit the confusion.</li>
+      <li><strong>Dihydroorotase</strong>: ring closure. (Steps 1–3 are the three activities of CAD.)</li>
+      <li><strong>Dihydroorotate dehydrogenase</strong> — the one mitochondrial step, sitting in the inner
+        membrane and passing its electrons to <strong>ubiquinone</strong>. So pyrimidine synthesis is physically
+        wired to the respiratory chain, and this enzyme is the target of <strong>leflunomide</strong> and
+        <strong>teriflunomide</strong>.</li>
+      <li><strong>Orotate phosphoribosyltransferase</strong>: orotate + PRPP → OMP. Only now does the sugar arrive.</li>
+      <li><strong>OMP decarboxylase</strong> → UMP. Steps 5 and 6 are the two activities of the bifunctional
+        <strong>UMP synthase</strong>, whose deficiency is <strong>hereditary orotic aciduria</strong> — orotate
+        in the urine, megaloblastic anaemia that does not respond to B₁₂ or folate, and a specific cure:
+        oral <strong>uridine</strong>, which bypasses the block.</li>
+    </ol>
+    <p>UMP is then phosphorylated to UTP, and <strong>CTP synthetase</strong> aminates UTP to CTP using glutamine
+      and ATP. Note that cytosine, uniquely, is only ever made at the triphosphate level.</p>
+    <p style="margin-bottom:0"><strong>Ribonucleotide reductase</strong> is the single gateway to DNA precursors:
+      it reduces the 2′-OH of nucleoside <em>di</em>phosphates using a radical mechanism, with electrons supplied
+      by thioredoxin → thioredoxin reductase → NADPH. It has two allosteric sites. The
+      <strong>activity site</strong> is switched on by ATP and off by <strong>dATP</strong>; the
+      <strong>specificity site</strong> reads the current dNTP and chooses which substrate is accepted next, which
+      is how the four dNTP pools are kept balanced. That dATP switch is not a curiosity: in
+      <strong>adenosine deaminase deficiency</strong> (§&nbsp;11) dATP accumulates, shuts down the reductase, and
+      lymphocytes — which are the most dependent on it — die, giving severe combined immunodeficiency.
+      <strong>Hydroxyurea</strong> inhibits the same enzyme by quenching its tyrosyl radical.</p>
+    </div>
+  </details>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Drugs acting on nucleotide metabolism and their molecular targets</caption>
+      <thead><tr><th>Drug</th><th>Molecular target</th><th>Consequence, and why it is selective</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Methotrexate</strong></td><td>Dihydrofolate reductase</td><td>No THF regeneration → no dTMP and no purine C2/C8. Selective only by proliferation rate; leucovorin rescues normal cells</td></tr>
+        <tr><td><strong>5-Fluorouracil</strong></td><td>Thymidylate synthase (as FdUMP)</td><td>Forms a covalent ternary complex with the enzyme <em>and</em> methylene-THF — so leucovorin <strong>potentiates</strong> it. DPD deficiency causes catastrophic toxicity</td></tr>
+        <tr><td><strong>6-Mercaptopurine</strong> / azathioprine</td><td>Activated by <strong>HGPRT</strong>; inhibits the amidotransferase and both IMP branches</td><td>A prodrug that needs salvage to work. Inactivated by xanthine oxidase — so <strong>allopurinol raises its toxicity</strong>. TPMT genotype matters</td></tr>
+        <tr><td><strong>Mycophenolate</strong></td><td>IMP dehydrogenase</td><td>Blocks GMP synthesis. Lymphocytes lack a guanine salvage route of adequate capacity, so the effect is selectively immunosuppressive</td></tr>
+        <tr><td><strong>Hydroxyurea</strong></td><td>Ribonucleotide reductase</td><td>Depletes all four dNTPs; also raises fetal haemoglobin, which is its use in sickle cell disease</td></tr>
+        <tr><td><strong>Leflunomide</strong></td><td>Dihydroorotate dehydrogenase</td><td>Starves activated lymphocytes of pyrimidines</td></tr>
+        <tr><td><strong>Trimethoprim / sulfamethoxazole</strong></td><td>Bacterial DHFR / dihydropteroate synthase</td><td>Sequential blockade of one pathway; humans have no dihydropteroate synthase at all</td></tr>
+        <tr><td><strong>Acyclovir</strong></td><td>Phosphorylated only by viral thymidine kinase; then inhibits viral DNA polymerase and terminates the chain</td><td>Selectivity is at <em>activation</em>, not at the target — the most elegant design on the list</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 5 — reading an isotope-labelling experiment on the purine ring</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">Cultured cells are supplied with (a) glutamine labelled with
+      <sup>15</sup>N in its <em>amide</em> nitrogen, (b) glycine labelled with <sup>14</sup>C in its
+      <em>carboxyl</em> carbon, and (c) <sup>15</sup>N-aspartate. Where does each label appear in newly made
+      adenine nucleotides, and how many labelled nitrogens does a single AMP end up with in experiment (a)?</p>
+    <ol>
+      <li><strong>(a)</strong> Glutamine's amide nitrogen is donated twice during ring construction: at the
+          committed step (becoming <strong>N9</strong>) and at the FGAM synthetase step (becoming
+          <strong>N3</strong>). So both N3 and N9 are labelled — <strong>two</strong> ring nitrogens.</li>
+      <li>But adenine has an exocyclic 6-amino group as well, and that comes from
+          <strong>aspartate</strong> at the adenylosuccinate step, not from glutamine. So AMP carries
+          <strong>2</strong> labelled nitrogens out of 5 total. (GMP would carry <strong>3</strong>, because its
+          2-amino group is added by GMP synthetase using glutamine.)</li>
+      <li><strong>(b)</strong> Glycine enters intact and contributes C4, C5 and N7. Its <em>carboxyl</em> carbon
+          becomes <strong>C4</strong>; its α-carbon becomes C5. So only C4 is labelled.</li>
+      <li><strong>(c)</strong> Aspartate donates <strong>N1</strong> of the ring. In adenine nucleotides it
+          additionally donates the 6-amino nitrogen, so an AMP has <strong>two</strong> aspartate-derived
+          nitrogens, whereas an IMP or a GMP ring has only one.</li>
+      <li>Cross-check the total: purine ring nitrogens = 4. Glutamine 2 (N3, N9) + aspartate 1 (N1) +
+          glycine 1 (N7) = 4 ✓. Ring carbons = 5. Glycine 2 (C4, C5) + folate 2 (C2, C8) + CO₂ 1 (C6) = 5 ✓.</li>
+    </ol>
+    <span class="wex__ans">(a) N3 + N9 → 2 labelled N in AMP, 3 in GMP · (b) C4 only · (c) N1, plus the 6-NH₂ of adenine</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The three orderings people reverse</p>
+    <p style="margin:0"><strong>Purines: ring built on the sugar. Pyrimidines: ring built first, sugar
+      later.</strong> Get that the wrong way round and half a dozen downstream facts invert — including why
+      orotate (a free ring, no sugar) is the metabolite that spills in OTC deficiency, and why PRPP shortage hits
+      purine synthesis at the very first step but pyrimidine synthesis only at step 5. Second reversal:
+      <strong>CPS I uses ammonia and is mitochondrial; CPS II uses glutamine and is cytosolic.</strong> Third:
+      ribonucleotide reductase works on <strong>diphosphates</strong> (NDP → dNDP), not triphosphates, and dTMP is
+      made by methylating dUMP — thymine is never reduced from a ribonucleotide of its own, because the pathway
+      never makes a thymine ribonucleotide to reduce.</p>
+  </div>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>Purine catabolism, uric acid and gout</h2>
+
+  <p class="idea"><b>The idea</b>Taking a purine apart runs into the same problem as building it: the ring is stable and full of nitrogen, and
+     the body cannot open it. Most mammals oxidise the finished waste product one step further into something
+     freely soluble; humans lost that enzyme, so our end product is a compound that is barely soluble at body
+     temperature and pH. Everything about gout — why it appears in cool peripheral joints, why crystals form at
+     all, why some drugs help and others make it worse — follows from a solubility limit that we sit
+     uncomfortably close to all the time. Pyrimidines, by contrast, break down into small soluble molecules and
+     cause no disease at all, which is the cleanest possible proof that the problem is chemical, not biological.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the pathway</p>
+    <dl class="def">
+      <dt>Purine catabolism</dt>
+      <dd>Nucleotide → nucleoside (5′-nucleotidase) → free base (phosphorylase) → <strong>xanthine</strong> →
+          <strong>uric acid</strong>. Both of the last two steps are catalysed by the same enzyme,
+          <strong>xanthine oxidase</strong>, a molybdenum flavoprotein that also generates hydrogen peroxide.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">hypoxanthine → xanthine → uric acid    (xanthine oxidase, twice)</span>
+      <span class="fx__tag">humans lack <strong>uricase</strong>, so this is where it stops</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>Why humans stop at urate</dt>
+          <dd>The <em>UOX</em> gene encoding urate oxidase is a <strong>pseudogene</strong> in humans and the great
+              apes — inactivated by nonsense mutations about 15 million years ago. Other mammals convert urate to
+              <strong>allantoin</strong>, which is roughly 100 times more soluble and causes no disease.</dd>
+          <dt>Solubility, and where the numbers come from</dt>
+          <dd>At pH 7.4 urate is almost entirely ionised (pK<sub>a</sub> ≈ 5.5), and monosodium urate saturates
+              plasma at about <strong>6.8 mg/dL ≈ 404 µmol/L</strong>. In acidic urine the un-ionised
+              <em>uric acid</em> predominates and is far less soluble — which is why urate crystals form in
+              joints and <em>uric acid</em> stones form in the kidney.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">AMP → adenosine → inosine → hypoxanthine → xanthine → urate</span><span class="fx__tag">adenosine deaminase and purine nucleoside phosphorylase sit on this line</span></div>
+          <div class="fx"><span class="fx__eq">GMP → guanosine → guanine → xanthine → urate</span><span class="fx__tag">guanine deaminase; the two routes converge at xanthine</span></div>
+          <div class="fx"><span class="fx__eq">saturation ≈ 6.8 mg/dL = <span class="mf" role="img" aria-label="68 milligrams per litre divided by 168.1 grams per mole"><span>68 mg·L⁻¹</span><span>168.1 g·mol⁻¹</span></span> ≈ 404 µmol·L⁻¹</span><span class="fx__tag">the number that defines hyperuricaemia physically rather than statistically</span></div>
+          <div class="fx"><span class="fx__eq">pH = 5.5 + log₁₀ <span class="mf" role="img" aria-label="urate anion over uric acid"><span>[urate⁻]</span><span>[uric acid]</span></span></span><span class="fx__tag">why alkalinising the urine dissolves uric acid stones</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>XO</b><span>xanthine oxidase (molybdenum + FAD + Fe–S)</span></div>
+          <div><b>ADA</b><span>adenosine deaminase</span></div>
+          <div><b>PNP</b><span>purine nucleoside phosphorylase</span></div>
+          <div><b>MSU</b><span>monosodium urate — the crystal of gout</span></div>
+          <div><b>URAT1</b><span>SLC22A12, the proximal tubular urate reabsorption transporter</span></div>
+          <div><b>[urate]<sub>plasma</sub></b><span>plasma urate (mg·dL⁻¹ or µmol·L⁻¹)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h3>Gout is a solubility problem before it is an inflammatory one</h3>
+  <p>Plasma is saturated with monosodium urate at about 6.8 mg/dL, and a great many normal adults sit within a
+     milligram of that. Two things then decide whether crystals form. <strong>Temperature</strong>: urate is less
+     soluble when cooler, and the first metatarsophalangeal joint is one of the coolest structures in the body —
+     which is why the classic first attack is podagra in the big toe, and why attacks often begin at night.
+     <strong>pH</strong>: in the kidney the fluid is acidic, so the species present is un-ionised uric acid, which
+     is much less soluble than the urate salt — hence uric acid stones, and hence the point of alkalinising the
+     urine. The inflammation itself comes afterwards: crystals are engulfed by macrophages, activate the
+     <strong>NLRP3 inflammasome</strong>, release IL-1β and recruit neutrophils. That is why colchicine (which
+     disrupts microtubules and blocks neutrophil migration and inflammasome assembly) treats the attack but does
+     nothing at all to the urate.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 6 — why urine pH matters more than urate concentration for stones</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">A patient forms recurrent radiolucent renal stones and has a
+      persistent urine pH of 5.0. Uric acid has pK<sub>a</sub> ≈ 5.5, and it is the <em>un-ionised</em> acid that
+      is poorly soluble. What fraction of the urinary urate is in that form, and what does alkalinising the urine
+      to pH 6.5 achieve?</p>
+    <ol>
+      <li>Henderson–Hasselbalch:
+          <span class="fi">[urate⁻]/[uric acid] = 10<sup>(pH − pK<sub>a</sub>)</sup></span>.</li>
+      <li>At pH 5.0: <span class="fi">10<sup>−0.5</sup> = 0.316</span>, so the un-ionised fraction is
+          <span class="fi">1/(1 + 0.316) = 76.0 %</span>. Three quarters of the urate in this urine is in the
+          form that will not dissolve.</li>
+      <li>At pH 6.5: <span class="fi">10<sup>+1.0</sup> = 10</span>, so the un-ionised fraction is
+          <span class="fi">1/11 = 9.1 %</span>.</li>
+      <li>Fold change: <span class="fi">76.0 / 9.1 = 8.4</span>. Raising the urine pH by 1.5 units cuts the
+          poorly soluble species more than <strong>eight-fold</strong> — without changing the amount of urate
+          excreted by a single milligram.</li>
+      <li>Compare what you could achieve by lowering production: a good response to allopurinol might cut urate
+          excretion by a third. Alkalinisation is roughly an order of magnitude more effective for
+          <em>stones</em> — which is why potassium citrate is first-line there, while allopurinol is first-line
+          for <em>tophaceous gout</em>, where the target is the plasma concentration and the joint pH is fixed at
+          7.4.</li>
+      <li>Sanity check the other direction: at blood pH 7.4 the un-ionised fraction is only
+          <span class="fi">1/(1 + 79.4) = 1.2 %</span>. In blood essentially everything is the urate anion, so the
+          relevant solubility is that of <em>monosodium urate</em>, ≈6.8 mg/dL — a completely different number
+          from the solubility of uric acid in urine. Both facts are true; they apply at different pH values.</li>
+    </ol>
+    <span class="wex__ans">76 % un-ionised at pH 5.0 → 9.1 % at pH 6.5, an 8.4-fold reduction</span>
+    </div>
+  </details>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Causes of hyperuricaemia and the drugs used against it</caption>
+      <thead><tr><th>Mechanism</th><th>Examples</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Underexcretion</strong> (≈90 % of cases)</td><td>Thiazide and loop diuretics, low-dose aspirin, ciclosporin, lead, ketoacidosis, lactic acidosis, alcohol</td><td>All act on the proximal tubule; organic acids such as lactate and ketones compete with urate on <strong>URAT1</strong>, so urate is reabsorbed instead. This is why beer and a fast both precipitate attacks</td></tr>
+        <tr><td><strong>Overproduction</strong> (≈10 %)</td><td>HGPRT deficiency, PRPP synthetase superactivity, myeloproliferative and lymphoproliferative disease, tumour lysis syndrome, psoriasis</td><td>Any state of high cell turnover delivers nucleic acid to the catabolic pathway</td></tr>
+        <tr><td><strong>ATP depletion</strong></td><td>Fructose loads, alcohol, glycogen storage disease type I (von Gierke)</td><td>Fructokinase traps phosphate and drives ATP → AMP → IMP → urate. The mechanistic link between sugary drinks and gout</td></tr>
+        <tr><td><strong>Xanthine oxidase inhibitors</strong></td><td><strong>Allopurinol</strong>, febuxostat</td><td>Allopurinol is oxidised <em>by its own target</em> to oxypurinol, which stays bound to the reduced molybdenum — a mechanism-based inhibitor. The precursors that accumulate instead, hypoxanthine and xanthine, are much more soluble</td></tr>
+        <tr><td><strong>Uricosurics</strong></td><td>Probenecid, benzbromarone</td><td>Block URAT1 reabsorption. Contraindicated if the patient is already an overexcretor or has stones — you would simply move the problem into the tubule</td></tr>
+        <tr><td><strong>Recombinant uricase</strong></td><td>Rasburicase, pegloticase</td><td>Puts back the enzyme evolution deleted; converts urate to allantoin. Used for tumour lysis syndrome. Causes haemolysis in G6PD deficiency because the reaction generates H₂O₂</td></tr>
+        <tr><td><strong>Anti-inflammatory only</strong></td><td>Colchicine, NSAIDs, glucocorticoids</td><td>Treat the attack, not the urate. Starting allopurinol during an attack can <em>worsen</em> it by mobilising crystals — hence the co-prescribed colchicine cover</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">Lesch–Nyhan: derive it, do not memorise it</p>
+    <p style="margin:0">Complete <strong>HGPRT</strong> deficiency, X-linked recessive. Two consequences follow
+      from one missing enzyme, and both push the same way. <strong>(1)</strong> Hypoxanthine and guanine cannot be
+      salvaged, so they are shunted to xanthine oxidase → massive urate overproduction: orange crystal "sand" in
+      the nappy, urate stones, gouty arthritis in a child. <strong>(2)</strong> Salvage normally consumes PRPP and
+      produces IMP and GMP, both of which inhibit the committed step of de novo synthesis. With HGPRT gone, PRPP
+      accumulates <em>and</em> the feedback inhibitors are not made — so de novo purine synthesis runs at full
+      speed, feeding still more purine into catabolism. The neurological picture — choreoathetosis, spasticity,
+      intellectual disability and the characteristic compulsive <strong>self-mutilation</strong> — is not caused
+      by urate, which is why <strong>allopurinol treats the stones and the gout but not the behaviour</strong>;
+      the brain depends heavily on salvage and shows a dopaminergic deficit in the basal ganglia. Partial HGPRT
+      deficiency gives <strong>Kelley–Seegmiller syndrome</strong>: severe early gout, no neurological disease.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · pyrimidine catabolism, the purine nucleotide cycle, and two immunodeficiencies</summary>
+    <div class="disc__body">
+    <p><strong>Why there is no pyrimidine gout.</strong> Pyrimidine rings are opened and degraded to
+      <strong>β-alanine</strong> (from cytosine and uracil) or <strong>β-aminoisobutyrate</strong> (from thymine),
+      plus NH₃ and CO₂. Every one of those is freely soluble, so there is no crystal disease to have. The first
+      enzyme, <strong>dihydropyrimidine dehydrogenase (DPD)</strong>, matters clinically for a different reason:
+      it is also the enzyme that clears <strong>5-fluorouracil</strong>, and partial DPD deficiency — present in
+      roughly 3–5 % of people — causes life-threatening toxicity from a standard dose. It is one of the few
+      pharmacogenetic tests now used routinely before chemotherapy.</p>
+    <p><strong>The purine nucleotide cycle.</strong> Working skeletal muscle runs a small loop:
+      AMP deaminase converts AMP to IMP and free NH₃; adenylosuccinate synthetase and lyase then rebuild AMP from
+      IMP using aspartate, releasing fumarate. Net effect: <em>aspartate → fumarate + NH₃</em>. It is an
+      anaplerotic route that tops up the citric acid cycle during exercise and disposes of amino nitrogen without
+      a urea cycle. Inherited <strong>myoadenylate deaminase deficiency</strong> causes exercise-induced cramps
+      and myalgia with a flat ammonia response to the ischaemic forearm test.</p>
+    <p style="margin-bottom:0"><strong>Two enzymes of this pathway are immunological.</strong>
+      <strong>Adenosine deaminase (ADA) deficiency</strong> causes about 15 % of severe combined immunodeficiency:
+      deoxyadenosine accumulates, is phosphorylated to dATP, and dATP shuts off ribonucleotide reductase, so no
+      cell can make DNA — but lymphocytes, which must undergo enormous clonal expansion, are killed first. It was
+      the target of the first approved human gene therapy. <strong>PNP deficiency</strong> does the analogous
+      thing with dGTP and produces a T-cell deficiency with relatively preserved B cells. Both are, at bottom, the
+      same lesson as gout: the danger in purine metabolism is almost never the pathway itself but the
+      <em>accumulation of an intermediate the cell has no way to dispose of</em>.</p>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Crystals under polarised light — the one comparison worth memorising</p>
+    <p style="margin:0"><strong>Gout:</strong> monosodium urate, <em>needle-shaped</em>,
+      <strong>negatively</strong> birefringent — <em>yellow</em> when the crystal lies parallel to the axis of the
+      red compensator. <strong>Pseudogout:</strong> calcium pyrophosphate, <em>rhomboid</em>,
+      <strong>positively</strong> birefringent — <em>blue</em> when parallel. Two mnemonics that survive
+      contact with an exam: "<strong>ne</strong>edle = <strong>ne</strong>gative", and
+      <strong>ABC — Aligned Blue is Calcium</strong>. Note also what a normal serum urate does <em>not</em> tell
+      you: urate often falls during an acute attack, so a normal value never excludes gout, and only crystals in
+      the joint fluid confirm it.</p>
+  </div>
+</section>
+
+<!-- =========================== 12 =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 12</span>
+  <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>Answering from memory, even wrongly, fixes material far better than reading the same paragraph again. The
+     wrong options below are not filler: each one is a mistake that people actually make, and being caught by one
+     is worth more than a lucky guess.</p>
+  <p>Four of these need arithmetic — do it on paper rather than recognising the answer, because that is what the
+     paper will require and because the commonest errors here are arithmetic, not biochemistry. Two are
+     conceptual traps that are widely answered wrongly. Every explanation says why the right answer is right
+     <em>and</em> why the tempting wrong one is tempting.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="biochem-07-lipid-metabolism.html"><small>Previous</small><b>← Lipid Metabolism, Cholesterol and Lipoproteins</b></a>
+  <a href="biochemistry.html"><small>Index</small><b>All biochemistry notes</b></a>
+  <a href="biochem-09-membranes-signalling.html"><small>Next</small><b>Membranes, Receptors and Signal Transduction →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry 08 · Nitrogen Metabolism: Amino Acids, the Urea Cycle and Nucleotides</p>
+    <p>Representation used: compartment maps drawn with the membrane first, and atom-by-atom accounting of where
+      each nitrogen and carbon comes from. Enzyme names, cofactors and regulatory points follow Lehninger
+      <em>Principles of Biochemistry</em>, 8th edition. Concentrations, solubility limits and pK<sub>a</sub>
+      values are standard textbook approximations, given to build a sense of magnitude rather than for citation.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "A 70 kg man eats 84 g of protein a day and is in nitrogen balance. Taking protein as 16 % nitrogen and assuming essentially all of that nitrogen leaves as urea, roughly how much urea does he make, and how many high-energy phosphate bonds does making it cost?",
+    "options": [
+      "≈13 g of urea and ≈0.5 mol of ~P",
+      "≈84 g of urea and ≈5.6 mol of ~P",
+      "≈29 g of urea and ≈0.5 mol of ~P",
+      "≈29 g of urea and ≈1.9 mol of ~P"
+    ],
+    "answer": 3,
+    "explain": "Nitrogen in = 84 × 0.16 = <b>13.44 g N</b>. Urea carries two nitrogens, so moles of urea = 13.44 / (2 × 14.01) = <b>0.480 mol</b>, and mass = 0.480 × 60.06 = <b>28.8 g</b>. The cycle spends 4 ~P per urea, so 4 × 0.480 = <b>1.92 mol ~P</b>. Option A is the classic slip of quoting the nitrogen mass as if it were the urea mass — urea is only 47 % nitrogen, so the two differ by a factor of 2.14. Option C gets the mass right but counts 1 ~P per urea instead of 4 (CPS I spends 2, and ASS spends 2 because its ATP goes all the way to AMP). Option B treats the whole protein mass as urea."
+  },
+  {
+    "stem": "A cirrhotic patient has a plasma total ammonia of 200 µmol/L. He hyperventilates and his arterial pH rises from 7.40 to 7.70. Given pK<sub>a</sub>(NH₄⁺/NH₃) = 9.25, what happens to the species that can actually cross into the brain?",
+    "options": [
+      "Nothing changes, because the measured total ammonia is unaltered",
+      "It falls roughly two-fold, because alkalosis drives the equilibrium towards NH₄⁺",
+      "It roughly doubles, from about 2.8 to about 5.5 µmol/L",
+      "It rises to about half the total, because pH 7.70 is close to the pK<sub>a</sub>"
+    ],
+    "answer": 2,
+    "explain": "[NH₄⁺]/[NH₃] = 10<sup>(pK<sub>a</sub> − pH)</sup>. At pH 7.40 that is 10<sup>1.85</sup> = 70.8, so the NH₃ fraction is 1/71.8 = <b>1.39 %</b> → 2.79 µmol/L. At pH 7.70 it is 10<sup>1.55</sup> = 35.5, so the fraction is 1/36.5 = <b>2.74 %</b> → 5.48 µmol/L: a 1.97-fold rise on an unchanged total. Option B has the sign backwards — raising pH deprotonates a weak acid, so it makes <i>more</i> free base, not less. Option D fails on magnitude: pH 7.70 is still 1.55 units below the pK<sub>a</sub>, so the free base is only 2.7 % of the total, not 50 %. This is why alkalosis worsens encephalopathy and why acidifying the colon with lactulose helps."
+  },
+  {
+    "stem": "A patient's serum alanine aminotransferase (ALT) is markedly raised. Which statement about this enzyme is correct?",
+    "options": [
+      "It transfers the α-amino group of alanine onto α-ketoglutarate to give pyruvate and glutamate; no ammonia is released, and its cofactor is pyridoxal phosphate",
+      "It oxidatively deaminates alanine, releasing ammonia directly into the blood",
+      "It is a biotin-dependent carboxylase, and the reaction it catalyses is essentially irreversible",
+      "It is most concentrated in cardiac muscle, so a raised ALT points to myocardial injury"
+    ],
+    "answer": 0,
+    "explain": "Transamination <b>moves</b> a nitrogen atom between two carbon skeletons using PLP; the number of amino groups in the room is unchanged, nothing is oxidised, and no NH₄⁺ appears. Option B is the single most reliable trap on this topic — free ammonia comes from <i>deaminases</i> and <i>dehydrogenases</i> (glutamate dehydrogenase, glutaminase, serine dehydratase), never from a transaminase. Option C is wrong twice: the cofactor is PLP, not biotin, and ΔG°′ ≈ 0 so the reaction is freely reversible in both directions (which is exactly what lets the liver run it backwards in the glucose–alanine cycle). Option D describes AST rather than ALT; ALT is the more liver-selective of the pair."
+  },
+  {
+    "stem": "A previously well term boy feeds normally for 48 hours, then becomes lethargic and vomits. Plasma ammonia is 620 µmol/L, blood gas shows a respiratory alkalosis, urinary orotic acid is markedly raised, plasma citrulline is low and there is no anaemia. Which enzyme is deficient?",
+    "options": [
+      "Carbamoyl phosphate synthetase I",
+      "Ornithine transcarbamoylase",
+      "UMP synthase",
+      "Argininosuccinate synthetase"
+    ],
+    "answer": 1,
+    "explain": "Hyperammonaemia <i>plus</i> orotic aciduria localises the block to OTC: carbamoyl phosphate made by CPS I has nowhere to go, leaks from the matrix into the cytosol, and is pushed down the pyrimidine pathway to orotate. Option A is the tempting one and is excluded by exactly that finding — with CPS I missing there is no carbamoyl phosphate to spill, so orotate is <b>low</b>. Option C gives orotic aciduria with <b>megaloblastic anaemia and no hyperammonaemia</b>, because the lesion is inside pyrimidine synthesis; it is cured by oral uridine. Option D would give citrulline that is enormously <i>raised</i>, not low. Note also that OTC deficiency is the one <b>X-linked</b> urea cycle disorder and the commonest of them."
+  },
+  {
+    "stem": "The overall reaction of the urea cycle is NH₄⁺ + HCO₃⁻ + aspartate + 3 ATP + H₂O → urea + fumarate + 2 ADP + AMP + 2 P<sub>i</sub> + PP<sub>i</sub>. Which reading of it is correct?",
+    "options": [
+      "Two high-energy phosphates are consumed per urea, one per nitrogen",
+      "Three high-energy phosphates are consumed, and both nitrogens come from free ammonium",
+      "Four high-energy phosphates are consumed — two per nitrogen — and the second nitrogen enters as the α-amino group of aspartate",
+      "Six high-energy phosphates are consumed, and the carbon of urea is supplied by aspartate"
+    ],
+    "answer": 2,
+    "explain": "CPS I hydrolyses 2 ATP to 2 ADP, which is 2 ~P. ASS hydrolyses 1 ATP all the way to AMP + PP<sub>i</sub>, which breaks <b>two</b> anhydride bonds, so that is another 2 ~P: total <b>4 ~P from 3 ATP molecules</b>. Urea carries 2 N, so 2 ~P per nitrogen. Option B is the near-miss that costs marks — it reads '3 ATP' off the equation and calls them 3 high-energy phosphates, and it also gets the nitrogen sources wrong: only the <i>first</i> nitrogen is free ammonium, the second arrives on aspartate (which is why fumarate comes out and links the cycle to the citric acid cycle). The carbon and oxygen of urea come from bicarbonate, not aspartate."
+  },
+  {
+    "stem": "Which pair of amino acids is <b>purely ketogenic</b> — that is, yields no carbon at all for net glucose synthesis?",
+    "options": [
+      "Isoleucine and valine",
+      "Leucine and isoleucine",
+      "Lysine and tyrosine",
+      "Leucine and lysine"
+    ],
+    "answer": 3,
+    "explain": "Only <b>leucine and lysine</b> are degraded exclusively to acetyl-CoA and acetoacetyl-CoA, and acetyl-CoA cannot give a net gain of oxaloacetate because its two carbons are matched by two CO₂ lost in the same turn of the cycle (animals have no glyoxylate cycle). Options B and C each pair one correct answer with an amino acid that is <i>both</i> glucogenic and ketogenic: isoleucine yields succinyl-CoA as well as acetyl-CoA, and tyrosine yields fumarate as well as acetoacetate. Option A is wrong twice over — valine is purely glucogenic (via propionyl-CoA → succinyl-CoA). The five 'both' amino acids are Ile, Phe, Thr, Trp and Tyr."
+  },
+  {
+    "stem": "A 68-year-old with megaloblastic anaemia has a raised serum homocysteine <b>and</b> a raised methylmalonic acid. He is treated with high-dose folic acid alone. What is the expected outcome?",
+    "options": [
+      "Both the anaemia and any neurological signs resolve",
+      "Neither resolves, because folate cannot enter cells without vitamin B₁₂",
+      "Methylmalonic acid falls to normal, because folate restores methylmalonyl-CoA mutase",
+      "The anaemia resolves but neurological damage continues, because methylmalonyl-CoA mutase still lacks adenosylcobalamin"
+    ],
+    "answer": 3,
+    "explain": "The combination of raised homocysteine <i>and</i> raised methylmalonate is the signature of <b>B₁₂</b> deficiency (folate deficiency raises homocysteine only). B₁₂ has two jobs: methylcobalamin for methionine synthase — the sole exit from N⁵-methyl-THF, which is why folate becomes functionally unavailable and the marrow goes megaloblastic — and adenosylcobalamin for methylmalonyl-CoA mutase, which is the neurological one. Flooding the system with folate bypasses the trap and corrects the anaemia, but does nothing for the mutase, so subacute combined degeneration progresses <b>with its haematological warning sign removed</b>. Option C is impossible: folate has no role in the mutase reaction. This is precisely why methylmalonic acid, not homocysteine, is the discriminating test."
+  },
+  {
+    "stem": "Cells are cultured with glutamine labelled with <sup>15</sup>N in its <b>amide</b> nitrogen. Which atoms of the newly synthesised purine <i>ring</i> carry the label?",
+    "options": [
+      "N1 and N7",
+      "N1 only, since aspartate donates the rest",
+      "N3 and N9",
+      "N7 and N9"
+    ],
+    "answer": 2,
+    "explain": "Glutamine donates its amide nitrogen twice during ring assembly: at the committed step, where PRPP amidotransferase makes 5-phosphoribosylamine (that nitrogen becomes <b>N9</b>), and later at the FGAM synthetase step (becoming <b>N3</b>). The other two ring nitrogens come from elsewhere: <b>N1 from aspartate</b> and <b>N7 from glycine</b>, which enters intact and also supplies C4 and C5. Options A and D are each half right and pair a glutamine nitrogen with a glycine or aspartate one. Check the whole ring the same way: 4 nitrogens = Gln 2 + Asp 1 + Gly 1; 5 carbons = Gly 2 + N¹⁰-formyl-THF 2 (C2, C8) + CO₂ 1 (C6)."
+  },
+  {
+    "stem": "Which pairing of a drug with its molecular target is correct?",
+    "options": [
+      "Mycophenolate mofetil → inosine monophosphate dehydrogenase",
+      "Methotrexate → thymidylate synthase",
+      "5-Fluorouracil → dihydrofolate reductase",
+      "Hydroxyurea → xanthine oxidase"
+    ],
+    "answer": 0,
+    "explain": "Mycophenolate blocks IMP dehydrogenase, the committed step from IMP to GMP; lymphocytes have little capacity to compensate by salvage, which is the basis of its selective immunosuppression. Options B and C are the two halves of the commonest swap on this topic: <b>methotrexate inhibits DHFR</b> and <b>5-fluorouracil (as FdUMP) inhibits thymidylate synthase</b>. The distinction has a practical consequence — leucovorin <i>rescues</i> normal tissue from methotrexate because it is already-reduced folate, but it <i>potentiates</i> 5-FU because the folate is part of the covalent ternary complex that traps thymidylate synthase. Option D swaps hydroxyurea (ribonucleotide reductase) with allopurinol (xanthine oxidase)."
+  },
+  {
+    "stem": "A patient forms recurrent radiolucent renal stones and has a persistent urine pH of 5.0. Uric acid has pK<sub>a</sub> ≈ 5.5 and it is the un-ionised acid that is poorly soluble. What fraction is un-ionised, and what does alkalinising the urine to pH 6.5 do?",
+    "options": [
+      "About 24 % un-ionised, falling to about 9 % — a 2.6-fold reduction",
+      "About 76 % un-ionised, falling to about 9 % — an 8.4-fold reduction",
+      "About 50 % un-ionised, unchanged by pH, since solubility is fixed at body temperature",
+      "About 9 % un-ionised, rising to about 76 % as the urine is alkalinised"
+    ],
+    "answer": 1,
+    "explain": "[urate⁻]/[uric acid] = 10<sup>(pH − pK<sub>a</sub>)</sup>. At pH 5.0 that ratio is 10<sup>−0.5</sup> = 0.316, so the un-ionised fraction is 1/1.316 = <b>76 %</b>. At pH 6.5 the ratio is 10 and the fraction is 1/11 = <b>9.1 %</b>, an 8.4-fold reduction — achieved without altering the amount of urate excreted at all. Option A is the value at pH 6.0 (24 %) mistaken for pH 5.0. Option D has the direction reversed: raising pH deprotonates the acid, so the un-ionised form must <i>fall</i>. Note the companion fact that applies at a different pH: in plasma at 7.4 only 1.2 % is un-ionised, so there the limiting solubility is that of monosodium urate, ≈6.8 mg/dL ≈ 404 µmol/L."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
