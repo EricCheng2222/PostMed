@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glycolysis: The Ten Steps, One Diagram Each — PostMed Notebook</title>
+<meta name="description" content="A deep dive on glycolysis: all ten reactions one at a time, each with its own diagram showing substrate, product, the group that changes, the cosubstrates, the enzyme and ΔG°′ — plus consistent carbon numbering from glucose to pyruvate and English memory hooks for the intermediates, the enzymes and the ATP ledger.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biochemistry.html">Biochemistry</a>
+      <a href="#quiz">Self-test</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Note 04 · Deep dive</p>
+  <h1>Glycolysis: The Ten Steps, One Diagram Each</h1>
+  <p class="lede">
+    Note 04 treats glycolysis as one component of the carbohydrate picture and gives you the pathway as a balance
+    sheet. This page does the opposite: it stops at every one of the ten reactions and asks <em>what the chemistry
+    is actually doing there, and why it has to be that reaction and not another</em>. Every step gets its own
+    diagram — substrate on the left, product on the right, the group that changes picked out in colour, the
+    cosubstrates on curved arrows, the enzyme and its ΔG°′ on the arrow, and a single-headed arrow wherever the
+    reaction cannot be run backwards. The carbon numbers run unbroken through all ten pictures, so you can put a
+    finger on glucose C1 in the first diagram and follow it to the methyl carbon of pyruvate in the last. Memory
+    hooks for the eleven intermediates, the ten enzymes, the three irreversible steps and the ATP ledger are
+    gathered at the end, in English, because the paper is in English.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Ten steps · ten diagrams</span>
+    <span class="tag">Expands note 04 §&nbsp;02</span>
+    <span class="tag">English memory hooks</span>
+    <span class="tag">10 self-test questions</span>
+    <span>~55 min read</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
+    <ol>
+      <li><a href="#s1">Step 1 · Hexokinase — trapping the sugar</a></li>
+      <li><a href="#s2">Step 2 · Phosphohexose isomerase — moving the carbonyl</a></li>
+      <li><a href="#s3">Step 3 · PFK-1 — the committed step</a></li>
+      <li><a href="#s4">Step 4 · Aldolase — the cut</a></li>
+      <li><a href="#s5">Step 5 · Triose phosphate isomerase — making the halves identical</a></li>
+      <li><a href="#s6">Step 6 · GAPDH — oxidation paid into a bond</a></li>
+      <li><a href="#s7">Step 7 · Phosphoglycerate kinase — the first ATP</a></li>
+      <li><a href="#s8">Step 8 · Phosphoglycerate mutase — moving the phosphate</a></li>
+      <li><a href="#s9">Step 9 · Enolase — a water out, an enol phosphate in</a></li>
+      <li><a href="#s10">Step 10 · Pyruvate kinase — the second ATP</a></li>
+      <li><a href="#s11">The ten steps on one page</a></li>
+      <li><a href="#s12">Memory hooks, in English</a></li>
+      <li><a href="#quiz">Self-test · 10 questions</a></li>
+    </ol>
+  </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">Start here</p>
+    <ol>
+      <li><b>Understand first</b> — <b>§&nbsp;02</b> and <b>§&nbsp;04</b> read as one argument: the carbonyl has to
+        move from C1 to C2 <em>before</em> the sugar can be cut into two three-carbon pieces, because a retro-aldol
+        cleavage always breaks the bond two carbons away from the carbonyl. Get that and the whole preparatory phase
+        stops being arbitrary. Then <b>§&nbsp;06</b>: one active site performs an oxidation and a phosphorylation
+        together, and the energy of the first pays for the second. Those two ideas carry eight of the ten steps.</li>
+      <li><b>Then be able to do</b> — draw any one of the ten reactions from memory with the carbon numbers on it;
+        say which carbon of pyruvate a given glucose carbon becomes (<b>§&nbsp;05</b> is where the answer is decided);
+        state ΔG°′ and the sign of the cellular ΔG for each step (<b>§&nbsp;11</b>); and produce the ATP ledger
+        without counting on your fingers (<b>§&nbsp;12</b>).</li>
+      <li><b>Leave for a second pass</b> — the mechanisms behind every "Go deeper" line, the enzyme deficiency
+        column of the table in <b>§&nbsp;11</b>, and the isozyme detail in <b>§&nbsp;10</b>. None of that is needed
+        to answer a question about which step is irreversible or where the ATP is made.</li>
+      <li><b>One line to carry the whole page</b> — <em>spend two phosphates to put a handle on each end, cut in the
+        middle, then sell each half twice.</em> Steps 1 and 3 are the spending, step 4 is the cut, steps 7 and 10 are
+        the selling, and every step in between exists only to make the next one chemically possible.</li>
+    </ol>
+  </div>
+
+  <section class="fsheet card">
+    <details class="disc disc--sheet">
+      <summary>Quick sheet<span class="disc__count">20 entries</span></summary>
+      <div class="disc__body">
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>Step 1 · hexokinase</b><code>Glc + ATP → G6P · −16.7 · Mg²⁺</code></div>
+      <div class="fsheet__item"><b>Step 2 · phosphohexose isomerase</b><code>G6P ⇌ F6P · +1.7 · aldose → ketose</code></div>
+      <div class="fsheet__item"><b>Step 3 · PFK-1</b><code>F6P + ATP → F1,6BP · −14.2 · committed</code></div>
+      <div class="fsheet__item"><b>Step 4 · aldolase</b><code>F1,6BP ⇌ DHAP + G3P · +23.8 · cuts C3–C4</code></div>
+      <div class="fsheet__item"><b>Step 5 · triose-P isomerase</b><code>DHAP ⇌ G3P · +7.5 · ~95:5 toward DHAP</code></div>
+      <div class="fsheet__item"><b>Step 6 · GAPDH</b><code>G3P + P<sub>i</sub> + NAD⁺ ⇌ 1,3-BPG + NADH · +6.3</code></div>
+      <div class="fsheet__item"><b>Step 7 · phosphoglycerate kinase</b><code>1,3-BPG + ADP ⇌ 3-PG + ATP · −18.5</code></div>
+      <div class="fsheet__item"><b>Step 8 · phosphoglycerate mutase</b><code>3-PG ⇌ 2-PG · +4.4 · needs 2,3-BPG</code></div>
+      <div class="fsheet__item"><b>Step 9 · enolase</b><code>2-PG ⇌ PEP + H₂O · +7.5 · 2 Mg²⁺</code></div>
+      <div class="fsheet__item"><b>Step 10 · pyruvate kinase</b><code>PEP + ADP → pyr + ATP · −31.4 · Mg²⁺, K⁺</code></div>
+      <div class="fsheet__item"><b>Cellular ΔG · steps 1, 3, 10</b><code>≈ −33 · −22 · −17 kJ·mol⁻¹</code></div>
+      <div class="fsheet__item"><b>Cellular ΔG · the other seven</b><code>within a few kJ·mol⁻¹ of zero</code></div>
+      <div class="fsheet__item"><b>Where Mg²⁺ is needed</b><code>1, 3, 7, 9, 10 · plus K⁺ at 10</code></div>
+      <div class="fsheet__item"><b>Enzyme classes</b><code>4 kinases · 2 isomerases · 1 mutase · 1 dehydrogenase · 2 lyases</code></div>
+      <div class="fsheet__item"><b>The only oxidation</b><code>step 6 — every glycolytic NADH comes from there</code></div>
+      <div class="fsheet__item"><b>The only water released</b><code>step 9 — enolase, and it is a dehydration</code></div>
+      <div class="fsheet__item"><b>Substrate-level phosphorylation</b><code>steps 7 and 10, each running twice</code></div>
+      <div class="fsheet__item"><b>ATP ledger</b><code>−1 at 1 · −1 at 3 · +2 at 7 · +2 at 10 = net +2</code></div>
+      <div class="fsheet__item"><b>Transfer potential (kJ·mol⁻¹)</b><code>PEP −61.9 · 1,3-BPG −49.3 · ATP −30.5</code></div>
+      <div class="fsheet__item"><b>Carbon key</b><code>C1,C6 → CH₃ · C2,C5 → C=O · C3,C4 → COO⁻</code></div>
+    </div>
+      </div>
+    </details>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>Step 1 · Hexokinase — trapping the sugar</h2>
+
+  <p class="idea"><b>The idea</b>The very first thing a cell does to a sugar is bolt a phosphate onto its far end. It costs one unit of the
+     cell's energy currency, and the cell pays it before it has earned anything, because the charged molecule that
+     results can no longer leave through the door it came in by. Nothing else about the sugar changes here: five of
+     its six carbons are untouched, and the carbon that was the aldehyde is still the aldehyde.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">How to read the ten diagrams</p>
+    <dl class="def">
+      <dt>The drawing convention</dt>
+      <dd>Every sugar is drawn <strong>open-chain</strong> as a vertical backbone, one dot per carbon, numbered down
+          the left. In solution the hexoses are almost entirely cyclic — glucose 6-phosphate is a pyranose ring,
+          fructose 6-phosphate a furanose — and the enzymes of steps 2 and 4 open the ring as part of their
+          mechanism. The open chain is drawn here because it is the only representation in which a carbon keeps the
+          same position on the page — with one deliberate exception, step 5, where the upper half is drawn
+          end-for-end because that is precisely what triose phosphate isomerase does to its numbering.</dd>
+      <dt>The colour code</dt>
+      <dd><strong>Teal</strong> marks the group that changes, on both sides of the arrow, so the eye can find the
+          reaction without reading. <strong>Grey</strong> is everything that does not change.
+          <strong>Green</strong> flags a phosphate whose transfer potential exceeds that of ATP — the acyl phosphate
+          of 1,3-bisphosphoglycerate and the enol phosphate of phosphoenolpyruvate, and nothing else.
+          <strong>Amber</strong> is ATP/ADP traffic and, deliberately, the three irreversible arrows.
+          <strong>Indigo</strong> is everything else that enters or leaves: NAD⁺, P<sub>i</sub>, water.</dd>
+      <dt>The two kinds of arrow</dt>
+      <dd>A <strong>single thick amber arrow</strong> means the reaction runs one way in a living cell; the seven
+          <strong>thin double arrows</strong> mean the reaction sits close enough to equilibrium that it will run
+          either way depending on which side is being drained. Under each arrow are two numbers: ΔG°′, the standard
+          free-energy change, and the sign of ΔG at real cellular concentrations. They frequently disagree, and
+          which one you are being asked about is the single commonest hinge in this topic.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">glucose + ATP → glucose 6-phosphate + ADP     ΔG°′ = −16.7 kJ·mol⁻¹</span>
+      <span class="fx__tag">hexokinase (EC 2.7.1.1), a transferase; Mg²⁺·ATP is the true substrate</span>
+    </div>
+    <details class="disc">
+      <summary>Full definition, symbols and units</summary>
+      <div class="disc__body">
+        <dl class="def">
+          <dt>ΔG°′ versus ΔG</dt>
+          <dd><strong>ΔG°′</strong> is measured with every species at 1 mol·L⁻¹, pH 7, 25 °C. <strong>ΔG</strong> is
+              what the reaction actually does at the concentrations present, and it is the only one that decides
+              direction: <span class="fi">ΔG = ΔG°′ + RT ln Q</span>. A step can have a strongly positive ΔG°′ and
+              still run forward all day, which is exactly what step 4 does.</dd>
+          <dt>Phosphoryl-transfer potential</dt>
+          <dd>The ΔG°′ of hydrolysis of a phosphorylated compound. Anything more negative than ATP's
+              −30.5 kJ·mol⁻¹ can phosphorylate ADP; anything less negative cannot. Two glycolytic intermediates
+              qualify, and they are the two that make ATP.</dd>
+          <dt>Condensed chain notation</dt>
+          <dd>Interior carbons are written <span class="fi">CHOH</span> without their stereochemistry, because no
+              glycolytic step <em>inverts</em> a stereocentre — steps 2, 4 and 5 destroy stereocentres, turning them
+              into carbonyl carbons or plain <span class="fi">CH₂</span> groups, and the reverse reactions rebuild
+              them in the original configuration, but nothing in the pathway epimerises anything. Where a bond
+              genuinely changes — a carbonyl appearing, a double bond forming — the diagram shows it explicitly.</dd>
+        </dl>
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">ΔG = ΔG°′ + RT ln Q     R = 8.315 × 10⁻³ kJ·K⁻¹·mol⁻¹</span><span class="fx__tag">Q is the mass-action ratio, products over reactants, at the concentrations actually present</span></div>
+          <div class="fx"><span class="fx__eq">ΔG°′ = −RT ln K′<sub>eq</sub></span><span class="fx__tag">at 298 K, every 5.7 kJ·mol⁻¹ is one factor of ten in K′<sub>eq</sub></span></div>
+          <div class="fx"><span class="fx__eq">glucose + ATP → G6P + ADP:  K′<sub>eq</sub> ≈ 8 × 10²</span><span class="fx__tag">from ΔG°′ = −16.7; large, but it is the cellular ΔG of ≈ −33 that makes the step irreversible</span></div>
+        </div>
+        <div class="symtab">
+          <div><b>ΔG°′</b><span>standard free-energy change at pH 7 (kJ·mol⁻¹)</span></div>
+          <div><b>ΔG</b><span>actual free-energy change in the cell (kJ·mol⁻¹)</span></div>
+          <div><b>K′<sub>eq</sub></b><span>equilibrium constant at pH 7 — dimensionless as written here</span></div>
+          <div><b>Q</b><span>mass-action ratio at the moment of measurement</span></div>
+          <div><b>P<sub>i</sub></b><span>inorganic phosphate (mol·L⁻¹)</span></div>
+          <div><b>G6P</b><span>glucose 6-phosphate</span></div>
+          <div><b>G3P</b><span>glyceraldehyde 3-phosphate — note 04 writes this <b>GAP</b> and uses G3P for the glycerol 3-phosphate shuttle</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 226" role="img" aria-label="Step 1. Glucose is drawn as an open chain of six carbons numbered 1 to 6, with an aldehyde at carbon 1 and a hydroxymethyl group at carbon 6. The hydroxymethyl group at carbon 6 is highlighted, and in the product, glucose 6-phosphate, that same carbon 6 carries a phosphate ester instead. A curved arrow over the reaction arrow shows A T P entering and A D P leaving. The enzyme is hexokinase, requiring magnesium. The reaction arrow is a single thick arrow because the step is irreversible in the cell: the standard free-energy change is minus 16.7 kilojoules per mole and the cellular free-energy change is about minus 33." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m1b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-2)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 1 · PHOSPHORYLATION AT C6</text>
+
+      <text x="54" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Glucose (open chain)</text>
+      <line x1="76" y1="76" x2="76" y2="196" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="80">1</text><text x="66" y="104">2</text><text x="66" y="128">3</text>
+        <text x="66" y="152">4</text><text x="66" y="176">5</text><text x="66" y="200">6</text>
+      </g>
+      <g fill="var(--ink-soft)"><circle cx="76" cy="76" r="3.6"/><circle cx="76" cy="100" r="3.6"/><circle cx="76" cy="124" r="3.6"/><circle cx="76" cy="148" r="3.6"/><circle cx="76" cy="172" r="3.6"/></g>
+      <circle cx="76" cy="196" r="4.6" fill="var(--accent)"/>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="88" y="80">CHO</text><text x="88" y="104">CHOH</text><text x="88" y="128">CHOH</text>
+        <text x="88" y="152">CHOH</text><text x="88" y="176">CHOH</text>
+      </g>
+      <text x="88" y="200" font-size="11.5" font-weight="700" fill="var(--accent)">CH₂—OH</text>
+
+      <text x="340" y="64" font-size="12.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">hexokinase</text>
+      <text x="340" y="80" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">transferase · Mg²⁺ · induced fit closes the cleft</text>
+      <text x="290" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">ATP</text>
+      <text x="392" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">ADP</text>
+      <path d="M 290,104 C 308,148 372,148 390,104" fill="none" stroke="var(--accent-2)" stroke-width="1.5" marker-end="url(#m1b)"/>
+      <line x1="230" y1="136" x2="450" y2="136" stroke="var(--accent-2)" stroke-width="3" marker-end="url(#m1b)"/>
+      <text x="340" y="162" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = −16.7 kJ·mol⁻¹</text>
+      <text x="340" y="178" font-size="10" font-weight="700" text-anchor="middle" fill="var(--v-heat)">IRREVERSIBLE · cellular ΔG ≈ −33 kJ·mol⁻¹</text>
+
+      <text x="478" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Glucose 6-phosphate (G6P)</text>
+      <line x1="500" y1="76" x2="500" y2="196" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="490" y="80">1</text><text x="490" y="104">2</text><text x="490" y="128">3</text>
+        <text x="490" y="152">4</text><text x="490" y="176">5</text><text x="490" y="200">6</text>
+      </g>
+      <g fill="var(--ink-soft)"><circle cx="500" cy="76" r="3.6"/><circle cx="500" cy="100" r="3.6"/><circle cx="500" cy="124" r="3.6"/><circle cx="500" cy="148" r="3.6"/><circle cx="500" cy="172" r="3.6"/></g>
+      <circle cx="500" cy="196" r="4.6" fill="var(--accent)"/>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="512" y="80">CHO</text><text x="512" y="104">CHOH</text><text x="512" y="128">CHOH</text>
+        <text x="512" y="152">CHOH</text><text x="512" y="176">CHOH</text>
+      </g>
+      <text x="512" y="200" font-size="11.5" font-weight="700" fill="var(--accent)">CH₂—O—PO₃²⁻</text>
+
+      <text x="14" y="216" font-size="9.5" fill="var(--ink-faint)"><tspan font-weight="700" fill="var(--accent-3)">CARBON KEY </tspan>numbering is glucose's own · C1 is the aldehyde carbon · C6 takes this first phosphate and keeps it as far as the cut</text>
+    </svg>
+    <figcaption>One bond changes in the whole molecule: the C6 hydroxyl becomes a phosphate ester. Note what the
+      diagram does <em>not</em> show — no oxidation, no rearrangement, no change of carbon skeleton. Note also where
+      the phosphate lands. It sits on C6, the end furthest from the aldehyde, and it stays there through steps 2 and
+      3; after the cut at step 4 it leaves in the <em>lower</em> half, as the phosphate of glyceraldehyde
+      3-phosphate.</figcaption>
+  </figure>
+
+  <h3>The chemistry: a phosphoryl transfer that must not become a hydrolysis</h3>
+  <p>A kinase moves the terminal phosphoryl group of ATP onto a nucleophile — here the C6 hydroxyl oxygen of glucose,
+     which attacks the γ-phosphorus. The obvious hazard is that water is also a nucleophile, is present at
+     55 mol·L⁻¹, and would give ADP and P<sub>i</sub> with nothing gained. Hexokinase solves this with the textbook
+     case of <strong>induced fit</strong>: the two lobes of the enzyme close around glucose like a hand closing on a
+     ball, and the closure is what completes the active site and expels water from it. Glucose is not merely bound;
+     glucose is the trigger that builds the catalytic machine. This is why hexokinase appears in the enzymology
+     chapter as often as in the metabolism chapter.</p>
+  <p>The reason a cell bothers is threefold, and all three matter. A phosphate ester carries two negative charges, so
+     no GLUT transporter will carry it — the sugar is <strong>trapped</strong>. Free intracellular glucose therefore
+     stays low, so the inward gradient that drives uptake never collapses. And glucose 6-phosphate is the substrate
+     the next four pathways all recognise: nothing downstream of here works on unphosphorylated sugar.</p>
+
+  <h3>Energetics and regulation</h3>
+  <p>ΔG°′ = −16.7 kJ·mol⁻¹, which is a K′<sub>eq</sub> of about 8 × 10². That alone would not make the step
+     irreversible; what does is the cellular ΔG of roughly <strong>−33 kJ·mol⁻¹</strong>, which is the number to
+     quote if a stem asks why the reaction cannot be reversed. Gluconeogenesis does not reverse it. It hydrolyses the
+     ester with a different enzyme, glucose 6-phosphatase, in a different compartment, in only three tissues.</p>
+  <p>Hexokinases I–III are inhibited by their own product, glucose 6-phosphate — local housekeeping. Glucokinase
+     (hexokinase IV) is not, and its [S]<sub>0.5</sub> of about 10 mM makes the liver a glucose <em>sensor</em>
+     rather than a constant consumer; note 04 §&nbsp;01 does that comparison in full and it is not repeated here.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 1 · irreversible is not the same as committed</p>
+    <p style="margin:0">Candidates who have learned "hexokinase is irreversible" reach for it when asked for the
+      <strong>committed</strong> step, and lose the mark. Committed means the intermediate has nowhere else to go, and
+      glucose 6-phosphate has four exits — glycolysis, glycogen, the pentose phosphate pathway and, in liver, kidney
+      and intestine, back out as free glucose. The committed step of glycolysis is <strong>PFK-1</strong>, two
+      reactions later. A second trap in the same family: this step is irreversible, but it is <em>not</em> the
+      rate-limiting one either. Irreversible, committed and rate-limiting are three different claims, and only PFK-1
+      satisfies all three.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>Step 2 · Phosphohexose isomerase — moving the carbonyl</h2>
+
+  <p class="idea"><b>The idea</b>The second reaction looks like the cell shuffling a molecule for no reason. Nothing is added, nothing is
+     removed, nothing is oxidised, and the free-energy change is almost zero. It is nevertheless one of the most
+     consequential reactions in the pathway, because moving the double-bonded oxygen one place along the chain is
+     what makes it possible to cut the sugar cleanly down the middle two steps later — and it opens up the far end
+     so that the second phosphate has somewhere to go.</p>
+
+  <div class="fx fx--hero">
+    <span class="fx__eq">glucose 6-phosphate ⇌ fructose 6-phosphate     ΔG°′ = +1.7 kJ·mol⁻¹</span>
+    <span class="fx__tag">phosphohexose isomerase (phosphoglucose isomerase, EC 5.3.1.9); no cofactor, no metal</span>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 226" role="img" aria-label="Step 2. Glucose 6-phosphate, an aldose with its carbonyl as an aldehyde at carbon 1, is converted to fructose 6-phosphate, a ketose whose carbonyl sits at carbon 2. Carbons 1 and 2 are highlighted on both sides: carbon 1 changes from an aldehyde to a hydroxymethyl group and carbon 2 changes from a hydroxyl-bearing carbon to a ketone. Carbons 3 to 6 are unchanged and the phosphate stays on carbon 6. The reaction arrow is a double arrow because the step is freely reversible, and the standard free-energy change is plus 1.7 kilojoules per mole." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-soft)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 2 · ALDOSE → KETOSE, CARBONYL C1 → C2</text>
+
+      <text x="54" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Glucose 6-phosphate (G6P)</text>
+      <line x1="76" y1="76" x2="76" y2="196" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="80">1</text><text x="66" y="104">2</text><text x="66" y="128">3</text>
+        <text x="66" y="152">4</text><text x="66" y="176">5</text><text x="66" y="200">6</text>
+      </g>
+      <g fill="var(--accent)"><circle cx="76" cy="76" r="4.6"/><circle cx="76" cy="100" r="4.6"/></g>
+      <g fill="var(--ink-soft)"><circle cx="76" cy="124" r="3.6"/><circle cx="76" cy="148" r="3.6"/><circle cx="76" cy="172" r="3.6"/><circle cx="76" cy="196" r="3.6"/></g>
+      <g font-size="11.5" font-weight="700" fill="var(--accent)">
+        <text x="88" y="80">CHO</text><text x="88" y="104">CHOH</text>
+      </g>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="88" y="128">CHOH</text><text x="88" y="152">CHOH</text><text x="88" y="176">CHOH</text>
+        <text x="88" y="200">CH₂—O—PO₃²⁻</text>
+      </g>
+
+      <text x="340" y="64" font-size="12.5" font-weight="700" text-anchor="middle" fill="var(--ink)">phosphohexose isomerase</text>
+      <text x="340" y="80" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">isomerase · no cofactor</text>
+      <text x="340" y="106" font-size="10" text-anchor="middle" fill="var(--accent-3)">ring opens → cis-enediolate → ring closes</text>
+      <line x1="230" y1="131" x2="450" y2="131" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m2a)"/>
+      <line x1="450" y1="141" x2="230" y2="141" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m2a)"/>
+      <text x="340" y="162" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = +1.7 kJ·mol⁻¹</text>
+      <text x="340" y="178" font-size="10" text-anchor="middle" fill="var(--ink-faint)">reversible · cellular ΔG ≈ 0 · runs backwards in gluconeogenesis</text>
+
+      <text x="478" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Fructose 6-phosphate (F6P)</text>
+      <line x1="500" y1="76" x2="500" y2="196" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="490" y="80">1</text><text x="490" y="104">2</text><text x="490" y="128">3</text>
+        <text x="490" y="152">4</text><text x="490" y="176">5</text><text x="490" y="200">6</text>
+      </g>
+      <g fill="var(--accent)"><circle cx="500" cy="76" r="4.6"/><circle cx="500" cy="100" r="4.6"/></g>
+      <g fill="var(--ink-soft)"><circle cx="500" cy="124" r="3.6"/><circle cx="500" cy="148" r="3.6"/><circle cx="500" cy="172" r="3.6"/><circle cx="500" cy="196" r="3.6"/></g>
+      <g font-size="11.5" font-weight="700" fill="var(--accent)">
+        <text x="512" y="80">CH₂OH</text><text x="512" y="104">C=O</text>
+      </g>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="512" y="128">CHOH</text><text x="512" y="152">CHOH</text><text x="512" y="176">CHOH</text>
+        <text x="512" y="200">CH₂—O—PO₃²⁻</text>
+      </g>
+      <text x="612" y="80" font-size="8.5" fill="var(--accent)">free for PFK-1</text>
+
+      <text x="14" y="216" font-size="9.5" fill="var(--ink-faint)"><tspan font-weight="700" fill="var(--accent-3)">CARBON KEY </tspan>no carbon moves and none is lost — C1 stays C1 · fructose 6-phosphate is numbered exactly as the glucose it came from</text>
+    </svg>
+    <figcaption>Two carbons change and they change into each other's roles: the aldehyde at C1 becomes a primary
+      alcohol, and the alcohol at C2 becomes a ketone. Everything else on the page is grey, including the phosphate,
+      which never moves. Two things have been achieved. The carbonyl now sits at C2, which is where it must be for
+      the aldolase cut of step 4 to fall between C3 and C4; and C1 is now a plain <span class="fi">CH₂OH</span>
+      instead of a hemiacetal, which is a group a kinase can phosphorylate.</figcaption>
+  </figure>
+
+  <h3>Why this reaction has to happen before the cut</h3>
+  <p>An aldol cleavage is not a general-purpose pair of scissors. It breaks one specific bond: the one between the
+     carbon α to the carbonyl and the carbon β to it, where the β carbon carries a hydroxyl. Count that out on each
+     of the two molecules and the whole preparatory phase explains itself.</p>
+  <p>On <strong>glucose 6-phosphate</strong> the carbonyl is at C1, so α is C2 and β is C3. A retro-aldol would break
+     <strong>C2–C3</strong>, giving a two-carbon fragment and a four-carbon fragment. Neither is a triose, the
+     two-carbon piece carries no phosphate at all and would diffuse straight out of the cell, and the pathway would
+     need two entirely separate sets of downstream enzymes.</p>
+  <p>On <strong>fructose 1,6-bisphosphate</strong> the carbonyl is at C2, so α is C3 and β is C4. The retro-aldol
+     breaks <strong>C3–C4</strong> — dead centre — giving two three-carbon fragments, each carrying one of the two
+     phosphates. That is the entire justification for step 2, and it also tells you why step 3 phosphorylates C1
+     rather than anywhere else: C1 has to be charged before the cut, because after the cut it is the exposed end of
+     the upper half and would otherwise leak away.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">What is examined here</p>
+    <p style="margin:0">Almost never the reaction itself — it has no cofactor, no regulation and a ΔG°′ of nearly
+      zero, so there is little to ask. What <em>is</em> asked, repeatedly, is the <strong>reason</strong>: "why must
+      glucose 6-phosphate be isomerised before cleavage?" The answer that scores is the one about where the aldol
+      bond lies, not the vague one about "making the two halves the same". The two halves are <em>not</em> the same
+      when they come off the aldolase — that is step 5's job, one reaction later.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 2 · this is an isomerisation, not an epimerisation</p>
+    <p style="margin:0">Glucose and fructose are <strong>constitutional isomers</strong> (aldose against ketose);
+      glucose and mannose are <strong>epimers</strong> (they differ at one stereocentre, C2); glucose and galactose
+      are epimers at C4. An option that calls step 2 an epimerisation, or that says the enzyme "inverts C2", is
+      wrong — nothing here is <em>inverted</em>: C2 passes through a planar enediol and comes out as a carbonyl
+      carbon with no stereochemistry at all, so the C2 stereocentre is <em>destroyed</em> rather than epimerised
+      (glucose 6-phosphate has four stereocentres, fructose 6-phosphate three), and running the enzyme backwards
+      regenerates C2 in the <em>gluco</em> configuration, never the <em>manno</em> one. That is the difference
+      between an isomerase and an epimerase. The other half of this trap is directional: the enzyme is
+      freely reversible and carries the same name in both directions, so gluconeogenesis uses <em>this very
+      enzyme</em> rather than a bypass. Only the three irreversible steps need bypassing.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the ring forms, and the enediol that both isomerases use</summary>
+    <div class="disc__body">
+      <p>In water, less than one glucose molecule in a hundred is in the open-chain form the diagrams draw; the rest
+        is <strong>α- or β-D-glucopyranose</strong>, a six-membered ring closed by the C5 hydroxyl attacking the C1
+        aldehyde to give a hemiacetal. Fructose 6-phosphate is likewise <strong>β-D-fructofuranose 6-phosphate</strong>,
+        a five-membered ring closed by the C5 hydroxyl onto the C2 ketone. Phosphohexose isomerase therefore does
+        three things in sequence: it <strong>opens</strong> the pyranose ring, it <strong>isomerises</strong> the
+        open chain, and it <strong>closes</strong> the furanose ring.</p>
+      <p>The isomerisation itself is a two-step proton shuffle through a <strong>cis-enediolate</strong>. An
+        active-site glutamate removes the C2 proton, the C1=O becomes C1–O⁻, and the intermediate is a flat
+        two-carbon fragment carrying a delocalised negative charge across O1–C1=C2–O2. Reprotonating on C1 instead of
+        C2 completes the move: the carbonyl has migrated one carbon along. Nothing was oxidised — the same electrons
+        are present throughout, only rearranged, which is why the free-energy change is so small.</p>
+      <p>This is worth the effort because <strong>triose phosphate isomerase at step 5 uses the identical
+        chemistry</strong> on a three-carbon substrate. Learn the enediol once and you have the mechanism of two of
+        the ten steps. It also sets up a piece of pathology one step further on: the <em>triose</em> phosphate
+        enediolate, if it escapes, β-eliminates its C3 phosphate and collapses to <strong>methylglyoxal</strong>, a
+        reactive dicarbonyl implicated in diabetic tissue damage — which is why triose phosphate isomerase carries a
+        mobile loop that closes over the intermediate and releases it only after reprotonation. The hexose enediol
+        has no phosphate β to the double bond, so phosphohexose isomerase needs no such lid.</p>
+      <p>One curiosity that occasionally appears in a stem: phosphohexose isomerase is a <strong>moonlighting
+        protein</strong>. The same polypeptide, secreted, acts as neuroleukin and as autocrine motility factor.
+        Its deficiency causes a chronic non-spherocytic haemolytic anaemia — the red cell, having no mitochondria,
+        feels every glycolytic lesion.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Step 3 · PFK-1 — the committed step</h2>
+
+  <p class="idea"><b>The idea</b>Now the cell spends its second and last unit of energy, putting a phosphate on the other end of the sugar.
+     This is the point of no return. Everything before it could still have been diverted into storage or into another
+     pathway; after it there is nowhere for the molecule to go but down the line. Because it is the point of no
+     return, it is also where nearly all of the control lives — this one enzyme listens to more signals than the
+     other nine put together.</p>
+
+  <div class="fx fx--hero">
+    <span class="fx__eq">fructose 6-phosphate + ATP → fructose 1,6-bisphosphate + ADP     ΔG°′ = −14.2 kJ·mol⁻¹</span>
+    <span class="fx__tag">phosphofructokinase-1 (EC 2.7.1.11), Mg²⁺; committed, rate-limiting and irreversible</span>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 226" role="img" aria-label="Step 3. Fructose 6-phosphate, a six-carbon ketose with a ketone at carbon 2 and a phosphate on carbon 6, is phosphorylated on carbon 1 by phosphofructokinase-1 to give fructose 1,6-bisphosphate. The hydroxymethyl group at carbon 1 is highlighted and becomes a phosphate ester, so the product carries a phosphate at each end of the chain. A curved arrow shows A T P entering and A D P leaving. The reaction arrow is a single thick arrow because the step is irreversible: the standard free-energy change is minus 14.2 kilojoules per mole and the cellular free-energy change is about minus 22." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m3b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-2)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 3 · PHOSPHORYLATION AT C1 · THE COMMITTED STEP</text>
+
+      <text x="54" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Fructose 6-phosphate (F6P)</text>
+      <line x1="76" y1="76" x2="76" y2="196" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="80">1</text><text x="66" y="104">2</text><text x="66" y="128">3</text>
+        <text x="66" y="152">4</text><text x="66" y="176">5</text><text x="66" y="200">6</text>
+      </g>
+      <circle cx="76" cy="76" r="4.6" fill="var(--accent)"/>
+      <g fill="var(--ink-soft)"><circle cx="76" cy="100" r="3.6"/><circle cx="76" cy="124" r="3.6"/><circle cx="76" cy="148" r="3.6"/><circle cx="76" cy="172" r="3.6"/><circle cx="76" cy="196" r="3.6"/></g>
+      <text x="88" y="80" font-size="11.5" font-weight="700" fill="var(--accent)">CH₂—OH</text>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="88" y="104">C=O</text><text x="88" y="128">CHOH</text><text x="88" y="152">CHOH</text>
+        <text x="88" y="176">CHOH</text><text x="88" y="200">CH₂—O—PO₃²⁻</text>
+      </g>
+
+      <text x="340" y="64" font-size="12.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">phosphofructokinase-1</text>
+      <text x="340" y="80" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">transferase · Mg²⁺ · tetramer, allosteric</text>
+      <text x="290" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">ATP</text>
+      <text x="392" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">ADP</text>
+      <path d="M 290,104 C 308,148 372,148 390,104" fill="none" stroke="var(--accent-2)" stroke-width="1.5" marker-end="url(#m3b)"/>
+      <line x1="230" y1="136" x2="450" y2="136" stroke="var(--accent-2)" stroke-width="3" marker-end="url(#m3b)"/>
+      <text x="340" y="162" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = −14.2 kJ·mol⁻¹</text>
+      <text x="340" y="178" font-size="10" font-weight="700" text-anchor="middle" fill="var(--v-heat)">IRREVERSIBLE · cellular ΔG ≈ −22 kJ·mol⁻¹</text>
+
+      <text x="470" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Fructose 1,6-bisphosphate (F1,6BP)</text>
+      <line x1="500" y1="76" x2="500" y2="196" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="490" y="80">1</text><text x="490" y="104">2</text><text x="490" y="128">3</text>
+        <text x="490" y="152">4</text><text x="490" y="176">5</text><text x="490" y="200">6</text>
+      </g>
+      <circle cx="500" cy="76" r="4.6" fill="var(--accent)"/>
+      <g fill="var(--ink-soft)"><circle cx="500" cy="100" r="3.6"/><circle cx="500" cy="124" r="3.6"/><circle cx="500" cy="148" r="3.6"/><circle cx="500" cy="172" r="3.6"/><circle cx="500" cy="196" r="3.6"/></g>
+      <text x="512" y="80" font-size="11.5" font-weight="700" fill="var(--accent)">CH₂—O—PO₃²⁻</text>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="512" y="104">C=O</text><text x="512" y="128">CHOH</text><text x="512" y="152">CHOH</text>
+        <text x="512" y="176">CHOH</text><text x="512" y="200">CH₂—O—PO₃²⁻</text>
+      </g>
+      <text x="614" y="140" font-size="9" fill="var(--ink-faint)">a phosphate</text>
+      <text x="614" y="152" font-size="9" fill="var(--ink-faint)">at each end</text>
+
+      <text x="14" y="216" font-size="9.5" fill="var(--ink-faint)"><tspan font-weight="700" fill="var(--accent-3)">CARBON KEY </tspan>C1 now carries the phosphate that ends up on DHAP · C6 still carries the one from step 1, which ends up on G3P</text>
+    </svg>
+    <figcaption>The molecule is now symmetrical in the only way that matters: charged at both ends. Look at the two
+      phosphates and read forward — the C1 phosphate leaves in the upper half of the cut, the C6 phosphate in the
+      lower half, so each three-carbon product comes off the aldolase already tagged. That is what the two ATP of the
+      investment phase actually buy. They do not activate the sugar for oxidation; they label both halves so that a
+      single set of five downstream enzymes can process either one.</figcaption>
+  </figure>
+
+  <h3>Why phosphorylate twice before cutting anything</h3>
+  <p>Put the question the other way round: what would happen if the cell cut first and phosphorylated afterwards? It
+     would produce two uncharged trioses, both membrane-permeant, both able to walk out of the cell before an enzyme
+     reached them, and it would then have to spend the same two ATP anyway to tag them. Phosphorylating first costs
+     nothing extra and closes the leak. The investment phase is not an energetic priming — the sugar is not made
+     "more reactive" in any useful sense — it is a <strong>labelling operation</strong>. The tag traps, and the tag
+     is also the handle every downstream enzyme grips.</p>
+
+  <h3>Energetics and regulation</h3>
+  <p>ΔG°′ = −14.2 kJ·mol⁻¹, cellular ΔG ≈ <strong>−22 kJ·mol⁻¹</strong>. Being irreversible, it is bypassed in
+     gluconeogenesis by fructose 1,6-bisphosphatase, which hydrolyses the C1 phosphate rather than handing it back to
+     ADP — the classic pattern for undoing a kinase.</p>
+  <p>The regulation is the most examined in metabolism and note 04 §&nbsp;03 and §&nbsp;08 treat it at length; the
+     summary that belongs on this page is that PFK-1 is switched <strong>on</strong> by AMP, ADP and fructose
+     2,6-bisphosphate and <strong>off</strong> by ATP, citrate and H⁺. The ATP effect is the one to understand rather
+     than memorise: ATP is the substrate at the active site <em>and</em> an inhibitor at a separate low-affinity
+     allosteric site, and binding there does not lower V<sub>max</sub> — it makes the fructose 6-phosphate saturation
+     curve sigmoidal, raising the apparent K<sub>m</sub>. AMP competes that effect away. So the enzyme is not reading
+     [ATP]; it is reading the ATP-to-AMP ratio, which is a far sharper signal.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">What is examined here</p>
+    <p style="margin:0">Three things, in order of frequency. <strong>(1)</strong> That this — not hexokinase — is the
+      committed and rate-limiting step. <strong>(2)</strong> That fructose <strong>2,6</strong>-bisphosphate is the
+      activator of PFK-1 while fructose <strong>1,6</strong>-bisphosphate is the activator of pyruvate kinase;
+      swapping those two numbers is the commonest single distractor in carbohydrate metabolism. <strong>(3)</strong>
+      That PFK-1 is inhibited by its own substrate ATP, which sounds contradictory until you separate the catalytic
+      site from the allosteric one.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 3 · PFK-1 is not PFK-2, and F2,6BP is not an intermediate</p>
+    <p style="margin:0"><strong>PFK-2</strong> is a different protein with a different job: it makes fructose
+      2,6-bisphosphate, which is a <em>signal</em>, sits on no pathway, and is consumed by nothing. It exists only to
+      be sensed by PFK-1 and by fructose 1,6-bisphosphatase. An option describing F2,6BP as "an intermediate of
+      glycolysis" is always wrong. A second trap: muscle PFK-1 deficiency is <strong>Tarui disease, GSD VII</strong>,
+      and it looks like McArdle disease — exercise intolerance, cramps, no rise in lactate — but with two
+      distinguishing features. There is <em>no second wind</em>, and a high-carbohydrate meal makes the patient
+      <em>worse</em>, because glucose cannot be used and it suppresses the free fatty acids the muscle was relying
+      on. There is usually a mild haemolysis too, since red cells carry the muscle subunit as well.</p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Step 4 · Aldolase — the cut</h2>
+
+  <p class="idea"><b>The idea</b>This is the step the pathway is named after. A six-carbon sugar carrying a phosphate at each end is cut exactly
+     in the middle, and out come two three-carbon pieces, each holding one of the phosphates. On paper the reaction
+     looks impossible: it runs strongly uphill under standard conditions, more steeply uphill than any other step in
+     glycolysis. It runs forward anyway, briskly, all day, and understanding why is worth more marks than the
+     reaction itself.</p>
+
+  <div class="fx fx--hero">
+    <span class="fx__eq">fructose 1,6-bisphosphate ⇌ DHAP + glyceraldehyde 3-phosphate     ΔG°′ = +23.8 kJ·mol⁻¹</span>
+    <span class="fx__tag">fructose-bisphosphate aldolase (EC 4.1.2.13), a lyase; class I in animals — Schiff base, no metal</span>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 306" role="img" aria-label="Step 4. Fructose 1,6-bisphosphate, a six-carbon chain with a phosphate on carbon 1 and on carbon 6 and a ketone at carbon 2, is cleaved by aldolase. A dashed line across the chain between carbon 3 and carbon 4 marks the bond that breaks. The reaction arrow then forks into two products: the upper product is dihydroxyacetone phosphate, made of carbons 1, 2 and 3 of the hexose, and the lower product is glyceraldehyde 3-phosphate, made of carbons 4, 5 and 6. Each product carries one of the two phosphates. The arrow is a double arrow because the step is reversible, and the standard free-energy change is plus 23.8 kilojoules per mole, which is strongly uphill under standard conditions." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-soft)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 4 · RETRO-ALDOL CLEAVAGE OF THE C3–C4 BOND</text>
+
+      <text x="48" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Fructose 1,6-bisphosphate</text>
+      <line x1="76" y1="78" x2="76" y2="238" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="76" y1="142" x2="76" y2="174" stroke="var(--accent)" stroke-width="2.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="82">1</text><text x="66" y="114">2</text><text x="66" y="146">3</text>
+        <text x="66" y="178">4</text><text x="66" y="210">5</text><text x="66" y="242">6</text>
+      </g>
+      <g fill="var(--ink-soft)"><circle cx="76" cy="78" r="3.6"/><circle cx="76" cy="110" r="3.6"/><circle cx="76" cy="206" r="3.6"/><circle cx="76" cy="238" r="3.6"/></g>
+      <g fill="var(--accent)"><circle cx="76" cy="142" r="4.6"/><circle cx="76" cy="174" r="4.6"/></g>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="88" y="82">CH₂—O—PO₃²⁻</text><text x="88" y="114">C=O</text>
+        <text x="88" y="210">CHOH</text><text x="88" y="242">CH₂—O—PO₃²⁻</text>
+      </g>
+      <g font-size="11.5" font-weight="700" fill="var(--accent)">
+        <text x="88" y="146">CHOH</text><text x="88" y="178">CHOH</text>
+      </g>
+      <line x1="40" y1="158" x2="208" y2="158" stroke="var(--accent)" stroke-width="1.8" stroke-dasharray="5 4"/>
+      <text x="212" y="161" font-size="9.5" font-weight="700" fill="var(--accent)">cut here</text>
+
+      <text x="346" y="112" font-size="12.5" font-weight="700" text-anchor="middle" fill="var(--ink)">aldolase</text>
+      <text x="346" y="128" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">lyase · class I: Schiff base to an active-site lysine</text>
+      <line x1="250" y1="153" x2="430" y2="153" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m4a)"/>
+      <line x1="430" y1="163" x2="250" y2="163" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m4a)"/>
+      <text x="346" y="188" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = +23.8 kJ·mol⁻¹</text>
+      <text x="346" y="204" font-size="10" text-anchor="middle" fill="var(--ink-faint)">reversible · cellular ΔG ≈ 0 — see the worked example</text>
+      <g fill="none" stroke="var(--ink-soft)" stroke-width="1.6" marker-end="url(#m4a)">
+        <path d="M 440,158 C 462,158 470,120 490,112"/>
+        <path d="M 440,158 C 462,158 470,236 490,244"/>
+      </g>
+
+      <text x="498" y="52" font-size="11.5" font-weight="700" fill="var(--ink)">Dihydroxyacetone-P (DHAP)</text>
+      <line x1="520" y1="78" x2="520" y2="142" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="510" y="82">1</text><text x="510" y="114">2</text><text x="510" y="146">3</text>
+      </g>
+      <g fill="var(--ink-soft)"><circle cx="520" cy="78" r="3.6"/><circle cx="520" cy="110" r="3.6"/></g>
+      <circle cx="520" cy="142" r="4.6" fill="var(--accent)"/>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="532" y="82">CH₂—O—PO₃²⁻</text><text x="532" y="114">C=O</text>
+      </g>
+      <text x="532" y="146" font-size="11.5" font-weight="700" fill="var(--accent)">CH₂OH</text>
+      <g font-size="8.5" fill="var(--ink-faint)">
+        <text x="626" y="82">= glc C1</text><text x="626" y="114">= glc C2</text><text x="626" y="146">= glc C3</text>
+      </g>
+
+      <text x="498" y="186" font-size="11.5" font-weight="700" fill="var(--ink)">Glyceraldehyde 3-P (G3P)</text>
+      <line x1="520" y1="212" x2="520" y2="276" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="510" y="216">1</text><text x="510" y="248">2</text><text x="510" y="280">3</text>
+      </g>
+      <circle cx="520" cy="212" r="4.6" fill="var(--accent)"/>
+      <g fill="var(--ink-soft)"><circle cx="520" cy="244" r="3.6"/><circle cx="520" cy="276" r="3.6"/></g>
+      <text x="532" y="216" font-size="11.5" font-weight="700" fill="var(--accent)">CHO</text>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="532" y="248">CHOH</text><text x="532" y="280">CH₂—O—PO₃²⁻</text>
+      </g>
+      <g font-size="8.5" fill="var(--ink-faint)">
+        <text x="626" y="216">= glc C4</text><text x="626" y="248">= glc C5</text><text x="626" y="280">= glc C6</text>
+      </g>
+
+      <text x="14" y="296" font-size="9.5" fill="var(--ink-faint)"><tspan font-weight="700" fill="var(--accent-3)">CARBON KEY </tspan>C1–C3 leave as DHAP with PFK-1's phosphate · C4–C6 leave as G3P with hexokinase's · the products are <tspan font-weight="700">not</tspan> yet identical</text>
+    </svg>
+    <figcaption>The geometry is the whole point. The dashed line falls between C3 and C4, three carbons above it and
+      three below, and each half walks away with a phosphate — which is exactly what steps 2 and 3 were arranging.
+      Note the two teal groups on the right: they are the newly exposed ends, the C3 that became a plain
+      <span class="fi">CH₂OH</span> and the C4 that became an aldehyde. Note also what the diagram refuses to
+      pretend: DHAP and G3P are <em>different compounds</em>. Only one of them can enter the payoff phase, which is
+      why there has to be a step 5.</figcaption>
+  </figure>
+
+  <h3>The chemistry: a Schiff base doing the work a carbonyl would otherwise have to do</h3>
+  <p>Breaking a carbon–carbon bond leaves a carbanion, and a bare carbanion is far too unstable to form. Every aldol
+     cleavage therefore needs an <strong>electron sink</strong> next door to absorb the pair of electrons as the bond
+     goes. The C2 carbonyl could serve, and in the class II aldolases of fungi and bacteria a Zn²⁺ ion polarises it
+     so that it does. Animal aldolase — <strong>class I</strong> — goes one better: an active-site lysine attacks the
+     C2 ketone and forms a <strong>protonated Schiff base</strong> (an iminium ion), which is a much better electron
+     sink than a neutral carbonyl because it is positively charged. The C3–C4 bond then breaks with the electrons
+     flowing onto that nitrogen, giving a stabilised enamine that becomes DHAP when it is protonated and hydrolysed
+     off the enzyme.</p>
+  <p>Two consequences follow that examiners like. Because animal aldolase works through a Schiff base, it is
+     <strong>inactivated by sodium borohydride in the presence of substrate</strong> — the reagent reduces the
+     iminium to a stable secondary amine and traps the enzyme covalently, which is how the mechanism was proved.
+     And because it needs no metal, animal aldolase is <em>not</em> inhibited by EDTA, whereas the class II enzyme
+     is. A stem that offers "chelator-sensitive" as a property of human aldolase is testing exactly this.</p>
+
+  <h3>Energetics: the most instructive ΔG°′ in metabolism</h3>
+  <p>ΔG°′ = +23.8 kJ·mol⁻¹ corresponds to K′<sub>eq</sub> ≈ 7 × 10⁻⁵. At 1 mol·L⁻¹ concentrations this reaction would
+     sit almost entirely on the left; the enzyme is, after all, more usually named for the direction in which it
+     <em>condenses</em> two trioses. What rescues it is that the cell operates nowhere near 1 mol·L⁻¹. Splitting one
+     molecule into two makes ΔG concentration-dependent in a way that ordinary reactions are not: the mass-action
+     ratio has two micromolar concentrations multiplied on top and only one underneath, so it collapses to something
+     of order 10⁻⁴ and the <span class="fi">RT ln Q</span> term is worth about −24 kJ·mol⁻¹, cancelling ΔG°′ almost
+     exactly.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 1 — showing that a +23.8 kJ·mol⁻¹ step is actually at equilibrium</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">In a human erythrocyte the steady-state concentrations are
+      approximately [F1,6BP] = 31 µM, [DHAP] = 138 µM and [G3P] = 18.5 µM. Take T = 310 K and
+      R = 8.315 × 10⁻³ kJ·K⁻¹·mol⁻¹. What is the actual ΔG of the aldolase reaction?</p>
+    <ol>
+      <li>Write the mass-action ratio with concentrations expressed in mol·L⁻¹, relative to the 1 mol·L⁻¹ standard
+        state:
+        <span class="fi">Q = <span class="mf" role="img" aria-label="the concentration of D H A P times the concentration of G 3 P, all over the concentration of fructose 1,6-bisphosphate"><span>[DHAP][G3P]</span><span>[F1,6BP]</span></span></span>
+        = <span class="fi">(1.38 × 10⁻⁴ × 1.85 × 10⁻⁵) / (3.1 × 10⁻⁵) = 8.2 × 10⁻⁵</span>.</li>
+      <li><span class="fi">RT = 8.315 × 10⁻³ × 310 = 2.578 kJ·mol⁻¹</span>, and
+        <span class="fi">ln (8.2 × 10⁻⁵) = −9.40</span>.</li>
+      <li><span class="fi">RT ln Q = 2.578 × (−9.40) = −24.2 kJ·mol⁻¹</span>.</li>
+      <li><span class="fi">ΔG = +23.8 − 24.2 = −0.4 kJ·mol⁻¹</span>. Essentially zero: the reaction is at
+        equilibrium and will run whichever way the cell drains it.</li>
+      <li>Sanity check on the physics. The reason Q is so small is not that the cell is doing anything clever, but
+        that the products appear <em>twice</em> in the numerator. Halve every concentration and Q halves as well —
+        dilution alone drives a one-into-two reaction forward. This is why gluconeogenesis can run the same enzyme
+        backwards without any bypass at all.</li>
+    </ol>
+    <p style="margin:.5rem 0 0;font-size:.92rem">Generalise it: ΔG°′ tells you where a reaction would sit in a
+      1 mol·L⁻¹ bottle, and no cell is a 1 mol·L⁻¹ bottle. When a stem gives you concentrations, it wants ΔG; when it
+      gives you none, it can only be asking about ΔG°′.</p>
+    <span class="wex__ans">Q = 8.2 × 10⁻⁵ · RT ln Q = −24.2 · ΔG ≈ −0.4 kJ·mol⁻¹</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 4 · "+23.8, therefore it runs backwards"</p>
+    <p style="margin:0">This is the single most reliable ΔG trap in the subject, and it is set from both sides. A
+      stem may offer "the aldolase step is thermodynamically unfavourable and therefore requires ATP" — it requires
+      no ATP and consumes none. Or it may offer "ΔG°′ is positive, so the cell must run this reaction in the
+      gluconeogenic direction" — the cell runs it forward continuously, because triose phosphates are removed as fast
+      as they appear. The rule to carry: <strong>ΔG°′ describes a bottle, ΔG describes a cell</strong>, and only ΔG
+      decides direction. A related trap concerns the two products — DHAP is drawn first in most textbooks, which
+      leads candidates to say it is the one that continues. It is not. <strong>Only G3P continues</strong>, and DHAP
+      has to be converted into it.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the aldolase isozymes, and the one that causes disease on fruit</summary>
+    <div class="disc__body">
+      <p>Humans express three aldolases from three genes, all class I and all cleaving fructose 1,6-bisphosphate, but
+        differing in how well they handle <strong>fructose 1-phosphate</strong>:</p>
+      <ul>
+        <li><strong>Aldolase A</strong> — muscle and erythrocyte. Deficiency gives a haemolytic anaemia, sometimes
+          with myopathy.</li>
+        <li><strong>Aldolase B</strong> — liver, kidney cortex, small intestine. This is the only one with real
+          activity toward fructose 1-phosphate, so it is the enzyme of the fructose pathway. Its deficiency is
+          <strong>hereditary fructose intolerance</strong>, covered in note 04 §&nbsp;06: fructose 1-phosphate
+          accumulates, sequesters inorganic phosphate, and the cell can neither regenerate ATP nor run glycogen
+          phosphorylase — which is why glucagon fails to raise blood glucose during an episode.</li>
+        <li><strong>Aldolase C</strong> — brain.</li>
+      </ul>
+      <p>The exam-relevant point is the contrast between the two directions the same chemistry can run. In
+        glycolysis, aldolase cleaves a <em>bis</em>phosphate and both halves are tagged. In the fructose pathway it
+        cleaves a <em>mono</em>phosphate, fructose 1-phosphate, and only one half comes out tagged: DHAP is
+        phosphorylated, glyceraldehyde is not, and the free glyceraldehyde then needs triose kinase and an ATP to
+        catch up. That asymmetry is the reason fructose enters glycolysis <em>below</em> PFK-1 and therefore bypasses
+        the pathway's only real control point — the metabolic argument behind the interest in dietary fructose.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Step 5 · Triose phosphate isomerase — making the halves identical</h2>
+
+  <p class="idea"><b>The idea</b>The two halves that came out of the cut are not the same molecule, and only one of them can go on. So the cell
+     converts one into the other, and it does so faster than almost any enzyme known — fast enough that the two
+     halves behave as a single interchangeable pool. That is what lets everything after this point be counted simply
+     as "twice". It is also the step at which one half of the sugar is effectively turned back to front, and that
+     single fact decides the answer to every carbon-labelling question in the topic.</p>
+
+  <div class="fx fx--hero">
+    <span class="fx__eq">dihydroxyacetone phosphate ⇌ glyceraldehyde 3-phosphate     ΔG°′ = +7.5 kJ·mol⁻¹</span>
+    <span class="fx__tag">triose phosphate isomerase (EC 5.3.1.1); no cofactor; catalytically perfect — limited only by diffusion</span>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 300" role="img" aria-label="Step 5. Dihydroxyacetone phosphate, whose phosphate is on its carbon 1 and whose ketone is at carbon 2, is converted by triose phosphate isomerase into glyceraldehyde 3-phosphate, an aldehyde at carbon 1 with the phosphate on carbon 3. The phosphate itself never moves; the carbonyl moves. A panel beneath the reaction shows the consequence: carbon 1 of dihydroxyacetone phosphate becomes carbon 3 of glyceraldehyde 3-phosphate and carbon 3 becomes carbon 1, so the upper half of the original glucose is read from the other end. Glucose carbon 1 therefore ends as the methyl carbon of pyruvate and glucose carbon 3 as the carboxyl carbon. The reaction is reversible, with a standard free-energy change of plus 7.5 kilojoules per mole." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m5a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-soft)"/></marker>
+        <marker id="m5c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 5 · KETOSE → ALDOSE, AND THE UPPER HALF TURNS ROUND</text>
+
+      <text x="46" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Dihydroxyacetone phosphate</text>
+      <line x1="76" y1="76" x2="76" y2="156" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="80">1</text><text x="66" y="120">2</text><text x="66" y="160">3</text>
+      </g>
+      <circle cx="76" cy="76" r="3.6" fill="var(--ink-soft)"/>
+      <g fill="var(--accent)"><circle cx="76" cy="116" r="4.6"/><circle cx="76" cy="156" r="4.6"/></g>
+      <text x="88" y="80" font-size="11.5" fill="var(--ink-soft)">CH₂—O—PO₃²⁻</text>
+      <g font-size="11.5" font-weight="700" fill="var(--accent)">
+        <text x="88" y="120">C=O</text><text x="88" y="160">CH₂OH</text>
+      </g>
+
+      <text x="340" y="72" font-size="12.5" font-weight="700" text-anchor="middle" fill="var(--ink)">triose phosphate isomerase</text>
+      <text x="340" y="88" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">isomerase · no cofactor · cis-enediolate, as at step 2</text>
+      <line x1="230" y1="111" x2="450" y2="111" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m5a)"/>
+      <line x1="450" y1="121" x2="230" y2="121" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m5a)"/>
+      <text x="340" y="142" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = +7.5 kJ·mol⁻¹</text>
+      <text x="340" y="158" font-size="10" text-anchor="middle" fill="var(--ink-faint)">reversible · cellular ΔG ≈ 0 · equilibrium ≈ 95 : 5 toward DHAP</text>
+      <text x="340" y="172" font-size="9" text-anchor="middle" fill="var(--ink-faint)">flux still runs right</text>
+
+      <text x="468" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Glyceraldehyde 3-phosphate</text>
+      <line x1="500" y1="76" x2="500" y2="156" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="490" y="80">1</text><text x="490" y="120">2</text><text x="490" y="160">3</text>
+      </g>
+      <g fill="var(--accent)"><circle cx="500" cy="76" r="4.6"/><circle cx="500" cy="116" r="4.6"/></g>
+      <circle cx="500" cy="156" r="3.6" fill="var(--ink-soft)"/>
+      <g font-size="11.5" font-weight="700" fill="var(--accent)">
+        <text x="512" y="80">CHO</text><text x="512" y="120">CHOH</text>
+      </g>
+      <text x="512" y="160" font-size="11.5" fill="var(--ink-soft)">CH₂—O—PO₃²⁻</text>
+      <text x="612" y="160" font-size="8.5" fill="var(--accent-3)">P never moved</text>
+
+      <line x1="14" y1="182" x2="706" y2="182" stroke="var(--line)" stroke-width="1.4"/>
+      <text x="14" y="202" font-size="10" font-weight="700" letter-spacing=".08em" fill="var(--accent-3)">THE SAME THREE CARBONS, READ FROM THE OTHER END</text>
+
+      <text x="150" y="230" font-size="10.5" font-weight="700" text-anchor="end" fill="var(--ink-soft)">DHAP</text>
+      <g font-size="10.5" text-anchor="middle" fill="var(--ink)">
+        <text x="230" y="230">C1 — holds P</text><text x="340" y="230">C2 — the C=O</text><text x="450" y="230">C3 — CH₂OH</text>
+      </g>
+      <g fill="none" stroke-width="1.7" marker-end="url(#m5c)">
+        <path d="M 244,238 L 436,260" stroke="var(--accent)"/>
+        <path d="M 436,238 L 244,260" stroke="var(--accent)"/>
+      </g>
+      <line x1="340" y1="238" x2="340" y2="258" stroke="var(--ink-soft)" stroke-width="1.7" marker-end="url(#m5a)"/>
+      <text x="150" y="276" font-size="10.5" font-weight="700" text-anchor="end" fill="var(--ink-soft)">G3P</text>
+      <g font-size="10.5" text-anchor="middle" fill="var(--ink)">
+        <text x="230" y="276">C1 — the CHO</text><text x="340" y="276">C2</text><text x="450" y="276">C3 — holds P</text>
+      </g>
+      <g font-size="8.5" text-anchor="middle" fill="var(--ink-faint)">
+        <text x="230" y="292">was glucose C3 → carboxyl</text>
+        <text x="340" y="292">was glucose C2 → carbonyl</text>
+        <text x="450" y="292">was glucose C1 → methyl</text>
+      </g>
+      <text x="706" y="202" font-size="8.5" text-anchor="end" fill="var(--ink-faint)">the lower half is not reversed: glucose C4 is already G3P C1</text>
+    </svg>
+    <figcaption>The panel underneath is the reason this page numbers its carbons. Triose phosphate isomerase moves
+      the <em>carbonyl</em>, not the phosphate — and since the phosphate sat on what was glucose C1, while
+      glyceraldehyde 3-phosphate wears its phosphate on C3, the upper half comes out end-for-end. Glucose C1 is now
+      the carbon furthest from the aldehyde, so it will finish as the methyl carbon of pyruvate; glucose C3 is now
+      the aldehyde, so it will finish as the carboxyl. The lower half needs no such correction, because glucose C4
+      arrived as C1 of glyceraldehyde 3-phosphate already. One half reversed, one half not: that asymmetry is the
+      whole content of the labelling questions in note 04 §&nbsp;05.</figcaption>
+  </figure>
+
+  <h3>A catalytically perfect enzyme, and why that matters here</h3>
+  <p>Triose phosphate isomerase is the standard example of <strong>catalytic perfection</strong>: its
+     k<sub>cat</sub>/K<sub>m</sub> is around 10⁸ mol⁻¹·L·s⁻¹, which is the rate at which substrate and enzyme collide
+     in solution. No further improvement to the chemistry could speed it up, because the chemistry is no longer what
+     limits it. Evolution has finished with this enzyme.</p>
+  <p>That is not a decorative fact. The equilibrium of this reaction lies about <strong>95 : 5 in favour of
+     DHAP</strong>, so at any instant most of the upper half of the sugar is sitting in the wrong isomer. Glycolysis
+     is unaffected only because the interconversion is so fast that the pool re-equilibrates instantly as GAPDH
+     removes G3P. Slow the enzyme down and the pathway slows with it — which is precisely what TPI deficiency does.</p>
+  <p>The enzyme's speed also creates a hazard it must manage. The cis-enediolate intermediate, if it escapes the
+     active site, eliminates phosphate and becomes <strong>methylglyoxal</strong>, a highly reactive dicarbonyl that
+     glycates proteins and DNA. Triose phosphate isomerase carries a mobile loop that closes over the intermediate
+     for the microseconds it exists. An enzyme this fast is partly fast in order to be safe.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 2 — recovering ΔG°′ from the equilibrium mixture, and vice versa</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">(a) At equilibrium, an isolated solution of triose phosphates is
+      found to be 95.4 % DHAP and 4.6 % G3P. What is ΔG°′ at 298 K? (b) Going the other way, what percentage would
+      you predict from the textbook value ΔG°′ = +7.5 kJ·mol⁻¹?</p>
+    <ol>
+      <li>The equilibrium constant is written products over reactants in the direction as drawn, DHAP → G3P:
+        <span class="fi">K′<sub>eq</sub> = <span class="mf" role="img" aria-label="the concentration of G 3 P over the concentration of D H A P"><span>[G3P]</span><span>[DHAP]</span></span></span>
+        = <span class="fi">4.6 / 95.4 = 0.048</span>.</li>
+      <li><span class="fi">ΔG°′ = −RT ln K′<sub>eq</sub> = −(2.478)(ln 0.048) = −(2.478)(−3.03) = +7.5 kJ·mol⁻¹</span>.
+        The textbook figure falls straight out.</li>
+      <li>Reverse the calculation: <span class="fi">K′<sub>eq</sub> = e<sup>−7.5/2.478</sup> = e<sup>−3.03</sup> = 0.049</span>,
+        so the fraction present as G3P is <span class="fi">0.049 / (1 + 0.049) = 4.6 %</span>.</li>
+      <li>Now the part that is actually being examined. Only about one triose phosphate in twenty is in the form the
+        pathway can use — yet <strong>all six carbons of the glucose reach pyruvate</strong>. Nothing is stranded,
+        because GAPDH continuously removes G3P and the isomerase, running at the diffusion limit, refills it from the
+        DHAP pool. Equilibrium position tells you the ratio at rest; it tells you nothing about flux in an open
+        system that is draining one side.</li>
+    </ol>
+    <p style="margin:.5rem 0 0;font-size:.92rem">Useful constant to carry: at 298 K, <span class="fi">RT = 2.478
+      kJ·mol⁻¹</span> and a factor of ten in K′<sub>eq</sub> is 5.7 kJ·mol⁻¹. Those two numbers convert any ΔG°′ on
+      this page into an equilibrium position in about fifteen seconds.</p>
+    <span class="wex__ans">(a) K′<sub>eq</sub> = 0.048 → ΔG°′ = +7.5 kJ·mol⁻¹ · (b) 4.6 % G3P at equilibrium</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 5 · "most of it is DHAP, so half the carbon is lost"</p>
+    <p style="margin:0">Two distractors are built on this step and both are about confusing equilibrium with flux.
+      The first says that because equilibrium favours DHAP, only half — or worse, only 5 % — of the glucose carbon
+      reaches pyruvate. All of it does: the yield of glycolysis is <strong>two</strong> pyruvate per glucose, not
+      one. The second says DHAP is "a dead end" or "a waste product". It is neither; it is a fully productive
+      intermediate that also happens to be the entry point for glycerol from fat and the exit point toward
+      glycerol 3-phosphate for triacylglycerol synthesis. Then a factual trap worth knowing: <strong>TPI
+      deficiency is the most severe of all the glycolytic enzymopathies</strong> — haemolytic anaemia from birth
+      followed by progressive neuromuscular degeneration, usually fatal in childhood — whereas pyruvate kinase
+      deficiency, five steps later, causes anaemia alone. The difference is the toxic dead-end metabolite, not the
+      lost ATP.</p>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Step 6 · GAPDH — oxidation paid into a bond</h2>
+
+  <p class="idea"><b>The idea</b>Here the pathway finally starts earning. This one reaction does two things at once — it strips electrons off the
+     sugar, and it attaches a phosphate picked up free from the surrounding fluid — and the trick is that it does
+     both in the same active site, so the energy released by the first pays for the second. What comes out is a
+     molecule holding its new phosphate so loosely that it can hand it straight to ADP. This is the only oxidation in
+     the whole of glycolysis, and every NADH the pathway makes is made here.</p>
+
+  <div class="fx fx--hero">
+    <span class="fx__eq">G3P + P<sub>i</sub> + NAD⁺ ⇌ 1,3-bisphosphoglycerate + NADH + H⁺     ΔG°′ = +6.3 kJ·mol⁻¹</span>
+    <span class="fx__tag">glyceraldehyde 3-phosphate dehydrogenase (EC 1.2.1.12), an oxidoreductase; active-site Cys, NAD⁺</span>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 226" role="img" aria-label="Step 6. Glyceraldehyde 3-phosphate, a three-carbon molecule with an aldehyde at carbon 1 and a phosphate on carbon 3, is oxidised and phosphorylated at carbon 1 to give 1,3-bisphosphoglycerate, in which carbon 1 is an acyl phosphate. A curved arrow shows nicotinamide adenine dinucleotide and inorganic phosphate entering, and N A D H plus a proton leaving. The new acyl phosphate is flagged as a high-energy group whose transfer potential exceeds that of A T P. The step is reversible with a standard free-energy change of plus 6.3 kilojoules per mole. Carbon 1 of this three-carbon unit came from glucose carbon 3 or carbon 4." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m6a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-soft)"/></marker>
+        <marker id="m6c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-3)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 6 · OXIDATION AT C1, COUPLED TO PHOSPHORYLATION</text>
+
+      <text x="46" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Glyceraldehyde 3-phosphate</text>
+      <line x1="76" y1="88" x2="76" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="92">1</text><text x="66" y="140">2</text><text x="66" y="188">3</text>
+      </g>
+      <circle cx="76" cy="88" r="4.6" fill="var(--accent)"/>
+      <g fill="var(--ink-soft)"><circle cx="76" cy="136" r="3.6"/><circle cx="76" cy="184" r="3.6"/></g>
+      <text x="88" y="92" font-size="11.5" font-weight="700" fill="var(--accent)">CHO</text>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="88" y="140">CHOH</text><text x="88" y="188">CH₂—O—PO₃²⁻</text>
+      </g>
+
+      <text x="340" y="64" font-size="11.5" font-weight="700" text-anchor="middle" fill="var(--ink)">glyceraldehyde 3-phosphate dehydrogenase</text>
+      <text x="340" y="80" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">oxidoreductase · thiohemiacetal → thioester → acyl phosphate</text>
+      <text x="286" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-3)">NAD⁺ + P<tspan dy="3" font-size="8">i</tspan></text>
+      <text x="396" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-3)">NADH + H⁺</text>
+      <path d="M 290,104 C 308,148 372,148 390,104" fill="none" stroke="var(--accent-3)" stroke-width="1.5" marker-end="url(#m6c)"/>
+      <line x1="230" y1="131" x2="450" y2="131" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m6a)"/>
+      <line x1="450" y1="141" x2="230" y2="141" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m6a)"/>
+      <text x="340" y="162" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = +6.3 kJ·mol⁻¹</text>
+      <text x="340" y="178" font-size="10" text-anchor="middle" fill="var(--ink-faint)">reversible · cellular ΔG ≈ 0 · pulled by step 7</text>
+
+      <text x="466" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">1,3-Bisphosphoglycerate</text>
+      <line x1="500" y1="88" x2="500" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="490" y="92">1</text><text x="490" y="140">2</text><text x="490" y="188">3</text>
+      </g>
+      <circle cx="500" cy="88" r="4.6" fill="var(--v-energy)"/>
+      <g fill="var(--ink-soft)"><circle cx="500" cy="136" r="3.6"/><circle cx="500" cy="184" r="3.6"/></g>
+      <text x="512" y="92" font-size="11.5" font-weight="700" fill="var(--v-energy)">C(=O)—O—PO₃²⁻</text>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="512" y="140">CHOH</text><text x="512" y="188">CH₂—O—PO₃²⁻</text>
+      </g>
+      <text x="512" y="106" font-size="8.5" font-weight="700" fill="var(--v-energy)">acyl phosphate · ΔG°′ hydrolysis −49.3</text>
+      <g font-size="8.5" fill="var(--ink-faint)">
+        <text x="616" y="140">= glc C2 or C5</text><text x="616" y="188">= glc C1 or C6</text>
+      </g>
+
+      <text x="14" y="216" font-size="9.5" fill="var(--ink-faint)"><tspan font-weight="700" fill="var(--accent-3)">CARBON KEY </tspan>C1 = glucose C3 or C4 · C2 = glucose C2 or C5 · C3 = glucose C1 or C6 — from here on no carbon moves again</text>
+    </svg>
+    <figcaption>Read the left-hand molecule and the right-hand molecule as the same three carbons with one bond
+      rebuilt: the C1 aldehyde has become a mixed anhydride between a carboxylic acid and phosphoric acid. That green
+      flag is the point of the entire preparatory phase. Hydrolysing this new bond releases 49.3 kJ·mol⁻¹ against
+      ATP's 30.5, so the phosphate can be handed downhill to ADP at the very next step. Note where the phosphate came
+      from: not from ATP, but from <strong>free inorganic phosphate</strong> in the cytosol — the only place in
+      glycolysis where that happens.</figcaption>
+  </figure>
+
+  <h3>Why oxidise and phosphorylate in the same active site</h3>
+  <p>Oxidising an aldehyde to a carboxylic acid releases a great deal of free energy — about 43 kJ·mol⁻¹ — and if the
+     cell simply let that happen it would all leave as heat. The problem glycolysis has to solve is how to catch it.
+     A phosphate cannot be attached to a carboxylate afterwards; the resulting acyl phosphate is far too high in
+     energy to be built by an ordinary condensation. So the two events must be <strong>coupled</strong>, and they are
+     coupled through a covalent intermediate.</p>
+  <p>The aldehyde adds to an active-site cysteine thiol, giving a <strong>thiohemiacetal</strong>. NAD⁺ then takes a
+     hydride from that carbon, and the product is a <strong>thioester</strong> — an already high-energy linkage,
+     because sulfur's orbitals overlap poorly with carbon's and the ester has none of the resonance stabilisation an
+     oxygen ester enjoys. The oxidation energy is now sitting in a bond rather than in the solvent. Inorganic
+     phosphate then attacks the thioester carbon and displaces the enzyme's thiol, and the acyl group leaves as an
+     <strong>acyl phosphate</strong>. Nothing was spent; the energy was simply passed along, from an oxidation, into
+     a thioester, into a phosphoanhydride, and at step 7 into ATP.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">What is examined here</p>
+    <p style="margin:0">That this is the <strong>only oxidation–reduction step of glycolysis</strong>, so all the
+      NADH comes from it and the NAD⁺ that anaerobic metabolism must regenerate is the NAD⁺ this step consumed. That
+      the phosphate incorporated comes from <strong>P<sub>i</sub>, not ATP</strong> — which is why glycolysis
+      consumes inorganic phosphate and why a cell starved of P<sub>i</sub> stops here. And that the sequence of
+      intermediates is thiohemiacetal → thioester → acyl phosphate, in that order; questions often give the three in
+      the wrong order and ask which is the oxidised species.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 6 · arsenate does not inhibit anything</p>
+    <p style="margin:0">Note 04 §&nbsp;02 sets this out and it is worth restating in its mechanistic home.
+      <strong>Iodoacetate</strong> alkylates the active-site cysteine and stops the enzyme dead — a true inhibitor.
+      <strong>Arsenate</strong> does the opposite of stopping it: it is accepted <em>in place of</em> phosphate,
+      giving 1-arseno-3-phosphoglycerate, which hydrolyses spontaneously before any kinase can reach it. Glycolysis
+      keeps running, NADH is still made, oxygen consumption is unaffected — and the ATP silently disappears. That is
+      an <strong>uncoupler</strong>, and telling an uncoupler from an inhibitor is the discrimination the question is
+      built on. Do not confuse arsenate with arsen<em>ite</em>, which chelates lipoamide and poisons the pyruvate
+      dehydrogenase complex — a mitochondrial lesion, not a glycolytic one.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · the mechanism in five moves, and what each classical poison does to it</summary>
+    <div class="disc__body">
+      <ol>
+        <li><strong>Addition.</strong> The thiolate of the active-site cysteine attacks the C1 aldehyde carbon,
+          giving a tetrahedral thiohemiacetal. Note that nothing has been oxidised yet — this is a nucleophilic
+          addition.</li>
+        <li><strong>Hydride transfer.</strong> The C1 hydrogen leaves as a hydride to the nicotinamide ring of
+          tightly bound NAD⁺, giving NADH. C1 is now a thioester carbon; the substrate has been oxidised, and the
+          enzyme is holding the product covalently.</li>
+        <li><strong>Cofactor exchange.</strong> The NADH dissociates and a fresh NAD⁺ binds. This is the slow step,
+          and it is why the enzyme's activity depends on the cytosolic NAD⁺/NADH ratio rather than merely on the
+          presence of NAD⁺.</li>
+        <li><strong>Phosphorolysis.</strong> Inorganic phosphate attacks the thioester carbon; the enzyme thiolate
+          leaves; the product is 1,3-bisphosphoglycerate, an acyl phosphate.</li>
+        <li><strong>Release.</strong> The enzyme is regenerated unchanged, ready for the next aldehyde.</li>
+      </ol>
+      <p>Now overlay the poisons. <strong>Iodoacetate</strong> hits move 1 — no thiolate, no reaction, and the
+        pathway stops with triose phosphates accumulating. <strong>Arsenate</strong> hits move 4 — it is the same
+        shape and charge as phosphate, forms the acyl arsenate, and that anhydride hydrolyses in water within
+        seconds, delivering 3-phosphoglycerate directly and skipping the ATP of step 7 altogether. A useful mental
+        test: an inhibitor makes the substrate pile up; an uncoupler lets the pathway run and steals the profit.</p>
+      <p>One more property of this enzyme that appears in stems: GAPDH is a classic <strong>moonlighting</strong>
+        protein and a classic loading control in Western blotting, on the assumption that a housekeeping glycolytic
+        enzyme is expressed at a constant level. That assumption fails in hypoxia and in tumours, where glycolytic
+        enzymes are strongly induced — a small methodological point that occasionally becomes a question.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Step 7 · Phosphoglycerate kinase — the first ATP</h2>
+
+  <p class="idea"><b>The idea</b>This is where the first ATP of the pathway is actually made, and it is made with no membrane, no oxygen and no
+     machinery: one molecule simply hands a phosphate to another, because it is holding it more loosely than ADP
+     will. Since everything after the split happens twice, this single reaction repays the entire cost of the first
+     half of the pathway. The cell is now back where it started, with all the profit still to come.</p>
+
+  <div class="fx fx--hero">
+    <span class="fx__eq">1,3-bisphosphoglycerate + ADP ⇌ 3-phosphoglycerate + ATP     ΔG°′ = −18.5 kJ·mol⁻¹</span>
+    <span class="fx__tag">phosphoglycerate kinase (EC 2.7.2.3), Mg²⁺; substrate-level phosphorylation, 1 of 2</span>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 226" role="img" aria-label="Step 7. 1,3-bisphosphoglycerate, whose carbon 1 is a high-energy acyl phosphate, transfers that phosphate to A D P, giving A T P and 3-phosphoglycerate, whose carbon 1 is now a plain carboxylate. A curved arrow over the reaction arrow shows A D P entering and A T P leaving. The enzyme is phosphoglycerate kinase and it requires magnesium. The step is reversible, with a standard free-energy change of minus 18.5 kilojoules per mole, and it is the first of the two substrate-level phosphorylations of glycolysis. Carbon 1 of this three-carbon unit came from glucose carbon 3 or carbon 4." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m7a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-soft)"/></marker>
+        <marker id="m7b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-2)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 7 · THE ACYL PHOSPHATE IS SOLD TO ADP</text>
+
+      <text x="46" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">1,3-Bisphosphoglycerate</text>
+      <line x1="76" y1="88" x2="76" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="92">1</text><text x="66" y="140">2</text><text x="66" y="188">3</text>
+      </g>
+      <circle cx="76" cy="88" r="4.6" fill="var(--v-energy)"/>
+      <g fill="var(--ink-soft)"><circle cx="76" cy="136" r="3.6"/><circle cx="76" cy="184" r="3.6"/></g>
+      <text x="88" y="92" font-size="11.5" font-weight="700" fill="var(--v-energy)">C(=O)—O—PO₃²⁻</text>
+      <text x="88" y="106" font-size="8.5" font-weight="700" fill="var(--v-energy)">−49.3 · above ATP's −30.5</text>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="88" y="140">CHOH</text><text x="88" y="188">CH₂—O—PO₃²⁻</text>
+      </g>
+
+      <text x="340" y="64" font-size="12.5" font-weight="700" text-anchor="middle" fill="var(--ink)">phosphoglycerate kinase</text>
+      <text x="340" y="80" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">transferase · Mg²⁺ · named for its reverse direction</text>
+      <text x="290" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">ADP</text>
+      <text x="392" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">ATP</text>
+      <path d="M 290,104 C 308,148 372,148 390,104" fill="none" stroke="var(--accent-2)" stroke-width="1.5" marker-end="url(#m7b)"/>
+      <line x1="230" y1="131" x2="450" y2="131" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m7a)"/>
+      <line x1="450" y1="141" x2="230" y2="141" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m7a)"/>
+      <text x="340" y="162" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = −18.5 kJ·mol⁻¹</text>
+      <text x="340" y="178" font-size="10" text-anchor="middle" fill="var(--ink-faint)">reversible · cellular ΔG ≈ 0</text>
+      <text x="340" y="196" font-size="9" text-anchor="middle" fill="var(--ink-faint)">gluconeogenesis uses this same enzyme backwards</text>
+
+      <text x="478" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">3-Phosphoglycerate</text>
+      <line x1="500" y1="88" x2="500" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="490" y="92">1</text><text x="490" y="140">2</text><text x="490" y="188">3</text>
+      </g>
+      <circle cx="500" cy="88" r="4.6" fill="var(--accent)"/>
+      <g fill="var(--ink-soft)"><circle cx="500" cy="136" r="3.6"/><circle cx="500" cy="184" r="3.6"/></g>
+      <text x="512" y="92" font-size="11.5" font-weight="700" fill="var(--accent)">COO⁻</text>
+      <g font-size="11.5" fill="var(--ink-soft)">
+        <text x="512" y="140">CHOH</text><text x="512" y="188">CH₂—O—PO₃²⁻</text>
+      </g>
+      <g font-size="8.5" fill="var(--ink-faint)">
+        <text x="560" y="92">= glc C3 or C4</text><text x="616" y="140">= glc C2 or C5</text><text x="616" y="188">= glc C1 or C6</text>
+      </g>
+
+      <text x="14" y="216" font-size="9.5" fill="var(--ink-faint)"><tspan font-weight="700" fill="var(--accent-3)">CARBON KEY </tspan>the carbon that has just become a carboxylate is glucose C3 in one molecule and C4 in the other — the carbon PDH later removes as CO₂</text>
+    </svg>
+    <figcaption>Only C1 changes: the mixed anhydride is discharged and a plain carboxylate is left behind. Watch the
+      colour change from green to teal — the high-energy flag has gone, because its phosphate is now in ATP. And read
+      the arrow: it is a <em>double</em> arrow. A reaction can make ATP and still be freely reversible, and this is
+      the one that proves it, which is precisely why gluconeogenesis can run straight back through this enzyme
+      instead of needing a bypass.</figcaption>
+  </figure>
+
+  <h3>Why the pathway now breaks even, and why that is not the same as profit</h3>
+  <p>Two ATP went out at steps 1 and 3, on the single six-carbon molecule. Two ATP come back here — one from each of
+     the two three-carbon molecules that the cut produced. The ledger is level. Every ATP made from step 8 onwards is
+     net gain, and since only step 10 remains as a producer, the entire net yield of glycolysis is the two ATP made
+     by pyruvate kinase. It is worth saying that plainly, because it explains why pyruvate kinase and not
+     phosphoglycerate kinase is the regulated one of the two.</p>
+
+  <details class="disc disc--wex">
+    <summary>Worked example 3 — a strongly negative ΔG°′ that still does not make a step irreversible</summary>
+    <div class="disc__body">
+    <p style="margin:0 0 .3rem;font-size:.92rem">Compare phosphoglycerate kinase (ΔG°′ = −18.5 kJ·mol⁻¹) with
+      pyruvate kinase (ΔG°′ = −31.4 kJ·mol⁻¹) at 298 K, where RT = 2.478 kJ·mol⁻¹. Compute both equilibrium
+      constants, then explain why only the second reaction is irreversible in a cell.</p>
+    <ol>
+      <li><span class="fi">K′<sub>eq</sub> = e<sup>−ΔG°′/RT</sup></span>. For step 7:
+        <span class="fi">e<sup>18.5/2.478</sup> = e<sup>7.47</sup> ≈ 1.7 × 10³</span>.</li>
+      <li>For step 10: <span class="fi">e<sup>31.4/2.478</sup> = e<sup>12.67</sup> ≈ 3.2 × 10⁵</span> — nearly two
+        hundred times larger.</li>
+      <li>Now the mass-action ratio. For step 7 the cell holds
+        <span class="fi">Q = <span class="mf" role="img" aria-label="the concentration of 3-phosphoglycerate times the concentration of A T P, all over the concentration of 1,3-bisphosphoglycerate times the concentration of A D P"><span>[3-PG][ATP]</span><span>[1,3-BPG][ADP]</span></span></span>
+        very close to K′<sub>eq</sub>, because 1,3-BPG is kept vanishingly low (about 1 µM) while 3-PG sits around
+        60 µM and the ATP/ADP ratio is around 10. Q rises to meet K, and the measured cellular ΔG is within about a
+        kilojoule of zero.</li>
+      <li>For step 10 the same arithmetic does not close the gap: PEP is held low and pyruvate is drained away
+        continuously, so Q stays orders of magnitude below K and the cellular ΔG remains near
+        <strong>−17 kJ·mol⁻¹</strong>.</li>
+      <li>The lesson to take into the exam: <strong>ΔG°′ ranks reactions; concentrations decide them.</strong> A
+        step is irreversible in a cell when the cell holds the mass-action ratio far from equilibrium, and that is a
+        statement about ΔG, never about ΔG°′ alone.</li>
+    </ol>
+    <span class="wex__ans">step 7 K′<sub>eq</sub> ≈ 1.7 × 10³, cellular ΔG ≈ 0 · step 10 K′<sub>eq</sub> ≈ 3.2 × 10⁵, cellular ΔG ≈ −17</span>
+    </div>
+  </details>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 7 · "it makes ATP, so it must be irreversible"</p>
+    <p style="margin:0">Both of the ATP-producing steps of glycolysis are offered as candidates for the
+      "irreversible" list, and only one of them belongs there. Step 7 is <strong>reversible</strong>: it is the
+      enzyme gluconeogenesis uses, running the other way, to spend an ATP putting the phosphate back onto
+      3-phosphoglycerate. Step 10 is not. The reason is transfer potential — 1,3-BPG's −49.3 kJ·mol⁻¹ is only
+      19 above ATP's −30.5, a gap ADP can pay back, whereas PEP's −61.9 is 31 above it and nothing in the cell can
+      buy that phosphate back. A second, subtler trap is the enzyme's name. <strong>Phosphoglycerate kinase is named
+      for the reaction it catalyses in the gluconeogenic direction</strong>, in which phosphoglycerate is the
+      acceptor. In glycolysis it is doing the reverse of what its name describes, exactly as pyruvate kinase does.</p>
+  </div>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Step 8 · Phosphoglycerate mutase — moving the phosphate</h2>
+
+  <p class="idea"><b>The idea</b>Nothing is gained or lost here. A phosphate simply moves from the end of a three-carbon molecule to the middle,
+     and the free-energy change is almost nothing. The cell is repositioning it, because the next reaction can only
+     build a high-energy compound if the phosphate is sitting on the carbon next to the carboxylate. This is the
+     pathway thinking one move ahead, and it is the only step in glycolysis whose sole purpose is to set up the
+     step after it.</p>
+
+  <div class="fx fx--hero">
+    <span class="fx__eq">3-phosphoglycerate ⇌ 2-phosphoglycerate     ΔG°′ = +4.4 kJ·mol⁻¹</span>
+    <span class="fx__tag">phosphoglycerate mutase (EC 5.4.2.11), an intramolecular transferase; catalytic 2,3-BPG required</span>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 226" role="img" aria-label="Step 8. 3-phosphoglycerate, which carries its phosphate on carbon 3 and a hydroxyl on carbon 2, is converted by phosphoglycerate mutase into 2-phosphoglycerate, in which the phosphate sits on carbon 2 and carbon 3 carries the hydroxyl. Carbons 2 and 3 are highlighted on both sides; the carboxylate at carbon 1 is unchanged. The enzyme works through a phosphorylated histidine and requires a catalytic amount of 2,3-bisphosphoglycerate. The step is reversible with a standard free-energy change of plus 4.4 kilojoules per mole." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m8a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-soft)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 8 · THE PHOSPHATE WALKS FROM C3 TO C2</text>
+
+      <text x="52" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">3-Phosphoglycerate</text>
+      <line x1="76" y1="88" x2="76" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="92">1</text><text x="66" y="140">2</text><text x="66" y="188">3</text>
+      </g>
+      <circle cx="76" cy="88" r="3.6" fill="var(--ink-soft)"/>
+      <g fill="var(--accent)"><circle cx="76" cy="136" r="4.6"/><circle cx="76" cy="184" r="4.6"/></g>
+      <text x="88" y="92" font-size="11.5" fill="var(--ink-soft)">COO⁻</text>
+      <g font-size="11.5" font-weight="700" fill="var(--accent)">
+        <text x="88" y="140">CH—OH</text><text x="88" y="188">CH₂—O—PO₃²⁻</text>
+      </g>
+
+      <text x="340" y="64" font-size="12.5" font-weight="700" text-anchor="middle" fill="var(--ink)">phosphoglycerate mutase</text>
+      <text x="340" y="80" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">isomerase (intramolecular transferase) · phospho-histidine enzyme</text>
+      <text x="340" y="104" font-size="10" text-anchor="middle" fill="var(--accent-3)">catalytic 2,3-BPG · a 2,3-bisphosphoglycerate passes through</text>
+      <line x1="230" y1="131" x2="450" y2="131" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m8a)"/>
+      <line x1="450" y1="141" x2="230" y2="141" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m8a)"/>
+      <text x="340" y="162" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = +4.4 kJ·mol⁻¹</text>
+      <text x="340" y="178" font-size="10" text-anchor="middle" fill="var(--ink-faint)">reversible · cellular ΔG ≈ 0 · no ATP in, no ATP out</text>
+
+      <text x="478" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">2-Phosphoglycerate</text>
+      <line x1="500" y1="88" x2="500" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="490" y="92">1</text><text x="490" y="140">2</text><text x="490" y="188">3</text>
+      </g>
+      <circle cx="500" cy="88" r="3.6" fill="var(--ink-soft)"/>
+      <g fill="var(--accent)"><circle cx="500" cy="136" r="4.6"/><circle cx="500" cy="184" r="4.6"/></g>
+      <text x="512" y="92" font-size="11.5" fill="var(--ink-soft)">COO⁻</text>
+      <g font-size="11.5" font-weight="700" fill="var(--accent)">
+        <text x="512" y="140">CH—O—PO₃²⁻</text><text x="512" y="188">CH₂—OH</text>
+      </g>
+      <g font-size="8.5" fill="var(--ink-faint)">
+        <text x="560" y="92">= glc C3 or C4</text><text x="616" y="140">= glc C2 or C5</text><text x="616" y="188">= glc C1 or C6</text>
+      </g>
+
+      <text x="14" y="216" font-size="9.5" fill="var(--ink-faint)"><tspan font-weight="700" fill="var(--accent-3)">CARBON KEY </tspan>the phosphate moves between carbons; the carbons do not move · C1 stays the carboxylate right through to pyruvate</text>
+    </svg>
+    <figcaption>Two teal groups swap contents. What the picture cannot show is that the phosphate arriving on C2 is
+      <em>not the same phosphorus atom</em> that left C3: the enzyme carries a phosphate on a histidine residue,
+      donates that one to C2 to make a transient 2,3-bisphosphoglycerate, then takes the C3 phosphate back onto the
+      histidine, ready for the next substrate molecule. The net effect is a migration; the mechanism is two
+      independent transfers. It also explains why the enzyme needs a small standing pool of 2,3-BPG to prime
+      it — without one, the histidine starts unphosphorylated and the enzyme cannot begin.</figcaption>
+  </figure>
+
+  <h3>Why the phosphate has to be on C2 before step 9</h3>
+  <p>Enolase removes a water molecule across C2 and C3 to create a double bond between them. If the phosphate were
+     still sitting on C3, the resulting compound would be an ordinary phosphate ester with a double bond somewhere
+     else, and nothing would have been gained. With the phosphate on C2 the double bond forms directly between the
+     phosphate-bearing carbon and C3, producing an <strong>enol phosphate</strong> — and an enol phosphate is
+     special, because its hydrolysis liberates an enol that immediately tautomerises to a ketone. Step 8 costs the
+     cell nothing and buys the whole of step 10. Nothing else in glycolysis has that character.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 8 · "a mutase is an intramolecular transfer of the same group"</p>
+    <p style="margin:0">The definition is right in net terms and wrong in mechanism, and the question is usually
+      written to catch exactly that gap. In the mammalian enzyme, the phosphoryl group that ends on C2 comes
+      <strong>from the enzyme</strong>, and the one that was on C3 ends <em>on</em> the enzyme. If the stem describes
+      a <sup>32</sup>P-labelling experiment — label 3-phosphoglycerate at C3, run one turnover, ask where the label
+      is — the answer is that it distributes, because the label enters the enzyme's histidine pool. The second trap
+      is the <strong>2,3-BPG requirement</strong>: it is <em>catalytic</em>, not stoichiometric. An option saying the
+      reaction "consumes 2,3-BPG" or "produces 2,3-BPG as a product" is wrong; 2,3-BPG is made deliberately in the
+      erythrocyte by a separate enzyme, and that is a different story with a different purpose.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · 2,3-BPG, the shunt that costs an ATP on purpose</summary>
+    <div class="disc__body">
+      <p>The red cell does something no other cell does with this part of the pathway. An enzyme called
+        <strong>bisphosphoglycerate mutase</strong> converts 1,3-BPG into <strong>2,3-bisphosphoglycerate</strong>,
+        and a phosphatase then converts that to 3-phosphoglycerate. The carbon rejoins glycolysis one step further
+        on, but the phosphate that would have become ATP at step 7 has been hydrolysed away instead. This is the
+        <strong>Rapoport–Luebering shunt</strong>, and it deliberately throws away ATP.</p>
+      <p>It does so because 2,3-BPG binds in the central cavity of deoxyhaemoglobin, between the two β chains, and
+        stabilises the T state. Raising it shifts the oxygen dissociation curve to the right and unloads more oxygen
+        in the tissues. The erythrocyte pays one ATP per triose to run its own oxygen-delivery control. Adaptations
+        that raise 2,3-BPG are altitude, chronic anaemia, chronic lung disease and alkalosis; stored blood loses it
+        within days, which is why old transfused red cells release oxygen poorly until they regenerate it.</p>
+      <p>Two examinable consequences follow. First, an arithmetic one: if every triose in a red cell went round the
+        shunt, the net ATP yield of glycolysis would fall from two per glucose to <strong>zero</strong> — the two
+        invested at steps 1 and 3 would be recovered only at step 10. Second, a diagnostic one: <strong>pyruvate
+        kinase deficiency raises 2,3-BPG</strong>, because everything upstream of the block accumulates, and the
+        resulting right shift is why these patients tolerate their anaemia better than the haemoglobin
+        concentration suggests. Deficiency of <em>hexokinase</em>, at the top of the pathway, does the opposite:
+        it lowers 2,3-BPG and those patients tolerate anaemia worse. Where the block sits decides which way the
+        curve moves.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 9 =========================== -->
+<section class="section" id="s9">
+  <span class="section__num">§ 09</span>
+  <h2>Step 9 · Enolase — a water out, an enol phosphate in</h2>
+
+  <p class="idea"><b>The idea</b>This step adds no energy at all. It removes a molecule of water — and yet what comes out of it is the
+     highest-energy phosphate compound in the whole of metabolism. That is not a contradiction, and understanding
+     why it is not is the most transferable idea on this page. The energy is not stored in the bond that was made.
+     It is stored in what the molecule is desperate to turn into the moment that bond is broken.</p>
+
+  <div class="fx fx--hero">
+    <span class="fx__eq">2-phosphoglycerate ⇌ phosphoenolpyruvate + H₂O     ΔG°′ = +7.5 kJ·mol⁻¹</span>
+    <span class="fx__tag">enolase (EC 4.2.1.11), a hydro-lyase; two Mg²⁺ per active site; inhibited by fluoride</span>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 226" role="img" aria-label="Step 9. 2-phosphoglycerate loses a molecule of water across carbons 2 and 3, and the product is phosphoenolpyruvate, in which a double bond runs between carbon 2 and carbon 3 and the phosphate on carbon 2 has become an enol phosphate. The hydroxyl at carbon 3 and the hydrogen at carbon 2 are the atoms removed as water, shown leaving on a curved arrow off the reaction arrow. The enol phosphate is flagged as the highest-transfer-potential compound in metabolism, with a hydrolysis free energy of minus 61.9 kilojoules per mole. The enzyme is enolase, which needs two magnesium ions, and the step is reversible with a standard free-energy change of plus 7.5 kilojoules per mole." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m9a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-soft)"/></marker>
+        <marker id="m9c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-3)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 9 · DEHYDRATION ACROSS C2–C3</text>
+
+      <text x="52" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">2-Phosphoglycerate</text>
+      <line x1="76" y1="88" x2="76" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="92">1</text><text x="66" y="140">2</text><text x="66" y="188">3</text>
+      </g>
+      <circle cx="76" cy="88" r="3.6" fill="var(--ink-soft)"/>
+      <g fill="var(--accent)"><circle cx="76" cy="136" r="4.6"/><circle cx="76" cy="184" r="4.6"/></g>
+      <text x="88" y="92" font-size="11.5" fill="var(--ink-soft)">COO⁻</text>
+      <g font-size="11.5" font-weight="700" fill="var(--accent)">
+        <text x="88" y="140">CH—O—PO₃²⁻</text><text x="88" y="188">CH₂—OH</text>
+      </g>
+      <text x="88" y="202" font-size="8.5" fill="var(--accent)">the H at C2 and the OH at C3 leave together</text>
+
+      <text x="340" y="64" font-size="12.5" font-weight="700" text-anchor="middle" fill="var(--ink)">enolase</text>
+      <text x="340" y="80" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">lyase · 2 Mg²⁺ per active site · fluoride blocks it</text>
+      <line x1="230" y1="131" x2="450" y2="131" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m9a)"/>
+      <line x1="450" y1="141" x2="230" y2="141" stroke="var(--ink-soft)" stroke-width="1.8" marker-end="url(#m9a)"/>
+      <path d="M 352,127 C 368,118 380,110 396,100" fill="none" stroke="var(--accent-3)" stroke-width="1.5" marker-end="url(#m9c)"/>
+      <text x="402" y="96" font-size="10.5" font-weight="700" fill="var(--accent-3)">H₂O</text>
+      <text x="340" y="162" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = +7.5 kJ·mol⁻¹</text>
+      <text x="340" y="178" font-size="10" text-anchor="middle" fill="var(--ink-faint)">reversible · cellular ΔG ≈ 0 · the only water released in glycolysis</text>
+
+      <text x="470" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Phosphoenolpyruvate (PEP)</text>
+      <line x1="500" y1="88" x2="500" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="505" y1="136" x2="505" y2="184" stroke="var(--accent)" stroke-width="1.8"/>
+      <line x1="500" y1="136" x2="500" y2="184" stroke="var(--accent)" stroke-width="1.8"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="490" y="92">1</text><text x="490" y="140">2</text><text x="490" y="188">3</text>
+      </g>
+      <circle cx="500" cy="88" r="3.6" fill="var(--ink-soft)"/>
+      <circle cx="500" cy="136" r="4.6" fill="var(--v-energy)"/>
+      <circle cx="500" cy="184" r="4.6" fill="var(--accent)"/>
+      <text x="514" y="92" font-size="11.5" fill="var(--ink-soft)">COO⁻</text>
+      <text x="514" y="140" font-size="11.5" font-weight="700" fill="var(--v-energy)">C—O—PO₃²⁻</text>
+      <text x="514" y="188" font-size="11.5" font-weight="700" fill="var(--accent)">CH₂</text>
+      <text x="514" y="154" font-size="8.5" font-weight="700" fill="var(--v-energy)">enol phosphate · ΔG°′ hydrolysis −61.9</text>
+      <text x="548" y="188" font-size="8.5" fill="var(--accent)">C2=C3 double bond</text>
+
+      <text x="14" y="216" font-size="9.5" fill="var(--ink-faint)"><tspan font-weight="700" fill="var(--accent-3)">CARBON KEY </tspan>C1 = glucose C3 or C4 · C2 = glucose C2 or C5 · C3 = glucose C1 or C6, now a methylene and later the methyl of pyruvate</text>
+    </svg>
+    <figcaption>Follow the atoms rather than the label. A hydrogen leaves C2, a hydroxyl leaves C3, and the pair
+      depart as water; the electrons left behind form the C2=C3 double bond drawn as the doubled line. The phosphate
+      has not changed — it is the same phosphate that step 8 walked onto C2 — but its context has, and context is
+      everything. It is now attached to the carbon of an enol, and that single structural fact raises its transfer
+      potential from about −17 kJ·mol⁻¹ in 2-phosphoglycerate to −61.9 in phosphoenolpyruvate. No energy was added to
+      make that happen.</figcaption>
+  </figure>
+
+  <h3>Where the energy of PEP actually lives</h3>
+  <p>Hydrolysing PEP can be read as two events happening in succession. Breaking the phosphate ester itself is worth
+     only about <strong>−16 kJ·mol⁻¹</strong> — unremarkable, less than ATP. What follows is the remarkable part: the
+     enolpyruvate released is the enol tautomer of pyruvate, and it converts to the keto form immediately and
+     essentially completely, worth about <strong>−46 kJ·mol⁻¹</strong> more. Add them and you get the quoted −61.9.</p>
+  <p>So the high transfer potential of PEP is not a property of the phosphorus–oxygen bond at all. It is a property
+     of <em>what the leaving group does next</em>. The phosphate on C2 is holding pyruvate trapped in an unstable
+     tautomer, like a catch holding a spring; take the catch off and the spring releases. This explains two things at
+     once. It explains why glycolysis went to the trouble of steps 8 and 9 to create an enol phosphate rather than
+     any other kind. And it explains why step 10 is irreversible — you cannot force a tautomerisation backwards by
+     offering a phosphate, so pyruvate kinase can never be run in reverse no matter what the concentrations are.</p>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 9 · nothing here is "high-energy" until it is</p>
+    <p style="margin:0">Options that say enolase "adds a high-energy phosphate bond", "phosphorylates
+      2-phosphoglycerate" or "requires ATP" are all wrong for the same reason: <strong>enolase is a dehydratase and
+      transfers no phosphate whatever</strong>. The molecule ends with exactly the phosphate it began with. The
+      practical corollary is the one about blood tubes: <strong>fluoride inhibits enolase</strong>, which is why the
+      grey-topped sodium-fluoride tube is used for glucose measurement — it stops the red cells in the sample from
+      consuming the analyte. Fluoride does not inhibit hexokinase, and it does not inhibit GAPDH; if an option pairs
+      fluoride with any enzyme other than enolase, it is wrong.</p>
+  </div>
+</section>
+
+<!-- =========================== 10 =========================== -->
+<section class="section" id="s10">
+  <span class="section__num">§ 10</span>
+  <h2>Step 10 · Pyruvate kinase — the second ATP</h2>
+
+  <p class="idea"><b>The idea</b>The last step collects the second and larger ATP payment, and it is the one reaction in glycolysis that could
+     never be run backwards no matter what the cell did to the concentrations. The reason is not the size of the
+     energy change but its nature: the product rearranges itself into a more stable form the instant it is released,
+     and no amount of pushing will make it rearrange back. This is also the pathway's exit gate, and like the entry
+     gate it is under tight control.</p>
+
+  <div class="fx fx--hero">
+    <span class="fx__eq">phosphoenolpyruvate + ADP → pyruvate + ATP     ΔG°′ = −31.4 kJ·mol⁻¹</span>
+    <span class="fx__tag">pyruvate kinase (EC 2.7.1.40), Mg²⁺ <em>and</em> K⁺; substrate-level phosphorylation, 2 of 2</span>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 720 226" role="img" aria-label="Step 10. Phosphoenolpyruvate, which has a double bond between carbon 2 and carbon 3 and an enol phosphate on carbon 2, transfers that phosphate to A D P. A curved arrow shows A D P entering and A T P leaving. The immediate product is enolpyruvate, which tautomerises at once to pyruvate: carbon 2 becomes a ketone and carbon 3 becomes a methyl group, both highlighted. The reaction arrow is a single thick arrow because the step is irreversible: the standard free-energy change is minus 31.4 kilojoules per mole and the cellular free-energy change is about minus 17. Carbon 3 of pyruvate came from glucose carbon 1 or carbon 6, and carbon 1 from glucose carbon 3 or carbon 4." style="font-family:var(--sans)">
+      <defs>
+        <marker id="m10b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-2)"/></marker>
+      </defs>
+      <text x="14" y="20" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--accent)">STEP 10 · PHOSPHATE TO ADP, THEN ENOL → KETO</text>
+
+      <text x="44" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Phosphoenolpyruvate (PEP)</text>
+      <line x1="76" y1="88" x2="76" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <line x1="76" y1="136" x2="76" y2="184" stroke="var(--accent)" stroke-width="1.8"/>
+      <line x1="81" y1="136" x2="81" y2="184" stroke="var(--accent)" stroke-width="1.8"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="66" y="92">1</text><text x="66" y="140">2</text><text x="66" y="188">3</text>
+      </g>
+      <circle cx="76" cy="88" r="3.6" fill="var(--ink-soft)"/>
+      <circle cx="76" cy="136" r="4.6" fill="var(--v-energy)"/>
+      <circle cx="76" cy="184" r="4.6" fill="var(--accent)"/>
+      <text x="90" y="92" font-size="11.5" fill="var(--ink-soft)">COO⁻</text>
+      <text x="90" y="140" font-size="11.5" font-weight="700" fill="var(--v-energy)">C—O—PO₃²⁻</text>
+      <text x="90" y="188" font-size="11.5" font-weight="700" fill="var(--accent)">CH₂</text>
+      <text x="90" y="154" font-size="8.5" font-weight="700" fill="var(--v-energy)">−61.9 · twice ATP's potential</text>
+
+      <text x="340" y="64" font-size="12.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">pyruvate kinase</text>
+      <text x="340" y="80" font-size="9.5" text-anchor="middle" fill="var(--ink-faint)">transferase · Mg²⁺ and K⁺ · allosteric, isozyme-specific</text>
+      <text x="290" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">ADP</text>
+      <text x="392" y="96" font-size="10.5" font-weight="700" text-anchor="middle" fill="var(--accent-2)">ATP</text>
+      <path d="M 290,104 C 308,148 372,148 390,104" fill="none" stroke="var(--accent-2)" stroke-width="1.5" marker-end="url(#m10b)"/>
+      <line x1="230" y1="136" x2="450" y2="136" stroke="var(--accent-2)" stroke-width="3" marker-end="url(#m10b)"/>
+      <text x="340" y="162" font-size="11" text-anchor="middle" fill="var(--ink-soft)">ΔG°′ = −31.4 kJ·mol⁻¹</text>
+      <text x="340" y="178" font-size="10" font-weight="700" text-anchor="middle" fill="var(--v-heat)">IRREVERSIBLE · cellular ΔG ≈ −17 kJ·mol⁻¹</text>
+      <text x="340" y="196" font-size="9" text-anchor="middle" fill="var(--ink-faint)">via enolpyruvate, which tautomerises at once: worth ≈ −46 of the −61.9</text>
+
+      <text x="500" y="46" font-size="11.5" font-weight="700" fill="var(--ink)">Pyruvate</text>
+      <line x1="520" y1="88" x2="520" y2="184" stroke="var(--ink-soft)" stroke-width="1.6"/>
+      <g font-size="9.5" fill="var(--ink-faint)" text-anchor="end">
+        <text x="510" y="92">1</text><text x="510" y="140">2</text><text x="510" y="188">3</text>
+      </g>
+      <circle cx="520" cy="88" r="3.6" fill="var(--ink-soft)"/>
+      <g fill="var(--accent)"><circle cx="520" cy="136" r="4.6"/><circle cx="520" cy="184" r="4.6"/></g>
+      <text x="532" y="92" font-size="11.5" fill="var(--ink-soft)">COO⁻</text>
+      <g font-size="11.5" font-weight="700" fill="var(--accent)">
+        <text x="532" y="140">C=O</text><text x="532" y="188">CH₃</text>
+      </g>
+      <g font-size="8.5" fill="var(--ink-faint)">
+        <text x="570" y="92">= glc C3 or C4 → CO₂ at PDH</text>
+        <text x="580" y="140">= glc C2 or C5</text>
+        <text x="580" y="188">= glc C1 or C6</text>
+      </g>
+
+      <text x="14" y="216" font-size="9.5" fill="var(--ink-faint)"><tspan font-weight="700" fill="var(--accent-3)">CARBON KEY </tspan>glucose C1 and C6 are the two methyls, C2 and C5 the two carbonyls, C3 and C4 the two carboxyls — every pair sums to 7</text>
+    </svg>
+    <figcaption>Two carbons finish changing and the pathway ends. The phosphate leaves C2 for ADP; the enol that
+      remains flips to the keto form, so C2 becomes a ketone and C3 picks up the proton and becomes a methyl group.
+      That flip is drawn nowhere because it needs no enzyme — it is spontaneous, immediate and, for practical
+      purposes, irreversible, and it is where most of the −61.9 kJ·mol⁻¹ of PEP hydrolysis actually resides. The
+      annotations on the right close the carbon story the first diagram opened.</figcaption>
+  </figure>
+
+  <h3>Regulation, and why the exit gate is controlled at all</h3>
+  <p>PFK-1 has already committed the molecule, so why control the last step too? Because a committed intermediate
+     still has to be allowed <em>out</em>, and because the liver needs to be able to stop glycolysis without stopping
+     the reactions upstream that gluconeogenesis also uses. Pyruvate kinase is activated by <strong>fructose
+     1,6-bisphosphate</strong> — the product of PFK-1, a feed-forward signal that opens the exit as soon as the
+     entrance opens — and inhibited by ATP, acetyl-CoA, alanine and long-chain fatty acids, all of which mean "there
+     is already plenty of fuel past this point". The liver L isoenzyme carries an extra layer: PKA phosphorylates and
+     inactivates it in response to glucagon, so a fasting liver stops burning the very glucose it is trying to
+     export. Muscle's M1 isoenzyme has no such site, which is exactly right — muscle has no business shutting down
+     glycolysis because blood sugar is low. Note 04 §&nbsp;03 gives the full regulator table.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">What is examined here</p>
+    <p style="margin:0">That pyruvate kinase requires a <strong>monovalent cation, K⁺</strong>, as well as Mg²⁺ — it
+      is the only glycolytic enzyme that does, and it is a favourite one-line fact. That the reaction is irreversible
+      and therefore must be bypassed in gluconeogenesis by <strong>two</strong> enzymes, pyruvate carboxylase and PEP
+      carboxykinase, at a cost of one ATP and one GTP: three of the four gluconeogenic bypass enzymes exist to undo
+      this single step and the PFK-1 step. And that <strong>pyruvate kinase deficiency</strong> is the second
+      commonest enzymopathic haemolytic anaemia after G6PD deficiency, is autosomal recessive rather than X-linked,
+      and produces a <em>chronic non-spherocytic</em> anaemia rather than episodic haemolysis.</p>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The trap on step 10 · the name says the opposite of what happens</p>
+    <p style="margin:0">A kinase is named for the molecule that <em>receives</em> a phosphate. In glycolysis,
+      pyruvate kinase takes a phosphate <strong>off</strong> PEP and gives it to ADP — the name describes the reverse
+      reaction, which does not occur physiologically at all. Candidates who reason from the name conclude that this
+      step consumes ATP, and lose two marks: one on the ledger and one on the direction. The related trap is the
+      arithmetic: because this step runs <em>twice</em> per glucose, it yields <strong>2 ATP</strong>, and with the
+      2 from step 7 that is 4 gross, 2 net. An option offering "net 4 ATP" is counting gross; an option offering
+      "net 2 ATP and 2 NADH" is the correct ledger for the pathway as far as pyruvate.</p>
+  </div>
+
+  <details class="disc disc--deep">
+    <summary>Go deeper · four isozymes, and the one that tumours prefer</summary>
+    <div class="disc__body">
+      <p>Two genes make four pyruvate kinases, and each is tuned to what its tissue is for.</p>
+      <ul>
+        <li><strong>L</strong> — liver. Allosteric, activated by F1,6BP, and the only one inactivated by PKA
+          phosphorylation. It is switched off by glucagon so that hepatic gluconeogenesis is not immediately undone
+          by hepatic glycolysis.</li>
+        <li><strong>R</strong> — erythrocyte, from the same gene as L. Its deficiency is the classic pyruvate kinase
+          deficiency: the red cell, with no mitochondria and no alternative ATP supply, cannot maintain its
+          Na⁺/K⁺-ATPase, becomes rigid and is destroyed in the spleen. 2,3-BPG accumulates upstream of the block and
+          shifts oxygen delivery to the tissues, which is why symptoms are milder than the haemoglobin suggests.</li>
+        <li><strong>M1</strong> — skeletal muscle, heart, brain. Constitutively active, no phosphorylation site, no
+          hormonal control. Muscle burns glucose when muscle needs to.</li>
+        <li><strong>M2</strong> — fetal tissue, and re-expressed in most tumours. It is a <em>less</em> active,
+          more heavily regulated form, and cancer cells prefer it precisely because a partial block at the last step
+          backs the pathway up and makes the upstream intermediates available for biosynthesis — nucleotides via the
+          pentose phosphate pathway, serine from 3-phosphoglycerate, lipids from DHAP. This is one of the mechanisms
+          behind the <strong>Warburg effect</strong>: a proliferating cell wants carbon skeletons more than it wants
+          the last two ATP.</li>
+      </ul>
+      <p>The general lesson is worth more than the list. Almost every glycolytic enzyme has tissue-specific
+        isozymes — aldolase A, B and C; the muscle and brain forms of phosphoglycerate mutase, whose muscle
+        deficiency is GSD X; β-enolase, whose deficiency is GSD XIII. What is confined to the <em>regulated</em>
+        steps is isozyme-specific <em>allosteric and hormonal control</em>: elsewhere the isozymes differ only in
+        kinetics, stability and which tissue expresses them, which is why hexokinase, PFK-1 and pyruvate kinase are
+        the ones whose isozymes carry different regulators and phosphoglycerate mutase is not.</p>
+    </div>
+  </details>
+</section>
+
+<!-- =========================== 11 =========================== -->
+<section class="section" id="s11">
+  <span class="section__num">§ 11</span>
+  <h2>The ten steps on one page</h2>
+
+  <p class="idea"><b>The idea</b>Having gone through the ten reactions one at a time, the useful thing is to see them side by side, because the
+     pattern only shows up in the column. Three of the ten reactions run far downhill inside a living cell; the other
+     seven sit close to equilibrium there, including two whose standard numbers look large. That is not an accident
+     of measurement — it is the shape of every
+     regulated pathway in the body, and it is the reason the three enzymes worth memorising are the three that stand
+     out in the column.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The ten reactions of glycolysis with enzymes, classes, cofactors and free-energy changes</caption>
+      <thead><tr><th>#</th><th>Reaction</th><th>Enzyme</th><th>Class</th><th>Cofactor / cosubstrate</th><th>ΔG°′</th><th>In the cell</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Glucose → G6P</td><td><strong>Hexokinase</strong> (glucokinase in liver, β-cell)</td><td>Kinase (transferase)</td><td>ATP, Mg²⁺</td><td class="num">−16.7</td><td><strong>Irreversible</strong> · ΔG ≈ −33</td></tr>
+        <tr><td class="num">2</td><td>G6P ⇌ F6P</td><td>Phosphohexose isomerase</td><td>Isomerase</td><td>none</td><td class="num">+1.7</td><td>Reversible · ΔG ≈ 0</td></tr>
+        <tr><td class="num">3</td><td>F6P → F1,6BP</td><td><strong>Phosphofructokinase-1</strong></td><td>Kinase (transferase)</td><td>ATP, Mg²⁺</td><td class="num">−14.2</td><td><strong>Irreversible</strong> · ΔG ≈ −22 · committed, rate-limiting</td></tr>
+        <tr><td class="num">4</td><td>F1,6BP ⇌ DHAP + G3P</td><td>Aldolase (class I)</td><td>Lyase</td><td>none — Schiff-base lysine</td><td class="num">+23.8</td><td>Reversible · ΔG ≈ 0 despite the ΔG°′</td></tr>
+        <tr><td class="num">5</td><td>DHAP ⇌ G3P</td><td>Triose phosphate isomerase</td><td>Isomerase</td><td>none</td><td class="num">+7.5</td><td>Reversible · equilibrium ≈ 95 : 5 toward DHAP</td></tr>
+        <tr><td class="num">6</td><td>G3P + P<sub>i</sub> + NAD⁺ ⇌ 1,3-BPG + NADH + H⁺</td><td>Glyceraldehyde 3-P dehydrogenase</td><td>Oxidoreductase</td><td>NAD⁺, P<sub>i</sub>, active-site Cys</td><td class="num">+6.3</td><td>Reversible · the only oxidation</td></tr>
+        <tr><td class="num">7</td><td>1,3-BPG + ADP ⇌ 3-PG + ATP</td><td>Phosphoglycerate kinase</td><td>Kinase (transferase)</td><td>ADP, Mg²⁺</td><td class="num">−18.5</td><td>Reversible · substrate-level phosphorylation 1</td></tr>
+        <tr><td class="num">8</td><td>3-PG ⇌ 2-PG</td><td>Phosphoglycerate mutase</td><td>Mutase (isomerase)</td><td>catalytic 2,3-BPG; phospho-His</td><td class="num">+4.4</td><td>Reversible · ΔG ≈ 0</td></tr>
+        <tr><td class="num">9</td><td>2-PG ⇌ PEP + H₂O</td><td>Enolase</td><td>Lyase (hydro-lyase)</td><td>2 Mg²⁺</td><td class="num">+7.5</td><td>Reversible · inhibited by fluoride</td></tr>
+        <tr><td class="num">10</td><td>PEP + ADP → pyruvate + ATP</td><td><strong>Pyruvate kinase</strong></td><td>Kinase (transferase)</td><td>ADP, Mg²⁺ <strong>and K⁺</strong></td><td class="num">−31.4</td><td><strong>Irreversible</strong> · ΔG ≈ −17 · substrate-level phosphorylation 2</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.9rem">ΔG°′ in kJ·mol⁻¹, standard textbook values at pH 7 and 25 °C; the cellular figures are
+     erythrocyte measurements at body temperature. As note 04 warns, do not add the column up — the individual values
+     come from separate experiments under slightly different conditions, and the column is a <em>ranking</em>, not an
+     arithmetic series. What carries information is the cellular column, not this one: three steps held far from
+     equilibrium at 1, 3 and 10, and seven that sit at equilibrium in the cell whatever their standard values
+     say — step 4 at +23.8 and step 7 at −18.5 among them.</p>
+
+  <div class="callout callout--exam">
+    <p class="callout__title">The single most productive thing on this page</p>
+    <p style="margin:0">Learn the shape of the ΔG°′ column, not the numbers. Large and negative at
+      <strong>1, 3 and 10</strong>; everything else between −18.5 and +23.8 but near equilibrium in the cell. From
+      that shape you can derive: which steps are regulated (those three), which enzymes gluconeogenesis must replace
+      (those three, using four enzymes because step 10 needs two), where the allosteric effectors act (those three),
+      and which steps a labelling or flux question can safely treat as reversible (the other seven). One column,
+      four separate exam answers.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Where each carbon of glucose ends up</caption>
+      <thead><tr><th>Glucose carbon</th><th>In fructose 1,6-bisphosphate</th><th>Which half after the cut</th><th>Position in G3P</th><th>Position in pyruvate</th><th>Immediate fate</th></tr></thead>
+      <tbody>
+        <tr><td><strong>C1</strong></td><td>Carries the phosphate PFK-1 added</td><td>Upper — becomes DHAP C1</td><td class="num">C3</td><td class="num">C3 — methyl</td><td>Methyl carbon of acetyl-CoA</td></tr>
+        <tr><td><strong>C2</strong></td><td>The ketone carbon</td><td>Upper — DHAP C2</td><td class="num">C2</td><td class="num">C2 — carbonyl</td><td>Carbonyl (thioester) carbon of acetyl-CoA</td></tr>
+        <tr><td><strong>C3</strong></td><td>Upper carbon of the bond that breaks</td><td>Upper — DHAP C3</td><td class="num">C1</td><td class="num">C1 — carboxyl</td><td><strong>Released as CO₂ by pyruvate dehydrogenase</strong></td></tr>
+        <tr><td><strong>C4</strong></td><td>Lower carbon of the bond that breaks</td><td>Lower — already G3P</td><td class="num">C1</td><td class="num">C1 — carboxyl</td><td><strong>Released as CO₂ by pyruvate dehydrogenase</strong></td></tr>
+        <tr><td><strong>C5</strong></td><td>Unremarkable</td><td>Lower</td><td class="num">C2</td><td class="num">C2 — carbonyl</td><td>Carbonyl carbon of acetyl-CoA</td></tr>
+        <tr><td><strong>C6</strong></td><td>Carries the phosphate hexokinase added</td><td>Lower</td><td class="num">C3</td><td class="num">C3 — methyl</td><td>Methyl carbon of acetyl-CoA</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.9rem">Read the fourth column and the reversal at step 5 becomes visible as a fact rather than
+     a claim: the three upper carbons map 1→3, 2→2, 3→1, while the three lower carbons map 4→1, 5→2, 6→3. Pairs sum
+     to seven. Note 04 §&nbsp;05 turns this into a four-stroke exam procedure; this table is where the strokes come
+     from.</p>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Inhibitors and inherited deficiencies, step by step</caption>
+      <thead><tr><th>Step</th><th>Chemical lesion</th><th>Inherited deficiency and its phenotype</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1 · hexokinase</strong></td><td><strong>2-deoxyglucose</strong> is phosphorylated but cannot be isomerised, so 2-DG-6-P accumulates and blocks the pathway — the principle behind <sup>18</sup>F-FDG PET, where the trapped tracer maps glucose uptake</td><td>Rare; haemolytic anaemia with a <em>low</em> 2,3-BPG, so anaemia is poorly tolerated</td></tr>
+        <tr><td><strong>2 · phosphohexose isomerase</strong></td><td>—</td><td>Chronic non-spherocytic haemolytic anaemia; the second commonest glycolytic enzymopathy after pyruvate kinase</td></tr>
+        <tr><td><strong>3 · PFK-1</strong></td><td>Physiologically inhibited by ATP, citrate and H⁺</td><td><strong>GSD VII, Tarui disease</strong> — exercise intolerance with no second wind, worsened by a carbohydrate meal, mild haemolysis</td></tr>
+        <tr><td><strong>4 · aldolase</strong></td><td>Class I is <em>not</em> inhibited by EDTA; sodium borohydride traps the Schiff base</td><td>Aldolase A → haemolytic anaemia with myopathy; <strong>aldolase B → hereditary fructose intolerance</strong></td></tr>
+        <tr><td><strong>5 · triose phosphate isomerase</strong></td><td>—</td><td>The <strong>most severe</strong> glycolytic enzymopathy: haemolysis plus progressive neurodegeneration, usually fatal in childhood</td></tr>
+        <tr><td><strong>6 · GAPDH</strong></td><td><strong>Iodoacetate</strong> alkylates the active-site cysteine (inhibitor); <strong>arsenate</strong> replaces P<sub>i</sub> (uncoupler — pathway runs, ATP lost)</td><td>Not a recognised human deficiency syndrome</td></tr>
+        <tr><td><strong>7 · phosphoglycerate kinase</strong></td><td>—</td><td>The only <strong>X-linked</strong> glycolytic enzymopathy: haemolysis, myopathy and CNS involvement in varying combinations</td></tr>
+        <tr><td><strong>8 · phosphoglycerate mutase</strong></td><td>—</td><td><strong>GSD X</strong> — exercise-induced cramps and myoglobinuria, muscle only</td></tr>
+        <tr><td><strong>9 · enolase</strong></td><td><strong>Fluoride</strong> (with P<sub>i</sub> and Mg²⁺) — the reason the glucose blood tube is grey-topped and contains sodium fluoride</td><td>GSD XIII, β-enolase; exercise intolerance and myalgia</td></tr>
+        <tr><td><strong>10 · pyruvate kinase</strong></td><td>Physiologically inhibited by ATP, acetyl-CoA, alanine; liver form by PKA phosphorylation</td><td>The <strong>commonest</strong> glycolytic enzymopathy: autosomal recessive chronic non-spherocytic haemolytic anaemia with a <em>high</em> 2,3-BPG, so it is unusually well tolerated</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <p class="callout__title">Read the deficiencies as one pattern, not ten facts</p>
+    <p style="margin:0">Every glycolytic deficiency in the table hits the <strong>erythrocyte</strong> hardest, and
+      always for the same reason: a red cell has no mitochondria, no nucleus and no alternative ATP supply, so
+      glycolysis is not one option among several but the whole of its energy metabolism. Muscle is hit second, and a
+      muscle phenotype means the deficient isozyme is the muscle one. And the direction the 2,3-BPG moves tells you
+      where the block is — <em>above</em> step 7 and 2,3-BPG falls, <em>below</em> it and 2,3-BPG rises. That single
+      rule separates hexokinase deficiency from pyruvate kinase deficiency in one line, and it is derivable rather
+      than memorable, which is why there is no mnemonic for it below.</p>
+  </div>
+</section>
+
+<!-- =========================== 12 =========================== -->
+<section class="section" id="s12">
+  <span class="section__num">§ 12</span>
+  <h2>Memory hooks, in English</h2>
+
+  <p class="idea"><b>The idea</b>A memory hook is only worth carrying if it is faster than working the answer out. These are in English on
+     purpose: the paper is in English, and a hook you have to translate under time pressure costs you the seconds it
+     was supposed to save. Each one below says what it covers and, just as importantly, what it does not — and where
+     something can be derived in a few seconds, there is a principle here instead of a rhyme, because a second thing
+     to remember is a cost, not a help.</p>
+
+  <div class="mnemo">
+    <h4>The eleven intermediates, in order</h4>
+    <span class="kj">Goodness Gracious, Father Franklin Did Go By Picking Pumpkins To Prepare Pies</span>
+    <p>This is <strong>the standard circulating hook</strong> for glycolysis and it is the one to use, but check it
+      before you trust it, because it carries <em>twelve</em> words for <em>eleven</em> intermediates.
+      <b>Goodness</b> — glucose. <b>Gracious</b> — glucose 6-phosphate. <b>Father</b> — fructose 6-phosphate.
+      <b>Franklin</b> — fructose 1,6-bisphosphate. <b>Did</b> — dihydroxyacetone phosphate. <b>Go</b> —
+      glyceraldehyde 3-phosphate. <b>By</b> — 1,3-bisphosphoglycerate. <b>Picking</b> — 3-phosphoglycerate.
+      <b>Pumpkins</b> — 2-phosphoglycerate. <b>To</b> — nothing; it is grammatical glue and you must know that.
+      <b>Prepare</b> — phosphoenolpyruvate. <b>Pies</b> — pyruvate.
+      Three internal checks make it self-correcting. The two <em>G</em> words at the front are the two glucose
+      species and the two <em>F</em> words are the two fructose species, so the preparatory phase is
+      <span class="fi">G G F F</span>. <em>Did Go</em> are the two trioses, in the order they are conventionally drawn — DHAP as the upper half, G3P as the lower.
+      And in <em>Picking Pumpkins</em> the numbers count <strong>down</strong>, 3-phosphoglycerate then
+      2-phosphoglycerate — which is the detail most people reverse.
+      <span class="mnemo__gloss">The line is standard; the observation that "To" is a spare word is mine, and if the
+        spare word bothers you, trimming it to <em>"Goodness Gracious, Father Franklin Did Go By Picking Pumpkins,
+        Preparing Pies"</em> gives eleven words for eleven intermediates — but that version is my adjustment, not
+        the circulating one, so do not expect anyone else to recognise it. What the hook does <b>not</b> carry: the
+        enzymes, the ΔG°′ values, which steps cost or make ATP, or the fact that everything from
+        <em>Did Go</em> onwards happens twice. It is a list of names in order and nothing more.</span></p>
+  </div>
+
+  <div class="mnemo">
+    <h4>The ten enzymes, in order</h4>
+    <span class="kj">Hot Pans Produce Awful Toast; Grandma Keeps Making Extra Pancakes</span>
+    <p>Ten words for ten enzymes, and the semicolon falls exactly where the pathway changes character.
+      <b>Hot</b> — hexokinase. <b>Pans</b> — phosphohexose isomerase. <b>Produce</b> — phosphofructokinase-1.
+      <b>Awful</b> — aldolase. <b>Toast</b> — triose phosphate isomerase. That is the whole investment phase, and
+      after the semicolon everything happens twice: <b>Grandma</b> — glyceraldehyde 3-phosphate dehydrogenase.
+      <b>Keeps</b> — phosphoglycerate <em>kinase</em>. <b>Making</b> — phosphoglycerate <em>mutase</em>.
+      <b>Extra</b> — enolase. <b>Pancakes</b> — pyruvate kinase. The second half reads as a sentence about getting
+      extra food, which is what the payoff phase is.
+      Two of the pairs need a moment's care and both resolve by reasoning rather than rote. <em>Pans</em> and
+      <em>Produce</em> both begin with P, but the order is forced: the carbonyl must move to C2 before C1 can be
+      phosphorylated, so isomerase always precedes kinase. And <em>Keeps Making</em> puts the
+      <b>k</b>inase before the <b>m</b>utase, which is also forced — you cannot move a phosphate that has not yet
+      been cashed in.
+      <span class="mnemo__gloss">This one is my own, not a standard hook, so nobody else will know it. It does
+        <b>not</b> tell you which enzymes are irreversible, which need Mg²⁺, or which make ATP — those are the next
+        three hooks. It also silently uses the short name "phosphohexose isomerase"; some papers write
+        "phosphoglucose isomerase" or "glucose 6-phosphate isomerase" for the same enzyme, and all three are
+        acceptable.</span></p>
+  </div>
+
+  <div class="mnemo">
+    <h4>The three irreversible steps</h4>
+    <span class="kj">In at one, committed at three, out at ten</span>
+    <p>Steps <strong>1, 3 and 10</strong> — hexokinase, phosphofructokinase-1, pyruvate kinase — and the three-clause
+      line encodes what each one <em>is</em> as well as where it sits. Step 1 is the entrance, and it is irreversible
+      but <em>not</em> committed, because glucose 6-phosphate still has four exits. Step 3 is the committed and
+      rate-limiting one, because fructose 1,6-bisphosphate has nowhere else to go. Step 10 is the exit. All three are
+      kinases; all three are the regulated steps; all three are what gluconeogenesis has to bypass, and it needs
+      <em>four</em> enzymes to bypass three steps because undoing step 10 takes two of them.
+      <span class="mnemo__gloss">Mine, and deliberately thin, because most of this is derivable and you should
+        derive it rather than store it. The derivation: irreversible steps are the ones the cell holds far from
+        equilibrium, which in glycolysis are the ones coupled to ATP <em>except</em> step 7. Step 7 is the exception
+        precisely because 1,3-bisphosphoglycerate's transfer potential is only 19 kJ·mol⁻¹ above ATP's, a gap ADP can
+        pay back, while PEP's is 31 above and nothing can. So the honest rule is: <b>all three irreversible steps
+        involve ATP, but not every ATP step is irreversible</b> — and the one exception has a reason you can state.
+        The hook does not cover the regulators of those three enzymes; note 04 §&nbsp;03 shows why signing each
+        molecule beats memorising a list.</span></p>
+  </div>
+
+  <div class="mnemo">
+    <h4>The ATP ledger</h4>
+    <span class="kj">Two to prime the pump, four from the two halves, two to keep</span>
+    <p>The costs are paid on the <em>six</em>-carbon molecule and the income is collected on the <em>three</em>-carbon
+      ones — which is the whole reason the income doubles and the costs do not. One ATP out at step 1, one out at
+      step 3, both on a single hexose: <strong>−2</strong>. One ATP in at step 7 and one at step 10, but the pathway
+      below the aldolase runs twice: <strong>+4</strong>. Net <strong>+2 ATP</strong>, plus <strong>2 NADH</strong>
+      from step 6 running twice. If you can say which molecule each transaction happens to, you never have to
+      remember whether to double it.
+      <span class="mnemo__gloss">Mine. It covers free glucose under any conditions, and nothing else. It does
+        <b>not</b> cover the glycogen-derived residue, which enters as glucose 1-phosphate and skips the hexokinase
+        ATP, giving <em>three</em> net anaerobically; it does not cover the aerobic totals, which depend on which
+        shuttle the tissue uses; and it does not cover the erythrocyte's 2,3-bisphosphoglycerate shunt, which
+        sacrifices the step 7 ATP on purpose and can take the net as low as zero. Note 04 §&nbsp;04 holds the first
+        two; the 2,3-bisphosphoglycerate shunt is set out in §&nbsp;08 of this page. All three are arithmetic, not
+        memory.</span></p>
+  </div>
+
+  <div class="mnemo">
+    <h4>Which step does which job — the three numbers worth knowing</h4>
+    <span class="kj">Six oxidises; seven and ten pay</span>
+    <p><strong>Step 6</strong> is the only oxidation–reduction reaction in glycolysis, so every NADH the pathway
+      makes comes from there, and the NAD⁺ that fermentation exists to regenerate is the NAD⁺ that step 6 consumed.
+      <strong>Steps 7 and 10</strong> are the two substrate-level phosphorylations — ATP made by direct transfer from
+      a metabolite, with no membrane, no gradient and no oxygen involved. A neat cross-check comes free: the two
+      steps that <em>spend</em> ATP are kinases named after the molecule being phosphorylated (hexokinase,
+      phosphofructokinase), while the two that <em>make</em> it are kinases named after the molecule that receives
+      the phosphate in the <em>reverse</em> direction (phosphoglycerate kinase, pyruvate kinase). Both of the earners
+      therefore have names that describe the opposite of what glycolysis does with them.
+      <span class="mnemo__gloss">Mine. It does <b>not</b> tell you that step 7 is reversible while step 10 is not —
+        that is the previous hook's job, and the two are constantly confused because both make ATP. It also says
+        nothing about where the phosphate comes from at step 6: not ATP, but free inorganic phosphate, which is a
+        favourite single-fact question and is written into the diagram in §&nbsp;06 rather than into a rhyme.</span></p>
+  </div>
+
+  <div class="tech">
+    <p class="tech__title">Where a hook would cost you more than it saves</p>
+    <p>Three things in this topic are regularly turned into mnemonics and should not be. In each case the derivation
+      is faster than the recall, and a wrong hook is worse than none.</p>
+    <ol>
+      <li><b>The allosteric regulators.</b> Sign the molecule instead: AMP and ADP mean "short of energy" and
+        activate; ATP means "plenty" and inhibits; citrate means "carbon already in surplus downstream" and inhibits;
+        alanine and acetyl-CoA are pyruvate in disguise and inhibit pyruvate kinase. Only two facts do not sign, and
+        they are the two worth rote — fructose <b>2,6</b>-bisphosphate activates <b>PFK-1</b>, fructose
+        <b>1,6</b>-bisphosphate activates <b>pyruvate kinase</b>.</li>
+      <li><b>The ΔG°′ values.</b> Nobody is asked to recall +4.4 for step 8. What is asked is <em>which steps sit
+        far from equilibrium in the cell</em> — 1, 3 and 10 — and whether a stem is asking about ΔG°′ or about ΔG.
+        Note that the standard-state column does <em>not</em> pick those three out on its own: step 7 is −18.5,
+        a larger negative than step 3, and step 4 is +23.8 yet still runs forward. That mismatch is the whole
+        point. Learn which three are held from equilibrium and why; leave the digits in the table.</li>
+      <li><b>The carbon map.</b> Do not memorise which carbon becomes what. Write <span class="fi">1 2 3 | 4 5 6</span>
+        in the margin, reverse the left half only, read down the columns, and confirm each pair sums to seven. The
+        procedure takes about fifteen seconds, works for any label the examiner chooses, and cannot be misremembered.
+        Note 04 §&nbsp;05 sets it out as four pen strokes.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- =========================== 13 =========================== -->
+<section class="section" id="quiz">
+  <span class="section__num">§ 13</span>
+  <h2>Self-test · 10 questions</h2>
+
+  <p class="idea"><b>The idea</b>These questions are part of the page, not an appendix to it. Answering from memory — even wrongly — fixes
+     material far better than reading the same paragraph a second time, and every wrong option below is a mistake
+     somebody actually makes on this material.</p>
+  <p>Five need real arithmetic; do it on paper, because that is what the paper will require and 66 seconds is not
+     long. The other five are conceptual traps that reverse a direction, mistake a net outcome for a mechanism, or
+     mistake where the energy of a compound actually sits. Every explanation says why the right answer is right
+     <em>and</em> why the tempting wrong one is tempting.</p>
+  <div class="quiz" data-quiz></div>
+</section>
+
+<nav class="pager">
+  <a href="biochem-04-carbohydrate-metabolism.html"><small>Previous</small><b>← Carbohydrate Metabolism: Glycolysis, Gluconeogenesis, Glycogen and the PPP</b></a>
+  <a href="biochemistry.html"><small>Index</small><b>All biochemistry notes</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry 04 · Deep dive · Glycolysis step by step</p>
+    <p>Representation used: every reaction drawn open-chain as a numbered carbon backbone, so that a carbon keeps its
+      position on the page from glucose to pyruvate, except across step 5, where the upper half is deliberately drawn
+      end-for-end; the hexoses are cyclic in solution and the enzymes of steps 2
+      and 4 open the ring as part of their mechanism. Standard free-energy changes are the usual textbook values at
+      pH 7 and 25 °C and are not meant to be summed; the cellular ΔG figures are erythrocyte measurements quoted to
+      one or two significant figures. Structures, cofactors and carbon assignments follow Lehninger 8th edition.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="quiz-data">
+[
+  {
+    "stem": "In a human erythrocyte the aldolase step operates at [F1,6BP] = 31 µM, [DHAP] = 138 µM and [G3P] = 18.5 µM. The standard free-energy change is <b>+23.8 kJ·mol⁻¹</b>. Taking T = 310 K and R = 8.315 × 10⁻³ kJ·K⁻¹·mol⁻¹, what is the actual ΔG?",
+    "options": [
+      "+23.8 kJ·mol⁻¹ — ΔG and ΔG°′ are the same quantity written two ways",
+      "About −0.4 kJ·mol⁻¹, so the reaction is sitting essentially at equilibrium",
+      "About −24.2 kJ·mol⁻¹, so the reaction is strongly exergonic in the cell",
+      "About +48 kJ·mol⁻¹, since the mass-action term makes an already unfavourable reaction worse"
+    ],
+    "answer": 1,
+    "explain": "<span class=\"fi\">Q = [DHAP][G3P]/[F1,6BP] = (1.38 × 10⁻⁴ × 1.85 × 10⁻⁵)/(3.1 × 10⁻⁵) = 8.2 × 10⁻⁵</span>. Then <span class=\"fi\">RT = 2.578</span> and <span class=\"fi\">ln Q = −9.40</span>, so <span class=\"fi\">RT ln Q = −24.2</span> and <span class=\"fi\">ΔG = 23.8 − 24.2 ≈ −0.4 kJ·mol⁻¹</span>. Option C is the trap of reporting the correction term instead of the answer. Option D inverts the ratio — a reaction that produces <i>two</i> molecules from one has products multiplied in the numerator, so dilution always drives it forward. Option A is the conceptual error the whole question exists to catch: ΔG°′ describes a hypothetical 1 mol·L⁻¹ bottle, ΔG describes a cell, and only ΔG decides direction."
+  },
+  {
+    "stem": "Why must glucose 6-phosphate be isomerised to fructose 6-phosphate <b>before</b> the six-carbon sugar can be cleaved into two triose phosphates?",
+    "options": [
+      "Because fructose 6-phosphate is the preferred substrate of hexokinase, which must act twice",
+      "Because the isomerisation is an oxidation and supplies the electrons later used at the GAPDH step",
+      "Because ATP-dependent kinases can phosphorylate ketoses but not aldoses",
+      "Because a retro-aldol cleavage breaks the bond between the carbons α and β to the carbonyl: with the carbonyl at C1 that bond is C2–C3, giving a two-carbon and a four-carbon fragment, whereas moving the carbonyl to C2 puts the cleavable bond at C3–C4 and yields two phosphorylated three-carbon pieces"
+    ],
+    "answer": 3,
+    "explain": "The aldol relationship fixes where the scissors fall, and this is the reason the whole preparatory phase is arranged as it is. On an aldose the cut would produce fragments of two and four carbons, and the two-carbon piece would carry no phosphate at all — untagged, membrane-permeant and useless. Option A is nonsense in two ways: hexokinase acts once, and on glucose. Option B is the commonest genuine misconception here — <b>no</b> oxidation occurs at step 2; the electrons are merely rearranged, which is why ΔG°′ is only +1.7. Option C is invented: the very next step phosphorylates the C1 hydroxyl of a ketose, but plenty of kinases phosphorylate aldoses, hexokinase among them."
+  },
+  {
+    "stem": "The triose phosphate isomerase reaction has ΔG°′ = +7.5 kJ·mol⁻¹ (RT = 2.478 kJ·mol⁻¹ at 298 K). Compute the equilibrium composition of a triose phosphate pool and state what it implies for the carbon yield of glycolysis.",
+    "options": [
+      "About 5 % is glyceraldehyde 3-phosphate, yet all six glucose carbons still reach pyruvate, because GAPDH removes G3P continuously and the isomerase — working at the diffusion limit — refills it from the DHAP pool",
+      "About 5 % is glyceraldehyde 3-phosphate, so only about 5 % of the glucose carbon can be oxidised past the triose stage",
+      "About 95 % is glyceraldehyde 3-phosphate, which is why the reaction is described as thermodynamically favourable",
+      "About 50 % is glyceraldehyde 3-phosphate, because the two trioses are interconvertible isomers of the same molecule"
+    ],
+    "answer": 0,
+    "explain": "<span class=\"fi\">K′<sub>eq</sub> = e<sup>−7.5/2.478</sup> = e<sup>−3.03</sup> = 0.049</span>, so G3P is <span class=\"fi\">0.049/(1 + 0.049) = 4.6 %</span> of the pool — roughly 95 : 5 in favour of DHAP. Option B is the trap the arithmetic is set up to spring: equilibrium position describes a closed system at rest and says nothing about flux through an open one that is draining a product. Glycolysis yields <b>two</b> pyruvate per glucose, never one. Option C has the ratio the right size but the wrong way round, and a positive ΔG°′ can never describe a favourable standard-state reaction. Option D confuses \"interconvertible\" with \"equally populated\"; isomers reach whatever ratio their free-energy difference dictates."
+  },
+  {
+    "stem": "In the glyceraldehyde 3-phosphate dehydrogenase reaction, which species <b>first</b> captures the free energy released by oxidising the aldehyde, before that energy is passed into a phosphoanhydride bond?",
+    "options": [
+      "NADH — which is why the step is counted as producing a reduced cofactor",
+      "The incoming inorganic phosphate ion, activated by an active-site Mg²⁺",
+      "An enzyme-bound thioester, formed between the substrate's C1 and an active-site cysteine",
+      "The acyl phosphate of 1,3-bisphosphoglycerate, which forms directly from the aldehyde in a single step"
+    ],
+    "answer": 2,
+    "explain": "The order is thiohemiacetal → hydride to NAD⁺ → <b>thioester</b> → phosphorolysis → acyl phosphate. The thioester is where the oxidation energy is banked, because a thioester lacks the resonance stabilisation an oxygen ester enjoys and is therefore already a high-energy linkage; inorganic phosphate then attacks it and carries the energy onward. Option D names the end product rather than the intermediate, and \"in a single step\" is the giveaway — the whole point of the mechanism is that it is not one step. Option A is true but answers a different question: NADH carries the <i>electrons</i>, not the group-transfer potential that becomes ATP. Option B invents a metal this enzyme does not use."
+  },
+  {
+    "stem": "Phosphoglycerate kinase has ΔG°′ = −18.5 kJ·mol⁻¹. Taking RT = 2.478 kJ·mol⁻¹ at 298 K, what is K′<sub>eq</sub>, and is the step reversible inside a cell?",
+    "options": [
+      "K′<sub>eq</sub> ≈ 7.5 — reversible, because the equilibrium constant is close to unity",
+      "K′<sub>eq</sub> ≈ 1.7 × 10³ — reversible, because the cell holds 1,3-BPG so low and the ATP/ADP ratio so high that the mass-action ratio sits close to K′<sub>eq</sub> and ΔG is near zero",
+      "K′<sub>eq</sub> ≈ 5.9 × 10⁻⁴ — the reaction as written is unfavourable and runs only in gluconeogenesis",
+      "K′<sub>eq</sub> ≈ 3.2 × 10⁵ — irreversible, exactly as for pyruvate kinase"
+    ],
+    "answer": 1,
+    "explain": "<span class=\"fi\">K′<sub>eq</sub> = e<sup>18.5/2.478</sup> = e<sup>7.47</sup> ≈ 1.7 × 10³</span>. A large constant is not the same as an irreversible step: what matters is whether the cell holds Q away from K, and here it does not, so gluconeogenesis runs this very enzyme backwards without needing a bypass. Option D is the value for pyruvate kinase (<span class=\"fi\">e<sup>31.4/2.478</sup> ≈ 3.2 × 10⁵</span>) and is the intended distractor for candidates who assume that any ATP-producing step must be irreversible. Option C has the sign of the exponent wrong. Option A drops the exponential altogether and quotes ΔG°′/RT."
+  },
+  {
+    "stem": "Suppose an erythrocyte diverted <b>every</b> molecule of 1,3-bisphosphoglycerate through bisphosphoglycerate mutase and 2,3-bisphosphoglycerate phosphatase — the Rapoport–Luebering shunt. What would the net ATP yield per glucose become?",
+    "options": [
+      "Zero — the shunt bypasses phosphoglycerate kinase, so the two ATP invested at steps 1 and 3 are recovered only at step 10",
+      "One — the shunt sacrifices one of the four ATP normally produced",
+      "Two — unchanged, because the carbon rejoins glycolysis at 3-phosphoglycerate and no intermediate is lost",
+      "Four — hydrolysis of 2,3-bisphosphoglycerate releases an additional high-energy phosphate to ADP"
+    ],
+    "answer": 0,
+    "explain": "Count the transactions. Investment: −1 at hexokinase, −1 at PFK-1. Payoff: phosphoglycerate kinase is skipped entirely, so 0 instead of +2, and pyruvate kinase still gives +2. Net <span class=\"fi\">−2 + 0 + 2 = 0</span>. Option B forgets that everything below the aldolase happens twice, so bypassing step 7 costs <i>two</i> ATP per glucose, not one. Option C confuses carbon flux with energy yield: the carbon is indeed all recovered, which is exactly why the cell is willing to do this — it buys 2,3-BPG for haemoglobin at the price of ATP. Option D reverses the energetics; the 2,3-BPG phosphatase step is a hydrolysis, and hydrolysis to inorganic phosphate conserves nothing."
+  },
+  {
+    "stem": "Purified mammalian phosphoglycerate mutase, already primed with unlabelled 2,3-bisphosphoglycerate, is given 3-phosphoglycerate bearing <b>³²P on its C3 phosphate</b>. After one catalytic cycle, where is the ³²P?",
+    "options": [
+      "On C2 of the product — the enzyme moves the same phosphoryl group from one carbon to the next within the molecule",
+      "Released as inorganic ³²P, because the enzyme hydrolyses the C3 ester before rephosphorylating C2",
+      "In ATP, since mutases transfer phosphoryl groups to adenine nucleotides",
+      "Largely on the enzyme's active-site histidine — the group delivered to C2 comes from the enzyme, and the substrate's C3 group ends up on the enzyme"
+    ],
+    "answer": 3,
+    "explain": "The net reaction is a migration; the mechanism is two independent transfers. A phospho-histidine donates to C2, giving a transient 2,3-bisphosphoglycerate, and the C3 phosphoryl group is then taken back onto the histidine, regenerating the primed enzyme. Option A is the textbook <i>summary</i> and is what makes this question work — it describes the net outcome correctly while getting the atom's fate wrong, which is precisely what a labelling experiment distinguishes. Option B would waste a phosphoanhydride and is inconsistent with a ΔG°′ of only +4.4. Option C confuses a mutase with a kinase; no nucleotide takes part in this step at all."
+  },
+  {
+    "stem": "Phosphoenolpyruvate has a hydrolysis ΔG°′ of −61.9 kJ·mol⁻¹, roughly twice that of ATP, even though the enolase reaction that produced it consumed no energy and merely removed water. Which statement accounts for this correctly?",
+    "options": [
+      "Enolase couples the dehydration to ATP hydrolysis, and that energy is stored in the resulting phosphate ester",
+      "The phosphorus–oxygen bond of an enol phosphate is intrinsically much stronger than that of a phosphoanhydride, so breaking it releases more energy",
+      "Cleaving the ester itself is worth only about −16 kJ·mol⁻¹; the remaining −46 comes from the immediate tautomerisation of the released enolpyruvate to the far more stable keto form",
+      "The two Mg²⁺ ions carried over from enolase neutralise the charge repulsion within the product and so raise its free energy"
+    ],
+    "answer": 2,
+    "explain": "The energy lives in what the leaving group does <i>next</i>, not in the bond that breaks — which is also why pyruvate kinase is irreversible, since no concentration change can drive a tautomerisation backwards. Option A is simply false: enolase consumes no ATP and transfers no phosphate; it is a dehydratase. Option B inverts the logic of bond energetics — a stronger bond releases <i>less</i> free energy on hydrolysis, not more. Option D borrows a real explanation from the wrong molecule: charge repulsion between phosphates is part of the story for ATP and for 1,3-bisphosphoglycerate, but PEP carries a single phosphate group."
+  },
+  {
+    "stem": "[2-¹⁴C]Glucose is supplied to a well-oxygenated cell. Immediately after the pyruvate dehydrogenase reaction, where is the label?",
+    "options": [
+      "In CO₂, since pyruvate dehydrogenase removes the labelled carbon",
+      "On the carbonyl (thioester) carbon of acetyl-CoA",
+      "On the methyl carbon of acetyl-CoA",
+      "Split equally between CO₂ and the methyl carbon of acetyl-CoA"
+    ],
+    "answer": 1,
+    "explain": "Write <span class=\"fi\">1 2 3 | 4 5 6</span> and reverse the left half only: <span class=\"fi\">3 2 1 | 4 5 6</span>. C2 sits in the upper half but is unmoved by the reversal, so glucose C2 becomes G3P C2 and therefore <b>pyruvate C2, the carbonyl carbon</b>. Pyruvate dehydrogenase removes C1 as CO₂ and the remaining two carbons become acetyl-CoA, whose carbonyl carbon is the old pyruvate C2. Option A is the answer for a C3 or C4 label. Option C is the answer for a C1 or C6 label. Option D would require the label to be in two positions at once, which happens only when both carbons of a pair are labelled — the <sup>14</sup>C here is on one carbon of one pair, and its partner C5 is unlabelled."
+  },
+  {
+    "stem": "Four glycolytic or gluconeogenic statements are made below about steps that involve ATP or ADP. Which one is <b>correct</b>?",
+    "options": [
+      "Phosphoglycerate kinase is freely reversible: 1,3-bisphosphoglycerate's transfer potential is only about 19 kJ·mol⁻¹ above ATP's, a gap the cellular ADP/ATP ratio can close, so gluconeogenesis runs the same enzyme in reverse",
+      "Hexokinase is freely reversible, and glucose 6-phosphatase is simply that enzyme running backwards",
+      "Phosphofructokinase-1 is freely reversible, and fructose 1,6-bisphosphatase is the same enzyme working in the opposite direction",
+      "Pyruvate kinase is freely reversible provided the cell keeps phosphoenolpyruvate low enough"
+    ],
+    "answer": 0,
+    "explain": "Step 7 is the standing exception to \"ATP steps are irreversible\", and the transfer-potential gap is the reason: 1,3-BPG sits at −49.3 against ATP's −30.5, whereas PEP sits at −61.9 and nothing in the cell can buy that phosphate back. Options B and C are the same error twice, and it is a specific one — the bypass enzymes are <b>phosphatases</b>, separate gene products that <i>hydrolyse</i> the ester rather than handing the phosphate back to ADP, which is exactly why they are irreversible in their own direction and why the pair of them forms a futile cycle if both run at once. Option D fails on mechanism rather than on concentrations: the enol-to-keto tautomerisation that supplies most of the driving force cannot be reversed by any change in mass action."
+  }
+]
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
