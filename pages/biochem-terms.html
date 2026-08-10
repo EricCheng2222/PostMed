@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biochem · Terms, Shorthand and Naming: the reference page — PostMed Notebook</title>
+<meta name="description" content="A biochemistry reference: the shorthand (P, Pi, PPi, ~P, NAD+, CoA), the three meanings of alpha/beta/gamma, enzyme naming rules, enzyme and kinetics vocabulary, stereochemistry (epimer vs anomer vs enantiomer), bonds and linkages, energetics and pathway vocabulary — grouped so confusable pairs sit together, with diagrams.">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
+    <nav>
+      <a href="biochemistry.html">Biochemistry</a>
+      <a href="biochem-03-enzymes.html">Enzymes</a>
+      <div class="pace" role="group" aria-label="Reading pace">
+        <button type="button" data-pace-set="learn" aria-pressed="true">Learn</button>
+        <button type="button" data-pace-set="reference" aria-pressed="false">Reference</button>
+      </div>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- =========================== Header =========================== -->
+<div class="article-head">
+  <p class="eyebrow">Biochemistry · Reference</p>
+  <h1>Terms, Shorthand and Naming</h1>
+  <p class="lede">
+    This page is a <strong>dictionary, not a note</strong>. Every other page in the series argues one case from
+    beginning to end; this one exists to be opened <em>in the middle of</em> revising something else, when a
+    sentence says <em>uncompetitive</em> or <em>epimer</em> or <em>~P</em> and you want the meaning in ten
+    seconds. It is therefore ordered the way the paper attacks vocabulary rather than the way a dictionary
+    would: <strong>the words that get confused sit next to each other</strong>. Alphabetical order would file
+    <em>anomer</em> and <em>epimer</em> a page apart, and they are exactly the pair the examiners swap. Each
+    entry gives the meaning, then the single line that decides between it and its neighbour; where a term is
+    genuinely used loosely, the entry says so instead of pretending there is one answer.
+    <strong>There is no self-test here, by design</strong> — scoring a glossary tests vocabulary recall, which
+    is not what the paper does with these words. Go to the numbered notes to be tested: note 03 for kinetics
+    and inhibition, note 04 for carbohydrate metabolism, note 06 for energetics.
+  </p>
+  <div class="article-meta">
+    <span class="tag tag--accent">Reference · look-up, not read-through</span>
+    <span class="tag">KMU Post-Bacc Medicine · Informatics Track</span>
+    <span class="tag">8 diagrams</span>
+    <span class="tag">No self-test — by design</span>
+    <span>~25 min to read straight through</span>
+  </div>
+
+  <nav class="toc card" aria-label="Contents of this page">
+    <p class="eyebrow" style="margin-bottom:.4rem">Find the word</p>
+    <ol>
+      <li><a href="#s1">The shorthand: P, P<sub>i</sub>, ~P, NAD⁺, CoA</a></li>
+      <li><a href="#s2">The three things α, β and γ label</a></li>
+      <li><a href="#s3">Enzyme names, where the marks are lost</a></li>
+      <li><a href="#s4">Enzyme vocabulary: parts, kinetics, inhibition, control</a></li>
+      <li><a href="#s5">Structure and stereochemistry</a></li>
+      <li><a href="#s6">Bonds and linkages</a></li>
+      <li><a href="#s7">Energetics</a></li>
+      <li><a href="#s8">Pathway vocabulary</a></li>
+    </ol>
+  </nav>
+
+  <div class="ladder" data-pace-only="learn">
+    <p class="ladder__label">How to use this page</p>
+    <ol>
+      <li><b>Do not read it front to back the first time.</b> Use the contents above to jump to the group the
+        word belongs to. The groups are functional — <em>shorthand</em>, <em>Greek letters</em>,
+        <em>enzyme names</em>, <em>enzyme vocabulary</em>, <em>stereochemistry</em>, <em>bonds</em>,
+        <em>energetics</em>, <em>pathways</em> — so a word you half-remember is findable even when you cannot
+        spell it.</li>
+      <li><b>The third column is the page.</b> Nearly every table here has a discriminator column, and that
+        column is the thing worth carrying into the exam. Anyone can define <em>synthase</em>; the mark is in
+        knowing that the extra <b>t</b> means a nucleotide was spent.</li>
+      <li><b>Read the diagrams properly once.</b> Six of the eight exist because a sentence genuinely cannot do
+        the job — <b>§05</b>'s epimer / anomer / enantiomer panel and <b>§02</b>'s three α/β/γ conventions in
+        particular. Spend two minutes on each now and you will never have to reconstruct them under time
+        pressure.</li>
+      <li><b>Switch the pace control to Reference</b> (top right) to open every disclosure at once. That is the
+        revision view of this page: everything visible, nothing hidden behind a click.</li>
+    </ol>
+  </div>
+
+  <section class="fsheet card">
+    <details class="disc disc--sheet">
+      <summary>The swap list — one line per confusable pair<span class="disc__count">34 entries</span></summary>
+      <div class="disc__body">
+    <div class="fsheet__grid">
+      <div class="fsheet__item"><b>synthase vs synthetase</b><code>synthe-<b>t</b>-ase spends an N<b>T</b>P</code></div>
+      <div class="fsheet__item"><b>kinase vs phosphorylase</b><code>P from ATP · P from free P<sub>i</sub></code></div>
+      <div class="fsheet__item"><b>phosphorylase vs phosphatase</b><code>adds P using P<sub>i</sub> · removes P using H₂O</code></div>
+      <div class="fsheet__item"><b>mutase vs isomerase</b><code>mutase = isomerase that moves a group</code></div>
+      <div class="fsheet__item"><b>oxidase vs oxygenase</b><code>O₂ accepts e⁻ · O atoms end up in the product</code></div>
+      <div class="fsheet__item"><b>dehydrogenase vs oxidase</b><code>NAD⁺/FAD takes the H · O₂ takes the H</code></div>
+      <div class="fsheet__item"><b>lyase vs hydrolase</b><code>no water used to cleave · water used to cleave</code></div>
+      <div class="fsheet__item"><b>epimerase vs racemase</b><code>one centre of many · the only centre</code></div>
+      <div class="fsheet__item"><b>carboxylase vs decarboxylase</b><code>adds CO₂ (ATP, biotin) · removes CO₂</code></div>
+      <div class="fsheet__item"><b>apoenzyme vs holoenzyme</b><code>protein alone (dead) · protein + cofactor</code></div>
+      <div class="fsheet__item"><b>coenzyme vs prosthetic group</b><code>cosubstrate · stays bound — a coenzyme can be either</code></div>
+      <div class="fsheet__item"><b>cofactor vs coenzyme</b><code>any non-protein part · the organic ones</code></div>
+      <div class="fsheet__item"><b>isozyme vs isoform</b><code>different gene, same reaction · loose term</code></div>
+      <div class="fsheet__item"><b>zymogen vs allosteric</b><code>one-way proteolysis · reversible binding</code></div>
+      <div class="fsheet__item"><b>K<sub>m</sub> vs K<sub>d</sub></b><code>K<sub>m</sub> ≥ K<sub>d</sub>; equal only if k₂ ≪ k₋₁</code></div>
+      <div class="fsheet__item"><b>k<sub>cat</sub> vs V<sub>max</sub></b><code>per enzyme (s⁻¹) · per tube (M·s⁻¹)</code></div>
+      <div class="fsheet__item"><b>competitive vs uncompetitive</b><code>binds E · binds ES only</code></div>
+      <div class="fsheet__item"><b>uncompetitive vs non-competitive</b><code>parallel lines · meet on the x-axis</code></div>
+      <div class="fsheet__item"><b>enantiomer vs diastereomer</b><code>all centres flipped · some flipped</code></div>
+      <div class="fsheet__item"><b>epimer vs anomer</b><code>any one centre · <em>the anomeric</em> centre</code></div>
+      <div class="fsheet__item"><b>anomer vs enantiomer</b><code>interconvert in water · never interconvert</code></div>
+      <div class="fsheet__item"><b>D/L vs (+)/(−) vs R/S</b><code>three independent labels; no rule links them</code></div>
+      <div class="fsheet__item"><b>aldose vs ketose</b><code>C=O at C1 · C=O at C2</code></div>
+      <div class="fsheet__item"><b>pyranose vs furanose</b><code>6-membered ring · 5-membered ring</code></div>
+      <div class="fsheet__item"><b>hemiacetal vs acetal</b><code>one OR + one OH · two OR — locked</code></div>
+      <div class="fsheet__item"><b>reducing vs non-reducing</b><code>free anomeric C · anomeric C capped</code></div>
+      <div class="fsheet__item"><b>tautomer vs resonance</b><code>an atom moves · only electrons move</code></div>
+      <div class="fsheet__item"><b>amphipathic vs amphoteric</b><code>two solubilities · acid <em>and</em> base</code></div>
+      <div class="fsheet__item"><b>ester vs thioester</b><code>–O– stabilised · –S– barely stabilised</code></div>
+      <div class="fsheet__item"><b>anhydride vs ester</b><code>P–O–P · C–O–P or C–O–C</code></div>
+      <div class="fsheet__item"><b>ΔG vs ΔG°′</b><code>direction now · position of equilibrium</code></div>
+      <div class="fsheet__item"><b>exergonic vs exothermic</b><code>ΔG &lt; 0 · ΔH &lt; 0</code></div>
+      <div class="fsheet__item"><b>committed vs rate-limiting</b><code>first step past the branch · slowest step</code></div>
+      <div class="fsheet__item"><b>anaplerotic vs amphibolic</b><code>refills a cycle · serves both directions</code></div>
+    </div>
+      </div>
+    </details>
+  </section>
+</div>
+
+<!-- =========================== 1 =========================== -->
+<section class="section" id="s1">
+  <span class="section__num">§ 01</span>
+  <h2>The shorthand: P, P<sub>i</sub>, ~P, NAD⁺, CoA</h2>
+
+  <p class="idea"><b>The idea</b>Biochemistry is written in a compressed notation, and every symbol in it hides exactly one fact. A circled
+     <b>P</b> hides a double negative charge, which is why a phosphorylated sugar cannot leave the cell. A
+     squiggle hides a large free energy of hydrolysis, which is why one reaction can pay for another. A single
+     Greek letter on a phosphate hides <em>which</em> phosphate is attacked, which decides whether the leaving
+     group is ADP or pyrophosphate. The shorthand is not decoration; it is the exam question, written small.
+     Every symbol below with a dotted underline can be clicked for its own panel.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the notation</p>
+    <dl class="def">
+      <dt>Ⓟ — a phosphoryl group</dt>
+      <dd>The circled <b>P</b> of a pathway map is <span class="fi">–PO₃²⁻</span> esterified to an oxygen. It
+          carries about two negative charges at pH 7.4, so the molecule it is attached to is
+          <button class="sh" data-sh="P" aria-expanded="false">trapped</button> inside the cell — no
+          facilitative transporter will carry it. Phosphorylation is how a cell keeps what it has taken up.</dd>
+      <dt>P<sub>i</sub> and PP<sub>i</sub></dt>
+      <dd><button class="sh" data-sh="Pi" aria-expanded="false">P<sub>i</sub></button> is <em>free</em>
+          phosphate in solution, attached to nothing.
+          <button class="sh" data-sh="PPi" aria-expanded="false">PP<sub>i</sub></button> is two phosphates
+          joined head to head, <span class="fi">P–O–P</span>. The subscript <b>i</b> stands for
+          <em>inorganic</em>, and it is there precisely to stop you reading it as a phosphate already on a
+          molecule.</dd>
+      <dt>~P — the squiggle</dt>
+      <dd>A <button class="sh" data-sh="~P" aria-expanded="false">phosphate whose hydrolysis is strongly
+          exergonic</button>: an acyl phosphate, an enol phosphate or a phosphoanhydride. It is a statement
+          about free energy, not about the bond. See <a href="#s7">§&nbsp;07</a> for why the phrase
+          &ldquo;high-energy bond&rdquo; is misleading.</dd>
+    </dl>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ATP + H₂O → ADP + P<sub>i</sub>     ΔG°′ = −30.5 kJ·mol⁻¹</span>
+      <span class="fx__tag">and ATP → AMP + PP<sub>i</sub> is −45.6, which is why the second route is used when a reaction must not run back</span>
+    </div>
+    <details class="disc">
+      <summary>Every symbol that recurs across the series</summary>
+      <div class="disc__body">
+        <div class="symtab">
+          <div><b>[S], [E]<sub>t</sub></b><span>substrate and total enzyme concentration (M)</span></div>
+          <div><b>v₀</b><span>initial velocity, measured before product accumulates</span></div>
+          <div><b>E · ES · EP</b><span>free enzyme, enzyme–substrate complex, enzyme–product complex</span></div>
+          <div><b>‡</b><span>the transition state, as in ΔG‡</span></div>
+          <div><b>ΔG°′</b><span>standard free-energy change at pH 7 (kJ·mol⁻¹)</span></div>
+          <div><b>E°′</b><span>standard reduction potential at pH 7 (V)</span></div>
+          <div><b>K′<sub>eq</sub></b><span>equilibrium constant under the same transformed convention</span></div>
+          <div><b>⊕ / ⊖</b><span>allosteric activator / inhibitor on a pathway map</span></div>
+          <div><b>—|</b><span>inhibits (a blunt end, never an arrowhead)</span></div>
+          <div><b>n</b><span>chain length, or number of electrons transferred — read from context</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The recurring shorthand and the one fact each symbol hides</caption>
+      <thead><tr><th>Symbol</th><th>What it stands for</th><th>The one fact it hides</th></tr></thead>
+      <tbody>
+        <tr><td><b><button class="sh" data-sh="P" aria-expanded="false">Ⓟ</button></b></td><td>Phosphoryl group on an oxygen</td><td>Roughly two negative charges at pH 7.4 — the molecule can no longer cross a membrane</td></tr>
+        <tr><td><b><button class="sh" data-sh="Pi" aria-expanded="false">P<sub>i</sub></button></b></td><td>Free inorganic phosphate</td><td>In glycolysis it enters at <em>one</em> step only (glyceraldehyde 3-phosphate dehydrogenase); everywhere else the phosphate comes from ATP</td></tr>
+        <tr><td><b><button class="sh" data-sh="PPi" aria-expanded="false">PP<sub>i</sub></button></b></td><td>Pyrophosphate, P–O–P</td><td>Released when a nucleotide is attacked at its <b>α</b> phosphate; its subsequent hydrolysis to 2 P<sub>i</sub> is what makes the reaction one-way</td></tr>
+        <tr><td><b><button class="sh" data-sh="~P" aria-expanded="false">~P</button></b></td><td>Large negative ΔG°′ of hydrolysis</td><td>The energy is in the <em>difference</em> between reactant and products, not inside the bond</td></tr>
+        <tr><td><b><button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> · <button class="sh" data-sh="ADP" aria-expanded="false">ADP</button> · <button class="sh" data-sh="AMP" aria-expanded="false">AMP</button></b></td><td>Adenosine tri-, di-, monophosphate</td><td>Same nucleoside, different phosphate count. AMP is the cell's low-fuel alarm, not merely a leftover</td></tr>
+        <tr><td><b>α · β · γ</b> on a nucleotide</td><td>Phosphate position, counted outward from the sugar</td><td>A kinase takes <b>γ</b>; attack at <b>α</b> releases PP<sub>i</sub> instead of ADP. See <a href="#s2">§&nbsp;02</a></td></tr>
+        <tr><td><b><button class="sh" data-sh="GTP" aria-expanded="false">GTP</button> · <button class="sh" data-sh="UTP" aria-expanded="false">UTP</button></b></td><td>Guanosine / uridine triphosphate</td><td>Chemically interchangeable with ATP through nucleoside diphosphate kinase, but each is used by a specific set of enzymes — GTP by G proteins and PEPCK, UTP to activate glucose for glycogen</td></tr>
+        <tr><td><b><button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button> / <button class="sh" data-sh="NADH" aria-expanded="false">NADH</button></b></td><td>Nicotinamide adenine dinucleotide</td><td>Accepts <b>one hydride</b> (2 e⁻ + 1 H⁺); the second proton goes to the solvent, which is why the equation reads NADH + H⁺</td></tr>
+        <tr><td><b><button class="sh" data-sh="NADP+" aria-expanded="false">NADP⁺</button> / <button class="sh" data-sh="NADPH" aria-expanded="false">NADPH</button></b></td><td>The same molecule plus a 2′ phosphate</td><td>The extra phosphate does no chemistry at all — it is a recognition handle that keeps two pools at opposite redox ratios</td></tr>
+        <tr><td><b><button class="sh" data-sh="FAD" aria-expanded="false">FAD</button> / <button class="sh" data-sh="FADH2" aria-expanded="false">FADH₂</button></b></td><td>Flavin adenine dinucleotide</td><td>Takes <b>two hydrogen atoms</b>, and can do one-electron chemistry — which is why flavins, not NAD, interface with the respiratory chain</td></tr>
+        <tr><td><b><button class="sh" data-sh="CoA" aria-expanded="false">CoA–SH</button></b></td><td>Coenzyme A; the business end is a free thiol</td><td>It makes <b>thioesters</b>, and a thioester holds enough free energy to drive a condensation (<a href="#s6">§&nbsp;06</a>)</td></tr>
+        <tr><td><b><button class="sh" data-sh="acetyl-CoA" aria-expanded="false">acetyl-CoA</button></b></td><td>A two-carbon acetyl group on that thioester</td><td>Its two carbons cannot become net glucose in humans — they leave the cycle as CO₂</td></tr>
+        <tr><td><b><button class="sh" data-sh="cAMP" aria-expanded="false">cAMP</button></b></td><td>AMP whose phosphate bridges the 3′ and 5′ hydroxyls</td><td>A ring, therefore a <em>signal</em> and not an energy carrier; made by adenylyl cyclase, destroyed by phosphodiesterase</td></tr>
+        <tr><td><b><button class="sh" data-sh="TPP" aria-expanded="false">TPP</button> · <button class="sh" data-sh="PLP" aria-expanded="false">PLP</button> · <button class="sh" data-sh="THF" aria-expanded="false">THF</button> · <button class="sh" data-sh="SAM" aria-expanded="false">SAM</button></b></td><td>Coenzymes from B₁, B₆, B₉ and from methionine</td><td>Each carries one specific fragment: an activated aldehyde, an amino group, a one-carbon unit, a methyl group</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three shorthand traps</p>
+    <p><strong>NAD⁺ and NADP⁺ are not interchangeable in an answer.</strong> They differ by one phosphate that
+      does no chemistry, but the cell holds NAD⁺/NADH <em>oxidised</em> to collect electrons from catabolism and
+      NADP⁺/NADPH <em>reduced</em> to hand them to biosynthesis. Same hydride, opposite job. An option that has
+      fatty-acid synthesis using NADH is wrong for that reason alone.</p>
+    <p><strong>P<sub>i</sub> is not Ⓟ.</strong> &ldquo;Adds a phosphate from P<sub>i</sub>&rdquo; and
+      &ldquo;adds a phosphate from ATP&rdquo; are different reactions run by differently named enzymes
+      (<a href="#s3">§&nbsp;03</a>). Glycogen phosphorylase uses P<sub>i</sub> and no ATP; answering
+      &ldquo;kinase&rdquo; there is a standard loss.</p>
+    <p style="margin:0"><strong>PP<sub>i</sub> is not &ldquo;two P<sub>i</sub>&rdquo;.</strong> It becomes two
+      P<sub>i</sub>, and that second, separate hydrolysis by inorganic pyrophosphatase is the step that makes
+      DNA synthesis, RNA synthesis, fatty-acid activation and glycogen synthesis irreversible. If a stem asks
+      what commits one of those reactions, this is usually the answer.</p>
+  </div>
+</section>
+
+<!-- =========================== 2 =========================== -->
+<section class="section" id="s2">
+  <span class="section__num">§ 02</span>
+  <h2>The three things α, β and γ label</h2>
+
+  <p class="idea"><b>The idea</b>The same three Greek letters are used for three completely unrelated jobs, and the paper's favourite
+     vocabulary trick is to slide between them inside one stem. There is no deep connection to find: α simply
+     means &ldquo;the first one, counting from an agreed starting point&rdquo;, and biochemistry has three
+     different agreed starting points. Fix the starting point and the letter becomes unambiguous. On a
+     phosphate chain you count outward from the sugar. On a sugar ring the letter is not a count at all but a
+     face — which side the new hydroxyl ended up on when the ring closed. Along a carbon chain you count from
+     the carboxyl. Three conventions, three pictures, and after that no stem can catch you.</p>
+
+  <div class="abg">
+    <div class="abg__card">
+      <h4>① α β γ · phosphates on a nucleotide</h4>
+      <p>Counted <strong>outward from the sugar</strong>: α sits on the 5′ carbon, then β, then γ at the tip. A
+        <strong>kinase</strong> hands over γ, leaving ADP. Attack at <strong>α</strong> releases
+        PP<sub>i</sub> instead — DNA and RNA synthesis, fatty-acid activation, UDP-glucose.</p>
+      <svg viewBox="0 0 300 96" role="img" aria-label="A nucleotide drawn as a sugar box followed by three phosphate circles in a row. The circle nearest the sugar is labelled alpha, the next beta, and the outermost gamma, which is highlighted. The labelling runs outward from the five prime carbon of the sugar." style="font-family:var(--sans)">
+        <rect x="6" y="26" width="52" height="30" rx="7" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <text x="32" y="46" text-anchor="middle" font-size="10" fill="var(--ink)">sugar</text>
+        <line x1="58" y1="41" x2="72" y2="41" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="87" cy="41" r="15" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <text x="87" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">P</text>
+        <text x="87" y="17" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink-soft)">α</text>
+        <line x1="102" y1="41" x2="118" y2="41" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="133" cy="41" r="15" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <text x="133" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">P</text>
+        <text x="133" y="17" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink-soft)">β</text>
+        <line x1="148" y1="41" x2="164" y2="41" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="179" cy="41" r="15" fill="none" stroke="var(--accent)" stroke-width="2.4"/>
+        <text x="179" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">P</text>
+        <text x="179" y="17" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent)">γ</text>
+        <text x="200" y="38" font-size="8.5" fill="var(--accent)">kinases</text>
+        <text x="200" y="49" font-size="8.5" fill="var(--accent)">take this one</text>
+        <text x="6" y="76" font-size="8.5" fill="var(--ink-faint)">counted outward from the 5′ carbon · attack at α releases PP<tspan font-size="6.5" dy="2">i</tspan></text>
+        <text x="6" y="89" font-size="8.5" fill="var(--ink-faint)">there is no δ in normal use — three is the whole set</text>
+      </svg>
+    </div>
+    <div class="abg__card">
+      <h4>② α β · the anomeric carbon of a sugar</h4>
+      <p>Not a count — a <strong>face</strong>. When the ring closes, C1 becomes a new stereocentre and its
+        hydroxyl ends up on one side or the other. There is <strong>no γ</strong>. This is the α of
+        α-D-glucose and of the α(1→4) and α(1→6) links of glycogen.</p>
+      <svg viewBox="0 0 300 104" role="img" aria-label="A sugar ring drawn as a flattened hexagon with the ring oxygen at the top right. From carbon one on the right, two alternative hydroxyl positions are drawn: one pointing down, labelled alpha, and one pointing up, labelled beta. The carbon five position carries a CH2OH group pointing up." style="font-family:var(--sans)">
+        <polygon points="60,54 78,38 128,38 146,54 128,72 78,72" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <line x1="78" y1="72" x2="128" y2="72" stroke="var(--ink-soft)" stroke-width="3"/>
+        <circle cx="128" cy="38" r="8" fill="var(--card)"/>
+        <text x="128" y="42" text-anchor="middle" font-size="10" fill="var(--ink-soft)">O</text>
+        <line x1="78" y1="38" x2="78" y2="24" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <text x="78" y="18" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CH₂OH</text>
+        <line x1="146" y1="54" x2="146" y2="34" stroke="var(--accent-3)" stroke-width="1.6"/>
+        <text x="146" y="27" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--accent-3)">OH</text>
+        <text x="170" y="30" font-size="13" font-weight="700" fill="var(--accent-3)">β</text>
+        <line x1="146" y1="54" x2="146" y2="76" stroke="var(--accent)" stroke-width="1.6"/>
+        <text x="146" y="88" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--accent)">OH</text>
+        <text x="170" y="86" font-size="13" font-weight="700" fill="var(--accent)">α</text>
+        <text x="188" y="30" font-size="8" fill="var(--ink-faint)">up · cis to CH₂OH</text>
+        <text x="188" y="86" font-size="8" fill="var(--ink-faint)">down · trans to CH₂OH</text>
+        <text x="6" y="50" font-size="8.5" fill="var(--ink-faint)">set when</text>
+        <text x="6" y="62" font-size="8.5" fill="var(--ink-faint)">the ring</text>
+        <text x="6" y="74" font-size="8.5" fill="var(--ink-faint)">closes</text>
+        <text x="6" y="99" font-size="8.5" fill="var(--ink-faint)">the two forms interconvert in water — mutarotation (§ 05)</text>
+      </svg>
+    </div>
+    <div class="abg__card">
+      <h4>③ α β γ · position along a carbon chain</h4>
+      <p>Counted <strong>from the carboxyl (or thioester) carbon</strong>: C2 is α, C3 is β, C4 is γ. This is
+        the sense in <strong>α-amino acid</strong>, <strong>α-keto acid</strong>,
+        <strong>β-oxidation</strong> and vitamin-K-dependent <strong>γ-carboxylation</strong>.</p>
+      <svg viewBox="0 0 300 96" role="img" aria-label="A carbon chain drawn as four circles on a horizontal line. The leftmost is carbon one, the carboxyl carbon. The next is labelled alpha, the next beta and highlighted, and the next gamma. The positions are counted from the carboxyl carbon." style="font-family:var(--sans)">
+        <line x1="30" y1="44" x2="242" y2="44" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="30" cy="44" r="5" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="86" cy="44" r="5" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="142" cy="44" r="7" fill="none" stroke="var(--accent)" stroke-width="2.2"/>
+        <circle cx="198" cy="44" r="5" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <text x="30" y="29" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">C1</text>
+        <text x="86" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-soft)">α</text>
+        <text x="142" y="27" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent)">β</text>
+        <text x="198" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-soft)">γ</text>
+        <text x="30" y="62" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">COO⁻</text>
+        <text x="250" y="48" font-size="10" fill="var(--ink-faint)">…</text>
+        <text x="6" y="80" font-size="8.5" fill="var(--ink-faint)">counted from the carboxyl carbon — C2 is α, C3 is β</text>
+        <text x="6" y="92" font-size="8.5" fill="var(--ink-faint)">β-oxidation oxidises β · α-keto acid: pyruvate, α-KG</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Which sense of alpha, beta or gamma each common term uses</caption>
+      <thead><tr><th>Term</th><th>Which sense</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>γ-phosphate of ATP</td><td><b>① phosphate position</b></td><td>Third out from the ribose 5′ carbon — the one a kinase transfers</td></tr>
+        <tr><td>UDP-glucose from UTP</td><td><b>① phosphate position</b></td><td>Glucose 1-phosphate attacks the <b>α</b> phosphate, so PP<sub>i</sub> leaves</td></tr>
+        <tr><td>α-D-glucose · β-D-glucose</td><td><b>② anomer</b></td><td>Which face the C1 hydroxyl took on ring closure</td></tr>
+        <tr><td>α(1→4), α(1→6), β(1→4)</td><td><b>② anomer</b></td><td>Describes the anomeric configuration of the <em>donor</em> sugar in the glycosidic bond. Starch and glycogen are α; cellulose and lactose are β. The configuration decides <em>which</em> enzyme is needed, not whether one exists — humans have α-amylase and lactase but no cellulase, so starch and lactose are digested and cellulose is not</td></tr>
+        <tr><td>β-galactosidase (lactase)</td><td><b>② anomer</b></td><td>Named for the linkage it cleaves, not for a carbon</td></tr>
+        <tr><td>α-amino acid</td><td><b>③ carbon position</b></td><td>The amino group sits on the carbon α to the carboxyl</td></tr>
+        <tr><td>α-ketoglutarate, pyruvate as an α-keto acid</td><td><b>③ carbon position</b></td><td>Ketone on the carbon next to the carboxyl — the substrate shape every TPP-dependent decarboxylase needs</td></tr>
+        <tr><td>β-oxidation</td><td><b>③ carbon position</b></td><td>Named for the carbon it oxidises to a ketone before cleavage</td></tr>
+        <tr><td>γ-carboxylation of glutamate (Gla)</td><td><b>③ carbon position</b></td><td>The vitamin-K-dependent modification of clotting factors II, VII, IX and X</td></tr>
+        <tr><td>β-hydroxybutyrate</td><td><b>③ carbon position</b></td><td>Hydroxyl on C3 of butyrate — a ketone body despite having no ketone</td></tr>
+        <tr><td>α-helix, β-sheet, β-turn</td><td><b>none of the three</b></td><td>Pauling and Corey's own labels for the first and second structures their models produced. No chemistry is encoded; do not try to derive them</td></tr>
+        <tr><td>Haemoglobin α₂β₂ · G proteins G<sub>α</sub>G<sub>β</sub>G<sub>γ</sub></td><td><b>none of the three</b></td><td>A fourth, purely clerical use: names for distinct polypeptide chains in one complex</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The three swaps the paper actually makes</p>
+    <p><strong>&ldquo;β-oxidation cleaves a β-glycosidic bond.&rdquo;</strong> Two different senses in one
+      sentence. β-oxidation is sense ③ and happens to a fatty acyl chain; a β-glycosidic bond is sense ② and
+      happens to a sugar. Nothing connects them.</p>
+    <p><strong>&ldquo;A kinase transfers the α phosphate.&rdquo;</strong> It transfers <b>γ</b>. Reactions that
+      go for α are the ones that release PP<sub>i</sub>, and they are the irreversible ones — nucleic-acid
+      synthesis, acyl-CoA formation, UDP-glucose.</p>
+    <p style="margin:0"><strong>&ldquo;α-amylase cuts α bonds and β-amylase cuts β bonds.&rdquo;</strong> Both
+      cut <b>α</b>(1→4) bonds. The prefix names the anomeric configuration of the product each releases —
+      β-amylase inverts the centre and releases β-maltose. This is a genuinely confusing legacy name and is
+      worth knowing precisely because it looks like it ought to follow the rule.</p>
+  </div>
+</section>
+
+<!-- =========================== 3 =========================== -->
+<section class="section" id="s3">
+  <span class="section__num">§ 03</span>
+  <h2>Enzyme names, where the marks are lost</h2>
+
+  <p class="idea"><b>The idea</b>An enzyme's name is meant to be a compressed description of its reaction, and mostly it is. That makes the
+     names derivable rather than memorisable — but only if you read them as descriptions of
+     <em>chemistry</em> instead of as labels. Four questions settle almost every naming item on a paper:
+     <em>is water a reactant? is a nucleotide spent? are electrons moved? does the molecular formula come out
+     unchanged?</em> Answer those and the EC class falls out, and the class usually names the enzyme. The
+     handful of names that break the rule — ATP synthase, fatty-acid synthase, trypsin — break it in known
+     ways, so they are worth learning as exceptions rather than as evidence that the rule is useless.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the decision rule</p>
+    <dl class="def">
+      <dt>EC number</dt>
+      <dd>Four levels, as in <span class="fi">EC 1.1.1.27</span> for lactate dehydrogenase. Only the
+          <strong>first digit</strong> — the class — is examinable, and it is examined by giving you a reaction
+          and asking which class it is.</dd>
+    </dl>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">water is a reactant  →  hydrolase (3)</span><span class="fx__tag">protease, lipase, phosphatase, nuclease, glycosidase</span></div>
+      <div class="fx"><span class="fx__eq">an NTP is spent      →  ligase (6)</span><span class="fx__tag">synthetase, carboxylase, DNA ligase</span></div>
+      <div class="fx"><span class="fx__eq">electrons move       →  oxidoreductase (1)</span><span class="fx__tag">dehydrogenase, oxidase, oxygenase, reductase, peroxidase</span></div>
+      <div class="fx"><span class="fx__eq">same formula out     →  isomerase (5)</span><span class="fx__tag">isomerase, mutase, epimerase, racemase</span></div>
+      <div class="fx"><span class="fx__eq">a group moves between molecules → transferase (2)</span><span class="fx__tag">kinase, transaminase, phosphorylase, glycosyltransferase</span></div>
+      <div class="fx"><span class="fx__eq">none of the above    →  lyase (4), or translocase (7) if it crossed a membrane</span><span class="fx__tag">decarboxylase, aldolase, hydratase, cyclase</span></div>
+    </div>
+    <details class="disc">
+      <summary>The seven classes in full, with their typical endings</summary>
+      <div class="disc__body">
+        <div class="table-scroll">
+          <table class="data">
+            <caption class="sr-only">The seven Enzyme Commission classes</caption>
+            <thead><tr><th>EC</th><th>Class</th><th>What happens to the atoms</th><th>Typical endings</th></tr></thead>
+            <tbody>
+              <tr><td class="num">1</td><td><strong>Oxidoreductases</strong></td><td>Electron or hydride transfer</td><td>dehydrogenase, oxidase, oxygenase, reductase, peroxidase, catalase</td></tr>
+              <tr><td class="num">2</td><td><strong>Transferases</strong></td><td>A functional group moves from one molecule to another</td><td>kinase, transaminase, glycosyltransferase, <em>phosphorylase</em></td></tr>
+              <tr><td class="num">3</td><td><strong>Hydrolases</strong></td><td>A bond is cleaved <em>using water</em></td><td>protease, peptidase, lipase, phosphatase, nuclease, glycosidase, ATPase</td></tr>
+              <tr><td class="num">4</td><td><strong>Lyases</strong></td><td>A bond is broken or made by elimination or addition — no water used to cleave, no redox; usually a double bond appears or disappears</td><td>decarboxylase, aldolase, hydratase, cyclase, <em>-lyase</em></td></tr>
+              <tr><td class="num">5</td><td><strong>Isomerases</strong></td><td>Intramolecular rearrangement; molecular formula unchanged</td><td>isomerase, mutase, epimerase, racemase, topoisomerase</td></tr>
+              <tr><td class="num">6</td><td><strong>Ligases</strong></td><td>Two molecules joined, <em>paid for with an NTP</em></td><td>synth<em>etase</em>, carboxylase, ligase</td></tr>
+              <tr><td class="num">7</td><td><strong>Translocases</strong></td><td>Something is moved across a membrane (class created in 2018)</td><td>ATPase pumps, transporters, ATP synthase</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:.9rem 0 0">The full seven-class table with worked examples, and the reasoning behind
+          each, is in <a href="biochem-03-enzymes.html#s1">note 03 §&nbsp;01</a>; this page carries the version
+          you look up rather than the version you learn from.</p>
+      </div>
+    </details>
+  </div>
+
+  <h3>The pairs, and the rule that decides each one</h3>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Confusable enzyme names with the rule that separates them</caption>
+      <thead><tr><th>Pair or trio</th><th>What each one does</th><th>The rule that decides</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>synthase</strong> vs <strong>synthetase</strong></td>
+          <td><em>Synthase</em> joins two things without spending a nucleotide (citrate synthase). <em>Synthetase</em> joins them and spends ATP or another NTP (glutamine synthetase, aminoacyl-tRNA synthetase).</td>
+          <td>The extra <b>t</b> is the <b>T</b> of N<b>T</b>P: a <em>synthetase</em> spends one, a <em>synthase</em> does not. That fixes <em>synthetase</em> as a ligase (class 6) but says <b>nothing</b> about a synthase's class — citrate synthase is a transferase (EC 2.3.3.1), glycogen synthase a transferase, tryptophan synthase a lyase, ATP synthase a translocase. Classify a synthase from its reaction, never from its ending.</td>
+        </tr>
+        <tr>
+          <td><strong>kinase</strong> vs <strong>phosphorylase</strong> vs <strong>phosphatase</strong></td>
+          <td><em>Kinase</em> transfers a phosphoryl group between a nucleotide and a substrate — usually the γ-phosphoryl of ATP onto the substrate (hexokinase, PFK-1, PKA), but the ending names the enzyme, not the direction: phosphoglycerate kinase and pyruvate kinase are kinases that in the cell run the other way and <em>make</em> ATP (<a href="#s7">§&nbsp;07</a>). <em>Phosphorylase</em> cleaves a bond using free P<sub>i</sub>, so one fragment leaves already phosphorylated. <em>Phosphatase</em> removes a phosphate using water.</td>
+          <td>Ask <b>where the phosphate comes from</b>: a nucleotide (class 2), free P<sub>i</sub> (class 2), or — for removal — water (class 3). Glycogen phosphorylase uses <b>no ATP</b>; that is the trap.</td>
+        </tr>
+        <tr>
+          <td><strong>mutase</strong> vs <strong>isomerase</strong></td>
+          <td><em>Isomerase</em> is the whole class: any rearrangement that leaves the molecular formula alone. <em>Mutase</em> is the subset that moves a functional group from one atom to another <em>within the same molecule</em> — phosphoglycerate mutase, phosphoglucomutase, methylmalonyl-CoA mutase.</td>
+          <td>Every mutase is an isomerase; not every isomerase is a mutase. If a group has changed <em>position</em>, say mutase; if a carbonyl has merely shifted or a centre has inverted, say isomerase or epimerase.</td>
+        </tr>
+        <tr>
+          <td><strong>dehydrogenase</strong> vs <strong>oxidase</strong> vs <strong>oxygenase</strong></td>
+          <td><em>Dehydrogenase</em> removes hydrogen to NAD⁺, NADP⁺ or FAD. <em>Oxidase</em> uses O₂ as the electron acceptor but puts <b>no</b> oxygen atom into the product — O₂ ends as H₂O or H₂O₂. <em>Oxygenase</em> puts oxygen atoms <b>from O₂ into the substrate</b>.</td>
+          <td>Follow the oxygen atoms. Cytochrome <em>c</em> oxidase makes water and adds nothing; cytochrome P450 is a <b>mono</b>oxygenase, one O into the substrate and one into water, which is why it needs NADPH; a <b>di</b>oxygenase puts both in.</td>
+        </tr>
+        <tr>
+          <td><strong>reductase</strong> vs <strong>peroxidase</strong> vs <strong>catalase</strong></td>
+          <td>All class 1. <em>Reductase</em> is simply an oxidoreductase named in the reducing direction. <em>Peroxidase</em> uses H₂O₂ as the oxidant. <em>Catalase</em> uses H₂O₂ as both oxidant and reductant, giving H₂O and O₂.</td>
+          <td>Direction is a naming choice, not chemistry: HMG-CoA reductase and its reverse would be one enzyme either way. The peroxide enzymes are told apart by what reduces the H₂O₂ — another substrate, or a second molecule of H₂O₂.</td>
+        </tr>
+        <tr>
+          <td><strong>lyase</strong> vs <strong>hydrolase</strong></td>
+          <td><em>Hydrolase</em> uses water to break the bond. <em>Lyase</em> breaks or makes a bond by elimination or addition, generating or consuming a double bond.</td>
+          <td>Water appearing in the equation is not enough. <b>Fumarase adds water across a C=C</b> and is a lyase; enolase removes water and is a lyase. Ask whether the water <em>attacked the bond that broke</em>.</td>
+        </tr>
+        <tr>
+          <td><strong>epimerase</strong> vs <strong>racemase</strong></td>
+          <td>Both invert a stereocentre. <em>Racemase</em> is used when the molecule has only one centre, so inverting it gives the enantiomer. <em>Epimerase</em> is used when there are several and only one is inverted.</td>
+          <td>Count the stereocentres. Alanine racemase (one centre) versus UDP-galactose 4-epimerase (four centres, one inverted).</td>
+        </tr>
+        <tr>
+          <td><strong>carboxylase</strong> vs <strong>decarboxylase</strong> vs <strong>carboxykinase</strong></td>
+          <td><em>Carboxylase</em> adds CO₂ — usually biotin-dependent and ATP-driven, hence a ligase. <em>Decarboxylase</em> removes CO₂, a lyase. <em>Carboxykinase</em> (PEPCK) does both at once: it decarboxylates oxaloacetate and phosphorylates the product with GTP.</td>
+          <td>Adding CO₂ costs energy, so look for ATP and biotin; removing it releases energy and needs neither. PEPCK is a lyase (EC 4.1.1.32) despite the &ldquo;kinase&rdquo; in its name — a second reason not to trust endings alone.</td>
+        </tr>
+        <tr>
+          <td><strong>protease</strong> vs <strong>peptidase</strong>; <strong>endo-</strong> vs <strong>exo-</strong></td>
+          <td>Protease and peptidase are synonyms in ordinary use. <em>Endopeptidase</em> cuts an internal bond; <em>exopeptidase</em> nibbles from an end — aminopeptidase from the N terminus, carboxypeptidase from the C.</td>
+          <td>The endo/exo prefix says <em>where</em>, never <em>what</em>. The same distinction is used for nucleases, and there it decides whether a fragment or a single nucleotide is released.</td>
+        </tr>
+        <tr>
+          <td><strong>transaminase</strong> vs <strong>aminotransferase</strong></td>
+          <td>The same enzymes under two names — ALT is alanine aminotransferase, AST is aspartate aminotransferase. Class 2, PLP-dependent.</td>
+          <td>No discrimination to make; the pair exists only to look like one. If a stem offers both, they are not the answer to a &ldquo;which differs&rdquo; item.</td>
+        </tr>
+        <tr>
+          <td><strong>-ase</strong> on a substrate vs on a reaction</td>
+          <td>Lactase, urease and ATPase are named for what they act on; hydrolase, transferase and oxidoreductase for what they do.</td>
+          <td>Substrate-named enzymes tell you nothing about class — <em>lactase</em> is a hydrolase, <em>ATPase</em> may be a hydrolase or a translocase pump. Read the reaction.</td>
+        </tr>
+        <tr>
+          <td><strong>Names with no -ase at all</strong></td>
+          <td>Trypsin, chymotrypsin, pepsin, thrombin, plasmin, papain, ficin — all proteases; lysozyme is a glycosidase.</td>
+          <td>These predate the naming system. A stem that says &ldquo;all enzymes end in -ase&rdquo; or &ldquo;all enzymes are proteins&rdquo; is false as written — ribozymes catalyse real chemistry, including peptide-bond formation in the ribosome.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 258" role="img" aria-label="Three reactions aligned in a column so that only the phosphate source differs. A kinase takes the gamma phosphoryl group from ATP and puts it on a substrate, leaving ADP. A phosphorylase uses free inorganic phosphate to cleave a bond, so one fragment leaves already phosphorylated. A phosphatase uses water to remove a phosphate, releasing free inorganic phosphate. The highlighted middle column shows that the discriminator is where the phosphate comes from or what attacks the bond." style="font-family:var(--sans)">
+      <text x="140" y="26" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink-faint)">WHAT ATTACKS</text>
+      <text x="480" y="26" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--ink-faint)">THE REACTION</text>
+
+      <text x="10" y="52" font-size="12.5" font-weight="700" fill="var(--accent)">Kinase</text>
+      <text x="10" y="66" font-size="8.5" fill="var(--ink-faint)">EC 2 · transferase</text>
+      <rect x="96" y="38" width="90" height="30" rx="9" fill="none" stroke="var(--accent-2)" stroke-width="2"/>
+      <text x="141" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-2)">ATP (γ)</text>
+      <line x1="196" y1="53" x2="238" y2="53" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <polygon points="244,53 234,49 234,57" fill="var(--ink-soft)"/>
+      <text x="252" y="50" font-size="11.5" fill="var(--ink)">S–OH + ATP  →  S–O–Ⓟ + ADP</text>
+      <text x="252" y="66" font-size="8.5" fill="var(--ink-faint)">hexokinase, PFK-1, protein kinase A</text>
+
+      <text x="10" y="122" font-size="12.5" font-weight="700" fill="var(--accent)">Phosphorylase</text>
+      <text x="10" y="136" font-size="8.5" fill="var(--ink-faint)">EC 2 · transferase</text>
+      <rect x="96" y="108" width="90" height="30" rx="9" fill="none" stroke="var(--accent-2)" stroke-width="2"/>
+      <text x="141" y="128" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-2)">free P<tspan font-size="8" dy="2">i</tspan></text>
+      <line x1="196" y1="123" x2="238" y2="123" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <polygon points="244,123 234,119 234,127" fill="var(--ink-soft)"/>
+      <text x="252" y="120" font-size="11.5" fill="var(--ink)">A–B + P<tspan font-size="8" dy="2">i</tspan><tspan dy="-2">  →  A–Ⓟ + B–H</tspan></text>
+      <text x="252" y="136" font-size="8.5" fill="var(--ink-faint)">glycogen + P<tspan font-size="6.5" dy="2">i</tspan><tspan dy="-2"> → glucose 1-phosphate · no ATP anywhere</tspan></text>
+
+      <text x="10" y="192" font-size="12.5" font-weight="700" fill="var(--accent)">Phosphatase</text>
+      <text x="10" y="206" font-size="8.5" fill="var(--ink-faint)">EC 3 · hydrolase</text>
+      <rect x="96" y="178" width="90" height="30" rx="9" fill="none" stroke="var(--accent-2)" stroke-width="2"/>
+      <text x="141" y="198" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-2)">H₂O</text>
+      <line x1="196" y1="193" x2="238" y2="193" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <polygon points="244,193 234,189 234,197" fill="var(--ink-soft)"/>
+      <text x="252" y="190" font-size="11.5" fill="var(--ink)">S–O–Ⓟ + H₂O  →  S–OH + P<tspan font-size="8" dy="2">i</tspan></text>
+      <text x="252" y="206" font-size="8.5" fill="var(--ink-faint)">glucose 6-phosphatase, alkaline phosphatase, PP1</text>
+
+      <line x1="10" y1="224" x2="750" y2="224" stroke="var(--line)" stroke-width="1"/>
+      <text x="10" y="244" font-size="9.5" fill="var(--ink-soft)">Only the middle column changes. One question answers all three: <tspan font-weight="700" fill="var(--ink)">what supplies the attack — a nucleotide, free P<tspan font-size="7" dy="2">i</tspan><tspan dy="-2">, or water?</tspan></tspan></text>
+    </svg>
+    <figcaption>Written this way the three reactions are the same shape, and the whole distinction collapses into
+      one column. Note what <em>phosphorolysis</em> buys the cell in the middle row: because free P<sub>i</sub>
+      rather than water does the cleaving, the glucose leaves glycogen already phosphorylated, and the cell
+      saves the ATP that hexokinase would otherwise have spent. That is why a glucose residue from glycogen
+      yields 3 ATP anaerobically where free glucose yields 2.</figcaption>
+  </figure>
+
+  <div class="mnemo">
+    <h4>Synthase or synthetase</h4>
+    <span class="kj">synthe-<b>T</b>-ase needs a <b>T</b>riphosphate</span>
+    <p>The standard hook, and the one worth carrying verbatim: the extra <b>t</b> is the <b>T</b> of NTP, so a
+      <em>synthetase</em> couples joining to ATP or GTP hydrolysis and is a <strong>ligase, class 6</strong>,
+      while a <em>synthase</em> needs no nucleotide — but its EC class is <strong>not</strong> fixed by the
+      name; citrate synthase itself is EC 2.3.3.1, a transferase.
+      <span class="mnemo__gloss">Two cautions it does not cover, both of them examinable. First, the ending is
+        a naming convention rather than a law: <em>ATP synthase</em> is a translocase (class 7), and
+        <em>fatty-acid synthase</em> is a multi-enzyme complex whose name describes the product, not one
+        reaction. Second, when a stem gives you the <em>reaction</em> instead of the name, classify from the
+        chemistry and ignore the ending entirely. The longer treatment, with the same caveats, is in
+        <a href="biochem-03-enzymes.html#s1">note 03 §&nbsp;01</a>.</span></p>
+  </div>
+</section>
+
+<!-- =========================== 4 =========================== -->
+<section class="section" id="s4">
+  <span class="section__num">§ 04</span>
+  <h2>Enzyme vocabulary: parts, kinetics, inhibition, control</h2>
+
+  <p class="idea"><b>The idea</b>This vocabulary splits cleanly into four questions, and knowing which question a word answers is half the
+     battle. <em>What is the enzyme made of?</em> gives apoenzyme, holoenzyme, cofactor, coenzyme, prosthetic
+     group. <em>How fast does it go?</em> gives K<sub>m</sub>, V<sub>max</sub>, k<sub>cat</sub> and the
+     specificity constant. <em>How is it slowed?</em> gives the four inhibition patterns, which are told apart
+     by geometry alone. <em>How is it controlled on purpose?</em> gives allostery, covalent modification and
+     zymogen activation, which differ in timescale and in whether they can be undone. Words from different
+     questions are never alternatives to each other, which quietly eliminates options.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the four questions</p>
+    <div class="fx fx--hero">
+      <span class="fx__eq">holoenzyme = apoenzyme (protein) + cofactor</span>
+      <span class="fx__tag">the apoenzyme alone is catalytically dead; &ldquo;holo&rdquo; is the working form</span>
+    </div>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">v₀ = V<sub>max</sub>[S] / (K<sub>m</sub> + [S])</span><span class="fx__tag">Michaelis–Menten; at [S] = K<sub>m</sub>, v₀ = ½V<sub>max</sub></span></div>
+      <div class="fx"><span class="fx__eq">V<sub>max</sub> = k<sub>cat</sub>[E]<sub>t</sub></span><span class="fx__tag">so k<sub>cat</sub> is a property of one molecule, V<sub>max</sub> of the tube</span></div>
+      <div class="fx"><span class="fx__eq">1/v₀ = (K<sub>m</sub>/V<sub>max</sub>)(1/[S]) + 1/V<sub>max</sub></span><span class="fx__tag">Lineweaver–Burk: y-intercept 1/V<sub>max</sub>, x-intercept −1/K<sub>m</sub></span></div>
+    </div>
+  </div>
+
+  <h3>What the enzyme is made of</h3>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Vocabulary for the parts of an enzyme</caption>
+      <thead><tr><th>Term</th><th>What it means</th><th>The discriminator</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Apoenzyme</strong></td><td>The protein part on its own, without its cofactor</td><td>Inactive. A B₆ status assay reads falsely low unless PLP is added, because the apoenzyme is present but empty</td></tr>
+        <tr><td><strong>Holoenzyme</strong></td><td>Protein + cofactor, assembled and working</td><td>&ldquo;Holo&rdquo; is the one that catalyses. In molecular biology the same word is reused for RNA polymerase core + σ, which is a different sense</td></tr>
+        <tr><td><strong>Cofactor</strong></td><td>Any non-protein component the enzyme needs</td><td>The umbrella term. Two kinds: inorganic ions (Zn²⁺, Mg²⁺, Fe²⁺, Cu²⁺, Mn²⁺, Se) and coenzymes</td></tr>
+        <tr><td><strong>Coenzyme</strong></td><td>A small <em>organic</em> cofactor, usually vitamin-derived</td><td>The organic subset of cofactor, which then splits again by <em>how tightly it binds</em>: a <strong>cosubstrate</strong> leaves altered and is regenerated elsewhere (NAD⁺, CoA, THF); a <strong>prosthetic group</strong> stays put and is reset in place (FAD, lipoamide, haem). PLP and biotin are coenzymes <em>and</em> prosthetic groups — the two words are not alternatives, so an option offering them as opposites is testing the wrong axis</td></tr>
+        <tr><td><strong>Prosthetic group</strong></td><td>A cofactor that stays bound, often covalently, and is reset on the same enzyme</td><td>Against a <em>cosubstrate</em> coenzyme like NAD⁺, which binds, is altered, leaves, and is regenerated elsewhere. A prosthetic group that is <em>chemically changed</em> between the two half-reactions gives a <strong>ping-pong</strong> mechanism — the PLP of a transaminase is the model. One that merely lends acid–base or redox assistance without being consumed does not: the PLP of glycogen phosphorylase sits in an ordinary sequential mechanism. FAD, biotin, lipoamide, haem, PLP</td></tr>
+        <tr><td><strong>Isozyme</strong> (isoenzyme)</td><td>Distinct proteins, usually from different genes, catalysing the same reaction with different kinetics or distribution</td><td>Hexokinase I–III against glucokinase; LDH-1 (heart) against LDH-5 (liver, muscle); CK-MB. <em>Isoform</em> is looser and often includes splice variants — do not treat the two words as identical</td></tr>
+        <tr><td><strong>Zymogen</strong> / proenzyme</td><td>An inactive precursor activated by irreversible proteolytic cleavage</td><td>Activation is <strong>one-way</strong> — the only off switch is a separate inhibitor protein. Chymotrypsinogen, pepsinogen, clotting factors, procaspases</td></tr>
+        <tr><td><strong>Ribozyme</strong></td><td>A catalytic RNA</td><td>Proof that &ldquo;all enzymes are proteins&rdquo; is false. RNase P, self-splicing introns, the spliceosome, and the peptidyl transferase centre of the ribosome</td></tr>
+        <tr><td><strong>Active site</strong> vs <strong>allosteric site</strong></td><td>Where substrate binds and chemistry happens, vs a separate site where a modulator binds</td><td>Both change activity; only the active site sees the substrate. Note that a <em>competitive</em> inhibitor need not bind the active site — it only has to make substrate binding mutually exclusive</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>How fast it goes</h3>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Kinetic vocabulary</caption>
+      <thead><tr><th>Term</th><th>What it means</th><th>The discriminator</th></tr></thead>
+      <tbody>
+        <tr><td><strong>K<sub>m</sub></strong> (M)</td><td>The substrate concentration giving half-maximal velocity</td><td>It is a <em>concentration</em>, not an affinity. Say &ldquo;half-maximal velocity is reached at a lower [S]&rdquo;, not &ldquo;binds more tightly&rdquo;</td></tr>
+        <tr><td><strong>K<sub>d</sub></strong> (M)</td><td>The dissociation constant of ES — a true affinity</td><td><span class="fi">K<sub>m</sub> = (k₋₁ + k₂)/k₁</span> while <span class="fi">K<sub>d</sub> = k₋₁/k₁</span>, so <strong>K<sub>m</sub> ≥ K<sub>d</sub></strong> always, and they coincide only when k₂ ≪ k₋₁</td></tr>
+        <tr><td><strong>V<sub>max</sub></strong> (M·s⁻¹)</td><td>The velocity when every enzyme molecule is saturated</td><td>Depends on how much enzyme is in the tube. Doubling [E] doubles V<sub>max</sub> and leaves K<sub>m</sub> alone</td></tr>
+        <tr><td><strong>k<sub>cat</sub></strong> (s⁻¹)</td><td>Turnover number — molecules of substrate converted per enzyme molecule per second</td><td>A property of one molecule, so it is independent of [E]. <span class="fi">V<sub>max</sub> = k<sub>cat</sub>[E]<sub>t</sub></span></td></tr>
+        <tr><td><strong>k<sub>cat</sub>/K<sub>m</sub></strong> (M⁻¹·s⁻¹)</td><td>The specificity constant — the second-order rate constant that applies when [S] ≪ K<sub>m</sub></td><td>Answers &ldquo;which substrate wins when both are scarce&rdquo;. Its ceiling is the diffusion limit, 10⁸–10⁹; an enzyme at that ceiling is at <em>catalytic perfection</em></td></tr>
+        <tr><td><strong>K<sub>0.5</sub></strong> / S<sub>0.5</sub></td><td>The half-saturating [S] of a <em>cooperative</em> enzyme</td><td>Used instead of K<sub>m</sub> whenever the curve is sigmoid, because Michaelis–Menten does not apply. Seeing K<sub>0.5</sub> in a stem tells you allostery is involved</td></tr>
+        <tr><td><strong>n<sub>H</sub></strong>, the Hill coefficient</td><td>Steepness of a cooperative binding curve</td><td>&gt;1 positive cooperativity, =1 none, &lt;1 negative. It is <strong>≤ the number of sites</strong> — haemoglobin has four and n<sub>H</sub> ≈ 2.8</td></tr>
+        <tr><td><strong>Specific activity</strong></td><td>Units of activity per milligram of total protein</td><td>Rises during purification; <em>total</em> activity falls. That contrast is the whole logic of a purification table</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>How it is slowed</h3>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 440" role="img" aria-label="Four Lineweaver-Burk panels, each showing a dashed control line and a solid inhibited line, with a note of which intercept moves. Competitive: the two lines share the y-intercept, so one over V max is unchanged while the x-intercept moves toward the origin because K m rises. Uncompetitive: the inhibited line is parallel to the control with a raised y-intercept and an x-intercept further from the origin, because V max and K m both fall by the same factor. Pure non-competitive: the two lines share the x-intercept, so K m is unchanged while the y-intercept rises. Mixed: the lines cross above the x-axis and to the left of the y-axis, so both intercepts move." style="font-family:var(--sans)">
+      <g transform="translate(10,5)">
+        <line x1="20" y1="140" x2="330" y2="140" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="120" y1="150" x2="120" y2="20" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="114" y="30" text-anchor="end" font-size="9" fill="var(--ink-faint)">1/v₀</text>
+        <text x="324" y="152" text-anchor="end" font-size="9" fill="var(--ink-faint)">1/[S]</text>
+        <line x1="60" y1="140" x2="180" y2="20" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="6 4"/>
+        <line x1="90" y1="140" x2="150" y2="20" stroke="var(--accent-2)" stroke-width="2.6"/>
+        <circle cx="120" cy="80" r="4.5" fill="var(--bad)"/>
+        <text x="196" y="46" font-size="12" font-weight="700" fill="var(--ink)">Competitive</text>
+        <text x="196" y="64" font-size="9" fill="var(--ink-soft)">binds free E only</text>
+        <text x="196" y="79" font-size="9" fill="var(--ink-soft)">V<tspan font-size="7" dy="2">max</tspan><tspan dy="-2"> unchanged · K</tspan><tspan font-size="7" dy="2">m</tspan><tspan dy="-2"> ↑</tspan></text>
+        <text x="196" y="97" font-size="9.5" font-weight="700" fill="var(--bad)">meet on the y-axis</text>
+        <text x="196" y="114" font-size="9" fill="var(--ink-faint)">surmountable: more [S] wins</text>
+        <text x="20" y="164" font-size="9" fill="var(--ink-soft)">1/V<tspan font-size="7" dy="2">max</tspan><tspan dy="-2"> : unchanged</tspan></text>
+        <text x="20" y="180" font-size="9" fill="var(--ink-soft)">−1/K<tspan font-size="7" dy="2">m</tspan><tspan dy="-2"> : moves toward the origin</tspan></text>
+      </g>
+      <g transform="translate(390,5)">
+        <line x1="20" y1="140" x2="330" y2="140" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="120" y1="150" x2="120" y2="20" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="114" y="30" text-anchor="end" font-size="9" fill="var(--ink-faint)">1/v₀</text>
+        <text x="324" y="152" text-anchor="end" font-size="9" fill="var(--ink-faint)">1/[S]</text>
+        <line x1="60" y1="140" x2="180" y2="20" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="6 4"/>
+        <line x1="30" y1="140" x2="150" y2="20" stroke="var(--accent-2)" stroke-width="2.6"/>
+        <text x="196" y="46" font-size="12" font-weight="700" fill="var(--ink)">Uncompetitive</text>
+        <text x="196" y="64" font-size="9" fill="var(--ink-soft)">binds ES only</text>
+        <text x="196" y="79" font-size="9" fill="var(--ink-soft)">V<tspan font-size="7" dy="2">max</tspan><tspan dy="-2"> ↓ and K</tspan><tspan font-size="7" dy="2">m</tspan><tspan dy="-2"> ↓, by the same factor</tspan></text>
+        <text x="196" y="97" font-size="9.5" font-weight="700" fill="var(--bad)">parallel — never meet</text>
+        <text x="196" y="114" font-size="9" fill="var(--ink-faint)">more [S] makes it worse</text>
+        <text x="20" y="164" font-size="9" fill="var(--ink-soft)">1/V<tspan font-size="7" dy="2">max</tspan><tspan dy="-2"> : rises</tspan></text>
+        <text x="20" y="180" font-size="9" fill="var(--ink-soft)">−1/K<tspan font-size="7" dy="2">m</tspan><tspan dy="-2"> : moves away from the origin</tspan></text>
+      </g>
+      <g transform="translate(10,215)">
+        <line x1="20" y1="140" x2="330" y2="140" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="120" y1="150" x2="120" y2="20" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="114" y="30" text-anchor="end" font-size="9" fill="var(--ink-faint)">1/v₀</text>
+        <text x="324" y="152" text-anchor="end" font-size="9" fill="var(--ink-faint)">1/[S]</text>
+        <line x1="60" y1="140" x2="180" y2="20" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="6 4"/>
+        <line x1="60" y1="140" x2="140" y2="20" stroke="var(--accent-2)" stroke-width="2.6"/>
+        <circle cx="60" cy="140" r="4.5" fill="var(--bad)"/>
+        <text x="196" y="46" font-size="12" font-weight="700" fill="var(--ink)">Pure non-competitive</text>
+        <text x="196" y="64" font-size="9" fill="var(--ink-soft)">binds E and ES equally (α = α′)</text>
+        <text x="196" y="79" font-size="9" fill="var(--ink-soft)">V<tspan font-size="7" dy="2">max</tspan><tspan dy="-2"> ↓ · K</tspan><tspan font-size="7" dy="2">m</tspan><tspan dy="-2"> unchanged</tspan></text>
+        <text x="196" y="97" font-size="9.5" font-weight="700" fill="var(--bad)">meet on the x-axis</text>
+        <text x="196" y="114" font-size="9" fill="var(--ink-faint)">an irreversible inhibitor reads out like this</text>
+        <text x="20" y="164" font-size="9" fill="var(--ink-soft)">1/V<tspan font-size="7" dy="2">max</tspan><tspan dy="-2"> : rises</tspan></text>
+        <text x="20" y="180" font-size="9" fill="var(--ink-soft)">−1/K<tspan font-size="7" dy="2">m</tspan><tspan dy="-2"> : unchanged</tspan></text>
+      </g>
+      <g transform="translate(390,215)">
+        <line x1="20" y1="140" x2="330" y2="140" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <line x1="120" y1="150" x2="120" y2="20" stroke="var(--ink-soft)" stroke-width="1.4"/>
+        <text x="114" y="30" text-anchor="end" font-size="9" fill="var(--ink-faint)">1/v₀</text>
+        <text x="324" y="152" text-anchor="end" font-size="9" fill="var(--ink-faint)">1/[S]</text>
+        <line x1="60" y1="140" x2="180" y2="20" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="6 4"/>
+        <line x1="85" y1="140" x2="133" y2="23" stroke="var(--accent-2)" stroke-width="2.6"/>
+        <circle cx="102" cy="98" r="4.5" fill="var(--bad)"/>
+        <text x="196" y="46" font-size="12" font-weight="700" fill="var(--ink)">Mixed (α &gt; α′)</text>
+        <text x="196" y="64" font-size="9" fill="var(--ink-soft)">binds both, unequally</text>
+        <text x="196" y="79" font-size="9" fill="var(--ink-soft)">V<tspan font-size="7" dy="2">max</tspan><tspan dy="-2"> ↓ · K</tspan><tspan font-size="7" dy="2">m</tspan><tspan dy="-2"> ↑ (↓ if α′ &gt; α)</tspan></text>
+        <text x="196" y="97" font-size="9.5" font-weight="700" fill="var(--bad)">cross off both axes</text>
+        <text x="196" y="114" font-size="9" fill="var(--ink-faint)">α &gt; α′ above · α′ &gt; α below</text>
+        <text x="20" y="164" font-size="9" fill="var(--ink-soft)">1/V<tspan font-size="7" dy="2">max</tspan><tspan dy="-2"> : rises</tspan></text>
+        <text x="20" y="180" font-size="9" fill="var(--ink-soft)">−1/K<tspan font-size="7" dy="2">m</tspan><tspan dy="-2"> : moves toward the origin</tspan></text>
+      </g>
+      <line x1="10" y1="404" x2="750" y2="404" stroke="var(--line)" stroke-width="1"/>
+      <line x1="16" y1="424" x2="52" y2="424" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="58" y="428" font-size="9.5" fill="var(--ink-soft)">no inhibitor</text>
+      <line x1="140" y1="424" x2="176" y2="424" stroke="var(--accent-2)" stroke-width="2.6"/>
+      <text x="182" y="428" font-size="9.5" fill="var(--ink-soft)">inhibitor present</text>
+      <text x="310" y="428" font-size="9.5" fill="var(--ink-soft)">y-intercept = 1/V<tspan font-size="7" dy="2">max</tspan><tspan dy="-2">  ·  x-intercept = −1/K</tspan><tspan font-size="7" dy="2">m</tspan><tspan dy="-2">  ·  slope = K</tspan><tspan font-size="7" dy="2">m</tspan><tspan dy="-2">/V</tspan><tspan font-size="7" dy="2">max</tspan></text>
+    </svg>
+    <figcaption>Read each panel with one question: <em>where do the two lines meet?</em> On the y-axis →
+      competitive. Nowhere, because they are parallel → uncompetitive. On the x-axis → pure non-competitive.
+      Somewhere off both axes in the second quadrant → mixed. Everything else in the table below can be
+      regenerated from that. The four types worked through properly, with the α and α′ algebra and the
+      worked examples, are in <a href="biochem-03-enzymes.html#s8">note 03 §&nbsp;08</a>.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">The inhibition types compared</caption>
+      <thead><tr><th>Type</th><th>Binds</th><th>V<sub>max</sub></th><th>K<sub>m</sub></th><th>k<sub>cat</sub>/K<sub>m</sub></th><th>Beaten by more [S]?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Competitive</strong></td><td>Free E</td><td>Unchanged</td><td><strong>↑</strong></td><td>↓</td><td><strong>Yes</strong>, completely</td></tr>
+        <tr><td><strong>Uncompetitive</strong></td><td>ES only</td><td><strong>↓</strong></td><td><strong>↓</strong></td><td><strong>Unchanged</strong></td><td><strong>No</strong> — more [S] makes it worse</td></tr>
+        <tr><td><strong>Mixed</strong></td><td>Both, unequally</td><td>↓</td><td>↑ or ↓</td><td>↓</td><td>Partly at best</td></tr>
+        <tr><td><strong>Pure non-competitive</strong></td><td>Both, equally</td><td>↓</td><td><strong>Unchanged</strong></td><td>↓</td><td>No</td></tr>
+        <tr><td><strong>Irreversible</strong></td><td>Covalent</td><td>↓</td><td>Unchanged</td><td>↓</td><td>No; and it deepens with time</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">The three the paper actually swaps</p>
+    <p><strong>Un-competitive is not non-competitive.</strong> One syllable, opposite plots. <em>Un</em>competitive
+      binds ES only and gives <em>parallel</em> lines; <em>non</em>competitive binds E and ES equally and gives
+      lines meeting on the x-axis. If the two prefixes blur, hang each on a word starting with its own letter:
+      <b>U</b>ntouched slope, <b>N</b>o change in K<sub>m</sub>.</p>
+    <p><strong>&ldquo;K<sub>m</sub> decreased and V<sub>max</sub> decreased&rdquo; is not a misprint.</strong>
+      It is the uncompetitive signature. Removing ES from the equilibrium pulls E and S together, so
+      half-maximal velocity arrives at a <em>lower</em> [S] even though the enzyme is less active overall.
+      Rejecting that option on instinct loses the mark.</p>
+    <p style="margin:0"><strong>An irreversible inhibitor produces the pure non-competitive
+      <em>pattern</em>.</strong> It deletes enzyme molecules; the survivors have a normal K<sub>m</sub> and
+      there are fewer of them. Two things a kinetic plot cannot show separate them: activity does not return on
+      dialysis, and inhibition deepens with pre-incubation time.</p>
+  </div>
+
+  <h3>How it is controlled on purpose</h3>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Regulatory vocabulary</caption>
+      <thead><tr><th>Term</th><th>What it means</th><th>The discriminator</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Allosteric</strong></td><td>A ligand binds somewhere other than the active site and changes activity through a conformational change</td><td>Almost always multi-subunit, and the kinetics are <strong>not</strong> Michaelis–Menten — the curve is sigmoid and the constant is K<sub>0.5</sub>. A curved Lineweaver–Burk plot is the giveaway</td></tr>
+        <tr><td><strong>Homotropic</strong> vs <strong>heterotropic</strong></td><td>The modulator <em>is</em> the substrate, vs the modulator is a different molecule</td><td>Homotropic modulation is cooperativity. Heterotropic modulators may activate or inhibit — ATP and F2,6BP on PFK-1</td></tr>
+        <tr><td><strong>Feedback inhibition</strong></td><td>A downstream product slows an upstream enzyme</td><td>The product need not resemble the substrate at all, which is why the site is allosteric. ATP and citrate on PFK-1; CTP on ATCase</td></tr>
+        <tr><td><strong>Feed-forward activation</strong></td><td>An upstream metabolite accelerates a downstream enzyme</td><td>The opposite arrow: flux is anticipated, not chased. Fructose 1,6-bisphosphate activating pyruvate kinase</td></tr>
+        <tr><td><strong>Covalent modification</strong></td><td>A group is attached to the enzyme by a second enzyme — most often a phosphate</td><td>Reversible, but only through a <em>separate</em> enzyme, and it <strong>amplifies</strong> because one kinase modifies many targets. Seconds to minutes, against milliseconds for allostery</td></tr>
+        <tr><td><strong>Proteolytic activation</strong></td><td>A zymogen is cut and becomes active</td><td>The one mechanism in this table that is <strong>irreversible</strong>. Digestion, clotting, complement, apoptosis</td></tr>
+        <tr><td><strong>Induction / repression</strong></td><td>Changing how much enzyme protein exists</td><td>Hours to days, and it changes V<sub>max</sub> without changing K<sub>m</sub>. This is what a hormone does when it acts through gene expression rather than through a kinase</td></tr>
+        <tr><td><strong>Mechanism-based (suicide) inhibitor</strong></td><td>A substrate analogue the enzyme itself converts into a reactive species that then kills it</td><td>Distinguished from an ordinary irreversible inhibitor by needing the enzyme's own chemistry to work. 5-fluorouracil on thymidylate synthase</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- =========================== 5 =========================== -->
+<section class="section" id="s5">
+  <span class="section__num">§ 05</span>
+  <h2>Structure and stereochemistry</h2>
+
+  <p class="idea"><b>The idea</b>Almost all of this vocabulary answers one question — <em>how many stereocentres differ between these two
+     molecules?</em> All of them, and the molecules are mirror images: enantiomers. Some but not all: they are
+     diastereomers. Exactly one: epimers. Exactly one, and it happens to be the carbon created when the sugar
+     closed its ring: anomers. That is a nested hierarchy, not four unrelated definitions, and drawing it once
+     as a hierarchy is worth more than memorising the four sentences. The second thread is that a molecule can
+     carry two charges and still be neutral overall, which is why an amino acid is soluble in water, migrates
+     in an electric field, and stops moving at exactly one pH.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the hierarchy</p>
+    <dl class="def">
+      <dt>Chiral centre (stereocentre)</dt>
+      <dd>A carbon carrying <strong>four different</strong> substituents. A molecule containing one is
+          <em>chiral</em>: not superimposable on its mirror image. <span class="fi">n</span> stereocentres give
+          at most <span class="fi">2ⁿ</span> stereoisomers — an aldohexose has four, hence sixteen, of which
+          eight are D and eight are L.</dd>
+      <dt>Anomeric carbon</dt>
+      <dd>The carbonyl carbon that becomes a new stereocentre when the sugar cyclises — <strong>C1</strong> of
+          an aldose, <strong>C2</strong> of a ketose. It did not exist as a stereocentre in the open chain,
+          which is exactly why anomers can interconvert.</dd>
+    </dl>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">isomers → constitutional  |  stereoisomers</span><span class="fx__tag">different connectivity, vs same connectivity and different arrangement in space</span></div>
+      <div class="fx"><span class="fx__eq">stereoisomers → enantiomers  |  diastereomers</span><span class="fx__tag">mirror images, vs everything else</span></div>
+      <div class="fx"><span class="fx__eq">diastereomers → epimers → anomers</span><span class="fx__tag">one centre differs → and that centre is the anomeric one</span></div>
+    </div>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 256" role="img" aria-label="Three panels comparing stereoisomer types. First panel: two Fischer projections of D-glucose and L-glucose in which all four stereocentres are highlighted because all four are inverted, making them mirror images or enantiomers. Second panel: D-glucose and D-galactose, in which only the carbon four centre is highlighted because only that one differs, making them epimers and therefore diastereomers. Third panel: alpha and beta D-glucopyranose drawn as rings, differing only at carbon one, the anomeric carbon created by ring closure, which is why these two interconvert freely in water." style="font-family:var(--sans)">
+      <line x1="257" y1="14" x2="257" y2="246" stroke="var(--line)" stroke-width="1"/>
+      <line x1="512" y1="14" x2="512" y2="246" stroke="var(--line)" stroke-width="1"/>
+
+      <text x="130" y="24" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)">Enantiomers</text>
+      <text x="59" y="69" text-anchor="end" font-size="7" fill="var(--ink-faint)">C2</text>
+      <text x="59" y="93" text-anchor="end" font-size="7" fill="var(--ink-faint)">C3</text>
+      <text x="59" y="117" text-anchor="end" font-size="7" fill="var(--ink-faint)">C4</text>
+      <text x="59" y="141" text-anchor="end" font-size="7" fill="var(--ink-faint)">C5</text>
+      <text x="85" y="46" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CHO</text>
+      <line x1="85" y1="52" x2="85" y2="150" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="85" y1="66" x2="103" y2="66" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <line x1="67" y1="90" x2="85" y2="90" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <line x1="85" y1="114" x2="103" y2="114" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <line x1="85" y1="138" x2="103" y2="138" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <text x="85" y="164" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CH₂OH</text>
+      <text x="85" y="180" text-anchor="middle" font-size="8.5" fill="var(--ink)">D-glucose</text>
+      <text x="175" y="46" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CHO</text>
+      <line x1="175" y1="52" x2="175" y2="150" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="157" y1="66" x2="175" y2="66" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <line x1="175" y1="90" x2="193" y2="90" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <line x1="157" y1="114" x2="175" y2="114" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <line x1="157" y1="138" x2="175" y2="138" stroke="var(--accent-2)" stroke-width="2.4"/>
+      <text x="175" y="164" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CH₂OH</text>
+      <text x="175" y="180" text-anchor="middle" font-size="8.5" fill="var(--ink)">L-glucose</text>
+      <text x="130" y="204" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">mirror images · every centre inverted</text>
+      <text x="130" y="218" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">identical in every physical property</text>
+      <text x="130" y="232" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">except the sign of optical rotation</text>
+
+      <text x="385" y="24" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)">Epimers</text>
+      <text x="314" y="69" text-anchor="end" font-size="7" fill="var(--ink-faint)">C2</text>
+      <text x="314" y="93" text-anchor="end" font-size="7" fill="var(--ink-faint)">C3</text>
+      <text x="314" y="117" text-anchor="end" font-size="7" fill="var(--ink-faint)">C4</text>
+      <text x="314" y="141" text-anchor="end" font-size="7" fill="var(--ink-faint)">C5</text>
+      <text x="340" y="46" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CHO</text>
+      <line x1="340" y1="52" x2="340" y2="150" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="340" y1="66" x2="358" y2="66" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <line x1="322" y1="90" x2="340" y2="90" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <line x1="340" y1="114" x2="358" y2="114" stroke="var(--accent-2)" stroke-width="2.6"/>
+      <line x1="340" y1="138" x2="358" y2="138" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <text x="340" y="164" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CH₂OH</text>
+      <text x="340" y="180" text-anchor="middle" font-size="8.5" fill="var(--ink)">D-glucose</text>
+      <text x="430" y="46" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CHO</text>
+      <line x1="430" y1="52" x2="430" y2="150" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="430" y1="66" x2="448" y2="66" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <line x1="412" y1="90" x2="430" y2="90" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <line x1="412" y1="114" x2="430" y2="114" stroke="var(--accent-2)" stroke-width="2.6"/>
+      <line x1="430" y1="138" x2="448" y2="138" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <text x="430" y="164" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CH₂OH</text>
+      <text x="430" y="180" text-anchor="middle" font-size="8.5" fill="var(--ink)">D-galactose</text>
+      <text x="385" y="204" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">exactly one centre differs</text>
+      <text x="385" y="218" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">diastereomers — not mirror images</text>
+      <text x="385" y="232" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">glucose/galactose at C4 · glucose/mannose at C2</text>
+
+      <text x="640" y="24" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)">Anomers</text>
+      <polygon points="550,100 563,86 595,86 608,100 595,114 563,114" fill="none" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="563" y1="114" x2="595" y2="114" stroke="var(--ink-soft)" stroke-width="2.6"/>
+      <circle cx="595" cy="86" r="7" fill="var(--line-soft)"/>
+      <text x="595" y="89" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">O</text>
+      <line x1="608" y1="100" x2="608" y2="120" stroke="var(--accent-2)" stroke-width="2"/>
+      <text x="608" y="133" text-anchor="middle" font-size="9" font-weight="700" fill="var(--accent-2)">OH</text>
+      <text x="536" y="105" font-size="12" font-weight="700" fill="var(--accent-2)">α</text>
+      <polygon points="672,100 685,86 717,86 730,100 717,114 685,114" fill="none" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="685" y1="114" x2="717" y2="114" stroke="var(--ink-soft)" stroke-width="2.6"/>
+      <circle cx="717" cy="86" r="7" fill="var(--line-soft)"/>
+      <text x="717" y="89" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">O</text>
+      <line x1="730" y1="100" x2="730" y2="80" stroke="var(--accent-2)" stroke-width="2"/>
+      <text x="730" y="73" text-anchor="middle" font-size="9" font-weight="700" fill="var(--accent-2)">OH</text>
+      <text x="658" y="105" font-size="12" font-weight="700" fill="var(--accent-2)">β</text>
+      <text x="640" y="150" text-anchor="middle" font-size="7.5" fill="var(--ink-faint)">other hydroxyls omitted — only C1 differs</text>
+      <text x="579" y="180" text-anchor="middle" font-size="8.5" fill="var(--ink)">α-D-glucopyranose</text>
+      <text x="701" y="180" text-anchor="middle" font-size="8.5" fill="var(--ink)">β-D-glucopyranose</text>
+      <text x="640" y="204" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">a special case of epimer: the centre that</text>
+      <text x="640" y="218" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">differs is the anomeric carbon, made by ring closure</text>
+      <text x="640" y="232" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">and only these interconvert freely in water</text>
+    </svg>
+    <figcaption>The three panels answer one question — <em>how many stereocentres differ?</em> All of them and
+      they are mirror images (enantiomers); exactly one (epimers, a kind of diastereomer); exactly one and it
+      is the anomeric carbon (anomers). The last panel is the one worth holding: because C1 only became a
+      stereocentre when the ring closed, opening the ring destroys it, and that is why α and β interconvert in
+      water while D- and L-glucose never do.</figcaption>
+  </figure>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Is an anomer an epimer? — a place where usage is genuinely loose</p>
+    <p style="margin:0">Two anomers differ at exactly one stereocentre, so on the plain definition they
+      <em>are</em> epimers, and Lehninger's own wording treats them that way. Some courses nevertheless reserve
+      &ldquo;epimer&rdquo; for pairs differing at a <em>non-anomeric</em> centre, so that the two words never
+      overlap. Both usages circulate. The safe answer under exam conditions is to name the more specific term:
+      if the difference is at the anomeric carbon, say <strong>anomers</strong>; if it is anywhere else, say
+      <strong>epimers</strong>. That answer is correct under either convention, and it is what a
+      well-constructed option will say.</p>
+  </div>
+
+  <h3>Sugars: the shape vocabulary</h3>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 270" role="img" aria-label="Ring closure and the anomers of glucose. On the left, open-chain glucose is drawn as a Fischer projection with a curved arrow showing the carbon five hydroxyl attacking the carbon one aldehyde. In the middle, the two resulting rings: alpha D-glucopyranose with the carbon one hydroxyl pointing down and trans to the CH2OH group, about thirty-six per cent at equilibrium, and beta D-glucopyranose with it pointing up and cis to CH2OH, about sixty-four per cent. The two interconvert by mutarotation through the open chain. On the right, capping the anomeric hydroxyl with another alcohol gives a glycoside, an acetal, which can no longer open and is therefore non-reducing." style="font-family:var(--sans)">
+      <text x="92" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)">open chain</text>
+      <text x="92" y="40" text-anchor="middle" font-size="9.5" fill="var(--accent-2)">CHO</text>
+      <line x1="92" y1="46" x2="92" y2="164" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="92" y1="62" x2="110" y2="62" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <text x="114" y="65" font-size="8" fill="var(--ink-faint)">OH</text>
+      <line x1="74" y1="86" x2="92" y2="86" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <text x="70" y="89" text-anchor="end" font-size="8" fill="var(--ink-faint)">HO</text>
+      <line x1="92" y1="110" x2="110" y2="110" stroke="var(--ink-faint)" stroke-width="1.4"/>
+      <text x="114" y="113" font-size="8" fill="var(--ink-faint)">OH</text>
+      <line x1="92" y1="134" x2="110" y2="134" stroke="var(--accent)" stroke-width="2.4"/>
+      <text x="114" y="137" font-size="8" font-weight="700" fill="var(--accent)">OH</text>
+      <text x="92" y="180" text-anchor="middle" font-size="9" fill="var(--ink-faint)">CH₂OH</text>
+      <path d="M 130 130 C 160 106 158 56 106 42" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="5 3"/>
+      <polygon points="104,42 114,40 112,48" fill="var(--accent)"/>
+      <text x="92" y="196" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">C5–OH attacks C1</text>
+      <text x="92" y="207" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">→ intramolecular hemiacetal</text>
+
+      <text x="205" y="116" text-anchor="middle" font-size="17" fill="var(--ink-soft)">⇌</text>
+      <text x="205" y="136" text-anchor="middle" font-size="8" fill="var(--ink-faint)">ring closure</text>
+
+      <text x="290" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)">α-D-glucopyranose</text>
+      <polygon points="240,110 258,92 306,92 324,110 306,130 258,130" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="258" y1="130" x2="306" y2="130" stroke="var(--ink-soft)" stroke-width="3"/>
+      <circle cx="306" cy="92" r="8" fill="var(--line-soft)"/>
+      <text x="306" y="96" text-anchor="middle" font-size="10" fill="var(--ink-soft)">O</text>
+      <line x1="258" y1="92" x2="258" y2="76" stroke="var(--ink-soft)" stroke-width="1.3"/>
+      <text x="258" y="70" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CH₂OH</text>
+      <line x1="324" y1="110" x2="324" y2="132" stroke="var(--accent)" stroke-width="2.2"/>
+      <text x="324" y="146" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent)">OH</text>
+      <line x1="324" y1="110" x2="324" y2="98" stroke="var(--ink-faint)" stroke-width="1.2"/>
+      <text x="324" y="92" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">H</text>
+      <text x="338" y="114" font-size="8" fill="var(--ink-faint)">C1</text>
+      <text x="290" y="180" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">C1–OH down, trans to CH₂OH</text>
+      <text x="290" y="192" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">≈ 36 % at equilibrium</text>
+
+      <text x="385" y="116" text-anchor="middle" font-size="17" fill="var(--ink-soft)">⇌</text>
+      <text x="385" y="136" text-anchor="middle" font-size="8" fill="var(--ink-faint)">mutarotation</text>
+      <text x="385" y="147" text-anchor="middle" font-size="7.5" fill="var(--ink-faint)">via the open chain</text>
+
+      <text x="480" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)">β-D-glucopyranose</text>
+      <polygon points="430,110 448,92 496,92 514,110 496,130 448,130" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="448" y1="130" x2="496" y2="130" stroke="var(--ink-soft)" stroke-width="3"/>
+      <circle cx="496" cy="92" r="8" fill="var(--line-soft)"/>
+      <text x="496" y="96" text-anchor="middle" font-size="10" fill="var(--ink-soft)">O</text>
+      <line x1="448" y1="92" x2="448" y2="76" stroke="var(--ink-soft)" stroke-width="1.3"/>
+      <text x="448" y="70" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CH₂OH</text>
+      <line x1="514" y1="110" x2="514" y2="88" stroke="var(--accent-3)" stroke-width="2.2"/>
+      <text x="514" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-3)">OH</text>
+      <line x1="514" y1="110" x2="514" y2="122" stroke="var(--ink-faint)" stroke-width="1.2"/>
+      <text x="514" y="136" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">H</text>
+      <text x="480" y="180" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">C1–OH up, cis to CH₂OH</text>
+      <text x="480" y="192" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">≈ 64 % at equilibrium</text>
+
+      <line x1="548" y1="110" x2="596" y2="110" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <polygon points="602,110 592,106 592,114" fill="var(--ink-soft)"/>
+      <text x="575" y="100" text-anchor="middle" font-size="8" fill="var(--accent-2)">+ R–OH</text>
+      <text x="575" y="126" text-anchor="middle" font-size="8" fill="var(--accent-2)">− H₂O</text>
+
+      <text x="670" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)">glycoside (acetal)</text>
+      <polygon points="620,110 638,92 686,92 704,110 686,130 638,130" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <line x1="638" y1="130" x2="686" y2="130" stroke="var(--ink-soft)" stroke-width="3"/>
+      <circle cx="686" cy="92" r="8" fill="var(--line-soft)"/>
+      <text x="686" y="96" text-anchor="middle" font-size="10" fill="var(--ink-soft)">O</text>
+      <line x1="638" y1="92" x2="638" y2="76" stroke="var(--ink-soft)" stroke-width="1.3"/>
+      <text x="638" y="70" text-anchor="middle" font-size="8" fill="var(--ink-faint)">CH₂OH</text>
+      <line x1="704" y1="110" x2="704" y2="132" stroke="var(--accent-2)" stroke-width="2.2"/>
+      <text x="704" y="146" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-2)">O–R</text>
+      <text x="670" y="180" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">anomeric OH now capped</text>
+      <text x="670" y="192" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">cannot reopen → non-reducing</text>
+
+      <line x1="10" y1="216" x2="750" y2="216" stroke="var(--line)" stroke-width="1"/>
+      <text x="10" y="236" font-size="9.5" fill="var(--ink-soft)">Only C1 differs between α and β — and C1 became a stereocentre only when the ring closed, which is why these two interconvert in water.</text>
+      <text x="10" y="254" font-size="9" fill="var(--ink-faint)">Cap that hydroxyl with a second alcohol and the ring locks shut: no free carbonyl, no mutarotation, no reducing power. Sucrose is capped at both ends.</text>
+    </svg>
+    <figcaption>The equilibrium mixture in water is roughly 36 % α and 64 % β, with well under 1 % open chain
+      at any instant — yet every molecule passes through that open chain repeatedly, which is why a solution of
+      pure α-D-glucose drifts from a specific rotation of +112.2° to the equilibrium +52.7°. That drift is
+      <em>mutarotation</em>, and it is the direct experimental evidence that the ring opens.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Sugar and stereochemistry vocabulary</caption>
+      <thead><tr><th>Term</th><th>What it means</th><th>The discriminator</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Chiral</strong></td><td>Not superimposable on its own mirror image</td><td>Usually because of a carbon with four different groups. Glycine is the one amino acid that is <em>not</em> chiral</td></tr>
+        <tr><td><strong>Enantiomers</strong></td><td>Mirror-image stereoisomers; every centre inverted</td><td>Identical melting point, solubility and spectra; they differ only in the sign of optical rotation and in how they behave towards other chiral things — enzymes, receptors, other sugars</td></tr>
+        <tr><td><strong>Diastereomers</strong></td><td>Stereoisomers that are <em>not</em> mirror images</td><td>Different physical properties, so they can be separated by ordinary means. Every epimer pair is a diastereomer pair</td></tr>
+        <tr><td><strong>Epimers</strong></td><td>Diastereomers differing at exactly one centre</td><td>Glucose and galactose (C4); glucose and mannose (C2). In the cell an <em>epimerase</em> does it. Two caveats the absolute would hide: the anomeric pair equilibrates with no enzyme at all (see below), and any centre α to a carbonyl drifts in alkali through the enediol — which is why ketoses still reduce Benedict's reagent</td></tr>
+        <tr><td><strong>Anomers</strong></td><td>The pair differing at the anomeric carbon</td><td>The only pair that equilibrates freely in plain water at neutral pH, because ring opening destroys the centre. See the caveat above on whether they also count as epimers</td></tr>
+        <tr><td><strong>D and L</strong></td><td>Configuration at one reference centre, compared with glyceraldehyde</td><td>For a <em>sugar</em>, the reference is the chiral carbon <strong>furthest from the carbonyl</strong> (C5 in a hexose). For an <em>amino acid</em>, it is the α carbon. Nearly all natural sugars are D, nearly all protein amino acids are L</td></tr>
+        <tr><td><strong>(+) and (−)</strong>; d and l</td><td>The direction a solution actually rotates plane-polarised light</td><td>An <em>experimental</em> fact, unrelated to the D/L label. D-fructose is strongly (−). Never infer one from the other</td></tr>
+        <tr><td><strong>R and S</strong></td><td>The modern CIP absolute-configuration label, assigned per centre</td><td>A third, independent system. Most L-amino acids are (S), but <strong>L-cysteine is (R)</strong> — sulfur outranks the carboxyl in CIP priority — which is the standard demonstration that the systems do not map onto each other</td></tr>
+        <tr><td><strong>Racemic mixture</strong></td><td>Equal amounts of both enantiomers</td><td>Optically inactive overall. A <em>meso</em> compound is different: one molecule with stereocentres and an internal mirror plane, inactive on its own</td></tr>
+        <tr><td><strong>Aldose</strong> vs <strong>ketose</strong></td><td>Carbonyl at C1 (aldehyde) vs at C2 (ketone)</td><td>Glucose is an aldohexose, fructose a ketohexose. A ketose has one <em>fewer</em> stereocentre than the aldose of the same length</td></tr>
+        <tr><td><strong>Pyranose</strong> vs <strong>furanose</strong></td><td>Six-membered ring (five C + O) vs five-membered (four C + O)</td><td>Named after pyran and furan. Glucose is normally a pyranose; ribose in a nucleotide is always a furanose; fructose is a furanose in sucrose but mostly a pyranose when free</td></tr>
+        <tr><td><strong>Reducing sugar</strong></td><td>A sugar with a free anomeric carbon, so the ring can open to a real carbonyl</td><td>The <em>sugar</em> is oxidised and the metal ion reduced — Benedict's, Fehling's, Tollens'. All monosaccharides qualify, ketoses included (alkali isomerises them). Maltose and lactose reduce; <strong>sucrose and trehalose do not</strong>, because both anomeric carbons are tied up in the glycosidic bond</td></tr>
+        <tr><td><strong>Mutarotation</strong></td><td>Spontaneous drift of optical rotation as α and β equilibrate</td><td>Requires a free anomeric carbon. A glycoside does not mutarotate — same test, same reason, as reducing power</td></tr>
+        <tr><td><strong>Tautomers</strong></td><td>Constitutional isomers interconverting by moving a proton and a double bond — keto ⇌ enol, lactam ⇌ lactim</td><td>Not resonance. In a tautomer an <strong>atom moves</strong>; in resonance only electrons are redistributed and the structures are not separate species. Enolpyruvate → pyruvate is the tautomerisation that makes pyruvate kinase irreversible</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Charge, water and the zwitterion</h3>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 316" role="img" aria-label="Glycine in three ionisation states with the corresponding net-charge titration curve. At pH one the cation carries a protonated amino group and an uncharged carboxyl, net plus one. Losing the carboxyl proton at pK one, two point three four, gives the zwitterion with net charge zero, the dominant species from about pH four to eight and the form present at the isoelectric point of five point nine seven. Losing the ammonium proton at pK two, nine point six zero, gives the anion, net minus one. The curve below plots net charge against pH, falling from plus one through zero across a long plateau to minus one." style="font-family:var(--sans)">
+      <rect x="40" y="36" width="180" height="76" rx="10" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <text x="130" y="64" text-anchor="middle" font-size="12" fill="var(--ink)">H₃N⁺–CH₂–COOH</text>
+      <text x="130" y="86" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">cation · net +1</text>
+      <text x="130" y="103" text-anchor="middle" font-size="9" fill="var(--ink-faint)">pH 1</text>
+
+      <line x1="226" y1="70" x2="278" y2="70" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <polygon points="284,70 274,66 274,74" fill="var(--ink-soft)"/>
+      <text x="252" y="58" text-anchor="middle" font-size="9" font-weight="700" fill="var(--accent-2)">pK₁ 2.34</text>
+      <text x="252" y="88" text-anchor="middle" font-size="8" fill="var(--ink-faint)">–COOH</text>
+
+      <rect x="290" y="36" width="180" height="76" rx="10" fill="none" stroke="var(--accent)" stroke-width="2.4"/>
+      <text x="380" y="64" text-anchor="middle" font-size="12" fill="var(--ink)">H₃N⁺–CH₂–COO⁻</text>
+      <text x="380" y="86" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--accent)">zwitterion · net 0</text>
+      <text x="380" y="103" text-anchor="middle" font-size="9" fill="var(--ink-faint)">pH 5.97 = pI</text>
+
+      <line x1="476" y1="70" x2="528" y2="70" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <polygon points="534,70 524,66 524,74" fill="var(--ink-soft)"/>
+      <text x="504" y="58" text-anchor="middle" font-size="9" font-weight="700" fill="var(--accent-2)">pK₂ 9.60</text>
+      <text x="504" y="88" text-anchor="middle" font-size="8" fill="var(--ink-faint)">–NH₃⁺</text>
+
+      <rect x="540" y="36" width="180" height="76" rx="10" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <text x="630" y="64" text-anchor="middle" font-size="12" fill="var(--ink)">H₂N–CH₂–COO⁻</text>
+      <text x="630" y="86" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">anion · net −1</text>
+      <text x="630" y="103" text-anchor="middle" font-size="9" fill="var(--ink-faint)">pH 11</text>
+
+      <line x1="70" y1="220" x2="720" y2="220" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="70" y1="272" x2="724" y2="272" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="70" y1="168" x2="70" y2="272" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="62" y="179" text-anchor="end" font-size="8.5" fill="var(--ink-faint)">+1</text>
+      <text x="62" y="224" text-anchor="end" font-size="8.5" fill="var(--ink-faint)">0</text>
+      <text x="62" y="269" text-anchor="end" font-size="8.5" fill="var(--ink-faint)">−1</text>
+      <text x="36" y="220" text-anchor="middle" font-size="9" fill="var(--ink-soft)" transform="rotate(-90 36 220)">net charge</text>
+      <line x1="349" y1="168" x2="349" y2="272" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <text x="349" y="163" text-anchor="middle" font-size="9" font-weight="700" fill="var(--accent)">pI = 5.97</text>
+      <polyline fill="none" stroke="var(--accent)" stroke-width="2.6" points="80,175 125,177 147,181 170,189 185,197 202,206 224,215 251,219 283,220 350,220 418,221 449,222 476,226 494,233 512,243 530,252 553,260 584,264 620,265 710,265"/>
+      <circle cx="185" cy="197" r="3.5" fill="var(--accent-2)"/>
+      <text x="185" y="190" text-anchor="middle" font-size="8" fill="var(--accent-2)">pK₁</text>
+      <circle cx="512" cy="243" r="3.5" fill="var(--accent-2)"/>
+      <text x="512" y="236" text-anchor="middle" font-size="8" fill="var(--accent-2)">pK₂</text>
+      <text x="80" y="289" text-anchor="middle" font-size="8" fill="var(--ink-faint)">0</text>
+      <text x="170" y="289" text-anchor="middle" font-size="8" fill="var(--ink-faint)">2</text>
+      <text x="260" y="289" text-anchor="middle" font-size="8" fill="var(--ink-faint)">4</text>
+      <text x="350" y="289" text-anchor="middle" font-size="8" fill="var(--ink-faint)">6</text>
+      <text x="440" y="289" text-anchor="middle" font-size="8" fill="var(--ink-faint)">8</text>
+      <text x="530" y="289" text-anchor="middle" font-size="8" fill="var(--ink-faint)">10</text>
+      <text x="620" y="289" text-anchor="middle" font-size="8" fill="var(--ink-faint)">12</text>
+      <text x="710" y="289" text-anchor="middle" font-size="8" fill="var(--ink-faint)">14</text>
+      <text x="734" y="276" font-size="8.5" fill="var(--ink-faint)">pH</text>
+      <text x="70" y="308" font-size="8.5" fill="var(--ink-faint)">The zwitterion is not a fleeting intermediate — it is the dominant species right across the plateau, roughly pH 4 to 8.</text>
+    </svg>
+    <figcaption>Glycine, drawn with the numbers from note 02. The plateau is the useful part: between the two
+      pK<sub>a</sub> values the net charge is flat at zero, so the exact pH hardly matters, and the amino acid
+      is simultaneously an acid and a base. <strong>pH &gt; pI ⇒ net negative ⇒ runs to the anode</strong> in
+      electrophoresis; below pI, the other way. For side chains and the pI arithmetic of the other nineteen
+      residues, see <a href="biochem-02-amino-acids-proteins.html#s4">note 02 §&nbsp;04</a>.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Charge and solubility vocabulary</caption>
+      <thead><tr><th>Term</th><th>What it means</th><th>The discriminator</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Zwitterion</strong>（兩性離子）</td><td>One molecule carrying both a positive and a negative charge, net zero</td><td>Not the same as &ldquo;uncharged&rdquo;. The genuinely uncharged form of an amino acid is vanishingly rare in water — the zwitterion outnumbers it by a factor of order 10⁵–10⁷, which is why amino acids are crystalline solids with high melting points and do not dissolve in ether</td></tr>
+        <tr><td><strong>pI</strong>, isoelectric point</td><td>The pH at which net charge is zero</td><td>Average the two pK<sub>a</sub> values <em>flanking the neutral species</em> — not any two. In isoelectric focusing a protein migrates until it reaches its pI and then stops</td></tr>
+        <tr><td><strong>Amphoteric</strong></td><td>Can act as an acid <em>and</em> as a base</td><td>About proton chemistry. Amino acids and water are amphoteric</td></tr>
+        <tr><td><strong>Amphipathic</strong> (= amphiphilic)</td><td>Has a hydrophilic part and a hydrophobic part in one molecule</td><td>About <em>solubility</em>, not protons. Phospholipids, bile salts, detergents, and the surfaces of membrane proteins. The two words are a genuine trap because they differ by three letters and mean unrelated things</td></tr>
+        <tr><td><strong>Hydrophobic effect</strong></td><td>The tendency of nonpolar groups to cluster in water</td><td>It is driven by <strong>water's entropy</strong>, not by attraction between the nonpolar groups. Water forced into an ordered shell around a nonpolar surface is released when two such surfaces meet. Calling it &ldquo;hydrophobic bonding&rdquo; misstates the mechanism, and the entropic origin is the examinable point</td></tr>
+        <tr><td><strong>Micelle</strong> vs <strong>bilayer</strong></td><td>What amphipathic molecules form spontaneously</td><td>Decided by shape: a single tail is a cone and packs into a micelle; two tails make a cylinder and pack into a bilayer</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- =========================== 6 =========================== -->
+<section class="section" id="s6">
+  <span class="section__num">§ 06</span>
+  <h2>Bonds and linkages</h2>
+
+  <p class="idea"><b>The idea</b>Nearly every linkage in biology is made by squeezing out one water molecule and broken by putting it back,
+     and each one is named after <em>the atom the acyl carbon ended up bonded to</em>. Land on nitrogen and it
+     is an amide; on oxygen, an ester; on sulfur, a thioester. That single rule generates most of the table
+     below, and it also explains the one entry that behaves differently: a thioester holds far more free energy
+     than an ester, not because its bond is stronger but because sulfur is bad at stabilising the molecule it
+     is part of. Two entries break the condensation pattern entirely and are worth flagging now — a disulfide
+     is an <em>oxidation</em>, and a phosphoanhydride is charged on both sides of the join.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the generating rule</p>
+    <div class="fx fx--hero">
+      <span class="fx__eq">acyl carbon lands on N, O or S  →  amide, ester, thioester</span>
+      <span class="fx__tag">three rows of the table are one rule; the name follows the atom</span>
+    </div>
+    <dl class="def">
+      <dt>Condensation vs hydrolysis</dt>
+      <dd>Condensation joins two groups and releases one H₂O; hydrolysis is the exact reverse. Almost every
+          biological polymer is built and dismantled this way, which is why the classes of enzyme that do it —
+          <em>hydrolases</em> — outnumber everything else in the digestive tract.</dd>
+      <dt>The two exceptions on this page</dt>
+      <dd>A <strong>disulfide</strong> is formed by <em>oxidation</em> of two thiols, not by condensation — no
+          water leaves, and it is undone by reduction, not by a hydrolase. A
+          <strong>phosphoanhydride</strong> is a condensation, but between two phosphates, and the product is
+          destabilised by the charge repulsion between them.</dd>
+    </dl>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Biological linkages: what forms each one and what breaks it</caption>
+      <thead><tr><th>Linkage</th><th>Formed from</th><th>Broken by</th><th>Where you meet it, and the point</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ester</strong></td><td>–COOH + –OH</td><td>Hydrolysis: esterases, lipases, phospholipases; also alkali (saponification)</td><td>Triacylglycerol, phospholipids, waxes. Modest free energy of hydrolysis, ≈ −20 kJ·mol⁻¹</td></tr>
+        <tr><td><strong>Thioester</strong></td><td>–COOH + –SH (needs ATP to make)</td><td>Hydrolysis, or transfer of the acyl group to another nucleophile</td><td>Acetyl-CoA, acyl-CoA, the acyl-enzyme of a serine protease. <strong>High energy</strong>, ≈ −31 kJ·mol⁻¹ — see the diagram</td></tr>
+        <tr><td><strong>Amide / peptide</strong></td><td>–COOH + –NH₂</td><td>Proteases and peptidases; acid or alkali with heat</td><td>Protein backbone; ceramide. Hydrolysis is thermodynamically downhill but <em>kinetically</em> almost frozen — half-lives of years — which is exactly why proteins are stable and why proteases are needed at all</td></tr>
+        <tr><td><strong>Glycosidic</strong></td><td>Anomeric –OH + –OH (O-glycosidic) or + –NH (N-glycosidic)</td><td>Glycosidases; dilute acid</td><td>Disaccharides, starch, glycogen, glycoproteins. N-glycosidic is what joins a base to its sugar in a nucleotide. Consumes the anomeric carbon, so a glycoside is <strong>non-reducing</strong> at that end</td></tr>
+        <tr><td><strong>Phosphomonoester</strong></td><td>Phosphate + one –OH</td><td><strong>Phosphatases</strong> (hydrolases)</td><td>Glucose 6-phosphate, phosphoserine. Low energy — this is the kind of phosphate a kinase installs, and it does <em>not</em> carry a squiggle</td></tr>
+        <tr><td><strong>Phosphodiester</strong></td><td>One phosphate esterified to <em>two</em> –OH groups</td><td>Nucleases; in RNA also alkali, because of the 2′-OH</td><td>DNA and RNA backbone, 3′→5′. The &ldquo;di&rdquo; counts the ester bonds, not the phosphates. Still negatively charged after both bonds are made, which is what makes nucleic acids polyanions</td></tr>
+        <tr><td><strong>Phosphoanhydride</strong></td><td>Phosphate + phosphate, P–O–P</td><td>Hydrolysis (ATPases), or transfer of a phosphoryl group by a kinase</td><td>The β–γ and α–β bonds of ATP; PP<sub>i</sub>. <strong>High energy</strong>, −30.5 kJ·mol⁻¹ for the terminal one</td></tr>
+        <tr><td><strong>Acyl phosphate</strong> (mixed anhydride)</td><td>–COOH + phosphate</td><td>Transfer to ADP, or hydrolysis</td><td>1,3-Bisphosphoglycerate, −49.3 kJ·mol⁻¹ — above ATP, which is why it can pay for one</td></tr>
+        <tr><td><strong>Enol phosphate</strong></td><td>Phosphate on the –OH of an enol</td><td>Transfer to ADP</td><td>Phosphoenolpyruvate, −61.9 kJ·mol⁻¹, the richest in metabolism. The energy is released by what happens <em>after</em> cleavage — the enol tautomerises to keto, irreversibly</td></tr>
+        <tr><td><strong>Hemiacetal / hemiketal</strong></td><td>Carbonyl + <em>one</em> alcohol</td><td>Spontaneously reopens</td><td>The ring form of every free sugar. Still has a free –OH on that carbon, so it can reopen — hence mutarotation and reducing power</td></tr>
+        <tr><td><strong>Acetal / ketal</strong></td><td>Hemiacetal + a <em>second</em> alcohol</td><td>Acid or a glycosidase — not spontaneously</td><td>Every glycosidic bond. Two –OR groups on the same carbon, no free hydroxyl, so the ring is locked: no mutarotation, no reducing power</td></tr>
+        <tr><td><strong>Disulfide</strong></td><td>Two –SH groups, by <strong>oxidation</strong></td><td><strong>Reduction</strong>: β-mercaptoethanol, DTT, glutathione</td><td>Mostly in secreted and extracellular proteins, because the cytosol is kept reducing. No water is released when it forms, so it is not a condensation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 340" role="img" aria-label="Why a thioester carries more free energy than an oxygen ester. On the left, an ordinary ester: the ester oxygen donates its lone pair into the carbonyl efficiently because oxygen 2p orbitals overlap carbon 2p orbitals well, so the ground state is strongly stabilised by resonance. On the right, a thioester: sulfur 3p orbitals overlap carbon 2p poorly, so the donation is weak and the ground state is left at higher energy. Below, an energy diagram showing both starting materials falling to the same product level, with the thioester falling about thirty-one kilojoules per mole and the ordinary ester about twenty." style="font-family:var(--sans)">
+      <text x="190" y="26" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">Oxygen ester</text>
+      <text x="110" y="95" text-anchor="middle" font-size="13" fill="var(--ink)">R</text>
+      <line x1="120" y1="90" x2="148" y2="90" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="158" y="95" text-anchor="middle" font-size="13" fill="var(--ink)">C</text>
+      <line x1="154" y1="80" x2="154" y2="64" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="162" y1="80" x2="162" y2="64" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="158" y="58" text-anchor="middle" font-size="12" fill="var(--ink)">O</text>
+      <line x1="170" y1="90" x2="196" y2="90" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="206" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent-3)">O</text>
+      <line x1="216" y1="90" x2="244" y2="90" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="256" y="95" text-anchor="middle" font-size="13" fill="var(--ink)">R′</text>
+      <path d="M 204 82 C 198 62 178 58 164 66" fill="none" stroke="var(--accent-3)" stroke-width="2"/>
+      <polygon points="164,66 174,65 170,57" fill="var(--accent-3)"/>
+      <text x="190" y="128" text-anchor="middle" font-size="9" fill="var(--ink-soft)">O 2p overlaps C 2p well</text>
+      <text x="190" y="142" text-anchor="middle" font-size="9" fill="var(--ink-soft)">→ strong resonance donation</text>
+      <text x="190" y="160" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--accent-3)">ground state well stabilised</text>
+
+      <line x1="380" y1="16" x2="380" y2="176" stroke="var(--line)" stroke-width="1"/>
+
+      <text x="570" y="26" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">Thioester</text>
+      <text x="490" y="95" text-anchor="middle" font-size="13" fill="var(--ink)">R</text>
+      <line x1="500" y1="90" x2="528" y2="90" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="538" y="95" text-anchor="middle" font-size="13" fill="var(--ink)">C</text>
+      <line x1="534" y1="80" x2="534" y2="64" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <line x1="542" y1="80" x2="542" y2="64" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="538" y="58" text-anchor="middle" font-size="12" fill="var(--ink)">O</text>
+      <line x1="550" y1="90" x2="576" y2="90" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="586" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent-2)">S</text>
+      <line x1="596" y1="90" x2="624" y2="90" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="640" y="95" text-anchor="middle" font-size="13" fill="var(--ink)">CoA</text>
+      <path d="M 584 82 C 578 64 558 60 544 66" fill="none" stroke="var(--accent-2)" stroke-width="1.3" stroke-dasharray="4 3"/>
+      <polygon points="544,66 554,65 550,58" fill="var(--accent-2)"/>
+      <text x="570" y="128" text-anchor="middle" font-size="9" fill="var(--ink-soft)">S 3p overlaps C 2p poorly</text>
+      <text x="570" y="142" text-anchor="middle" font-size="9" fill="var(--ink-soft)">→ little resonance donation</text>
+      <text x="570" y="160" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--accent-2)">ground state left high</text>
+
+      <line x1="10" y1="182" x2="750" y2="182" stroke="var(--line)" stroke-width="1"/>
+
+      <line x1="60" y1="196" x2="60" y2="320" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <text x="42" y="258" text-anchor="middle" font-size="9" fill="var(--ink-soft)" transform="rotate(-90 42 258)">free energy</text>
+      <line x1="100" y1="212" x2="300" y2="212" stroke="var(--accent-2)" stroke-width="2.6"/>
+      <text x="196" y="205" text-anchor="middle" font-size="9" font-weight="700" fill="var(--accent-2)">acyl–S–CoA</text>
+      <line x1="100" y1="246" x2="292" y2="246" stroke="var(--accent-3)" stroke-width="2.6"/>
+      <line x1="308" y1="246" x2="420" y2="246" stroke="var(--accent-3)" stroke-width="2.6"/>
+      <text x="190" y="260" text-anchor="middle" font-size="9" font-weight="700" fill="var(--accent-3)">acyl–O–R</text>
+      <line x1="300" y1="214" x2="300" y2="292" stroke="var(--accent-2)" stroke-width="1.5"/>
+      <polygon points="300,298 296,288 304,288" fill="var(--accent-2)"/>
+      <text x="292" y="220" text-anchor="end" font-size="8" fill="var(--accent-2)">acetyl-CoA</text>
+      <text x="292" y="234" text-anchor="end" font-size="9.5" font-weight="700" fill="var(--accent-2)">−31.4 kJ·mol⁻¹</text>
+      <line x1="420" y1="248" x2="420" y2="292" stroke="var(--accent-3)" stroke-width="1.5"/>
+      <polygon points="420,298 416,288 424,288" fill="var(--accent-3)"/>
+      <text x="428" y="272" font-size="9.5" font-weight="700" fill="var(--accent-3)">≈ −20 kJ·mol⁻¹</text>
+      <text x="428" y="286" font-size="8" fill="var(--accent-3)">an ordinary ester</text>
+      <line x1="280" y1="300" x2="710" y2="300" stroke="var(--ink-soft)" stroke-width="2.2"/>
+      <text x="560" y="316" text-anchor="middle" font-size="9" fill="var(--ink-soft)">carboxylate + HS–CoA  (or + HO–R)</text>
+      <text x="60" y="334" font-size="8.5" fill="var(--ink-faint)">Both end in the same kind of product. The difference is entirely in how well the starting material was stabilised.</text>
+    </svg>
+    <figcaption>This is the cleanest available illustration of why the phrase &ldquo;high-energy bond&rdquo; is
+      misleading. Nothing about the C–S bond is unusually weak or unusually rich. What differs is the
+      <em>ground state</em>: an ordinary ester is held low by efficient resonance donation from oxygen, while
+      sulfur, a row further down, donates poorly and leaves the thioester sitting higher. Hydrolysis therefore
+      has further to fall. It is a statement about stabilisation, not about the bond.</figcaption>
+  </figure>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Three linkage traps</p>
+    <p><strong>&ldquo;Phosphodiester&rdquo; does not mean two phosphates.</strong> It is <em>one</em> phosphate
+      esterified twice. Two phosphates joined to each other is a phosphoanhydride, and the distinction decides
+      whether the linkage is low energy (backbone) or high energy (ATP).</p>
+    <p><strong>A disulfide is not made by condensation.</strong> It is an oxidation — no water leaves — and it
+      is undone by a reducing agent, not by a hydrolase. Options that group it with the peptide and glycosidic
+      bonds as &ldquo;all formed by loss of water&rdquo; are wrong on exactly this point.</p>
+    <p style="margin:0"><strong>Hemiacetal and acetal are the whole of &ldquo;reducing sugar&rdquo;.</strong> One
+      –OR and a free –OH on the same carbon: it can reopen, so it reduces Benedict's reagent. Two –OR groups: it
+      cannot, so it does not. Sucrose is non-reducing because the glycosidic bond runs anomeric-to-anomeric and
+      caps both ends at once.</p>
+  </div>
+</section>
+
+<!-- =========================== 7 =========================== -->
+<section class="section" id="s7">
+  <span class="section__num">§ 07</span>
+  <h2>Energetics</h2>
+
+  <p class="idea"><b>The idea</b>Two symbols do almost all the work here, and confusing them is the commonest energetics error on a paper.
+     <span class="fi">ΔG°′</span> is a <em>tabulated constant</em>: it is the free-energy change measured with
+     every participant at 1 M and pH 7, and it is nothing more than another way of writing the equilibrium
+     constant — where the reaction settles if left alone, whatever concentrations it started from.
+     <span class="fi">ΔG</span>
+     is what is actually happening in the cell right now, and it depends on the concentrations the cell is
+     holding. A reaction with a large positive ΔG°′ can run forwards all day if the cell keeps draining the
+     product — and several important ones do. Everything else in this section is downstream of that one
+     distinction, including why &ldquo;high-energy bond&rdquo; is a bad phrase and why a spontaneous reaction
+     can be immeasurably slow.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the two free energies</p>
+    <div class="fx fx--hero">
+      <span class="fx__eq">ΔG = ΔG°′ + RT ln Q</span>
+      <span class="fx__tag">the tabulated value plus a correction for the concentrations actually present</span>
+    </div>
+    <dl class="def">
+      <dt>ΔG°′ — standard transformed free-energy change</dt>
+      <dd>Measured with every solute at 1 M, at <strong>pH 7</strong>, 25 °C and 1 atm, with [H⁺] and [H₂O]
+          left out of Q by convention (that is what the prime means). It carries exactly the same information
+          as K′<sub>eq</sub>: <span class="fi">ΔG°′ = −RT ln K′<sub>eq</sub></span>.</dd>
+      <dt>ΔG — actual free-energy change</dt>
+      <dd>The only one that decides direction. <span class="fi">ΔG &lt; 0</span> means the reaction proceeds as
+          written <em>under those conditions</em>; at equilibrium ΔG is zero, and ΔG°′ is not.</dd>
+    </dl>
+    <details class="disc">
+      <summary>Constants and the arithmetic shortcut</summary>
+      <div class="disc__body">
+        <div class="fx-grid">
+          <div class="fx"><span class="fx__eq">R = 8.314 J·mol⁻¹·K⁻¹ · RT = 2.48 kJ·mol⁻¹ at 25 °C</span><span class="fx__tag">and 2.58 at 37 °C</span></div>
+          <div class="fx"><span class="fx__eq">ΔG ≈ ΔG°′ + 5.71 × log₁₀ Q   (kJ·mol⁻¹, 25 °C)</span><span class="fx__tag">every factor of ten in Q is worth 5.71 kJ·mol⁻¹</span></div>
+          <div class="fx"><span class="fx__eq">ΔG°′ = −nF ΔE°′   ·   F = 96.5 kJ·mol⁻¹·V⁻¹</span><span class="fx__tag">with ΔE°′ = E°′(acceptor) − E°′(donor)</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Energetics vocabulary</caption>
+      <thead><tr><th>Term</th><th>What it means</th><th>The discriminator</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ΔG</strong> vs <strong>ΔG°′</strong></td><td>Actual vs standard free-energy change</td><td>ΔG°′ is a constant of the reaction; ΔG is a fact about the cell. If a stem quotes millimolar concentrations, it is a ΔG question and the tabulated number is a distractor</td></tr>
+        <tr><td><strong>Exergonic</strong> / <strong>endergonic</strong></td><td>ΔG negative / positive</td><td>About <em>free energy</em>. Not the same as <strong>exothermic / endothermic</strong>, which are about ΔH. A reaction can be endothermic and still exergonic if the entropy term carries it</td></tr>
+        <tr><td><strong>Spontaneous</strong></td><td>ΔG &lt; 0 — it will go without external work</td><td>Says <strong>nothing about rate</strong>. Glucose burning in air is spontaneous and takes forever without a spark. Thermodynamics gives direction; kinetics gives speed, and enzymes act only on the second</td></tr>
+        <tr><td><strong>K′<sub>eq</sub></strong></td><td>Where the reaction would settle</td><td>Related to ΔG°′ by one logarithm, so the two are interchangeable statements. An enzyme changes neither</td></tr>
+        <tr><td><strong>Coupled reaction</strong></td><td>An unfavourable reaction driven by a favourable one</td><td>Requires a <strong>shared chemical intermediate</strong>. Without one there is no coupling, only two reactions in the same beaker. Where there is one, the ΔG°′ values simply add</td></tr>
+        <tr><td><strong>&ldquo;High-energy&rdquo; bond</strong>, ~P</td><td>A bond whose hydrolysis is strongly exergonic</td><td>The phrase is misleading and examiners exploit it. <em>Breaking</em> any bond costs energy. The large negative value comes from the products being better off — resonance, charge separation relieved, better solvation, or an irreversible tautomerisation</td></tr>
+        <tr><td><strong>Phosphoryl transfer potential</strong></td><td>How willingly a compound hands its phosphate on, measured as the ΔG°′ of hydrolysis</td><td>PEP (−61.9) &gt; 1,3-BPG (−49.3) &gt; phosphocreatine (−43.0) &gt; <strong>ATP (−30.5)</strong> &gt; glucose 6-phosphate (−13.8). ATP sits in the middle deliberately: it is a currency, not a store, and it must be rechargeable</td></tr>
+        <tr><td><strong>Substrate-level phosphorylation</strong></td><td>A phosphoryl group handed directly from a substrate to ADP</td><td>Needs no membrane and no oxygen — which is the whole of anaerobic ATP production. PGK, pyruvate kinase, succinyl-CoA synthetase</td></tr>
+        <tr><td><strong>Oxidative phosphorylation</strong></td><td>ATP made by ATP synthase, driven by the proton gradient that electron transfer builds</td><td>The phosphate comes from <em>free</em> P<sub>i</sub>, and the energy from the gradient. Needs a sealed membrane and a terminal electron acceptor. Uncouple the gradient and electron transport races on while ATP synthesis stops</td></tr>
+        <tr><td><strong>Standard reduction potential E°′</strong></td><td>How strongly a couple wants electrons, in volts, at pH 7</td><td>More positive = greater appetite. Electrons fall from negative to positive: NAD⁺/NADH −0.32 V to ½O₂/H₂O +0.82 V. <strong>A favourable transfer has ΔE°′ positive and ΔG°′ negative</strong> — if both come out positive you subtracted backwards</td></tr>
+        <tr><td><strong>Energy charge</strong></td><td>How much of the adenine nucleotide pool is charged</td><td>Held near 0.85–0.95. It is what the glycolytic control points are really sensing, and it explains why AMP, not ATP, is the alarm signal</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="figure">
+    <svg viewBox="0 0 760 250" role="img" aria-label="Two ways of making ATP compared. On the left, substrate-level phosphorylation: a phosphoryl group is handed straight from 1,3-bisphosphoglycerate to ADP, giving 3-phosphoglycerate and ATP, in a single enzyme reaction that needs no membrane and no oxygen. On the right, oxidative phosphorylation: electrons pass along complexes in a membrane to oxygen, protons are pumped out, and the returning protons drive ATP synthase to make ATP from ADP and free inorganic phosphate." style="font-family:var(--sans)">
+      <text x="190" y="26" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)">Substrate-level phosphorylation</text>
+      <rect x="58" y="52" width="112" height="32" rx="9" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <text x="114" y="73" text-anchor="middle" font-size="10.5" fill="var(--ink)">1,3-BPG</text>
+      <line x1="176" y1="68" x2="216" y2="68" stroke="var(--ink-soft)" stroke-width="1.4"/>
+      <polygon points="222,68 212,64 212,72" fill="var(--ink-soft)"/>
+      <rect x="228" y="52" width="92" height="32" rx="9" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+      <text x="274" y="73" text-anchor="middle" font-size="10.5" fill="var(--ink)">3-PG</text>
+      <path d="M 150 118 C 170 92 220 92 240 116" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+      <polygon points="242,122 234,113 244,111" fill="var(--accent)"/>
+      <text x="150" y="134" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent)">ADP</text>
+      <text x="243" y="134" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent)">ATP</text>
+      <text x="195" y="152" text-anchor="middle" font-size="8.5" fill="var(--accent)">the phosphoryl comes straight off the substrate</text>
+      <text x="190" y="172" text-anchor="middle" font-size="9" fill="var(--ink-soft)">one enzyme · no membrane · no O₂ needed</text>
+      <text x="190" y="188" text-anchor="middle" font-size="9" fill="var(--ink-soft)">PGK · pyruvate kinase · succinyl-CoA synthetase</text>
+
+      <line x1="380" y1="16" x2="380" y2="200" stroke="var(--line)" stroke-width="1"/>
+
+      <text x="570" y="26" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-3)">Oxidative phosphorylation</text>
+      <rect x="410" y="92" width="320" height="30" fill="var(--line)"/>
+      <line x1="410" y1="92" x2="730" y2="92" stroke="var(--ink-soft)" stroke-width="1.2"/>
+      <line x1="410" y1="122" x2="730" y2="122" stroke="var(--ink-soft)" stroke-width="1.2"/>
+      <rect x="438" y="84" width="34" height="46" rx="5" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="1.3"/>
+      <text x="455" y="112" text-anchor="middle" font-size="9" fill="var(--ink)">I</text>
+      <rect x="508" y="84" width="34" height="46" rx="5" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="1.3"/>
+      <text x="525" y="112" text-anchor="middle" font-size="9" fill="var(--ink)">III</text>
+      <rect x="578" y="84" width="34" height="46" rx="5" fill="var(--card)" stroke="var(--ink-soft)" stroke-width="1.3"/>
+      <text x="595" y="112" text-anchor="middle" font-size="9" fill="var(--ink)">IV</text>
+      <rect x="664" y="80" width="44" height="54" rx="6" fill="var(--card)" stroke="var(--accent-3)" stroke-width="1.8"/>
+      <text x="686" y="104" text-anchor="middle" font-size="9" fill="var(--accent-3)">F₁F₀</text>
+      <text x="686" y="118" text-anchor="middle" font-size="7.5" fill="var(--accent-3)">synthase</text>
+      <line x1="418" y1="142" x2="590" y2="142" stroke="var(--accent-2)" stroke-width="1.6" stroke-dasharray="5 3"/>
+      <polygon points="596,142 586,138 586,146" fill="var(--accent-2)"/>
+      <text x="500" y="157" text-anchor="middle" font-size="8.5" fill="var(--accent-2)">e⁻ → O₂</text>
+      <line x1="455" y1="84" x2="455" y2="68" stroke="var(--accent-3)" stroke-width="1.4"/>
+      <polygon points="455,60 451,70 459,70" fill="var(--accent-3)"/>
+      <line x1="525" y1="84" x2="525" y2="68" stroke="var(--accent-3)" stroke-width="1.4"/>
+      <polygon points="525,60 521,70 529,70" fill="var(--accent-3)"/>
+      <line x1="595" y1="84" x2="595" y2="68" stroke="var(--accent-3)" stroke-width="1.4"/>
+      <polygon points="595,60 591,70 599,70" fill="var(--accent-3)"/>
+      <text x="455" y="52" text-anchor="middle" font-size="8" fill="var(--accent-3)">H⁺</text>
+      <text x="525" y="52" text-anchor="middle" font-size="8" fill="var(--accent-3)">H⁺</text>
+      <text x="595" y="52" text-anchor="middle" font-size="8" fill="var(--accent-3)">H⁺</text>
+      <line x1="686" y1="60" x2="686" y2="74" stroke="var(--accent-3)" stroke-width="1.6"/>
+      <polygon points="686,82 682,72 690,72" fill="var(--accent-3)"/>
+      <text x="686" y="52" text-anchor="middle" font-size="8" fill="var(--accent-3)">H⁺</text>
+      <text x="686" y="150" text-anchor="middle" font-size="9" font-weight="700" fill="var(--accent-3)">ADP + P<tspan font-size="6.5" dy="2">i</tspan><tspan dy="-2"> → ATP</tspan></text>
+      <text x="570" y="172" text-anchor="middle" font-size="9" fill="var(--ink-soft)">the phosphate comes from free P<tspan font-size="6.5" dy="2">i</tspan><tspan dy="-2">; the energy from the gradient</tspan></text>
+      <text x="570" y="188" text-anchor="middle" font-size="9" fill="var(--ink-soft)">needs a sealed membrane and a terminal acceptor</text>
+
+      <line x1="10" y1="206" x2="750" y2="206" stroke="var(--line)" stroke-width="1"/>
+      <text x="10" y="226" font-size="9.5" fill="var(--ink-soft)">Both make ATP. The discriminator is <tspan font-weight="700" fill="var(--ink)">where the energy came from</tspan> — a bond inside the substrate, or a proton-motive force across a membrane.</text>
+      <text x="10" y="243" font-size="9" fill="var(--ink-faint)">Only the left-hand route still works with no oxygen, which is why anaerobic glycolysis nets 2 ATP and stops there.</text>
+    </svg>
+    <figcaption>An uncoupler such as 2,4-dinitrophenol attacks only the right-hand panel: it carries protons
+      back across the membrane without passing through the synthase, so electron transport accelerates, oxygen
+      consumption rises, the energy leaves as heat, and ATP synthesis fails. Substrate-level phosphorylation is
+      untouched by it — a distinction worth having ready, because uncoupler vignettes are common.</figcaption>
+  </figure>
+</section>
+
+<!-- =========================== 8 =========================== -->
+<section class="section" id="s8">
+  <span class="section__num">§ 08</span>
+  <h2>Pathway vocabulary</h2>
+
+  <p class="idea"><b>The idea</b>These words describe a pathway's <em>role</em> rather than its chemistry, and each answers a specific
+     question about the map. Which direction is it going — building or breaking? Does it do both at once? Does
+     it top a cycle up, or drain it? Where is it controlled, and is that the same place as the slowest step?
+     The pair that costs the most marks is <em>committed</em> against <em>rate-limiting</em>, because in
+     glycolysis they happen to be the same enzyme and students then assume they always are. They are defined
+     differently, and a stem can separate them.</p>
+
+  <div class="defbox">
+    <p class="defbox__label">Definition &amp; the two that get conflated</p>
+    <dl class="def">
+      <dt>Committed step</dt>
+      <dd>The first reaction whose product has <strong>no fate other than this pathway</strong> — the first
+          irreversible step past the last branch point. It is a statement about the <em>shape of the map</em>.
+          PFK-1 for glycolysis; acetyl-CoA carboxylase for fatty-acid synthesis.</dd>
+      <dt>Rate-limiting step</dt>
+      <dd>The step with the greatest control over flux — in practice the slowest, usually far from equilibrium.
+          It is a statement about <em>rates</em>. Often the same enzyme as the committed step, because
+          evolution puts the control where commitment happens, but the two are not the same idea and need not
+          coincide.</dd>
+    </dl>
+    <div class="fx-grid">
+      <div class="fx"><span class="fx__eq">control lives where a reaction is irreversible</span><span class="fx__tag">a near-equilibrium step slides either way and cannot be a useful switch</span></div>
+      <div class="fx"><span class="fx__eq">opposing pathways must use different enzymes at those steps</span><span class="fx__tag">otherwise one signal cannot switch the two directions independently</span></div>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data">
+      <caption class="sr-only">Pathway vocabulary</caption>
+      <thead><tr><th>Term</th><th>What it means</th><th>The discriminator</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Catabolic</strong></td><td>Breaks large molecules down, releasing free energy</td><td>Generally <strong>oxidative</strong>, and it collects electrons as NADH and FADH₂. Converging: many substrates, few products</td></tr>
+        <tr><td><strong>Anabolic</strong></td><td>Builds, consuming free energy</td><td>Generally <strong>reductive</strong>, and it spends <strong>NADPH</strong> — not NADH. Diverging: few precursors, many products. Usually in a different compartment from the matching catabolic route, so the two cannot idle against each other</td></tr>
+        <tr><td><strong>Amphibolic</strong></td><td>Serves both at once</td><td>The citric acid cycle is the standard answer: it oxidises acetyl-CoA <em>and</em> supplies carbon skeletons for haem, amino acids and gluconeogenesis</td></tr>
+        <tr><td><strong>Anaplerotic</strong></td><td>&ldquo;Filling up&rdquo; — replenishes an intermediate the cycle has lost</td><td>Pyruvate carboxylase into oxaloacetate is the dominant one. <strong>Acetyl-CoA is not anaplerotic</strong>: two carbons in, two out as CO₂, so it raises the cycle's flux and never its stock. The opposite word is <em>cataplerotic</em>, for intermediates drawn off</td></tr>
+        <tr><td><strong>Committed step</strong></td><td>First step past the branch point, irreversible</td><td>Defined by the map. Its product cannot go anywhere else, so the cell must decide <em>before</em> it, not after</td></tr>
+        <tr><td><strong>Rate-limiting step</strong></td><td>The step that sets the pathway's throughput</td><td>Defined by rates. Frequently the same enzyme as the committed step — PFK-1 is both — but the words are not synonyms, and a question can give you a pathway where they differ</td></tr>
+        <tr><td><strong>Flux</strong></td><td>The rate of throughput of a whole pathway</td><td>Distinct from the concentration of any intermediate. A pathway can run fast with vanishingly small intermediate pools — that is what a near-equilibrium step buys you</td></tr>
+        <tr><td><strong>Futile cycle</strong> (substrate cycle)</td><td>Opposing reactions running at once, net effect nothing but hydrolysed ATP</td><td>Prevented by reciprocal control — one signal switches one direction on and the other off. Malonyl-CoA blocking CPT-1 is the textbook case. When deliberately allowed to run, it generates heat</td></tr>
+        <tr><td><strong>Glucogenic</strong></td><td>Its carbons can become net glucose</td><td>Degrades to pyruvate or to a citric-acid-cycle intermediate. Fatty acids are <em>not</em> glucogenic in humans, with the genuine exceptions of the propionyl-CoA from odd-chain fatty acids and the glycerol backbone of a triacylglycerol</td></tr>
+        <tr><td><strong>Ketogenic</strong></td><td>Its carbons end as acetyl-CoA or acetoacetyl-CoA</td><td>Those carbons cannot become glucose. <strong>Leucine and lysine are purely ketogenic</strong>; Ile, Phe, Thr, Trp and Tyr are both</td></tr>
+        <tr><td><strong>Obligate</strong> vs <strong>facultative</strong></td><td>&ldquo;Only ever&rdquo; vs &ldquo;able to, when it suits&rdquo;</td><td>A general pair of modifiers, not a biochemical mechanism. An <em>obligate</em> anaerobe cannot grow in air — it lacks adequate defences against reactive oxygen species <em>and</em> runs on enzymes oxygen inactivates; a <em>facultative</em> anaerobe uses oxygen when it is there and ferments when it is not. The same pair is reused for heterochromatin — constitutive against facultative — and for intracellular parasites</td></tr>
+        <tr><td><strong>Compartmentation</strong></td><td>Running opposed pathways in different places</td><td>Structural, not regulatory, and it is often the first answer to &ldquo;how does the cell stop these two from cancelling out&rdquo;. Fatty-acid synthesis in the cytosol, β-oxidation in the mitochondrion</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <p class="callout__title">Committed, rate-limiting, regulated — three claims, not one</p>
+    <p style="margin:0">A stem will often name an enzyme and then offer all three words as separate options.
+      <strong>Committed</strong> is about position on the map; <strong>rate-limiting</strong> is about flux
+      control; <strong>regulated</strong> merely says something modulates it. PFK-1 is all three, which is why
+      it is the example everyone learns and also why it is a poor guide. Hexokinase is regulated (product
+      inhibition by glucose 6-phosphate) but not committed to glycolysis, because glucose 6-phosphate has four
+      exits. Read which of the three claims the option is actually making.</p>
+  </div>
+</section>
+
+<nav class="pager">
+  <a href="biochem-03-enzymes.html"><small>Related</small><b>← Enzymes: Kinetics, Inhibition and Regulation</b></a>
+  <a href="biochemistry.html"><small>Index</small><b>All biochemistry notes</b></a>
+  <a href="biochem-04-carbohydrate-metabolism.html"><small>Related</small><b>Carbohydrate Metabolism →</b></a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>PostMed Notebook</strong> · Biochemistry · Terms, shorthand and naming</p>
+    <p>Representation used: a reference rather than a note — grouped by what a term is <em>for</em>, with
+      confusable pairs placed side by side and a discriminator column on every table. Definitions follow
+      Lehninger conventions and are kept consistent with notes 01 to 10; where a term is used loosely in
+      practice (anomer as a kind of epimer; isozyme against isoform) the entry says so rather than choosing
+      silently. Standard free energies, pK<sub>a</sub> values and equilibrium proportions are textbook
+      approximations given to build a sense of magnitude. There is deliberately no self-test on this page.</p>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

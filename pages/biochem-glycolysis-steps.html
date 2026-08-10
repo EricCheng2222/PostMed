@@ -189,7 +189,7 @@
           <div><b>ΔG</b><span>actual free-energy change in the cell (kJ·mol⁻¹)</span></div>
           <div><b>K′<sub>eq</sub></b><span>equilibrium constant at pH 7 — dimensionless as written here</span></div>
           <div><b>Q</b><span>mass-action ratio at the moment of measurement</span></div>
-          <div><b>P<sub>i</sub></b><span>inorganic phosphate (mol·L⁻¹)</span></div>
+          <div><b><button class="sh" data-sh="Pi" aria-expanded="false">P<sub>i</sub></button></b><span>inorganic phosphate (mol·L⁻¹)</span></div>
           <div><b>G6P</b><span>glucose 6-phosphate</span></div>
           <div><b>G3P</b><span>glyceraldehyde 3-phosphate — note 04 writes this <b>GAP</b> and uses G3P for the glycerol 3-phosphate shuttle</span></div>
         </div>
@@ -252,7 +252,7 @@
   </figure>
 
   <h3>The chemistry: a phosphoryl transfer that must not become a hydrolysis</h3>
-  <p>A kinase moves the terminal phosphoryl group of ATP onto a nucleophile — here the C6 hydroxyl oxygen of glucose,
+  <p>A kinase moves the terminal phosphoryl group of <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> onto a nucleophile — here the C6 hydroxyl oxygen of glucose,
      which attacks the γ-phosphorus. The obvious hazard is that water is also a nucleophile, is present at
      55 mol·L⁻¹, and would give ADP and P<sub>i</sub> with nothing gained. Hexokinase solves this with the textbook
      case of <strong>induced fit</strong>: the two lobes of the enzyme close around glucose like a hand closing on a
@@ -372,6 +372,28 @@
      phosphates. That is the entire justification for step 2, and it also tells you why step 3 phosphorylates C1
      rather than anywhere else: C1 has to be charged before the cut, because after the cut it is the exposed end of
      the upper half and would otherwise leak away.</p>
+
+  <div class="abg">
+    <div class="abg__card">
+      <h4>α β γ · phosphates in a nucleotide</h4>
+      <p>Counted <strong>outward from the sugar</strong>: α is the phosphate bonded to the 5′ carbon, then β, then γ
+        at the far tip. A kinase hands over the <strong>γ</strong> phosphate, which is the sense used in
+        §&nbsp;01 — the C6 hydroxyl of glucose attacks the γ-phosphorus of ATP. Click the ATP button there for the
+        diagram.</p>
+    </div>
+    <div class="abg__card">
+      <h4>α β · the anomeric carbon of a sugar</h4>
+      <p>Fixed when the ring closes, by which face the new C1 hydroxyl ends up on: <strong>α-</strong> or
+        <strong>β-D-glucopyranose</strong>, β-D-fructofuranose 6-phosphate. Nothing to do with phosphates, and there
+        is no γ. This is the sense in the "Go deeper" panel below.</p>
+    </div>
+    <div class="abg__card">
+      <h4>α β γ · position along a carbon chain</h4>
+      <p>Counted from the functional group: the <strong>α</strong> carbon is the one next to the carbonyl or
+        carboxyl, then β, then γ. This is the sense used in the paragraphs just above, where the retro-aldol breaks
+        the bond between the α and β carbons — and the sense that β-oxidation and γ-carboxylation are named for.</p>
+    </div>
+  </div>
 
   <div class="callout callout--exam">
     <p class="callout__title">What is examined here</p>
@@ -510,7 +532,7 @@
      gluconeogenesis by fructose 1,6-bisphosphatase, which hydrolyses the C1 phosphate rather than handing it back to
      ADP — the classic pattern for undoing a kinase.</p>
   <p>The regulation is the most examined in metabolism and note 04 §&nbsp;03 and §&nbsp;08 treat it at length; the
-     summary that belongs on this page is that PFK-1 is switched <strong>on</strong> by AMP, ADP and fructose
+     summary that belongs on this page is that PFK-1 is switched <strong>on</strong> by <button class="sh" data-sh="AMP" aria-expanded="false">AMP</button>, ADP and fructose
      2,6-bisphosphate and <strong>off</strong> by ATP, citrate and H⁺. The ATP effect is the one to understand rather
      than memorise: ATP is the substrate at the active site <em>and</em> an inhibitor at a separate low-affinity
      allosteric site, and binding there does not lower V<sub>max</sub> — it makes the fructose 6-phosphate saturation
@@ -950,7 +972,7 @@
      A phosphate cannot be attached to a carboxylate afterwards; the resulting acyl phosphate is far too high in
      energy to be built by an ordinary condensation. So the two events must be <strong>coupled</strong>, and they are
      coupled through a covalent intermediate.</p>
-  <p>The aldehyde adds to an active-site cysteine thiol, giving a <strong>thiohemiacetal</strong>. NAD⁺ then takes a
+  <p>The aldehyde adds to an active-site cysteine thiol, giving a <strong>thiohemiacetal</strong>. <button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button> then takes a
      hydride from that carbon, and the product is a <strong>thioester</strong> — an already high-energy linkage,
      because sulfur's orbitals overlap poorly with carbon's and the ester has none of the resonance stabilisation an
      oxygen ester enjoys. The oxidation energy is now sitting in a bond rather than in the solvent. Inorganic
@@ -962,7 +984,7 @@
     <p class="callout__title">What is examined here</p>
     <p style="margin:0">That this is the <strong>only oxidation–reduction step of glycolysis</strong>, so all the
       NADH comes from it and the NAD⁺ that anaerobic metabolism must regenerate is the NAD⁺ this step consumed. That
-      the phosphate incorporated comes from <strong>P<sub>i</sub>, not ATP</strong> — which is why glycolysis
+      the phosphate incorporated comes from <strong><button class="sh" data-sh="Pi" aria-expanded="false">P<sub>i</sub></button>, not ATP</strong> — which is why glycolysis
       consumes inorganic phosphate and why a cell starved of P<sub>i</sub> stops here. And that the sequence of
       intermediates is thiohemiacetal → thioester → acyl phosphate, in that order; questions often give the three in
       the wrong order and ask which is the oxidised species.</p>
@@ -1016,7 +1038,7 @@
   <h2>Step 7 · Phosphoglycerate kinase — the first ATP</h2>
 
   <p class="idea"><b>The idea</b>This is where the first ATP of the pathway is actually made, and it is made with no membrane, no oxygen and no
-     machinery: one molecule simply hands a phosphate to another, because it is holding it more loosely than ADP
+     machinery: one molecule simply hands a phosphate to another, because it is holding it more loosely than <button class="sh" data-sh="ADP" aria-expanded="false">ADP</button>
      will. Since everything after the split happens twice, this single reaction repays the entire cost of the first
      half of the pathway. The cell is now back where it started, with all the profit still to come.</p>
 
@@ -1421,7 +1443,7 @@
      still has to be allowed <em>out</em>, and because the liver needs to be able to stop glycolysis without stopping
      the reactions upstream that gluconeogenesis also uses. Pyruvate kinase is activated by <strong>fructose
      1,6-bisphosphate</strong> — the product of PFK-1, a feed-forward signal that opens the exit as soon as the
-     entrance opens — and inhibited by ATP, acetyl-CoA, alanine and long-chain fatty acids, all of which mean "there
+     entrance opens — and inhibited by ATP, <button class="sh" data-sh="acetyl-CoA" aria-expanded="false">acetyl-CoA</button>, alanine and long-chain fatty acids, all of which mean "there
      is already plenty of fuel past this point". The liver L isoenzyme carries an extra layer: PKA phosphorylates and
      inactivates it in response to glucagon, so a fasting liver stops burning the very glucose it is trying to
      export. Muscle's M1 isoenzyme has no such site, which is exactly right — muscle has no business shutting down
@@ -1432,7 +1454,7 @@
     <p style="margin:0">That pyruvate kinase requires a <strong>monovalent cation, K⁺</strong>, as well as Mg²⁺ — it
       is the only glycolytic enzyme that does, and it is a favourite one-line fact. That the reaction is irreversible
       and therefore must be bypassed in gluconeogenesis by <strong>two</strong> enzymes, pyruvate carboxylase and PEP
-      carboxykinase, at a cost of one ATP and one GTP: three of the four gluconeogenic bypass enzymes exist to undo
+      carboxykinase, at a cost of one ATP and one <button class="sh" data-sh="GTP" aria-expanded="false">GTP</button>: three of the four gluconeogenic bypass enzymes exist to undo
       this single step and the PFK-1 step. And that <strong>pyruvate kinase deficiency</strong> is the second
       commonest enzymopathic haemolytic anaemia after G6PD deficiency, is autosomal recessive rather than X-linked,
       and produces a <em>chronic non-spherocytic</em> anaemia rather than episodic haemolysis.</p>
@@ -1658,7 +1680,7 @@
     <p>The costs are paid on the <em>six</em>-carbon molecule and the income is collected on the <em>three</em>-carbon
       ones — which is the whole reason the income doubles and the costs do not. One ATP out at step 1, one out at
       step 3, both on a single hexose: <strong>−2</strong>. One ATP in at step 7 and one at step 10, but the pathway
-      below the aldolase runs twice: <strong>+4</strong>. Net <strong>+2 ATP</strong>, plus <strong>2 NADH</strong>
+      below the aldolase runs twice: <strong>+4</strong>. Net <strong>+2 ATP</strong>, plus <strong>2 <button class="sh" data-sh="NADH" aria-expanded="false">NADH</button></strong>
       from step 6 running twice. If you can say which molecule each transaction happens to, you never have to
       remember whether to double it.
       <span class="mnemo__gloss">Mine. It covers free glucose under any conditions, and nothing else. It does

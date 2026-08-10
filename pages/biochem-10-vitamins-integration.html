@@ -178,7 +178,7 @@
         <div class="symtab">
           <div><b>TPP</b><span>thiamine pyrophosphate (thiamine diphosphate)</span></div>
           <div><b>FAD / FMN</b><span>flavin adenine dinucleotide / flavin mononucleotide</span></div>
-          <div><b>NAD⁺ / NADP⁺</b><span>nicotinamide adenine dinucleotide (± 2′-phosphate)</span></div>
+          <div><b><button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button> / <button class="sh" data-sh="NADP+" aria-expanded="false">NADP⁺</button></b><span>nicotinamide adenine dinucleotide (± 2′-phosphate)</span></div>
           <div><b>CoA-SH</b><span>coenzyme A; the SH is the business end</span></div>
           <div><b>PLP</b><span>pyridoxal 5′-phosphate</span></div>
           <div><b>THF</b><span>tetrahydrofolate</span></div>
@@ -352,12 +352,12 @@
       <summary>Full definition, symbols and units</summary>
       <div class="disc__body">
         <dl class="def">
-          <dt>FAD / FMN (from riboflavin, B<sub>2</sub>)</dt>
+          <dt><button class="sh" data-sh="FAD" aria-expanded="false">FAD</button> / FMN (from riboflavin, B<sub>2</sub>)</dt>
           <dd>FMN is riboflavin 5′-phosphate; FAD is FMN joined to AMP. The reactive part is the tricyclic
               <strong>isoalloxazine</strong> ring, which can accept one electron (giving a stable, coloured
               <strong>semiquinone</strong> radical) or two. Almost always a tightly bound
               <strong>prosthetic group</strong> — covalently attached in succinate dehydrogenase.</dd>
-          <dt>NADP<sup>+</sup> / NADPH</dt>
+          <dt>NADP<sup>+</sup> / <button class="sh" data-sh="NADPH" aria-expanded="false">NADPH</button></dt>
           <dd>NAD<sup>+</sup> carrying an extra phosphate on the 2′-OH of the adenosine ribose. Chemically it does
               exactly the same hydride transfer; the phosphate is a <strong>recognition handle</strong> that lets
               enzymes sort the two pools.</dd>
@@ -433,7 +433,7 @@
       Fe–S chain — and of <strong>FAD in Complex II</strong>, and of the electron-transferring flavoprotein
       (ETF) that collects electrons from the acyl-CoA dehydrogenases. Note also what Complex II means for the ATP
       ledger of <strong>note 06</strong>: its electrons enter at ubiquinone, below Complex I, so they drive two
-      proton pumps instead of three — the whole reason FADH<sub>2</sub> is worth ~1.5 ATP and NADH ~2.5.</p>
+      proton pumps instead of three — the whole reason <button class="sh" data-sh="FADH2" aria-expanded="false">FADH<sub>2</sub></button> is worth ~1.5 ATP and NADH ~2.5.</p>
   </div>
 
   <details class="disc disc--deep">
@@ -584,7 +584,7 @@
   <div class="defbox">
     <p class="defbox__label">Definition &amp; mechanism</p>
     <dl class="def">
-      <dt>Thiamine pyrophosphate (TPP)</dt>
+      <dt>Thiamine pyrophosphate (<button class="sh" data-sh="TPP" aria-expanded="false">TPP</button>)</dt>
       <dd>Thiamine (B<sub>1</sub>) plus a pyrophosphate transferred from ATP. The catalytic atom is
           <strong>C2 of the thiazolium ring</strong>, sitting between a sulfur and a positively charged nitrogen.
           Losing its proton gives a carbanion — the <strong>ylide</strong> — which the adjacent N<sup>+</sup>
@@ -658,7 +658,7 @@
         sites. <em>Why lipoamide:</em> the disulfide is simultaneously the oxidant and the acceptor, and the arm
         solves the geometry problem.</li>
     <li><strong>E2 again, CoA-SH.</strong> The acetyl group is transferred from the lipoyl arm to coenzyme A,
-        giving <strong>acetyl-CoA</strong>. <em>Why CoA:</em> a thioester is the only acyl carrier energetic
+        giving <strong><button class="sh" data-sh="acetyl-CoA" aria-expanded="false">acetyl-CoA</button></strong>. <em>Why CoA:</em> a thioester is the only acyl carrier energetic
         enough to donate to citrate synthase later (§ 04).</li>
     <li><strong>E3 (dihydrolipoyl dehydrogenase), FAD.</strong> Reoxidises the dihydrolipoamide back to the
         disulfide. <em>Why FAD:</em> disulfide chemistry needs a flavin (§ 02).</li>
@@ -755,7 +755,7 @@
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
-      <dt>Coenzyme A (from pantothenate, B<sub>5</sub>)</dt>
+      <dt><button class="sh" data-sh="CoA" aria-expanded="false">Coenzyme A</button> (from pantothenate, B<sub>5</sub>)</dt>
       <dd>Pantothenate + β-mercaptoethylamine (from cysteine) + 3′-phosphoadenosine 5′-diphosphate. The reactive group
           is the terminal <strong>thiol</strong>; acyl groups are carried as <strong>thioesters</strong>.</dd>
     </dl>
@@ -809,7 +809,7 @@
         <strong>Claisen condensation</strong> in metabolism: citrate synthase, thiolase (β-oxidation and
         ketogenesis, note 07), HMG-CoA synthase, and the condensing step of fatty-acid synthase.</li>
     <li><strong>Activation, at a price.</strong> Attaching CoA to a fatty acid (acyl-CoA synthetase) costs
-        <strong>two</strong> high-energy phosphate bonds, because ATP is cleaved to AMP + PP<sub>i</sub> and the
+        <strong>two</strong> high-energy phosphate bonds, because <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> is cleaved to AMP + <button class="sh" data-sh="PPi" aria-expanded="false">PP<sub>i</sub></button> and the
         pyrophosphate is then hydrolysed. That is the standard trick for making an activation step irreversible,
         and it is why β-oxidation's ledger starts at −2 ATP.</li>
   </ul>
@@ -931,7 +931,7 @@
   <div class="defbox">
     <p class="defbox__label">Definition &amp; mechanism</p>
     <dl class="def">
-      <dt>Pyridoxal 5′-phosphate (PLP)</dt>
+      <dt>Pyridoxal 5′-phosphate (<button class="sh" data-sh="PLP" aria-expanded="false">PLP</button>)</dt>
       <dd>The active form of vitamin B<sub>6</sub>. At rest it is held in the active site as an
           <strong>internal aldimine</strong> — a Schiff base to a lysine side chain. The substrate amino acid
           displaces the lysine to form an <strong>external aldimine</strong>, and catalysis proceeds from
@@ -1119,7 +1119,7 @@
   <div class="defbox">
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
-      <dt>Tetrahydrofolate (THF)</dt>
+      <dt>Tetrahydrofolate (<button class="sh" data-sh="THF" aria-expanded="false">THF</button>)</dt>
       <dd>Dietary folate reduced twice by <strong>dihydrofolate reductase</strong> (folate → DHF → THF, two NADPH).
           The one-carbon unit rides on <strong>N5</strong>, <strong>N10</strong>, or bridged between them.</dd>
     </dl>
@@ -1731,7 +1731,7 @@
         </div>
         <div class="symtab">
           <div><b>K<sub>m</sub>, S<sub>0.5</sub></b><span>substrate concentration for half V<sub>max</sub> (mmol·L⁻¹)</span></div>
-          <div><b>G6P</b><span>glucose-6-phosphate</span></div>
+          <div><b><button class="sh" data-sh="G6P" aria-expanded="false">G6P</button></b><span>glucose-6-phosphate</span></div>
           <div><b>GLUT<em>n</em></b><span>facilitative glucose transporter isoform</span></div>
           <div><b>LPL</b><span>lipoprotein lipase (capillary endothelium)</span></div>
           <div><b>HSL / ATGL</b><span>hormone-sensitive lipase / adipose triglyceride lipase</span></div>
@@ -2150,7 +2150,7 @@
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>The two arms</dt>
-      <dd><strong>Glucagon</strong> (and adrenaline at β-receptors) → G<sub>s</sub> → adenylyl cyclase → cAMP →
+      <dd><strong>Glucagon</strong> (and adrenaline at β-receptors) → G<sub>s</sub> → adenylyl cyclase → <button class="sh" data-sh="cAMP" aria-expanded="false">cAMP</button> →
           <strong>protein kinase A</strong> → phosphorylate. <strong>Insulin</strong> → receptor tyrosine kinase →
           IRS-1 → PI3K → PIP<sub>3</sub> → <strong>Akt/PKB</strong> → activate protein phosphatase 1 and
           phosphodiesterase 3B → <strong>de</strong>phosphorylate. Note 09 has the receptor mechanisms.</dd>
@@ -2163,7 +2163,7 @@
       <summary>Full definition, symbols and units</summary>
       <div class="disc__body">
         <dl class="def">
-          <dt>Fructose-2,6-bisphosphate — the master signal</dt>
+          <dt><button class="sh" data-sh="F2,6BP" aria-expanded="false">Fructose-2,6-bisphosphate</button> — the master signal</dt>
           <dd>Not an intermediate of any pathway; a pure regulator. It is the most potent
               <strong>activator of PFK-1</strong> and simultaneously an <strong>inhibitor of
               fructose-1,6-bisphosphatase</strong>, so its concentration alone decides whether the liver runs

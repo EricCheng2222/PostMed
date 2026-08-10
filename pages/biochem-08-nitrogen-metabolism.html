@@ -187,7 +187,7 @@
           <div><b>NH₃</b><span>free ammonia, the membrane-permeant form (mol·L⁻¹)</span></div>
           <div><b>pK<sub>a</sub></b><span>−log₁₀ of the acid dissociation constant (dimensionless)</span></div>
           <div><b>UUN</b><span>urinary urea nitrogen (g·day⁻¹)</span></div>
-          <div><b>~P</b><span>one high-energy phosphoanhydride bond (mol)</span></div>
+          <div><b><button class="sh" data-sh="~P" aria-expanded="false">~P</button></b><span>one high-energy phosphoanhydride bond (mol)</span></div>
         </div>
       </div>
     </details>
@@ -372,7 +372,7 @@
         </div>
         <div class="symtab">
           <div><b>α-KG</b><span>α-ketoglutarate, 2-oxoglutarate (mol·L⁻¹)</span></div>
-          <div><b>PLP</b><span>pyridoxal 5′-phosphate, from vitamin B₆</span></div>
+          <div><b><button class="sh" data-sh="PLP" aria-expanded="false">PLP</button></b><span>pyridoxal 5′-phosphate, from vitamin B₆</span></div>
           <div><b>PMP</b><span>pyridoxamine 5′-phosphate — PLP carrying the transferred nitrogen</span></div>
           <div><b>ALT / GPT</b><span>alanine aminotransferase (U·L⁻¹ in serum)</span></div>
           <div><b>AST / GOT</b><span>aspartate aminotransferase (U·L⁻¹ in serum)</span></div>
@@ -570,7 +570,7 @@
   </div>
 
   <p>Two features of GDH repay attention. First, it is <strong>freely reversible and uses either
-     nicotinamide cofactor</strong>: NAD⁺ in the oxidative, catabolic direction, NADPH in the reductive direction
+     nicotinamide cofactor</strong>: <button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button> in the oxidative, catabolic direction, NADPH in the reductive direction
      that fixes ammonia back onto α-ketoglutarate. That is not sloppiness — it is the standard biochemical
      signature of an enzyme that must serve both a catabolic and an anabolic pathway, and it is exactly how the
      brain disposes of ammonia in §&nbsp;01 and how bacteria and plants assimilate it.</p>
@@ -903,7 +903,7 @@
      unchanged. The name to fix is that this is a <em>trans</em>carbamoylase, a group transfer, not a synthesis;
      the energy was already paid in step 1.</p>
   <p><strong>Step 3 — ASS</strong> is where the second nitrogen arrives, and it arrives on aspartate, not as
-     ammonia. Look at the cost: ATP → AMP + PP<sub>i</sub>, which is two high-energy phosphates, not one, and the
+     ammonia. Look at the cost: <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> → AMP + <button class="sh" data-sh="PPi" aria-expanded="false">PP<sub>i</sub></button>, which is two high-energy phosphates, not one, and the
      pyrophosphate is then hydrolysed by inorganic pyrophosphatase to make the step effectively irreversible —
      the identical trick used by aminoacyl-tRNA synthetases and fatty acyl-CoA synthetase. This is the slowest of
      the cytosolic steps and the one that limits flux there.</p>
@@ -1072,7 +1072,7 @@
      usually inhibitory. But arginine is not the end product; urea is. Arginine is the last intermediate before
      the exit, so arginine rising means substrate is queueing inside the loop, which means nitrogen is arriving
      faster than it is leaving. Turning up CPS I is the correct response. Meanwhile the two substrates of NAG
-     synthase, glutamate and acetyl-CoA, are precisely the molecules that accumulate when amino acids are being
+     synthase, glutamate and <button class="sh" data-sh="acetyl-CoA" aria-expanded="false">acetyl-CoA</button>, are precisely the molecules that accumulate when amino acids are being
      catabolised in quantity. So NAG concentration is a direct, chemically honest readout of "there is a lot of
      nitrogen about", and CPS I reads it. This is a good example of a general principle: allosteric signals in
      metabolism are usually molecules whose concentration <em>already</em> reports the thing being sensed, not
@@ -1224,7 +1224,7 @@
   <p>The question "is this amino acid glucogenic?" is really the question "does its skeleton give a net increase
      in oxaloacetate?" Everything that arrives as pyruvate, α-ketoglutarate, succinyl-CoA, fumarate or
      oxaloacetate does, because all of those can be carried round to oxaloacetate and then pulled out by PEPCK.
-     Anything arriving as acetyl-CoA does not, because acetyl-CoA's two carbons are matched by two CO₂ released in
+     Anything arriving as <button class="sh" data-sh="acetyl-CoA" aria-expanded="false">acetyl-CoA</button> does not, because acetyl-CoA's two carbons are matched by two CO₂ released in
      the same turn of the cycle. So the classification is a statement about <strong>anaplerosis</strong>, and if
      you can say which of the seven doorways an amino acid uses, you never need the list.</p>
   <p>Two consequences follow immediately and both are examinable. First, the <strong>odd-chain fatty acid</strong>
@@ -1358,7 +1358,7 @@
           <div><b>BCKD</b><span>branched-chain α-keto acid dehydrogenase complex</span></div>
           <div><b>CBS</b><span>cystathionine β-synthase (PLP-dependent)</span></div>
           <div><b>HGD</b><span>homogentisate 1,2-dioxygenase</span></div>
-          <div><b>TPP</b><span>thiamine pyrophosphate, from vitamin B₁</span></div>
+          <div><b><button class="sh" data-sh="TPP" aria-expanded="false">TPP</button></b><span>thiamine pyrophosphate, from vitamin B₁</span></div>
         </div>
       </div>
     </details>
@@ -1509,7 +1509,7 @@
           <dt>S-adenosylmethionine (SAM)</dt>
           <dd>Methionine plus ATP, with <em>all three</em> phosphates lost (P<sub>i</sub> + PP<sub>i</sub>). The
               resulting sulfonium ion is a far better methyl donor than N⁵-methyl-THF because the positive charge
-              on sulfur makes the methyl group strongly electrophilic. SAM is the universal biological methyl
+              on sulfur makes the methyl group strongly electrophilic. <button class="sh" data-sh="SAM" aria-expanded="false">SAM</button> is the universal biological methyl
               donor: DNA and histone methylation, noradrenaline → adrenaline, phosphatidylethanolamine →
               phosphatidylcholine, creatine, and the inactivation of catecholamines by COMT.</dd>
           <dt>The methionine cycle</dt>
@@ -1537,7 +1537,7 @@
 
   <h3>Where the carbons come from and where they go</h3>
   <p>The dominant source is <strong>serine</strong>: serine hydroxymethyltransferase, another PLP enzyme, takes the
-     β-carbon off serine to give glycine and loads it onto THF as N⁵,N¹⁰-methylene-THF. Smaller contributions come
+     β-carbon off serine to give glycine and loads it onto <button class="sh" data-sh="THF" aria-expanded="false">THF</button> as N⁵,N¹⁰-methylene-THF. Smaller contributions come
      from the glycine cleavage system, from formate, and from histidine (whose intermediate FIGLU accumulates in
      folate deficiency — the basis of the old FIGLU excretion test).</p>
   <p>The three destinations are worth memorising as a set, because each is a drug target:</p>
@@ -1899,7 +1899,7 @@
      IMP sits at a fork: adenylosuccinate synthetase takes it to AMP, IMP dehydrogenase takes it to GMP. AMP
      inhibits the first branch and GMP inhibits the second, so each product limits its own production.
      <strong>(3) The cross-regulation</strong>, which is the elegant part and the one examiners like: making AMP
-     from IMP consumes <strong>GTP</strong>, while making GMP from IMP consumes <strong>ATP</strong>. Each branch
+     from IMP consumes <strong><button class="sh" data-sh="GTP" aria-expanded="false">GTP</button></strong>, while making GMP from IMP consumes <strong>ATP</strong>. Each branch
      is therefore driven by the <em>other</em> nucleotide. If adenine nucleotides are abundant, GMP synthesis is
      favoured; if guanine nucleotides are abundant, AMP synthesis is favoured. The pools self-balance without any
      dedicated sensor.</p>
@@ -2164,7 +2164,7 @@
       <tbody>
         <tr><td><strong>Underexcretion</strong> (≈90 % of cases)</td><td>Thiazide and loop diuretics, low-dose aspirin, ciclosporin, lead, ketoacidosis, lactic acidosis, alcohol</td><td>All act on the proximal tubule; organic acids such as lactate and ketones compete with urate on <strong>URAT1</strong>, so urate is reabsorbed instead. This is why beer and a fast both precipitate attacks</td></tr>
         <tr><td><strong>Overproduction</strong> (≈10 %)</td><td>HGPRT deficiency, PRPP synthetase superactivity, myeloproliferative and lymphoproliferative disease, tumour lysis syndrome, psoriasis</td><td>Any state of high cell turnover delivers nucleic acid to the catabolic pathway</td></tr>
-        <tr><td><strong>ATP depletion</strong></td><td>Fructose loads, alcohol, glycogen storage disease type I (von Gierke)</td><td>Fructokinase traps phosphate and drives ATP → AMP → IMP → urate. The mechanistic link between sugary drinks and gout</td></tr>
+        <tr><td><strong>ATP depletion</strong></td><td>Fructose loads, alcohol, glycogen storage disease type I (von Gierke)</td><td>Fructokinase traps phosphate and drives ATP → <button class="sh" data-sh="AMP" aria-expanded="false">AMP</button> → IMP → urate. The mechanistic link between sugary drinks and gout</td></tr>
         <tr><td><strong>Xanthine oxidase inhibitors</strong></td><td><strong>Allopurinol</strong>, febuxostat</td><td>Allopurinol is oxidised <em>by its own target</em> to oxypurinol, which stays bound to the reduced molybdenum — a mechanism-based inhibitor. The precursors that accumulate instead, hypoxanthine and xanthine, are much more soluble</td></tr>
         <tr><td><strong>Uricosurics</strong></td><td>Probenecid, benzbromarone</td><td>Block URAT1 reabsorption. Contraindicated if the patient is already an overexcretor or has stones — you would simply move the problem into the tubule</td></tr>
         <tr><td><strong>Recombinant uricase</strong></td><td>Rasburicase, pegloticase</td><td>Puts back the enzyme evolution deleted; converts urate to allantoin. Used for tumour lysis syndrome. Causes haemolysis in G6PD deficiency because the reaction generates H₂O₂</td></tr>

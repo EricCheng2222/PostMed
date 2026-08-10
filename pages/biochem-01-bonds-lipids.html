@@ -352,9 +352,9 @@
       <tbody>
         <tr><td>Carboxyl –COOH</td><td>Amino –NH₂</td><td><b>Amide / peptide</b></td><td>Protein backbone; ceramide</td></tr>
         <tr><td>Carboxyl –COOH</td><td>Hydroxyl –OH</td><td><b>Ester</b></td><td>Triacylglycerol, phospholipids, waxes</td></tr>
-        <tr><td>Carboxyl –COOH</td><td>Thiol –SH</td><td><b>Thioester</b> (high energy)</td><td>Acetyl-CoA, acyl-CoA</td></tr>
+        <tr><td>Carboxyl –COOH</td><td>Thiol –SH</td><td><b>Thioester</b> (high energy)</td><td><button class="sh" data-sh="acetyl-CoA" aria-expanded="false">Acetyl-CoA</button>, acyl-CoA</td></tr>
         <tr><td>Anomeric –OH</td><td>Hydroxyl –OH</td><td><b>Glycosidic</b></td><td>Disaccharides, starch, glycogen</td></tr>
-        <tr><td>Phosphate</td><td>Hydroxyl –OH ×2</td><td><b>Phosphodiester</b></td><td>DNA / RNA backbone</td></tr>
+        <tr><td><button class="sh" data-sh="P" aria-expanded="false">Phosphate</button></td><td>Hydroxyl –OH ×2</td><td><b>Phosphodiester</b></td><td>DNA / RNA backbone</td></tr>
         <tr><td>Thiol –SH</td><td>Thiol –SH</td><td><b>Disulfide</b> (oxidation, <em>not</em> condensation)</td><td>Extracellular / secreted proteins</td></tr>
       </tbody>
     </table>
@@ -458,7 +458,7 @@
         <tr><td><b>Phosphodiester</b></td><td>Condensation (3′-OH + 5′-phosphate)</td><td>DNA / RNA backbone</td><td>Nucleases</td></tr>
         <tr><td><b>Amide</b></td><td>Condensation (sphingosine –NH₂ + fatty acid)</td><td>Ceramide — the core of every sphingolipid</td><td>Ceramidase</td></tr>
         <tr><td><b>Disulfide</b></td><td><b>Oxidation</b> of two Cys –SH</td><td>Tertiary / quaternary structure, mostly <b>secreted</b> proteins</td><td>Reducing agents: β-mercaptoethanol, DTT</td></tr>
-        <tr><td><b>Thioester</b></td><td>Fatty acid + CoA-SH (ATP-dependent)</td><td>Acetyl-CoA, acyl-CoA</td><td>High-energy bond; hydrolysis drives reactions</td></tr>
+        <tr><td><b>Thioester</b></td><td>Fatty acid + <button class="sh" data-sh="CoA" aria-expanded="false">CoA-SH</button> (<button class="sh" data-sh="ATP" aria-expanded="false">ATP</button>-dependent)</td><td>Acetyl-CoA, acyl-CoA</td><td>High-energy bond; hydrolysis drives reactions</td></tr>
       </tbody>
     </table>
   </div>
@@ -951,7 +951,7 @@
         <tr>
           <td rowspan="3"><b>Complex lipids</b><br><small style="color:var(--ink-faint)">saponifiable</small></td>
           <td>Glycerophospholipids<br><small>PC, PE, PS, PI, cardiolipin</small></td>
-          <td>Glycerol + 2 fatty acids + phosphate + head group</td>
+          <td>Glycerol + 2 fatty acids + <button class="sh" data-sh="P" aria-expanded="false">phosphate</button> + head group</td>
           <td><b>Amphipathic</b> → the structural backbone of membranes</td>
         </tr>
         <tr>
@@ -1118,7 +1118,7 @@
       <li><b>↓ fluidity</b>: lower temperature, more saturation, longer chains, cholesterol <em>above</em>
         T<sub>m</sub>, high sphingomyelin content.</li>
       <li>Lipids diffuse <strong>laterally very fast</strong>, but <strong>flip-flop is extremely slow</strong>
-        and needs flippase / floppase / scramblase — usually at the cost of ATP.</li>
+        and needs flippase / floppase / scramblase — usually at the cost of <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button>.</li>
     </ul>
   </div>
 

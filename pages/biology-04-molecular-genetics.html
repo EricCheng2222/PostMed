@@ -419,7 +419,7 @@
           <th scope="row">Inducible<br><small style="font-weight:400;color:var(--ink-faint)">effector turns it ON</small></th>
           <td><strong><i>lac</i> operon.</strong> Repressor LacI is active on its own; the inducer allolactose
               binds it and <em>inactivates</em> it, so it lets go of the operator. Effector removes the block.</td>
-          <td><strong><i>lac</i> operon again, and <i>ara</i>BAD.</strong> CAP is inactive on its own; cAMP binds it
+          <td><strong><i>lac</i> operon again, and <i>ara</i>BAD.</strong> CAP is inactive on its own; <button class="sh" data-sh="cAMP" aria-expanded="false">cAMP</button> binds it
               and <em>activates</em> it, so it recruits polymerase. AraC is a genuine dual-function protein: a
               repressor that loops the DNA without arabinose, an activator with it.</td>
         </tr>
@@ -539,7 +539,7 @@
           <div><b><i>lacZ</i>, <i>lacY</i>, <i>lacA</i></b><span>structural genes (loci, dimensionless)</span></div>
           <div><b><i>lacI</i></b><span>repressor gene; product is a homotetramer of 4 × 38 kDa subunits</span></div>
           <div><b>O1, O2, O3</b><span>operators at +11, +412 and −82 relative to the transcription start (bp)</span></div>
-          <div><b>cAMP</b><span>3′,5′-cyclic AMP (mol·m⁻³; rises roughly 10-fold when glucose is exhausted)</span></div>
+          <div><b><button class="sh" data-sh="cAMP" aria-expanded="false">cAMP</button></b><span>3′,5′-cyclic AMP (mol·m⁻³; rises roughly 10-fold when glucose is exhausted)</span></div>
           <div><b>EIIA<sup>Glc</sup></b><span>glucose-specific enzyme IIA of the phosphotransferase system</span></div>
           <div><b>fold induction</b><span>induced ÷ uninduced expression (dimensionless; ≈1000 for wild-type <i>lac</i>)</span></div>
         </div>
@@ -652,7 +652,7 @@
   </div>
 
   <h3>The glucose effect: what the textbook usually leaves out</h3>
-  <p>The version in most notes says: glucose inhibits adenylyl cyclase, cAMP falls, CAP cannot be activated, the
+  <p>The version in most notes says: glucose inhibits adenylyl cyclase, <button class="sh" data-sh="cAMP" aria-expanded="false">cAMP</button> falls, CAP cannot be activated, the
      weak <i>lac</i> promoter is not recruited, so transcription stays low. That is true, and it is worth knowing.
      But it is <strong>not the dominant mechanism</strong>, and a question that offers it as the complete answer is
      offering you a textbook sentence that has aged.</p>
@@ -846,7 +846,7 @@
           <dt>Riboswitch</dt>
           <dd>The ribosome-free version of the same trick: a metabolite binds the nascent mRNA directly and its
               binding chooses between two folds, one of which is a terminator or occludes the ribosome binding
-              site. Examples sense TPP (thiamine pyrophosphate), FMN, lysine, glycine, SAM.</dd>
+              site. Examples sense <button class="sh" data-sh="TPP" aria-expanded="false">TPP</button> (thiamine pyrophosphate), FMN, lysine, glycine, SAM.</dd>
         </dl>
         <div class="fx-grid">
           <div class="fx"><span class="fx__eq">TrpR + 2 Trp → active repressor → binds <i>trpO</i> → transcription blocked</span><span class="fx__tag">negative, repressible</span></div>
@@ -1100,7 +1100,7 @@
         <tr><td>H3K9me3</td><td>SUV39H1</td><td>HP1 chromodomain, which self-associates and spreads</td><td><strong>Closed</strong> — constitutive heterochromatin</td></tr>
         <tr><td>H3K27me3</td><td>PRC2 (EZH2)</td><td>PRC1, which ubiquitinates H2A and compacts</td><td><strong>Closed</strong> — facultative, reversible, developmental genes</td></tr>
         <tr><td>DNA 5-methyl-CpG</td><td>DNMT3A/3B (de novo), DNMT1 (maintenance)</td><td>MeCP2 and MBD proteins, which recruit HDACs; also blocks some activators directly</td><td><strong>Closed and stable</strong> — the most durable mark, and the one whose copying through S phase is best understood (DNMT1 at the fork). Repressive histone marks are propagated too, but less faithfully</td></tr>
-        <tr><td>Nucleosome sliding / eviction</td><td>SWI/SNF, ISWI (ATP-dependent)</td><td>Exposes or hides a binding site by moving the histones, not by decorating them</td><td>Either — a remodeller is a tool, not a signal</td></tr>
+        <tr><td>Nucleosome sliding / eviction</td><td>SWI/SNF, ISWI (<button class="sh" data-sh="ATP" aria-expanded="false">ATP</button>-dependent)</td><td>Exposes or hides a binding site by moving the histones, not by decorating them</td><td>Either — a remodeller is a tool, not a signal</td></tr>
       </tbody>
     </table>
   </div>
@@ -1194,7 +1194,7 @@
     <p class="callout__title">Sentences that sound right and are not</p>
     <p style="margin:0"><em>"Methylation of DNA and methylation of histones are the same process."</em> Different
       substrates, different enzymes, opposite reliability of meaning: DNA methylation at a promoter CpG island is
-      almost always repressive, histone methylation depends on the residue. They share only the methyl donor, SAM.
+      almost always repressive, histone methylation depends on the residue. They share only the methyl donor, <button class="sh" data-sh="SAM" aria-expanded="false">SAM</button>.
       <em>"Heterochromatin contains no genes."</em> It contains plenty — they are simply not expressed in that cell,
       and facultative heterochromatin is by definition full of genes that <em>are</em> expressed elsewhere.
       <em>"Acetylation adds a negative charge to the histone, which repels DNA."</em> Nearly right and wrong in the
@@ -1360,7 +1360,7 @@
       given that they lie on different chromosomes and each has its own promoter. The answer is that they share a
       short DNA sequence — a <strong>response element</strong> — and one activated factor binds all of them.
       Glucocorticoid enters the cell, binds its receptor, releases it from HSP90, and the receptor dimer travels to
-      every GRE in the genome. Heat shock activates HSF1, which finds every HSE. cAMP activates PKA, which
+      every GRE in the genome. Heat shock activates HSF1, which finds every HSE. <button class="sh" data-sh="cAMP" aria-expanded="false">cAMP</button> activates PKA, which
       phosphorylates CREB, which sits on every CRE. This is coordinate control without an operon, and questions
       often set it against the operon directly. The one-line contrast: <strong>bacteria co-regulate by putting the
       genes together; eukaryotes co-regulate by putting the same address on genes that are far apart.</strong></p>

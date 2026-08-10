@@ -292,8 +292,8 @@
         <div class="symtab">
           <div><b>C1′–C5′</b><span>sugar carbons; primes distinguish them from base ring atoms</span></div>
           <div><b>N9 / N1</b><span>glycosidic attachment nitrogen (purine / pyrimidine)</span></div>
-          <div><b>P<sub>i</sub></b><span>inorganic phosphate</span></div>
-          <div><b>PP<sub>i</sub></b><span>pyrophosphate, released by every polymerase</span></div>
+          <div><b><button class="sh" data-sh="Pi" aria-expanded="false">P<sub>i</sub></button></b><span>inorganic phosphate</span></div>
+          <div><b><button class="sh" data-sh="PPi" aria-expanded="false">PP<sub>i</sub></button></b><span>pyrophosphate, released by every polymerase</span></div>
           <div><b>dNTP</b><span>deoxynucleoside triphosphate — the DNA monomer</span></div>
           <div><b>ΔG°′</b><span>standard free-energy change at pH 7 (kJ·mol⁻¹)</span></div>
         </div>
@@ -404,7 +404,8 @@
 
   <h3>Why ATP's phosphates are "high energy" and the backbone's are not</h3>
   <p>The sugar–phosphate link in a nucleic acid is a <strong>phosphoester</strong>: phosphate to carbon through
-     oxygen, ΔG°′ of hydrolysis about −14 kJ·mol⁻¹. The bonds between the α, β and γ phosphates of ATP are
+     oxygen, ΔG°′ of hydrolysis about −14 kJ·mol⁻¹. The bonds between the α, β and γ phosphates of
+     <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> are
      <strong>phosphoanhydrides</strong>: phosphate to phosphate, ΔG°′ about −30.5 kJ·mol⁻¹. Three things account
      for the difference, and none of them is "the bond stores energy" — the phrase <em>high-energy bond</em> is a
      misnomer for a large negative free energy of <em>reaction</em>:</p>
@@ -419,6 +420,46 @@
      and a separate enzyme, inorganic pyrophosphatase, hydrolyses PP<sub>i</sub> to 2 P<sub>i</sub>. That second,
      strongly exergonic step is what makes chain extension effectively irreversible — the same trick used in
      aminoacyl-tRNA synthesis and fatty-acid activation.</p>
+
+  <div class="abg">
+    <div class="abg__card">
+      <h4>α β γ on a phosphate chain</h4>
+      <p>Counted <strong>outward from the sugar</strong>: α is the phosphate esterified to the 5′ carbon, then β,
+        then γ at the far end. This is the sense used throughout this page — the α phosphate is the one the
+        growing chain's 3′-OH attacks in §&nbsp;02, and the one whose displacement releases PP<sub>i</sub>.
+        Click any nucleotide shorthand on this page and the panel draws the chain with the three positions
+        marked.</p>
+    </div>
+    <div class="abg__card">
+      <h4>α β γ on a carbon chain</h4>
+      <svg viewBox="0 0 240 64" role="img" aria-label="A short carbon chain with the carboxyl group at the left, then the alpha carbon next to it, then beta, then gamma.">
+        <text x="4" y="34" font-size="11" fill="var(--ink)">COO⁻</text>
+        <line x1="40" y1="30" x2="61" y2="30" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="76" cy="30" r="13" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+        <text x="76" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">α</text>
+        <line x1="89" y1="30" x2="107" y2="30" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="120" cy="30" r="13" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <text x="120" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)">β</text>
+        <line x1="133" y1="30" x2="151" y2="30" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="164" cy="30" r="13" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <text x="164" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)">γ</text>
+        <line x1="177" y1="30" x2="196" y2="30" stroke="var(--ink-soft)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="4" y="58" font-size="9.5" fill="var(--ink-faint)">counted from the carboxyl, not from a sugar</text>
+      </svg>
+      <p>The α carbon is the one <strong>next to the carboxyl</strong>, then β, then γ, and on into δ and ε. This
+        page uses that sense too: the pyrimidine catabolites β-alanine and β-aminoisobutyrate above, and the
+        lysine <strong>ε</strong>-amino group that histone acetyltransferases modify in §&nbsp;05. Same letters,
+        a different thing being counted.</p>
+    </div>
+    <div class="abg__card">
+      <h4>α β on a sugar ring</h4>
+      <p>In a sugar the letters mark the <strong>anomeric</strong> configuration — which face of the ring the C1
+        hydroxyl sits on, as in α- and β-D-glucose. That sense does not appear on this page, and it is worth
+        keeping separate from the other two. Keep separate as well the letters that are simply
+        <em>names</em> here and mark no position at all: DNA polymerases α, β, γ, δ and ε in §&nbsp;07,
+        α-amanitin and the bacterial α₂ββ′ω core in §&nbsp;08, β-globin in §&nbsp;08.</p>
+    </div>
+  </div>
 
   <div class="callout callout--exam">
     <p class="callout__title">Nucleotides that never see a nucleic acid</p>
@@ -483,7 +524,8 @@
   </div>
 
   <h3>Why synthesis can only run 5′→3′</h3>
-  <p>The mechanism answers it in one line: <strong>the 3′-OH of the growing chain attacks the α-phosphate of the
+  <p>The mechanism answers it in one line: <strong>the 3′-OH of the growing chain attacks the
+     <button class="sh" data-sh="ATP" aria-expanded="false">α-phosphate</button> of the
      incoming nucleoside triphosphate</strong>. The energy for the new bond therefore arrives with the
      <em>monomer</em>, not with the chain. The chain end contributes only a hydroxyl.</p>
   <p>Now imagine the alternative. If chains grew 3′→5′, the activating triphosphate would have to sit on the
@@ -1215,7 +1257,7 @@
 
   <h3>Difference 2: U instead of T — an error-detection argument</h3>
   <p>Thymine is simply 5-methyluracil. Making it costs a methylation step (thymidylate synthase, the target of
-     5-fluorouracil, using a methyl group from methylene-tetrahydrofolate — which is why methotrexate starves
+     5-fluorouracil, using a methyl group from methylene-<button class="sh" data-sh="THF" aria-expanded="false">tetrahydrofolate</button> — which is why methotrexate starves
      the same reaction). Why would DNA pay for a methyl group that contributes nothing to base pairing?</p>
   <p>Because cytosine deaminates spontaneously, and the product of cytosine deamination is <strong>uracil</strong>.
      If uracil were a legitimate DNA base, a repair enzyme finding a U·G mismatch would have no way to tell which
@@ -1411,7 +1453,8 @@
     <figcaption>The templates are antiparallel, so "5′→3′" points towards the fork on one of them and away from
       it on the other. Nothing else is needed to derive the lagging strand, the requirement for repeated priming,
       and the need for a ligase. In bacteria Pol I then removes each RNA primer with its unique 5′→3′
-      exonuclease and fills the gap; DNA ligase seals the nick using ATP (eukaryotes, phage) or NAD⁺
+      exonuclease and fills the gap; DNA ligase seals the nick using ATP (eukaryotes, phage) or
+      <button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button>
       (<em>E. coli</em>).</figcaption>
   </figure>
 
@@ -1803,7 +1846,7 @@
           <div><b>wobble</b><span>the third codon position / first anticodon position</span></div>
           <div><b>A / P / E</b><span>ribosomal aminoacyl, peptidyl and exit sites</span></div>
           <div><b>S</b><span>Svedberg unit — a sedimentation coefficient, not a mass</span></div>
-          <div><b>~P</b><span>high-energy phosphate bond equivalent</span></div>
+          <div><b><button class="sh" data-sh="~P" aria-expanded="false">~P</button></b><span>high-energy phosphate bond equivalent</span></div>
         </div>
       </div>
     </details>
@@ -2066,14 +2109,16 @@
      shape and mass together and is not additive. Examiners use this.</p>
   <ol>
     <li><strong>Initiation.</strong> Small subunit finds the start codon (by Shine–Dalgarno or by scanning),
-        initiator tRNA base-pairs with AUG in the <strong>P site</strong>, large subunit joins. GTP is consumed.</li>
+        initiator tRNA base-pairs with AUG in the <strong>P site</strong>, large subunit joins.
+        <button class="sh" data-sh="GTP" aria-expanded="false">GTP</button> is consumed.</li>
     <li><strong>Elongation.</strong> An aminoacyl-tRNA enters the <strong>A site</strong> escorted by EF-Tu·GTP;
         the <strong>peptidyl transferase</strong> — which is 23S rRNA, not a protein — transfers the growing
         chain from the P-site tRNA onto the A-site amino acid; EF-G·GTP translocates the ribosome one codon,
         moving the now-uncharged tRNA to the <strong>E site</strong> for exit.</li>
     <li><strong>Termination.</strong> A stop codon has no matching tRNA. Release factors (RF1 for UAA/UAG, RF2
         for UAA/UGA in bacteria; eRF1 for all three in eukaryotes) bind and hydrolyse the peptide from the tRNA.</li>
-    <li><strong>Cost.</strong> Aminoacylation costs 2 high-energy phosphates (ATP → AMP + PP<sub>i</sub>, and the
+    <li><strong>Cost.</strong> Aminoacylation costs 2 high-energy phosphates (ATP →
+        <button class="sh" data-sh="AMP" aria-expanded="false">AMP</button> + PP<sub>i</sub>, and the
         PP<sub>i</sub> is hydrolysed), delivery costs 1 GTP, translocation costs 1 GTP: <strong>4 ~P per peptide
         bond</strong>. A 100-residue protein therefore costs roughly 400 high-energy phosphates — protein
         synthesis is the most expensive thing most cells do.</li>

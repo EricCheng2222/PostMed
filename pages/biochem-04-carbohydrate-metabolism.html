@@ -153,7 +153,8 @@
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>Metabolic trapping</dt>
-      <dd>Phosphorylation converts a neutral, transportable sugar into a charged phosphate ester that no
+      <dd>Phosphorylation converts a neutral, transportable sugar into a charged
+          <button class="sh" data-sh="P" aria-expanded="false">phosphate</button> ester that no
           facilitative transporter will carry. The cell keeps what it has taken up, and free intracellular glucose
           stays low, so the inward concentration gradient never collapses.</dd>
     </dl>
@@ -189,7 +190,7 @@
           <div><b>h</b><span>Hill coefficient — dimensionless</span></div>
           <div><b>V<sub>max</sub></b><span>maximal velocity (mol·s⁻¹, or µmol·min⁻¹ per mg enzyme)</span></div>
           <div><b>ΔG°′</b><span>standard free-energy change at pH 7, 25 °C, 1 mol·L⁻¹ (kJ·mol⁻¹)</span></div>
-          <div><b>G6P</b><span>glucose 6-phosphate</span></div>
+          <div><b><button class="sh" data-sh="G6P" aria-expanded="false">G6P</button></b><span>glucose 6-phosphate</span></div>
         </div>
       </div>
     </details>
@@ -501,11 +502,11 @@
      it precisely because students confuse the two.</p>
 
   <h3>The GAPDH step, which is the whole trick</h3>
-  <p>Making ATP out of a sugar requires getting a phosphate onto something whose phosphoryl-transfer potential
+  <p>Making <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> out of a sugar requires getting a phosphate onto something whose phosphoryl-transfer potential
      exceeds ATP's. Glyceraldehyde 3-phosphate dehydrogenase does it by coupling an <em>oxidation</em> to a
      <em>phosphorylation</em> in one active site. The aldehyde attacks an active-site cysteine thiol to form a
-     thiohemiacetal; NAD⁺ oxidises that to a <strong>thioester</strong>, which is a high-energy linkage; inorganic
-     phosphate then attacks the thioester and the acyl group is displaced as an <strong>acyl phosphate</strong>,
+     thiohemiacetal; NAD⁺ oxidises that to a <strong>thioester</strong>, which is a high-energy linkage;
+     <button class="sh" data-sh="Pi" aria-expanded="false">inorganic phosphate</button> then attacks the thioester and the acyl group is displaced as an <strong>acyl phosphate</strong>,
      1,3-bisphosphoglycerate, ΔG°′ of hydrolysis −49.3 kJ·mol⁻¹. The energy of the oxidation has been trapped in a
      chemical bond instead of being lost as heat. Phosphoglycerate kinase then hands that phosphate to ADP.</p>
   <p>Two classical inhibitors fall straight out of the mechanism. <strong>Iodoacetate</strong> alkylates the
@@ -636,8 +637,8 @@
         <div class="symtab">
           <div><b>[ATP], [ADP], [AMP]</b><span>adenine nucleotide concentrations (mmol·L⁻¹)</span></div>
           <div><b>K</b><span>equilibrium constant — dimensionless here (equal numbers of species each side)</span></div>
-          <div><b>F2,6BP</b><span>fructose 2,6-bisphosphate — a signal, not an intermediate (µmol·L⁻¹)</span></div>
-          <div><b>F1,6BP</b><span>fructose 1,6-bisphosphate — the pathway intermediate (mmol·L⁻¹)</span></div>
+          <div><b><button class="sh" data-sh="F2,6BP" aria-expanded="false">F2,6BP</button></b><span>fructose 2,6-bisphosphate — a signal, not an intermediate (µmol·L⁻¹)</span></div>
+          <div><b><button class="sh" data-sh="F1,6BP" aria-expanded="false">F1,6BP</button></b><span>fructose 1,6-bisphosphate — the pathway intermediate (mmol·L⁻¹)</span></div>
           <div><b>PKA</b><span>cAMP-dependent protein kinase</span></div>
           <div><b>flux</b><span>rate of throughput of a pathway (mol·s⁻¹, or µmol·min⁻¹·g⁻¹ tissue)</span></div>
         </div>
@@ -648,7 +649,7 @@
   <h3>Why AMP is the alarm signal and ATP is not</h3>
   <p>It would seem natural for a cell to monitor ATP directly. It does not, and the reason is arithmetic. ATP is
      abundant — several millimolar — so even a serious energy crisis moves it by only a few per cent, and a few per
-     cent is not a signal you can build a switch on. AMP is scarce, tens of micromolar, and it is coupled to the
+     cent is not a signal you can build a switch on. <button class="sh" data-sh="AMP" aria-expanded="false">AMP</button> is scarce, tens of micromolar, and it is coupled to the
      others by <strong>adenylate kinase</strong>, <span class="fi">2 ADP ⇌ ATP + AMP</span>. Convert a little ATP to
      ADP and the equilibrium dumps the surplus into the small AMP pool, where it registers as a large fractional
      change. This is signal amplification by choosing a low-abundance reporter, and it is exactly why AMP — not ATP —
@@ -796,7 +797,7 @@
     <p class="defbox__label">Definition &amp; key facts</p>
     <dl class="def">
       <dt>The real constraint on glycolysis</dt>
-      <dd>NAD⁺ is present at only about 10<sup>−5</sup>–10<sup>−4</sup> mol·L⁻¹ and is consumed once per triose at
+      <dd><button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button> is present at only about 10<sup>−5</sup>–10<sup>−4</sup> mol·L⁻¹ and is consumed once per triose at
           the GAPDH step. Unless NADH is reoxidised at the same rate, glycolysis stops within seconds — not for want
           of glucose or ADP, but for want of NAD⁺.</dd>
     </dl>
@@ -810,7 +811,8 @@
         <dl class="def">
           <dt>P/O ratio</dt>
           <dd>ATP made per pair of electrons delivered to the respiratory chain. Modern measurements give
-              <strong>2.5</strong> for NADH (entering at complex I) and <strong>1.5</strong> for FADH₂ (entering at
+              <strong>2.5</strong> for NADH (entering at complex I) and <strong>1.5</strong> for
+              <button class="sh" data-sh="FADH2" aria-expanded="false">FADH₂</button> (entering at
               coenzyme Q, bypassing complex I's proton pumping). The older integers 3 and 2 give the familiar
               38 and 36 and are still seen on some papers.</dd>
           <dt>Redox shuttle</dt>
@@ -1300,7 +1302,7 @@
   <p>This is worth deriving rather than remembering, because it is a favourite vignette. Fructokinase is
      unregulated, so it keeps converting fructose to fructose 1-phosphate. Aldolase B cannot clear it, so
      fructose 1-phosphate accumulates to millimolar concentrations, and every molecule of it is holding one
-     <strong>inorganic phosphate</strong> out of circulation. Cytosolic P<sub>i</sub> falls. Now three things fail at
+     <strong><button class="sh" data-sh="Pi" aria-expanded="false">inorganic phosphate</button></strong> out of circulation. Cytosolic P<sub>i</sub> falls. Now three things fail at
      once. ADP cannot be rephosphorylated to ATP, so the energy charge collapses and AMP is degraded to urate.
      <strong>Glycogen phosphorylase requires P<sub>i</sub> as its co-substrate</strong> (§&nbsp;09), so
      glycogenolysis stops. And accumulated fructose 1-phosphate directly inhibits the aldolase and phosphorylase
@@ -1422,7 +1424,7 @@
   <h3>Why the carboxylate-then-decarboxylate detour</h3>
   <p>Pyruvate kinase released 31 kJ·mol⁻¹ going forward, and one GTP is not enough to push it back. So the cell
      raises pyruvate to a higher-energy intermediate first. Pyruvate carboxylase, a biotin enzyme, spends one ATP to
-     attach CO₂ and make oxaloacetate. PEP carboxykinase then spends a GTP and, in the same step, removes the CO₂
+     attach CO₂ and make oxaloacetate. PEP carboxykinase then spends a <button class="sh" data-sh="GTP" aria-expanded="false">GTP</button> and, in the same step, removes the CO₂
      again — and it is the decarboxylation, thermodynamically very favourable, that supplies the extra push needed to
      create the enol phosphate. Adding a group in order to remove it is a recurring trick in biochemistry: the same
      device appears in fatty-acid synthesis, where acetyl-CoA is carboxylated to malonyl-CoA only so that the same
@@ -1477,7 +1479,7 @@
     <li><strong>Propionate</strong> — from odd-chain fatty acids and from the branched-chain amino acids: propionyl-CoA
         → (biotin) → methylmalonyl-CoA → (vitamin B12) → succinyl-CoA → oxaloacetate. Numerically minor in humans,
         conceptually important because it is the exception that proves the rule about fatty acids.</li>
-    <li><strong>Not acetyl-CoA.</strong> Pyruvate dehydrogenase is irreversible, so acetyl-CoA cannot go back to
+    <li><strong>Not <button class="sh" data-sh="acetyl-CoA" aria-expanded="false">acetyl-CoA</button>.</strong> Pyruvate dehydrogenase is irreversible, so acetyl-CoA cannot go back to
         pyruvate; and entering the citric acid cycle does not help, because the two carbons that enter as acetyl are
         matched by two carbons leaving as CO₂. Plants and bacteria escape this with the <strong>glyoxylate
         cycle</strong> (isocitrate lyase and malate synthase); animals have neither enzyme. Hence: no net conversion
@@ -1790,12 +1792,36 @@
     </details>
   </div>
 
+  <div class="abg">
+    <div class="abg__card">
+      <h4>α β γ · phosphates in a nucleotide</h4>
+      <p>Counted <strong>outward from the sugar</strong>: α is the phosphate on the 5′ carbon, then β, then γ at the
+        far tip. A kinase hands over the <strong>γ</strong> phosphate; an attack at the <strong>α</strong> phosphate
+        releases pyrophosphate instead, which is exactly what happens to UTP in step 2 below. Click any of the
+        nucleotide buttons on this page for the diagram.</p>
+    </div>
+    <div class="abg__card">
+      <h4>α β · the anomeric carbon of a sugar</h4>
+      <p>Fixed when the ring closes, by which face the C1 hydroxyl ends up on. This is the α of
+        <strong>α-D-glucose</strong> and of the <strong>α(1→4)</strong> chain and <strong>α(1→6)</strong> branch
+        bonds in the definition above — nothing to do with phosphates, and there is no γ. Lactose is the contrast:
+        β(1→4), and it takes a different enzyme to split it.</p>
+    </div>
+    <div class="abg__card">
+      <h4>α β γ · position along a carbon chain</h4>
+      <p>Counted from the functional group: the <strong>α</strong> carbon is the one next to the carboxyl or
+        carbonyl, then β, then γ. This is the sense in <strong>α-keto acid</strong> — pyruvate, and the
+        α-ketoglutarate of §&nbsp;02 and §&nbsp;04 — and the one β-oxidation and γ-carboxylation are named for.</p>
+    </div>
+  </div>
+
   <h3>Synthesis: four steps, and a protein that starts itself</h3>
   <ol>
     <li><strong>Phosphoglucomutase</strong> moves the phosphate: glucose 6-phosphate ⇌ glucose 1-phosphate, through
         a glucose 1,6-bisphosphate intermediate. Freely reversible, and used in both directions.</li>
-    <li><strong>UDP-glucose pyrophosphorylase</strong> activates it: glucose 1-phosphate + UTP → UDP-glucose +
-        pyrophosphate. The reaction itself is near equilibrium; <strong>inorganic pyrophosphatase</strong> then
+    <li><strong>UDP-glucose pyrophosphorylase</strong> activates it: glucose 1-phosphate +
+        <button class="sh" data-sh="UTP" aria-expanded="false">UTP</button> → UDP-glucose +
+        <button class="sh" data-sh="PPi" aria-expanded="false">pyrophosphate</button>. The reaction itself is near equilibrium; <strong>inorganic pyrophosphatase</strong> then
         hydrolyses the pyrophosphate, and that strongly exergonic step is what commits the glucose. The same device
         drives DNA synthesis, RNA synthesis and fatty-acid activation.</li>
     <li><strong>Glycogen synthase</strong> transfers the glucosyl group from UDP-glucose to the C4 hydroxyl of a
@@ -1816,7 +1842,7 @@
      rather than water. The distinction matters twice over. The product, glucose 1-phosphate, is already
      phosphorylated — so the cell skips the hexokinase step and its ATP, which is exactly why a glycogen residue is
      worth 3 anaerobic ATP rather than 2. And being charged, it cannot leak out of the cell. The enzyme's cofactor
-     is <strong>pyridoxal phosphate</strong>, used in a way seen nowhere else in metabolism: not as a Schiff-base
+     is <strong><button class="sh" data-sh="PLP" aria-expanded="false">pyridoxal phosphate</button></strong>, used in a way seen nowhere else in metabolism: not as a Schiff-base
      partner for an amino group, but for its own <em>phosphate</em> group, which acts as a general acid–base catalyst.
      Phosphorylase holds about 80 % of the body's vitamin B6.</p>
   <p>Phosphorylase cannot pass a branch. It stops <strong>four residues short</strong> of an α(1→6) point, leaving a
@@ -2184,7 +2210,8 @@
     <dl class="def">
       <dt>Pentose phosphate pathway（磷酸戊糖途徑）</dt>
       <dd>Also called the hexose monophosphate shunt. Entirely <strong>cytosolic</strong>. An irreversible
-          <strong>oxidative arm</strong> that makes 2 NADPH and loses one carbon as CO₂, followed by a fully
+          <strong>oxidative arm</strong> that makes 2 <button class="sh" data-sh="NADPH" aria-expanded="false">NADPH</button>
+          and loses one carbon as CO₂, followed by a fully
           reversible <strong>non-oxidative arm</strong> that reshuffles five-carbon sugars back into glycolytic
           intermediates. <strong>No ATP is made or consumed anywhere in it.</strong></dd>
     </dl>
@@ -2307,8 +2334,8 @@
   </figure>
 
   <p><strong>There is no 口訣 for the non-oxidative arm and building one would cost you more than it saved.</strong>
-     Three facts generate every row: transketolase always moves <em>two</em> carbons and always needs thiamine
-     pyrophosphate, transaldolase always moves <em>three</em> and needs no cofactor, and each row must balance. Give
+     Three facts generate every row: transketolase always moves <em>two</em> carbons and always needs
+     <button class="sh" data-sh="TPP" aria-expanded="false">thiamine pyrophosphate</button>, transaldolase always moves <em>three</em> and needs no cofactor, and each row must balance. Give
      yourself the opening pair 5 + 5 and the rest is forced — <span class="fi">5 + 5 → 7 + 3</span>, then
      <span class="fi">7 + 3 → 4 + 6</span>, then <span class="fi">5 + 4 → 6 + 3</span>, with 15 carbons in and 15
      out. Rebuild it twice on paper and you will not need to recall it again. A five-item mnemonic standing in for a
@@ -2318,8 +2345,9 @@
   <h3>NADPH and NADH: one chemistry, two pools, opposite jobs</h3>
   <p>NADPH differs from NADH by a phosphate on the 2′-hydroxyl of the adenosine ribose — a position nowhere near the
      nicotinamide ring that actually does the redox chemistry. The phosphate is therefore not chemistry, it is a
-     <strong>label</strong>. Catabolic dehydrogenases have binding sites that recognise NAD⁺; the reductases of
-     biosynthesis and antioxidant defence recognise NADP⁺. That lets the cell hold the two pools in opposite states:
+     <strong>label</strong>. Catabolic dehydrogenases have binding sites that recognise <button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button>; the reductases of
+     biosynthesis and antioxidant defence recognise <button class="sh" data-sh="NADP+" aria-expanded="false">NADP⁺</button>.
+     That lets the cell hold the two pools in opposite states:
      the NAD pool is kept largely <strong>oxidised</strong> (NADH/NAD⁺ ≈ 10<sup>−3</sup>), poised to accept electrons
      from fuel; the NADP pool is kept largely <strong>reduced</strong> (≈ 100:1), poised to donate them. Two
      thermodynamic reservoirs, chemically interchangeable, kept apart by a recognition tag. It is one of the most

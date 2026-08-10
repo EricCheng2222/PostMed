@@ -207,8 +207,8 @@
           <div><b>ATGL</b><span>adipose triglyceride lipase (PNPLA2)</span></div>
           <div><b>HSL</b><span>hormone-sensitive lipase; acts mainly on DAG</span></div>
           <div><b>FFA</b><span>free fatty acid; plasma 0.2–2.0 mmol·L⁻¹</span></div>
-          <div><b>~P</b><span>high-energy phosphate bond, ≈ 30.5 kJ·mol⁻¹</span></div>
-          <div><b>CoA-SH</b><span>coenzyme A; its thiol arm comes from pantothenate (B5)</span></div>
+          <div><b><button class="sh" data-sh="~P" aria-expanded="false">~P</button></b><span>high-energy phosphate bond, ≈ 30.5 kJ·mol⁻¹</span></div>
+          <div><b><button class="sh" data-sh="CoA" aria-expanded="false">CoA-SH</button></b><span>coenzyme A; its thiol arm comes from pantothenate (B5)</span></div>
           <div><b>ΔG°′</b><span>standard free-energy change at pH 7, in kJ·mol⁻¹</span></div>
         </div>
       </div>
@@ -257,9 +257,9 @@
      unabsorbed.</p>
 
   <h3>Why activation costs two, not one</h3>
-  <p>Acyl-CoA synthetase does not use ATP the way a kinase does. It attacks the <strong>α</strong>-phosphate,
+  <p>Acyl-CoA synthetase does not use <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> the way a kinase does. It attacks the <strong>α</strong>-phosphate,
      displacing pyrophosphate and forming a fatty acyl–AMP intermediate; CoA-SH then displaces AMP. The products
-     are therefore <strong>AMP + PP<sub>i</sub></strong>: two phosphoanhydride bonds spent. That is exactly what
+     are therefore <strong><button class="sh" data-sh="AMP" aria-expanded="false">AMP</button> + <button class="sh" data-sh="PPi" aria-expanded="false">PP<sub>i</sub></button></strong>: two phosphoanhydride bonds spent. That is exactly what
      the "2 ATP equivalents" means — AMP has to be rephosphorylated twice to become ATP again, first by adenylate
      kinase (ATP + AMP → 2 ADP) and then by oxidative phosphorylation. It is two, not three: the adenylate kinase
      step <em>is</em> the second equivalent, not an extra one on top. Inorganic pyrophosphatase then
@@ -318,7 +318,7 @@
               acylcarnitine + CoA-SH → acyl-CoA + carnitine.</dd>
           <dt>Carnitine</dt>
           <dd>β-Hydroxy-γ-trimethylaminobutyrate. Synthesised in liver and kidney from a protein-bound
-              <strong>lysine</strong> residue trimethylated by <strong>S-adenosylmethionine</strong>, with
+              <strong>lysine</strong> residue trimethylated by <strong><button class="sh" data-sh="SAM" aria-expanded="false">S-adenosylmethionine</button></strong>, with
               vitamin C required by two of the hydroxylases; also obtained readily from meat and dairy.</dd>
         </dl>
         <div class="fx-grid">
@@ -631,6 +631,43 @@
       are always the ones that were nearest the CoA.</figcaption>
   </figure>
 
+  <div class="abg">
+    <div class="abg__card">
+      <h4>α β γ on a phosphate chain</h4>
+      <p>Counted <b>outward from the sugar</b>: α is the phosphate on the 5′ carbon, then β, then γ at the far
+        end. A kinase moves the <b>γ</b> phosphate; attack at the <b>α</b> phosphate instead releases
+        PP<sub>i</sub> — which is precisely what acyl-CoA synthetase does when it activates a fatty acid in
+        § 01, and why activation costs two high-energy bonds rather than one.</p>
+    </div>
+    <div class="abg__card">
+      <h4>α β γ along a carbon chain</h4>
+      <p>Counted <b>from the carboxyl (or thioester) carbon</b>: C2 is α, C3 is β, C4 is γ. This is the sense
+        used almost everywhere on this page — β-oxidation is named for the carbon it oxidises, α-oxidation
+        removes the α carbon of phytanic acid, and carnitine is β-hydroxy-γ-trimethylaminobutyrate.</p>
+      <svg viewBox="0 0 300 78" role="img" aria-label="A fatty acyl chain drawn as four carbons. Carbon 1 is the thioester carbonyl, carbon 2 is the alpha carbon, carbon 3 is the beta carbon, highlighted because beta-oxidation oxidises it, and carbon 4 is the gamma carbon. The positions are counted from the carboxyl carbon.">
+        <line x1="34" y1="40" x2="252" y2="40" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="34" cy="40" r="5" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="90" cy="40" r="5" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="146" cy="40" r="7" fill="none" stroke="var(--accent)" stroke-width="2.2"/>
+        <circle cx="202" cy="40" r="5" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <text x="34" y="26" text-anchor="middle" font-size="9" fill="var(--ink-faint)">C1</text>
+        <text x="90" y="25" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-soft)">α</text>
+        <text x="146" y="25" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent)">β</text>
+        <text x="202" y="25" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-soft)">γ</text>
+        <text x="34" y="60" text-anchor="middle" font-size="8.5" fill="var(--ink-faint)">C=O</text>
+        <text x="262" y="44" font-size="10" fill="var(--ink-faint)">…</text>
+        <text x="10" y="73" font-size="8.5" fill="var(--ink-faint)">counted from the carboxyl carbon; β is the one this spiral oxidises</text>
+      </svg>
+    </div>
+    <div class="abg__card">
+      <h4>α β on an anomeric carbon</h4>
+      <p>A third and unrelated use: in a sugar, α or β says which side the C1 hydroxyl sits on — α-D-glucose
+        against β-D-glucose. Nothing on this page uses that sense; it belongs to the carbohydrate chemistry of
+        note 01. Keep it filed separately, because a stem that slides between the three conventions is testing
+        exactly that.</p>
+    </div>
+  </div>
+
   <h3>Reading the chemistry rather than remembering it</h3>
   <p>You can reconstruct the four steps from first principles if you ask what has to happen. A saturated chain is
      inert — there is no electrophile to attack, so nothing can cleave it. The pathway therefore has to
@@ -643,7 +680,7 @@
   <p>Two details are worth a moment because examiners use them as discriminators. First, the two oxidation steps
      use <strong>different</strong> electron acceptors, and not arbitrarily: making a C=C from a C–C is worth
      less free energy than making a C=O from a C–OH, so the first oxidation is coupled to the weaker acceptor
-     (FAD) and the second to NAD⁺. That is a general rule, not a fact about fatty acids —
+     (<button class="sh" data-sh="FAD" aria-expanded="false">FAD</button>) and the second to <button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button>. That is a general rule, not a fact about fatty acids —
      succinate dehydrogenase uses FAD for the same reason. Second, the FADH<sub>2</sub> here never reaches
      complex I; ETF delivers it to ubiquinone, which is why it buys 1.5 ATP. If a stem tells you that
      β-oxidation's FADH<sub>2</sub> yields 2.5 ATP, that is the error being tested.</p>
@@ -726,7 +763,7 @@
               cycle, contributing <span class="fi">10(n/2) = 5n</span>. Subtract the 2 for activation:
               <span class="fi">2n − 4 + 5n − 2 = 7n − 6</span>. The formula is a derivation, not a fact.</dd>
           <dt>The P/O convention matters</dt>
-          <dd>Lehninger 8th edition (and every recent paper) uses <strong>NADH = 2.5</strong>,
+          <dd>Lehninger 8th edition (and every recent paper) uses <strong><button class="sh" data-sh="NADH" aria-expanded="false">NADH</button> = 2.5</strong>,
               <strong>FADH<sub>2</sub> = 1.5</strong>, and hence <strong>acetyl-CoA = 10</strong> in the TCA
               cycle. Older textbooks used 3, 2 and 12, which gives 129 for palmitate rather than 106. If a stem
               states its convention, use the stem's; if not, use 2.5/1.5 and expect 106.</dd>
@@ -1073,7 +1110,7 @@
   <div class="callout callout--exam">
     <p class="callout__title">"Can fatty acids be converted to glucose?" — answer it precisely</p>
     <p style="margin:0">For the ordinary even-chain fatty acid the answer is <strong>no</strong>, and the reason
-      is structural, not regulatory: acetyl-CoA enters the TCA cycle by condensing with a four-carbon
+      is structural, not regulatory: <button class="sh" data-sh="acetyl-CoA" aria-expanded="false">acetyl-CoA</button> enters the TCA cycle by condensing with a four-carbon
       oxaloacetate, and by the end of one turn two carbons have left as CO<sub>2</sub>. There is
       <em>no net gain</em> of oxaloacetate, so nothing can be drained off to gluconeogenesis. Pyruvate
       dehydrogenase is also physiologically irreversible, so you cannot simply run back. Plants get round this
@@ -1265,7 +1302,7 @@
   <h3>Using them, and why the liver is excluded</h3>
   <p>In a peripheral cell, β-hydroxybutyrate is oxidised back to acetoacetate, which then has to be re-activated
      with a CoA. The cell does not spend an ATP on this: <strong>SCOT</strong> steals a CoA from succinyl-CoA,
-     which costs the cell the GTP that succinyl-CoA synthetase would otherwise have made. Thiolase then splits
+     which costs the cell the <button class="sh" data-sh="GTP" aria-expanded="false">GTP</button> that succinyl-CoA synthetase would otherwise have made. Thiolase then splits
      acetoacetyl-CoA into two acetyl-CoA. So acetoacetate is worth about
      <span class="fi">2 × 10 − 1 = 19 ATP</span>, and β-hydroxybutyrate about
      <span class="fi">19 + 2.5 = 21.5 ATP</span> because it delivers an extra NADH on the way in.</p>
@@ -1529,7 +1566,7 @@
      palmitoyl, at which point a thioesterase hydrolyses it off — and <strong>C16 is where the enzyme
      stops</strong>. Everything longer is made by separate ER elongases.</p>
   <p>Notice how many things are inverted relative to § 03, and notice that none of the inversions is arbitrary.
-     Different compartment (cytosol, so the two pathways cannot even meet). Different carrier (ACP, not CoA, so
+     Different compartment (cytosol, so the two pathways cannot even meet). Different carrier (ACP, not <button class="sh" data-sh="CoA" aria-expanded="false">CoA</button>, so
      the intermediates are physically held inside one complex). Different cofactor (NADPH, not NAD⁺ and FAD —
      the cell keeps its NADPH pool highly reduced and its NADH pool oxidised, precisely so that biosynthesis and
      catabolism can run under different driving forces). And different stereochemistry at the 3-hydroxy
@@ -1731,7 +1768,7 @@
               CDP-DAG. That swap is a favourite discriminator.</dd>
           <dt>Ceramide</dt>
           <dd>Sphingosine with a fatty acid on its amino group. Built from <strong>serine + palmitoyl-CoA</strong>
-              by serine palmitoyltransferase (PLP-dependent). Ceramide is the hub of all sphingolipids: add
+              by serine palmitoyltransferase (<button class="sh" data-sh="PLP" aria-expanded="false">PLP</button>-dependent). Ceramide is the hub of all sphingolipids: add
               phosphocholine and you have <strong>sphingomyelin</strong>; add one sugar and you have a
               cerebroside; add a chain of sugars containing sialic acid and you have a
               <strong>ganglioside</strong>.</dd>
@@ -1900,7 +1937,7 @@
   </div>
 
   <h3>Follow the carbons once</h3>
-  <p>Three acetyl-CoA condense to HMG-CoA in the <em>cytosol</em> — the same molecule that ketogenesis makes in
+  <p>Three <button class="sh" data-sh="acetyl-CoA" aria-expanded="false">acetyl-CoA</button> condense to HMG-CoA in the <em>cytosol</em> — the same molecule that ketogenesis makes in
      the mitochondrion (§ 06), and the point at which the two pathways diverge for good. HMG-CoA reductase then
      reduces the thioester all the way to a primary alcohol, using two NADPH, and mevalonate is produced. From
      mevalonate onwards the chemistry is isoprenoid: three ATP convert it to the C5 isopentenyl pyrophosphate,

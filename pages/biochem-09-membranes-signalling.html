@@ -812,7 +812,7 @@
   <p class="idea"><b>The idea</b>Pushing something uphill costs energy, and the amount it costs can be calculated exactly from how steep the hill
      is. Two things make a hill: a difference in concentration, and — if the thing being pushed is charged — a
      difference in voltage. Add those two costs together and you know what the pump has to pay. A pump that
-     hydrolyses one ATP has a fixed budget, so its stoichiometry is not an arbitrary fact to memorise; it is the
+     hydrolyses one <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> has a fixed budget, so its stoichiometry is not an arbitrary fact to memorise; it is the
      largest number of ions the budget will stretch to.</p>
 
   <div class="defbox">
@@ -937,8 +937,8 @@
           Total <span class="fi">+2.41 kJ·mol⁻¹</span> — cheap, because the voltage helps.</li>
         <li><strong>The cycle.</strong> <span class="fi">3(13.18) + 2(2.41) = 39.54 + 4.83 = 44.37 kJ·mol⁻¹</span>.</li>
         <li><strong>Feasibility.</strong> ATP hydrolysis under cellular conditions releases about
-          <span class="fi">50 kJ·mol⁻¹</span> (the standard value, −30.5 kJ·mol⁻¹, applies only at 1 M ATP, ADP and
-          P<sub>i</sub>, which no cell is anywhere near). 44.4 &lt; 50, so the pump runs — at about
+          <span class="fi">50 kJ·mol⁻¹</span> (the standard value, −30.5 kJ·mol⁻¹, applies only at 1 M ATP, <button class="sh" data-sh="ADP" aria-expanded="false">ADP</button> and
+          <button class="sh" data-sh="Pi" aria-expanded="false">P<sub>i</sub></button>, which no cell is anywhere near). 44.4 &lt; 50, so the pump runs — at about
           <span class="fi">44.4/50 = 89 %</span> thermodynamic efficiency.</li>
         <li><strong>Why not 4 Na⁺ : 2 K⁺?</strong>
           <span class="fi">4(13.18) + 2(2.41) = 52.72 + 4.83 = 57.6 kJ·mol⁻¹</span> — more than ATP can pay. Such a
@@ -1011,7 +1011,7 @@
   <span class="section__num">§ 05</span>
   <h2>Secondary active transport: the sodium gradient as currency</h2>
 
-  <p class="idea"><b>The idea</b>Once one pump has spent ATP to build a steep sodium gradient, that gradient is itself a store of energy — like
+  <p class="idea"><b>The idea</b>Once one pump has spent <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> to build a steep sodium gradient, that gradient is itself a store of energy — like
      water held behind a dam. Any protein that lets sodium fall back in can harness the fall to drag something else
      uphill alongside it. Nothing in that second protein burns ATP; it merely couples one downhill journey to one
      uphill journey and takes its cut. The cell effectively converts ATP into a single universal currency and then
@@ -1577,7 +1577,7 @@
       what allows them to work at circulating concentrations no cell could otherwise detect.</li>
     <li><strong>Occupancy is a bad switch.</strong> Going from 10 % to 90 % occupancy takes an 81-fold change in
       concentration. Biological switches therefore add cooperativity, kinase cascades, or thresholding steps (such as
-      PKA's requirement for four cAMP molecules) to sharpen the response.</li>
+      PKA's requirement for four <button class="sh" data-sh="cAMP" aria-expanded="false">cAMP</button> molecules) to sharpen the response.</li>
     <li><strong>EC₅₀ is often much lower than K<sub>d</sub>.</strong> When a maximal response needs only a fraction
       of the receptors occupied, the surplus are called <strong>spare receptors</strong>, and the dose–response curve
       sits to the left of the binding curve. That is why blocking most of a receptor population can leave the
@@ -1668,7 +1668,7 @@
       <div class="disc__body">
         <dl class="def">
           <dt>Heterotrimeric G protein</dt>
-          <dd>Gα (which binds GDP or GTP and carries the GTPase activity) plus a tightly associated Gβγ dimer. Both
+          <dd>Gα (which binds GDP or <button class="sh" data-sh="GTP" aria-expanded="false">GTP</button> and carries the GTPase activity) plus a tightly associated Gβγ dimer. Both
               halves are lipid-anchored to the inner leaflet — Gα by myristoyl and palmitoyl groups, Gγ by a prenyl
               group — which is why the whole switch stays two-dimensional and finds its targets quickly.</dd>
           <dt>GEF / GAP</dt>
@@ -1677,12 +1677,12 @@
               <strong>GTPase-activating protein</strong> accelerates hydrolysis — it switches it <em>off</em>. Every
               GTPase in biology, including Ras (§&#160;10), is regulated by this pair.</dd>
           <dt>Adenylyl cyclase</dt>
-          <dd>A twelve-pass membrane enzyme converting ATP to <strong>3′,5′-cyclic AMP</strong> + PP<sub>i</sub>.
+          <dd>A twelve-pass membrane enzyme converting <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button> to <strong>3′,5′-cyclic AMP</strong> + <button class="sh" data-sh="PPi" aria-expanded="false">PP<sub>i</sub></button>.
               Activated by G<sub>s</sub>α·GTP, inhibited by G<sub>i</sub>α·GTP; several isoforms are additionally
               modulated by Ca²⁺–calmodulin or by Gβγ, which is where signal <em>integration</em> physically happens.</dd>
           <dt>Protein kinase A (PKA)</dt>
           <dd>An <strong>R₂C₂</strong> tetramer, inactive because each regulatory subunit's pseudosubstrate sequence
-              blocks the catalytic site. Four cAMP molecules — two per R subunit — release the two catalytic
+              blocks the catalytic site. Four <button class="sh" data-sh="cAMP" aria-expanded="false">cAMP</button> molecules — two per R subunit — release the two catalytic
               subunits, some of which enter the nucleus.</dd>
         </dl>
         <div class="fx-grid">
@@ -2103,7 +2103,7 @@
               specificity at all.</dd>
           <dt>Ras</dt>
           <dd>A small <em>monomeric</em> G protein, farnesylated at its C-terminus and therefore anchored to the
-              inner leaflet. Same GDP/GTP logic as Gα, but the GEF (Sos) and GAP (p120-RasGAP, NF1/neurofibromin) are
+              inner leaflet. Same GDP/<button class="sh" data-sh="GTP" aria-expanded="false">GTP</button> logic as Gα, but the GEF (Sos) and GAP (p120-RasGAP, NF1/neurofibromin) are
               separate proteins rather than parts of the receptor.</dd>
           <dt>MAP kinase cascade</dt>
           <dd>Three tiers: MAPKKK (Raf) phosphorylates MAPKK (MEK), which phosphorylates MAPK (ERK). MEK is a
@@ -2369,7 +2369,7 @@
       <dt>Soluble guanylyl cyclase (sGC)</dt>
       <dd>A cytosolic heterodimer carrying a <strong>haem</strong> group. Nitric oxide binds the haem iron, which
           breaks the Fe–histidine bond, distorts the protein and raises catalytic activity several hundred-fold. It
-          converts GTP to <strong>cGMP</strong>, which activates protein kinase G.</dd>
+          converts <button class="sh" data-sh="GTP" aria-expanded="false">GTP</button> to <strong>cGMP</strong>, which activates protein kinase G.</dd>
     </dl>
     <div class="fx fx--hero">
       <span class="fx__eq">NO → sGC (haem) → cGMP → PKG → smooth-muscle relaxation · PDE5 ends it</span>
@@ -2380,7 +2380,7 @@
       <div class="disc__body">
         <dl class="def">
           <dt>Nitric oxide synthase (NOS)</dt>
-          <dd>Converts <strong>L-arginine + O₂ + NADPH → L-citrulline + NO</strong>. eNOS (endothelium) and nNOS
+          <dd>Converts <strong>L-arginine + O₂ + <button class="sh" data-sh="NADPH" aria-expanded="false">NADPH</button> → L-citrulline + NO</strong>. eNOS (endothelium) and nNOS
               (neurons) are constitutive and <strong>Ca²⁺–calmodulin dependent</strong>; iNOS is transcriptionally
               induced by cytokines in macrophages, is Ca²⁺-<em>in</em>dependent, and makes far more NO for far longer
               — which is why septic shock is vasodilated shock.</dd>

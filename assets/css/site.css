@@ -741,7 +741,66 @@ table.data td.num { font-family: var(--mono); font-size: .86rem; white-space: no
 [data-pace="reference"] [data-pace-only="learn"] { display: none; }
 [data-pace="learn"] [data-pace-only="reference"] { display: none; }
 
-/* ---------- 12. Print ----------------------------------------------------- */
+/* ---------- 12. Chemical shorthand ----------------------------------------
+   Biochemistry is written in shorthand — P, Pᵢ, PPᵢ, ~P, CoA, NAD⁺ — and the
+   Greek letters mean three different things depending on what they label.
+   Any shorthand can be clicked to expand into a panel that says what it stands
+   for and, where it applies, marks the α / β / γ positions.
+   -------------------------------------------------------------------------- */
+.sh {
+  font: inherit; color: inherit; cursor: pointer;
+  border: 0; background: none; padding: 0 .06em;
+  border-bottom: 1px dotted var(--accent);
+  text-underline-offset: .2em;
+}
+.sh:hover { background: var(--accent-wash); border-bottom-style: solid; }
+.sh[aria-expanded="true"] { background: var(--accent-wash); border-bottom-style: solid; }
+.sh::after { content: '·'; font-size: .7em; vertical-align: super; color: var(--accent); margin-left: .05em; }
+
+/* One shared panel, fixed to the viewport, so a shorthand inside a formula row
+   or an SVG caption can be expanded without disturbing any layout. */
+.shpanel {
+  position: fixed; z-index: 80; left: 50%; bottom: 1rem;
+  width: min(40rem, calc(100vw - 1.5rem));
+  transform: translateX(-50%) translateY(calc(100% + 2rem));
+  background: var(--card); border: 1px solid var(--accent);
+  border-radius: var(--radius); box-shadow: var(--shadow-lg);
+  padding: 1rem 1.15rem 1.1rem; transition: transform .22s ease;
+  max-height: min(70vh, 34rem); overflow-y: auto;
+}
+.shpanel[data-open="true"] { transform: translateX(-50%) translateY(0); }
+@media (prefers-reduced-motion: reduce) { .shpanel { transition: none; } }
+
+.shpanel__head { display: flex; align-items: baseline; gap: .6rem; margin-bottom: .5rem; }
+.shpanel__sym {
+  font-family: var(--mono); font-size: 1.15rem; font-weight: 700; color: var(--accent);
+}
+.shpanel__name { font-weight: 600; font-size: .96rem; }
+.shpanel__close {
+  margin-left: auto; flex: none; cursor: pointer; font: inherit; font-size: 1.1rem; line-height: 1;
+  border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft);
+  border-radius: 7px; width: 28px; height: 28px; display: grid; place-items: center;
+}
+.shpanel__close:hover { border-color: var(--accent); color: var(--ink); }
+.shpanel p { font-size: .93rem; margin: 0 0 .55rem; }
+.shpanel p:last-child { margin-bottom: 0; }
+.shpanel svg { width: 100%; height: auto; display: block; margin: .6rem 0 .5rem;
+               background: var(--line-soft); border: 1px solid var(--line); border-radius: var(--radius-sm); }
+.shpanel__warn {
+  border-left: 3px solid var(--accent-2); padding-left: .65rem;
+  font-size: .89rem; color: var(--ink-soft);
+}
+.shpanel__warn b { color: var(--ink); }
+
+/* The three α/β/γ conventions, side by side — a page-level explainer block. */
+.abg { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 1.4rem 0; }
+.abg__card { border: 1px solid var(--line); border-top: 3px solid var(--accent); background: var(--card);
+             border-radius: var(--radius-sm); padding: .8rem .9rem; }
+.abg__card h4 { margin: 0 0 .25rem; font-size: .92rem; }
+.abg__card p { margin: 0; font-size: .87rem; color: var(--ink-soft); }
+.abg__card svg { width: 100%; height: auto; margin: .4rem 0 .35rem; }
+
+/* ---------- 13. Print ----------------------------------------------------- */
 @media print {
   .topbar, .theme-toggle, .pace, .site-footer, .quiz__bar { display: none !important; }
   body { background: #fff; color: #000; font-size: 11pt; }

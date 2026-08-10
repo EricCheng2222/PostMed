@@ -352,11 +352,15 @@
 
   <div class="callout callout--exam">
     <p class="callout__title">The naming minefield examiners reuse</p>
-    <p><strong>Synthase vs synthetase.</strong> A <em>synthase</em> (lyase, class 4) joins things without
-      nucleotide hydrolysis; a <em>synthetase</em> (ligase, class 6) requires ATP or another NTP. Citrate
-      synthase needs no ATP; glutamine synthetase does. One consonant, two different classes.</p>
+    <p><strong>Synthase vs synthetase.</strong> A <em>synthase</em> joins things without nucleotide
+      hydrolysis; a <em>synthetase</em> (ligase, class 6) requires ATP or another NTP. Citrate
+      synthase needs no ATP; glutamine synthetase does. One consonant, two different requirements.
+      Note what the rule does <em>not</em> say: only the synthetase half maps onto a single EC class.
+      Synthases are spread across several — citrate synthase itself was moved out of the lyases
+      (EC 4.1.3.7) and into the transferases (EC 2.3.3.1) in 2002, though plenty of textbooks still
+      print the old number. Answer on the nucleotide, not on the class.</p>
     <p><strong>Kinase vs phosphorylase vs phosphatase.</strong> A <em>kinase</em> transfers phosphoryl
-      <em>from ATP</em> (transferase). A <em>phosphorylase</em> cleaves a bond using inorganic phosphate
+      <em>from <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button></em> (transferase). A <em>phosphorylase</em> cleaves a bond using inorganic phosphate
       instead of water — glycogen phosphorylase is a glycosyl<em>transferase</em>, class 2, and notably does
       <strong>not</strong> use ATP. A <em>phosphatase</em> removes phosphate <em>using water</em>, so it is a
       hydrolase, class 3. Answering "kinase" for a phosphorolysis question is a standard trap.</p>
@@ -372,11 +376,13 @@
     <p>The extra <b>T</b> in synthe<b>t</b>ase is the <b>T</b> of NTP. A <em>synthetase</em> therefore couples
       joining to ATP (or another NTP) hydrolysis and is a <strong>ligase, class 6</strong> — glutamine
       synthetase, aminoacyl-tRNA synthetase, pyruvate carboxylase. A <em>synthase</em> has no extra T and needs
-      no nucleotide: <strong>lyase, class 4</strong> — citrate synthase. One consonant, two classes.
+      no nucleotide — citrate synthase. One consonant, two different requirements.
       <span class="mnemo__gloss">This one is standard and you will meet it in 補習班 material and textbooks
         alike. Two cautions it does not cover: the ending is a naming convention, not a law — the note's own
         table puts <em>ATP synthase</em> in class 7 (translocases), and fatty-acid synthase is a multi-enzyme
-        complex. When a stem gives you the <em>reaction</em> rather than the name, always classify from the
+        complex. Nor does "synthase" pin down an EC class: citrate synthase was moved out of the lyases
+        (EC 4.1.3.7) into the transferases (EC 2.3.3.1) in 2002, and many textbooks still print the old
+        number — so answer on whether a nucleotide is spent, never on the class. When a stem gives you the <em>reaction</em> rather than the name, always classify from the
         chemistry instead: water in → hydrolase; NTP consumed → ligase; electrons moved → oxidoreductase; same
         molecular formula out → isomerase.</span></p>
   </div>
@@ -746,8 +752,10 @@
         <dl class="def">
           <dt>Coenzyme vs prosthetic group</dt>
           <dd>A <strong>coenzyme</strong> is a co-substrate: it binds, is chemically altered, dissociates, and is
-              regenerated somewhere else — NAD⁺ is the model. A <strong>prosthetic group</strong> stays bound,
-              often covalently, and must be re-set on the same enzyme before the next turnover — FAD, biotin,
+              regenerated somewhere else — <button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button>
+              is the model. A <strong>prosthetic group</strong> stays bound,
+              often covalently, and must be re-set on the same enzyme before the next turnover —
+              <button class="sh" data-sh="FAD" aria-expanded="false">FAD</button>, biotin,
               lipoamide, haem, PLP.</dd>
           <dt>Why the distinction is tested</dt>
           <dd>Because it predicts the kinetics. A dissociable coenzyme makes the enzyme a genuine two-substrate
@@ -766,7 +774,7 @@
         <div class="symtab">
           <div><b>TPP</b><span>thiamine pyrophosphate (vitamin B₁)</span></div>
           <div><b>FAD / FMN</b><span>flavin adenine dinucleotide / mononucleotide (B₂)</span></div>
-          <div><b>NAD⁺ / NADP⁺</b><span>nicotinamide adenine dinucleotide (± 2′-phosphate) (B₃)</span></div>
+          <div><b>NAD⁺ / <button class="sh" data-sh="NADP+" aria-expanded="false">NADP⁺</button></b><span>nicotinamide adenine dinucleotide (± 2′-phosphate) (B₃)</span></div>
           <div><b>CoA</b><span>coenzyme A (B₅, pantothenate)</span></div>
           <div><b>PLP</b><span>pyridoxal phosphate (B₆)</span></div>
           <div><b>THF</b><span>tetrahydrofolate (B₉)</span></div>
@@ -836,7 +844,8 @@
       redox chemistry whatsoever. The difference is entirely one of <em>recognition</em>: enzymes read the
       phosphate and so the cell can hold two separate pools at two separate redox poises. <strong>The NAD pool is
       kept mostly oxidised</strong> (high NAD⁺/NADH) to drive catabolic dehydrogenations and feed the respiratory
-      chain; <strong>the NADP pool is kept mostly reduced</strong> (high NADPH/NADP⁺) to drive reductive biosynthesis —
+      chain; <strong>the NADP pool is kept mostly reduced</strong> (high
+      <button class="sh" data-sh="NADPH" aria-expanded="false">NADPH</button>/NADP⁺) to drive reductive biosynthesis —
       fatty acids, cholesterol, deoxyribonucleotides — and to reduce glutathione. It is the same molecule doing
       two jobs that must not be allowed to short-circuit, and the phosphate is the tag that keeps them apart.
       Glucose-6-phosphate dehydrogenase deficiency is the clinical demonstration: no NADPH, no reduced
@@ -1010,7 +1019,8 @@
       K<sub>m</sub> ≈ 0.05 mM for glucose and is inhibited by its product glucose-6-phosphate — it is a
       high-affinity scavenger, saturated at any normal blood glucose, guaranteeing that the brain and red cells
       get theirs. Glucokinase (hexokinase IV, liver and pancreatic β-cell) has S<sub>0.5</sub> ≈ 10 mM, is
-      mildly sigmoid, and is <em>not</em> inhibited by G6P — it deliberately works on the steep part of its
+      mildly sigmoid, and is <em>not</em> inhibited by
+      <button class="sh" data-sh="G6P" aria-expanded="false">G6P</button> — it deliberately works on the steep part of its
       curve so that hepatic glucose uptake rises with portal glucose after a meal, and so that the β-cell can
       use it as a glucose sensor. <em>MODY 2</em> is a glucokinase mutation, and the phenotype — a resetting of
       the glucose set-point — falls straight out of the kinetics.
@@ -1800,7 +1810,7 @@
      the bacterial transpeptidase normally cleaves; the enzyme's serine attacks the β-lactam ring, opens it, and
      is left as a stable penicilloyl-enzyme. <strong>5-Fluorouracil</strong> is converted in the cell to FdUMP,
      which lets thymidylate synthase begin its normal chemistry and then traps it in a covalent ternary complex
-     with N⁵,N¹⁰-methylene-THF, because the fluorine cannot be abstracted as the hydrogen would have been.
+     with N⁵,N¹⁰-methylene-<button class="sh" data-sh="THF" aria-expanded="false">THF</button>, because the fluorine cannot be abstracted as the hydrogen would have been.
      <strong>Allopurinol</strong> is oxidised by xanthine oxidase to oxypurinol, which then binds the reduced
      molybdenum centre and stays there.</p>
 
@@ -1941,7 +1951,8 @@
   </div>
 
   <p>The aminotransferases are worth carrying as the concrete case, because they also carry a large amount of
-     clinical weight. In the first half-reaction an amino acid donates its amino group to enzyme-bound PLP,
+     clinical weight. In the first half-reaction an amino acid donates its amino group to enzyme-bound
+     <button class="sh" data-sh="PLP" aria-expanded="false">PLP</button>,
      converting it to pyridoxamine phosphate (PMP) and releasing an α-keto acid. In the second, PMP hands the
      amino group to a different α-keto acid, regenerating PLP. The amino group is passed <em>through</em> the
      enzyme. That is what ping-pong means, and it explains why, in B₆ deficiency, serum AST and ALT activities
@@ -2121,8 +2132,9 @@
      separable functions of separate protein parts.</p>
   <p><strong>Phosphofructokinase-1</strong> is the one to know for metabolism. ATP is both its substrate (at
      the catalytic site) and its allosteric <em>inhibitor</em> (at a separate, lower-affinity site) — a fact
-     that looks paradoxical until you notice the two sites are different. AMP and ADP relieve that inhibition,
-     citrate reinforces it, and <strong>fructose-2,6-bisphosphate</strong> is the most powerful activator of
+     that looks paradoxical until you notice the two sites are different.
+     <button class="sh" data-sh="AMP" aria-expanded="false">AMP</button> and ADP relieve that inhibition,
+     citrate reinforces it, and <strong><button class="sh" data-sh="F2,6BP" aria-expanded="false">fructose-2,6-bisphosphate</button></strong> is the most powerful activator of
      all. This is how a cell reads its own energy charge and its own supply of biosynthetic precursors, and
      converts both into one flux decision.</p>
   <p><strong>Haemoglobin</strong> is not an enzyme but is the reference implementation of everything above:
@@ -2264,8 +2276,8 @@
           <div class="fx"><span class="fx__eq">trypsinogen →<sup>enteropeptidase</sup> trypsin →<sup>autocatalysis</sup> more trypsin</span><span class="fx__tag">one cleavage that then propagates — hence the need for inhibitor proteins</span></div>
         </div>
         <div class="symtab">
-          <div><b>PKA</b><span>cAMP-dependent protein kinase</span></div>
-          <div><b>P<sub>i</sub></b><span>inorganic phosphate</span></div>
+          <div><b>PKA</b><span><button class="sh" data-sh="cAMP" aria-expanded="false">cAMP</button>-dependent protein kinase</span></div>
+          <div><b><button class="sh" data-sh="Pi" aria-expanded="false">P<sub>i</sub></button></b><span>inorganic phosphate</span></div>
           <div><b>a / b</b><span>conventional labels for the active / less-active form of an interconvertible enzyme</span></div>
           <div><b>PP1</b><span>protein phosphatase 1, the counter-enzyme in glycogen control</span></div>
         </div>

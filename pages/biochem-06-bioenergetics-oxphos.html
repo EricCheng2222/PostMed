@@ -137,7 +137,7 @@
      to make an unwilling change happen is to bolt it onto a willing one so that the two become a single event
      with a single balance sheet. That bolt is always a shared molecule. Nearly every unwilling reaction in the
      body is bolted, through one shared molecule, to the one reaction the cell keeps permanently willing — and
-     that molecule is ATP. The useful thing about ATP turns out not to be that it holds a lot of energy, but that
+     that molecule is <button class="sh" data-sh="ATP" aria-expanded="false">ATP</button>. The useful thing about ATP turns out not to be that it holds a lot of energy, but that
      it holds a <em>middling</em> amount, so it can be filled by strong donors and emptied into weak acceptors.</p>
 
   <div class="defbox">
@@ -225,7 +225,7 @@
   </div>
   <p>Notice what hexokinase does <em>not</em> do. It does not hydrolyse ATP and then use the released heat. It
      transfers the γ-phosphoryl group directly onto glucose in one active site. The shared intermediate is the
-     <strong>phosphoryl group itself</strong>, and there is never any free P<sub>i</sub>. This is the general
+     <strong>phosphoryl group itself</strong>, and there is never any free <button class="sh" data-sh="Pi" aria-expanded="false">P<sub>i</sub></button>. This is the general
      pattern: biological coupling is group transfer, not heat transfer.</p>
 
   <h3>Why ATP hydrolysis is exergonic — and why "high-energy bond" is a misnomer</h3>
@@ -256,7 +256,7 @@
         <tr><td>Phosphoenolpyruvate</td><td class="num">−61.9</td><td>Glycolysis step 10 → makes ATP</td></tr>
         <tr><td>1,3-Bisphosphoglycerate</td><td class="num">−49.3</td><td>Glycolysis step 7 → makes ATP</td></tr>
         <tr><td>ATP → AMP + PP<sub>i</sub></td><td class="num">−45.6</td><td>Activation steps that must be irreversible</td></tr>
-        <tr><td>Phosphocreatine</td><td class="num">−43.0</td><td>Muscle ~P buffer → recharges ATP in seconds</td></tr>
+        <tr><td>Phosphocreatine</td><td class="num">−43.0</td><td>Muscle <button class="sh" data-sh="~P" aria-expanded="false">~P</button> buffer → recharges ATP in seconds</td></tr>
         <tr><td>Succinyl-CoA (thioester)</td><td class="num">−36.0</td><td>TCA step 5 → makes GTP</td></tr>
         <tr><td>Acetyl-CoA (thioester)</td><td class="num">−31.4</td><td>Drives citrate synthase</td></tr>
         <tr><td><strong>ATP → ADP + P<sub>i</sub></strong></td><td class="num"><strong>−30.5</strong></td><td><strong>The currency — deliberately mid-table</strong></td></tr>
@@ -510,7 +510,7 @@
 
   <div class="callout callout--warn">
     <p class="callout__title">"FAD's E°′ is −0.219 V, so how can it accept electrons from succinate at +0.031 V?"</p>
-    <p>Because −0.219 V is the potential of <strong>free</strong> FAD in solution, and no flavin in the
+    <p>Because −0.219 V is the potential of <strong>free</strong> <button class="sh" data-sh="FAD" aria-expanded="false">FAD</button> in solution, and no flavin in the
       respiratory chain is free. A flavin's potential is tuned by the protein around it across a range of about
       −0.4 V to +0.06 V. The FAD of succinate dehydrogenase is <em>covalently</em> attached to a histidine and
       its protein raises its potential to near 0 V, which is exactly what is needed to sit between succinate and
@@ -524,7 +524,7 @@
   <p>Their potentials are almost identical (−0.320 and −0.324 V) and they differ by one phosphate on the 2′-OH of
      the adenosine ribose — a group that takes no part in the chemistry at all. It is a <strong>recognition
      handle</strong>: dehydrogenases select one or the other, and cells therefore maintain the two pools in
-     opposite redox states. NAD⁺ is kept oxidised (cytosolic NAD⁺/NADH ≈ 700) so it is always ready to accept
+     opposite redox states. <button class="sh" data-sh="NAD+" aria-expanded="false">NAD⁺</button> is kept oxidised (cytosolic NAD⁺/NADH ≈ 700) so it is always ready to accept
      electrons from catabolism; NADPH is kept reduced (NADP⁺/NADPH ≈ 0.01) so it is always ready to donate them
      to biosynthesis and to antioxidant defence. Same voltage, opposite direction of flow, enforced entirely by
      concentration. This is the Nernst equation doing physiology.</p>
@@ -685,10 +685,10 @@
   <p>Five steps, five cofactors, in sequence — which is why the mnemonic works and why a question about "the
      third cofactor" has a defensible answer:</p>
   <ol>
-    <li><strong>TPP</strong> attacks pyruvate; CO₂ leaves, giving hydroxyethyl-TPP.</li>
+    <li><strong><button class="sh" data-sh="TPP" aria-expanded="false">TPP</button></strong> attacks pyruvate; CO₂ leaves, giving hydroxyethyl-TPP.</li>
     <li><strong>Lipoamide</strong> (oxidised, a cyclic disulfide) accepts the two-carbon unit and is reduced in
         the process — this is the actual oxidation step. Product: acetyl-dihydrolipoamide.</li>
-    <li><strong>CoA-SH</strong> takes the acetyl group by transthioesterification, releasing acetyl-CoA and
+    <li><strong><button class="sh" data-sh="CoA" aria-expanded="false">CoA-SH</button></strong> takes the acetyl group by transthioesterification, releasing acetyl-CoA and
         leaving dihydrolipoamide.</li>
     <li><strong>FAD</strong> on E3 reoxidises the dihydrolipoamide back to the disulfide.</li>
     <li><strong>NAD⁺</strong> reoxidises FADH₂ and leaves as NADH — the only product that goes to the chain.</li>
@@ -712,6 +712,46 @@
      NAD⁺ are written there as a substrate and a product, so they must diffuse in and out; TPP, lipoamide and
      FAD appear nowhere in it, so they must stay bolted to the enzyme between turnovers. The same one-line test
      works for α-ketoglutarate dehydrogenase and the branched-chain complex, which use the identical five.</p>
+
+  <div class="abg">
+    <div class="abg__card">
+      <h4>α β γ on a phosphate chain</h4>
+      <p>Counted <em>outward from the sugar</em>: α is the phosphate bonded to the 5′ carbon, then β, then γ at
+        the far end. A kinase moves the <b>γ</b> phosphate; attack at <b>α</b> releases PP<sub>i</sub> instead.
+        This is the sense in §&nbsp;01, where hexokinase transfers the γ-phosphoryl group of ATP, and the sense
+        drawn in the panel behind every phosphate symbol on this page.</p>
+    </div>
+    <div class="abg__card">
+      <h4>α β on a ring sugar</h4>
+      <p>Here the letter names the <b>anomeric</b> carbon — which face of the ring the C1 hydroxyl sits on, as in
+        α- and β-D-glucose. Nothing on this page uses that sense, but it is the one most easily confused with the
+        other two, because the letter on the page looks identical.</p>
+    </div>
+    <div class="abg__card">
+      <h4>α β γ along a carbon chain</h4>
+      <p>Counted away from the carboxyl carbon: <b>α</b> is the carbon next to it, then <b>β</b>, then <b>γ</b>.
+        That is why an <em>α</em>-keto acid carries its keto group beside the carboxyl (pyruvate,
+        α-ketoglutarate), why <em>β</em>-oxidation attacks the second carbon, and why isocitrate dehydrogenase
+        performs a <em>β</em>-decarboxylation.</p>
+      <svg viewBox="0 0 250 58" role="img" aria-label="A carbon chain drawn from its carboxyl group: the carbon next to the carboxyl is labelled alpha, the next beta, the next gamma, and the chain continues.">
+        <text x="2" y="41" font-size="12" fill="var(--ink-soft)">HOOC</text>
+        <line x1="42" y1="36" x2="58" y2="36" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="72" cy="36" r="13" fill="none" stroke="var(--accent)" stroke-width="1.9"/>
+        <text x="72" y="41" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">C</text>
+        <text x="72" y="15" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">α</text>
+        <line x1="85" y1="36" x2="115" y2="36" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="128" cy="36" r="13" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <text x="128" y="41" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">C</text>
+        <text x="128" y="15" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink-soft)">β</text>
+        <line x1="141" y1="36" x2="171" y2="36" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <circle cx="184" cy="36" r="13" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>
+        <text x="184" y="41" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">C</text>
+        <text x="184" y="15" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink-soft)">γ</text>
+        <line x1="197" y1="36" x2="224" y2="36" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="230" y="41" font-size="12" fill="var(--ink-faint)">R</text>
+      </svg>
+    </div>
+  </div>
 
   <h3>Regulation: two layers, both reading the same thing</h3>
   <p>PDH is regulated more tightly than almost any enzyme in metabolism, because switching it on commits
@@ -806,7 +846,7 @@
     <dl class="def">
       <dt>Citric acid cycle (TCA cycle, Krebs cycle, 檸檬酸循環)</dt>
       <dd>Eight enzymes in the mitochondrial matrix — with one exception embedded in the inner membrane — that
-          completely oxidise the acetyl group of acetyl-CoA to two CO₂, regenerating oxaloacetate each turn. It
+          completely oxidise the acetyl group of <button class="sh" data-sh="acetyl-CoA" aria-expanded="false">acetyl-CoA</button> to two CO₂, regenerating oxaloacetate each turn. It
           is <strong>amphibolic</strong>（兩性代謝）: catabolic and biosynthetic at the same time (§&nbsp;05).</dd>
     </dl>
     <div class="fx fx--hero">
@@ -939,7 +979,7 @@
   </div>
 
   <h3>Where the energy actually comes out</h3>
-  <p>One GTP per turn is almost nothing — about 1 ATP out of the 10 that a turn eventually yields. Roughly 90 %
+  <p>One <button class="sh" data-sh="GTP" aria-expanded="false">GTP</button> per turn is almost nothing — about 1 ATP out of the 10 that a turn eventually yields. Roughly 90 %
      of the yield is in the four reduced carriers, and none of it is realised until §§06–08. This is the reason
      the cycle is worth so little as a standalone exam topic and so much as the supplier for oxidative
      phosphorylation: <strong>the citric acid cycle is not where ATP is made; it is where electrons are
@@ -1202,7 +1242,7 @@
         <tr><td>Malate</td><td>Malic enzyme (pyruvate + CO₂ + NADPH)</td><td>Exported to cytosol; malic enzyme there generates NADPH for lipogenesis</td></tr>
         <tr><td><strong>Citrate</strong></td><td>—</td><td><strong>Exported to the cytosol</strong> and cleaved by ATP-citrate lyase: the source of acetyl-CoA for <strong>fatty acid and cholesterol synthesis</strong>. Also inhibits PFK-1, linking fuel excess to reduced glycolysis</td></tr>
         <tr><td><strong>α-Ketoglutarate</strong></td><td>Glutamate dehydrogenase; transamination of glutamate (ALT, AST)</td><td>Glutamate → glutamine, proline, arginine; nitrogen handling; collagen prolyl hydroxylase cosubstrate</td></tr>
-        <tr><td><strong>Succinyl-CoA</strong></td><td><strong>Propionyl-CoA</strong> from odd-chain fatty acids and from Val, Ile, Met, Thr (biotin + B₁₂)</td><td><strong>Haem synthesis</strong>: + glycine → δ-aminolevulinate (ALA synthase, PLP; the rate-limiting step)</td></tr>
+        <tr><td><strong>Succinyl-CoA</strong></td><td><strong>Propionyl-CoA</strong> from odd-chain fatty acids and from Val, Ile, Met, Thr (biotin + B₁₂)</td><td><strong>Haem synthesis</strong>: + glycine → δ-aminolevulinate (ALA synthase, <button class="sh" data-sh="PLP" aria-expanded="false">PLP</button>; the rate-limiting step)</td></tr>
         <tr><td>Fumarate</td><td>Phenylalanine and tyrosine catabolism; the urea cycle (argininosuccinate lyase)</td><td>—</td></tr>
         <tr><td>Succinate</td><td>—</td><td>Signalling: accumulates in hypoxia, stabilises HIF-1α</td></tr>
       </tbody>
@@ -1425,7 +1465,7 @@
 
   <h3>What each complex is actually doing</h3>
   <p><strong>Complex I</strong> is the largest and the least intuitive. Its L-shape has a hydrophilic arm sticking
-     into the matrix, where NADH hands its hydride to FMN and a chain of eight iron–sulfur clusters relays the
+     into the matrix, where <button class="sh" data-sh="NADH" aria-expanded="false">NADH</button> hands its hydride to FMN and a chain of eight iron–sulfur clusters relays the
      electrons one at a time over about 95 Å to a quinone bound at the junction with the membrane arm. Nothing
      in that arm touches the protons. The pumping happens in the membrane arm, through three or four
      antiporter-like modules driven by a long horizontal helix acting as a mechanical <em>coupling rod</em> —
@@ -1831,7 +1871,7 @@
 
   <h3>The energy is spent on release, not on synthesis</h3>
   <p>This is the counter-intuitive core of the mechanism and it is examined precisely because it is
-     counter-intuitive. Boyer's isotope-exchange experiments showed that when ADP and P<sub>i</sub> are bound at
+     counter-intuitive. Boyer's isotope-exchange experiments showed that when <button class="sh" data-sh="ADP" aria-expanded="false">ADP</button> and P<sub>i</sub> are bound at
      the tight site, ATP forms and reverses many times over before anything is released — the equilibrium
      constant at the enzyme surface is close to 1, so <strong>ΔG for the chemical step is nearly zero</strong>.
      Enzyme-bound ATP is not a high-energy species; it is stabilised by the protein far more than ADP and
@@ -2114,7 +2154,7 @@
     <dl class="def">
       <dt>Substrate shuttle</dt>
       <dd>A pair of dehydrogenases on opposite sides of the inner membrane plus a transporter for the reduced
-          metabolite. The <em>electrons</em> cross; the NADH does not. There is no NADH transporter in the inner
+          metabolite. The <em>electrons</em> cross; the <button class="sh" data-sh="NADH" aria-expanded="false">NADH</button> does not. There is no NADH transporter in the inner
           membrane, and there never was.</dd>
     </dl>
     <div class="fx fx--hero">
