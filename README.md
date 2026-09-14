@@ -10,7 +10,7 @@ formula**, and every note ends with **10 self-marking questions** with full expl
 
 ## Contents
 
-Subjects are split onto their own shelves. The home page is a subject directory.
+Subjects have their own shelves. The home page is a searchable study desk with saved progress.
 
 | Subject | Shelf | Notes | Questions |
 |---------|-------|-------|-----------|
@@ -90,6 +90,41 @@ The biology half is **not** molecular-dominated — plants and animal physiology
 molecular genetics only 9 %. Skipping plants, diversity and ecology costs roughly 40 % of the block,
 which is why plants get two full notes.
 
+## Study desk and learning tools
+
+The home page is a searchable library of **39 core lessons and two companion guides**, with
+**400 original self-test questions** across the site. Search matches titles, descriptions, and section
+headings; matching sections link directly into the lesson. Subject and progress filters can be combined,
+and the URL retains your search so it can be bookmarked.
+
+- **Continue learning** returns to the most recently visited lesson and section.
+- **Save for later** builds a personal reading list. **Mark as read** is a separate, reversible action.
+- **Needs review** lists lessons with unresolved quiz mistakes and links to their self-tests.
+- Quizzes save individual answers and explanations across reloads. Finish a test to **retry only missed
+  questions**, or start a new full attempt. Retry scores never inflate the best full-attempt score.
+- Core-lesson read and test counts appear on the desk; subject shelves show each lesson's status.
+- Progress and preferences stay in `localStorage` in the current browser. There is no account, sync,
+  telemetry, or external service. If storage is blocked, a page remains usable with in-memory state.
+  Clearing browser data removes progress. Question-bank changes invalidate saved answers for that bank.
+
+All lesson links are present in the home page HTML, so browsing still works without JavaScript.
+Reading controls and quizzes require JavaScript. Learn and Reference modes, diagrams, worked examples,
+and the chemical-shorthand reference remain part of the existing notes.
+
+### Maintaining and checking the catalog
+
+After editing lesson titles, descriptions, section headings, or question banks, regenerate the catalog:
+
+```bash
+python3 scripts/build_catalog.py
+python3 scripts/check_site.py
+node --test tests/study.test.cjs
+```
+
+The generator updates `assets/js/catalog.js` and the home page's static lesson links together. The checks
+validate local routes and anchors, quiz schemas, generated catalog coverage, JavaScript syntax, and saved
+progress/quiz behavior. No package installation or build step is needed.
+
 ## Running it locally
 
 The site is fully static — no build step, no dependencies, no network calls. Open `index.html`
@@ -103,20 +138,27 @@ python3 -m http.server 8000
 ## Structure
 
 ```
-index.html                          subject directory (home)
+index.html                          searchable study desk + static lesson links
 pages/physics.html                  physics shelf — 15 notes, grouped into five parts
 pages/biochemistry.html             biochemistry shelf
 pages/physics-NN-*.html             the 15 physics notes
 pages/biochem-01-bonds-lipids.html  biochem note 01 (page-specific CSS + JS inline)
 assets/css/site.css                 shared design tokens, components, light/dark theme
-assets/js/site.js                   theme toggle + reusable quiz engine
+assets/js/site.js                   theme, reading pace, shorthand + quiz UI
+assets/js/study.js                  local progress + quiz state + lesson navigation
+assets/js/library.js                search, filters, saved lessons + study desk
+assets/js/catalog.js                generated lesson and section metadata
+scripts/build_catalog.py            regenerate catalog + static home links
+scripts/check_site.py               validate local links, quizzes + scripts
+tests/study.test.cjs                progress and quiz regression tests
 deploy/nginx.conf                   server config used by the container
 Dockerfile, fly.toml                fly.io deployment
 ```
 
 ### Writing a new note
 
-Write one HTML file in `pages/`, link `../assets/css/site.css` and `../assets/js/site.js`, and drop the
+Write one HTML file in `pages/`, link `../assets/css/site.css`, then load `../assets/js/study.js` before
+`../assets/js/site.js`, and drop the
 question bank into a `<script type="application/json" id="quiz-data">` block as an array of
 `{stem, options, answer, explain}` (`answer` is a 0-based index). The quiz engine picks it up from any
 element carrying `data-quiz`; a page may carry more than one bank by pointing `data-quiz-src` at

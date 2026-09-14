@@ -3,121 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PostMed Notebook · KMU Post-Baccalaureate Medicine (Informatics Track)</title>
-<meta name="description" content="A study notebook for the post-baccalaureate medicine entrance exam. Each subject has its own shelf; every note opens with definitions and formulas, explains why they take the shape they do, and ends with a self-test.">
+<title>Study desk — PostMed Notebook</title>
+<meta name="description" content="Find your next lesson in physics, biochemistry and biology. Learn with visual notes, save your place, and revisit self-test mistakes in your personal PostMed study desk.">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body class="study-home">
 <a class="skip-link" href="#main">Skip to content</a>
-
-<header class="topbar">
-  <div class="topbar__inner">
-    <a class="brand" href="index.html"><span class="brand__mark">PM</span>PostMed Notebook</a>
-    <nav>
-      <a href="#subjects">Subjects</a>
-      <a href="pages/physics.html">Physics</a>
-      <a href="pages/biochemistry.html">Biochemistry</a>
-      <a href="pages/biology.html">Biology</a>
-      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button>
-    </nav>
-  </div>
-</header>
-
+<header class="topbar"><div class="topbar__inner">
+  <a class="brand" href="index.html"><span class="brand__mark">PM</span>PostMed <span class="brand__suffix">Notebook</span></a>
+  <nav aria-label="Main navigation"><a href="#library">Find a lesson</a><a href="pages/biochem-terms.html">Terms reference</a><button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button></nav>
+</div></header>
 <main id="main" class="wrap">
-
-  <section class="hero">
-    <p class="eyebrow">Post-baccalaureate Medicine · Study Notebook</p>
-    <h1>PostMed Notebook</h1>
-    <p class="hero__target"><b>Target</b>Kaohsiung Medical University — Post-Baccalaureate Medicine, Informatics Track</p>
-    <p class="lede" style="max-width:45rem">
-      This is not a copy of the lecture notes. Every topic starts with one question:
-      <strong>what should this concept actually look like?</strong>
-      Energy questions become a ruler. Classification questions become a spectrum. Motion becomes a graph
-      whose slope and area you can read off. Understand it and you remember it; remember it and you can
-      write it down under exam pressure.
-    </p>
-
-    <div class="principle">
-      <div class="card"><span>📐</span><h3>Definition and formula first</h3>
-        <p>Every section opens with the definition, the formula that carries it, and what each symbol means in SI units — then explains why the formula has the shape it does.</p></div>
-      <div class="card"><span>🎯</span><h3>Written for the exam</h3>
-        <p>"Exam point" and "Trap" boxes map directly onto how questions are actually asked, including the sign conventions that quietly cost marks.</p></div>
-      <div class="card"><span>✍️</span><h3>A self-test on every page</h3>
-        <p>Ten questions per note, marked instantly with full explanations, so a miss tells you exactly which section to re-read.</p></div>
-    </div>
+  <section class="desk-hero" aria-labelledby="desk-title">
+    <div><p class="eyebrow">後醫筆記 / Your study desk</p><h1 id="desk-title">Make sense of it.<br><em>Then make it stick.</em></h1>
+    <p class="lede">Visual lessons for the KMU post-baccalaureate medicine exam. Start with one idea, work through an example, then test what you remember.</p>
+    <a class="btn btn--primary" href="#library">Find your next lesson <span aria-hidden="true">↗</span></a>
+    <p class="desk-caption">39 core lessons · 400 self-test questions · 2 companion guides</p></div>
+    <aside class="session-card" aria-labelledby="session-title"><p class="eyebrow" id="session-label">A good place to begin</p><h2 id="session-title">One lesson.<br>One clear next step.</h2><p id="session-copy">Choose a subject below, or begin with motion: position, velocity and acceleration.</p><a id="session-link" class="btn" href="pages/physics-01-kinematics.html">Start with kinematics →</a><div class="desk-stats" id="desk-stats"><div><strong id="read-count">0</strong><span>lessons read</span></div><div><strong id="quiz-count">0</strong><span>tests completed</span></div><div><strong id="review-count">0</strong><span>lessons to revisit</span></div></div><p class="local-note" id="storage-note">Your progress stays in this browser. No account needed.</p></aside>
   </section>
-
-  <!-- ===================== Subject directory ===================== -->
-  <section id="subjects">
-    <div class="subject-head">
-      <h2>Subjects</h2>
-      <span>39 notes published</span>
-    </div>
-
-    <div class="subjects">
-
-      <a class="subject subject--physics" href="pages/physics.html">
-        <span class="subject__mark" aria-hidden="true">⚛️</span>
-        <p class="subject__count">15 notes · complete</p>
-        <h3>Physics</h3>
-        <p>A full pass through freshman physics — kinematics through to nuclear medicine. Mechanics,
-          fluids, thermodynamics, electromagnetism, optics and modern physics, each note opening with
-          its definitions and formulas and closing with ten questions.</p>
-        <span class="subject__go">Open the physics shelf →</span>
-      </a>
-
-      <a class="subject subject--biochem" href="pages/biochemistry.html">
-        <span class="subject__mark" aria-hidden="true">🧬</span>
-        <p class="subject__count">10 notes · complete</p>
-        <h3>Biochemistry</h3>
-        <p>Half of the 高醫 後醫 science paper, weighted by seven years of past papers rather than by
-          textbook order — proteins and enzymes, the four metabolic blocks with lipids given the
-          weight they actually carry, molecular biology, and the signalling the recent papers have
-          pivoted towards.</p>
-        <span class="subject__go">Open the biochemistry shelf →</span>
-      </a>
-
-      <div class="subject subject--chem subject--soon">
-        <span class="subject__mark" aria-hidden="true">⚗️</span>
-        <p class="subject__count">Planned</p>
-        <h3>Chemistry</h3>
-        <p>Acid–base and buffers as a titration-curve simulator; thermodynamics and equilibrium in
-          numeric panels; functional-group interconversions as a matrix; mechanisms as step-by-step
-          arrow pushing; stereochemistry in rotatable models.</p>
-        <span class="subject__go">Added as revision progresses</span>
-      </div>
-
-      <a class="subject subject--biology" href="pages/biology.html">
-        <span class="subject__mark" aria-hidden="true">🌱</span>
-        <p class="subject__count">14 notes · complete</p>
-        <h3>Biology</h3>
-        <p>The other half of the same paper — and not the molecular-biology course most candidates
-          expect. Broad Campbell organismal biology, where plants and animal physiology carry almost
-          a third of the marks between them.</p>
-        <span class="subject__go">Open the biology shelf →</span>
-      </a>
-
-      <div class="subject subject--info subject--soon">
-        <span class="subject__mark" aria-hidden="true">📊</span>
-        <p class="subject__count">Planned</p>
-        <h3>Informatics track</h3>
-        <p>Biostatistics with interactive tables and sampling simulations; algorithms and data
-          structures with a step tracer; an introduction to medical informatics.</p>
-        <span class="subject__go">Added as revision progresses</span>
-      </div>
-
-    </div>
+  <section aria-labelledby="subjects-title"><div class="subject-head"><h2 id="subjects-title">Choose your starting point</h2><span>Follow a subject, or search below</span></div>
+  <div class="subjects desk-subjects">
+    <a class="subject subject--physics" href="pages/physics.html"><p class="subject__count">01 / Physics · 15 lessons</p><h3>See the laws at work.</h3><p>Motion, forces, energy and fields — with graphs, worked examples and medical connections.</p><span class="subject__go">Explore physics →</span></a>
+    <a class="subject subject--biochem" href="pages/biochemistry.html"><p class="subject__count">02 / Biochemistry · 10 lessons</p><h3>Connect the pathways.</h3><p>From bonds and proteins to metabolism. Understand what moves, what changes and why.</p><span class="subject__go">Explore biochemistry →</span></a>
+    <a class="subject subject--biology" href="pages/biology.html"><p class="subject__count">03 / Biology · 14 lessons</p><h3>Build the bigger picture.</h3><p>Cells to ecosystems, including genetics, plants, physiology and the immune system.</p><span class="subject__go">Explore biology →</span></a>
+  </div></section>
+  <section class="study-method" aria-labelledby="method-title"><h2 id="method-title">A small loop.<br>A stronger memory.</h2><ol><li><b>01 · Understand</b><span>Use Learn mode. Read one section and explain the central idea in your own words.</span></li><li><b>02 · Recall</b><span>Try an example before opening its solution. Use Reference mode when you need the details.</span></li><li><b>03 · Check & revisit</b><span>Take the self-test. Read the explanation, then retry the questions you missed.</span></li></ol></section>
+  <section id="library" class="lesson-library" aria-labelledby="library-title">
+    <div class="subject-head"><div><p class="eyebrow">The lesson library</p><h2 id="library-title">What are you learning today?</h2></div><span>Core lessons + companion guides</span></div>
+    <div class="library-controls" hidden id="library-controls"><div class="search-field"><label for="lesson-search">Search topics, concepts or lesson titles</label><input id="lesson-search" type="search" placeholder="Try enzymes, momentum, genetics…" autocomplete="off"></div><div class="status-field"><label for="lesson-status">Your progress</label><select id="lesson-status"><option value="all">Everything</option><option value="new">Not started</option><option value="started">In progress</option><option value="read">Read</option><option value="review">Needs review</option><option value="saved">Saved for later</option></select></div><div class="subject-filters" role="group" aria-label="Filter by subject"><button class="filter" data-filter="all" aria-pressed="true">All subjects</button><button class="filter" data-filter="physics" aria-pressed="false">Physics</button><button class="filter" data-filter="biochemistry" aria-pressed="false">Biochemistry</button><button class="filter" data-filter="biology" aria-pressed="false">Biology</button></div></div>
+    <p class="library-count" id="library-count" role="status" aria-live="polite">41 lessons and guides</p>
+    <div id="lesson-list" class="lesson-list">
+<!-- catalog:start -->
+<article class="lesson-row" data-lesson="physics-01-kinematics"><div class="lesson-subject">Physics<span>Lesson 01</span></div><div><h3><a href="pages/physics-01-kinematics.html">Kinematics: Motion in One and Two Dimensions</a></h3><p>Physics note 01: displacement and sign conventions, average and instantaneous velocity, acceleration, the four constant-acceleration equations, free fall, motion graphs, vectors, relative velocity, projectiles and circular motion — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="physics-02-newton-dynamics"><div class="lesson-subject">Physics<span>Lesson 02</span></div><div><h3><a href="pages/physics-02-newton-dynamics.html">Newton’s Laws, Forces and Friction</a></h3><p>Physics note 02: Newton&#x27;s three laws and inertial frames, free-body diagrams, normal force and tension, static and kinetic friction, inclines, Atwood machines, drag, circular motion and pseudo-forces — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="physics-03-work-energy"><div class="lesson-subject">Physics<span>Lesson 03</span></div><div><h3><a href="pages/physics-03-work-energy.html">Work, Energy and Power</a></h3><p>Physics note 03: work by constant and variable forces, kinetic and potential energy, the work-energy theorem, conservation of mechanical energy, friction losses, power, potential-energy curves, efficiency and human metabolic power, ending with a 10-question self-test.</p></div></article>
+<article class="lesson-row" data-lesson="physics-04-momentum"><div class="lesson-subject">Physics<span>Lesson 04</span></div><div><h3><a href="pages/physics-04-momentum.html">Momentum, Impulse and Collisions</a></h3><p>Physics note 04: linear momentum and impulse, the area under an F–t curve, what isolation really requires, elastic and inelastic collisions, restitution, centre of mass and the ballistic pendulum — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="physics-05-rotation"><div class="lesson-subject">Physics<span>Lesson 05</span></div><div><h3><a href="pages/physics-05-rotation.html">Rotational Motion and Static Equilibrium</a></h3><p>Physics note 05: angular kinematics, torque and moment of inertia, Στ = Iα, rolling without slipping, angular momentum conservation, static equilibrium, centre of gravity and the three body levers — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="physics-06-gravitation"><div class="lesson-subject">Physics<span>Lesson 06</span></div><div><h3><a href="pages/physics-06-gravitation.html">Gravitation and Orbital Motion</a></h3><p>Physics note 06: Newton&#x27;s law of gravitation, the shell theorem, variation of g, gravitational potential energy, escape speed, circular orbits, orbital energy, Kepler&#x27;s laws, weightlessness and tides — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="physics-07-oscillations"><div class="lesson-subject">Physics<span>Lesson 07</span></div><div><h3><a href="pages/physics-07-oscillations.html">Oscillations and Simple Harmonic Motion</a></h3><p>Physics note 07: Hooke&#x27;s law, the defining condition a = -ω²x, phase relations, mass-spring and pendulum periods, energy, the reference circle, damping and resonance, ending with a 10-question self-test.</p></div></article>
+<article class="lesson-row" data-lesson="physics-08-waves-sound"><div class="lesson-subject">Physics<span>Lesson 08</span></div><div><h3><a href="pages/physics-08-waves-sound.html">Waves and Sound</a></h3><p>Physics note 08: wave anatomy, v = fλ and boundary crossing, wave speed in strings and fluids, intensity and decibels, interference, standing waves, pipes, beats, Doppler and medical ultrasound — with a 10-question self-test.</p></div></article>
+<article class="lesson-row" data-lesson="physics-09-fluids"><div class="lesson-subject">Physics<span>Lesson 09</span></div><div><h3><a href="pages/physics-09-fluids.html">Fluid Statics and Dynamics</a></h3><p>Physics note 09: density, pressure units, Pascal and Archimedes, hydrostatics and blood pressure, continuity, Bernoulli, Poiseuille, Reynolds, surface tension and Stokes — with a 10-question self-test.</p></div></article>
+<article class="lesson-row" data-lesson="physics-10-thermal"><div class="lesson-subject">Physics<span>Lesson 10</span></div><div><h3><a href="pages/physics-10-thermal.html">Thermal Physics and Thermodynamics</a></h3><p>Physics note 10: temperature and the zeroth law, thermal expansion, specific and latent heat, heat transfer, kinetic theory, the first and second laws, entropy and heat engines, with a 10-question self-test.</p></div></article>
+<article class="lesson-row" data-lesson="physics-11-electrostatics"><div class="lesson-subject">Physics<span>Lesson 11</span></div><div><h3><a href="pages/physics-11-electrostatics.html">Electric Charge, Field and Potential</a></h3><p>Physics note 11: charge and its quantisation, Coulomb&#x27;s law, the electric field and field lines, Gauss&#x27;s law, conductors at equilibrium, potential and the volt, capacitance, dielectrics and stored energy — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="physics-12-circuits"><div class="lesson-subject">Physics<span>Lesson 12</span></div><div><h3><a href="pages/physics-12-circuits.html">Direct-Current Circuits</a></h3><p>Physics note 12: current and drift velocity, resistivity, Ohm&#x27;s law, power, emf and internal resistance, series and parallel, Kirchhoff&#x27;s rules, meters, RC circuits and electrical safety — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="physics-13-magnetism"><div class="lesson-subject">Physics<span>Lesson 13</span></div><div><h3><a href="pages/physics-13-magnetism.html">Magnetism and Electromagnetic Induction</a></h3><p>Physics note 13: magnetic fields and forces, cyclotron and helical motion, mass spectrometers, forces and torques on currents, Ampère&#x27;s law, Faraday and Lenz, inductance, transformers, MRI and TMS — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="physics-14-optics"><div class="lesson-subject">Physics<span>Lesson 14</span></div><div><h3><a href="pages/physics-14-optics.html">Geometric and Wave Optics</a></h3><p>Physics note 14: reflection, refraction, total internal reflection, mirrors and thin lenses with sign conventions, dioptres, the eye and its corrections, interference, diffraction, resolution and polarisation — with a 10-question self-test.</p></div></article>
+<article class="lesson-row" data-lesson="physics-15-modern"><div class="lesson-subject">Physics<span>Lesson 15</span></div><div><h3><a href="pages/physics-15-modern.html">Modern Physics: Quanta, Atoms and Nuclei</a></h3><p>Physics note 15: blackbody radiation and Planck, the photoelectric effect, photons and Compton scattering, de Broglie waves, uncertainty, the Bohr atom, X-rays, relativity, nuclear binding energy, radioactive decay, dose and nuclear medicine — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-01-bonds-lipids"><div class="lesson-subject">Biochemistry<span>Lesson 01</span></div><div><h3><a href="pages/biochem-01-bonds-lipids.html">Bonds, Functional Groups &amp; the Hydrophobic Effect</a></h3><p>Biochemistry note 01: an interactive energy ruler for covalent and noncovalent bonds, the functional groups of biochemistry ranked by polarity, water and hydrogen bonding, the entropy-driven hydrophobic effect, amphipathic self-assembly, lipid classification and membrane fluidity — with 10 self-test questions.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-02-amino-acids-proteins"><div class="lesson-subject">Biochemistry<span>Lesson 02</span></div><div><h3><a href="pages/biochem-02-amino-acids-proteins.html">Amino Acids, Peptides and Protein Structure</a></h3><p>Biochemistry note 02: side-chain pKa and net charge, Henderson–Hasselbalch and pI, peptide-bond geometry and Ramachandran space, helices, sheets and collagen, folding and misfolding, haemoglobin cooperativity, and protein purification.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-03-enzymes"><div class="lesson-subject">Biochemistry<span>Lesson 03</span></div><div><h3><a href="pages/biochem-03-enzymes.html">Enzymes: Kinetics, Inhibition and Regulation</a></h3><p>Biochemistry note 03: transition-state stabilisation, catalytic strategies, the catalytic triad, coenzymes, Michaelis–Menten kinetics, k_cat/K_m, linear plots, the five inhibition patterns, allostery and covalent regulation.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-04-carbohydrate-metabolism"><div class="lesson-subject">Biochemistry<span>Lesson 04</span></div><div><h3><a href="pages/biochem-04-carbohydrate-metabolism.html">Carbohydrate Metabolism: Glycolysis, Gluconeogenesis, Glycogen and the PPP</a></h3><p>Biochemistry note 04: glycolysis step by step, its three irreversible control points, the honest ATP ledger, carbon bookkeeping, fructose and galactose, gluconeogenesis, fructose 2,6-bisphosphate, glycogen and the pentose phosphate pathway.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-05-nucleic-acids"><div class="lesson-subject">Biochemistry<span>Lesson 05</span></div><div><h3><a href="pages/biochem-05-nucleic-acids.html">Nucleic Acids: DNA, RNA and the Central Dogma</a></h3><p>Biochemistry note 05: nucleotides, chain polarity, base pairing and stacking, DNA topology and chromatin, replication, transcription, an interactive 64-codon table, mutation, repair and laboratory methods.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-06-bioenergetics-oxphos"><div class="lesson-subject">Biochemistry<span>Lesson 06</span></div><div><h3><a href="pages/biochem-06-bioenergetics-oxphos.html">Bioenergetics, the TCA Cycle and Oxidative Phosphorylation</a></h3><p>Biochemistry note 06: free energy and coupling, redox potentials, pyruvate dehydrogenase, the citric acid cycle and anaplerosis, the electron-transport chain, the proton-motive force, ATP synthase, inhibitors and uncouplers, and the modern ATP ledger.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-07-lipid-metabolism"><div class="lesson-subject">Biochemistry<span>Lesson 07</span></div><div><h3><a href="pages/biochem-07-lipid-metabolism.html">Lipid Metabolism, Cholesterol and Lipoproteins</a></h3><p>Biochemistry note 07: the carnitine shuttle, β-oxidation and its ATP arithmetic, odd and unsaturated chains, ketone bodies, fatty-acid and cholesterol synthesis, statins, lipoproteins and eicosanoids.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-08-nitrogen-metabolism"><div class="lesson-subject">Biochemistry<span>Lesson 08</span></div><div><h3><a href="pages/biochem-08-nitrogen-metabolism.html">Nitrogen Metabolism: Amino Acids, the Urea Cycle and Nucleotides</a></h3><p>Biochemistry note 08: nitrogen balance and ammonia toxicity, transamination and PLP, glutamate dehydrogenase, the urea cycle and its defects, glucogenic and ketogenic skeletons, the classic inborn errors, one-carbon metabolism, nucleotide synthesis, salvage and gout.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-09-membranes-signalling"><div class="lesson-subject">Biochemistry<span>Lesson 09</span></div><div><h3><a href="pages/biochem-09-membranes-signalling.html">Membranes, Receptors and Signal Transduction</a></h3><p>Biochemistry note 09: the fluid mosaic, permeability, channels and carriers, the Na+/K+-ATPase, secondary active transport, membrane potential, GPCRs, cAMP, PLC, RTKs, Ras and nuclear receptors.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-10-vitamins-integration"><div class="lesson-subject">Biochemistry<span>Lesson 10</span></div><div><h3><a href="pages/biochem-10-vitamins-integration.html">Vitamins, Cofactors and Metabolic Integration</a></h3><p>Biochemistry note 10: each water-soluble vitamin mapped to its coenzyme and the reaction that coenzyme makes possible, the fat-soluble four, organ fuel logic, the fed-to-starved timetable, insulin and glucagon, diabetes and its drugs.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-glycolysis-steps"><div class="lesson-subject">Biochemistry<span>Companion guide</span></div><div><h3><a href="pages/biochem-glycolysis-steps.html">Glycolysis: The Ten Steps, One Diagram Each</a></h3><p>A deep dive on glycolysis: all ten reactions one at a time, each with its own diagram showing substrate, product, the group that changes, the cosubstrates, the enzyme and ΔG°′ — plus consistent carbon numbering from glucose to pyruvate and English memory hooks for the intermediates, the enzymes and the ATP ledger.</p></div></article>
+<article class="lesson-row" data-lesson="biochem-terms"><div class="lesson-subject">Biochemistry<span>Companion guide</span></div><div><h3><a href="pages/biochem-terms.html">Terms, Shorthand and Naming</a></h3><p>A biochemistry reference: the shorthand (P, Pi, PPi, ~P, NAD+, CoA), the three meanings of alpha/beta/gamma, enzyme naming rules, enzyme and kinetics vocabulary, stereochemistry (epimer vs anomer vs enantiomer), bonds and linkages, energetics and pathway vocabulary — grouped so confusable pairs sit together, with diagrams.</p></div></article>
+<article class="lesson-row" data-lesson="biology-01-cells"><div class="lesson-subject">Biology<span>Lesson 01</span></div><div><h3><a href="pages/biology-01-cells.html">Cells, Organelles, Membranes and Transport</a></h3><p>Biology note 01: why cells are small and compartmented, prokaryote versus eukaryote, the endomembrane production line and protein targeting, endosymbiosis, cytoskeleton and the 9+2 axoneme, junctions, membrane fluidity and the whole transport hierarchy.</p></div></article>
+<article class="lesson-row" data-lesson="biology-02-cell-cycle"><div class="lesson-subject">Biology<span>Lesson 02</span></div><div><h3><a href="pages/biology-02-cell-cycle.html">The Cell Cycle, Mitosis, Meiosis and Cancer</a></h3><p>Biology note 02: interphase and checkpoints, mitosis and the spindle, cytokinesis in animals and plants, meiosis, n and C bookkeeping, non-disjunction, cyclins and CDKs, oncogenes, p53, Rb, apoptosis and telomeres.</p></div></article>
+<article class="lesson-row" data-lesson="biology-03-genetics"><div class="lesson-subject">Biology<span>Lesson 03</span></div><div><h3><a href="pages/biology-03-genetics.html">Classical and Chromosomal Genetics</a></h3><p>Biology note 03: Mendel&#x27;s two laws stated precisely, probability instead of Punnett squares, dominance and ABO, epistasis and modified ratios, sex linkage, X-inactivation, pedigrees, linkage mapping and chromosomal rearrangements.</p></div></article>
+<article class="lesson-row" data-lesson="biology-04-molecular-genetics"><div class="lesson-subject">Biology<span>Lesson 04</span></div><div><h3><a href="pages/biology-04-molecular-genetics.html">Molecular Genetics and the Control of Gene Expression</a></h3><p>Biology note 04: operons and prokaryotic control, the layered eukaryotic system from chromatin to protein turnover, epigenetics and imprinting, mutation and its protein consequences, transposons and the laboratory toolkit.</p></div></article>
+<article class="lesson-row" data-lesson="biology-05-evolution"><div class="lesson-subject">Biology<span>Lesson 05</span></div><div><h3><a href="pages/biology-05-evolution.html">Evolution and Population Genetics</a></h3><p>Biology note 05: natural selection stated precisely, evidence for common descent, Hardy–Weinberg as a null model, drift and the other four forces, modes of selection, speciation, convergence and the molecular clock.</p></div></article>
+<article class="lesson-row" data-lesson="biology-06-diversity"><div class="lesson-subject">Biology<span>Lesson 06</span></div><div><h3><a href="pages/biology-06-diversity.html">Biodiversity, Phylogeny and Classification</a></h3><p>Biology note 06: the three domains, reading phylogenetic trees, monophyly and paraphyly, homology versus analogy, parsimony and molecular clocks, the animal phyla, land plants and vertebrates.</p></div></article>
+<article class="lesson-row" data-lesson="biology-07-microbes"><div class="lesson-subject">Biology<span>Lesson 07</span></div><div><h3><a href="pages/biology-07-microbes.html">Prokaryotes, Viruses, Protists and Fungi</a></h3><p>Biology note 07: prokaryotic structure, the Gram stain and what it predicts, endospores, metabolic and oxygen classes, growth kinetics, horizontal gene transfer, archaea, viral cycles, protist parasites and fungi.</p></div></article>
+<article class="lesson-row" data-lesson="biology-08-plant-structure"><div class="lesson-subject">Biology<span>Lesson 08</span></div><div><h3><a href="pages/biology-08-plant-structure.html">Plant Structure, Transport and Nutrition</a></h3><p>Biology note 08: the three tissue systems and their meristems, root, stem and leaf anatomy, water potential, cohesion–tension, stomatal control, pressure flow in the phloem, mineral nutrition and nitrogen fixation.</p></div></article>
+<article class="lesson-row" data-lesson="biology-09-plant-function"><div class="lesson-subject">Biology<span>Lesson 09</span></div><div><h3><a href="pages/biology-09-plant-function.html">Photosynthesis, Plant Reproduction and Plant Responses</a></h3><p>Biology note 09: chloroplast structure, the Z scheme and photophosphorylation, the Calvin cycle, photorespiration, C4 and CAM, alternation of generations, double fertilisation, seeds and fruits, hormones, tropisms and photoperiodism.</p></div></article>
+<article class="lesson-row" data-lesson="biology-10-animal-physiology-1"><div class="lesson-subject">Biology<span>Lesson 10</span></div><div><h3><a href="pages/biology-10-animal-physiology-1.html">Animal Physiology I — Circulation, Gas Exchange, Digestion, Osmoregulation</a></h3><p>Biology note 10: why body size forces circulatory systems, the heart and cardiac cycle, vessels and Starling forces, blood, ventilation and the haemoglobin curve, digestion, and the nephron.</p></div></article>
+<article class="lesson-row" data-lesson="biology-11-animal-physiology-2"><div class="lesson-subject">Biology<span>Lesson 11</span></div><div><h3><a href="pages/biology-11-animal-physiology-2.html">Animal Physiology II — Nerve, Muscle and the Endocrine System</a></h3><p>Biology note 11: resting and action potentials from ion gradients, saltatory conduction, synapses and summation, nervous-system organisation, eye and ear, sliding filaments, excitation–contraction coupling, and the endocrine axes.</p></div></article>
+<article class="lesson-row" data-lesson="biology-12-immunology"><div class="lesson-subject">Biology<span>Lesson 12</span></div><div><h3><a href="pages/biology-12-immunology.html">Immunology</a></h3><p>Biology note 12: innate barriers, phagocytes, NK cells, complement, inflammation and fever; clonal selection, V(D)J diversity, antibody classes, MHC restriction, memory, vaccines, blood groups and immune disease.</p></div></article>
+<article class="lesson-row" data-lesson="biology-13-development"><div class="lesson-subject">Biology<span>Lesson 13</span></div><div><h3><a href="pages/biology-13-development.html">Animal Reproduction and Development</a></h3><p>Biology note 13: asexual and sexual reproduction, gametogenesis, the ovarian and uterine cycles, fertilisation and polyspermy blocks, cleavage, gastrulation, germ layers, induction, morphogens and Hox genes.</p></div></article>
+<article class="lesson-row" data-lesson="biology-14-ecology"><div class="lesson-subject">Biology<span>Lesson 14</span></div><div><h3><a href="pages/biology-14-ecology.html">Ecology and Animal Behaviour</a></h3><p>Biology note 14: population growth and life tables, competition and symbiosis, community diversity and succession, ecosystem energetics, nutrient cycles, biomes, conservation and animal behaviour.</p></div></article>
+<!-- catalog:end -->
+    </div><div class="library-empty" id="library-empty" hidden><h3>No matching lessons yet.</h3><p>Try a broader topic or clear your filters to see the full library.</p><button type="button" class="btn" id="clear-filters">Clear filters</button></div>
+    <noscript><p class="callout">All lessons are linked above. Enable JavaScript for search, quizzes and progress tracking.</p></noscript>
   </section>
-
 </main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <p><strong>PostMed Notebook</strong> — personal revision notes for the KMU post-baccalaureate medicine entrance exam (informatics track).</p>
-    <p>Fully static site. No external dependencies, no tracking. Content is exam-oriented; numerical values are standard textbook approximations.</p>
-  </div>
-</footer>
-
-<script src="assets/js/site.js"></script>
+<footer class="site-footer"><div class="wrap"><p><strong>PostMed Notebook</strong> · Built for understanding, one concept at a time.</p><p>Personal revision notes for KMU post-baccalaureate medicine, informatics track. Chemistry and informatics lessons are planned.</p><p>Progress is saved only in this browser; clearing browser data removes it. No tracking or external dependencies.</p></div></footer>
+<script src="assets/js/catalog.js"></script><script src="assets/js/study.js"></script><script src="assets/js/site.js"></script><script src="assets/js/library.js"></script>
 </body>
 </html>

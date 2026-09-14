@@ -209,29 +209,27 @@
   var LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
   function buildQuiz(root, items) {
-    var answered = 0, correct = 0, total = items.length;
-
+    var study = window.PostMed;
+    var bankId = root.getAttribute('data-quiz-src') || '#quiz-data';
+    var lesson = study && study.pageId ? study.get(study.pageId) : {};
+    var saved = lesson.quizzes && lesson.quizzes[bankId];
+    var model = study.quiz.create(items, saved);
+    var total = items.length;
     var bar = document.createElement('div');
     bar.className = 'quiz__bar';
-    bar.innerHTML =
-      '<div class="quiz__progress" role="progressbar" aria-label="Quiz progress"' +
-      ' aria-valuemin="0" aria-valuemax="' + total + '" aria-valuenow="0"><span></span></div>' +
-      '<div class="quiz__score" data-score>0 / ' + total + ' answered · 0 correct</div>' +
-      '<button type="button" class="btn" data-reset>Reset</button>';
+    bar.innerHTML = '<div class="quiz__progress" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="' + total + '" aria-valuenow="0"><span></span></div>' +
+      '<div class="quiz__score" data-score role="status" aria-live="polite"></div>' +
+      '<button type="button" class="btn" data-retry>Retry missed questions</button>' +
+      '<button type="button" class="btn" data-reset>Start new attempt</button>' +
+      '<p class="quiz__hint"></p>';
     root.appendChild(bar);
-
-    var fill = bar.querySelector('.quiz__progress span');
-    var meter = bar.querySelector('.quiz__progress');
-    var score = bar.querySelector('[data-score]');
-
     var result = document.createElement('div');
     result.className = 'quiz__result';
+    result.tabIndex = -1;
     result.hidden = true;
-
-    items.forEach(function (item, i) {
+    var questions = items.map(function (item, i) {
       var q = document.createElement('article');
       q.className = 'q';
-
       var head = document.createElement('div');
       head.className = 'q__head';
       head.innerHTML = '<span class="q__idx">Q' + (i + 1) + '</span>';
@@ -240,85 +238,84 @@
       stem.innerHTML = item.stem;
       head.appendChild(stem);
       q.appendChild(head);
-
       var list = document.createElement('ul');
       list.className = 'q__opts';
-      var buttons = [];
-
-      item.options.forEach(function (opt, j) {
+      var buttons = item.options.map(function (opt, j) {
         var li = document.createElement('li');
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'q__opt';
-        btn.innerHTML = '<span class="q__key">' + LETTERS[j] + '</span><span>' + opt + '</span>';
-        btn.addEventListener('click', function () { choose(j); });
-        li.appendChild(btn);
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'q__opt';
+        button.innerHTML = '<span class="q__key">' + LETTERS[j] + '</span><span>' + opt + '</span>';
+        button.addEventListener('click', function () {
+          if (!study.quiz.choose(model, items, i, j)) return;
+          persist();
+          render();
+          exp.focus({ preventScroll: true });
+        });
+        li.appendChild(button);
         list.appendChild(li);
-        buttons.push(btn);
+        return button;
       });
       q.appendChild(list);
-
       var exp = document.createElement('div');
       exp.className = 'q__exp';
+      exp.tabIndex = -1;
       exp.hidden = true;
       q.appendChild(exp);
-
-      function choose(picked) {
-        if (q.dataset.done) return;
-        q.dataset.done = '1';
-        var right = picked === item.answer;
-
-        buttons.forEach(function (b, k) {
-          b.disabled = true;
-          if (k === item.answer) b.classList.add('q__opt--right');
-          else if (k === picked) b.classList.add('q__opt--wrong');
-        });
-
-        exp.innerHTML =
-          '<span class="q__verdict ' + (right ? 'q__verdict--ok">✓ Correct' : 'q__verdict--bad">✗ Incorrect') +
-          '</span>Answer <b>' + LETTERS[item.answer] + '</b> — ' + item.explain;
-        exp.hidden = false;
-
-        answered++;
-        if (right) correct++;
-        fill.style.width = (answered / total * 100) + '%';
-        meter.setAttribute('aria-valuenow', String(answered));
-        score.textContent = answered + ' / ' + total + ' answered · ' + correct + ' correct';
-
-        if (answered === total) {
-          var pct = Math.round(correct / total * 100);
-          var verdict = pct >= 90 ? 'Solid. This topic can move to the "one more pass before the exam" pile.'
-                      : pct >= 70 ? 'Good base. Re-read the sections behind the ones you missed.'
-                      : pct >= 50 ? 'The concepts are there, but the details will cost you marks. Work back through the sections the missed questions came from.'
-                      : 'Read the page through once more before attempting the questions again.';
-          result.innerHTML = '<p style="margin:0 0 .3rem">Score</p><strong>' + correct +
-            ' / ' + total + '</strong><p style="margin:.4rem 0 0">' + pct + '% — ' + verdict + '</p>';
-          result.hidden = false;
-          result.scrollIntoView({ block: 'nearest' });
-        }
-      }
-
       root.appendChild(q);
+      return { node: q, buttons: buttons, exp: exp };
     });
-
     root.appendChild(result);
-
-    bar.querySelector('[data-reset]').addEventListener('click', function () {
-      answered = 0; correct = 0;
-      fill.style.width = '0%';
-      meter.setAttribute('aria-valuenow', '0');
-      score.textContent = '0 / ' + total + ' answered · 0 correct';
-      result.hidden = true;
-      root.querySelectorAll('.q').forEach(function (q) {
-        delete q.dataset.done;
-        q.querySelectorAll('.q__opt').forEach(function (b) {
-          b.disabled = false;
-          b.classList.remove('q__opt--right', 'q__opt--wrong');
+    function persist() {
+      if (!study.pageId) return;
+      var current = study.get(study.pageId);
+      var banks = Object.assign({}, current.quizzes || {});
+      banks[bankId] = model;
+      study.update(study.pageId, { quizzes: banks });
+    }
+    function render() {
+      var summary = study.quiz.summary(model, items);
+      bar.querySelector('.quiz__progress span').style.width = (summary.answered / total * 100) + '%';
+      bar.querySelector('[role="progressbar"]').setAttribute('aria-valuenow', String(summary.answered));
+      bar.querySelector('[data-score]').textContent = (model.mode === 'review' ? 'Review · ' : '') + summary.answered + ' / ' + total + ' answered · ' + summary.correct + ' correct';
+      bar.querySelector('[data-retry]').disabled = !model.missed.length || summary.answered !== total;
+      bar.querySelector('.quiz__hint').textContent = (study.persistent() ? 'Answers saved in this browser. ' : 'Answers cannot be saved in this browser. ') +
+        (model.best === null ? '' : 'Best full attempt: ' + model.best + ' / ' + total + '. ') +
+        (model.mode === 'review' ? 'Only missed questions are shown; earlier correct answers stay counted. Review does not change your best full-attempt score.' : 'Choose an answer to see its explanation. Finish the test to retry your mistakes.');
+      questions.forEach(function (view, i) {
+        var picked = model.answers[i], item = items[i];
+        view.node.hidden = model.mode === 'review' && !model.review.includes(i);
+        view.buttons.forEach(function (button, j) {
+          button.disabled = picked !== null;
+          button.classList.toggle('q__opt--right', picked !== null && j === item.answer);
+          button.classList.toggle('q__opt--wrong', picked !== null && j === picked && picked !== item.answer);
         });
-        q.querySelector('.q__exp').hidden = true;
+        view.exp.hidden = picked === null;
+        if (picked !== null) {
+          var right = picked === item.answer;
+          view.exp.innerHTML = '<span class="q__verdict ' + (right ? 'q__verdict--ok">✓ Correct' : 'q__verdict--bad">✗ Incorrect') + '</span>Answer <b>' + LETTERS[item.answer] + '</b> — ' + item.explain;
+        }
       });
-      root.scrollIntoView({ block: 'start' });
+      result.hidden = summary.answered !== total;
+      if (!result.hidden) {
+        result.innerHTML = model.mode === 'review'
+          ? '<h3>Review complete</h3><p>' + (model.missed.length ? model.missed.length + ' questions still need a second look. Read the explanations, then retry.' : 'You have corrected every missed question. Try a new full attempt later to check your recall.') + '</p>'
+          : '<h3>' + summary.correct + ' / ' + total + ' correct</h3><p>' + (model.missed.length ? 'Read the explanations for the questions you missed, then use “Retry missed questions” above.' : 'All correct. Come back later and try a new attempt to check what sticks.') + '</p>';
+      }
+    }
+    bar.querySelector('[data-reset]').addEventListener('click', function () {
+      study.quiz.reset(model, items);
+      persist(); render();
+      questions[0].buttons[0].focus();
     });
+    bar.querySelector('[data-retry]').addEventListener('click', function () {
+      if (!study.quiz.retry(model, items)) return;
+      persist(); render();
+      questions[model.review[0]].buttons[0].focus();
+    });
+    // Persist sanitized data and discard answers if the authored bank changed.
+    persist();
+    render();
   }
 
   /* A page may carry more than one quiz. Each [data-quiz] element reads its
