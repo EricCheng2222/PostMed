@@ -6,12 +6,13 @@
 <title>Study desk — PostMed Notebook</title>
 <meta name="description" content="Find your next lesson in physics, biochemistry and biology. Learn with visual notes, save your place, and revisit self-test mistakes in your personal PostMed study desk.">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/visuals.css">
 </head>
 <body class="study-home">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="topbar"><div class="topbar__inner">
   <a class="brand" href="index.html"><span class="brand__mark">PM</span>PostMed <span class="brand__suffix">Notebook</span></a>
-  <nav aria-label="Main navigation"><a href="#library">Find a lesson</a><a href="pages/biochem-terms.html">Terms reference</a><button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button></nav>
+  <nav aria-label="Main navigation"><a href="pages/visual-lab.html">Visual Lab</a><a href="#library">Find a lesson</a><a href="pages/biochem-terms.html">Terms reference</a><button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark / light mode">◐</button></nav>
 </div></header>
 <main id="main" class="wrap">
   <section class="desk-hero" aria-labelledby="desk-title">
@@ -21,6 +22,7 @@
     <p class="desk-caption">39 core lessons · 400 self-test questions · 2 companion guides</p></div>
     <aside class="session-card" aria-labelledby="session-title"><p class="eyebrow" id="session-label">A good place to begin</p><h2 id="session-title">One lesson.<br>One clear next step.</h2><p id="session-copy">Choose a subject below, or begin with motion: position, velocity and acceleration.</p><a id="session-link" class="btn" href="pages/physics-01-kinematics.html">Start with kinematics →</a><div class="desk-stats" id="desk-stats"><div><strong id="read-count">0</strong><span>lessons read</span></div><div><strong id="quiz-count">0</strong><span>tests completed</span></div><div><strong id="review-count">0</strong><span>lessons to revisit</span></div></div><p class="local-note" id="storage-note">Your progress stays in this browser. No account needed.</p></aside>
   </section>
+  <section class="visual-feature" aria-labelledby="visual-title"><div><p class="eyebrow">New / Six interactive experiments</p><h2 id="visual-title">See what changes. Understand why.</h2><p>Trace motion, compare circuits, explore enzymes, follow glycolysis, move water, and build a genetic cross.</p></div><a class="btn btn--primary" href="pages/visual-lab.html">Open the Visual Lab →</a></section>
   <section aria-labelledby="subjects-title"><div class="subject-head"><h2 id="subjects-title">Choose your starting point</h2><span>Follow a subject, or search below</span></div>
   <div class="subjects desk-subjects">
     <a class="subject subject--physics" href="pages/physics.html"><p class="subject__count">01 / Physics · 15 lessons</p><h3>See the laws at work.</h3><p>Motion, forces, energy and fields — with graphs, worked examples and medical connections.</p><span class="subject__go">Explore physics →</span></a>
@@ -30,7 +32,7 @@
   <section class="study-method" aria-labelledby="method-title"><h2 id="method-title">A small loop.<br>A stronger memory.</h2><ol><li><b>01 · Understand</b><span>Use Learn mode. Read one section and explain the central idea in your own words.</span></li><li><b>02 · Recall</b><span>Try an example before opening its solution. Use Reference mode when you need the details.</span></li><li><b>03 · Check & revisit</b><span>Take the self-test. Read the explanation, then retry the questions you missed.</span></li></ol></section>
   <section id="library" class="lesson-library" aria-labelledby="library-title">
     <div class="subject-head"><div><p class="eyebrow">The lesson library</p><h2 id="library-title">What are you learning today?</h2></div><span>Core lessons + companion guides</span></div>
-    <div class="library-controls" hidden id="library-controls"><div class="search-field"><label for="lesson-search">Search topics, concepts or lesson titles</label><input id="lesson-search" type="search" placeholder="Try enzymes, momentum, genetics…" autocomplete="off"></div><div class="status-field"><label for="lesson-status">Your progress</label><select id="lesson-status"><option value="all">Everything</option><option value="new">Not started</option><option value="started">In progress</option><option value="read">Read</option><option value="review">Needs review</option><option value="saved">Saved for later</option></select></div><div class="subject-filters" role="group" aria-label="Filter by subject"><button class="filter" data-filter="all" aria-pressed="true">All subjects</button><button class="filter" data-filter="physics" aria-pressed="false">Physics</button><button class="filter" data-filter="biochemistry" aria-pressed="false">Biochemistry</button><button class="filter" data-filter="biology" aria-pressed="false">Biology</button></div></div>
+    <div class="library-controls" hidden id="library-controls"><div class="search-field"><label for="lesson-search">Search topics, concepts or lesson titles</label><input id="lesson-search" type="search" placeholder="Try enzymes, momentum, genetics…" autocomplete="off"></div><div class="status-field"><label for="lesson-status">Your progress</label><select id="lesson-status"><option value="all">Everything</option><option value="visuals">With interactive visuals</option><option value="new">Not started</option><option value="started">In progress</option><option value="read">Read</option><option value="review">Needs review</option><option value="saved">Saved for later</option></select></div><div class="subject-filters" role="group" aria-label="Filter by subject"><button class="filter" data-filter="all" aria-pressed="true">All subjects</button><button class="filter" data-filter="physics" aria-pressed="false">Physics</button><button class="filter" data-filter="biochemistry" aria-pressed="false">Biochemistry</button><button class="filter" data-filter="biology" aria-pressed="false">Biology</button></div></div>
     <p class="library-count" id="library-count" role="status" aria-live="polite">41 lessons and guides</p>
     <div id="lesson-list" class="lesson-list">
 <!-- catalog:start -->
@@ -81,6 +83,6 @@
   </section>
 </main>
 <footer class="site-footer"><div class="wrap"><p><strong>PostMed Notebook</strong> · Built for understanding, one concept at a time.</p><p>Personal revision notes for KMU post-baccalaureate medicine, informatics track. Chemistry and informatics lessons are planned.</p><p>Progress is saved only in this browser; clearing browser data removes it. No tracking or external dependencies.</p></div></footer>
-<script src="assets/js/catalog.js"></script><script src="assets/js/study.js"></script><script src="assets/js/site.js"></script><script src="assets/js/library.js"></script>
+<script src="assets/js/catalog.js?v=visual-lab-1"></script><script src="assets/js/study.js?v=visual-lab-1"></script><script src="assets/js/site.js"></script><script src="assets/js/library.js?v=visual-lab-1"></script>
 </body>
 </html>

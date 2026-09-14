@@ -1,0 +1,100 @@
+/* Interactive scientific diagrams: shared coordinate systems and visible units. */
+.viz-lab { --plot-a: #167469; --plot-b: #b34c24; --plot-c: #5851b4; border: 1px solid var(--line); border-radius: 14px; background: var(--card); margin: 1.8rem 0; overflow: hidden; scroll-margin-top: 6rem; }
+:root[data-theme="dark"] .viz-lab { --plot-a: #71e2cd; --plot-b: #ffae80; --plot-c: #c1b8ff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .viz-lab { --plot-a: #71e2cd; --plot-b: #ffae80; --plot-c: #c1b8ff; } }
+.viz-heading { padding: 1.3rem 1.5rem 1rem; border-top: 4px solid var(--accent); }
+.viz-heading h2 { font-size: 1.6rem; margin: .2rem 0 .4rem; }
+.viz-heading p:last-child { margin: 0; color: var(--ink-soft); font-size: 1rem; max-width: 48rem; }
+.viz-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; border-top: 1px solid var(--line); }
+.viz-stage { min-width: 0; padding: 1.2rem; background: var(--paper); }
+.viz-controls { padding: 1.2rem; border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 1.15rem; }
+.viz-control { display: block; font-size: .875rem; line-height: 1.5; color: var(--ink-soft); }
+.viz-control > span { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: space-between; margin-bottom: .5rem; }
+.viz-control output { font: 600 .875rem var(--mono); color: var(--ink); }
+.viz-control input[type="range"] { display: block; width: 100%; min-height: 30px; margin: 0; accent-color: var(--accent); cursor: pointer; }
+.viz-control select { width: 100%; min-height: 44px; padding: .5rem; font: inherit; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; }
+.viz-control small { font-size: .8rem; }
+.viz-controls .btn { width: 100%; }
+.viz-controls fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.viz-controls legend { font-size: .875rem; font-weight: 600; margin-bottom: .5rem; }
+.viz-presets { display: flex; flex-wrap: wrap; gap: .4rem; }
+.viz-presets button { border: 1px solid var(--line); border-radius: 6px; background: var(--card); padding: .35rem .65rem; font-size: .8rem; color: var(--ink-soft); cursor: pointer; }
+.viz-presets button:hover { border-color: var(--accent); color: var(--accent); }
+.viz-graph { display: block; width: 100%; height: auto; overflow: visible; color: var(--ink); font-family: var(--sans); }
+.viz-graph text { fill: currentColor; font-size: 14px; }
+.viz-graph .graph-label { font-size: 15px; font-weight: 600; }
+.viz-graph .axis { stroke: var(--ink-soft); stroke-width: 1.2; }
+.viz-graph .gridline { stroke: var(--line); stroke-width: 1; }
+.viz-graph .trace { fill: none; stroke: var(--plot-a); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.viz-graph .baseline { fill: none; stroke: var(--ink-soft); stroke-width: 2; stroke-dasharray: 7 5; }
+.viz-graph .guide { stroke: var(--ink-soft); stroke-width: 1; stroke-dasharray: 4 4; }
+.viz-graph .marker { fill: var(--plot-a); stroke: var(--card); stroke-width: 2; }
+.viz-legend { display: flex; flex-wrap: wrap; gap: .5rem 1rem; font-size: .8rem; color: var(--ink-soft); margin: .8rem 0 0; }
+.viz-legend span { display: inline-flex; align-items: center; gap: .4rem; }
+.viz-legend i { width: 1.3rem; border-top: 3px solid var(--plot-a); }
+.viz-legend .legend-base { border-color: var(--ink-soft); border-top-style: dashed; }
+.viz-legend .legend-b { border-color: var(--plot-b); }
+.viz-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin: 1rem 0 0; }
+.viz-stat { padding: .65rem .8rem; border: 1px solid var(--line); background: var(--card); border-radius: 7px; }
+.viz-stat span { display: block; font-size: .8rem; color: var(--ink-soft); }
+.viz-stat strong { display: block; font: 600 clamp(.95rem, 1.5vw, 1.2rem) var(--mono); margin-top: .25rem; overflow-wrap: anywhere; }
+.viz-insight { padding: 1rem 1.5rem; background: var(--accent-wash); border-top: 1px solid var(--line); font-size: .95rem; line-height: 1.65; }
+.viz-insight p { margin: 0; }
+.viz-insight strong { color: var(--accent); }
+.viz-discovery { padding: 1.1rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.viz-discovery p { margin: .3rem 0; font-size: .9rem; }
+.viz-discovery summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: .9rem; min-height: 44px; }
+.viz-discovery .eyebrow { font-size: .8rem; }
+.viz-footnote { padding: .8rem 1.5rem; border-top: 1px solid var(--line); font-size: .8rem; color: var(--ink-soft); }
+.viz-footnote p { margin: 0; }
+.viz-footnote a + a { margin-left: 1rem; }
+.viz-fallback { margin: 1rem 1.5rem; }
+.viz-motion-graphs { display: grid; gap: .5rem; }
+.viz-diagram-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem; font-size: .9rem; margin-bottom: .5rem; }
+.viz-diagram-heading span { font-size: .8rem; color: var(--ink-soft); }
+.viz-matrix { width: 100%; border-collapse: separate; border-spacing: .45rem; table-layout: fixed; text-align: center; }
+.viz-matrix caption { text-align: left; font-size: .875rem; color: var(--ink-soft); padding: .4rem; }
+.viz-matrix th { font-size: .9rem; padding: .3rem; }
+.viz-matrix td { padding: .8rem .3rem; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+.viz-matrix td b { font: 600 1.5rem var(--mono); display: block; }
+.viz-matrix td small { font-size: .8rem; }
+.viz-matrix .recessive { background: color-mix(in srgb, var(--plot-b) 15%, var(--card)); border-color: var(--plot-b); }
+.viz-matrix .dominant { background: color-mix(in srgb, var(--plot-a) 12%, var(--card)); border-color: var(--plot-a); }
+.viz-allele-a { color: var(--plot-a); }
+.viz-allele-b { color: var(--plot-c); }
+.viz-ratio { display: flex; min-height: 36px; border-radius: 6px; overflow: hidden; margin-top: .5rem; border: 1px solid var(--line); }
+.viz-ratio > span { display: grid; place-items: center; font: 600 .8rem var(--mono); color: var(--ink); background: color-mix(in srgb, var(--plot-a) 20%, var(--card)); }
+.viz-ratio > .ratio-recessive { background: color-mix(in srgb, var(--plot-b) 25%, var(--card)); }
+.viz-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .35rem; margin: .8rem 0; }
+.viz-steps button { min-height: 44px; border: 1px solid var(--line); background: var(--card); color: var(--ink-soft); border-radius: 6px; cursor: pointer; font-size: .85rem; }
+.viz-steps button[aria-current="step"] { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
+.viz-steps button[data-passed="true"] { border-color: var(--accent); }
+.viz-step-copy { min-height: 5.5rem; }
+.viz-step-copy h3 { font-size: 1.05rem; }
+.viz-step-copy p { font-size: .9rem; margin: 0; color: var(--ink-soft); }
+.visual-page { --maxw: 76rem; }
+.visual-page .article-head { padding-bottom: .5rem; }
+.visual-page .article-head .lede { max-width: 48rem; }
+.visual-nav { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin: 1rem 0; }
+.visual-nav a { padding: .65rem; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; background: var(--card); color: var(--ink-soft); font-size: .9rem; }
+.visual-nav a small { display: block; font-size: .75rem; }
+.visual-nav a[aria-current="true"] { border-color: var(--accent); background: var(--accent-wash); color: var(--accent); }
+.visual-page .viz-workspace { grid-template-columns: minmax(0, 1fr) 18rem; }
+.visual-feature { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center; margin: 2rem 0; padding: 1.5rem; border: 1px solid var(--accent); border-radius: var(--radius); background: var(--accent-wash); }
+.visual-feature h2 { margin: .2rem 0; }
+.visual-feature p { margin: 0; color: var(--ink-soft); }
+@media (max-width: 52rem) {
+ .viz-workspace, .visual-page .viz-workspace { grid-template-columns: 1fr; }
+ .viz-controls { border-left: 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; }
+ .visual-nav { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 35rem) {
+ .viz-stage, .viz-controls, .viz-heading { padding: 1rem; }
+ .viz-controls, .viz-discovery { grid-template-columns: 1fr; }
+ .viz-stats { grid-template-columns: 1fr; }
+ .viz-stat { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+ .viz-stat strong { margin: 0; }
+ .visual-feature { grid-template-columns: 1fr; }
+ .viz-lab { scroll-margin-top: 9rem; }
+}
+@media print { .viz-controls, .visual-nav, .viz-steps { display: none; } .viz-workspace { display: block; } .viz-lab { break-inside: avoid; } }

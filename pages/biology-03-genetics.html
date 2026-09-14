@@ -6,6 +6,7 @@
 <title>Biology 03 · Classical and Chromosomal Genetics — PostMed Notebook</title>
 <meta name="description" content="Biology note 03: Mendel's two laws stated precisely, probability instead of Punnett squares, dominance and ABO, epistasis and modified ratios, sex linkage, X-inactivation, pedigrees, linkage mapping and chromosomal rearrangements.">
 <link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/visuals.css">
 </head>
 <body data-subject="biology">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -49,9 +50,19 @@
     <span>~55 min read</span>
   </div>
 
+<!-- visual:start -->
+<section class="viz-lab" id="visual-lab" data-viz="inheritance" aria-labelledby="inheritance-title">
+<div class="viz-heading"><p class="eyebrow">Biology / Visual Lab</p><h2 id="inheritance-title">Build the cross, one allele at a time.</h2><p>Choose each parent’s genotype. Follow their gametes into the square and separate genotype from phenotype.</p></div>
+<p class="viz-fallback">Aa × Aa gives 25% AA, 50% Aa and 25% aa. With complete dominance, 75% show the dominant phenotype. Enable JavaScript to explore the model.</p>
+<div class="viz-workspace" hidden><div class="viz-stage"><div data-cross></div><div class="viz-legend"><span class="viz-allele-a">First letter: parent 1</span><span class="viz-allele-b">Second letter: parent 2</span></div><div data-ratio></div><div class="viz-stats"><div class="viz-stat"><span>AA probability</span><strong data-stat="aa">—</strong></div><div class="viz-stat"><span>Aa probability</span><strong data-stat="hetero">—</strong></div><div class="viz-stat"><span>aa probability</span><strong data-stat="recessive">—</strong></div></div></div><form class="viz-controls" aria-label="Biology model controls"><label class="viz-control"><span>Parent 1</span><select data-control="p1"><option value="Aa">Aa · heterozygous</option><option value="AA">AA · homozygous</option><option value="aa">aa · homozygous</option></select></label><label class="viz-control"><span>Parent 2</span><select data-control="p2"><option value="Aa">Aa · heterozygous</option><option value="AA">AA · homozygous</option><option value="aa">aa · homozygous</option></select></label><label class="viz-control"><span>Colour cells by</span><select data-control="display"><option value="phenotype">Phenotype</option><option value="genotype">Genotype</option></select></label><button class="btn" type="reset">Reset experiment</button></form></div>
+<div class="viz-insight" hidden><p data-insight role="status" aria-live="polite" aria-atomic="true"></p></div>
+<div class="viz-discovery"><div><p class="eyebrow">Try this</p><p>Compare Aa × Aa with Aa × aa. Why does a 3:1 phenotype ratio become 1:1 even though A is still dominant?</p></div><details><summary>Check your reasoning</summary><p>An aa parent always contributes a. In Aa × aa, half the offspring receive A from the heterozygous parent and half receive a. Dominance affects expression, not the probability that an allele enters a gamete.</p></details></div>
+<div class="viz-footnote"><p>One autosomal locus, equal segregation, random fertilisation, complete dominance of A and equal viability. Each square is a 25% probability, not a guarantee of four children.</p><a href="biology-03-genetics.html">Read the full lesson</a><a href="https://openstax.org/books/biology-2e/pages/12-2-characteristics-and-traits">Textbook reference</a></div></section>
+<!-- visual:end -->
   <nav class="toc card" aria-label="Contents of this page">
     <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
     <ol>
+      <li><a href="#visual-lab">Visual Lab · Build the cross, one allele at a time.</a></li>
       <li><a href="#s1">What Mendel's two laws actually claim</a></li>
       <li><a href="#s2">Monohybrid, dihybrid and the test cross</a></li>
       <li><a href="#s3">Probability instead of Punnett squares</a></li>
@@ -2996,7 +3007,9 @@
   }
 ]
 </script>
-<script src="../assets/js/study.js"></script>
+<script src="../assets/js/study.js?v=visual-lab-1"></script>
 <script src="../assets/js/site.js"></script>
+<script src="../assets/js/visual-models.js"></script>
+<script src="../assets/js/visuals.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
 <title>Glycolysis: The Ten Steps, One Diagram Each — PostMed Notebook</title>
 <meta name="description" content="A deep dive on glycolysis: all ten reactions one at a time, each with its own diagram showing substrate, product, the group that changes, the cosubstrates, the enzyme and ΔG°′ — plus consistent carbon numbering from glucose to pyruvate and English memory hooks for the intermediates, the enzymes and the ATP ledger.">
 <link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/visuals.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -50,9 +51,19 @@
     <span>~55 min read</span>
   </div>
 
+<!-- visual:start -->
+<section class="viz-lab" id="visual-lab" data-viz="glycolysis" aria-labelledby="glycolysis-title">
+<div class="viz-heading"><p class="eyebrow">Biochemistry / Visual Lab</p><h2 id="glycolysis-title">Follow the carbon. Keep the ATP ledger.</h2><p>Step through one glucose molecule’s journey. See exactly when the pathway splits, spends ATP and earns it back.</p></div>
+<p class="viz-fallback">Per glucose: spend 2 ATP, make 4 ATP and 2 NADH, finish with two 3-carbon pyruvates. Net ATP = 2. Enable JavaScript to explore the model.</p>
+<div class="viz-workspace" hidden><div class="viz-stage"><svg class="viz-graph" data-graph="carbon" viewBox="0 0 440 180" role="img" aria-label="carbon"></svg><div class="viz-steps"><button type="button" data-step="1" aria-label="Show glycolysis step 1">1</button><button type="button" data-step="2" aria-label="Show glycolysis step 2">2</button><button type="button" data-step="3" aria-label="Show glycolysis step 3">3</button><button type="button" data-step="4" aria-label="Show glycolysis step 4">4</button><button type="button" data-step="5" aria-label="Show glycolysis step 5">5</button><button type="button" data-step="6" aria-label="Show glycolysis step 6">6</button><button type="button" data-step="7" aria-label="Show glycolysis step 7">7</button><button type="button" data-step="8" aria-label="Show glycolysis step 8">8</button><button type="button" data-step="9" aria-label="Show glycolysis step 9">9</button><button type="button" data-step="10" aria-label="Show glycolysis step 10">10</button></div><div class="viz-step-copy" data-step-copy></div><svg class="viz-graph" data-graph="ledger" viewBox="0 0 440 170" role="img" aria-label="ledger"></svg><p class="local-note">Horizontal axis: completed reaction step.</p><div class="viz-stats"><div class="viz-stat"><span>Net ATP</span><strong data-stat="net">—</strong></div><div class="viz-stat"><span>NADH made</span><strong data-stat="nadh">—</strong></div><div class="viz-stat"><span>Carbon retained</span><strong data-stat="carbon">—</strong></div></div></div><form class="viz-controls" aria-label="Biochemistry model controls"><label class="viz-control"><span>Completed reaction<output data-value="step">0 </output></span><input type="range" data-control="step" aria-label="Completed reaction" min="0" max="10" step="1" value="0" data-unit=""></label><div class="viz-presets"><button type="button" data-step-back>← Previous</button><button type="button" data-step-next>Next →</button></div><p class="local-note">All totals are per original glucose. After the split, each payoff reaction happens twice.</p><button class="btn" type="reset">Reset experiment</button></form></div>
+<div class="viz-insight" hidden><p data-insight role="status" aria-live="polite" aria-atomic="true"></p></div>
+<div class="viz-discovery"><div><p class="eyebrow">Try this</p><p>Stop at step 7. Two ATP have just been produced. Is glycolysis already making a net ATP profit?</p></div><details><summary>Check your reasoning</summary><p>No. Those two ATP repay the investment at steps 1 and 3. Net ATP is zero after step 7. Step 10 produces two more ATP, bringing the net yield to two per glucose.</p></details></div>
+<div class="viz-footnote"><p>Standard glycolysis from glucose to pyruvate. NADH is counted separately; its later ATP yield depends on how it is reoxidised. Carbon circles are bookkeeping, not molecular structures.</p><a href="biochem-glycolysis-steps.html">Read the full lesson</a><a href="https://openstax.org/books/biology-2e/pages/7-2-glycolysis">Textbook reference</a></div></section>
+<!-- visual:end -->
   <nav class="toc card" aria-label="Contents of this page">
     <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
     <ol>
+      <li><a href="#visual-lab">Visual Lab · Follow the carbon. Keep the ATP ledger.</a></li>
       <li><a href="#s1">Step 1 · Hexokinase — trapping the sugar</a></li>
       <li><a href="#s2">Step 2 · Phosphohexose isomerase — moving the carbonyl</a></li>
       <li><a href="#s3">Step 3 · PFK-1 — the committed step</a></li>
@@ -1880,7 +1891,9 @@
   }
 ]
 </script>
-<script src="../assets/js/study.js"></script>
+<script src="../assets/js/study.js?v=visual-lab-1"></script>
 <script src="../assets/js/site.js"></script>
+<script src="../assets/js/visual-models.js"></script>
+<script src="../assets/js/visuals.js"></script>
 </body>
 </html>

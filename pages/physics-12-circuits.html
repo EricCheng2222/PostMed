@@ -6,6 +6,7 @@
 <title>Physics 12 · Direct-Current Circuits — PostMed Notebook</title>
 <meta name="description" content="Physics note 12: current and drift velocity, resistivity, Ohm's law, power, emf and internal resistance, series and parallel, Kirchhoff's rules, meters, RC circuits and electrical safety — with 10 self-test questions.">
 <link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/visuals.css">
 </head>
 <body data-subject="physics">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -46,9 +47,19 @@
     <span>~45 min read</span>
   </div>
 
+<!-- visual:start -->
+<section class="viz-lab" id="visual-lab" data-viz="circuits" aria-labelledby="circuits-title">
+<div class="viz-heading"><p class="eyebrow">Physics / Visual Lab</p><h2 id="circuits-title">Same resistors. A different circuit.</h2><p>Switch between series and parallel. Follow where the voltage goes and how the current divides.</p></div>
+<p class="viz-fallback">At 12 V with R₁ = 4 Ω and R₂ = 8 Ω: series R = 12 Ω; parallel R = 8/3 Ω. Enable JavaScript to explore the model.</p>
+<div class="viz-workspace" hidden><div class="viz-stage"><svg class="viz-graph" data-graph="circuit" viewBox="0 0 440 270" role="img" aria-label="circuit"></svg><div class="viz-legend"><span><i></i>R₁ branch</span><span><i class="legend-b"></i>R₂ branch</span><span>Arrows: conventional current</span></div><svg class="viz-graph" data-graph="voltage-bars" viewBox="0 0 440 150" role="img" aria-label="voltage-bars"></svg><div class="viz-stats"><div class="viz-stat"><span>Equivalent resistance</span><strong data-stat="resistance">—</strong></div><div class="viz-stat"><span>Battery current</span><strong data-stat="current">—</strong></div><div class="viz-stat"><span>Connection rule</span><strong data-stat="rule">—</strong></div></div></div><form class="viz-controls" aria-label="Physics model controls"><label class="viz-control"><span>Connection</span><select data-control="layout"><option value="series">Series</option><option value="parallel">Parallel</option></select></label><label class="viz-control"><span>Battery voltage<output data-value="voltage">12 V</output></span><input type="range" data-control="voltage" aria-label="Battery voltage" min="2" max="12" step="1" value="12" data-unit="V"></label><label class="viz-control"><span>Resistance R₁<output data-value="r1">4 Ω</output></span><input type="range" data-control="r1" aria-label="Resistance R₁" min="2" max="12" step="1" value="4" data-unit="Ω"></label><label class="viz-control"><span>Resistance R₂<output data-value="r2">8 Ω</output></span><input type="range" data-control="r2" aria-label="Resistance R₂" min="2" max="12" step="1" value="8" data-unit="Ω"></label><button class="btn" type="reset">Reset experiment</button></form></div>
+<div class="viz-insight" hidden><p data-insight role="status" aria-live="polite" aria-atomic="true"></p></div>
+<div class="viz-discovery"><div><p class="eyebrow">Try this</p><p>With the same 12 V battery and 4 Ω / 8 Ω resistors, predict which connection draws more current. Then switch the connection.</p></div><details><summary>Check your reasoning</summary><p>Series draws 1 A through both resistors. Parallel draws 4.5 A in total: 3 A through R₁ and 1.5 A through R₂. Adding a parallel path lowers the equivalent resistance.</p></details></div>
+<div class="viz-footnote"><p>Ideal DC source, ohmic resistors and zero-resistance wires. Diagram geometry and wire thickness do not encode current.</p><a href="physics-12-circuits.html">Read the full lesson</a><a href="https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel">Textbook reference</a></div></section>
+<!-- visual:end -->
   <nav class="toc card" aria-label="Contents of this page">
     <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
     <ol>
+      <li><a href="#visual-lab">Visual Lab · Same resistors. A different circuit.</a></li>
       <li><a href="#s1">Current: charge in motion, and why the lamp lights instantly</a></li>
       <li><a href="#s2">Resistance, resistivity and temperature</a></li>
       <li><a href="#s3">Ohm's law is a property, not a law</a></li>
@@ -1802,7 +1813,9 @@
   }
 ]
 </script>
-<script src="../assets/js/study.js"></script>
+<script src="../assets/js/study.js?v=visual-lab-1"></script>
 <script src="../assets/js/site.js"></script>
+<script src="../assets/js/visual-models.js"></script>
+<script src="../assets/js/visuals.js"></script>
 </body>
 </html>

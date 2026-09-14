@@ -125,6 +125,42 @@ The generator updates `assets/js/catalog.js` and the home page's static lesson l
 validate local routes and anchors, quiz schemas, generated catalog coverage, JavaScript syntax, and saved
 progress/quiz behavior. No package installation or build step is needed.
 
+## Visual Lab
+
+[Open the Visual Lab](pages/visual-lab.html) for six interactive models, also embedded near the top
+of their related lessons:
+
+| Experiment | What to explore |
+|------------|-----------------|
+| Motion | Linked position, velocity and acceleration plots; signed area; direction changes |
+| Circuits | Series versus parallel wiring; current conservation and voltage division |
+| Enzymes | Competitive, pure noncompetitive and uncompetitive inhibition; apparent Km and Vmax |
+| Glycolysis | Ten-step carbon accounting, ATP investment/payoff and NADH production |
+| Osmosis | Fixed-solute concentration and volume changes toward equilibrium |
+| Inheritance | Parental gametes, Punnett squares, genotype and phenotype probabilities |
+
+Every experiment includes live numerical values, keyboard-operable controls, a reset, a prediction
+prompt, an explanation, explicit model assumptions, and a textbook reference. Plots resize to their
+containers and use the site's light/dark colours. Nothing auto-plays. The osmotic compartment is an
+ideal model, not a real-cell volume or lysis simulation. Carbon dots in glycolysis are accounting
+symbols, not molecular structures.
+
+The home page links to the lab and can filter for lessons with interactive visuals. Individual
+experiments can be bookmarked, for example `pages/visual-lab.html#enzymes`.
+
+Edit the shared lesson markup in `scripts/build_visuals.py`, the mathematical models in
+`assets/js/visual-models.js`, and the visual behaviour in `assets/js/visuals.js`. Then run:
+
+```bash
+python3 scripts/build_visuals.py
+python3 scripts/build_catalog.py
+python3 scripts/check_site.py
+node --test tests/*.test.cjs
+```
+
+The static fallback keeps worked values and explanations readable without JavaScript. Regenerating
+updates both the standalone lab and its six lesson embeds, keeping them in sync.
+
 ## Running it locally
 
 The site is fully static — no build step, no dependencies, no network calls. Open `index.html`

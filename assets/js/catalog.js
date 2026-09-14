@@ -10,6 +10,10 @@ window.POSTMED_LESSONS = [
     "questions": 10,
     "sections": [
       {
+        "id": "motion-title",
+        "title": "One motion. Three connected graphs."
+      },
+      {
         "id": "s1",
         "title": "Position, displacement, and the sign convention"
       },
@@ -53,7 +57,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": "motion"
   },
   {
     "id": "physics-02-newton-dynamics",
@@ -112,7 +117,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-03-work-energy",
@@ -167,7 +173,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-04-momentum",
@@ -222,7 +229,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-05-rotation",
@@ -281,7 +289,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-06-gravitation",
@@ -340,7 +349,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-07-oscillations",
@@ -399,7 +409,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-08-waves-sound",
@@ -458,7 +469,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-09-fluids",
@@ -517,7 +529,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-10-thermal",
@@ -576,7 +589,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-11-electrostatics",
@@ -635,7 +649,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-12-circuits",
@@ -646,6 +661,10 @@ window.POSTMED_LESSONS = [
     "number": "12",
     "questions": 10,
     "sections": [
+      {
+        "id": "circuits-title",
+        "title": "Same resistors. A different circuit."
+      },
       {
         "id": "s1",
         "title": "Current: charge in motion, and why the lamp lights instantly"
@@ -694,7 +713,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": "circuits"
   },
   {
     "id": "physics-13-magnetism",
@@ -753,7 +773,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-14-optics",
@@ -812,7 +833,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "physics-15-modern",
@@ -871,7 +893,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-01-bonds-lipids",
@@ -926,7 +949,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-02-amino-acids-proteins",
@@ -981,7 +1005,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-03-enzymes",
@@ -992,6 +1017,10 @@ window.POSTMED_LESSONS = [
     "number": "03",
     "questions": 10,
     "sections": [
+      {
+        "id": "enzymes-title",
+        "title": "Can more substrate overcome inhibition?"
+      },
       {
         "id": "s1",
         "title": "Catalysis: the barrier, not the equilibrium"
@@ -1040,7 +1069,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": "enzymes"
   },
   {
     "id": "biochem-04-carbohydrate-metabolism",
@@ -1099,7 +1129,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-05-nucleic-acids",
@@ -1158,7 +1189,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-06-bioenergetics-oxphos",
@@ -1213,7 +1245,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-07-lipid-metabolism",
@@ -1272,7 +1305,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-08-nitrogen-metabolism",
@@ -1331,7 +1365,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-09-membranes-signalling",
@@ -1390,7 +1425,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-10-vitamins-integration",
@@ -1449,7 +1485,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biochem-glycolysis-steps",
@@ -1460,6 +1497,10 @@ window.POSTMED_LESSONS = [
     "number": null,
     "questions": 10,
     "sections": [
+      {
+        "id": "glycolysis-title",
+        "title": "Follow the carbon. Keep the ATP ledger."
+      },
       {
         "id": "s1",
         "title": "Step 1 · Hexokinase — trapping the sugar"
@@ -1512,7 +1553,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": "glycolysis"
   },
   {
     "id": "biochem-terms",
@@ -1555,7 +1597,8 @@ window.POSTMED_LESSONS = [
         "id": "s8",
         "title": "Pathway vocabulary"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-01-cells",
@@ -1566,6 +1609,10 @@ window.POSTMED_LESSONS = [
     "number": "01",
     "questions": 10,
     "sections": [
+      {
+        "id": "osmosis-title",
+        "title": "Water moves. The trapped solute stays."
+      },
       {
         "id": "s1",
         "title": "Why cells are small, and why they are divided up"
@@ -1610,7 +1657,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": "osmosis"
   },
   {
     "id": "biology-02-cell-cycle",
@@ -1669,7 +1717,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-03-genetics",
@@ -1680,6 +1729,10 @@ window.POSTMED_LESSONS = [
     "number": "03",
     "questions": 10,
     "sections": [
+      {
+        "id": "inheritance-title",
+        "title": "Build the cross, one allele at a time."
+      },
       {
         "id": "s1",
         "title": "What Mendel's two laws actually claim"
@@ -1728,7 +1781,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": "inheritance"
   },
   {
     "id": "biology-04-molecular-genetics",
@@ -1787,7 +1841,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-05-evolution",
@@ -1846,7 +1901,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-06-diversity",
@@ -1905,7 +1961,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-07-microbes",
@@ -1964,7 +2021,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-08-plant-structure",
@@ -2023,7 +2081,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-09-plant-function",
@@ -2082,7 +2141,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-10-animal-physiology-1",
@@ -2141,7 +2201,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-11-animal-physiology-2",
@@ -2200,7 +2261,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-12-immunology",
@@ -2259,7 +2321,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-13-development",
@@ -2318,7 +2381,8 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   },
   {
     "id": "biology-14-ecology",
@@ -2377,6 +2441,7 @@ window.POSTMED_LESSONS = [
         "id": "quiz",
         "title": "Self-test · 10 questions"
       }
-    ]
+    ],
+    "visual": null
   }
 ];

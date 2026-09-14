@@ -25,6 +25,7 @@
 .pk-fig .f-vel   { fill: var(--v-vel); }
 .pk-fig .f-acc   { fill: var(--v-accel); }
 </style>
+<link rel="stylesheet" href="../assets/css/visuals.css">
 </head>
 <body data-subject="physics">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -66,9 +67,19 @@
     <span>~35 min read</span>
   </div>
 
+<!-- visual:start -->
+<section class="viz-lab" id="visual-lab" data-viz="motion" aria-labelledby="motion-title">
+<div class="viz-heading"><p class="eyebrow">Physics / Visual Lab</p><h2 id="motion-title">One motion. Three connected graphs.</h2><p>Change the starting velocity and acceleration. Scrub time to connect position, velocity and the area under the curve.</p></div>
+<p class="viz-fallback">Example: v₀ = 4 m/s and a = −1 m/s². At 4 s, x = 8 m and v = 0. At 6 s, x = 6 m and v = −2 m/s. Enable JavaScript to explore the model.</p>
+<div class="viz-workspace" hidden><div class="viz-stage"><div class="viz-motion-graphs"><div><div class="viz-diagram-heading"><b>Position x (m)</b><span>slope = velocity</span></div><svg class="viz-graph" data-graph="position" viewBox="0 0 440 160" role="img" aria-label="position"></svg></div><div><div class="viz-diagram-heading"><b>Velocity v (m/s)</b><span>signed area = displacement</span></div><svg class="viz-graph" data-graph="velocity" viewBox="0 0 440 160" role="img" aria-label="velocity"></svg></div><div><div class="viz-diagram-heading"><b>Acceleration a (m/s²)</b><span>slope of velocity</span></div><svg class="viz-graph" data-graph="acceleration" viewBox="0 0 440 160" role="img" aria-label="acceleration"></svg></div></div><div class="viz-legend"><span><i></i>Positive area</span><span><i class="legend-b"></i>Negative area</span><span>Time (s) · scales stay fixed while scrubbing</span></div><div class="viz-stats"><div class="viz-stat"><span>Displacement</span><strong data-stat="x">—</strong></div><div class="viz-stat"><span>Velocity now</span><strong data-stat="v">—</strong></div><div class="viz-stat"><span>Acceleration</span><strong data-stat="a">—</strong></div></div></div><form class="viz-controls" aria-label="Physics model controls"><label class="viz-control"><span>Initial velocity<output data-value="v0">4 m/s</output></span><input type="range" data-control="v0" aria-label="Initial velocity" min="-8" max="8" step="1" value="4" data-unit="m/s"></label><label class="viz-control"><span>Acceleration<output data-value="a">-1 m/s²</output></span><input type="range" data-control="a" aria-label="Acceleration" min="-3" max="3" step="0.5" value="-1" data-unit="m/s²"></label><label class="viz-control"><span>Time<output data-value="t">4 s</output></span><input type="range" data-control="t" aria-label="Time" min="0" max="6" step="0.1" value="4" data-unit="s"></label><fieldset><legend>Try a motion</legend><div class="viz-presets"><button type="button" data-preset="turn">Turn around</button><button type="button" data-preset="steady">Steady speed</button><button type="button" data-preset="rest">Start from rest</button></div></fieldset><button class="btn" type="reset">Reset experiment</button></form></div>
+<div class="viz-insight" hidden><p data-insight role="status" aria-live="polite" aria-atomic="true"></p></div>
+<div class="viz-discovery"><div><p class="eyebrow">Try this</p><p>Choose “Turn around”. Move time past 4 s. Can the object move backward while its position is still positive?</p></div><details><summary>Check your reasoning</summary><p>Yes. Velocity becomes negative after 4 s, so position decreases. The object remains to the right of its starting point throughout this six-second window. Negative velocity describes direction, not location.</p></details></div>
+<div class="viz-footnote"><p>One-dimensional motion, constant acceleration, x₀ = 0. Shaded area is signed displacement, not total distance. Position and velocity scales fit the full six-second motion; compare the axis values when changing parameters.</p><a href="physics-01-kinematics.html">Read the full lesson</a><a href="https://openstax.org/books/university-physics-volume-1/pages/3-4-motion-with-constant-acceleration">Textbook reference</a></div></section>
+<!-- visual:end -->
   <nav class="toc card" aria-label="Contents of this page">
     <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
     <ol>
+      <li><a href="#visual-lab">Visual Lab · One motion. Three connected graphs.</a></li>
       <li><a href="#s1">Position, displacement, and the sign convention</a></li>
       <li><a href="#s2">Velocity and speed: average vs instantaneous</a></li>
       <li><a href="#s3">Acceleration — and why "deceleration" is not a separate thing</a></li>
@@ -1503,7 +1514,9 @@
   }
 ]
 </script>
-<script src="../assets/js/study.js"></script>
+<script src="../assets/js/study.js?v=visual-lab-1"></script>
 <script src="../assets/js/site.js"></script>
+<script src="../assets/js/visual-models.js"></script>
+<script src="../assets/js/visuals.js"></script>
 </body>
 </html>

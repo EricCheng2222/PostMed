@@ -102,6 +102,12 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var nav = document.querySelector('.topbar nav');
+    if (nav && filename !== 'index.html' && filename !== 'visual-lab.html') {
+      var visualLink = document.createElement('a');
+      visualLink.href = 'visual-lab.html';
+      visualLink.textContent = 'Visual Lab';
+      nav.insertBefore(visualLink, nav.firstChild);
+    }
     if (nav && pageId) {
       var library = document.createElement('a');
       library.href = '../index.html#library';

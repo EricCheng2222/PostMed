@@ -6,6 +6,7 @@
 <title>Biochem 03 · Enzymes: Kinetics, Inhibition and Regulation — PostMed Notebook</title>
 <meta name="description" content="Biochemistry note 03: transition-state stabilisation, catalytic strategies, the catalytic triad, coenzymes, Michaelis–Menten kinetics, k_cat/K_m, linear plots, the five inhibition patterns, allostery and covalent regulation.">
 <link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/visuals.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -48,9 +49,19 @@
     <span>~50 min read</span>
   </div>
 
+<!-- visual:start -->
+<section class="viz-lab" id="visual-lab" data-viz="enzymes" aria-labelledby="enzymes-title">
+<div class="viz-heading"><p class="eyebrow">Biochemistry / Visual Lab</p><h2 id="enzymes-title">Can more substrate overcome inhibition?</h2><p>Compare the untreated enzyme with three inhibition patterns. Watch the plateau and the substrate concentration at half-maximal rate.</p></div>
+<p class="viz-fallback">At [S] = 2 mM and [I]/Kᵢ = 2, competitive inhibition gives v₀ = 25 μM/min, Vmax = 100 μM/min and apparent Km = 6 mM. Enable JavaScript to explore the model.</p>
+<div class="viz-workspace" hidden><div class="viz-stage"><div class="viz-diagram-heading"><b>Initial rate versus substrate</b><span>Horizontal axis: [S] (mM)</span></div><svg class="viz-graph" data-graph="enzyme" viewBox="0 0 440 280" role="img" aria-label="enzyme"></svg><div class="viz-legend"><span><i class="legend-base"></i>Without inhibitor</span><span><i></i>With inhibitor</span><span>Dot: selected [S]</span></div><div class="viz-stats"><div class="viz-stat"><span>Initial rate v₀</span><strong data-stat="rate">—</strong></div><div class="viz-stat"><span>Apparent Vmax</span><strong data-stat="vmax">—</strong></div><div class="viz-stat"><span>Apparent Km</span><strong data-stat="km">—</strong></div></div></div><form class="viz-controls" aria-label="Biochemistry model controls"><label class="viz-control"><span>Inhibition pattern</span><select data-control="mode"><option value="competitive">Competitive</option><option value="noncompetitive">Pure noncompetitive</option><option value="uncompetitive">Uncompetitive</option></select></label><label class="viz-control"><span>Inhibitor ratio [I] / Kᵢ<output data-value="strength">2 </output></span><input type="range" data-control="strength" aria-label="Inhibitor ratio [I] / Kᵢ" min="0" max="4" step="0.5" value="2" data-unit=""></label><label class="viz-control"><span>Substrate [S]<output data-value="substrate">2 mM</output></span><input type="range" data-control="substrate" aria-label="Substrate [S]" min="0" max="20" step="0.5" value="2" data-unit="mM"></label><button class="btn" type="reset">Reset experiment</button></form></div>
+<div class="viz-insight" hidden><p data-insight role="status" aria-live="polite" aria-atomic="true"></p></div>
+<div class="viz-discovery"><div><p class="eyebrow">Try this</p><p>Set [I]/Kᵢ to 2. Switch inhibition type while watching the plateau. Which pattern leaves Km unchanged?</p></div><details><summary>Check your reasoning</summary><p>Pure noncompetitive inhibition leaves Km at 2 mM and reduces Vmax to one third. Competitive inhibition preserves Vmax but raises Km. Uncompetitive inhibition lowers both by the same factor.</p></details></div>
+<div class="viz-footnote"><p>Steady-state Michaelis–Menten model. Baseline Vmax = 100 μM/min, Km = 2 mM. α = 1 + [I]/Kᵢ. Pure noncompetitive assumes equal inhibitor affinity for E and ES.</p><a href="biochem-03-enzymes.html">Read the full lesson</a><a href="https://openstax.org/books/biology-2e/pages/6-5-enzymes">Textbook reference</a></div></section>
+<!-- visual:end -->
   <nav class="toc card" aria-label="Contents of this page">
     <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
     <ol>
+      <li><a href="#visual-lab">Visual Lab · Can more substrate overcome inhibition?</a></li>
       <li><a href="#s1">Catalysis: the barrier, not the equilibrium</a></li>
       <li><a href="#s2">Binding energy and the catalytic strategies</a></li>
       <li><a href="#s3">Chymotrypsin and the catalytic triad</a></li>
@@ -2515,7 +2526,9 @@
   }
 ]
 </script>
-<script src="../assets/js/study.js"></script>
+<script src="../assets/js/study.js?v=visual-lab-1"></script>
 <script src="../assets/js/site.js"></script>
+<script src="../assets/js/visual-models.js"></script>
+<script src="../assets/js/visuals.js"></script>
 </body>
 </html>

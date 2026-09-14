@@ -27,6 +27,13 @@
     save.addEventListener('click', function () { study.update(lesson.id, { saved: !study.get(lesson.id).saved }); });
     actions.append(state, save);
     row.appendChild(actions);
+    if (lesson.visual) {
+      var visual = document.createElement('a');
+      visual.className = 'lesson-match';
+      visual.href = lesson.href + '#visual-lab';
+      visual.textContent = 'Explore the interactive visual →';
+      row.querySelector('h3').parentNode.appendChild(visual);
+    }
     var match = document.createElement('a');
     match.className = 'lesson-match';
     match.hidden = true;
@@ -34,8 +41,9 @@
     return { lesson: lesson, row: row, state: state, save: save, match: match,
       text: normalized([lesson.title, lesson.description, lesson.subject, lesson.number || '', lesson.sections.map(function (section) { return section.title; }).join(' ')].join(' ')) };
   });
-  function matchesStatus(progress, summary) {
+  function matchesStatus(progress, summary, lesson) {
     switch (status.value) {
+      case 'visuals': return !!lesson.visual;
       case 'new': return !progress.visited && !progress.read && !summary.complete;
       case 'started': return !!progress.visited && !progress.read;
       case 'read': return !!progress.read;
@@ -49,7 +57,7 @@
     var visible = 0;
     rows.forEach(function (item) {
       var lesson = item.lesson, progress = study.get(lesson.id), summary = study.quizSummary(progress);
-      item.row.hidden = !((subject === 'all' || lesson.subject.toLowerCase() === subject) && terms.every(function (term) { return item.text.includes(term); }) && matchesStatus(progress, summary));
+      item.row.hidden = !((subject === 'all' || lesson.subject.toLowerCase() === subject) && terms.every(function (term) { return item.text.includes(term); }) && matchesStatus(progress, summary, lesson));
       if (!item.row.hidden) visible++;
       item.state.textContent = summary.missed ? summary.missed + ' to revisit' : progress.read ? 'Read' : summary.complete ? 'Test complete' : progress.visited ? 'In progress' : 'Not started';
       item.state.className = 'lesson-state' + (summary.missed ? ' lesson-state--review' : '');

@@ -6,6 +6,7 @@
 <title>Biology 01 · Cells, Organelles, Membranes and Transport — PostMed Notebook</title>
 <meta name="description" content="Biology note 01: why cells are small and compartmented, prokaryote versus eukaryote, the endomembrane production line and protein targeting, endosymbiosis, cytoskeleton and the 9+2 axoneme, junctions, membrane fluidity and the whole transport hierarchy.">
 <link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/visuals.css">
 </head>
 <body data-subject="biology">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -45,9 +46,19 @@
     <span>~50 min read</span>
   </div>
 
+<!-- visual:start -->
+<section class="viz-lab" id="visual-lab" data-viz="osmosis" aria-labelledby="osmosis-title">
+<div class="viz-heading"><p class="eyebrow">Biology / Visual Lab</p><h2 id="osmosis-title">Water moves. The trapped solute stays.</h2><p>Change the surrounding solution, then move the equilibration slider. Track concentration and volume together.</p></div>
+<p class="viz-fallback">At equilibrium, CᵢV = Cᵢ₀V₀. An outside concentration of 450 mOsm/L gives V/V₀ = 300/450 = 0.67. Enable JavaScript to explore the model.</p>
+<div class="viz-workspace" hidden><div class="viz-stage"><svg class="viz-graph" data-graph="compartment" viewBox="0 0 440 250" role="img" aria-label="compartment"></svg><div class="viz-legend"><span><i class="legend-base"></i>Initial size</span><span>Dots: fixed solute amount</span></div><div class="viz-stats"><div class="viz-stat"><span>Relative volume</span><strong data-stat="volume">—</strong></div><div class="viz-stat"><span>Inside concentration</span><strong data-stat="inside">—</strong></div><div class="viz-stat"><span>Net water movement</span><strong data-stat="direction">—</strong></div></div></div><form class="viz-controls" aria-label="Biology model controls"><label class="viz-control"><span>Outside nonpenetrating solute<output data-value="outside">450 mOsm/L</output></span><input type="range" data-control="outside" aria-label="Outside nonpenetrating solute" min="150" max="600" step="25" value="450" data-unit="mOsm/L"></label><label class="viz-control"><span>Progress toward equilibrium<output data-value="fraction">0 %</output></span><input type="range" data-control="fraction" aria-label="Progress toward equilibrium" min="0" max="100" step="1" value="0" data-unit="%"></label><fieldset><legend>Compare solutions</legend><div class="viz-presets"><button type="button" data-preset="hypo">Hypotonic</button><button type="button" data-preset="iso">Isotonic</button><button type="button" data-preset="hyper">Hypertonic</button></div></fieldset><button class="btn" type="reset">Reset experiment</button></form></div>
+<div class="viz-insight" hidden><p data-insight role="status" aria-live="polite" aria-atomic="true"></p></div>
+<div class="viz-discovery"><div><p class="eyebrow">Try this</p><p>Start in a 600 mOsm/L solution. Before moving the equilibration slider, predict the final volume. Will the amount of trapped solute change?</p></div><details><summary>Check your reasoning</summary><p>The final volume is half the initial volume. The trapped solute amount stays fixed; losing water doubles its concentration from 300 to 600 mOsm/L.</p></details></div>
+<div class="viz-footnote"><p>Ideal flexible compartment with fixed nonpenetrating solute; starts at 300 mOsm/L. Infinite outside reservoir, no pressure difference, no solute transport or volume regulation. Slider is not elapsed time. Circle area encodes relative volume. This is not a real-cell swelling or lysis model.</p><a href="biology-01-cells.html">Read the full lesson</a><a href="https://openstax.org/books/biology-2e/pages/5-2-passive-transport">Textbook reference</a></div></section>
+<!-- visual:end -->
   <nav class="toc card" aria-label="Contents of this page">
     <p class="eyebrow" style="margin-bottom:.4rem">Route through this page</p>
     <ol>
+      <li><a href="#visual-lab">Visual Lab · Water moves. The trapped solute stays.</a></li>
       <li><a href="#s1">Why cells are small, and why they are divided up</a></li>
       <li><a href="#s2">Prokaryote and eukaryote: what the distinction really claims</a></li>
       <li><a href="#s3">The nucleus, the ribosome and where a protein's address is decided</a></li>
@@ -2542,7 +2553,9 @@
   }
 ]
 </script>
-<script src="../assets/js/study.js"></script>
+<script src="../assets/js/study.js?v=visual-lab-1"></script>
 <script src="../assets/js/site.js"></script>
+<script src="../assets/js/visual-models.js"></script>
+<script src="../assets/js/visuals.js"></script>
 </body>
 </html>
